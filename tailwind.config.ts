@@ -11,6 +11,7 @@ export default {
         boxShadow: {
             custom: '0 2px 4px rgba(0, 0, 0, 0.25)',
         },
+        
         colors: {
             primary: '#09858D',
             secondary: '#E13636',
@@ -22,6 +23,9 @@ export default {
             inputBg: '#c1979e1c',
             header: '#000000',
         },
+        backgroundImage: {
+          'primarytransparent': "linear-gradient(129.42deg, rgba(255, 255, 255, 0.2) -11.83%, rgba(255, 255, 255, 0.3) 48.36%, rgba(255, 255, 255, 0.2) 107.36%)",
+        },
         width: {
             '3/10': '29%',
             '4/10': '39%',
@@ -31,17 +35,11 @@ export default {
             '8/10': '80%',
             '9/10': '90%',
         },
+       
         fontFamily: {
-            black: 'Black',
-            bold: 'Bold',
-            extrabold: 'ExtraBold',
-            medium: 'Medium',
-            regular: 'Regular',
-            semibold: 'SemiBold',
-            heavy: 'Heavy',
-            light: 'Light',
-            extraBold_800: 'ExtraBold_800',
+          'bricolage': ['Bricolage Grotesque', 'serif'],
         },
+    
         fontSize: {
             '10xs-1': '2.1px',
             '4xs-8': '8.8px',
@@ -67,6 +65,7 @@ export default {
             '37xl': '56px',
             inherit: 'inherit',
         },
+        
     },
 
   },
