@@ -193,7 +193,7 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
   {/* Horizontal Scrollable Container on Mobile */}
   <div className="flex gap-4 overflow-x-scroll lg:overflow-x-visible flex-nowrap snap-x snap-mandatory scroll-smooth">
     {/* Card 1 */}
-    <div className="flex flex-col h-[500px] w-[400px] font-bricolage snap-center shrink-0">
+    <div className="flex flex-col h-[500px]  w-[250px lg:w-[400px] font-bricolage snap-center shrink-0">
       <Image
         alt="image1"
         width={400}
@@ -211,13 +211,13 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
     </div>
 
     {/* Card 2 */}
-    <div className="relative flex flex-col h-[530px] w-[400px] font-bricolage border-[#8F8F8F] border-solid border-[1px] rounded-lg snap-center shrink-0">
+    <div className="relative flex object-contain  flex-col h-[530px]  w-[250px lg:w-[400px] font-bricolage border-[#8F8F8F] border-solid border-[1px] rounded-lg snap-center shrink-0">
       <Image
         alt="image1"
         width={400}
         height={200}
-        src={'/house2.png'}
-        className="rounded-b-lg object-cover h-[300px]"
+        src={'/house-2.png'}
+        className="rounded-b-lg  object-cover h-[300px]"
       />
       <span className="mt-4 m-10 text-black flex-col">
         <h1 className="text-black text-base lg:text-base font-bold">
@@ -247,12 +247,12 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
     </div>
 
     {/* Card 3 */}
-    <div className="flex flex-col h-[500px] w-[400px] font-bricolage snap-center shrink-0">
+    <div className="flex flex-col object-contain h-[500px]  w-[250px lg:w-[400px] font-bricolage snap-center shrink-0">
       <Image
         alt="image1"
         width={400}
         height={400}
-        src={'/house3.png'}
+        src={'/house-3.png'}
         className="rounded-lg"
       />
     </div>

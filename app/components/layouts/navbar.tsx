@@ -9,7 +9,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
-  const isActive = (path: any) => router.prefetch === path;
+  const isActive = (path:string) => router.prefetch === path;
 
   return (
     <header className="text-xl bg-white lg:bg-transparent font-bricolage text-white">
