@@ -4,7 +4,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-
+import Button from '../common/Button';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
@@ -63,12 +63,17 @@ export default function Navbar() {
 
         {/* Desktop Action Buttons */}
         <div className="hidden lg:flex lg:gap-4 md:block">
-          <Link href="/login" className="bg-primarytransparent flex justify-center p-2 items-center w-[5.5em] text-sm rounded-full"> {/* Reduced width and padding */}
+        <Button className='bg-primarytransparent bg-transparent'>
+          
+        <Link href="/login"> {/* Reduced width and padding */}
             Login
-          </Link>
-          <Link href="/register" className="bg-primary w-[7.5em] p-2 flex justify-center items-center rounded-full font-semibold hover:bg-primary"> {/* Reduced width and padding */}
+          </Link></Button>  
+          <Button >
+          <Link href="/register" > {/* Reduced width and padding */}
             Register
           </Link>
+          </Button>
+         
         </div>
 
         {/* Mobile Menu Toggle */}
