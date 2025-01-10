@@ -47,7 +47,7 @@ export default {
             l: '12px',
             label: '14px',
             xl: '20px',
-            base: '2em',
+            base: '16px',
             '17xl': '36px',
             '3xl': '22px',
             '10xl': '29px',

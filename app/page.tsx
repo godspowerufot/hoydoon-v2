@@ -9,7 +9,7 @@ import FAQComponent from "./components/layouts/faq";
 export default function Home() {
   return (
     <>
-      <header className="relative h-full w-full">
+       <header className="relative  h-[1084px]  w-full">
   
   <div className="absolute top-0 left-0 w-full h-full">
     <Image
@@ -18,7 +18,7 @@ export default function Home() {
       layout="fill"
       objectFit="cover"
       quality={100}
-      className="z-[-1] h-[50rem]"
+      className="z-[-1] "
     />
   </div>
 
@@ -26,19 +26,19 @@ export default function Home() {
   <Navbar />
 
   {/* Content Section */}
-  <div className="p-4 flex justify-center items-center flex-col">
+  <div className="p-4 flex  gap-6 justify-center items-center flex-col">
     {/* Main Heading */}
-    <h1 className="lg:w-5/10 text-white text-[2.3rem] w-full text-center lg:text-[3.2rem] font-bricolage font-bold">
+    <h1 className="lg:w-5/10 text-white text-[2.3rem] w-full text-center lg:text-[4.2rem] font-bricolage font-bold">
       Where Every House Feels Like Home
     </h1>
 
     {/* Subheading */}
-    <h2 className="text-base font-normal lg:text-2xl text-center text-[#FFFFFFB2] w-full lg:w-6/10">
+    <h2 className="text-base font-normal lg:text-13xl text-center text-[#FFFFFFB2] w-full lg:w-[1007px]">
       From urban flats to rural getaways, Hoydoon effortlessly links you to the home of your dreams with trust and ease.
     </h2>
 
     {/* Large Screen Search Bar */}
-    <div className="hidden lg:flex justify-center items-center w-full px-2 py-8">
+    <div className="hidden  lg:flex justify-center  items-center w-full ">
       <div className="flex font-bricolage items-center m-5 bg-white rounded-full shadow-md w-10/12 md:w-4/5 lg:w-3/5">
         {/* Location */}
         <div className="flex flex-col flex-1 px-4 py-3">
@@ -96,7 +96,8 @@ export default function Home() {
   </div>
 
   {/* Statistics Section */}
-  <div className="hidden lg:flex font-bricolage lg:mt-8 justify-center items-center w-full py-10 px-4">
+ {/* Stats Section */}
+ <div className="hidden absolute bottom-0 lg:flex font-bricolage lg:mt-8 justify-center items-center w-full py-10 px-4">
     <div className="flex items-center rounded-lg w-11/12 md:w-4/5 lg:w-3/5">
       {/* Hosts Section */}
       <div className="flex flex-1 text-center gap-2 px-4">
@@ -130,7 +131,6 @@ export default function Home() {
     </div>
   </div>
 </header>
-
       {/* this hold the images */}
       <section className=" font-bricolage bg-white">
         <div className="flex  p-8 flex-col lg:flex-row  items-center justify-around ">
