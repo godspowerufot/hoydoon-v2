@@ -4,6 +4,8 @@ import { FaArrowLeft, FaArrowRight, FaSearch } from "react-icons/fa";
 import Button from "./components/common/Button";
 import Link from "next/link";
 import { FaStar } from 'react-icons/fa';
+import TestimonialCarousel from "./components/layouts/testimonials";
+import FAQComponent from "./components/layouts/faq";
 export default function Home() {
   return (
     <>
@@ -307,7 +309,7 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
 
     {/* Content Overlay */}
 
-    <div className="lg:absolute relative top-40  lg:bottom-10 left-3 bg-primarytransparent  w-full lg:w-8/10 lg:h-auto  p-5 rounded-lg shadow-lg z-10">
+    <div className="lg:absolute relative  top-[5rem] lg:top-40  lg:bottom-10 left-3 bg-primarytransparent  w-full lg:w-8/10 lg:h-auto  p-5 rounded-lg shadow-lg z-10">
       {/* Property Info */}
       <div className=" bg-white w-full h-1/2 lg:h-auto p-8 rounded-lg shadow-lg  z-10">
       {/* Property Info */}
@@ -352,8 +354,8 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
         {/* Price Range */}
         <div className="flex flex-col-reverse flex-1 px-4 py-3">
           <span className="text-sm font-semibold text-black">
-          <span className="flex items-center tex-sm">
-          <FaStar className="text-[#E0DA18]"/> 5.0 <p className="text-gray  text-base lg:text-[10px]">(200 reviews)
+          <span className="flex lg:flex-row flex-col  items-center text-sm">
+          <FaStar className="text-[#E0DA18]"/> 5.0 <p className="text-gray  text-[10px] lg:block  lg:text-[10px] hidden">(200 reviews)
             </p>
         </span>
           </span>
@@ -387,6 +389,79 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
 </div>
 
 
-  </section>    </>
+
+  </section>
+  {/* testimonials */}
+  <section className="mt-8 p-4 lg:p-0 font-bricolage ">
+  <div className="flex  flex-col lg:flex-row md:flex-row  lg:gap-10  justify-around items-center  ">
+    <span className="flex flex-col font-bricolage gap-3">
+
+
+      <h1 className="text-black  text-[26px] lg:text-23xl font-[600] mr-10">What People Are Saying</h1>
+      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+Discover a home where every detail enhances your lifestyle—crafted to fit your taste and needs.</p>
+
+      
+      </span>
+      <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
+      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+Discover a home where every detail enhances your lifestyle—crafted to fit your taste and needs.</p>
+<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  text-gray">
+ Explore
+</Button>
+</span>
+   
+</div>
+<div className="mt-7">
+<TestimonialCarousel/>
+</div>
+    </section>  
+    
+      {/* testimonials */}
+  <section className=" mt-6 lg:mt-[10%] p-4 lg:p-0 font-bricolage ">
+  <div className="flex  flex-col lg:flex-row md:flex-row   lg:gap-10  justify-around items-center  ">
+    <span className="flex flex-col font-bricolage gap-3">
+
+
+      <h1 className="text-black  text-[26px] lg:text-23xl font-[600] mr-10">Your Questions, Our Answers</h1>
+      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+      Whether you’re curious about our services, need help with specific issues..</p>
+
+      
+      </span>
+      <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
+      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+      Welcome to our FAQ center, where you can find answers to all your most pressuring questions</p>
+<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  text-gray">
+ Explore
+</Button>
+</span>
+   
+</div>
+<div className="mt-7  max-md:w-full lg:w-9/10 gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row mb-5">
+<div className="z-20 relative max-md:w-full   lg:left-[4.5rem] lg:top-[5rem]">
+<FAQComponent/>
+</div>
+<div className="relative flex w-full lg:w-auto">
+
+
+      <Image
+        alt="image1"
+        width={420}
+        loading="lazy"
+        height={500}
+        src={'/q1.png'}
+        className="z-10  relative top-0 left-[0.5rem] rounded-lg  object-cover h-5/10"
+      /> <Image
+      alt="image1"
+      width={400}
+      loading="lazy"
+      height={300}
+      src={'/q2.png'}
+      className=" z-2   bottom-[2em]   max-md:w-[43%] mt-[17%] lg:-top-[2rem]  lg:mt-[11%] relative rounded-lg   object-cover h-3/10"
+    />
+    </div>
+</div>
+    </section>   </>
   );
 }
