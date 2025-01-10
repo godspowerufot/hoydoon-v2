@@ -9,27 +9,41 @@ import FAQComponent from "./components/layouts/faq";
 export default function Home() {
   return (
     <>
-      <header className=" h-full lg:h-[110vh]" style={{ backgroundImage: "url('/header.svg')", backgroundSize: "cover" }}>
-        <Navbar />
-        <div className="p-4 flex justify-center items-center flex-col">
-          <h1 className="lg:w-5/10 text-white  text-[2.3em] w-full text-center lg:text-[4.2em] font-bricolage font-bold">
-            Where Every House Feels Like Home
-          </h1>
-          <h2 className="text-base font-normal lg:text-2xl text-center text-[#FFFFFFB2]  w-full lg:w-6/10">
-            From urban flats to rural getaways, Hoydoon effortlessly links you to the home of your dreams with trust and ease.
-          </h2>
-{/* large screensearch bar */}
-          <div className=" hidden lg:flex justify-center items-center w-full px-2 py-8">
+      <header className="relative h-full w-full">
+  
+  <div className="absolute top-0 left-0 w-full h-full">
+    <Image
+      alt="Header Background"
+      src="/header.svg"
+      layout="fill"
+      objectFit="cover"
+      quality={100}
+      className="z-[-1] h-[50rem]"
+    />
+  </div>
+
+  {/* Navbar */}
+  <Navbar />
+
+  {/* Content Section */}
+  <div className="p-4 flex justify-center items-center flex-col">
+    {/* Main Heading */}
+    <h1 className="lg:w-5/10 text-white text-[2.3rem] w-full text-center lg:text-[3.2rem] font-bricolage font-bold">
+      Where Every House Feels Like Home
+    </h1>
+
+    {/* Subheading */}
+    <h2 className="text-base font-normal lg:text-2xl text-center text-[#FFFFFFB2] w-full lg:w-6/10">
+      From urban flats to rural getaways, Hoydoon effortlessly links you to the home of your dreams with trust and ease.
+    </h2>
+
+    {/* Large Screen Search Bar */}
+    <div className="hidden lg:flex justify-center items-center w-full px-2 py-8">
       <div className="flex font-bricolage items-center m-5 bg-white rounded-full shadow-md w-10/12 md:w-4/5 lg:w-3/5">
-        
         {/* Location */}
         <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-sm font-semibold text-black">
-            Location
-          </span>
-          <div className="text-sm text-gray">
-            Search Locations
-          </div>
+          <span className="text-sm font-semibold text-black">Location</span>
+          <div className="text-sm text-gray">Search Locations</div>
         </div>
 
         {/* Vertical Divider */}
@@ -37,12 +51,8 @@ export default function Home() {
 
         {/* Type */}
         <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-sm font-semibold text-black">
-            Type
-          </span>
-          <div className="text-sm text-gray">
-            Add type
-          </div>
+          <span className="text-sm font-semibold text-black">Type</span>
+          <div className="text-sm text-gray">Add type</div>
         </div>
 
         {/* Vertical Divider */}
@@ -50,12 +60,8 @@ export default function Home() {
 
         {/* Price Range */}
         <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-sm font-semibold text-black">
-            Price Range
-          </span>
-          <div className="text-sm text-gray">
-            Add range
-          </div>
+          <span className="text-sm font-semibold text-black">Price Range</span>
+          <div className="text-sm text-gray">Add range</div>
         </div>
 
         {/* Vertical Divider */}
@@ -63,12 +69,8 @@ export default function Home() {
 
         {/* Number of Guests */}
         <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-sm font-semibold text-black">
-            Number of Guests
-          </span>
-          <div className="text-sm text-gray">
-            Add number
-          </div>
+          <span className="text-sm font-semibold text-black">Number of Guests</span>
+          <div className="text-sm text-gray">Add number</div>
         </div>
 
         {/* Search Button */}
@@ -77,58 +79,58 @@ export default function Home() {
         </div>
       </div>
     </div>
-    {/* small screen bar */}
+
+    {/* Small Screen Search Bar */}
     <div className="lg:hidden justify-center items-center w-full px-2 py-3">
       <div className="flex font-bricolage items-center m-5 bg-white rounded-full shadow-md w-[89%] md:w-4/5 lg:w-3/5">
-        
-        {/* Location */}
-        <div className="flex flex-col  flex-1 px-2 py-3">
-        
+        <div className="flex flex-col flex-1 px-2 py-3">
           <div className="text-sm text-gray">
-          Address, Neighborhood, City, Zip code...
+            Address, Neighborhood, City, Zip code...
           </div>
         </div>
-
-      
-
-        {/* Search Button */}
         <div className="bg-primary p-3 mr-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90">
           <FaSearch className="text-white text-sm" />
         </div>
       </div>
     </div>
-        </div>
+  </div>
 
-        {/* end section */}
-        <div className=" hidden lg:flex font-bricolage  lg:mt-8 justify-center items-center w-full py-10 px-4">
-      <div className="flex items-center   rounded-lg w-11/12 md:w-4/5 lg:w-3/5">
-        
-        {/* Hosts Section */}
-        <div className="flex  flex-1 text-center  gap-2 px-4">
-          <span className="text-3xl  text-white">10M+</span>
-          <span className="text-sm text-start text-white">hosts welcome guests worldwide</span>
-        </div>
+  {/* Statistics Section */}
+  <div className="hidden lg:flex font-bricolage lg:mt-8 justify-center items-center w-full py-10 px-4">
+    <div className="flex items-center rounded-lg w-11/12 md:w-4/5 lg:w-3/5">
+      {/* Hosts Section */}
+      <div className="flex flex-1 text-center gap-2 px-4">
+        <span className="text-3xl text-white">10M+</span>
+        <span className="text-sm text-start text-white">
+          hosts welcome guests worldwide
+        </span>
+      </div>
 
-        {/* Vertical Divider */}
-        <div className="h-12 w-[1px] bg-white mx-2 my-1"></div>
+      {/* Vertical Divider */}
+      <div className="h-12 w-[1px] bg-white mx-2 my-1"></div>
 
-        {/* Unique Stays Section */}
-        <div className="flex flex-1 text-center px-4 gap-2">
-          <span className="text-3xl  text-white">15M+</span>
-          <span className="text-sm text-start text-white">Unique stays across 150K+ cities</span>
-        </div>
+      {/* Unique Stays Section */}
+      <div className="flex flex-1 text-center px-4 gap-2">
+        <span className="text-3xl text-white">15M+</span>
+        <span className="text-sm text-start text-white">
+          Unique stays across 150K+ cities
+        </span>
+      </div>
 
-        {/* Vertical Divider */}
-        <div className="h-12 w-[1px] bg-white mx-2 my-1"></div>
+      {/* Vertical Divider */}
+      <div className="h-12 w-[1px] bg-white mx-2 my-1"></div>
 
-        {/* Guest Arrivals Section */}
-        <div className="flex gap-2  flex-1 text-center px-4">
-          <span className="text-3xl  text-white">12M+</span>
-          <span className="text-sm text-start text-white">guest arrivals to date every month</span>
-        </div>
+      {/* Guest Arrivals Section */}
+      <div className="flex gap-2 flex-1 text-center px-4">
+        <span className="text-3xl text-white">12M+</span>
+        <span className="text-sm text-start text-white">
+          guest arrivals to date every month
+        </span>
       </div>
     </div>
-      </header>
+  </div>
+</header>
+
       {/* this hold the images */}
       <section className=" font-bricolage bg-white">
         <div className="flex  p-8 flex-col lg:flex-row  items-center justify-around ">
@@ -466,7 +468,7 @@ Explore
 </div>
     </section> 
     {/* New-articles */}
-    <section className="mt-8 p-4 lg:p-0 font-bricolage ">
+    <section className=" hidden mt-10 p-4 lg:p-0 font-bricolage ">
   <div className="flex  flex-col lg:flex-row md:flex-row  lg:gap-10  justify-around items-center  ">
     <span className="flex flex-col font-bricolage gap-3">
 
@@ -489,9 +491,107 @@ Explore
    
 </div>
 {/* cards */}
-<div>
+{/* Card Component */}
+{/* Card Component */}
+<div className="flex justify-center items-center gap-6">
+<div className="relative flex flex-col h-[530px] w-[38em] font-bricolage border border-[#8F8F8F] rounded-lg snap-center shrink-0">
+  {/* Image Section */}
+  <Image
+    alt="house image"
+    width={400}
+    height={300}
+    src={'/house-2.png'}
+    className="rounded-t-lg object-cover w-full h-[300px]"
+  />
+
+  {/* Content Section */}
+  <div className="flex flex-col p-4">
+    {/* Title */}
+    <h1 className="text-black text-lg font-bold">Whispering Pines Estate</h1>
+
+    {/* Price and Area */}
+    <div className="flex flex-wrap gap-3 mt-2">
+      <div className="flex items-center">
+        <h4 className="text-gray text-sm font-light">From</h4>
+        <h2 className="ml-2 font-bold">$2500.00</h2>
+      </div>
+      <h4 className="ml-auto text-sm text-gray font-light">
+        Area from 190 - 245 m²
+      </h4>
+    </div>
+
+    {/* Description */}
+    <p className="text-gray text-sm mt-4">
+      A cozy 3-bedroom home with an open living area and a private backyard.
+      Perfect for comfort and relaxation.
+    </p>
+  </div>
+
+  {/* Footer Section */}
+  <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
+    <div className="flex items-center justify-center px-4 py-2 text-sm font-light text-[#1E1E1E] bg-[#D8F0F1] rounded-full">
+      Luxury Oasis
+    </div>
+    <Image
+      alt="export icon"
+      width={40}
+      height={40}
+      src={'/export.png'}
+      className="rounded-full"
+    />
+  </div>
+</div>
+<div className="relative flex flex-col h-[530px] w-[38em]  font-bricolage border border-[#8F8F8F] rounded-lg snap-center shrink-0">
+  {/* Image Section */}
+  <Image
+    alt="house image"
+    width={400}
+    height={300}
+    src={'/house-2.png'}
+    className="rounded-t-lg  w-full object-cover h-[300px]"
+  />
+
+  {/* Content Section */}
+  <div className="flex flex-col p-4">
+    {/* Title */}
+    <h1 className="text-black text-lg font-bold">Whispering Pines Estate</h1>
+
+    {/* Price and Area */}
+    <div className="flex flex-wrap gap-3 mt-2">
+      <div className="flex items-center">
+        <h4 className="text-gray text-sm font-light">From</h4>
+        <h2 className="ml-2 font-bold">$2500.00</h2>
+      </div>
+      <h4 className="ml-auto text-sm text-gray font-light">
+        Area from 190 - 245 m²
+      </h4>
+    </div>
+
+    {/* Description */}
+    <p className="text-gray text-sm mt-4">
+      A cozy 3-bedroom home with an open living area and a private backyard.
+      Perfect for comfort and relaxation.
+    </p>
+  </div>
+
+  {/* Footer Section */}
+  <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
+    <div className="flex items-center justify-center px-4 py-2 text-sm font-light text-[#1E1E1E] bg-[#D8F0F1] rounded-full">
+      Luxury Oasis
+    </div>
+    <Image
+      alt="export icon"
+      width={40}
+      height={40}
+      src={'/export.png'}
+      className="rounded-full"
+    />
+  </div>
+</div>
 
 </div>
+
+
     </section>  
     
       </>
