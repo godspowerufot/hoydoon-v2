@@ -403,11 +403,13 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
 
       
       </span>
-      <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
+      <span className=" hidden lg:flex flex-col font-bricolage gap-3 ">
       <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
 Discover a home where every detail enhances your lifestyle—crafted to fit your taste and needs.</p>
-<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  text-gray">
- Explore
+<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  " >
+<p className="text-gray" style={{color:"text-gray"}}>
+Explore
+  </p> 
 </Button>
 </span>
    
@@ -418,7 +420,7 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
     </section>  
     
       {/* testimonials */}
-  <section className=" mt-6 lg:mt-[10%] p-4 lg:p-0 font-bricolage ">
+  <section className=" mt-7 lg:mt-[10%] p-4 lg:p-0 font-bricolage ">
   <div className="flex  flex-col lg:flex-row md:flex-row   lg:gap-10  justify-around items-center  ">
     <span className="flex flex-col font-bricolage gap-3">
 
@@ -462,6 +464,36 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
     />
     </div>
 </div>
-    </section>   </>
+    </section> 
+    {/* New-articles */}
+    <section className="mt-8 p-4 lg:p-0 font-bricolage ">
+  <div className="flex  flex-col lg:flex-row md:flex-row  lg:gap-10  justify-around items-center  ">
+    <span className="flex flex-col font-bricolage gap-3">
+
+
+      <h1 className="text-black  text-[26px] lg:text-23xl font-[600] mr-10">New Highlights & Articles</h1>
+      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+      Our top stories and features keeps you updated on industry trends, current events</p>
+
+      
+      </span>
+      <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
+      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+      Stay Informed with our latest news and Insights where you’ find breaking stories</p>
+<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  " >
+<p className="text-gray" style={{color:"text-gray"}}>
+Explore
+  </p> 
+</Button>
+</span>
+   
+</div>
+{/* cards */}
+<div>
+
+</div>
+    </section>  
+    
+      </>
   );
 }

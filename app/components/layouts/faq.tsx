@@ -59,7 +59,7 @@ const FAQComponent: React.FC = () => {
 
             {/* Answer Section */}
             {openIndex === index && (
-              <div className="mt-2 text-sm text-gray-600">
+              <div className="mt-2 text-sm text-gray ">
                 {faq.answer}
               </div>
             )}
