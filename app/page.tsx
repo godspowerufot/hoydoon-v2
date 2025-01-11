@@ -6,10 +6,11 @@ import Link from "next/link";
 import { FaStar } from 'react-icons/fa';
 import TestimonialCarousel from "./components/layouts/testimonials";
 import FAQComponent from "./components/layouts/faq";
+
 export default function Home() {
   return (
     <>
-       <header className="relative h-[80em]  w-screen">
+       <header className="relative h-[45em] lg:h-[80em]   w-full">
   
   <div className="absolute top-0 left-0 w-full h-full">
     <Image
@@ -18,17 +19,16 @@ export default function Home() {
       layout="fill"
       objectFit="cover"
       quality={100}
-      className="z-[-1] "
+      className="z-[-1]  "
     />
   </div>
 
-  {/* Navbar */}
-  <Navbar />
+
 
   {/* Content Section */}
   <div className="p-4 flex  gap-6 justify-center items-center flex-col">
     {/* Main Heading */}
-    <h1 className="lg:w-[10em] text-white text-[2.3rem] w-full text-center lg:text-60xl font-bricolage font-bold">
+    <h1 className="lg:w-[10em] mt-[4em] lg:mt-[10%] text-white text-[2.3rem] w-full text-center lg:text-60xl font-bricolage font-bold">
       Where Every House Feels Like Home
     </h1>
 
@@ -132,8 +132,8 @@ export default function Home() {
   </div>
 </header>
       {/* this hold the images */}
-      <section className=" font-bricolage bg-white">
-        <div className="flex  p-8 flex-col lg:flex-row  items-center justify-around ">
+      <section className=" font-bricolage flex justify-center flex-col flex-1 items-center bg-white">
+        <div className="flex  p-8 flex-col  lg:mt-[4em] lg:flex-row  items-center justify-around ">
           <span className="flex flex-col w-full lg:w-6/10 ">
 <h1 className="text-black  text-[26px] lg:text-24xl font-[600]">Find your ideal property with simple tools and guidance.</h1>
 <p className="text-gray text-base lg:text-lgi font-bricolage w-9/10">
@@ -157,11 +157,11 @@ Enjoy fast and easy access to a variety of properties that suit your needs. Use 
 </span>
         </div>
       </section>
-      <section className="mt-10 font-bricolage">
+      <section className="mt-10 lg:mt-[4em]  font-bricolage flex justify-center flex-col flex-1 items-center">
         <div className="flex  p-8 flex-col lg:flex-row  items-center justify-around ">
           <span className="flex flex-col w-full lg:w-6/10 ">
 <h1 className="text-black  text-[26px] lg:text-24xl font-[600]">Get the Hoydoon App</h1>
-<p className="text-gray text-base lg:text-lgi font-bricolage w-9/10">
+<p className="text-gray text-base lg:text-5xl font-bricolage w-9/10">
 Download our highly-rated real estate app for iOS or Android to receive instant alerts when your dream home becomes available.</p>
 
 <Button className="text-base font-light mt-5 ">
@@ -177,6 +177,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
               width={500}  // Reduced size of logo
               height={500} // Reduced size of logo
               src={'/app.svg'}
+              className="lg:w-[618px]"
             />
 </span>
         </div> 
@@ -184,11 +185,11 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
 
 {/* card component */}
     
-<section className="lg:mt-3  lg:p-0 flex flex-col font-bricolage w-full">
-    <div className="flex flex-col">
-      <div className="flex  p-2 flex-col md:flex-row lg:flex-row md:gap-10  lg:gap-10  justify-around items-center  md:items-start ">
+<section className="lg:mt-3  justify-center items-center  lg:p-0 flex flex-col font-bricolage w-full">
+    <div className="flex flex-col items-center justify-center">
+      <div className="flex  lg:w-[80em] p-2 flex-col md:flex-row lg:flex-row md:gap-10  lg:gap-10  justify-around items-center  md:items-start ">
       <h1 className="text-black lg:ml-2 text-[26px] lg:text-23xl font-[600]  lg:mr-10 w-full ">Featured Properties for Rent</h1>
-      <p className="text-gray pl-4  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-full">
+      <p className="text-gray pl-4  lg:p-0 text-base lg:text-5xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyle—crafted to fit your taste and needs.
 </p>
 
@@ -196,7 +197,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
 </div>
 <div className="p-3 flex lg:m-3 flex-col lg:flex-col mb-5">
   {/* Horizontal Scrollable Container on Mobile */}
-  <div className="flex gap-10 overflow-x-scroll lg:overflow-x-visible flex-nowrap snap-x snap-mandatory scroll-smooth">
+  <div className="lg:flex hidden gap-4 lg:gap-10  overflow-x-scroll lg:overflow-x-visible flex-nowrap snap-x snap-mandatory scroll-smooth">
     {/* Card 1 */}
     <div className="flex flex-col h-[500px] w-[400px] font-bricolage snap-center shrink-0">
       <Image
@@ -285,110 +286,99 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
 
 {/* carousel */}
 
-<section className="lg:mt-10  p-5 item-start  lg:p-0 flex flex-col font-bricolage w-full  ">
+<section className="lg:mt-10  p-5 item-center justify-center  lg:p-0 flex flex-col font-bricolage  ">
   
-<div className="flex  flex-col lg:flex-row md:flex-row  lg:gap-10  justify-around items-center  ">
-      <h1 className="text-black  text-[26px] lg:text-23xl font-[600] mr-10">Explore Luxurious Living Spaces</h1>
-<p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+<div className="flex  lg:w-[80em] p-2 flex-col md:flex-row lg:flex-row md:gap-10  lg:gap-10  justify-around items-center  md:items-start ">
+
+<h1 className="text-black lg:ml-2 text-[26px] lg:text-23xl font-[600]  lg:mr-10 w-full ">Explore Luxurious Living Spaces</h1>
+<p className="text-gray  lg:p-0 text-base lg:text-5xl font-bricolage w-full lg:w-[30em]">
 Discover a home where every detail enhances your lifestyle—crafted to fit your taste and needs.</p>
 
       
 </div>
-<div className=" lg:p-5 font-bricolage">
-  <div className="relative w-full h-[500px] rounded-lg flex items-center justify-center">
-    {/* Background Image */}
-    <div
-      style={{
-        backgroundImage: "url('/carousel.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-      className="relative  top-0 left-0 w-full h-full rounded-lg"
-    >
+<div className="lg:p-5 font-bricolage">
+      <div className="relative  lg:h-[850px] h-[500px] rounded-lg flex flex-col">
+        {/* Background Image and Content */}
+        <div className="relative w-full h-full rounded-lg overflow-hidden">
+          {/* Background Image */}
+          <Image
+            src="/carousel.jpg"
+            alt="Carousel Background"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 80vw"
+            className="object-cover"
+          />
+          {/* Black Transparent Overlay */}
+          <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
 
-    {/* Black Transparent Overlay */}
-    <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40 rounded-lg"></div>
+          {/* Content Inside Image */}
+          <div className="lg:absolute h-[43%] relative top-[5rem] lg:top-[28rem] lg:bottom-10 left-3 bg-primarytransparent w-full lg:w-8/10 lg:h-auto p-5 rounded-lg shadow-lg z-10">
+        {/* Property Info */}
+        <div className="bg-white w-full h-[14em] lg:h-auto p-8 rounded-lg shadow-lg z-10">
+          <h1 className="text-black text-base lg:text-23xl font-[600]">Laurel Canyon Nest</h1>
+          <p className="text-gray lg:text-base text-[10px] mt-2">
+            A charming 3-bedroom home featuring a bright, open-concept living area designed for both comfort and connection. The spacious layout flows seamlessly from the kitchen to the dining and living spaces, making it perfect for gatherings. Step outside to a private backyard, ideal for relaxing, entertaining, or enjoying a bit of gardening. This home offers the perfect blend of functionality and tranquility for everyday living.
+          </p>
 
-    {/* Content Overlay */}
+          <div className="flex font-bricolage items-center mt-5">
+            {/* Property Details */}
+            <div className="flex flex-col-reverse flex-1 px-4 py-3">
+              <span className="text-sm font-semibold text-black">1,00sqft</span>
+              <div className="text-sm text-gray">Size</div>
+            </div>
 
-    <div className="lg:absolute relative  top-[5rem] lg:top-40  lg:bottom-10 left-3 bg-primarytransparent  w-full lg:w-8/10 lg:h-auto  p-5 rounded-lg shadow-lg z-10">
-      {/* Property Info */}
-      <div className=" bg-white w-full h-1/2 lg:h-auto p-8 rounded-lg shadow-lg  z-10">
-      {/* Property Info */}
-      <h1 className="text-black  text-base lg:text-23xl font-[600]">
-
-      Laurel Canyon Nest
-      </h1>
-      <p className="text-gray lg:text-base text-[10px] ">
-      A charming 3-bedroom home featuring a bright, open-concept living area designed for both comfort and connection. The spacious layout flows seamlessly from the kitchen to the dining and living spaces, making it perfect for gatherings. Step outside to a private backyard, ideal for relaxing, entertaining, or enjoying a bit of gardening. This home offers the perfect blend of functionality and tranquility for everyday living.
-      </p>
-      <div className="flex font-bricolage items-center mt-5 ">
-        
-           {/* Type */}
-           <div className="flex flex-col-reverse  flex-1 px-4 py-3">
-          <span className="text-sm font-semibold text-black">
-          
-          1,00sqft</span>
-          <div className="text-sm text-gray">
-          size
-
-          </div>
-        </div>
-        {/* Location */}
             {/* Vertical Divider */}
             <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
 
-     
+            <div className="flex flex-col-reverse flex-1 px-4 py-3">
+              <span className="text-sm font-semibold text-black">Berbera, Somalia</span>
+              <div className="text-sm text-gray">Location</div>
+            </div>
 
-        <div className="flex flex-col-reverse flex-1 px-4 py-3">
-          <span className="text-sm font-semibold text-black">
-          Berbera, Somalia
-          </span>
-          <div className="text-sm text-gray">
-            Location
+            {/* Vertical Divider */}
+            <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
+
+            <div className="flex flex-col-reverse flex-1 px-4 py-3">
+              <span className="text-sm font-semibold text-black">
+                <span className="flex lg:flex-row flex-col items-center text-sm">
+                  <FaStar className="text-[#E0DA18]" /> 5.0{' '}
+                  <p className="text-gray text-[10px] lg:block lg:text-[10px] hidden">(200 reviews)</p>
+                </span>
+              </span>
+              <div className="text-sm text-gray">Reviews</div>
+            </div>
           </div>
         </div>
+      </div>
 
-    
-        {/* Vertical Divider */}
-        <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
-
-        {/* Price Range */}
-        <div className="flex flex-col-reverse flex-1 px-4 py-3">
-          <span className="text-sm font-semibold text-black">
-          <span className="flex lg:flex-row flex-col  items-center text-sm">
-          <FaStar className="text-[#E0DA18]"/> 5.0 <p className="text-gray  text-[10px] lg:block  lg:text-[10px] hidden">(200 reviews)
-            </p>
-        </span>
-          </span>
-          <div className="text-sm text-gray">
-          reviews
+          {/* Navigation Buttons at Bottom Right */}
+          <div className="absolute bottom-5 right-5 flex gap-3 z-50">
+            {/* Previous Button */}
+            <div className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-3 w-12 h-12 shadow-md cursor-pointer hover:bg-gray-200">
+                 <Image
+                         alt="logo"
+                         width={20}  
+                         loading='lazy'
+                         height={20} // Reduced size of logo
+                         src={'/left.png'}
+                       className="text-gray w-[9px]  text-lg" />
+            </div>
+            {/* Next Button */}
+            <div className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-3 w-12 h-12 shadow-md cursor-pointer hover:bg-gray-200">
+            <Image
+                         alt="logo"
+                         width={20}  
+                         loading='lazy'
+                         height={20} // Reduced size of logo
+                         src={'/right.png'}
+                       className="text-gray w-[9px]  text-lg" />
+                 </div>
           </div>
         </div>
-
-        {/* Vertical Divider */}
-        <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
-
- 
-
-      
-    </div>
-    </div>
-    </div>
-    <div className="absolute bottom-2 right-2 z-[100000000] flex gap-5">
-      {/* Previous Button */}
-      <div className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-2 w-10 h-10 shadow-md cursor-pointer hover:bg-gray-200">
-        <FaArrowLeft className="text-gray-600 text-lg" />
-      </div>
-
-      {/* Next Button */}
-      <div className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-2 w-10 h-10 shadow-md cursor-pointer hover:bg-gray-200">
-        <FaArrowRight className="text-gray-600 text-lg" />
       </div>
     </div>
-    </div>
-  </div>
-</div>
+
 
 
 
@@ -446,7 +436,7 @@ Explore
 <div className="z-20 relative max-md:w-full   lg:left-[50px] lg:top-[1em]">
 <FAQComponent/>
 </div>
-<div className="relative flex w-full lg:w-auto">
+<div className="relative -ml-[5em] lg:ml-0 flex w-[255px] lg:w-auto">
 
 
       <Image
@@ -462,7 +452,7 @@ Explore
       loading="lazy"
       height={300}
       src={'/q2.png'}
-      className=" z-2   bottom-[2em]   w-[300px] mt-[17%] lg:-top-[2rem]  lg:mt-[11%] relative rounded-lg   object-cover h-3/10"
+      className=" z-2   bottom-[2em]   w-[86px] lg:w-[300px] mt-[17%] lg:-top-[2rem]  lg:mt-[11%] relative rounded-lg   object-cover h-3/10"
     />
     </div>
 </div>

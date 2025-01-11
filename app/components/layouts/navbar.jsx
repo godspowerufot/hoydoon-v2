@@ -12,7 +12,7 @@ export default function Navbar() {
   const isActive = (path) => router.prefetch === path;
 
   return (
-    <header className="text-xl z-10 relative  bg-white lg:bg-transparent font-bricolage text-white">
+    <header className="text-xl z-10 relative   bg-white lg:bg-transparent font-bricolage text-white">
       <div className="flex-1 mx-auto flex items-center justify-between p-4">
         
         {/* Logo */}
@@ -20,7 +20,9 @@ export default function Navbar() {
           <Link href="/" className='flex justify-center items-center gap-2'>
             <Image
               alt="logo"
-              width={40}  // Reduced size of logo
+              width={40}  
+              loading='lazy'
+              objectFit='cover'
               height={40} // Reduced size of logo
               src={'/logo.svg'}
             />
