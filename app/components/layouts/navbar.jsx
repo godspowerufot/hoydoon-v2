@@ -13,7 +13,7 @@ export default function Navbar() {
 
   return (
     <header className="text-xl z-10 relative  bg-white lg:bg-transparent font-bricolage text-white">
-      <div className="container mx-auto flex items-center justify-between p-4">
+      <div className="flex-1 mx-auto flex items-center justify-between p-4">
         
         {/* Logo */}
         <div className="text-2xl font-bold">
@@ -31,7 +31,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Links */}
-        <div className="pr-5 text-lg sm:hidden max-md:hidden lg:flex hidden  rounded-full md:flex lg:h-[54px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
+        <div className="pr-5 text-lg sm:hidden max-md:hidden lg:flex hidden  md:hidden rounded-full  lg:h-[54px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
           <ul className="lg:flex items-center space-x-5">
             <li>
               <div className={`px-7  py-3 rounded-full ${isActive('/') ? 'bg-white  lg:w-[95px] lg:h-[47px] text-primary' : 'bg-white hover:text-primary'}`}>
@@ -62,7 +62,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Action Buttons */}
-        <div className="hidden lg:flex lg:gap-4 md:block">
+        <div className="hidden lg:flex md:hidden lg:gap-4  mr-3">
         <Button className='bg-primarytransparent h-[54px] bg-transparent'>
           
         <Link href="/login"> {/* Reduced width and padding */}
@@ -77,7 +77,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="md:hidden">
+        <div className="md:block lg:hidden">
           <button onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FaTimes size={24}  className='text-black'/> : <FaBars size={24}  className='text-black'/>} {/* Reduced icon size */}
           </button>

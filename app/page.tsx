@@ -9,7 +9,7 @@ import FAQComponent from "./components/layouts/faq";
 export default function Home() {
   return (
     <>
-       <header className="relative  h-[1084px]  w-screen">
+       <header className="relative h-[80em]  w-screen">
   
   <div className="absolute top-0 left-0 w-full h-full">
     <Image
@@ -28,7 +28,7 @@ export default function Home() {
   {/* Content Section */}
   <div className="p-4 flex  gap-6 justify-center items-center flex-col">
     {/* Main Heading */}
-    <h1 className="lg:w-[1071px] text-white text-[2.3rem] w-full text-center lg:text-60xl font-bricolage font-bold">
+    <h1 className="lg:w-[10em] text-white text-[2.3rem] w-full text-center lg:text-60xl font-bricolage font-bold">
       Where Every House Feels Like Home
     </h1>
 
@@ -74,8 +74,8 @@ export default function Home() {
         </div>
 
         {/* Search Button */}
-        <div className="bg-primary p-3 mr-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90">
-          <FaSearch className="text-white text-sm" />
+        <div className="bg-primary p-3 ml-8 mr-3 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90">
+          <FaSearch className="text-white h-[20px] w-6 font-light text-sm" />
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@ export default function Home() {
           </div>
         </div>
         <div className="bg-primary p-3 mr-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90">
-          <FaSearch className="text-white text-sm" />
+          <FaSearch className="text-white h-6  text-sm" />
         </div>
       </div>
     </div>

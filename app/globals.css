@@ -17,6 +17,7 @@
 
 body {
   color: black;
+  overflow-x: hidden;
   background: white;
   font-family:'Bricolage Grotesque' Arial, Helvetica, sans-serif;
 }
