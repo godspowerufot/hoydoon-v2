@@ -62,6 +62,7 @@ export default {
             '51xl-5': '70.5px',
             '23xl': '42px',
             '24xl': '48px',
+            '60xl':'92px',
             '37xl': '56px',
             inherit: 'inherit',
         },

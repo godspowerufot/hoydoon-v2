@@ -12,7 +12,7 @@ export default function Navbar() {
   const isActive = (path) => router.prefetch === path;
 
   return (
-    <header className="text-xl bg-white lg:bg-transparent font-bricolage text-white">
+    <header className="text-xl z-10 relative  bg-white lg:bg-transparent font-bricolage text-white">
       <div className="container mx-auto flex items-center justify-between p-4">
         
         {/* Logo */}
@@ -31,11 +31,11 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Links */}
-        <div className="pr-5 text-lg sm:hidden max-md:hidden lg:flex hidden pl-5 py-2 rounded-full md:flex md:p-2 space-x-7 lg:gap-3 bg-primarytransparent text-white">
+        <div className="pr-5 text-lg sm:hidden max-md:hidden lg:flex hidden  rounded-full md:flex lg:h-[54px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
           <ul className="lg:flex items-center space-x-5">
             <li>
-              <div className={`px-4 py-1 rounded-full ${isActive('/') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
-                <Link href="/">Home</Link>
+              <div className={`px-7  py-3 rounded-full ${isActive('/') ? 'bg-white  lg:w-[95px] lg:h-[47px] text-primary' : 'bg-white hover:text-primary'}`}>
+                <Link href="/" className='text-primary'>Home</Link>
               </div>
             </li>
             <li>
@@ -63,7 +63,7 @@ export default function Navbar() {
 
         {/* Desktop Action Buttons */}
         <div className="hidden lg:flex lg:gap-4 md:block">
-        <Button className='bg-primarytransparent bg-transparent'>
+        <Button className='bg-primarytransparent h-[54px] bg-transparent'>
           
         <Link href="/login"> {/* Reduced width and padding */}
             Login

@@ -9,7 +9,7 @@ import FAQComponent from "./components/layouts/faq";
 export default function Home() {
   return (
     <>
-       <header className="relative  h-[1084px]  w-full">
+       <header className="relative  h-[1084px]  w-screen">
   
   <div className="absolute top-0 left-0 w-full h-full">
     <Image
@@ -28,7 +28,7 @@ export default function Home() {
   {/* Content Section */}
   <div className="p-4 flex  gap-6 justify-center items-center flex-col">
     {/* Main Heading */}
-    <h1 className="lg:w-5/10 text-white text-[2.3rem] w-full text-center lg:text-[4.2rem] font-bricolage font-bold">
+    <h1 className="lg:w-[1071px] text-white text-[2.3rem] w-full text-center lg:text-60xl font-bricolage font-bold">
       Where Every House Feels Like Home
     </h1>
 
@@ -98,11 +98,11 @@ export default function Home() {
   {/* Statistics Section */}
  {/* Stats Section */}
  <div className="hidden absolute bottom-0 lg:flex font-bricolage lg:mt-8 justify-center items-center w-full py-10 px-4">
-    <div className="flex items-center rounded-lg w-11/12 md:w-4/5 lg:w-3/5">
+    <div className="flex items-center rounded-lg w-9/10 md:w-4/5 lg:w-7/10">
       {/* Hosts Section */}
       <div className="flex flex-1 text-center gap-2 px-4">
-        <span className="text-3xl text-white">10M+</span>
-        <span className="text-sm text-start text-white">
+        <span className="text-13xl text-white">10M+</span>
+        <span className="text-xl w-[175px] text-start text-white">
           hosts welcome guests worldwide
         </span>
       </div>
@@ -112,8 +112,8 @@ export default function Home() {
 
       {/* Unique Stays Section */}
       <div className="flex flex-1 text-center px-4 gap-2">
-        <span className="text-3xl text-white">15M+</span>
-        <span className="text-sm text-start text-white">
+        <span className="text-13xl text-white">15M+</span>
+        <span className="text-xl w-[179px] text-start text-white">
           Unique stays across 150K+ cities
         </span>
       </div>
@@ -123,8 +123,8 @@ export default function Home() {
 
       {/* Guest Arrivals Section */}
       <div className="flex gap-2 flex-1 text-center px-4">
-        <span className="text-3xl text-white">12M+</span>
-        <span className="text-sm text-start text-white">
+        <span className="text-13xl text-white">12M+</span>
+        <span className="text-xl  w-[175px] text-start text-white">
           guest arrivals to date every month
         </span>
       </div>
@@ -422,7 +422,7 @@ Explore
     </section>  
     
       {/* testimonials */}
-  <section className=" mt-7 lg:mt-[10%] p-4 lg:p-0 font-bricolage ">
+  <section className=" mt-7 lg:mt-[10%]  flex flex-1 justify-center items-center  flex-col  w-full p-4 lg:p-0 font-bricolage ">
   <div className="flex  flex-col lg:flex-row md:flex-row   lg:gap-10  justify-around items-center  ">
     <span className="flex flex-col font-bricolage gap-3">
 
@@ -442,8 +442,8 @@ Explore
 </span>
    
 </div>
-<div className="mt-7  max-md:w-full lg:w-9/10 gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row mb-5">
-<div className="z-20 relative max-md:w-full   lg:left-[4.5rem] lg:top-[5rem]">
+<div className="mt-7 justify-center items-center max-md:w-full w-full gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row mb-5">
+<div className="z-20 relative max-md:w-full   lg:left-[50px] lg:top-[1em]">
 <FAQComponent/>
 </div>
 <div className="relative flex w-full lg:w-auto">
@@ -462,120 +462,50 @@ Explore
       loading="lazy"
       height={300}
       src={'/q2.png'}
-      className=" z-2   bottom-[2em]   max-md:w-[43%] mt-[17%] lg:-top-[2rem]  lg:mt-[11%] relative rounded-lg   object-cover h-3/10"
+      className=" z-2   bottom-[2em]   w-[300px] mt-[17%] lg:-top-[2rem]  lg:mt-[11%] relative rounded-lg   object-cover h-3/10"
     />
     </div>
 </div>
     </section> 
     {/* New-articles */}
-    <section className=" hidden mt-10 p-4 lg:p-0 font-bricolage ">
-  <div className="flex  flex-col lg:flex-row md:flex-row  lg:gap-10  justify-around items-center  ">
-    <span className="flex flex-col font-bricolage gap-3">
-
-
-      <h1 className="text-black  text-[26px] lg:text-23xl font-[600] mr-10">New Highlights & Articles</h1>
-      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
-      Our top stories and features keeps you updated on industry trends, current events</p>
-
-      
-      </span>
-      <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
-      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
-      Stay Informed with our latest news and Insights where you’ find breaking stories</p>
-<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  " >
-<p className="text-gray" style={{color:"text-gray"}}>
-Explore
-  </p> 
-</Button>
-</span>
-   
-</div>
-{/* cards */}
-{/* Card Component */}
-{/* Card Component */}
-<div className="flex justify-center items-center gap-6">
-<div className="relative flex flex-col h-[530px] w-[38em] font-bricolage border border-[#8F8F8F] rounded-lg snap-center shrink-0">
+    <section className="  mb-5 flex justify-center items-center  w-full  flex-col mt-10 p-4 lg:p-0 font-bricolage ">
+    <div className="flex justify-center mt-4 lg:flex-1 lg:flex-row flex-col  items-center gap-10">
+    <div className="relative flex flex-col h-[650px]   lg:w-[600px]  font-bricolage  rounded-lg  shrink-0">
   {/* Image Section */}
   <Image
     alt="house image"
     width={400}
     height={300}
-    src={'/house-2.png'}
-    className="rounded-t-lg object-cover w-full h-[300px]"
-  />
-
-  {/* Content Section */}
-  <div className="flex flex-col p-4">
-    {/* Title */}
-    <h1 className="text-black text-lg font-bold">Whispering Pines Estate</h1>
-
-    {/* Price and Area */}
-    <div className="flex flex-wrap gap-3 mt-2">
-      <div className="flex items-center">
-        <h4 className="text-gray text-sm font-light">From</h4>
-        <h2 className="ml-2 font-bold">$2500.00</h2>
-      </div>
-      <h4 className="ml-auto text-sm text-gray font-light">
-        Area from 190 - 245 m²
-      </h4>
-    </div>
-
-    {/* Description */}
-    <p className="text-gray text-sm mt-4">
-      A cozy 3-bedroom home with an open living area and a private backyard.
-      Perfect for comfort and relaxation.
-    </p>
-  </div>
-
-  {/* Footer Section */}
-  <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
-    <div className="flex items-center justify-center px-4 py-2 text-sm font-light text-[#1E1E1E] bg-[#D8F0F1] rounded-full">
-      Luxury Oasis
-    </div>
-    <Image
-      alt="export icon"
-      width={40}
-      height={40}
-      src={'/export.png'}
-      className="rounded-full"
-    />
-  </div>
-</div>
-<div className="relative flex flex-col h-[530px] w-[38em]  font-bricolage border border-[#8F8F8F] rounded-lg snap-center shrink-0">
-  {/* Image Section */}
-  <Image
-    alt="house image"
-    width={400}
-    height={300}
-    src={'/house-2.png'}
+    loading="lazy"
+    src={'/news-1.png'}
     className="rounded-t-lg  w-full object-cover h-[300px]"
   />
 
   {/* Content Section */}
-  <div className="flex flex-col p-4">
+  <div className="flex flex-col p-4 relative">
     {/* Title */}
-    <h1 className="text-black text-lg font-bold">Whispering Pines Estate</h1>
-
+    <div className="flex gap-3">
+    <h1 className="text-13xl text-primary absolute`">01</h1>
+    <h1 className="text-black text-10xl font-[500] pt-[10px]">Analyzing Modern Real Estate Market Movement</h1>
+    </div>
     {/* Price and Area */}
-    <div className="flex flex-wrap gap-3 mt-2">
-      <div className="flex items-center">
-        <h4 className="text-gray text-sm font-light">From</h4>
-        <h2 className="ml-2 font-bold">$2500.00</h2>
+    <div className="flex flex-wrap flex-end gap-3 mt-2">
+      <div className="flex ">
+      <span className="flex  flex-col text-gray lg:text-xl text-sm font-meduim">
+   <h4 className="text-gray lg:text-xl f text-sm font-meduim">July </h4><h4>2024</h4>     </span>  
+        <h2 className="ml-2 mt-[17px] text-gray  font-meduim lg:text-xl ">Perfect property</h2>
       </div>
-      <h4 className="ml-auto text-sm text-gray font-light">
-        Area from 190 - 245 m²
-      </h4>
+   
     </div>
 
     {/* Description */}
-    <p className="text-gray text-sm mt-4">
-      A cozy 3-bedroom home with an open living area and a private backyard.
-      Perfect for comfort and relaxation.
+    <p className="text-gray text-sm  lg:text-[15.8px] font-bricolage w-full leading-5 mt-4">
+    Staying ahead the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buyin, selling, or investing. 
     </p>
   </div>
 
   {/* Footer Section */}
-  <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
+  {/* <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
     <div className="flex items-center justify-center px-4 py-2 text-sm font-light text-[#1E1E1E] bg-[#D8F0F1] rounded-full">
       Luxury Oasis
     </div>
@@ -586,10 +516,59 @@ Explore
       src={'/export.png'}
       className="rounded-full"
     />
+  </div> */}
+</div>
+<div className="relative flex flex-col h-[650px]   lg:w-[600px]  font-bricolage  rounded-lg  shrink-0">
+  {/* Image Section */}
+  <Image
+    alt="house image"
+    width={400}
+    height={300}
+    loading="lazy"
+    src={'/news-2.png'}
+    className="rounded-t-lg  w-full object-cover h-[300px]"
+  />
+
+  {/* Content Section */}
+  <div className="flex flex-col p-4 relative">
+    {/* Title */}
+    <div className="flex gap-3">
+    <h1 className="text-13xl text-primary absolute`">01</h1>
+    <h1 className="text-black text-10xl font-[500] pt-[10px]">Analyzing Modern Real Estate Market Movement</h1>
+    </div>
+    {/* Price and Area */}
+    <div className="flex flex-wrap flex-end gap-3 mt-2">
+      <div className="flex ">
+      <span className="flex  flex-col text-gray lg:text-xl text-sm font-meduim">
+   <h4 className="text-gray lg:text-xl f text-sm font-meduim">July </h4><h4>2024</h4>     </span>  
+        <h2 className="ml-2 mt-[17px] text-gray  font-meduim lg:text-xl ">Perfect property</h2>
+      </div>
+   
+    </div>
+
+    {/* Description */}
+    <p className="text-gray text-sm  lg:text-[15.8px] font-bricolage w-full leading-5 mt-4">
+    Staying ahead the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buyin, selling, or investing. 
+    </p>
   </div>
+
+  {/* Footer Section */}
+  {/* <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
+    <div className="flex items-center justify-center px-4 py-2 text-sm font-light text-[#1E1E1E] bg-[#D8F0F1] rounded-full">
+      Luxury Oasis
+    </div>
+    <Image
+      alt="export icon"
+      width={40}
+      height={40}
+      src={'/export.png'}
+      className="rounded-full"
+    />
+  </div> */}
 </div>
 
 </div>
+
 
 
     </section>  
