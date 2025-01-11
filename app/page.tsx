@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Navbar from "./components/layouts/navbar";
-import { FaArrowLeft, FaArrowRight, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import Button from "./components/common/Button";
 import Link from "next/link";
 import { FaStar } from 'react-icons/fa';
