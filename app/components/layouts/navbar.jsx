@@ -12,7 +12,7 @@ export default function Navbar() {
   const isActive = (path) => router.prefetch === path;
 
   return (
-    <header className="text-xl z-10 relative   bg-white lg:bg-transparent font-bricolage text-white">
+    <header className="text-xl z-10  overflow-x-hidden relative   w-full bg-white lg:bg-transparent font-bricolage text-white">
       <div className="flex-1 mx-auto flex items-center justify-between p-4">
         
         {/* Logo */}

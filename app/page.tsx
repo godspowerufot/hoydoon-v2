@@ -6,6 +6,7 @@ import { FaStar } from 'react-icons/fa';
 import TestimonialCarousel from "./components/layouts/testimonials";
 import FAQComponent from "./components/layouts/faq";
 
+
 export default function Home() {
   return (
     <>

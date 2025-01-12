@@ -7,6 +7,18 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure the html and body take full height */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -17,7 +29,9 @@
 
 body {
   color: black;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  width: 100% !important;
+  
   background: white;
   font-family:'Bricolage Grotesque' Arial, Helvetica, sans-serif;
 }
