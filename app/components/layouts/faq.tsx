@@ -37,11 +37,11 @@ const FAQComponent: React.FC = () => {
   };
 
   return (
-    <section className="bg-white max-md:w-full rounded-lg shadow-md p-6 max-w-lg mx-auto">
+    <section className="bg-white max-md:w-full lg:w-[618px]  h-[29em] rounded-[20px] shadow-md p-6 max-w-lg mx-auto">
       <h2 className="text-xl font-bold text-gray-900 mb-4">
         Find Your Answers Here
       </h2>
-      <div className="space-y-4">
+      <div className="space-y-4 ">
         {faqs.map((faq, index) => (
           <div key={index}>
             {/* Question Button */}
@@ -49,7 +49,7 @@ const FAQComponent: React.FC = () => {
               onClick={() => toggleFAQ(index)}
               className="flex justify-between items-center w-full focus:outline-none text-left"
             >
-              <h3 className="text-base font-medium text-gray-800">
+              <h3 className="text-base mt-5 font-medium text-gray-800">
                 {faq.question}
               </h3>
               <span className="text-gray-500">

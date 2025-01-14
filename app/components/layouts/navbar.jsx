@@ -12,8 +12,8 @@ export default function Navbar() {
   const isActive = (path) => router.prefetch === path;
 
   return (
-    <header className="text-xl z-10  overflow-x-hidden relative   w-full bg-white lg:bg-transparent font-bricolage text-white">
-      <div className="flex-1 mx-auto flex items-center justify-between p-4">
+    <header className="text-xl z-10   relative   w-full bg-white lg:bg-transparent font-bricolage text-white">
+      <div className="flex-1 mx-auto flex items-center justify-around p-4">
         
         {/* Logo */}
         <div className="text-2xl font-bold">
@@ -26,37 +26,37 @@ export default function Navbar() {
               height={40} // Reduced size of logo
               src={'/logo.svg'}
             />
-            <h3 className=' text-black lg:text-white text-lg'>  {/* Reduced text size */}
+            <h3 className=' text-black lg:font-[600] lg:text-xl lg:text-white text-lg'>  {/* Reduced text size */}
               Hoydoon
             </h3>
           </Link>
         </div>
 
         {/* Desktop Links */}
-        <div className="pr-5 text-lg sm:hidden max-md:hidden lg:flex hidden  md:hidden rounded-full  lg:h-[54px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
+        <div className="pr-5   text-lg sm:hidden max-md:hidden lg:flex hidden  md:hidden rounded-full  lg:h-[54px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
           <ul className="lg:flex items-center space-x-5">
             <li>
-              <div className={`px-7  py-3 rounded-full ${isActive('/') ? 'bg-white  lg:w-[95px] lg:h-[47px] text-primary' : 'bg-white hover:text-primary'}`}>
+              <div className={`px-7  lg:text-xl py-3 rounded-full ${isActive('/') ? 'bg-white  lg:w-[95px] lg:h-[47px] text-primary' : 'bg-white hover:text-primary'}`}>
                 <Link href="/" className='text-primary'>Home</Link>
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1 rounded-full ${isActive('/about') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
-                <Link href="/about">Buy</Link>
+              <div className={`px-4 py-1   lg:text-xl rounded-full ${isActive('/about') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
+                <Link href="/buy">Buy</Link>
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1 rounded-full ${isActive('/services') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
+              <div className={`px-4 py-1   lg:text-xl rounded-full ${isActive('/services') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
                 <Link href="/services">Rent</Link>
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1 rounded-full ${isActive('/sell') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
+              <div className={`px-4 py-1   lg:text-xl rounded-full ${isActive('/sell') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
                 <Link href="/sell">Sell</Link>
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1 rounded-full ${isActive('/agent') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
+              <div className={`px-4 py-1   lg:text-xl rounded-full ${isActive('/agent') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
                 <Link href="/agent">Find an agent</Link>
               </div>
             </li>
@@ -64,14 +64,14 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Action Buttons */}
-        <div className="hidden lg:flex md:hidden lg:gap-4  mr-3">
-        <Button className='bg-primarytransparent h-[54px] bg-transparent'>
+        <div className="hidden lg:flex md:hidden lg:gap-4  m">
+        <Button className='bg-primarytransparent  w-[92px] h-[54px] bg-transparent'>
           
         <Link href="/login"> {/* Reduced width and padding */}
             Login
           </Link></Button>  
-          <Button >
-          <Link href="/register" > {/* Reduced width and padding */}
+          <Button  className='w-120px]'>
+          <Link href="/register"  className='font-light`'> {/* Reduced width and padding */}
             Register
           </Link>
           </Button>
@@ -95,7 +95,7 @@ export default function Navbar() {
         </div>
         <ul className="space-y-6 text-center pt-8 p-4 "> {/* Reduced padding */}
           <li><Link href="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
-          <li><Link href="/about" onClick={() => setMenuOpen(false)}>Buy</Link></li>
+          <li><Link href="/buy" onClick={() => setMenuOpen(false)}>Buy</Link></li>
           <li><Link href="/services" onClick={() => setMenuOpen(false)}>Rent</Link></li>
           <li><Link href="/sell" onClick={() => setMenuOpen(false)}>Sell</Link></li>
           <li><Link href="/agent" onClick={() => setMenuOpen(false)}>Find an agent</Link></li>

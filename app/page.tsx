@@ -39,11 +39,11 @@ export default function Home() {
 
     {/* Large Screen Search Bar */}
     <div className="hidden  lg:flex justify-center  items-center w-full ">
-      <div className="flex font-bricolage items-center m-5 bg-white rounded-full shadow-md w-10/12 md:w-4/5 lg:w-3/5">
+      <div className="flex font-bricolage items-center m-5 bg-white rounded-full shadow-md w-10/12 md:w-4/5 lg:w-[7/10] p-2">
         {/* Location */}
         <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-sm font-semibold text-black">Location</span>
-          <div className="text-sm text-gray">Search Locations</div>
+          <span className="text-xl font-semibold text-black">Location</span>
+          <div className="text-xl text-gray">Search Locations</div>
         </div>
 
         {/* Vertical Divider */}
@@ -51,8 +51,8 @@ export default function Home() {
 
         {/* Type */}
         <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-sm font-semibold text-black">Type</span>
-          <div className="text-sm text-gray">Add type</div>
+          <span className="text-xl font-semibold text-black">Type</span>
+          <div className="text-xl text-gray">Add type</div>
         </div>
 
         {/* Vertical Divider */}
@@ -60,8 +60,8 @@ export default function Home() {
 
         {/* Price Range */}
         <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-sm font-semibold text-black">Price Range</span>
-          <div className="text-sm text-gray">Add range</div>
+          <span className="text-xl font-semibold text-black">Price Range</span>
+          <div className="text-xl text-gray">Add range</div>
         </div>
 
         {/* Vertical Divider */}
@@ -69,8 +69,8 @@ export default function Home() {
 
         {/* Number of Guests */}
         <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-sm font-semibold text-black">Number of Guests</span>
-          <div className="text-sm text-gray">Add number</div>
+          <span className="text-xl font-semibold text-black">Number of Guests</span>
+          <div className="text-xl text-gray">Add number</div>
         </div>
 
         {/* Search Button */}
@@ -97,7 +97,7 @@ export default function Home() {
 
   {/* Statistics Section */}
  {/* Stats Section */}
- <div className="hidden absolute bottom-0 lg:flex font-bricolage lg:mt-8 justify-center items-center w-full py-10 px-4">
+ <div className="absolute bottom-0 lg:flex font-bricolage lg:mt-8 justify-center items-center w-full py-10 px-4">
     <div className="flex items-center rounded-lg w-9/10 md:w-4/5 lg:w-7/10">
       {/* Hosts Section */}
       <div className="flex flex-1 text-center gap-2 px-4">
@@ -132,7 +132,7 @@ export default function Home() {
   </div>
 </header>
       {/* this hold the images */}
-      <section className=" font-bricolage flex justify-center flex-col flex-1 items-center bg-white">
+      <section className="  font-bricolage lg:flex justify-center flex-col flex-1 items-center bg-white">
         <div className="flex  p-8 flex-col  lg:mt-[4em] lg:flex-row  items-center justify-around ">
           <span className="flex flex-col w-full lg:w-6/10 ">
 <h1 className="text-black  text-[26px] lg:text-24xl font-[600]">Find your ideal property with simple tools and guidance.</h1>
@@ -182,30 +182,27 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
 </span>
         </div> 
       </section>
-
-{/* card component */}
-    
-<section className="lg:mt-3  justify-center items-center  lg:p-0 flex flex-col font-bricolage w-full">
-    <div className="flex flex-col items-center justify-center">
-      <div className="flex  lg:w-[80em] p-2 flex-col md:flex-row lg:flex-row md:gap-10  lg:gap-10  justify-around items-center  md:items-start ">
-      <h1 className="text-black lg:ml-2 text-[26px] lg:text-23xl font-[600]  lg:mr-10 w-full ">Featured Properties for Rent</h1>
-      <p className="text-gray pl-4  lg:p-0 text-base lg:text-5xl font-bricolage w-full lg:w-full">
-      Discover a home where every detail enhances your lifestyle—crafted to fit your taste and needs.
+      <section className="mt-10  hidden lg:mt-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col items-center justify-center">
+      <div className="flex  lg:w-[84em] p-2 flex-col md:flex-row lg:flex-row md:gap-10  lg:gap-10  justify-around items-center  md:items-start ">
+      <h1 className="text-black lg:ml-2 text-[26px] lg:text-23xl font-[600]   w-full ">Featured Properties for Rent</h1>
+      <p className="text-gray  lg:p-0 text-base lg:text-5xl font-bricolage w-full lg:w-full">
+      Discover a home where every detail enhances your lifestylecrafted to fit your taste and needs.
 </p>
 
       
+
 </div>
-<div className="p-3 flex lg:m-3 flex-col lg:flex-col mb-5">
+<div className=" flex mt-3  w-full lg:flex-row   gap-x-5 justify-center  mb-5">
   {/* Horizontal Scrollable Container on Mobile */}
-  <div className="lg:flex hidden gap-4 lg:gap-10  overflow-x-scroll lg:overflow-x-visible flex-nowrap snap-x snap-mandatory scroll-smooth">
     {/* Card 1 */}
-    <div className="flex flex-col h-[500px] w-[400px] font-bricolage snap-center shrink-0">
+    <div className="flex flex-col h-[500px] lg:w-[32%] font-bricolage snap-center shrink-0">
       <Image
         alt="image1"
-        width={400}
+        width={300}
         height={400}
         src={'/house1.png'}
-        className="rounded-lg"
+        className="rounded-lg w-full"
       />
       <span className="mt-4 text-black">
         <span className="flex gap-3">
@@ -215,18 +212,16 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
         <h4 className="text-gray font-light">Area from 190 - 245 m²</h4>
       </span>
     </div>
-
-    {/* Card 2 */}
-    <div className="relative flex object-cover flex-col h-[530px] w-[400px] font-bricolage border-[#8F8F8F] border-solid border-[1px] rounded-lg snap-center shrink-0">
-      <Image
+    <div className="flex flex-col h-fit lg:w-[32%] border border-gray border-1 border-solid rounded-[20px]  w-3/10 font-bricolage snap-center shrink-0">
+    <Image
         alt="image1"
         width={400}
         height={200}
         src={'/house-2.png'}
-        className="rounded-b-lg  object-cover h-[300px]"
+        className="rounded-b-lg  w-full  object-cover h-auto"
       />
-      <span className="mt-4 m-10 text-black flex-col">
-        <h1 className="text-black text-base lg:text-base font-bold">
+     <span className="mt-4 mb-2  ml-5 w-9/10 text-black flex-col">
+        <h1 className="text-black text-base lg:text-[25px] font-bold">
           Whispering Pines Estate
         </h1>
         <span className="flex-col flex mt-3">
@@ -239,12 +234,12 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
               Area from 190 - 245 m²
             </h4>
           </span>
-          <p className="text-gray text-[12px] mt-4">
+          <p className="text-gray text-[16px] mt-4">
             A cozy 3-bedroom home with an open living area and a private
             backyard. Perfect for comfort and relaxation.
           </p>
-          <div className="absolute  flex justify-around gap-[9em] items-center bottom-3 left-0">
-            <div className="text-base h-[2em] flex justify-center font-bricolage items-center px-4 py-2 rounded-full font-light w-[10em] text-[#1E1E1E] bg-[#D8F0F1] ml-7">
+          <div className=" mt-9  flex justify-between items-center ">
+            <div className="text-base  flex justify-center font-bricolage items-center  rounded-full font-light h-[41px] lg:w-[180px] text-[#1E1E1E] bg-[#D8F0F1] ">
               Luxury Oasis
             </div>
             <Image
@@ -252,23 +247,21 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
         width={50}
         height={50}
         src={'/export.png'}
-        className="rounded-full"
+        className="rounded-full "
       />
           </div>
         </span>
       </span>
     </div>
-
-    {/* Card 3 */}
-    <div className="flex flex-col object-contain h-[500px] w-[400px] font-bricolage snap-center shrink-0">
+    <div className="flex flex-col h-[500px] lg:w-[32%] font-bricolage snap-center shrink-0">
       <Image
         alt="image1"
-        width={400}
+        width={300}
         height={400}
-        src={'/house-3.png'}
-        className="rounded-lg"
+        src={'/house1.png'}
+        className="rounded-lg w-full"
       />
-         <span className="mt-4 text-black">
+      <span className="mt-4 text-black">
         <span className="flex gap-3">
           <h4 className="text-gray font-light">From</h4>
           <h2 className="font-bold">$2500.00</h2>
@@ -276,25 +269,32 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
         <h4 className="text-gray font-light">Area from 190 - 245 m²</h4>
       </span>
     </div>
+
+
+   
   </div>
-</div>
 
 
 </div>
-</section>
+      
+      </section>
+
+{/* card component */}
+    
+
 
 
 {/* carousel */}
 
-<section className="lg:mt-10  p-5 item-center justify-center  lg:p-0 flex flex-col font-bricolage  ">
-  
-<div className="flex  lg:w-[80em] p-2 flex-col md:flex-row lg:flex-row md:gap-10  lg:gap-10  justify-around items-center  md:items-start ">
+<section className="lg:mt-[10%]  p-5 item-center justify-center  lg:p-0 items-center flex flex-col font-bricolage  ">
+  <div className=" item-center justify-center  flex flex-col">
 
-<h1 className="text-black lg:ml-2 text-[26px] lg:text-23xl font-[600]  lg:mr-10 w-full ">Explore Luxurious Living Spaces</h1>
-<p className="text-gray  lg:p-0 text-base lg:text-5xl font-bricolage w-full lg:w-[30em]">
-Discover a home where every detail enhances your lifestyle—crafted to fit your taste and needs.</p>
 
-      
+<div className="flex  lg:w-[84em] p-2 flex-col md:flex-row lg:flex-row md:gap-10  lg:gap-10  justify-around items-center  md:items-start ">
+      <h1 className="text-black lg:ml-2 text-[26px] lg:text-23xl font-[600]   w-full ">Explore Luxurious Living Spaces</h1>
+      <p className="text-gray  lg:p-0 text-base lg:text-5xl font-bricolage w-full lg:w-full">
+      Discover a home where every detail enhances your lifestylecrafted to fit your taste and needs.
+</p>
 </div>
 <div className="lg:p-5 font-bricolage">
       <div className="relative  lg:h-[850px] h-[500px] rounded-lg flex flex-col">
@@ -306,8 +306,8 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
             alt="Carousel Background"
             fill
             priority
-            sizes="(max-width: 1024px) 100vw, 80vw"
-            className="object-cover"
+            sizes="(max-width: 1024px)  100vw, 80vw"
+            className="object-cover rounded-[24px]"
           />
           {/* Black Transparent Overlay */}
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
@@ -315,7 +315,7 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
           {/* Content Inside Image */}
           <div className="lg:absolute h-[43%] relative top-[5rem] lg:top-[28rem] lg:bottom-10 left-3 bg-primarytransparent w-full lg:w-8/10 lg:h-auto p-5 rounded-lg shadow-lg z-10">
         {/* Property Info */}
-        <div className="bg-white w-full h-[14em] lg:h-auto p-8 rounded-lg shadow-lg z-10">
+        <div className="bg-white rounded-[24px] w-full h-fit lg:h-auto p-8  shadow-lg z-10">
           <h1 className="text-black text-base lg:text-23xl font-[600]">Laurel Canyon Nest</h1>
           <p className="text-gray lg:text-base text-[10px] mt-2">
             A charming 3-bedroom home featuring a bright, open-concept living area designed for both comfort and connection. The spacious layout flows seamlessly from the kitchen to the dining and living spaces, making it perfect for gatherings. Step outside to a private backyard, ideal for relaxing, entertaining, or enjoying a bit of gardening. This home offers the perfect blend of functionality and tranquility for everyday living.
@@ -323,7 +323,7 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
 
           <div className="flex font-bricolage items-center mt-5">
             {/* Property Details */}
-            <div className="flex flex-col-reverse flex-1 px-4 py-3">
+            <div className="flex flex-col-reverse flex-1 px-1 py-3">
               <span className="text-sm font-semibold text-black">1,00sqft</span>
               <div className="text-sm text-gray">Size</div>
             </div>
@@ -341,7 +341,7 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
 
             <div className="flex flex-col-reverse flex-1 px-4 py-3">
               <span className="text-sm font-semibold text-black">
-                <span className="flex lg:flex-row flex-col items-center text-sm">
+                <span className="flex lg:flex-row flex-col items-center justify-start text-sm">
                   <FaStar className="text-[#E0DA18]" /> 5.0{' '}
                   <p className="text-gray text-[10px] lg:block lg:text-[10px] hidden">(200 reviews)</p>
                 </span>
@@ -378,7 +378,7 @@ Discover a home where every detail enhances your lifestyle—crafted to fit your
         </div>
       </div>
     </div>
-
+    </div>
 
 
 
@@ -427,16 +427,16 @@ Explore
       <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
       Welcome to our FAQ center, where you can find answers to all your most pressuring questions</p>
 <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  text-gray">
- Explore
+ <p className="text-gray" style={{color:"#8F8F8F"}}> Explore </p>
 </Button>
 </span>
    
 </div>
 <div className="mt-7 justify-center items-center max-md:w-full w-full gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row mb-5">
-<div className="z-20 relative max-md:w-full   lg:left-[50px] lg:top-[1em]">
+<div className="z-20 relative max-md:w-full  lg:h-[50em]  lg:left-[50px] lg:top-[10em]">
 <FAQComponent/>
 </div>
-<div className="relative -ml-[5em] lg:ml-0 flex w-[255px] lg:w-auto">
+<div className="relative lg:-ml-[15em] justify-center items-center  flex w-[255px] lg:w-auto">
 
 
       <Image
@@ -445,14 +445,14 @@ Explore
         loading="lazy"
         height={500}
         src={'/q1.png'}
-        className="z-10  relative top-0 left-[0.5rem] rounded-lg  object-cover h-5/10"
+        className="z-10  lg:w-[552px] rounded-[20px] relative top-0 left-[0.5rem]   object-cover h-5/10"
       /> <Image
       alt="image1"
       width={400}
       loading="lazy"
       height={300}
       src={'/q2.png'}
-      className=" z-2   bottom-[2em]   w-[86px] lg:w-[300px] mt-[17%] lg:-top-[2rem]  lg:mt-[11%] relative rounded-lg   object-cover h-3/10"
+      className=" z-2   bottom-[2em]   w-[86px] lg:w-[620px] mt-[17%] lg:-top-[2rem] lg:-left-[10em]  lg:mt-[11%] relative rounded-lg   object-cover h-3/10"
     />
     </div>
 </div>
@@ -460,7 +460,7 @@ Explore
     {/* New-articles */}
     <section className="  mb-5 flex justify-center items-center  w-full  flex-col mt-10 p-4 lg:p-0 font-bricolage ">
     <div className="flex justify-center mt-4 lg:flex-1 lg:flex-row flex-col  items-center gap-10">
-    <div className="relative flex flex-col h-[650px]   lg:w-[600px]  font-bricolage  rounded-lg  shrink-0">
+    <div className="relative flex flex-col h-[650px]   lg:w-[40em]  font-bricolage  rounded-lg  shrink-0">
   {/* Image Section */}
   <Image
     alt="house image"
@@ -508,7 +508,7 @@ Explore
     />
   </div> */}
 </div>
-<div className="relative flex flex-col h-[650px]   lg:w-[600px]  font-bricolage  rounded-lg  shrink-0">
+<div className="relative flex flex-col h-[650px]   lg:w-[40em]  font-bricolage  rounded-lg  shrink-0">
   {/* Image Section */}
   <Image
     alt="house image"
