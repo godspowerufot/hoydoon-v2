@@ -451,7 +451,7 @@ Explore
     {/* New-articles */}
     <section className="   flex justify-center items-center  w-full  flex-col mt-10 p-4 lg:p-0 font-bricolage ">
     <div className="flex justify-center w-full mt-4 lg:flex-1 lg:flex-row flex-col  items-center gap-10 ">
-    <div className="relative flex flex-col h-[650px]   lg:w-[35em] 2xl:w-[45em]  font-bricolage  rounded-lg  shrink-0">
+    <div className="relative flex flex-col h-[650px]   lg:w-[38em] 2xl:w-[45em]  font-bricolage  rounded-lg  shrink-0">
   {/* Image Section */}
   <Image
     alt="house image"
@@ -499,7 +499,7 @@ Explore
     />
   </div> */}
 </div>
-<div className="relative flex flex-col h-[650px]  2xl:w-[35em] lg:w-[40em]  font-bricolage  rounded-lg  shrink-0">
+<div className="relative flex flex-col h-[650px]  2xl:w-[45em] lg:w-[38em]  font-bricolage  rounded-lg  shrink-0">
   {/* Image Section */}
   <Image
     alt="house image"
