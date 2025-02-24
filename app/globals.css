@@ -15,7 +15,7 @@
 
 /* Ensure the html and body take full height */
 html, body {
-  width: 100%;
+  width: 100%;  
   height: 100%;
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
@@ -31,7 +31,8 @@ body {
   color: black;
   overflow-x: hidden !important;
   width: 100% !important;
-  
+  display: flex;
+  justify-items: center;
   background: white;
   font-family:'Bricolage Grotesque' Arial, Helvetica, sans-serif;
 }

@@ -10,67 +10,59 @@ import FAQComponent from "./components/layouts/faq";
 export default function Home() {
   return (
     <>
-       <header className="relative h-[45em] lg:h-[80em]   w-full">
-  
-  <div className="absolute top-0 left-0 w-full h-full">
-    <Image
-      alt="Header Background"
-      src="/header.svg"
-      layout="fill"
-      objectFit="cover"
-      quality={100}
-      className="z-[-1]  "
-    />
-  </div>
-
-
+    <header className="relative h-[45em] lg:h-[52em] w-full ">
+  {/* Background Image Div */}
+  <div
+    className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
+    style={{ backgroundImage: "url('/header.svg')" }}
+  ></div>
 
   {/* Content Section */}
-  <div className="p-4 flex  gap-6 justify-center items-center flex-col">
+  <div className="flex z-[1] relative gap-6 justify-center items-center flex-col">
     {/* Main Heading */}
-    <h1 className="lg:w-[10em] mt-[4em] lg:mt-[10%] text-white text-[2.3rem] w-full text-center lg:text-60xl font-bricolage font-bold">
+    <h1 className="lg:w-[10em] mt-[2em] lg:mt-[1.4em] text-white text-[2em] w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
       Where Every House Feels Like Home
     </h1>
 
     {/* Subheading */}
-    <h2 className="text-base font-normal lg:text-13xl text-center text-[#FFFFFFB2] w-full lg:w-[1007px]">
+    <h2 className="text-[1.5em] font-[400] text-center text-[#FFFFFFB2] w-[32em]">
       From urban flats to rural getaways, Hoydoon effortlessly links you to the home of your dreams with trust and ease.
     </h2>
 
     {/* Large Screen Search Bar */}
-    <div className="hidden  lg:flex justify-center  items-center w-full ">
-      <div className="flex font-bricolage items-center m-5 bg-white rounded-full shadow-md w-10/12 md:w-4/5 lg:w-[7/10] p-2">
+    <div className="hidden lg:flex justify-center items-center w-full">
+      <div className="flex pl-[2.5%] h-[4em] font-bricolage items-center m-2 bg-white rounded-full w-10/12 md:w-4/5 lg:w-[58em]">
         {/* Location */}
-        <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-xl font-semibold text-black">Location</span>
-          <div className="text-xl text-gray">Search Locations</div>
+        <div className="flex flex-col flex-1">
+          <span className="text-[1.2em] font-semibold text-black">Location</span>
+          <div className="text-[1em] text-gray">Search Locations</div>
         </div>
 
         {/* Vertical Divider */}
         <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
 
         {/* Type */}
-        <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-xl font-semibold text-black">Type</span>
-          <div className="text-xl text-gray">Add type</div>
+        <div className="flex flex-col flex-1 ml-[3%]">
+          <span className="text-[1.2em] font-semibold text-black">Type</span>
+          <div className="text-[1em] text-gray">Add type</div>
         </div>
 
         {/* Vertical Divider */}
         <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
 
         {/* Price Range */}
-        <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-xl font-semibold text-black">Price Range</span>
-          <div className="text-xl text-gray">Add range</div>
+        <div className="flex flex-col flex-1 ml-[3%]">
+          <span className="text-[1.2em] font-semibold text-black">Price Range</span>
+          <div className="text-[1em] text-gray">Add range</div>
         </div>
 
         {/* Vertical Divider */}
         <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
 
         {/* Number of Guests */}
-        <div className="flex flex-col flex-1 px-4 py-3">
-          <span className="text-xl font-semibold text-black">Number of Guests</span>
-          <div className="text-xl text-gray">Add number</div>
+        <div className="flex flex-col flex-1 ml-[3%]">
+          <span className="text-[1.2em] font-medium text-black">Number of Guests</span>
+          <div className="text-[1em] text-gray">Add number</div>
         </div>
 
         {/* Search Button */}
@@ -82,22 +74,21 @@ export default function Home() {
 
     {/* Small Screen Search Bar */}
     <div className="lg:hidden justify-center items-center w-full px-2 py-3">
-      <div className="flex font-bricolage items-center m-5 bg-white rounded-full shadow-md w-[89%] md:w-4/5 lg:w-3/5">
-        <div className="flex flex-col flex-1 px-2 py-3">
+      <div className="flex h-[4em] font-bricolage items-center m-5 bg-white rounded-full shadow-md w-[89%] md:w-4/5 lg:w-3/5">
+        <div className="flex flex-col flex-1">
           <div className="text-sm text-gray">
             Address, Neighborhood, City, Zip code...
           </div>
         </div>
         <div className="bg-primary p-3 mr-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90">
-          <FaSearch className="text-white h-6  text-sm" />
+          <FaSearch className="text-white h-6 text-sm" />
         </div>
       </div>
     </div>
   </div>
 
   {/* Statistics Section */}
- {/* Stats Section */}
- <div className="absolute bottom-0 lg:flex font-bricolage lg:mt-8 justify-center items-center w-full py-10 px-4">
+  <div className="absolute bottom-0 lg:flex font-bricolage lg:mt-8 justify-center items-center w-full py-10 px-4">
     <div className="flex items-center rounded-lg w-9/10 md:w-4/5 lg:w-7/10">
       {/* Hosts Section */}
       <div className="flex flex-1 text-center gap-2 px-4">
@@ -124,7 +115,7 @@ export default function Home() {
       {/* Guest Arrivals Section */}
       <div className="flex gap-2 flex-1 text-center px-4">
         <span className="text-13xl text-white">12M+</span>
-        <span className="text-xl  w-[175px] text-start text-white">
+        <span className="text-xl w-[175px] text-start text-white">
           guest arrivals to date every month
         </span>
       </div>
@@ -132,11 +123,11 @@ export default function Home() {
   </div>
 </header>
       {/* this hold the images */}
-      <section className="  font-bricolage lg:flex justify-center flex-col flex-1 items-center bg-white">
-        <div className="flex  p-8 flex-col  lg:mt-[4em] lg:flex-row  items-center justify-around ">
+      <section className="   font-bricolage lg:flex justify-center flex-col flex-1 items-center bg-white">
+        <div className="flex  gap-[4%] flex-col w-[92%]  lg:my-[4em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-6/10 ">
-<h1 className="text-black  text-[26px] lg:text-24xl font-[600]">Find your ideal property with simple tools and guidance.</h1>
-<p className="text-gray text-base lg:text-lgi font-bricolage w-9/10">
+<h1 className="text-black  text-[26px] lg:text-24xl font-[600] 2xl:w-[80%]">Find your ideal property with simple tools and guidance.</h1>
+<p className="text-gray text-base lg:text-lgi font-bricolage w-9/10 2xl:text-[20px] 2xl:w-[70%]">
 Enjoy fast and easy access to a variety of properties that suit your needs. Use our smart filters to find the perfect places within your budget and preferences. We’ve done the hard work for you, so no need to stress about the search.
 </p>
 
@@ -151,17 +142,17 @@ Enjoy fast and easy access to a variety of properties that suit your needs. Use 
  <Image
               alt="image1"
               width={500}  // Reduced size of logo
-              height={500} // Reduced size of logo
+              height={400} // Reduced size of logo
               src={'/house-app.png'}
             />
 </span>
         </div>
       </section>
-      <section className="mt-10 lg:mt-[4em]  font-bricolage flex justify-center flex-col flex-1 items-center">
-        <div className="flex  p-8 flex-col lg:flex-row  items-center justify-around ">
+      <section className="mt-10 lg:my-[4em]  font-bricolage flex justify-center flex-col flex-1 items-center">
+        <div className="flex  w-[92%] flex-col lg:flex-row  items-center justify-around ">
           <span className="flex flex-col w-full lg:w-6/10 ">
 <h1 className="text-black  text-[26px] lg:text-24xl font-[600]">Get the Hoydoon App</h1>
-<p className="text-gray text-base lg:text-5xl font-bricolage w-9/10">
+<p className="text-gray text-base lg:text-lgi  2xl:text-[20px] font-bricolage w-8/10">
 Download our highly-rated real estate app for iOS or Android to receive instant alerts when your dream home becomes available.</p>
 
 <Button className="text-base font-light mt-5 ">
@@ -177,14 +168,14 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
               width={500}  // Reduced size of logo
               height={500} // Reduced size of logo
               src={'/app.svg'}
-              className="lg:w-[618px]"
+              className="lg:w-[500px]"
             />
 </span>
         </div> 
       </section>
-      <section className="mt-10  hidden lg:mt-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-center justify-center">
-      <div className="flex  lg:w-[84em] p-2 flex-col md:flex-row lg:flex-row md:gap-10  lg:gap-10  justify-around items-center  md:items-start ">
+      <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
+      <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2em] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
       <h1 className="text-black lg:ml-2 text-[26px] lg:text-23xl font-[600]   w-full ">Featured Properties for Rent</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-5xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestylecrafted to fit your taste and needs.
@@ -193,10 +184,10 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
       
 
 </div>
-<div className=" flex mt-3  w-full lg:flex-row   gap-x-5 justify-center  mb-5">
+<div className=" flex mt-3   min-w-fit items-center lg:flex-row   gap-x-[2.25em] justify-center  mb-2">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
-    <div className="flex flex-col h-[500px] lg:w-[32%] font-bricolage snap-center shrink-0">
+    <div className="flex flex-col h-fit lg:w-[31%] font-bricolage snap-center shrink-0">
       <Image
         alt="image1"
         width={300}
@@ -212,13 +203,13 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
         <h4 className="text-gray font-light">Area from 190 - 245 m²</h4>
       </span>
     </div>
-    <div className="flex flex-col h-fit lg:w-[32%] border border-gray border-1 border-solid rounded-[20px]  w-3/10 font-bricolage snap-center shrink-0">
+    <div className="flex flex-col h-fit lg:w-[31%] border border-gray border-1 border-solid rounded-[20px] w-3/10 font-bricolage snap-center shrink-0">
     <Image
         alt="image1"
         width={400}
         height={200}
         src={'/house-2.png'}
-        className="rounded-b-lg  w-full  object-cover h-auto"
+        className="rounded-b-[20px] -mt-1  w-full  object-cover h-auto"
       />
      <span className="mt-4 mb-2  ml-5 w-9/10 text-black flex-col">
         <h1 className="text-black text-base lg:text-[25px] font-bold">
@@ -253,7 +244,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
         </span>
       </span>
     </div>
-    <div className="flex flex-col h-[500px] lg:w-[32%] font-bricolage snap-center shrink-0">
+    <div className="flex flex-col h-fit lg:w-[31%] font-bricolage snap-center shrink-0">
       <Image
         alt="image1"
         width={300}
@@ -286,13 +277,13 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
 
 {/* carousel */}
 
-<section className="lg:mt-[10%]  p-5 item-center justify-center  lg:p-0 items-center flex flex-col font-bricolage  ">
+<section className="lg:mt-[6%]  p-5 item-center justify-center  lg:p-0 items-center flex flex-col font-bricolage  ">
   <div className=" item-center justify-center  flex flex-col">
 
 
-<div className="flex  lg:w-[84em] p-2 flex-col md:flex-row lg:flex-row md:gap-10  lg:gap-10  justify-around items-center  md:items-start ">
+<div className="flex  lg:w-[80em] 2xl:w-[95em] p-2 flex-col md:flex-row lg:flex-row md:gap-10  lg:gap-10  justify-around items-center  md:items-start ">
       <h1 className="text-black lg:ml-2 text-[26px] lg:text-23xl font-[600]   w-full ">Explore Luxurious Living Spaces</h1>
-      <p className="text-gray  lg:p-0 text-base lg:text-5xl font-bricolage w-full lg:w-full">
+      <p className="text-gray  2xl:texxt-end  2xl:ml-[10%] lg:p-0 text-base lg:text-5xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestylecrafted to fit your taste and needs.
 </p>
 </div>
@@ -386,20 +377,20 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
   {/* testimonials */}
   <section className="mt-8 p-4 lg:p-0 font-bricolage ">
   <div className="flex  flex-col lg:flex-row md:flex-row  lg:gap-10  justify-around items-center  ">
-    <span className="flex flex-col font-bricolage gap-3">
+    <span className="flex   2xl:w-[38%] flex-col font-bricolage gap-3">
 
 
       <h1 className="text-black  text-[26px] lg:text-23xl font-[600] mr-10">What People Are Saying</h1>
-      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+      <p className="text-gray  lg:p-0 text-base 2xl:text-[20px] lg:text-base font-bricolage w-full lg:w-[30em]">
 Discover a home where every detail enhances your lifestyle—crafted to fit your taste and needs.</p>
 
       
       </span>
       <span className=" hidden lg:flex flex-col font-bricolage gap-3 ">
-      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+      <p className="text-gray  lg:p-0 text-base 2xl:text-[20px] lg:text-base font-bricolage w-full lg:w-[30em]">
 Discover a home where every detail enhances your lifestyle—crafted to fit your taste and needs.</p>
-<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  " >
-<p className="text-gray" style={{color:"text-gray"}}>
+<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  group-hover:text-white text-white" >
+<p className="text-gray group-hover:text-white" style={{color:"text-white"}}>
 Explore
   </p> 
 </Button>
@@ -412,19 +403,19 @@ Explore
     </section>  
     
       {/* testimonials */}
-  <section className=" mt-7 lg:mt-[10%]  flex flex-1 justify-center items-center  flex-col  w-full p-4 lg:p-0 font-bricolage ">
-  <div className="flex  flex-col lg:flex-row md:flex-row   lg:gap-10  justify-around items-center  ">
-    <span className="flex flex-col font-bricolage gap-3">
+  <section className=" mt-7  lg:mt-[10%]  flex flex-1 justify-center items-center  flex-col   p-5 lg:p-0 font-bricolage ">
+  <div className="flex 2xl:w-full   flex-col lg:flex-row md:flex-row   lg:gap-10  justify-around items-center  ">
+    <span className="flex flex-col  font-bricolage gap-3">
 
 
       <h1 className="text-black  text-[26px] lg:text-23xl font-[600] mr-10">Your Questions, Our Answers</h1>
-      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+      <p className="text-gray  2xl:text-[20px] lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
       Whether you’re curious about our services, need help with specific issues..</p>
 
       
       </span>
       <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
-      <p className="text-gray  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+      <p className="text-gray 2xl:text-[20px]  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
       Welcome to our FAQ center, where you can find answers to all your most pressuring questions</p>
 <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  text-gray">
  <p className="text-gray" style={{color:"#8F8F8F"}}> Explore </p>
@@ -458,9 +449,9 @@ Explore
 </div>
     </section> 
     {/* New-articles */}
-    <section className="  mb-5 flex justify-center items-center  w-full  flex-col mt-10 p-4 lg:p-0 font-bricolage ">
-    <div className="flex justify-center mt-4 lg:flex-1 lg:flex-row flex-col  items-center gap-10">
-    <div className="relative flex flex-col h-[650px]   lg:w-[40em]  font-bricolage  rounded-lg  shrink-0">
+    <section className="   flex justify-center items-center  w-full  flex-col mt-10 p-4 lg:p-0 font-bricolage ">
+    <div className="flex justify-center w-full mt-4 lg:flex-1 lg:flex-row flex-col  items-center gap-10 ">
+    <div className="relative flex flex-col h-[650px]   lg:w-[35em] 2xl:w-[45em]  font-bricolage  rounded-lg  shrink-0">
   {/* Image Section */}
   <Image
     alt="house image"
@@ -508,7 +499,7 @@ Explore
     />
   </div> */}
 </div>
-<div className="relative flex flex-col h-[650px]   lg:w-[40em]  font-bricolage  rounded-lg  shrink-0">
+<div className="relative flex flex-col h-[650px]  2xl:w-[35em] lg:w-[40em]  font-bricolage  rounded-lg  shrink-0">
   {/* Image Section */}
   <Image
     alt="house image"

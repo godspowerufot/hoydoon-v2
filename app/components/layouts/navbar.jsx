@@ -12,32 +12,32 @@ export default function Navbar() {
   const isActive = (path) => router.prefetch === path;
 
   return (
-    <header className="text-xl z-10   relative   w-full bg-white lg:bg-transparent font-bricolage text-white">
-      <div className="flex-1 mx-auto flex items-center justify-around p-4">
+    <header className="text-xl z-10   relative  mt-3  w-full bg-white lg:bg-transparent font-bricolage text-white">
+      <div className="flex-1 mx-auto flex items-center justify-around p-2">
         
         {/* Logo */}
         <div className="text-2xl font-bold">
           <Link href="/" className='flex justify-center items-center gap-2'>
             <Image
               alt="logo"
-              width={40}  
+              width={30}  
               loading='lazy'
               objectFit='cover'
-              height={40} // Reduced size of logo
-              src={'/logo.svg'}
+              height={30} // Reduced size of logo
+              src={'/Logo.svg'}
             />
-            <h3 className=' text-black lg:font-[600] lg:text-xl lg:text-white text-lg'>  {/* Reduced text size */}
+            <h3 className=' text-black lg:font-[600] lg:text-[1em] lg:text-white text-lg'>  {/* Reduced text size */}
               Hoydoon
             </h3>
           </Link>
         </div>
 
         {/* Desktop Links */}
-        <div className="pr-5   text-lg sm:hidden max-md:hidden lg:flex hidden  md:hidden rounded-full  lg:h-[54px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
-          <ul className="lg:flex items-center space-x-5">
+        <div className="pr-5 ml-[6%]  w-fit text-lg sm:hidden max-md:hidden lg:flex   items-center justify-center hidden  md:hidden rounded-full  lg:h-[50px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
+          <ul className="lg:flex items-center  space-x-5 font-[300] ">
             <li>
-              <div className={`px-7  lg:text-xl py-3 rounded-full ${isActive('/') ? 'bg-white  lg:w-[95px] lg:h-[47px] text-primary' : 'bg-white hover:text-primary'}`}>
-                <Link href="/" className='text-primary'>Home</Link>
+              <div className={`px-7  lg:text-xl py-3 font-bricolage rounded-full ${isActive('/') ? 'bg-white  lg:w-[95px] lg:h-[30px] text-primary' : 'bg-white hover:text-primary'}`}>
+                <Link href="/" className='text-primary  text-[1em]'>Home</Link>
               </div>
             </li>
             <li>
@@ -47,36 +47,37 @@ export default function Navbar() {
             </li>
             <li>
               <div className={`px-4 py-1   lg:text-xl rounded-full ${isActive('/services') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
-                <Link href="/services">Rent</Link>
+                <Link href="/services text-[1em]">Rent</Link>
               </div>
             </li>
             <li>
               <div className={`px-4 py-1   lg:text-xl rounded-full ${isActive('/sell') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
-                <Link href="/sell">Sell</Link>
+                <Link href="/sell text-[1em]">Sell</Link>
               </div>
             </li>
             <li>
               <div className={`px-4 py-1   lg:text-xl rounded-full ${isActive('/agent') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
-                <Link href="/agent">Find an agent</Link>
+                <Link href="/agent text-[1em]">Find an agent</Link>
               </div>
             </li>
           </ul>
         </div>
 
-        {/* Desktop Action Buttons */}
-        <div className="hidden lg:flex md:hidden lg:gap-4  m">
-        <Button className='bg-primarytransparent  w-[92px] h-[54px] bg-transparent'>
+         {/* Desktop Action Buttons */}
+         <div className='flex gap-3'>
+
+       
+         <Button className='bg-primarytransparent  w-[5em] h-[54px] bg-transparent'>
           
-        <Link href="/login"> {/* Reduced width and padding */}
-            Login
-          </Link></Button>  
-          <Button  className='w-120px]'>
-          <Link href="/register"  className='font-light`'> {/* Reduced width and padding */}
+          <Link href="/auth/sign-in" className=' text-[1em]'> {/* Reduced width and padding */}
+              Login
+            </Link></Button> 
+          <Button  className='w-[9em] '>
+          <Link href="/register"  className='font-light  text-[1em]'> {/* Reduced width and padding */}
             Register
           </Link>
           </Button>
-         
-        </div>
+          </div>
 
         {/* Mobile Menu Toggle */}
         <div className="md:block lg:hidden">

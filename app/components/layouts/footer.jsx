@@ -5,8 +5,8 @@ const Appfooter = () => {
   const [email, setEmail] = useState('');
 
   return (
-    <footer className="bg-primary font-bricolage text-white flex flex-col justify-center items-center">
-      <div className="w-full space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
+    <footer className="bg-primary font-bricolage w-full  text-white flex flex-col justify-center items-center mt-[2%]">
+      <div className="w-full 2xl:flex 2xl:items-center 2xl:flex-col 2xl:justify-center space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
         {/* Top Section */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Subscribe Section */}
@@ -24,7 +24,7 @@ const Appfooter = () => {
                   className="flex-grow bg-transparent outline-none text-white placeholder-[#F9FAFB] text-base"
                 />
                 <button className="ml-2 lg:w-[11em] lg:h-[3.2em] p-4 lg:p-0 bg-white text-black font-medium rounded-full px-4">
-                  Subscribe
+                   Subscribe
                 </button>
               </div>
             </div>
@@ -128,7 +128,7 @@ const Appfooter = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-4 text-base">
+        <div className="flex flex-col-reverse lg:flex-row  w-screen justify-between items-center gap-4 2xl:px-[8%] text-base">
           <p className="text-center font-[300]">&copy; 2022. Company Name. All rights reserved.</p>
           <div className="flex flex-row gap-4 lg:mr-[5em]">
             <p className="cursor-pointer hover:underline">Terms and conditions</p>
