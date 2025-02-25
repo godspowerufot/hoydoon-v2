@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "./components/common/Button";
@@ -5,9 +6,11 @@ import Link from "next/link";
 import { FaStar } from 'react-icons/fa';
 import TestimonialCarousel from "./components/layouts/testimonials";
 import FAQComponent from "./components/layouts/faq";
+import { useState } from "react";
 
 
 export default function Home() {
+  const [isShrunk, setIsShrunk] = useState(false);
   return (
     <>
     <header className="relative h-[45em] lg:h-[52em] w-full ">
@@ -187,14 +190,23 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
 <div className=" flex mt-3   min-w-fit items-center lg:flex-row   gap-x-[2.25em] justify-center  mb-2">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
-    <div className="flex flex-col h-fit lg:w-[31%] font-bricolage snap-center shrink-0">
-      <Image
-        alt="image1"
-        width={300}
-        height={400}
-        src={'/house1.png'}
-        className="rounded-lg w-full"
-      />
+    <div
+      className="flex flex-col h-fit lg:w-[31%] font-bricolage snap-center shrink-0"
+      onMouseEnter={() => setIsShrunk(true)}
+    >
+      <div
+        className={`overflow-hidden rounded-lg w-full transition-all duration-500 ${
+          isShrunk ? "h-[300px] scale-95" : "h-[400px] scale-100"
+        }`}
+      >
+        <Image
+          alt="image1"
+          width={300}
+          height={400}
+          src="/house1.png"
+          className="w-full h-full object-cover transition-all duration-500"
+        />
+      </div>
       <span className="mt-4 text-black">
         <span className="flex gap-3">
           <h4 className="text-gray font-light">From</h4>

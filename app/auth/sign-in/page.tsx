@@ -114,11 +114,11 @@ import Image from 'next/image';
 
 
         <p className="text-black w-full text-end  font-[600] mt-[3%] text-base">
-        No account yet? <span className="text-primary text-[1.3em] font-bricolage"> Sign Up   </span>  </p>
+        No account yet? <Link href="/auth/sign-up" className="text-primary text-[1.3em] font-bricolage"> Sign Up  </Link> </p>
 
       </div>
    
-   <img src="/authBanner.png" alt="banner" className="w-[56%] hidden lg:block h-[48em] 2xl:h-[52em] lg:rounded-[10px]" />
+   <img src="/signup.png" alt="banner" className="w-[56%] hidden lg:block h-[48em] 2xl:h-[52em] lg:rounded-[10px]" />
     </div>
     </div>
   );
