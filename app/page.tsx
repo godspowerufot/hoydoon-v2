@@ -25,13 +25,13 @@ export default function Home() {
     </h1>
 
     {/* Subheading */}
-    <h2 className="text-[1.5em] font-[400] text-center text-[#FFFFFFB2] w-[32em]">
+    <h2 className="lg:text-[1.5em] 2xl:text-[1.6em]  font-[400] text-center text-[#FFFFFFB2] w-[33em]">
       From urban flats to rural getaways, Hoydoon effortlessly links you to the home of your dreams with trust and ease.
     </h2>
 
     {/* Large Screen Search Bar */}
     <div className="hidden lg:flex justify-center items-center w-full">
-      <div className="flex pl-[2.5%] h-[4em] font-bricolage items-center m-2 bg-white rounded-full w-10/12 md:w-4/5 lg:w-[58em]">
+      <div className="flex pl-[2.5%] h-[4em] py-4 font-bricolage items-center m-2 bg-white rounded-full w-10/12 md:w-4/5 lg:w-[58em] 2xl:w-[60em]">
         {/* Location */}
         <div className="flex flex-col flex-1">
           <span className="text-[1.2em] font-semibold text-black">Location</span>

@@ -1,7 +1,6 @@
 'use client'
 
-import React, { useState } from "react";
-import GoogleIcon from "../../../public/google.png";
+import React from "react";
 import Button from "@/app/components/common/Button";
 import Link from "next/link";
 import Input from "@/app/components/common/inputs/input";
@@ -9,7 +8,6 @@ import Image from 'next/image';
 
 
  const page = () => {
-  const [views, setViews] = useState(0);
   return (
     <div className="w-full flex items-center justify-center">
     <div className="flex  gap-[6%] flex-row-reverse w-[90%]  justify-center lg:items-center font-bricolage p-[6%] lg:justify-center py-1 mt-[5%]">
@@ -18,22 +16,22 @@ import Image from 'next/image';
           <Link href="/" className=' flex items-center  gap-2'>
             <Image
               alt="logo"
-              width={50}  
+              width={30}  
               loading='lazy'
               objectFit='cover'
-              height={50} // Reduced size of logo
+              height={30} // Reduced size of logo
               src={'/Logo.svg'}
             />
-            <h3 className=' text-primary font-bricolage lg:font-[600] lg:text-[1em] lg:text-primary text-lg'>  {/* Reduced text size */}
+            <h3 className=' text-primary font-bricolage lg:font-[600] lg:text-[0.8em] lg:text-primary text-lg'>  {/* Reduced text size */}
               Hoydoon
             </h3>
           </Link>
         </div>
-        <div className=" w-full h-[1px] bg-[#8F8F8F] mt-[4%]"/>
+        <div className=" w-full h-[1px] bg-[#8F8F8F] mt-[2%]"/>
     
        
           <div className=" mt-6 flex flex-col    ">
-            <h3 className="font-bricolage  text-center text-[#1E1E1E] text-3xl lg:text-4xl font-semibold mb-2">
+            <h3 className="font-bricolage  text-center text-[#1E1E1E] text-[18px] lg:text-4xl font-semibold mb-2">
             Create an Account
             </h3>
             <h4 className="font-bricolage text-center  text-base text-[#8F8F8F] mb-6 lg:mb-12">
@@ -52,7 +50,7 @@ import Image from 'next/image';
                   label="Password"
                   type="password"
                   placeholder="Password*"
-                  className="mb-4 rounded-full "
+                  className="mb-4 rounded-full  border-gray"
                 />
 
                 <p className="font-bricolage   text-[12px] text-[#8F8F8F] ">It must be a combination of 8 words, letters,  numbers, symbols</p>
@@ -118,7 +116,7 @@ import Image from 'next/image';
 
       </div>
    
-   <img src="/authBanner.png" alt="banner" className="w-[56%] hidden lg:block h-[48em] 2xl:h-[52em] lg:rounded-[10px]" />
+   <Image src="/authBanner.png" alt="banner" width={500} height={500} className="w-[56%] hidden lg:block h-[48em] 2xl:h-[52em] lg:rounded-[10px]" />
     </div>
     </div>
   );

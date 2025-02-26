@@ -39,7 +39,7 @@ const Input: React.FC<InputProps> = ({ label, className, ...rest }) => {
               : rest.type
           }
           className={clx(
-            "block w-full rounded-2xl border-0  border-[#8F8F8F] p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#8F8F8F] sm:text-sm sm:leading-6",
+            "block w-full rounded-2xl border-0   p-3 text-gray-900  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6",
             className
           )}
         />

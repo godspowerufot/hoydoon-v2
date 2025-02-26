@@ -4,14 +4,20 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import Button from '../common/Button';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
+  const pathname=usePathname()
+  const hideNavbar = pathname.startsWith("/auth");
 
   const isActive = (path) => router.prefetch === path;
 
   return (
+<>
+    {!hideNavbar &&
+    
     <header className="text-xl z-10   relative  mt-3  w-full bg-white lg:bg-transparent font-bricolage text-white">
       <div className="flex-1 mx-auto flex items-center justify-around p-2">
         
@@ -107,6 +113,7 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
-    </header>
+    </header>}
+    </>
   );
 }

@@ -1,10 +1,16 @@
 'use client';
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 const Appfooter = () => {
   const [email, setEmail] = useState('');
+ const pathname=usePathname()
+  const hideNavbar = pathname.startsWith("/auth");
 
   return (
+
+    <>
+    {!hideNavbar &&
     <footer className="bg-primary font-bricolage w-full  text-white flex flex-col justify-center items-center mt-[2%]">
       <div className="w-full 2xl:flex 2xl:items-center 2xl:flex-col 2xl:justify-center space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
         {/* Top Section */}
@@ -136,7 +142,7 @@ const Appfooter = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </footer>}</>
   );
 };
 
