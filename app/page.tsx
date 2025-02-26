@@ -139,7 +139,7 @@ export default function Home() {
 </header>
       {/* this hold the images */}
       <section className="   font-bricolage lg:flex justify-center flex-col flex-1 items-center bg-white">
-        <div className="flex  gap-[4%] flex-col w-[92%]  lg:my-[4em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+        <div className="flex  gap-[4%] flex-col w-[92%]  lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-6/10 ">
 <h1 className="text-black  text-[26px] lg:text-24xl font-[600] 2xl:w-[80%]">Find your ideal property with simple tools and guidance.</h1>
 <p className="text-gray text-base lg:text-lgi font-bricolage w-9/10 2xl:text-[20px] 2xl:w-[70%]">
@@ -163,7 +163,7 @@ Enjoy fast and easy access to a variety of properties that suit your needs. Use 
 </span>
         </div>
       </section>
-      <section className="mt-10 lg:my-[4em]  font-bricolage flex justify-center flex-col flex-1 items-center">
+      <section className="mt-10 lg:mt-[100px]  font-bricolage flex justify-center flex-col flex-1 items-center">
         <div className="flex  w-[92%] flex-col lg:flex-row  items-center justify-around ">
           <span className="flex flex-col w-full lg:w-6/10 ">
 <h1 className="text-black  text-[26px] lg:text-24xl font-[600]">Get the Hoydoon App</h1>
@@ -199,7 +199,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
       
 
 </div>
-<div className=" flex mt-3   min-w-fit items-center lg:flex-row   gap-x-[2.25em] justify-center  mb-2">
+<div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row   gap-x-[2.25em] justify-center  mb-2">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
     <div className="flex flex-col h-fit lg:w-[31%] font-bricolage snap-center shrink-0">
@@ -297,13 +297,13 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
 
 
 <div className="flex  lg:w-[80em] 2xl:w-[95em] p-2 flex-col md:flex-row lg:flex-row md:gap-10  lg:gap-10  justify-around items-center  md:items-start ">
-      <h1 className="text-black lg:ml-2 text-[26px] lg:text-23xl font-[600]   w-full ">Explore Luxurious Living Spaces</h1>
+      <h1 className="text-black lg:ml-2 text-[26px] lg:text-[38px] font-[600]   w-full ">Explore Luxurious Living Spaces</h1>
       <p className="text-gray  2xl:texxt-end  2xl:ml-[10%] lg:p-0 text-base lg:text-5xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestylecrafted to fit your taste and needs.
 </p>
 </div>
-<div className="lg:p-5 font-bricolage">
-      <div className="relative  lg:h-[850px] h-[500px] rounded-lg flex flex-col">
+<div className="lg:p-5 mt-[2em] font-bricolage">
+      <div className="relative  lg:h-[750px] h-[500px] rounded-lg flex flex-col">
         {/* Background Image and Content */}
         <div className="relative w-full h-full rounded-lg overflow-hidden">
           {/* Background Image */}
@@ -319,7 +319,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
 
           {/* Content Inside Image */}
-          <div className="lg:absolute h-[43%] relative top-[5rem] lg:top-[28rem] lg:bottom-10 left-3 bg-primarytransparent w-full lg:w-8/10 lg:h-auto p-5 rounded-lg shadow-lg z-10">
+          <div className="lg:absolute mx-[3%] h-[43%] relative top-[5rem] p-[2%] lg:top-[22em]  left-3 bg-primarytransparent w-full lg:w-8/10 2xl:w-[78%] lg:h-fit  rounded-lg shadow-lg z-10">
         {/* Property Info */}
         <div className="bg-white rounded-[24px] w-full h-fit lg:h-auto p-8  shadow-lg z-10">
           <h1 className="text-black text-base lg:text-23xl font-[600]">Laurel Canyon Nest</h1>
@@ -327,17 +327,17 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
             A charming 3-bedroom home featuring a bright, open-concept living area designed for both comfort and connection. The spacious layout flows seamlessly from the kitchen to the dining and living spaces, making it perfect for gatherings. Step outside to a private backyard, ideal for relaxing, entertaining, or enjoying a bit of gardening. This home offers the perfect blend of functionality and tranquility for everyday living.
           </p>
 
-          <div className="flex font-bricolage items-center mt-5">
+          <div className="flex  w-[50%] font-bricolage items-center mt-5">
             {/* Property Details */}
-            <div className="flex flex-col-reverse flex-1 px-1 py-3">
+            <div className="flex flex-col-reverse w-1/2 flex-1 px-1 py-3">
               <span className="text-sm font-semibold text-black">1,00sqft</span>
               <div className="text-sm text-gray">Size</div>
             </div>
 
             {/* Vertical Divider */}
-            <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
+            <div className="h-10 w-[1px] bg-black mx-[5%] my-1"></div>
 
-            <div className="flex flex-col-reverse flex-1 px-4 py-3">
+            <div className="flex flex-col-reverse w-1/2 flex-1 px-2 py-3">
               <span className="text-sm font-semibold text-black">Berbera, Somalia</span>
               <div className="text-sm text-gray">Location</div>
             </div>
@@ -345,7 +345,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
             {/* Vertical Divider */}
             <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
 
-            <div className="flex flex-col-reverse flex-1 px-4 py-3">
+            <div className="flex flex-col-reverse flex-1 px-2 py-3">
               <span className="text-sm font-semibold text-black">
                 <span className="flex lg:flex-row flex-col items-center justify-start text-sm">
                   <FaStar className="text-[#E0DA18]" /> 5.0{' '}
