@@ -78,7 +78,7 @@ export default function Navbar() {
           <Link href="/auth/sign-in" className=' text-[1em]'> {/* Reduced width and padding */}
               Login
             </Link></Button> 
-          <Button  className='w-[9em] '>
+          <Button  className='w-[6.7em] '>
           <Link href="/auth/sign-up"  className='font-light  text-[1em]'> {/* Reduced width and padding */}
             Register
           </Link>

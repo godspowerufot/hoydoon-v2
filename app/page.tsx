@@ -31,19 +31,22 @@ export default function Home() {
 
     {/* Large Screen Search Bar */}
     <div className="hidden lg:flex justify-center items-center w-full">
-      <div className="flex pl-[2.5%] h-[4em] py-4 font-bricolage items-center m-2 bg-white rounded-full w-10/12 md:w-4/5 lg:w-[58em] 2xl:w-[60em]">
+      <div className="flex pl-[2.5%] h-[4em] py-4 font-bricolage   items-center m-2 bg-white rounded-full w-10/12 md:w-4/5 lg:w-[57em] ">
+      <div className="w-[80%] flex justify-center items-center">
+
+   
         {/* Location */}
         <div className="flex flex-col flex-1">
-          <span className="text-[1.2em] font-semibold text-black">Location</span>
+          <span className="text-[1em] font-semibold text-black">Location</span>
           <div className="text-[1em] text-gray">Search Locations</div>
         </div>
 
         {/* Vertical Divider */}
-        <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
+        <div className="h-10 w-[1px] bg-black mx-[2px] my-1"></div>
 
         {/* Type */}
-        <div className="flex flex-col flex-1 ml-[3%]">
-          <span className="text-[1.2em] font-semibold text-black">Type</span>
+        <div className="flex flex-col  w-[100px] flex-1 ml-[3%]">
+          <span className="text-[1em] font-semibold text-black">Type</span>
           <div className="text-[1em] text-gray">Add type</div>
         </div>
 
@@ -52,7 +55,7 @@ export default function Home() {
 
         {/* Price Range */}
         <div className="flex flex-col flex-1 ml-[3%]">
-          <span className="text-[1.2em] font-semibold text-black">Price Range</span>
+          <span className="text-[1em] font-semibold text-black">Price Range</span>
           <div className="text-[1em] text-gray">Add range</div>
         </div>
 
@@ -61,14 +64,26 @@ export default function Home() {
 
         {/* Number of Guests */}
         <div className="flex flex-col flex-1 ml-[3%]">
-          <span className="text-[1.2em] font-medium text-black">Number of Guests</span>
+          <span className="text-[1em] font-medium text-black">Number of Guests</span>
           <div className="text-[1em] text-gray">Add number</div>
         </div>
 
         {/* Search Button */}
-        <div className="bg-primary p-3 ml-8 mr-3 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90">
-          <FaSearch className="text-white h-[20px] w-6 font-light text-sm" />
-        </div>
+       
+      </div>
+      <div className="relative p-1 ml-[10%] rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-gradient-to-r before:from-white before:via-white/30 before:to-white/10 before:p-[1px]">
+  <div className="relative bg-primary p-3 w-[50px] h-[50px] rounded-full flex items-center justify-center">
+    <Image
+      alt="logo"
+      width={30}
+      loading="lazy"
+      height={30}
+      src={'/search.png'}
+      style={{ objectFit: 'cover' }}
+    />
+  </div>
+</div>
+
       </div>
     </div>
 
