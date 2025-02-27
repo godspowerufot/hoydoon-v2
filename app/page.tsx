@@ -2,7 +2,6 @@ import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "./components/common/Button";
 import Link from "next/link";
-import { FaStar } from 'react-icons/fa';
 import TestimonialCarousel from "./components/layouts/testimonials";
 import FAQComponent from "./components/layouts/faq";
 
@@ -23,6 +22,8 @@ export default function Home() {
     <h1 className="lg:w-[10em] mt-[2em] lg:mt-[1.4em] text-white text-[2em] w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
       Where Every House Feels Like Home
     </h1>
+   
+
 
     {/* Subheading */}
     <h2 className="lg:text-[1.5em] 2xl:text-[1.6em]  font-[400] text-center text-[#FFFFFFB2] w-[33em]">
@@ -78,6 +79,8 @@ export default function Home() {
       width={30}
       loading="lazy"
       height={30}
+      quality={100} // Ensures maximum quality
+       
       src={'/search.png'}
       style={{ objectFit: 'cover' }}
     />

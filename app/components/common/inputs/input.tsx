@@ -9,12 +9,13 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const Input: React.FC<InputProps> = ({ label, className, ...rest }) => {
   const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div>
       {label && (
         <label
           htmlFor={rest.type}
-          className="block text-[1em] font-bold  font-bricolage leading-6 text-black"
+          className="block text-[1em] font-normal font-bricolage leading-6 text-gray-700"
         >
           {label}
         </label>
@@ -23,7 +24,7 @@ const Input: React.FC<InputProps> = ({ label, className, ...rest }) => {
         {rest.type === "password" && (
           <button
             type="button"
-            className="absolute right-4 top-4"
+            className="absolute right-4 top-4 text-gray-500"
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
@@ -39,7 +40,7 @@ const Input: React.FC<InputProps> = ({ label, className, ...rest }) => {
               : rest.type
           }
           className={clx(
-            "block w-full rounded-2xl border-0   p-3 text-gray-900  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6",
+            "block w-full rounded-2xl border border-gray-300 p-3 text-gray-700 placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 sm:text-sm sm:leading-6",
             className
           )}
         />

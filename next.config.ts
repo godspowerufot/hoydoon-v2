@@ -3,8 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
 
-    reactRefresh: true,
-
+  future: {
+    webpack5: true,
+  },
 };
 
 export default nextConfig;

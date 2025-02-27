@@ -32,6 +32,7 @@ body {
   overflow-x: hidden !important;
   width: 100% !important;
   display: flex;
+  align-items: center;
   justify-items: center;
   background: white;
   font-family:'Bricolage Grotesque' Arial, Helvetica, sans-serif;

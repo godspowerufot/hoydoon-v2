@@ -41,7 +41,7 @@ const Appfooter = () => {
             {/* Explore Links */}
             <div>
               <p className="font-medium text-[#F9FAFB]">Explore</p>
-              <ul className="mt-1 lg:mt-6 space-y-2 text-sm">
+              <ul className="mt-[0.8em] lg:mt-6 space-y-2 text-sm">
                 <li>
                   <a href="#" className="transition hover:opacity-75">
                     Home
@@ -134,29 +134,31 @@ const Appfooter = () => {
               <p className="font-medium text-[#F9FAFB]">Mobile App</p>
               <ul className="mt-1 lg:mt-6 space-y-2 text-sm">
                 <li>
-                   <Image
-                              alt="logo"
-                              width={60}  
-                              loading='lazy'
-                              objectFit='cover'
-                              height={60} // Reduced size of logo
-                              src={'/app1.png'}
-                            />
+                <Image
+        src="/app1.svg" // Use a high-quality image
+        alt="Hero section"
+        width={100}
+        height={200}
+        quality={100} // Ensures maximum quality
+        priority // Loads image faster
+      />
                 </li>
                 <li>
-                  <a href="#" className="transition hover:opacity-75">
-                    Contact
-                  </a>
+                <Image
+        src="/app2.svg" // Use a high-quality image
+        alt="Hero section"
+        width={100}
+        height={200}
+        quality={100} // Ensures maximum quality
+        priority // Loads image faster
+      />
                 </li>
-                <li>
-                  <a href="#" className="transition hover:opacity-75">
-                    +234 813 2254
-                  </a>
-                </li>
+             
               </ul>
             </div>
           </div>
         </div>
+        <div className=" w-full h-[1px] bg-white mt-[2%]"/>
 
         {/* Bottom Section */}
         <div className="flex flex-col-reverse lg:flex-row  w-screen justify-between items-center gap-4 2xl:px-[8%] text-base">

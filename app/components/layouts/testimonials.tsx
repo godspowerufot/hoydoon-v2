@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import { testimonials } from "@/constants";
 import Image from "next/image";
-import { FaArrowLeft, FaArrowRight} from "react-icons/fa";
-
 const TestimonialCarousel: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
