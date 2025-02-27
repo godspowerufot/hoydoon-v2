@@ -18,7 +18,7 @@ export default function Navbar() {
 <>
     {!hideNavbar &&
     
-    <header className="text-xl z-10   relative  mt-3  w-full bg-white lg:bg-transparent font-bricolage text-white">
+    <header className="text-xl z-[999999]   relative  mt-3  w-full bg-white lg:bg-transparent font-bricolage text-white">
       <div className="flex-1 mx-auto flex items-center justify-around p-2">
         
         {/* Logo */}

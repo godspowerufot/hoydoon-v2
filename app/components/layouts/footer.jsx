@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
-
+import Image from 'next/image';
 const Appfooter = () => {
   const [email, setEmail] = useState('');
  const pathname=usePathname()
@@ -11,7 +11,7 @@ const Appfooter = () => {
 
     <>
     {!hideNavbar &&
-    <footer className="bg-primary font-bricolage w-full  text-white flex flex-col justify-center items-center mt-[2%]">
+    <footer className="bg-primary font-bricolage w-full  text-white flex flex-col justify-center items-center mt-[4%]">
       <div className="w-full 2xl:flex 2xl:items-center 2xl:flex-col 2xl:justify-center space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
         {/* Top Section */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -37,7 +37,7 @@ const Appfooter = () => {
           </div>
 
           {/* Links Section */}
-          <div className="grid w-full md:w-10/12 lg:w-6/10 lg:ml-auto grid-cols-3 sm:grid-cols-3  lg:grid-cols-4 lg:gap-8 lg:col-span-2">
+          <div className="grid w-full md:w-10/12 lg:w-8/10 lg:ml-auto grid-cols-3 sm:grid-cols-3  lg:grid-cols-5 lg:gap-8 lg:col-span-2">
             {/* Explore Links */}
             <div>
               <p className="font-medium text-[#F9FAFB]">Explore</p>
@@ -91,7 +91,27 @@ const Appfooter = () => {
                 </li>
               </ul>
             </div>
-
+ {/* Location */}
+ <div>
+              <p className="font-medium text-[#F9FAFB]">Location</p>
+              <ul className="mt-1 lg:mt-6 space-y-2 text-sm">
+                <li>
+                  <a href="#" className="transition hover:opacity-75">
+                    123, Yorkshire Lane, New York, USA
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition hover:opacity-75">
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition hover:opacity-75">
+                    +234 813 2254
+                  </a>
+                </li>
+              </ul>
+            </div>
             {/* Legal Links */}
             <div className='hidden lg:block'>
               <p className="font-medium text-[#F9FAFB]">Legal</p>
@@ -109,14 +129,19 @@ const Appfooter = () => {
               </ul>
             </div>
 
-            {/* Location */}
+           
             <div>
-              <p className="font-medium text-[#F9FAFB]">Location</p>
+              <p className="font-medium text-[#F9FAFB]">Mobile App</p>
               <ul className="mt-1 lg:mt-6 space-y-2 text-sm">
                 <li>
-                  <a href="#" className="transition hover:opacity-75">
-                    123, Yorkshire Lane, New York, USA
-                  </a>
+                   <Image
+                              alt="logo"
+                              width={60}  
+                              loading='lazy'
+                              objectFit='cover'
+                              height={60} // Reduced size of logo
+                              src={'/app1.png'}
+                            />
                 </li>
                 <li>
                   <a href="#" className="transition hover:opacity-75">

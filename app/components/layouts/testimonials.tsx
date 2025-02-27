@@ -40,14 +40,21 @@ const TestimonialCarousel: React.FC = () => {
           <div
             onClick={handlePrev}
           >
-          <FaArrowLeft className="text-gray"/>
+                <Image
+            height={40}
+            width={40}
+            alt="qout"
+            src="/prev.png"/>
           </div>
           <div
            
             onClick={handleNext}
           >
-          <FaArrowRight className="text-gray"/>
-          </div>
+    <Image
+            height={40}
+            width={40}
+            alt="qout"
+            src="/next.png"/>          </div>
         </div>
       </div> 
 

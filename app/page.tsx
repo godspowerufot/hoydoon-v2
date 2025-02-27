@@ -319,7 +319,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
 
           {/* Content Inside Image */}
-          <div className="lg:absolute mx-[3%] h-[43%] relative top-[5rem] p-[2%] lg:top-[22em]  left-3 bg-primarytransparent w-full lg:w-8/10 2xl:w-[78%] lg:h-fit  rounded-lg shadow-lg z-10">
+          <div className="lg:absolute mx-[3%] h-[43%] relative top-[5rem] p-[2%] lg:top-[22em]  left-3 bg-primarytransparent w-full lg:w-8/10 2xl:w-[68%] lg:h-fit  rounded-lg shadow-lg z-10">
         {/* Property Info */}
         <div className="bg-white rounded-[24px] w-full h-fit lg:h-auto p-8  shadow-lg z-10">
           <h1 className="text-black text-base lg:text-23xl font-[600]">Laurel Canyon Nest</h1>
@@ -327,29 +327,39 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
             A charming 3-bedroom home featuring a bright, open-concept living area designed for both comfort and connection. The spacious layout flows seamlessly from the kitchen to the dining and living spaces, making it perfect for gatherings. Step outside to a private backyard, ideal for relaxing, entertaining, or enjoying a bit of gardening. This home offers the perfect blend of functionality and tranquility for everyday living.
           </p>
 
-          <div className="flex  w-[50%] font-bricolage items-center mt-5">
+          <div className="flex  w-[60%] font-bricolage items-center mt-5">
             {/* Property Details */}
             <div className="flex flex-col-reverse w-1/2 flex-1 px-1 py-3">
-              <span className="text-sm font-semibold text-black">1,00sqft</span>
+              <span className="text-[0.9em] font-semibold text-black">1,200sqft</span>
               <div className="text-sm text-gray">Size</div>
             </div>
 
             {/* Vertical Divider */}
-            <div className="h-10 w-[1px] bg-black mx-[5%] my-1"></div>
+            <div className="h-10 w-[1px] - bg-black -mx-[15%] my-1"></div>
 
-            <div className="flex flex-col-reverse w-1/2 flex-1 px-2 py-3">
-              <span className="text-sm font-semibold text-black">Berbera, Somalia</span>
+            <div className="flex ml-[20%] flex-col-reverse w-[40%] flex-1 px-2 py-3">
+
+              <span className="text-[1em] font-semibold text-black">Berbera, Somalia</span>
               <div className="text-sm text-gray">Location</div>
             </div>
 
             {/* Vertical Divider */}
             <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
 
-            <div className="flex flex-col-reverse flex-1 px-2 py-3">
-              <span className="text-sm font-semibold text-black">
-                <span className="flex lg:flex-row flex-col items-center justify-start text-sm">
-                  <FaStar className="text-[#E0DA18]" /> 5.0{' '}
-                  <p className="text-gray text-[10px] lg:block lg:text-[10px] hidden">(200 reviews)</p>
+            <div className="flex w-max flex-col-reverse ml-[3%] flex-1 px-2 py-3">
+              <span className="text-[1em] font-semibold text-black">
+                <span className="flex lg:flex-row flex-col gap-[0.2em]  w-full  items-center -ml-[9%] justify-center">
+            <Image
+                       alt="logo"
+                       width={20}  
+                       loading='lazy'
+                       objectFit='cover'
+                       height={20} // Reduced size of logo
+                       src={'/star.png'}
+                       className="h-5 w-5 "/>
+                       <p>
+                       5.0 </p>
+                  <p className="text-gray  font-[500] lg:block  hidden">(200 reviews)</p>
                 </span>
               </span>
               <div className="text-sm text-gray">Reviews</div>
@@ -391,11 +401,11 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
   </section>
   {/* testimonials */}
   <section className="mt-8 p-4 lg:p-0 font-bricolage ">
-  <div className="flex  flex-col lg:flex-row md:flex-row  lg:gap-10  justify-around items-center  ">
-    <span className="flex   2xl:w-[38%] flex-col font-bricolage gap-3">
+  <div className="flex  flex-col lg:flex-row md:flex-row  lg:gap-12  justify-around items-center  ">
+    <span className="flex    2xl:w-[38%] flex-col font-bricolage gap-3">
 
 
-      <h1 className="text-black  text-[26px] lg:text-23xl font-[600] mr-10">What People Are Saying</h1>
+      <h1 className="text-black  text-[26px] lg:text-23xl font-[600] mr-9">What People Are Saying</h1>
       <p className="text-gray  lg:p-0 text-base 2xl:text-[20px] lg:text-base font-bricolage w-full lg:w-[30em]">
 Discover a home where every detail enhances your lifestyle—crafted to fit your taste and needs.</p>
 
@@ -418,8 +428,8 @@ Explore
     </section>  
     
       {/* testimonials */}
-  <section className=" mt-7  lg:mt-[10%]  flex flex-1 justify-center items-center  flex-col   p-5 lg:p-0 font-bricolage ">
-  <div className="flex 2xl:w-full   flex-col lg:flex-row md:flex-row   lg:gap-10  justify-around items-center  ">
+  <section className=" mt-7  w-full  lg:mt-[7%]  flex flex-1 justify-center items-center  flex-col   p-5 lg:p-0 font-bricolage ">
+  <div className="flex w-full   flex-col lg:flex-row md:flex-row   lg:gap-10  justify-around items-center  ">
     <span className="flex flex-col  font-bricolage gap-3">
 
 
@@ -438,11 +448,11 @@ Explore
 </span>
    
 </div>
-<div className="mt-7 justify-center items-center max-md:w-full w-full gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row mb-5">
+<div className="mt-4 justify-center items-center max-md:w-full w-full gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row mb-5">
 <div className="z-20 relative max-md:w-full  lg:h-[50em]  lg:left-[50px] lg:top-[10em]">
 <FAQComponent/>
 </div>
-<div className="relative lg:-ml-[15em] justify-center items-center  flex w-[255px] lg:w-auto">
+<div className="relative lg:-ml-[10em] justify-center items-center  flex w-[255px] lg:w-auto">
 
 
       <Image
@@ -458,15 +468,34 @@ Explore
       loading="lazy"
       height={300}
       src={'/q2.png'}
-      className=" z-2   bottom-[2em]   w-[86px] lg:w-[620px] mt-[17%] lg:-top-[2rem] lg:-left-[10em]  lg:mt-[11%] relative rounded-lg   object-cover h-3/10"
+      className=" z-2   bottom-[2em]   w-[86px] lg:w-[620px] mt-[17%] lg:-top-[2rem] lg:-left-[9em]  lg:mt-[11%] relative rounded-lg   object-cover h-3/10"
     />
     </div>
 </div>
     </section> 
     {/* New-articles */}
-    <section className="   flex justify-center items-center  w-full  flex-col mt-10 p-4 lg:p-0 font-bricolage ">
-    <div className="flex justify-center w-full mt-4 lg:flex-1 lg:flex-row flex-col  items-center gap-10 ">
-    <div className="relative flex flex-col h-[650px]   lg:w-[38em] 2xl:w-[45em]  font-bricolage  rounded-lg  shrink-0">
+    <section className="   flex justify-center items-center  w-full  flex-col mt-4 p-4 lg:p-0 font-bricolage ">
+    <div className="flex w-full   flex-col lg:flex-row md:flex-row   lg:gap-10  justify-around items-center  ">
+    <span className="flex flex-col  font-bricolage gap-3">
+
+
+      <h1 className="text-black  text-[26px] lg:text-23xl font-[600] mr-10">New Highlights & Articles</h1>
+      <p className="text-gray  2xl:text-[20px] lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+      Our top stories and features keeps you updated on industry trends, current events</p>
+
+      
+      </span>
+      <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
+      <p className="text-gray 2xl:text-[20px]  lg:p-0 text-base lg:text-base font-bricolage w-full lg:w-[30em]">
+      Stay Informed with our latest news and Insights where you’ find breaking stories</p>
+<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  text-gray">
+ <p className="text-gray" style={{color:"#8F8F8F"}}> Explore </p>
+</Button>
+</span>
+   
+</div>
+    <div className="flex justify-center w-full mt-[4%] lg:flex-1 lg:flex-row flex-col  items-center gap-10 ">
+    <div className="relative flex flex-col h-[650px]   lg:w-[37em] 2xl:w-[44em]  font-bricolage  rounded-full shrink-0">
   {/* Image Section */}
   <Image
     alt="house image"
@@ -474,22 +503,22 @@ Explore
     height={300}
     loading="lazy"
     src={'/news-1.png'}
-    className="rounded-t-lg  w-full object-cover h-[300px]"
+    className="rounded-lg  w-full object-cover h-[400px]"
   />
 
   {/* Content Section */}
-  <div className="flex flex-col p-4 relative">
+  <div className="flex flex-col my-4  relative">
     {/* Title */}
     <div className="flex gap-3">
-    <h1 className="text-13xl text-primary absolute`">01</h1>
-    <h1 className="text-black text-10xl font-[500] pt-[10px]">Analyzing Modern Real Estate Market Movement</h1>
+    <h1 className="text-13xl font-[600] text-primary absolute`">01</h1>
+    <h1 className="text-black text-10xl font-[500] pt-[10px]">Understanding the Real Estate Market Trends</h1>
     </div>
     {/* Price and Area */}
-    <div className="flex flex-wrap flex-end gap-3 mt-2">
+    <div className="flex flex-wrap flex-end gap-3 mt-4">
       <div className="flex ">
-      <span className="flex  flex-col text-gray lg:text-xl text-sm font-meduim">
-   <h4 className="text-gray lg:text-xl f text-sm font-meduim">July </h4><h4>2024</h4>     </span>  
-        <h2 className="ml-2 mt-[17px] text-gray  font-meduim lg:text-xl ">Perfect property</h2>
+      <span className="flex  flex-col text-gray lg:text-[18px] text-sm  gap-2 font-meduim">
+   <h4 className="text-gray  lg:text-[18px]  text-sm font-meduim">July </h4><h4 className="text-[18px]">2024</h4>     </span>  
+        <h2 className="ml-2 mt-[17px] text-gray  font-meduim lg:text-[18px] ">Perfect property</h2>
       </div>
    
     </div>
@@ -514,30 +543,30 @@ Explore
     />
   </div> */}
 </div>
-<div className="relative flex flex-col h-[650px]  2xl:w-[45em] lg:w-[38em]  font-bricolage  rounded-lg  shrink-0">
-  {/* Image Section */}
+<div className="relative flex flex-col h-[650px]   lg:w-[37em] 2xl:w-[44em]  font-bricolage  rounded-full shrink-0">
+{/* Image Section */}
   <Image
     alt="house image"
     width={400}
     height={300}
     loading="lazy"
     src={'/news-2.png'}
-    className="rounded-t-lg  w-full object-cover h-[300px]"
+    className="rounded-lg  w-full object-cover h-[400px]"
   />
 
   {/* Content Section */}
-  <div className="flex flex-col p-4 relative">
+  <div className="flex flex-col my-4 relative">
     {/* Title */}
     <div className="flex gap-3">
-    <h1 className="text-13xl text-primary absolute`">01</h1>
+    <h1 className="text-13xl font-[600] text-primary absolute`">02</h1>
     <h1 className="text-black text-10xl font-[500] pt-[10px]">Analyzing Modern Real Estate Market Movement</h1>
     </div>
     {/* Price and Area */}
-    <div className="flex flex-wrap flex-end gap-3 mt-2">
-      <div className="flex ">
-      <span className="flex  flex-col text-gray lg:text-xl text-sm font-meduim">
-   <h4 className="text-gray lg:text-xl f text-sm font-meduim">July </h4><h4>2024</h4>     </span>  
-        <h2 className="ml-2 mt-[17px] text-gray  font-meduim lg:text-xl ">Perfect property</h2>
+    <div className="flex flex-wrap flex-end gap-3 mt-4">
+    <div className="flex ">
+      <span className="flex  flex-col text-gray lg:text-[18px] text-sm  gap-2 font-meduim">
+   <h4 className="text-gray  lg:text-[18px]  text-sm font-meduim">July </h4><h4 className="text-[18px]">2024</h4>     </span>  
+        <h2 className="ml-2 mt-[17px] text-gray  font-meduim lg:text-[18px] ">Perfect property</h2>
       </div>
    
     </div>
