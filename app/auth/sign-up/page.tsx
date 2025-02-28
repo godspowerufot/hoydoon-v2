@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 const page = () => {
   return (
-    <div className="w-full flex items-center justify-center">
+    <div className="w-full ovexflow-hidden   flex items-center justify-center">
       <div className="flex gap-[6%]   flex-row-reverse w-[89vw] justify-center font-bricolage px-[8%] my-[2%] 2xl:my-[4%] py-1">
         <div className="h-[35%] w-[85%] 2xl:w-[50%]">
           <div className="text-xl font-bold">
@@ -48,7 +48,7 @@ sign up to create an account            </h4>
                   className="mb-2 placeholder:px-3 placeholder:font-[18px] rounded-full border-[#d6d5d5] border-[0.7px] border-solid "
                 />
                 <p className="font-bricolage text-[12px] mt-2 text-[#8F8F8F]">It must be a combination of 8 words, letters, numbers, symbols</p>
-                <div className="w-full flex justify-between items-center my-3">
+                <div className="w-full flex justify-between items-center my-2">
                   <label className="flex items-center text-[#000000] font-[300] cursor-pointer">
                     <input
                       type="checkbox"
@@ -61,7 +61,7 @@ sign up to create an account            </h4>
                   </button>
                 </div>
               </div>
-              <Button className="py-2 my-3 text-[1em] w-full">sign up</Button>
+              <Button className="py-2 my-2 text-[1em] w-full">sign up</Button>
               <div className="w-full h-[0.8px] bg-[#b1b1b1] my-[3%]"/>
             </div>
           </div>
