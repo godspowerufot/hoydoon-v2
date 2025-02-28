@@ -9,8 +9,8 @@ import Image from 'next/image';
 const page = () => {
   return (
     <div className="w-full flex items-center justify-center">
-      <div className="flex gap-[10%] flex-row-reverse w-full justify-center font-bricolage px-[8%] my-[2%] 2xl:my-[4%] py-1">
-        <div className="h-[35%] w-[80%] 2xl:w-[45%]">
+      <div className="flex gap-[10%] w-[89vw] flex-row-reverse  justify-center font-bricolage px-[8%] my-[2%] 2xl:my-[4%] py-1">
+        <div className="h-[35%] w-[85%] 2xl:w-[50%]">
           <div className="text-xl font-bold">
             <Link href="/" className='flex items-center gap-2'>
               <Image
