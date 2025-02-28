@@ -1,11 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Button from '../common/Button';
+import { FaBars, FaTimes } from 'react-icons/fa';
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();

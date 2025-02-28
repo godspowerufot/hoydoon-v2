@@ -241,9 +241,12 @@ const Buy= () => {
     
       </div>
       
+      <div></div>
  
       
     </div>
+    <div className="w-full h-[1px] bg-[#8F8F8F] mt-[2%]"/>
+
    
           
           
@@ -328,7 +331,7 @@ const Buy= () => {
     
        
       </div>
-      <div className=' flex mt-[5%]  w-[90%] lg:w-full lg:flex-row  flex-col  gap-x-5 justify-center  mb-5'>
+      <div className=' flex mt-[5%]  w-[90%] lg:w-full lg:flex-row  flex-col  2xl:mt-[10%] gap-x-5 justify-center  mb-5'>
       <div className=" flex mt-8 pl-5 w-full lg:w-full lg:flex-row   flex-col   gap-x-5 justify-center  mb-8">
 
         <PropertyCard imageSrc={'/rent4.png'} altText={'rent4'} price={'45,500.00'} area={''} />
@@ -345,7 +348,7 @@ const Buy= () => {
    
     
       </div>
-      <Link className='font-[500]  text-xl w-6/10 mt-[70px] mb-[2em]  pl-3' href={''}>
+      <Link className='font-[500]  text-xl w-6/10 lg:mt-[70px] 2xl:mt-[10em] mb-[2em]  pl-3' href={''}>
         See all 2500 Lagos houses for sale</Link>
  
        

@@ -26,7 +26,7 @@ const page = () => {
           
             </Link>
           </div>
-          <div className="w-full h-[1px] bg-[#8F8F8F] mt-[2%]"/>
+          <div className="w-full h-[1px] bg-[#8F8F8F] mt-[5%]"/>
           <div className="mt-3 flex flex-col">
             <h3 className="font-bricolage text-center text-[#1E1E1E] text-2xl lg:text-[1.8em] font-semibold mb-2">
               Welcome Back

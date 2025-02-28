@@ -1,7 +1,5 @@
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
-import clx from "classNames";
 import React, { useState, type ReactNode } from "react";
-
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: ReactNode;
   className?: string;
@@ -39,10 +37,9 @@ const Input: React.FC<InputProps> = ({ label, className, ...rest }) => {
                 : "password"
               : rest.type
           }
-          className={clx(
-            "block w-full rounded-2xl border border-gray-300 p-3 text-gray-700 placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 sm:text-sm sm:leading-6",
-            className
-          )}
+          className={
+            "block w-full rounded-2xl border border-gray-300 p-3 text-gray-700 placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 sm:text-sm sm:leading-6"
+          }
         />
       </div>
     </div>

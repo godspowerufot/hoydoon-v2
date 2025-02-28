@@ -1,5 +1,4 @@
 import { ButtonHTMLAttributes } from "react";
-import clx from "classNames"
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string; // Allow custom styles through className
 };
@@ -15,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({
   const finalClassName = `${defaultClassName} ${className}`.trim(); 
 
   return (
-    <button {...rest} className={clx(`${finalClassName} ${className}`.trim(),className)}>
+    <button {...rest} className={`${finalClassName} ${className}`.trim()}>
       {children}
     </button>
   );
