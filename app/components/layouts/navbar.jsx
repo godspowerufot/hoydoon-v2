@@ -49,22 +49,22 @@ export default function Navbar() {
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1   lg:text-xl rounded-full ${isActive('/about') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
+              <div className={`px-4 py-1   lg:text-xl rounded-full `}>
                 <Link href="/buy">Buy</Link>
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1   lg:text-xl rounded-full ${isActive('/services') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
+              <div className={`px-4 py-1   lg:text-xl rounded-full `}>
                 <Link href="/services text-[1em]">Rent</Link>
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1   lg:text-xl rounded-full ${isActive('/sell') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
+              <div className={`px-4 py-1   lg:text-xl rounded-full `}>
                 <Link href="/sell text-[1em]">Sell</Link>
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1   lg:text-xl rounded-full ${isActive('/agent') ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary'}`}>
+              <div className={`px-4 py-1   lg:text-xl rounded-full `}>
                 <Link href="/agent text-[1em]">Find an agent</Link>
               </div>
             </li>
