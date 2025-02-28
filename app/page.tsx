@@ -141,7 +141,7 @@ export default function Home() {
   </div>
 </header>
       {/* this hold the images */}
-      <section className="   font-bricolage lg:flex justify-center flex-col flex-1 items-center bg-white">
+      <section className="   font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-white">
         <div className="flex  gap-[4%] flex-col w-[92%]  lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-6/10 ">
 <h1 className="text-black  text-[26px] lg:text-24xl font-[600] 2xl:w-[80%]">Find your ideal property with simple tools and guidance.</h1>
