@@ -1,11 +1,12 @@
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import React, { useState, type ReactNode } from "react";
+import classNames from "classnames/bind";
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: ReactNode;
   className?: string;
 }
 
-const Input: React.FC<InputProps> = ({ label,  ...rest }) => {
+const Input: React.FC<InputProps> = ({ label, className,  ...rest }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -38,7 +39,7 @@ const Input: React.FC<InputProps> = ({ label,  ...rest }) => {
               : rest.type
           }
           className={
-            "block w-full rounded-2xl border border-gray-300 p-3 text-gray-700 placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 sm:text-sm sm:leading-6"
+            `block w-full rounded-2xl border border-[#d6d5d5] p-4 text-gray-700 placeholder:text-gray-500  ${className}`
           }
         />
       </div>

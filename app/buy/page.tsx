@@ -405,15 +405,14 @@ const Buy= () => {
 <p className="text-[#8F8F8F] text-base lg:text-lgi  mt-3 font-bricolage w-[80%]  font-[400] 2xl:text-[20px] 2xl:w-[70%]">
 Curious about local schools? Wondering if there are pet-friendly rentals? Find all the key information you need about the area that catches your interest.</p>
 <div className="w-full flex   relative">
-  <div className="relative  w-[75%]">
+  <div className="relative  2xl:mt-2  w-[75%]">
     <Input
-      label=""
       type="text"
       placeholder="Address, Neighborhood, Zip code..."
-      className="mb-2 placeholder:px-3 placeholder:font-[18px] rounded-lg border-[#d6d5d5] border-[0.7px] border-solid w-full pr-[60px]" // Added padding-right to prevent overlap
+      className="mb-2 placeholder:px-3 p-4 placeholder:font-[18px] rounded-full border-[#d6d5d5] border-[0.7px] border-solid w-full pr-[60px]" // Added padding-right to prevent overlap
     />
     {/* Search Button Inside Input */}
-    <div className="absolute right-2 top-[55%] -translate-y-1/2 bg-primary p-3 w-[40px] h-[40px] rounded-full flex items-center justify-center">
+    <div className="absolute right-1 top-[49%] -translate-y-1/2 bg-primary p-3 w-[50px] h-[50px] rounded-full flex items-center justify-center">
       <Image
         alt="logo"
         width={24}
@@ -436,7 +435,7 @@ Curious about local schools? Wondering if there are pet-friendly rentals? Find a
               quality={100}
               loading='lazy'// Reduced size of logo
               height={400}
-              className='rounded-lg 2xl:w-[600px]'  // Reduced size of logo
+              className='rounded-lg 2xl:w-[600px] 2xl:h-[500px]'  // Reduced size of logo
               src={'/basemap.png'}
             />
 </span>
