@@ -10,7 +10,7 @@ const page = () => {
   return (
     <div className="w-full flex items-center justify-center">
       <div className="flex gap-[6%] flex-row-reverse w-[90%] justify-center font-bricolage px-[8%] my-[2%] 2xl:my-[4%] py-1">
-        <div className="h-[35%] w-[70%] 2xl:w-[45%]">
+        <div className="h-[35%] w-[70%] 2xl:w-full">
           <div className="text-xl font-bold">
             <Link href="/" className='flex items-center gap-2'>
               <Image
@@ -85,7 +85,7 @@ const page = () => {
             No account yet? <Link href="/auth/sign-up" className="text-primary text-[1em] font-bricolage"> Sign Up </Link>
           </p>
         </div>
-        <Image quality={100} src="/authBanner.png" alt="banner" width={500} height={450} className="w-[90%] 2xl:w-[50%] hidden lg:block h-[37em] 2xl:h-[40em] lg:rounded-[10px]" />
+        <Image quality={100} src="/authBanner.png" alt="banner" width={500} height={450} className="w-[90%] 2xl:w-[80%] hidden lg:block h-[37em] 2xl:h-[40em] lg:rounded-[10px]" />
       </div>
     </div>
   );
