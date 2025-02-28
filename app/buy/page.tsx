@@ -435,7 +435,7 @@ Curious about local schools? Wondering if there are pet-friendly rentals? Find a
               quality={100}
               loading='lazy'// Reduced size of logo
               height={400}
-              className='rounded-lg 2xl:w-[600px] 2xl:h-[500px]'  // Reduced size of logo
+              className='rounded-lg w-[600px] 2xl:w-[700px] 2xl:h-[500px]'  // Reduced size of logo
               src={'/basemap.png'}
             />
 </span>
