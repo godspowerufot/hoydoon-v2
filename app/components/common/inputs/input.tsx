@@ -5,7 +5,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-const Input: React.FC<InputProps> = ({ label, className, ...rest }) => {
+const Input: React.FC<InputProps> = ({ label,  ...rest }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (

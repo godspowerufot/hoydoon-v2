@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import Barsearch from '../components/layouts/barsearch'
 import PropertyCard from '../components/common/property'
 import Link from 'next/link'
 import { FaSearch } from 'react-icons/fa'
