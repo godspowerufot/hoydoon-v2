@@ -9,8 +9,8 @@ import Image from 'next/image';
 const page = () => {
   return (
     <div className="w-full flex items-center justify-center">
-      <div className="flex gap-[6%] flex-row-reverse w-[90%] justify-center font-bricolage px-[8%] my-[2%] 2xl:my-[4%] py-1">
-        <div className="h-[35%] w-[70%] 2xl:w-full">
+      <div className="flex gap-[10%] flex-row-reverse w-full justify-center font-bricolage px-[8%] my-[2%] 2xl:my-[4%] py-1">
+        <div className="h-[35%] w-[80%] 2xl:w-[45%]">
           <div className="text-xl font-bold">
             <Link href="/" className='flex items-center gap-2'>
               <Image
@@ -26,14 +26,13 @@ const page = () => {
           
             </Link>
           </div>
-          <div className="w-full h-[1px] bg-[#8F8F8F] mt-[5%]"/>
+          <div className="w-full h-[1px] bg-[#8F8F8F] mt-[2%]"/>
           <div className="mt-3 flex flex-col">
-            <h3 className="font-bricolage text-center text-[#1E1E1E] text-2xl lg:text-[1.8em] font-semibold mb-2">
-              Welcome Back
+            <h3 className="font-bricolage text-center text-[#1E1E1E] text-2xl lg:text-[1.7em] font-semibold ">
+            Welcome back
             </h3>
             <h4 className="font-bricolage  mt-2 text-center text-sm text-[#8F8F8F] mb-3 lg:mb-3">
-              Please log in to continue
-            </h4>
+            Please log in to continue      </h4>
             <div className="flex flex-col">
               <div className="w-full font-bricolage">
                 <Input
@@ -67,7 +66,7 @@ const page = () => {
             </div>
           </div>
           <p className="text-black w-full text-end font-[600] mt-2 text-sm">
-            Or log in with:
+            Or  Log in  with:
           </p>
           <div className="w-full flex gap-3 mt-[4%] mb-[5%]">
             <span className="w-[8em] gap-2 h-[2.2em] p-1 rounded-full border-gray border-solid border-[1px] flex items-center text-black font-[500] text-[1em] justify-center">
@@ -82,10 +81,10 @@ const page = () => {
           </div>
           <div className="w-full h-[0.8px] bg-[#b1b1b1] my-[2%]"/>
           <p className="text-black w-full text-end font-[600] mt-[3%] text-sm">
-            No account yet? <Link href="/auth/sign-up" className="text-primary text-[1em] font-bricolage"> Sign Up </Link>
+            No account yet? <Link href="/auth/sign-up" className="text-primary text-[1em] font-bricolage"> Sign up </Link>
           </p>
         </div>
-        <Image quality={100} src="/authBanner.png" alt="banner" width={500} height={450} className="w-[90%] 2xl:w-[80%] hidden lg:block h-[37em] 2xl:h-[40em] lg:rounded-[10px]" />
+        <Image quality={100} src="/authBanner.png" alt="banner" width={500} height={450} className="w-[95%] 2xl:w-[50%] hidden lg:block h-[37em] 2xl:h-[40em] lg:rounded-[10px]" />
       </div>
     </div>
   );

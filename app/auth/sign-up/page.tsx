@@ -9,8 +9,8 @@ import Image from 'next/image';
 const page = () => {
   return (
     <div className="w-full flex items-center justify-center">
-      <div className="flex gap-[6%] flex-row-reverse w-[90%] justify-center font-bricolage px-[8%] my-[2%] 2xl:my-[4%] py-1">
-        <div className="h-[35%] w-[70%] 2xl:w-[45%]">
+      <div className="flex gap-[6%] flex-row-reverse w-full justify-center font-bricolage px-[8%] my-[2%] 2xl:my-[4%] py-1">
+        <div className="h-[35%] w-[80%] 2xl:w-[45%]">
           <div className="text-xl font-bold">
             <Link href="/" className='flex items-center gap-2'>
               <Image
@@ -61,7 +61,7 @@ sign up to create an account            </h4>
                   </button>
                 </div>
               </div>
-              <Button className="py-2 my-3 text-[1em] w-full">Log in</Button>
+              <Button className="py-2 my-3 text-[1em] w-full">sign up</Button>
               <div className="w-full h-[0.8px] bg-[#b1b1b1] my-[3%]"/>
             </div>
           </div>
@@ -84,7 +84,7 @@ sign up to create an account            </h4>
             No account yet? <Link href="/auth/sign-in" className="text-primary text-[1em] font-bricolage"> Log In </Link>
           </p>
         </div>
-        <Image quality={100} src="/signup.png" alt="banner" width={500} height={450} className="w-[90%] 2xl:w-[50%] hidden lg:block h-[37em] 2xl:h-[40em] lg:rounded-[10px]" />
+        <Image quality={100} src="/signup.png" alt="banner" width={500} height={450} className="w-[95%] 2xl:w-[50%] hidden lg:block h-[37em] 2xl:h-[40em] lg:rounded-[10px]" />
       </div>
     </div>
   );
