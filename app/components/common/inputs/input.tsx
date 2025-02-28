@@ -1,6 +1,5 @@
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import React, { useState, type ReactNode } from "react";
-import classNames from "classnames/bind";
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: ReactNode;
   className?: string;
