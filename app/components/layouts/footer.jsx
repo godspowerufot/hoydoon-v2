@@ -11,14 +11,14 @@ const Appfooter = () => {
 
     <>
     {!hideNavbar &&
-    <footer className="bg-primary font-bricolage w-full  text-white flex flex-col justify-center items-center mt-[5%]">
-      <div className="w-full 2xl:w-[90%] 2xl:flex 2xl:items-center 2xl:flex-col 2xl:justify-center space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
+    <footer className="bg-primary font-bricolage w-full  text-white flex flex-col justify-center 2xl:mt-[14rem] items-center mt-[5rem]">
+      <div className="w-[95%] 2xl:w-[94%]  2xl:flex 2xl:items-center 2xl:flex-col 2xl:justify-center space-y-8 lg:px-9 py-16 sm:px-6 lg:space-y-16 ">
         {/* Top Section */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Subscribe Section */}
           <div>
-            <div className="flex flex-col items-start">
-              <h1 className="text-white font-bricolage lg:ml-2 text-[24px] lg:text-[32px] font-[600] w-full">
+            <div className="flex flex-col 2xl:ml-5 items-start w-[50em]">
+              <h1 className="text-white font-bricolage lg:ml-2 text-xl lg:text-3xl 2xl:text-4xl font-[600] w-full">
                 Subscribe to our Newsletter
               </h1>
               <div className="flex items-center py-2 lg:w-[460px] w-full h-[60px] rounded-[50px] border border-[#F9FAFB] pl-3 pr-1 mt-4">
@@ -161,9 +161,9 @@ const Appfooter = () => {
         <div className=" w-full h-[1px] bg-white mt-[2%]"/>
 
         {/* Bottom Section */}
-        <div className="flex flex-col-reverse lg:flex-row  w-screen justify-between items-center gap-4 2xl:px-[8%] text-base">
+        <div className="flex flex-col-reverse lg:flex-row  w-[100%] 2xl:max-w-[100vw] justify-between items-center gap-4 2xl:px-0 text-base">
           <p className="text-center font-[300]">&copy; 2022. Company Name. All rights reserved.</p>
-          <div className="flex flex-row gap-4 lg:mr-[5em]">
+          <div className="flex flex-row gap-4 lg:mr-[1em]">
             <p className="cursor-pointer hover:underline">Terms and conditions</p>
             <p className="cursor-pointer hover:underline">Privacy policy</p>
           </div>
