@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-
+import Image from 'next/image';
 const FAQComponent: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -37,8 +37,8 @@ const FAQComponent: React.FC = () => {
   };
 
   return (
-    <section className="bg-white max-md:w-full lg:w-[618px]  h-[29em] rounded-[20px] shadow-md p-6 max-w-lg mx-auto">
-      <h2 className="text-xl font-bold text-gray-900 mb-4">
+    <section className="bg-white max-md:w-full lg:w-[30rem]  2xl:w-[35rem]  2xl:h-[32rem] h-[29em] rounded-[20px] shadow-md p-6  mx-auto">
+      <h2 className="text-3xl font-[500] text-gray-900 mb-4">
         Find Your Answers Here
       </h2>
       <div className="space-y-4 ">
@@ -49,17 +49,34 @@ const FAQComponent: React.FC = () => {
               onClick={() => toggleFAQ(index)}
               className="flex justify-between items-center w-full focus:outline-none text-left"
             >
-              <h3 className="text-base mt-5 font-medium text-gray-800">
+              <h3 className=" text-base 2xl:text-xl mt-5 font-[300] text-gray-800">
                 {faq.question}
               </h3>
               <span className="text-gray-500">
-                {openIndex === index ? '-' : '+'}
+                {openIndex === index ?  
+                <Image
+                              alt="logo"
+                              width={15}  
+                              priority
+                              quality={100}
+                              objectFit='cover'
+                              height={15} // Reduced size of logo
+                              src={'/minus.png'}
+                            /> :  <Image
+                                          alt="logo"
+                                          width={15}  
+                                          priority
+                                          quality={100}
+                                          objectFit='cover'
+                                          height={15} // Reduced size of logo
+                                          src={'/plus.png'}
+                                        />}
               </span>
             </button>
 
             {/* Answer Section */}
             {openIndex === index && (
-              <div className="mt-2 text-sm text-gray ">
+              <div className="mt-2 font-[300] text-base text-gray ">
                 {faq.answer}
               </div>
             )}
