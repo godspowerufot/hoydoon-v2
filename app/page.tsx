@@ -209,7 +209,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
       
 
 </div>
-<div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row   gap-x-[0.2em] justify-center  mb-2">
+<div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
     <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
@@ -384,7 +384,7 @@ Explore
    
 </div>
 <div className="mt-[3rem]  ml-[5rem] justify-center items-center max-md:w-full w-full gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row ">
-<div className="z-20 relative max-md:w-full  lg:h-[50em]  lg:left-[50px] lg:top-[10em]">
+<div className="z-20 relative max-md:w-full  lg:h-[50em]  lg:left-[50px] 2xl:left-[80px] lg:top-[10em]">
 <FAQComponent/>
 </div>
 <div className="relative lg:-ml-[10em] justify-center items-center  flex w-[255px] lg:w-auto">
@@ -429,7 +429,7 @@ Explore
 </span>
    
 </div>
-    <div className="flex justify-center w-full mt-[4%] lg:flex-1 lg:flex-row flex-col  items-center gap-16 ">
+    <div className="flex justify-center w-full mt-[4%] lg:flex-1 lg:flex-row flex-col  items-center lg:gap-10 2xl:gap-16 ">
     <div className="relative flex flex-col h-[650px]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
   {/* Image Section */}
   <Image
@@ -459,7 +459,7 @@ Explore
     </div>
 
     {/* Description */}
-    <p className="text-gray text-[1rem]  2xl:text-2xl font-bricolage fomt-[300] w-full leading-5 mt-4">
+    <p className="text-gray text-[1rem]  2xl:text-xl font-bricolage fomt-[300] w-full leading-5 mt-4">
     Staying ahead the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buyin, selling, or investing. 
     </p>
   </div>
@@ -507,7 +507,7 @@ Explore
     </div>
 
     {/* Description */}
-    <p className="text-gray text-[1rem]  2xl:text-2xl font-bricolage fomt-[300] w-full leading-5 mt-4">
+    <p className="text-gray text-[1rem]  2xl:text-xl font-bricolage fomt-[300] w-full leading-5 mt-4">
     Staying ahead the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buyin, selling, or investing. 
     </p>
   </div>

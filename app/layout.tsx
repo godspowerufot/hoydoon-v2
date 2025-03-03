@@ -27,7 +27,7 @@ export default function RootLayout({
          </div>
          <AnimationWrapper>
 
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 flex flex-col items-center justify-center">{children}</main>
 
       {/* Footer */}
     </AnimationWrapper>

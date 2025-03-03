@@ -29,7 +29,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
       gsap.set(details, { opacity: 0, display:"none", y: 20 });
 
       card.addEventListener("mouseenter", () => {
-        gsap.to(imgContainer, { height: 300, duration: 0.5, ease: "power2.out" }); // Shrink height to 300px
+        gsap.to(imgContainer, { height: 400, duration: 0.5, ease: "power2.out" }); // Shrink height to 300px
         gsap.to(img, { scale: 0.95, duration: 0.5, ease: "power2.out" }); // Slight scale for smooth transition
         gsap.to(details, { opacity: 1, y: 0, display:"block", duration: 0.5, ease: "power2.out", delay: 0.2 });
         gsap.to(baseDetails, {  display:"none", duration: 0.3, ease: "power2.out" });
@@ -60,7 +60,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
   }, []);
 
   return (
-    <div ref={cardRef} className="flex flex-col h-fit lg:w-[25rem]  2xl:w-[30rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden p-4 rounded-lg relative">
+    <div ref={cardRef} className="flex flex-col h-fit lg:w-[26rem]  2xl:w-[31.7rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden p-4 rounded-lg relative">
       {/* Image Container */}
       <div ref={imgContainerRef} className="overflow-hidden rounded-lg w-full h-[450px]  2xl:h-[550px] transition-all duration-300">
         <Image

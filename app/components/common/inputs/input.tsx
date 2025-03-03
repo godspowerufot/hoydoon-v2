@@ -13,7 +13,7 @@ const Input: React.FC<InputProps> = ({ label, className,  ...rest }) => {
       {label && (
         <label
           htmlFor={rest.type}
-          className="block text-[1em] font-normal font-bricolage leading-6 text-gray-700"
+          className="block text-[1em] 2xl:text-[1.2em] font-normal font-bricolage leading-6 text-gray-700"
         >
           {label}
         </label>
@@ -38,7 +38,7 @@ const Input: React.FC<InputProps> = ({ label, className,  ...rest }) => {
               : rest.type
           }
           className={
-            `block w-full rounded-2xl border border-[#d6d5d5] p-4 text-gray-700 placeholder:text-gray-500  ${className}`
+            `block  font-light  w-full placeholder:font-bricolage placeholder:font-light placeholder:text-[1rem] h-[3rem] rounded-2xl border border-[#d6d5d5] p-4 text-gray-700  placeholder:px-2 placeholder:text-gray-500  ${className}`
           }
         />
       </div>
