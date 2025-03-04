@@ -240,7 +240,7 @@ export default function Home() {
 <section className="mt-10  hidden  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
       <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-2 2xl:ml-[2.4rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Upcoming Open Homes</h1>
+      <h1 className="text-black lg:ml-2 2xl:ml-[2rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Upcoming Open Homes</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
 </p>
@@ -266,7 +266,7 @@ export default function Home() {
   </div>
 
 
-  <p className="text-[#09858D] 2xl:ml-[3rem]  ml-3  mt-5 text-2xl font-[500] ">See all 2500 Open houses for sale</p>
+  <p className="text-[#09858D] 2xl:ml-[1.2rem]  ml-3  mt-5 text-2xl font-[500] ">See all 2500 Open houses for sale</p>
   </div>
 
 </div>
@@ -275,10 +275,10 @@ export default function Home() {
   {/* luxury */}
 
   <section className="mt-10  hidden  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
+        <div className="flex   w-[92%]  2xl:w-[90%] flex-col items-center justify-center">
       <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-2 2xl:ml-[2.4rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Luxury Homes</h1>
-      <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
+      <h1 className="text-black lg:ml-2 2xl:-ml-[0.9rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Luxury Homes</h1>
+      <p className="text-gray  lg:p-0 text-base lg:text-2xl  2xl:ml-[5rem] font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
 </p>
 
@@ -303,7 +303,7 @@ export default function Home() {
   </div>
 
 
-  <p className="text-[#09858D] 2xl:ml-[3rem]  ml-3  mt-5 text-2xl font-[500] ">See all 2500 Open houses for sale</p>
+  <p className="text-[#09858D] 2xl:ml-[2rem]  ml-3  mt-5 text-2xl font-[500] ">See all 2500 luxury houses for sale</p>
   </div>
 
 </div>
