@@ -354,7 +354,7 @@ placeholder='Address, Neighborhood, Zip code...'
               quality={100}
               height={400} // Reduced size of logo
               src={'/basemap.png'}
-              className="w-[40rem] h-[30rem] 2xl:w-[50rem] 2xl:h-[35rem] rounded-"
+              className="w-[40rem] h-[30rem] 2xl:w-[50rem] 2xl:h-[35rem] rounded-2xl"
             />
 </span>
         </div>
