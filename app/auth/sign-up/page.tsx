@@ -19,7 +19,7 @@ const signup= () => {
               loading="lazy"
               height={400}
               quality={100} // Ensures maximum quality
-              src={'/authBanner.jpg'}
+              src={'/signup.png'}
               className='  hidden lg:block rounded-2xl w-[37rem] h-[38rem]  2xl:h-[46rem] 2xl:w-[50rem]'
               style={{ objectFit: 'cover' } }
             />

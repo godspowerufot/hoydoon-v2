@@ -113,7 +113,7 @@ Log in
             /> Facebook</span>
           </div>
           <p className="text-black w-full text-end block  font-[600] mt-[1%] text-base">
-          No account yet? <Link href="/auth/sign-in" className="text-primary text-[1em] font-bricolage">  Sign Up  </Link>  </p>
+          No account yet? <Link href="/auth/sign-up" className="text-primary text-[1em] font-bricolage">  Sign Up  </Link>  </p>
 
 
 
