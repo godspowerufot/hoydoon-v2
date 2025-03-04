@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
 import PropertyCard from "../components/common/property";
+import PropertyListCard from "../components/common/PropertyListing";
 
 export default function Home() {
   return (
@@ -17,9 +18,8 @@ export default function Home() {
   {/* Content Section */}
   <div className="flex z-[1] relative gap-6 justify-center items-center flex-col">
     {/* Main Heading */}
-    <h1 className="lg:w-[10em] mt-[2em] lg:mt-[1.4em] text-white text-[2em] w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
-    Find Your Perfect Dream Home Today!
-
+    <h1 className="lg:w-[10em] mt-[2em]2xl:mt-[9rem] lg:mt-[1.4em] text-white text-[2em] w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
+    Find Your Future, Feel at Home!
 </h1>
     {/* Subheading */}
     <h2 className="lg:text-[1.5em] 2xl:text-[1.6em]  font-[400] text-center text-[#FFFFFFB2] w-[33em]">
@@ -105,39 +105,7 @@ export default function Home() {
   </div>
 
   {/* Statistics Section */}
-  <div className="absolute bottom-0 lg:flex font-bricolage lg:mt-8 justify-center items-center w-full py-10 px-4">
-    <div className="flex items-center rounded-lg w-9/10 md:w-4/5 lg:w-7/10">
-      {/* Hosts Section */}
-      <div className="flex flex-1 text-center gap-2 px-4">
-        <span className="text-13xl text-white">10M+</span>
-        <span className="text-xl w-[175px] text-start text-white">
-          hosts welcome guests worldwide
-        </span>
-      </div>
 
-      {/* Vertical Divider */}
-      <div className="h-12 w-[1px] bg-white mx-2 my-1"></div>
-
-      {/* Unique Stays Section */}
-      <div className="flex flex-1 text-center px-4 gap-2">
-        <span className="text-13xl text-white">15M+</span>
-        <span className="text-xl w-[179px] text-start text-white">
-          Unique stays across 150K+ cities
-        </span>
-      </div>
-
-      {/* Vertical Divider */}
-      <div className="h-12 w-[1px] bg-white mx-2 my-1"></div>
-
-      {/* Guest Arrivals Section */}
-      <div className="flex gap-2 flex-1 text-center px-4">
-        <span className="text-13xl text-white">12M+</span>
-        <span className="text-xl w-[175px] text-start text-white">
-          guest arrivals to date every month
-        </span>
-      </div>
-    </div>
-  </div>
 </header>
       {/* this hold the images */}
 
@@ -146,8 +114,8 @@ export default function Home() {
       {/* explore */}
       <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
-      <div className="flex w-full   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-2 2xl:ml-6  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">New Listings</h1>
+      <div className="flex w-full  2xl:w-[92rem]   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+      <h1 className="text-black lg:ml-2 2xl:ml-0  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">New Listings</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
 </p>
@@ -161,11 +129,11 @@ export default function Home() {
 <div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
-    <PropertyCard imageSrc={'/rent-1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-    <PropertyCard imageSrc={'/rent2.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyListCard imageSrc={'/rent-1.png'} altText={'rent6'} price={'4500.00'} area={''} />
+    <PropertyListCard imageSrc={'/rent2.png'} altText={'rent6'} price={'4000.00'} area={''} />
 
   
-    <PropertyCard imageSrc={'/rent3.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyListCard imageSrc={'/rent3.png'} altText={'rent6'} price={'4000.00'} area={''} />
 
 
 
@@ -174,11 +142,11 @@ export default function Home() {
 <div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
-    <PropertyCard imageSrc={'/rent4.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-    <PropertyCard imageSrc={'/rent5.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyListCard imageSrc={'/rent4.png'} altText={'rent6'} price={'4000.00'} area={''} />
+    <PropertyListCard imageSrc={'/rent5.png'} altText={'rent6'} price={'4000.00'} area={''} />
 
   
-    <PropertyCard imageSrc={'/rent6.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyListCard imageSrc={'/rent6.png'} altText={'rent6'} price={'4000.00'} area={''} />
 
 
 
@@ -197,8 +165,8 @@ export default function Home() {
 {/* afforable component */}
     
 <section className="mt-10  hidden  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
-      <div className="flex   p-2 flex-col w-full  2xl:ml-6 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+        <div className="flex   w-[92%]   2xl:w-[95rem]  flex-col items-center justify-center">
+      <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
       <h1 className="text-black lg:ml-2  2xl:ml-7 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">  Explore Lagos Rentals</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
@@ -213,11 +181,11 @@ export default function Home() {
 <div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
-    <PropertyCard imageSrc={'/afforable-1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-    <PropertyCard imageSrc={'/afforable-2.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyListCard imageSrc={'/afforable-1.png'} altText={'rent6'} price={'4000.00'} area={''} />
+    <PropertyListCard imageSrc={'/afforable-2.png'} altText={'rent6'} price={'4000.00'} area={''} />
 
   
-    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyListCard imageSrc={'/house1.png'} altText={'rent6'} price={'4000.00'} area={''} />
 
 
 
@@ -235,8 +203,8 @@ export default function Home() {
 
 {/*  upcoming houdes*/}
 <section className="mt-10  hidden  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
-      <div className="flex   p-2 flex-col w-full  2xl:ml-4 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+        <div className="flex   w-[92%]  2xl:w-[95rem] flex-col items-center justify-center">
+      <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
       <h1 className="text-black lg:ml-5 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">  pet-friendly Rental</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
@@ -251,11 +219,11 @@ export default function Home() {
 <div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
-    <PropertyCard imageSrc={'/afforable-1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-    <PropertyCard imageSrc={'/afforable-2.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyListCard imageSrc={'/afforable-1.png'} altText={'rent6'} price={'4000.00'} area={''} />
+    <PropertyListCard imageSrc={'/afforable-2.png'} altText={'rent6'} price={'4000.00'} area={''} />
 
   
-    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyListCard imageSrc={'/house1.png'} altText={'rent6'} price={'4000.00'} area={''} />
 
 
 
@@ -276,8 +244,8 @@ export default function Home() {
 
       {/* testimonials */}
       <section className="mt-10  hidden  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
-      <div className="flex   p-2 flex-col w-full  2xl:ml-8 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+        <div className="flex   w-[92%]   2xl:w-[95rem]  flex-col items-center justify-center">
+      <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
       <h1 className="text-black lg:ml-5 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">  Single Family House Rents</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
@@ -292,11 +260,11 @@ export default function Home() {
 <div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
-    <PropertyCard imageSrc={'/afforable-1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-    <PropertyCard imageSrc={'/afforable-2.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyListCard imageSrc={'/afforable-1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyListCard imageSrc={'/afforable-2.png'} altText={'rent6'} price={'18,000.00'} area={''} />
 
   
-    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyListCard imageSrc={'/house1.png'} altText={'rent6'} price={'4000.00'} area={''} />
 
 
 
@@ -316,8 +284,8 @@ export default function Home() {
      
 
     {/* New-articles */}
-    <section className="   flex justify-center items-center  w-full  flex-col mt-[3rem] p-5 lg:p-0 font-bricolage ">
-    <div className="flex w-full   flex-col lg:flex-row md:flex-row   lg:gap-8  justify-around items-center  ">
+    <section className="   flex justify-center items-center  w-full  flex-col mt-[4rem] p-5 lg:p-0 font-bricolage ">
+    <div className="flex w-full   flex-col lg:flex-row md:flex-row  2xl:w-[106rem]  lg:gap-8  justify-around items-center  ">
     <span className="flex flex-col  font-bricolage 2xl:ml-0 lg:ml-7 gap-2">
 
 

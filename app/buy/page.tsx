@@ -8,7 +8,7 @@ import Input from "../components/common/inputs/input";
 export default function Home() {
   return (
     <>
-    <header className="relative h-[45em] lg:h-[52em] w-screen ">
+    <header className="relative h-[45em] lg:h-[50em] w-screen ">
   {/* Background Image Div */}
   <div
     className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
@@ -18,7 +18,7 @@ export default function Home() {
   {/* Content Section */}
   <div className="flex z-[1] relative gap-6 justify-center items-center flex-col">
     {/* Main Heading */}
-    <h1 className="lg:w-[10em] mt-[2em] lg:mt-[1.4em] text-white text-[2em] w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
+    <h1 className="lg:w-[10em] mt-[2em] 2xl:mt-[10rem] lg:mt-[1.4em] text-white text-[2em] w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
     Find Your Perfect Dream Home Today!
 
 </h1>
@@ -105,40 +105,7 @@ export default function Home() {
     </div>
   </div>
 
-  {/* Statistics Section */}
-  <div className="absolute bottom-0 lg:flex font-bricolage lg:mt-8 justify-center items-center w-full py-10 px-4">
-    <div className="flex items-center rounded-lg w-9/10 md:w-4/5 lg:w-7/10">
-      {/* Hosts Section */}
-      <div className="flex flex-1 text-center gap-2 px-4">
-        <span className="text-13xl text-white">10M+</span>
-        <span className="text-xl w-[175px] text-start text-white">
-          hosts welcome guests worldwide
-        </span>
-      </div>
 
-      {/* Vertical Divider */}
-      <div className="h-12 w-[1px] bg-white mx-2 my-1"></div>
-
-      {/* Unique Stays Section */}
-      <div className="flex flex-1 text-center px-4 gap-2">
-        <span className="text-13xl text-white">15M+</span>
-        <span className="text-xl w-[179px] text-start text-white">
-          Unique stays across 150K+ cities
-        </span>
-      </div>
-
-      {/* Vertical Divider */}
-      <div className="h-12 w-[1px] bg-white mx-2 my-1"></div>
-
-      {/* Guest Arrivals Section */}
-      <div className="flex gap-2 flex-1 text-center px-4">
-        <span className="text-13xl text-white">12M+</span>
-        <span className="text-xl w-[175px] text-start text-white">
-          guest arrivals to date every month
-        </span>
-      </div>
-    </div>
-  </div>
 </header>
       {/* this hold the images */}
 

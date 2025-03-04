@@ -60,7 +60,7 @@ export default function Navbar() {
             </li>
             <li>
               <div className={`px-4 py-1   lg:text-xl rounded-full `}>
-                <Link href="/sell text-[1em]">Sell</Link>
+                <Link href="/sell">Sell</Link>
               </div>
             </li>
             <li>
