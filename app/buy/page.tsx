@@ -314,7 +314,7 @@ export default function Home() {
 
 
       <section className="   font-bricolage lg:flex  justify-center flex-col flex-1 items-center ">
-        <div className="flex  gap-[4%] flex-col w-[90%] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+        <div className="flex  gap-[4%]  2xl:w-[95rem] flex-col w-[90%] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
 <h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Get the Local Information</h1>
 <p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[1em] font-bricolage w-9/10 2xl:text-[20px] 2xl:w-[70%]">
@@ -362,7 +362,7 @@ placeholder='Address, Neighborhood, Zip code...'
 
     {/* New-articles */}
     <section className="   flex justify-center items-center  w-full  flex-col mt-[3rem] p-5 lg:p-0 font-bricolage ">
-    <div className="flex w-full   flex-col lg:flex-row md:flex-row   lg:gap-8  justify-around items-center  ">
+    <div className="flex w-full 2xl:w-[106rem]   flex-col lg:flex-row md:flex-row   2xl:gap-5   lg:gap-8  justify-around items-center  ">
     <span className="flex flex-col  font-bricolage 2xl:ml-0 lg:ml-7 gap-2">
 
 
@@ -382,7 +382,7 @@ placeholder='Address, Neighborhood, Zip code...'
    
 </div>
     <div className="flex justify-center w-full mt-[4%] lg:flex-1 lg:flex-row flex-col  items-center lg:gap-10 2xl:gap-16 ">
-    <div className="relative flex flex-col h-[650px]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
+    <div className="relative flex flex-col h-[650px]   lg:w-[36em] 2xl:w-[42em]  font-bricolage  rounded-lg shrink-0">
   {/* Image Section */}
   <Image
     alt="house image"

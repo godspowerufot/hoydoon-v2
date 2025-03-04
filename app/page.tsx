@@ -231,7 +231,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
 {/* card component */}
     
 <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex  w-[97%] 2xl:w-[89%] flex-col items-center justify-center">
+        <div className="flex  w-[94%] 2xl:w-[89%] flex-col items-center justify-center">
       <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[10%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
       <h1 className="text-black lg:ml-5 text-[26px] lg:text-[2.2rem] font-[600]   w-full ">Explore Luxurious Living Spaces</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
@@ -337,7 +337,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
   {/* testimonials */}
   <section className="mt-8 p-4 2xl:p-6 lg:p-0 font-bricolage ">
   <div className="flex  flex-col lg:flex-row md:flex-row 2xl:mt-4  lg:gap-12  justify-around items-center  ">
-    <span className="flex    2xl:w-[40%] flex-col 2xl:-ml-5  font-bricolage gap-3">
+    <span className="flex   w-[38%] 2xl:w-[40%] flex-col 2xl:-ml-5  font-bricolage gap-3">
 
 
       <h1 className="text-black  text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">What People Are Saying</h1>
@@ -365,7 +365,7 @@ Explore
       {/* testimonials */}
   <section className=" mt-7  w-full  lg:mt-[7%]  flex flex-1 justify-center items-center  flex-col   p-5 lg:p-0 font-bricolage ">
   <div className="flex w-full   flex-col lg:flex-row md:flex-row   lg:gap-8  justify-around items-center  ">
-    <span className="flex flex-col  font-bricolage ml-9 gap-2">
+    <span className="flex flex-col  font-bricolage ml-[3rem] 2xl:ml-9 gap-2">
 
 
       <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-3 ">Your Questions, Our Answers</h1>

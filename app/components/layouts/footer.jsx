@@ -12,7 +12,7 @@ const Appfooter = () => {
     <>
     {!hideNavbar &&
     <footer className="bg-primary font-bricolage w-full  text-white flex flex-col justify-center 2xl:mt-[14rem] items-center mt-[5rem]">
-      <div className="w-[95%] 2xl:w-[94%]  2xl:flex 2xl:items-center 2xl:flex-col 2xl:justify-center space-y-8 lg:px-9 py-16 sm:px-6 lg:space-y-16 ">
+      <div className="w-[95%] 2xl:w-[100rem]  2xl:flex 2xl:items-center 2xl:flex-col 2xl:justify-center space-y-8 lg:px-9 py-16 sm:px-6 lg:space-y-16 ">
         {/* Top Section */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Subscribe Section */}
