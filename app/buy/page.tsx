@@ -5,7 +5,6 @@ import PropertyCard from '../components/common/property'
 import Link from 'next/link'
 import { FaSearch } from 'react-icons/fa'
 import Button from '../components/common/Button'
-import Input from '../components/common/inputs/input'
 const Buy= () => {
   return (
     <>

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React  from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Input from '@/app/components/common/inputs/input'
@@ -7,29 +7,26 @@ import Button from '@/app/components/common/Button'
 const signup= () => {
 
   
-  const [isChecked, setIsChecked] = useState(false);
   
-  const handleCheckboxChange = () => {
-    setIsChecked((prevState) => !prevState);
-  };
+
   return (
     <>
- <div className='w-full justify-center items-center  flex  flxe-col py-[1rem]'>
-    <div className=' gap-[1rem]   flex '>
+ <div className='w-full justify-center items-center  flex  py-[1rem]'>
+    <div className=' gap-[4rem]   flex flex-1 flex-col lg:flex-row'>
           <Image
-              alt="logo"
+              alt="authBanner"
               width={400}
               loading="lazy"
               height={400}
               quality={100} // Ensures maximum quality
               src={'/authBanner.jpg'}
-              className='rounded-2xl w-[37rem] h-[38rem]  2xl:h-[50rem] 2xl:w-[50rem]'
+              className='  hidden lg:block rounded-2xl w-[37rem] h-[38rem]  2xl:h-[46rem] 2xl:w-[50rem]'
               style={{ objectFit: 'cover' } }
             />
 
 
 
-            <div className='w-[50%] items-start mx-2  -mt-2 flex flex-col'>
+            <div className=' w-full lg:w-[50%] items-start mx-[]  -mt-2 flex flex-col'>
  <Link href="/" className='flex justify-start ml-[2rem]         '>
             <Image
               alt="logo"
@@ -38,18 +35,18 @@ const signup= () => {
               quality={100}
               objectFit='cover'
               height={30}
-              className='w-[9rem] h-[4.5rem]' // Reduced size of logo
+              className='w-[9rem] h-[4.5rem] 2xl:w-[10rem] 2xl:[6rem]' // Reduced size of logo
               src={'/logo2.svg'}
             /></Link>
 
 
 
 
-            <span className=' 2xl:mt-[1.5rem] flex justify-center flex-col font-bricolage items-center w-full '>
-            <div className='w-[75%] h-[2px] bg-[#D9D9D9]  '/>
+            <span className=' 2xl:mt-[1rem] flex justify-center flex-col font-bricolage items-center w-full '>
+            <div className='w-[80%] 2xl:mt-3 h-[2px] bg-[#D9D9D9] '/>
 
-<h1 className="text-black  text-[26px] lg:text-4xl  pt-1   2xl:mt-[1.5rem]  2xl:text-4xl font-bricolage font-[600]">Create an Account</h1>
-<p className='font-light text-gray pt-1  2xl:mt-[0.8rem]  text-base'> Sign up to create an account</p>
+<h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1.5rem]  2xl:text-4xl font-bricolage font-[600]">Create an Account</h1>
+<p className='font-light text-gray pt-1  2xl:mt-[0.8rem]  text-xs 2xl:text-base'> Sign up to create an account</p>
 
 
 
