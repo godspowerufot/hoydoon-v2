@@ -11,7 +11,7 @@ export default function Home() {
   {/* Background Image Div */}
   <div
     className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
-    style={{ backgroundImage: "url('/rent.png')" }}
+    style={{ backgroundImage: "url('/rentHomePage.png')" }}
   ></div>
 
   {/* Content Section */}

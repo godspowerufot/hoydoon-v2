@@ -116,6 +116,8 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
           <h2 className="font-bold">${price}</h2>
         </span>
         <h4 className="text-gray font-light">{area} Area from 190 - 245 m²</h4>
+
+        
       </div>
     </div>
   );
