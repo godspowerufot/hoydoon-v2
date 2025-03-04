@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
-import Link from "next/link";
 import FAQComponent from "../components/layouts/faq"
 import PropertyCard from "../components/common/property";
 import TestimonialCarousel from "../components/layouts/testimonials";
