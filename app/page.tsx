@@ -146,7 +146,7 @@ export default function Home() {
 </header>
       {/* this hold the images */}
       <section className="   font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-white">
-        <div className="flex  gap-[4%] flex-col w-[90%] 2xl:pl-[3.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+        <div className="flex  gap-[4%] flex-col w-[90%] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
 <h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Find your ideal property with simple tools and guidance.</h1>
 <p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[2em] font-bricolage w-9/10 2xl:text-[20px] 2xl:w-[70%]">
@@ -201,7 +201,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
       <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
       <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-2 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Featured Properties for Rent</h1>
+      <h1 className="text-black lg:ml-2 2xl:ml-6  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Featured Properties for Rent</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestylecrafted to fit your taste and needs.
 </p>
@@ -337,10 +337,10 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
   {/* testimonials */}
   <section className="mt-8 p-4 2xl:p-6 lg:p-0 font-bricolage ">
   <div className="flex  flex-col lg:flex-row md:flex-row 2xl:mt-4  lg:gap-12  justify-around items-center  ">
-    <span className="flex    2xl:w-[38%] flex-col  font-bricolage gap-3">
+    <span className="flex    2xl:w-[40%] flex-col 2xl:-ml-5  font-bricolage gap-3">
 
 
-      <h1 className="text-black  text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-5">What People Are Saying</h1>
+      <h1 className="text-black  text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">What People Are Saying</h1>
       <p className="text-gray  lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-[30em]">
 Discover a home where every detail enhances your lifestyle—crafted to fit your taste and needs.</p>
 

@@ -11,7 +11,7 @@ const signup= () => {
 
   return (
     <>
- <div className='w-full justify-center items-center  flex  py-[1rem]'>
+ <div className='w-full justify-center 2xl:mt-[1.5rem] items-center  flex  py-[1rem]'>
     <div className=' gap-[4rem]   flex flex-1 flex-col lg:flex-row'>
           <Image
               alt="authBanner"
@@ -78,7 +78,7 @@ placeholder='password *'
                     Remember me
                   </label>
 </div>
-<Button className='w-full 2xl:mt-2  h-[3rem] p-3'>
+<Button className='w-full 2xl:mt-2 text-base 2xl:text-xl  h-[3rem] p-3'>
 Log in
 </Button>
 <div className='w-full 2xl:mt-3 h-[2px] bg-[#D9D9D9] '/>
