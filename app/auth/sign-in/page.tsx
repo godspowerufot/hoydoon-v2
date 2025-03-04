@@ -26,7 +26,7 @@ const signup= () => {
 
 
 
-            <div className=' w-full lg:w-[50%] items-start mx-[]  -mt-2 flex flex-col'>
+            <div className=' w-full lg:w-[50%] 2xl:w-[60%] items-start mx-[]  -mt-2 flex flex-col'>
  <Link href="/" className='flex justify-start ml-[2rem]         '>
             <Image
               alt="logo"
@@ -42,10 +42,10 @@ const signup= () => {
 
 
 
-            <span className=' 2xl:mt-[1rem] flex justify-center flex-col font-bricolage items-center w-full '>
+            <span className=' 2xl:mt-[0.8rem] flex justify-center flex-col font-bricolage items-center w-full '>
             <div className='w-[80%] 2xl:mt-3 h-[2px] bg-[#D9D9D9] '/>
 
-<h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1.5rem]  2xl:text-4xl font-bricolage font-[600]">Welcome Back</h1>
+<h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1.2rem]  2xl:text-4xl font-bricolage font-[600]">Welcome Back</h1>
 <p className='font-light text-gray pt-1  2xl:mt-[0.8rem]  text-xs 2xl:text-base'> Please log in to continue</p>
 
 
@@ -87,7 +87,7 @@ Log in
 </div>
 
 <div className="w-full flex gap-3 mt-[2px] ">
-<span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">  <Image
+<span className="w-[9em] 2xl:w-[11em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">  <Image
               alt="logo"
               width={20}  
               loading='lazy'
@@ -95,7 +95,7 @@ Log in
               height={20} // Reduced size of logo
               src={'/google.png'}
             /> Google</span>
-<span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">  <Image
+<span className="w-[9em]  2xl:w-[11em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">  <Image
               alt="logo"
               width={20}  
               loading='lazy'
@@ -103,7 +103,7 @@ Log in
               height={20} // Reduced size of logo
               src={'/apple.png'}
             /> Apple</span>
-<span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">  <Image
+<span className="w-[9em] 2xl:w-[11em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">  <Image
               alt="logo"
               width={20}  
               loading='lazy'
@@ -112,8 +112,8 @@ Log in
               src={'/Facebook.png'}
             /> Facebook</span>
           </div>
-          <p className="text-black w-full text-end block  font-[600] mt-[1%] text-base">
-          No account yet? <Link href="/auth/sign-up" className="text-primary text-[1em] font-bricolage">  Sign Up  </Link>  </p>
+          <p className="text-black w-full text-end block  font-[500] mt-[1%] text-base 2xl:text-xl">
+          No account yet? <Link href="/auth/sign-up" className="text-primary text-[1em]  2xl:text-xl font-bricolage">  Sign Up  </Link>  </p>
 
 
 

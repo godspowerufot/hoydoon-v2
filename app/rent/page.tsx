@@ -3,7 +3,6 @@ import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
 import PropertyCard from "../components/common/property";
-import Input from "../components/common/inputs/input";
 
 export default function Home() {
   return (
@@ -147,8 +146,8 @@ export default function Home() {
       {/* explore */}
       <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
-      <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-2 2xl:ml-6  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Lagos Houses for Sale</h1>
+      <div className="flex w-full   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+      <h1 className="text-black lg:ml-2 2xl:ml-6  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">New Listings</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
 </p>
@@ -186,7 +185,7 @@ export default function Home() {
    
   </div>
 
-  <p className="text-[#09858D]   ml-3 2xl:ml-6  mt-5 text-2xl font-[500] ">See all 2500 Lagos houses for sale</p>
+  <p className="text-[#09858D]   ml-6 2xl:ml-8  mt-5 text-2xl font-[500] ">see 2500 new listings for rent</p>
   </div>
 
 </div>
@@ -199,8 +198,8 @@ export default function Home() {
     
 <section className="mt-10  hidden  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
-      <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-2 2xl:-ml-5  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Affordable Homes</h1>
+      <div className="flex   p-2 flex-col w-full  2xl:ml-6 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+      <h1 className="text-black lg:ml-2  2xl:ml-7 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">  Explore Lagos Rentals</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
 </p>
@@ -226,21 +225,19 @@ export default function Home() {
   </div>
 
 
-  <p className="text-[#09858D] 2xl:ml-[1rem]  ml-3  mt-5 text-2xl font-[500] ">See all 2500 affordable houses for sale</p>
+  <p className="text-[#09858D] 2xl:ml-[2rem]  ml-4  mt-5 text-2xl font-[500] ">See all 2500 Lagos houses for sale</p>
   </div>
 
 </div>
       
       </section>
-      <div className='w-full  2xl:mt-[5rem] h-[2px] bg-[#D9D9D9] '/>
 
 
 {/*  upcoming houdes*/}
-
 <section className="mt-10  hidden  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
-      <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-2 2xl:ml-[2rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Upcoming Open Homes</h1>
+      <div className="flex   p-2 flex-col w-full  2xl:ml-4 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+      <h1 className="text-black lg:ml-5 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">  pet-friendly Rental</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
 </p>
@@ -266,19 +263,23 @@ export default function Home() {
   </div>
 
 
-  <p className="text-[#09858D] 2xl:ml-[1.2rem]  ml-3  mt-5 text-2xl font-[500] ">See all 2500 Open houses for sale</p>
+  <p className="text-[#09858D] 2xl:ml-[2rem]  ml-6  mt-5 text-2xl font-[500] ">See all 2500 pet-friendly houses for rent</p>
   </div>
 
 </div>
       
       </section>
+
+
   {/* luxury */}
 
-  <section className="mt-10  hidden  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   w-[92%]  2xl:w-[90%] flex-col items-center justify-center">
-      <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-5 2xl:-ml-[0.9rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Luxury Homes</h1>
-      <p className="text-gray  lg:p-0 text-base lg:text-2xl  2xl:ml-[5rem] font-bricolage w-full lg:w-full">
+
+      {/* testimonials */}
+      <section className="mt-10  hidden  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
+      <div className="flex   p-2 flex-col w-full  2xl:ml-8 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+      <h1 className="text-black lg:ml-5 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">  Single Family House Rents</h1>
+      <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
 </p>
 
@@ -303,62 +304,16 @@ export default function Home() {
   </div>
 
 
-  <p className="text-[#09858D] 2xl:ml-[2rem]  ml-4  mt-5 text-2xl font-[500] ">See all 2500 luxury houses for sale</p>
+  <p className="text-[#09858D] 2xl:ml-[1rem]  ml-6  mt-5 text-2xl font-[500] ">See all 2500 single family House rents for rent</p>
   </div>
 
 </div>
       
       </section>
-      {/* testimonials */}
-      <div className='w-full  2xl:mt-[5rem] h-[2px] bg-[#D9D9D9] '/>
 
 
-      <section className="   font-bricolage lg:flex  justify-center flex-col flex-1 items-center ">
-        <div className="flex  gap-[4%] flex-col w-[90%] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
-          <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
-<h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Get the Local Information</h1>
-<p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[1em] font-bricolage w-9/10 2xl:text-[20px] 2xl:w-[70%]">
-Curious about local schools? Wondering if there are pet-friendly rentals? Find all the key information you need about the area that catches your interest.</p>
 
-<div className="  relative w-[87%] mt-[1.5rem] 2xl:w-[75%]">
-
-
-<Input
-label=""
-type='text'
-className="2xl:h-[4rem] rounded-[24px]"
-placeholder='Address, Neighborhood, Zip code...'
- />
-
-  <div className="absolute right-2 top-[22%] 2xl:top-[19%] bg-primary ml-[6em] p-3  h-[40px] w-[40px] 2xl:w-[50px] 2xl:h-[50px] rounded-full flex items-center justify-center">
-    <Image
-      alt="logo"
-      width={30}
-      loading="lazy"
-      height={30}
-      quality={100} // Ensures maximum quality
-       
-      src={'/search.png'}
-      style={{ objectFit: 'cover' }}
-    />
- </div>
-
-  </div>  
-  
-        </span>
-
-<span className="mt-4 lg:mt-0">
- <Image
-              alt="image1"
-              width={500} 
-              quality={100}
-              height={400} // Reduced size of logo
-              src={'/basemap.png'}
-              className="w-[40rem] h-[30rem] 2xl:w-[50rem] 2xl:h-[35rem] rounded-"
-            />
-</span>
-        </div>
-      </section>
+     
 
     {/* New-articles */}
     <section className="   flex justify-center items-center  w-full  flex-col mt-[3rem] p-5 lg:p-0 font-bricolage ">

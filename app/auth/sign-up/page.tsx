@@ -112,9 +112,8 @@ placeholder='password *'
               src={'/Facebook.png'}
             /> Facebook</span>
           </div>
-          <p className="text-black w-full text-end block  font-[600] mt-[1%] text-base">
-          No account yet? <Link href="/auth/sign-in" className="text-primary text-[1em] font-bricolage">  Log In  </Link>  </p>
-
+          <p className="text-black w-full text-end block  font-[500] mt-[1%] text-base 2xl:text-xl">
+          No account yet? <Link href="/auth/sign-up" className="text-primary text-[1em]  2xl:text-xl font-bricolage">  Log in  </Link>  </p>
 
 
 </div>
