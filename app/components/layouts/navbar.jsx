@@ -19,8 +19,8 @@ export default function Navbar() {
 <>
     {!hideNavbar &&
     
-    <header className="text-xl z-[999999]   relative  mt-3  w-full bg-white lg:bg-transparent font-bricolage text-white">
-      <div className="flex-1 mx-auto flex items-center justify-around p-2">
+    <nav className="text-xl z-[999999]     relative  mt-3  w-full bg-white lg:bg-transparent font-bricolage text-white">
+      <div className="flex-1 mx-auto flex  2xl:w-[100rem] items-center justify-around p-2">
         
         {/* Logo */}
         <div className="text-2xl font-bold">
@@ -115,7 +115,7 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
-    </header>}
+    </nav>}
     </>
   );
 }
