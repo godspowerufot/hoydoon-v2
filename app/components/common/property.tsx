@@ -60,7 +60,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
   }, []);
 
   return (
-    <div ref={cardRef} className="flex flex-col h-fit lg:w-[26rem]  2xl:w-[31.3rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden p-4 rounded-lg relative">
+    <div ref={cardRef} className="flex flex-col h-fit lg:w-[26rem]  2xl:w-[31rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden p-4 rounded-lg relative">
       {/* Image Container */}
       <div ref={imgContainerRef} className="overflow-hidden rounded-lg w-full h-[450px]  2xl:h-[500px] transition-all duration-300">
         <Image
