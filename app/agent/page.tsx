@@ -69,7 +69,7 @@ export default function Home() {
 
     {/* Large Screen Search Bar */}
  {/* Large Screen Search Bar */}
-<div className="hidden lg:flex justify-center items-center w-full">
+<div className="hidden lg:flex justify-center items-center ">
   <div className="flex h-[3.5em] py-4 font-bricolage items-center m-2 bg-white rounded-full w-10/12 md:w-4/5 lg:w-[41em]">
     
     {/* Transparent Full-Width Input */}

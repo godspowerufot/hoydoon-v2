@@ -162,13 +162,13 @@ export default function Home() {
         </p>
 
 
-        <div className="  relative w-[21rem] 2xl:mt-[6rem] mt-[1.5rem] 2xl:w-[26rem]">
+        <div className="  rounded-full relative w-[21rem] 2xl:mt-[6rem] mt-[1.5rem] 2xl:w-[26rem]">
 
 
 <Input
 label=""
 type='text'
-className="2xl:h-[5rem]  p-5 rounded-[24px] mt-[3rem]"
+className="2xl:h-[4rem]  p-5 rounded-[24px] mt-[3rem]"
 placeholder='Enter your home address'
  />
 
