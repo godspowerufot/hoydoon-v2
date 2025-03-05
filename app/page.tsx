@@ -84,7 +84,7 @@ export default function Home() {
       {/* Hosts Section */}
       <div className="flex flex-1 items-center text-center gap-2 px-4">
         <span className="text-2xl font-medium text-white">10M+</span>
-        <span className="text-xl w-[175px] font-[300] text-start text-white">
+        <span className="text-base  w-[150px] font-[300] text-start text-white">
           hosts welcome guests worldwide
         </span>
       </div>
@@ -95,7 +95,7 @@ export default function Home() {
       {/* Unique Stays Section */}
       <div className="flex flex-1 items-center text-center gap-2 px-4">
         <span className="text-xl font-medium text-white">15M+</span>
-        <span className="text-xl w-[179px] text-start text-white">
+        <span className="text-base font-light  w-[150px] text-start text-white">
           Unique stays across 150K+ cities
         </span>
       </div>
@@ -106,7 +106,7 @@ export default function Home() {
       {/* Guest Arrivals Section */}
       <div className="flex flex-1 items-center text-center gap-2 px-4">
         <span className="text-2xl font-medium text-white">12M+</span>
-        <span className="text-xl w-[175px] text-start text-white">
+        <span className="text-base font-light  w-[150px] text-start text-white">
           guest arrivals to date every month
         </span>
       </div>
