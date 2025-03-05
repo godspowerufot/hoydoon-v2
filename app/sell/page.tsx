@@ -80,7 +80,7 @@ export default function Home() {
       <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-row gap-7 2xl:gap-[3rem] flex-1 items-center">
   
 
-      <div className="w-[24rem] 2xl:w-[28rem]    rounded-lg shadow-md overflow-hidden border border-none">
+      <div className="w-[24rem] 2xl:w-[28rem]    rounded-lg overflow-hidden border border-none">
       {/* Image Section */}
       <div className="relative h-52 w-full">
         <Image
