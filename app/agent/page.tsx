@@ -4,13 +4,52 @@ import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
 import Input from "../components/common/inputs/input";
 import Link from "next/link";
+const agents = [
+    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
+    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
+    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
+    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
+    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
+    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
 
+  ];
+  
+
+  
 export default function Home() {
+
+    const ProfileCard = ({ image, name, estate, priceRange, sales }:any) => {
+        return (
+          <div className="p-6 flex gap-5 h-[250px] justify-start bg-[#ffffff]  w-[600px] 2xl:w-[43.8rem]">
+            <Image
+              alt={name}
+              src={image}
+              width={200}
+              height={200}
+              className="rounded-full aspect-square object-cover"
+            />
+            <div className="mt-[2em] font-bricolage ml-[0.3em]">
+              <h2 className="font-bricolage font-bold text-[1.3em] text-black">{name}</h2>
+              <p className="text-[#8F8F8F] text-[1em] font-[400] w-[200px]">{estate}</p>
+      
+              <div className="mt-4">
+                <p className="text-black text-[1em] font-[400] w-[280px]">
+                  <b>{priceRange}</b> <b className="text-[#8F8F8F] font-[400]">Price range</b>
+                </p>
+                <p className="text-black text-[1em] font-[400] w-[200px]">
+                  <b>{sales}</b> <b className="text-[#8F8F8F] font-[300]">Total sales</b>
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      };
+      
   return (
     <>
  <header className="relative h-[45em] lg:h-[52em] w-screen">
   {/* Background Image Div */}
-  <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('/sellheader.jpeg')" }}>
+  <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('/agentheader.png')" }}>
     {/* Overlay Div */}
     <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-[-1]"></div>
   </div>
@@ -77,121 +116,28 @@ export default function Home() {
 
 
       {/* explore */}
-      <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-row gap-7 2xl:gap-[3rem] flex-1 items-center">
-  
+      <section className=" flex-wrap bg-white hidden lg:py-[2em] w-full  font-bricolage lg:flex justify-center flex-col gap-7 2xl:gap-[3rem] flex-1 items-center">
+      <div className="flex   p-2 flex-col w-[80rem] 2xl:w-[94rem]  2xl:ml-0 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+      <h1 className="text-black lg:ml-5 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
+      <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
+      Leverage a local agent's expertise with access to millions of listings, guiding you through every step.
+</p>
 
-      <div className="w-[24rem] 2xl:w-[28rem]    rounded-lg shadow-md overflow-hidden border border-none">
-      {/* Image Section */}
-      <div className="relative h-52 w-full">
-        <Image
-          src="/sell1.png" // Replace with actual image path
-          alt="Agents talking"
-          layout="fill"
-          objectFit="cover"
-        />
+      
+
+</div>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 place-items-center">
+        {agents.map((agent, index) => (
+          <ProfileCard key={index} {...agent} />
+        ))}
       </div>
 
-      {/* Text Content */}
-      <div className="p-6  2xl:px-7">
-        <h4 className="text-gray-800 font-[500] text-base">Hoydoon’s Selling</h4>
-        <h2 className="text-xl font-bold text-black mt-2">
-          Choose the perfect agent for your needs.
-        </h2>
-        <p className="text-[#8F8F8F] text-sm lg:text-base mt-5">
-          Complete a quick questionnaire to discover the best agents in your area. Review their
-          pricing, services, and ratings to find the one that fits your needs perfectly.
-        </p>
 
-
-        <Button className='w-full 2xl:mt-[3rem] mt-9 text-base 2xl:text-xl h-[4rem] p-3'>
- Get Started
-</Button>
-      </div>
-    </div>
-
-    <div className="w-[24rem] 2xl:w-[28rem]   rounded-lg shadow-md overflow-hidden border border-none">
-      {/* Image Section */}
-      <div className="relative h-52 w-full">
-        <Image
-          src="/sell2.png" // Replace with actual image path
-          alt="Agents talking"
-          layout="fill"
-          objectFit="cover"
-        />
-      </div>
-
-      {/* Text Content */}
-      <div className="p-6">
-        <h4 className="text-gray-800 font-[500] text-base">Hoydoon’s Selling</h4>
-        <h2 className="text-xl font-bold text-black mt-2">
-          Choose the perfect agent for your needs.
-        </h2>
-        <p className="text-[#8F8F8F] text-sm lg:text-base mt-5">
-          Complete a quick questionnaire to discover the best agents in your area. Review their
-          pricing, services, and ratings to find the one that fits your needs perfectly.
-        </p>
-
-
-        <button className='w-full   rounded-full items-center justify-center flex bg-[#fffefe] border-[#1E1E1E] border-solid border-[2px] text-black 2xl:mt-[5rem] mt-9 text-base 2xl:text-xl h-[3rem]  2xl:h-[4rem] p-3'>
-        Visit Seller’s marketplace
-</button>
-      </div>
-    </div>
-
-
-    <div className="w-[24rem] 2xl:w-[28rem]   rounded-lg shadow-md overflow-hidden border border-none">
-      {/* Image Section */}
-      <div className="relative h-52 w-full">
-        <Image
-          src="/sell3.png" // Replace with actual image path
-          alt="Agents talking"
-          layout="fill"
-          objectFit="cover"
-        />
-      </div>
-
-      {/* Text Content */}
-      <div className="p-6">
-        <h4 className="text-gray-800 font-[500] text-base">Hoydoon’s Selling</h4>
-        <h2 className="text-xl font-bold text-black mt-2">
-          Choose the perfect agent for your needs.
-        </h2>
-        <p className="text-[#8F8F8F] text-sm lg:text-base mt-5">
-          Complete a quick questionnaire to discover the best agents in your area. Review their
-          pricing, services, and ratings to find the one that fits your needs perfectly.
-        </p>
-
-
-        <div className="  relative w-[21rem] 2xl:mt-[6rem] mt-[1.5rem] 2xl:w-[26rem]">
-
-
-<Input
-label=""
-type='text'
-className="2xl:h-[5rem]  p-5 rounded-[24px] mt-[3rem]"
-placeholder='Enter your home address'
- />
-
-  <div className="absolute right-2 top-[10%]  2xl:top-[12%] bg-primary ml-[6em] p-3  h-[40px] w-[40px] 2xl:w-[50px] 2xl:h-[50px] rounded-full flex items-center justify-center">
-    <Image
-      alt="logo"
-      width={30}
-      loading="lazy"
-      height={30}
-      quality={100} // Ensures maximum quality
-       
-      src={'/arrow-left.png'}
-      style={{ objectFit: 'cover' }}
-    />
- </div>
-
-  </div> 
-      </div>
-    </div>
+   
       </section>
 
 
-      <section className="   font-bricolage lg:flex  justify-center flex-col flex-1 items-center ">
+      <section className="   font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  gap-[4%] flex-col w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
 <h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Ready to sell your home?.</h1>
@@ -211,9 +157,37 @@ Ready to sell your home? Let us help you maximize its value and make the process
               width={500} 
               quality={100}
               height={400} // Reduced size of logo
-              src={'/sell-1.png'}
+              src={'/agent3.png'}
             />
 </span>
+        </div>
+      </section>
+
+      <section className="   font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
+        <div className="flex   gap-[4%] flex-col w-[90%]  2xl:w-[100rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+       
+       <span className="mt-4 lg:mt-0">
+ <Image
+              alt="image1"
+              width={500} 
+              quality={100}
+              height={400} // Reduced size of logo
+              src={'/agent4.png'}
+            />
+</span>
+          <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[69em] ">
+<h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Ready to sell your home?.</h1>
+<p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[2em] font-bricolage w-[85%] 2xl:text-[20px] 2xl:w-[70%]">
+Ready to sell your home? Let us help you maximize its value and make the process stress-free. Schedule a consultation today and take the first step toward a successful sale</p>
+
+<Button className="text-base font-light mt-5 ">
+  <Link href="/explore">
+  Schedule
+  </Link>
+</Button>
+          </span>
+
+
         </div>
       </section>
 {/* afforable component */}
@@ -243,7 +217,7 @@ Ready to sell your home? Let us help you maximize its value and make the process
    
 </div>
     <div className="flex justify-center w-full mt-[4%] lg:flex-1 lg:flex-row flex-col  items-center lg:gap-10 2xl:gap-16 ">
-    <div className="relative flex flex-col h-[650px]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
+    <div className="relative flex flex-col h-[42rem]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
   {/* Image Section */}
   <Image
     alt="house image"
@@ -291,7 +265,7 @@ Ready to sell your home? Let us help you maximize its value and make the process
     />
   </div> */}
 </div>
-<div className="relative flex flex-col h-[650px]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
+<div className="relative flex flex-col h-[42rem]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
   {/* Image Section */}
   <Image
     alt="house image"

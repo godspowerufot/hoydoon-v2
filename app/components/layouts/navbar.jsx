@@ -20,7 +20,7 @@ export default function Navbar() {
     {!hideNavbar &&
     
     <nav className="text-xl z-[999999]     relative  mt-3  w-full bg-white lg:bg-transparent font-bricolage text-white">
-      <div className="flex-1 mx-auto flex  2xl:w-[100rem] items-center justify-around p-2">
+      <div className="flex-1 mx-auto flex  w-full  items-center justify-around p-2">
         
         {/* Logo */}
         <div className="text-2xl font-bold">
