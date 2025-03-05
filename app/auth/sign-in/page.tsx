@@ -20,7 +20,7 @@ const signup= () => {
               height={400}
               quality={100} // Ensures maximum quality
               src={'/authBanner.png'} 
-              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[1rem] rounded-2xl w-[37rem] h-[38rem]  2xl:h-[46rem] 2xl:w-[50rem]'
+              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[7px] rounded-2xl w-[37rem] h-[38rem]  2xl:h-[46rem] 2xl:w-[50rem]'
               style={{ objectFit: 'cover' } }
             />
 
@@ -35,7 +35,7 @@ const signup= () => {
               quality={100}
               objectFit='cover'
               height={30}
-              className='w-[10rem] h-[4.5rem] 2xl:w-[12rem]' // Reduced size of logo
+              className='w-[10rem] h-[4rem] 2xl:w-[12rem]' // Reduced size of logo
               src={'/logo2.svg'}
             /></Link>
 
