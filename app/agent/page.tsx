@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use client '
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
