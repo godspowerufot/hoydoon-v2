@@ -50,10 +50,10 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
         <span className="flex-col flex mt-3">
           <span className="flex gap-1 items-center">
             <h2 className="font-bold text-xl">${price} 
-            <sub className="text-gray font-[300] text-base -mt-1 2xl:text-[16px]">
+            <sub className="text-gray font-[300] text-base mt-1 2xl:text-[16px]">
                 /mth
             </sub>
-          </h2>            <h4 className="ml-9 text-label text-gray font-light">Area from 190 - 245 m²</h4>
+          </h2>            <h4 className="ml-9 text-label text-gray font-light">Area from 190 - 245 m² {area} </h4>
           </span>
 
           <div className="flex  mt-2 justify-start gap-3 items-start font-[400] text-base 2xl:text-base  text-gray">

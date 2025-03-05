@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
-import PropertyCard from "../components/common/property";
 import PropertyListCard from "../components/common/PropertyListing";
 
 export default function Home() {

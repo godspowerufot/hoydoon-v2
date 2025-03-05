@@ -65,7 +65,7 @@ export default function Navbar() {
             </li>
             <li>
               <div className={`px-4 py-1   lg:text-xl rounded-full `}>
-                <Link href="/agent text-[1em]">Find an agent</Link>
+                <Link href="/agent">Find an agent</Link>
               </div>
             </li>
           </ul>
