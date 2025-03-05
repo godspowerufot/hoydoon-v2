@@ -41,30 +41,30 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Links */}
-        <div className="pr-5 ml-[6%]  w-fit text-lg sm:hidden max-md:hidden lg:flex   items-center justify-center hidden  md:hidden rounded-full  lg:h-[50px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
+        <div className="pr-5 ml-[6%]  w-fit text-lg sm:hidden max-md:hidden lg:flex   items-center justify-center hidden  md:hidden rounded-full  lg:h-[37px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
           <ul className="lg:flex items-center  space-x-5 font-[300] ">
             <li>
-              <div className={`px-7  lg:text-xl py-3 font-bricolage rounded-full ${isActive('/') ? 'bg-white  lg:w-[95px] lg:h-[30px] text-primary' : 'bg-white hover:text-primary'}`}>
+              <div className={`px-7  lg:text-base py-2 font-bricolage rounded-full ${isActive('/') ? 'bg-white  lg:w-[95px] lg:h-[33px] text-primary' : 'bg-white hover:text-primary'}`}>
                 <Link href="/" className='text-primary  text-[1em]'>Home</Link>
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1   lg:text-xl rounded-full `}>
+              <div className={`px-4 py-1    lg:text-base  rounded-full `}>
                 <Link href="/buy">Buy</Link>
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1   lg:text-xl rounded-full `}>
+              <div className={`px-4 py-1    lg:text-base  rounded-full `}>
                 <Link href="/rent">Rent</Link>
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1   lg:text-xl rounded-full `}>
+              <div className={`px-4 py-1    lg:text-base  rounded-full `}>
                 <Link href="/sell">Sell</Link>
               </div>
             </li>
             <li>
-              <div className={`px-4 py-1   lg:text-xl rounded-full `}>
+              <div className={`px-4 py-1    lg:text-base  rounded-full `}>
                 <Link href="/agent">Find an agent</Link>
               </div>
             </li>
@@ -75,12 +75,12 @@ export default function Navbar() {
          <div className='flex gap-4'>
 
        
-         <Button className='bg-primarytransparent  w-[92px] h-[40px] bg-transparent'>
+         <Button className='bg-primarytransparent  w-[92px] h-[37px] bg-transparent'>
           
           <Link href="/auth/sign-in" className=' text-xl'> {/* Reduced width and padding */}
               Login
             </Link></Button> 
-          <Button  className='w-[7.5rem] h-[2.5rem] '>
+          <Button  className='w-[7.5rem] h-[37px] '>
           <Link href="/auth/sign-up"  className='font-light  text-xl'> {/* Reduced width and padding */}
             Register
           </Link>

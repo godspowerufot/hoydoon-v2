@@ -11,7 +11,7 @@ const signup= () => {
 
   return (
     <>
- <div className='w-full h-screen justify-center items-center  flex  py-[1rem] 2xl:mt-[1.5rem]'>
+ <div className='w-full h-screen justify-center items-center  flex  py-[1rem] 2xl:mt-[0.8rem]'>
     <div className=' gap-[4rem]   flex flex-1 flex-col lg:flex-row'>
           <Image
               alt="authBanner"
@@ -19,14 +19,14 @@ const signup= () => {
               loading="lazy"
               height={400}
               quality={100} // Ensures maximum quality
-              src={'/authBanner.png'}
-              className='  hidden lg:block rounded-2xl w-[37rem] h-[38rem]  2xl:h-[46rem] 2xl:w-[50rem]'
+              src={'/authBanner.png'} 
+              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[1rem] rounded-2xl w-[37rem] h-[38rem]  2xl:h-[46rem] 2xl:w-[50rem]'
               style={{ objectFit: 'cover' } }
             />
 
 
 
-            <div className=' w-full lg:w-[50%] items-start mx-[]  -mt-2 flex flex-col'>
+            <div className=' w-full lg:w-[50%] items-start -mt-3 2xl:-mt-4  flex flex-col'>
  <Link href="/" className='flex justify-start ml-[2rem]         '>
             <Image
               alt="logo"
@@ -35,17 +35,17 @@ const signup= () => {
               quality={100}
               objectFit='cover'
               height={30}
-              className='w-[9rem] h-[4.5rem] 2xl:w-[10rem] 2xl:[6rem]' // Reduced size of logo
+              className='w-[10rem] h-[4.5rem] 2xl:w-[12rem]' // Reduced size of logo
               src={'/logo2.svg'}
             /></Link>
 
 
 
 
-            <span className=' 2xl:mt-[1rem] flex justify-center flex-col font-bricolage items-center w-full '>
-            <div className='w-[80%] 2xl:mt-3 h-[2px] bg-[#D9D9D9] '/>
+            <span className=' 2xl:mt-01rem] flex justify-center flex-col font-bricolage items-center w-full '>
+            <div className='w-[80%] 2xl:mt-2 h-[2px] bg-[#D9D9D9] '/>
 
-<h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1.5rem]  2xl:text-4xl font-bricolage font-[600]">Welcome Back</h1>
+<h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1rem]  2xl:text-4xl font-bricolage font-[600]">Welcome Back</h1>
 <p className='font-light text-gray pt-1  2xl:mt-[0.8rem]  text-xs 2xl:text-base'>Please log in to continue</p>
 
 
@@ -54,9 +54,9 @@ const signup= () => {
 
 <div className='mt-[1rem] flex flex-col gap-[1em] w-[80%] '>
 <Input
-label="Email"
+label="Email Address"
 type='text'
-placeholder='Email *'
+placeholder='Email address*'
  />
 <Input
 label="Password"
@@ -64,11 +64,13 @@ type='password'
 placeholder='password *'
  />
  <p className='text-[0.7em] text-gray  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
+<div className= 'flex items-center  justify-end w-full gap-[7rem]'>
 
- <div className="flex items-center 2xl:mt-2 gap-2">
+
+ <div className="flex items-center w-full 2xl:mt-2">
  <label
                     id="rememberme"
-                    className="flex items-center text-grey-700  cursor-pointer"
+                    className="flex items-center text-grey-700   cursor-pointer"
                   >
                     <input
                       name="rememberme"
@@ -77,9 +79,12 @@ placeholder='password *'
                     />
                     Remember me
                   </label>
+</div> 
+<p className="text-primary font-meduim w-full   2xl:text-xl font-bricolage">  Forgot password   </p>
 </div>
+
 <Button className='w-full 2xl:mt-2 text-base 2xl:text-xl h-[3rem] p-3'>
-  Login up
+  Login
 </Button>
 <div className='w-full 2xl:mt-3 h-[2px] bg-[#D9D9D9] '/>
 <div className='w-full text-black text-right font-[400] font-bricolage'>
@@ -112,7 +117,9 @@ placeholder='password *'
               src={'/Facebook.png'}
             /> Facebook</span>
           </div>
-          <p className="text-black w-full text-end block  font-[500] mt-[1%] text-base 2xl:text-xl">
+          <div className='w-full 2xl:mt-3 h-[2px] bg-[#D9D9D9] '/>
+
+          <p className="text-black w-full text-end block  font-[500] -mt-[5px] text-base 2xl:text-xl">
           No account yet? <Link href="/auth/sign-up" className="text-primary text-[1em]  2xl:text-xl font-bricolage">  Sign Up  </Link>  </p>
 
 

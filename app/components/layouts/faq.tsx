@@ -74,11 +74,15 @@ const FAQComponent: React.FC = () => {
               </span>
             </button>
 
+            
+            <div className='w-full  2xl:mt-[5rem] h-[2px] bg-[#D9D9D9] '/>
+
             {/* Answer Section */}
             {openIndex === index && (
               <div className="mt-2 font-[300] text-base text-gray ">
                 {faq.answer}
               </div>
+              
             )}
           </div>
         ))}
