@@ -26,7 +26,7 @@ const signup= () => {
 
 
 
-            <div className=' w-full lg:w-[50%] items-start -mt-3 2xl:-mt-4  flex flex-col'>
+            <div className=' w-full lg:w-[50%] items-start -mt-1 2xl:-mt-4  flex flex-col'>
  <Link href="/" className='flex justify-start ml-[2rem]         '>
             <Image
               alt="logo"
