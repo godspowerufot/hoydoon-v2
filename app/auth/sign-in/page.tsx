@@ -43,7 +43,7 @@ const signup= () => {
 
 
             <span className=' 2xl:mt-01rem] flex justify-center flex-col font-bricolage items-center w-full '>
-            <div className='w-[80%] 2xl:mt-2 h-[2px] bg-[#D9D9D9] '/>
+            <div className='w-[80%] 2xl:mt-2 h-[1px] bg-[#D9D9D9] '/>
 
 <h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1rem]  2xl:text-4xl font-bricolage font-[600]">Welcome Back</h1>
 <p className='font-light text-gray pt-1  2xl:mt-[0.8rem]  text-xs 2xl:text-base'>Please log in to continue</p>
@@ -86,7 +86,7 @@ placeholder='password *'
 <Button className='w-full 2xl:mt-2 text-base 2xl:text-xl h-[3rem] p-3'>
   Login
 </Button>
-<div className='w-full 2xl:mt-3 h-[2px] bg-[#D9D9D9] '/>
+<div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
 <div className='w-full text-black text-right font-[400] font-bricolage'>
   Or Log in with:
 </div>
@@ -117,7 +117,7 @@ placeholder='password *'
               src={'/facebook.png'}
             /> Facebook</span>
           </div>
-          <div className='w-full 2xl:mt-3 h-[2px] bg-[#D9D9D9] '/>
+          <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
 
           <p className="text-black w-full text-end block  font-[500] -mt-[5px] text-base 2xl:text-xl">
           No account yet? <Link href="/auth/sign-up" className="text-primary text-[1em]  2xl:text-xl font-bricolage">  Sign Up  </Link>  </p>
