@@ -114,7 +114,7 @@ placeholder='password *'
               loading='lazy'
               objectFit='cover'
               height={20} // Reduced size of logo
-              src={'/Facebook.png'}
+              src={'/facebook.png'}
             /> Facebook</span>
           </div>
           <div className='w-full 2xl:mt-3 h-[2px] bg-[#D9D9D9] '/>
