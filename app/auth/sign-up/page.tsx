@@ -20,13 +20,13 @@ const signup= () => {
               height={400}
               quality={100} // Ensures maximum quality
               src={'/signup.png'} 
-              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[7px] rounded-2xl w-[37rem] h-[38rem]  2xl:h-[46rem] 2xl:w-[50rem]'
+              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-2xl w-[37rem] h-[38.8rem]  2xl:h-[46rem] 2xl:w-[50rem]'
               style={{ objectFit: 'cover' } }
             />
 
 
 
-            <div className=' w-full lg:w-[50%] items-start -mt-2 2xl:-mt-4  flex flex-col'>
+            <div className=' w-full lg:w-[50%] items-start mt-3 2xl:-mt-4  flex flex-col'>
  <Link href="/" className='flex justify-start ml-[2rem]         '>
             <Image
               alt="logo"
@@ -35,7 +35,7 @@ const signup= () => {
               quality={100}
               objectFit='cover'
               height={30}
-              className='w-[9rem] h-[4rem] 2xl:w-[12rem]' // Reduced size of logo
+              className='w-[10rem] h-[4rem] 2xl:w-[12rem]' // Reduced size of logo
               src={'/logo2.svg'}
             /></Link>
 
@@ -45,7 +45,7 @@ const signup= () => {
             <span className=' 2xl:mt-01rem] flex justify-center flex-col font-bricolage items-center w-full '>
             <div className='w-[80%] 2xl:mt-2 h-[1px] bg-[#D9D9D9] '/>
 
-<h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1rem]  2xl:text-4xl font-bricolage font-[600]">Create an account</h1>
+<h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1rem]  2xl:text-4xl font-bricolage font-[600]">Create an Account</h1>
 <p className='font-light text-gray pt-1  2xl:mt-[0.8rem]  text-xs 2xl:text-base'>Sign up to create an account</p>
 
 
@@ -63,14 +63,14 @@ label="Password"
 type='password'
 placeholder='password *'
  />
- <p className='text-[0.7em] text-gray  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
+ <p className='text-[0.7em] text-gray -mt-4  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
 <div className= 'flex items-center  justify-end w-full gap-[7rem]'>
 
 
  <div className="flex items-center w-full 2xl:mt-2">
  <label
                     id="rememberme"
-                    className="flex items-center text-grey-700   cursor-pointer"
+                    className="flex items-center text-grey-700 font-[300]   cursor-pointer"
                   >
                     <input
                       name="rememberme"
@@ -82,8 +82,8 @@ placeholder='password *'
 </div> 
 </div>
 
-<Button className='w-full 2xl:mt-2 text-base 2xl:text-xl h-[3rem] p-3'>
-  sign up
+<Button className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[3rem] p-3'>
+Sign Up
 </Button>
 <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
 <div className='w-full text-black text-right font-[400] font-bricolage'>
@@ -119,7 +119,7 @@ placeholder='password *'
           <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
 
           <p className="text-black w-full text-end block  font-[500] -mt-[5px] text-base 2xl:text-xl">
-          Already have an account? <Link href="/auth/sign-in" className="text-primary text-[1em]  2xl:text-xl font-bricolage">  Log in  </Link>  </p>
+          Already have an account?<Link href="/auth/sign-in" className="text-primary text-[1em]  2xl:text-xl font-bricolage">  Log in</Link>  </p>
 
 
 </div>

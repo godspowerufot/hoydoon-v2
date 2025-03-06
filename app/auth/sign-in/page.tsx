@@ -20,13 +20,13 @@ const signup= () => {
               height={400}
               quality={100} // Ensures maximum quality
               src={'/authBanner.png'} 
-              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[7px] rounded-2xl w-[37rem] h-[38rem]  2xl:h-[46rem] 2xl:w-[50rem]'
+              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-2xl w-[37rem] h-[38.5rem]  2xl:h-[46rem] 2xl:w-[50rem]'
               style={{ objectFit: 'cover' } }
             />
 
 
 
-            <div className=' w-full lg:w-[50%] items-start -mt-1 2xl:-mt-4  flex flex-col'>
+            <div className=' w-full lg:w-[50%] items-start mt-3 2xl:-mt-4  flex flex-col'>
  <Link href="/" className='flex justify-start ml-[2rem]         '>
             <Image
               alt="logo"
@@ -63,14 +63,14 @@ label="Password"
 type='password'
 placeholder='password *'
  />
- <p className='text-[0.7em] text-gray  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
+ <p className='text-[0.7em] text-gray -mt-4  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
 <div className= 'flex items-center  justify-end w-full gap-[7rem]'>
 
 
  <div className="flex items-center w-full 2xl:mt-2">
  <label
                     id="rememberme"
-                    className="flex items-center text-grey-700   cursor-pointer"
+                    className="flex items-center text-grey-700 font-[300]   cursor-pointer"
                   >
                     <input
                       name="rememberme"
@@ -83,7 +83,7 @@ placeholder='password *'
 <p className="text-primary font-meduim w-full   2xl:text-xl font-bricolage">  Forgot password   </p>
 </div>
 
-<Button className='w-full 2xl:mt-2 text-base 2xl:text-xl h-[3rem] p-3'>
+<Button className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[3rem] p-3'>
   Login
 </Button>
 <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>

@@ -72,15 +72,15 @@ export default function Navbar() {
         </div>
 
          {/* Desktop Action Buttons */}
-         <div className='flex gap-4'>
+         <div className='flex gap-2'>
 
        
-         <Button className='bg-primarytransparent  w-[92px] h-[35px] bg-transparent'>
+         <Button className='bg-primarytransparent p-2  w-[92px] h-[32px] bg-transparent'>
           
           <Link href="/auth/sign-in" className=' text-base'> {/* Reduced width and padding */}
               Login
             </Link></Button> 
-          <Button  className='w-[7.5rem] h-[35px] '>
+          <Button  className='w-[7.5rem] p-2 h-[32px] '>
           <Link href="/auth/sign-up"  className='font-light  text-base'> {/* Reduced width and padding */}
             Register
           </Link>

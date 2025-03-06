@@ -10,7 +10,7 @@ import PropertyCard from "./components/common/property";
 export default function Home() {
   return (
     <>
- <header className="relative h-[100vh] w-full overflow-hidden">
+ <header className="relative h-[100vh] w-screen overflow-hidden">
   {/* Background Image */}
   <div
     className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
@@ -30,7 +30,7 @@ export default function Home() {
     </h2>
 
     {/* Search Bar (Large Screens) */}
-    <div className="hidden lg:flex justify-center items-center w-full max-w-[55em]">
+    <div className="hidden lg:flex justify-center items-center w-full max-w-[50em]">
   <div className="flex items-center h-[3.4rem] bg-white rounded-full shadow-md w-full p-[0.4rem]">
     {/* Location */}
     <div className="flex flex-col flex-1 px-4">
@@ -51,7 +51,7 @@ export default function Home() {
     </div>
 
     {/* Guests */}
-    <div className="flex flex-col mr-[10rem] px-4">
+    <div className="flex flex-col mr-[5rem] px-4">
       <span className="text-sm font-semibold text-black">Number of Guests</span>
       <div className="text-sm text-gray">Add number</div>
     </div>
@@ -80,39 +80,40 @@ export default function Home() {
   </div>
 
   {/* Statistics Section */}
-  <div className="absolute bottom-0 lg:flex font-bricolage lg:mt-10 justify-center items-center w-full pt-10 px-4">
-    <div className="flex items-center rounded-lg w-9/10 md:w-4/5 lg:w-7/10">
-      {/* Hosts Section */}
-      <div className="flex flex-1 items-center text-center gap-2 px-4">
-        <span className="text-2xl font-medium text-white">10M+</span>
-        <span className="text-base  w-[150px] font-[300] text-start text-white">
-          hosts welcome guests worldwide
-        </span>
-      </div>
+  <div className="absolute bottom-3 lg:flex font-bricolage lg:mt-10 justify-center items-center w-full pt-10 px-4">
+  <div className="flex items-center rounded-lg w-9/10 ml-15 justify-between md:w-4/5 lg:w-6/10">
+    {/* Hosts Section */}
+    <div className="flex items-center text-start gap-2 px-4">
+      <span className="text-2xl font-medium text-white">10M+</span>
+      <span className="text-base leading-[16px] w-[150px] font-light text-white">
+        Hosts welcome guests worldwide
+      </span>
+    </div>
 
-      {/* Vertical Divider */}
-      <div className="h-12 w-[1px] bg-white mx-2 my-1"></div>
+    {/* Vertical Divider */}
+    <div className="h-12 w-[1px] bg-white"></div>
 
-      {/* Unique Stays Section */}
-      <div className="flex flex-1 items-center text-center gap-2 px-4">
-        <span className="text-xl font-medium text-white">15M+</span>
-        <span className="text-base font-light  w-[150px] text-start text-white">
-          Unique stays across 150K+ cities
-        </span>
-      </div>
+    {/* Unique Stays Section */}
+    <div className="flex  items-center text-start gap-2 px-4">
+      <span className="text-xl font-medium text-white">15M+</span>
+      <span className="text-base leading-[16px] font-light w-[150px] text-white">
+        Unique stays across 150K+ cities
+      </span>
+    </div>
 
-      {/* Vertical Divider */}
-      <div className="h-12 w-[1px] bg-white mx-2 my-1"></div>
+    {/* Vertical Divider */}
+    <div className="h-12 w-[1px] bg-white"></div>
 
-      {/* Guest Arrivals Section */}
-      <div className="flex flex-1 items-center text-center gap-2 px-4">
-        <span className="text-2xl font-medium text-white">12M+</span>
-        <span className="text-base font-light  w-[150px] text-start text-white">
-          guest arrivals to date every month
-        </span>
-      </div>
+    {/* Guest Arrivals Section */}
+    <div className="flex  items-center text-start gap-2 px-4">
+      <span className="text-2xl font-medium text-white">12M+</span>
+      <span className="text-base leading-[16px] font-light w-[150px] text-white">
+        Guest arrivals to date every month
+      </span>
     </div>
   </div>
+</div>
+
 </header>
 
       {/* this hold the images */}
