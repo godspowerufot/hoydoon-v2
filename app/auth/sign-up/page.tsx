@@ -26,7 +26,7 @@ const signup= () => {
 
 
 
-            <div className=' w-full lg:w-[50%] items-start -mt-3 2xl:-mt-4  flex flex-col'>
+            <div className=' w-full lg:w-[50%] items-start -mt-2 2xl:-mt-4  flex flex-col'>
  <Link href="/" className='flex justify-start ml-[2rem]         '>
             <Image
               alt="logo"
@@ -35,7 +35,7 @@ const signup= () => {
               quality={100}
               objectFit='cover'
               height={30}
-              className='w-[10rem] h-[4rem] 2xl:w-[12rem]' // Reduced size of logo
+              className='w-[9rem] h-[4rem] 2xl:w-[12rem]' // Reduced size of logo
               src={'/logo2.svg'}
             /></Link>
 
@@ -43,7 +43,7 @@ const signup= () => {
 
 
             <span className=' 2xl:mt-01rem] flex justify-center flex-col font-bricolage items-center w-full '>
-            <div className='w-[80%] 2xl:mt-2 h-[2px] bg-[#D9D9D9] '/>
+            <div className='w-[80%] 2xl:mt-2 h-[1px] bg-[#D9D9D9] '/>
 
 <h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1rem]  2xl:text-4xl font-bricolage font-[600]">Create an account</h1>
 <p className='font-light text-gray pt-1  2xl:mt-[0.8rem]  text-xs 2xl:text-base'>Sign up to create an account</p>
@@ -85,7 +85,7 @@ placeholder='password *'
 <Button className='w-full 2xl:mt-2 text-base 2xl:text-xl h-[3rem] p-3'>
   sign up
 </Button>
-<div className='w-full 2xl:mt-3 h-[2px] bg-[#D9D9D9] '/>
+<div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
 <div className='w-full text-black text-right font-[400] font-bricolage'>
   Or sign up with:
 </div>
@@ -116,7 +116,7 @@ placeholder='password *'
               src={'/facebook.png'}
             /> Facebook</span>
           </div>
-          <div className='w-full 2xl:mt-3 h-[2px] bg-[#D9D9D9] '/>
+          <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
 
           <p className="text-black w-full text-end block  font-[500] -mt-[5px] text-base 2xl:text-xl">
           Already have an account? <Link href="/auth/sign-in" className="text-primary text-[1em]  2xl:text-xl font-bricolage">  Log in  </Link>  </p>

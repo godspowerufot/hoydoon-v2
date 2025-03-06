@@ -75,13 +75,13 @@ export default function Navbar() {
          <div className='flex gap-4'>
 
        
-         <Button className='bg-primarytransparent  w-[92px] h-[37px] bg-transparent'>
+         <Button className='bg-primarytransparent  w-[92px] h-[35px] bg-transparent'>
           
-          <Link href="/auth/sign-in" className=' text-xl'> {/* Reduced width and padding */}
+          <Link href="/auth/sign-in" className=' text-base'> {/* Reduced width and padding */}
               Login
             </Link></Button> 
-          <Button  className='w-[7.5rem] h-[37px] '>
-          <Link href="/auth/sign-up"  className='font-light  text-xl'> {/* Reduced width and padding */}
+          <Button  className='w-[7.5rem] h-[35px] '>
+          <Link href="/auth/sign-up"  className='font-light  text-base'> {/* Reduced width and padding */}
             Register
           </Link>
           </Button>
