@@ -31,37 +31,38 @@ export default function Home() {
 
     {/* Search Bar (Large Screens) */}
     <div className="hidden lg:flex justify-center items-center w-full max-w-[55em]">
-      <div className="flex items-center h-[3.4rem] bg-white rounded-full shadow-md w-full p-[0.4rem]">
-        {/* Location */}
-        <div className="flex flex-col flex-1 px-4">
-          <span className="text-sm font-semibold text-black">Location</span>
-          <div className="text-sm text-gray">Search Locations</div>
-        </div>
-
-        {/* Type */}
-        <div className="flex ml-12 flex-col flex-1 px-4 border-x border-[#8F8F8F]">
-          <span className="text-sm font-semibold text-black">Type</span>
-          <div className="text-sm text-gray">Add type</div>
-        </div>
-
-        {/* Price Range */}
-        <div className="flex flex-col  flex-1 px-2 border-r border-gray">
-          <span className="text-sm font-semibold text-black">Price Range</span>
-          <div className="text-sm text-gray">Add range</div>
-        </div>
-
-        {/* Guests */}
-        <div className="flex flex-col  mr-5 flex-1 px-4">
-          <span className="text-sm font-semibold text-black">Number of Guests</span>
-          <div className="text-sm text-gray">Add number</div>
-        </div>
-
-        {/* Search Button */}
-        <div className="ml-4 bg-primary p-2 rounded-full flex items-center  mr-3 justify-center cursor-pointer hover:bg-opacity-90">
-          <Image alt="Search" width={20} height={20} src={'/search.png'} />
-        </div>
-      </div>
+  <div className="flex items-center h-[3.4rem] bg-white rounded-full shadow-md w-full p-[0.4rem]">
+    {/* Location */}
+    <div className="flex flex-col flex-1 px-4">
+      <span className="text-sm font-semibold text-black">Location</span>
+      <div className="text-sm text-gray">Search Locations</div>
     </div>
+
+    {/* Type */}
+    <div className="flex w-[8rem] flex-col pl-3 border-x border-[#8F8F8F]">
+      <span className="text-sm font-semibold text-black">Type</span>
+      <div className="text-sm text-gray">Add type</div>
+    </div>
+
+    {/* Price Range */}
+    <div className="flex flex-col w-[8rem] pl-3 border-r border-gray">
+      <span className="text-sm font-semibold text-black">Price Range</span>
+      <div className="text-sm text-gray">Add range</div>
+    </div>
+
+    {/* Guests */}
+    <div className="flex flex-col mr-[10rem] px-4">
+      <span className="text-sm font-semibold text-black">Number of Guests</span>
+      <div className="text-sm text-gray">Add number</div>
+    </div>
+
+    {/* Search Button */}
+    <div className="ml-2 bg-primary p-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90">
+      <Image alt="Search" width={20} height={20} src={'/search.png'} />
+    </div>
+  </div>
+</div>
+
 
     {/* Mobile Search Bar */}
     <div className="lg:hidden w-full px-2">
