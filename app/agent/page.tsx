@@ -49,7 +49,7 @@ export default function Home() {
       
   return (
     <>
- <header className="relative h-[45em] lg:h-[52em] w-screen">
+ <header className="relative h-[45em] lg:h-[52em] w-full">
   {/* Background Image Div */}
   <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('/agentheader.png')" }}>
     {/* Overlay Div */}
@@ -159,6 +159,8 @@ Ready to sell your home? Let us help you maximize its value and make the process
               alt="image1"
               width={500} 
               quality={100}
+              className="2xl:w-[48rem] 2xl:h-[30rem]"// Reduced size of logo
+
               height={400} // Reduced size of logo
               src={'/agent3.png'}
             />
@@ -167,18 +169,19 @@ Ready to sell your home? Let us help you maximize its value and make the process
       </section>
 
       <section className="   font-bricolage lg:flex  flex-col j flex-1 items-center ">
-        <div className="flex   ml-[8rem] gap-[4%] flex-col  w-full 2xl:w-[100rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+        <div className="flex   ml-[5rem] gap-[4%] 2xl:gap-[8%] flex-col  w-full 2xl:w-[110rem] 2xl:pl-[8em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
        
        <span className="mt-4 lg:mt-0">
  <Image
               alt="image1"
               width={500} 
               quality={100}
-              height={400} // Reduced size of logo
+              height={400} 
+              className="2xl:w-[60rem] 2xl:h-[30rem]"// Reduced size of logo
               src={'/agent4.png'}
             />
 </span>
-          <span className="flex flex-col w-full  lg:w-[50em] 2xl:w-[69em] ">
+          <span className="flex flex-col w-full  lg:w-[43em]  2xl:w-[80em] ">
 <h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Rapid Finds, Ready to View</h1>
 <p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[2em] font-bricolage w-[90%] 2xl:text-[20px] 2xl:w-[70%]">
 Never miss out. We refresh listings every minute, ensuring you see new homes instantly. Book on-demand tours to view them fast</p>
