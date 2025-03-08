@@ -32,28 +32,44 @@ export default function Home() {
     {/* Search Bar (Large Screens) */}
     <div className="hidden lg:flex justify-center items-center w-full max-w-[50em]">
   <div className="flex items-center h-[3.4rem] bg-white rounded-full shadow-md w-full p-[0.4rem]">
-    {/* Location */}
+    {/* Location Input */}
     <div className="flex flex-col flex-1 px-4">
       <span className="text-sm font-semibold text-black">Location</span>
-      <div className="text-sm text-gray">Search Locations</div>
+      <input
+        type="text"
+        placeholder="Search Locations"
+        className="text-sm text-gray outline-none bg-transparent"
+      />
     </div>
 
-    {/* Type */}
+    {/* Type Input */}
     <div className="flex w-[8rem] flex-col pl-3 border-x border-[#8F8F8F]">
       <span className="text-sm font-semibold text-black">Type</span>
-      <div className="text-sm text-gray">Add type</div>
+      <input
+        type="text"
+        placeholder="Add type"
+        className="text-sm text-gray outline-none bg-transparent"
+      />
     </div>
 
-    {/* Price Range */}
+    {/* Price Range Input */}
     <div className="flex flex-col w-[8rem] pl-3 border-r border-gray">
       <span className="text-sm font-semibold text-black">Price Range</span>
-      <div className="text-sm text-gray">Add range</div>
+      <input
+        type="text"
+        placeholder="Add range"
+        className="text-sm text-gray outline-none bg-transparent"
+      />
     </div>
 
-    {/* Guests */}
+    {/* Guests Input */}
     <div className="flex flex-col mr-[5rem] px-4">
       <span className="text-sm font-semibold text-black">Number of Guests</span>
-      <div className="text-sm text-gray">Add number</div>
+      <input
+        type="number"
+        placeholder="Add number"
+        className="text-sm text-gray outline-none bg-transparent"
+      />
     </div>
 
     {/* Search Button */}
@@ -62,6 +78,7 @@ export default function Home() {
     </div>
   </div>
 </div>
+
 
 
     {/* Mobile Search Bar */}

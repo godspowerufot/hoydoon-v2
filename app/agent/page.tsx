@@ -69,11 +69,11 @@ export default function Home() {
 
     {/* Large Screen Search Bar */}
  {/* Large Screen Search Bar */}
-<div className="hidden lg:flex justify-center items-center ">
-  <div className="flex h-[3.5em] py-4 font-bricolage items-center m-2 bg-white rounded-full w-10/12 md:w-4/5 lg:w-[41em]">
-    
+<div className="hidden lg:flex   justify-center items-center ">
+  <div className="flex h-[3.5em] py-4 font-bricolage items-center m-2 bg-white rounded-full w-10/12 md:w-4/5 lg:w-[35em]">
+   
     {/* Transparent Full-Width Input */}
-    <Input 
+    <input 
       type="text" 
       className="flex-1 bg-transparent placeholder:text-[1.3rem] text-black placeholder-gray-500 border-none outline-none pl-4 w-[36.3rem]" 
       placeholder="Enter your home address" 
@@ -91,7 +91,8 @@ export default function Home() {
           src={'/arrow-left.png'}
           style={{ objectFit: 'cover' }}
         />
-      </div>
+
+      </div> 
     </div>
   </div>
 </div>
@@ -165,8 +166,8 @@ Ready to sell your home? Let us help you maximize its value and make the process
         </div>
       </section>
 
-      <section className="   font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
-        <div className="flex   gap-[4%] flex-col w-[90%]  2xl:w-[100rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+      <section className="   font-bricolage lg:flex  flex-col j flex-1 items-center ">
+        <div className="flex   ml-[8rem] gap-[4%] flex-col  w-full 2xl:w-[100rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
        
        <span className="mt-4 lg:mt-0">
  <Image
@@ -177,10 +178,10 @@ Ready to sell your home? Let us help you maximize its value and make the process
               src={'/agent4.png'}
             />
 </span>
-          <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[69em] ">
-<h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Ready to sell your home?.</h1>
-<p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[2em] font-bricolage w-[85%] 2xl:text-[20px] 2xl:w-[70%]">
-Ready to sell your home? Let us help you maximize its value and make the process stress-free. Schedule a consultation today and take the first step toward a successful sale</p>
+          <span className="flex flex-col w-full  lg:w-[50em] 2xl:w-[69em] ">
+<h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Rapid Finds, Ready to View</h1>
+<p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[2em] font-bricolage w-[90%] 2xl:text-[20px] 2xl:w-[70%]">
+Never miss out. We refresh listings every minute, ensuring you see new homes instantly. Book on-demand tours to view them fast</p>
 
 <Button className="text-base font-light mt-5 ">
   <Link href="/explore">
