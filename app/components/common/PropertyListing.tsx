@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface PropertyCardProps {
   imageSrc: string;
@@ -14,6 +15,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
   const [isHovered, setIsHovered] = useState(false);
 
   return (
+    
     <div
       className="flex flex-col h-fit lg:w-[26rem] 2xl:w-[31rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden p-4 rounded-lg relative 
       group transition-all duration-500"
@@ -26,6 +28,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
           isHovered ? "h-[350px] " : "h-[450px] lg:h-[500px] 2xl:h-[550px] "
         }`}
       >
+        <Link href="/rent/listingdetails">
         <Image
           alt={altText}
           width={300}
@@ -36,6 +39,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
             isHovered ? "scale-95" : "scale-100"
           }`}
         />
+        </Link>
       </div>
 
       {/* Details Section */}

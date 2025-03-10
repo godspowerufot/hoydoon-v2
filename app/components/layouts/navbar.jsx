@@ -6,22 +6,30 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Button from '../common/Button';
 import { FaBars, FaTimes } from 'react-icons/fa';
-
+import ListingNavbar from './listingnavbar';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
   const pathname=usePathname()
-  const hideNavbar = pathname.startsWith("/auth");
-
+  const hideNavbar = pathname.startsWith("/rent/listing" );
+  const hideauth=pathname.startsWith("/auth")
   const isActive = (path) => router.prefetch === path;
 
+
+  const showListingNavbar = pathname.includes("/listing");
+
+  const hideAuthNavbar = pathname.startsWith("/auth");
+
+  if (showListingNavbar) {
+    console.log("Rendering ListingNavbar...");
+    return <ListingNavbar />;
+  }
   return (
 <>
-    {!hideNavbar &&
+    {!hideNavbar && !hideauth &&
     
     <nav className="text-xl z-[999999]     relative  mt-3  w-full bg-white lg:bg-transparent font-bricolage text-white">
       <div className="flex-1 mx-auto flex  w-full  items-center justify-around p-2">
-        
         {/* Logo */}
         <div className="text-2xl font-bold">
           <Link href="/" className='flex justify-center items-center gap-2'>

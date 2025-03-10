@@ -22,7 +22,7 @@ export default function Home() {
 
     const ProfileCard = ({ image, name, estate, priceRange, sales }:any) => {
         return (
-          <div className="p-6 flex gap-5 h-[250px] justify-start bg-[#ffffff]  w-[600px] 2xl:w-[43.8rem]">
+          <div className="p-6 flex gap-5 h-[250px] justify-start bg-[#ffffff]  w-[36rem] 2xl:w-[43.8rem]">
             <Image
               alt={name}
               src={image}
@@ -49,9 +49,9 @@ export default function Home() {
       
   return (
     <>
- <header className="relative h-[45em] lg:h-[52em] w-full">
+ <header className="relative h-[45em] lg:h-[52em] 2xl:w-full w-screen">
   {/* Background Image Div */}
-  <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('/agentheader.png')" }}>
+  <div className="absolute top-0 left-0 w-screen h-full bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('/agentheader.png')" }}>
     {/* Overlay Div */}
     <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-[-1]"></div>
   </div>
@@ -81,7 +81,7 @@ export default function Home() {
 
     {/* Search Button */}
     <div className="relative mr-2 p-1 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-gradient-to-r before:from-white before:via-white/30 before:to-white/10 before:p-[1px]">
-      <div className="relative bg-primary ml-[1em] p-3 w-[50px] h-[50px] rounded-full flex items-center justify-center">
+      <div className="relative bg-primary ml-[1em] p-3 w-[47px] h-[47px] rounded-full flex items-center justify-center">
         <Image
           alt="logo"
           width={30}
@@ -121,15 +121,15 @@ export default function Home() {
       {/* explore */}
       <section className=" flex-wrap bg-white hidden lg:py-[2em] w-full  font-bricolage lg:flex justify-center flex-col gap-7 2xl:gap-[3rem] flex-1 items-center">
       <div className="flex   p-2 flex-col w-[80rem] 2xl:w-[94rem]  2xl:ml-0 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-5 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
-      <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
+      <h1 className="text-black lg:ml-[3rem] text-[26px] lg:text-[2rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
+      <p className="text-gray  lg:p-0 text-base lg:text-xl font-bricolage w-full lg:w-full">
       Leverage a local agent's expertise with access to millions of listings, guiding you through every step.
 </p>
 
       
 
 </div>
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 place-items-center">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
         {agents.map((agent, index) => (
           <ProfileCard key={index} {...agent} />
         ))}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import TestimonialCarousel from "./components/layouts/testimonials";
 import FAQComponent from "./components/layouts/faq";
 import PropertyCard from "./components/common/property";
+import ArticlesSection from "./components/common/Article";
 
 
 export default function Home() {
@@ -398,129 +399,7 @@ Explore
 </div>
     </section> 
     {/* New-articles */}
-    <section className="   flex justify-center items-center  w-full  flex-col mt-[3rem] p-5 lg:p-0 font-bricolage ">
-    <div className="flex w-full   flex-col lg:flex-row md:flex-row   lg:gap-8  justify-around items-center  ">
-    <span className="flex flex-col  font-bricolage 2xl:ml-0 lg:ml-7 gap-2">
-
-
-      <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-2 ">New Highlights & Articles</h1>
-      <p className="text-gray  2xl:text-[20px] lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-[30em]">
-      Our top stories and features keeps you updated on industry trends, current events</p>
-
-      
-      </span>
-      <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
-      <p className="text-gray 2xl:text-[20px]  lg:p-0 text-base lg:text-xl font-bricolage 2xl:w-[30em]  lg:w-[24em]">
-      Stay Informed with our latest news and Insights where you’ find breaking stories</p>
-<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  text-gray">
- <p className="text-gray" style={{color:"#8F8F8F"}}> Explore </p>
-</Button>
-</span>
-   
-</div>
-    <div className="flex justify-center w-full mt-[4%] lg:flex-1 lg:flex-row flex-col  items-center lg:gap-10 2xl:gap-16 ">
-    <div className="relative flex flex-col h-[650px]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
-  {/* Image Section */}
-  <Image
-    alt="house image"
-    width={400}
-    height={300}
-    loading="lazy"
-    src={'/news-1.png'}
-    className="rounded-2xl 2xl:h-[30rem]  w-full object-cover h-[400px]"
-  />
-
-  {/* Content Section */}
-  <div className="flex flex-col my-4  relative">
-    {/* Title */}
-    <div className="flex gap-3">
-    <h1 className="text-4xl font-[600] text-primary absolute`">01</h1>
-    <h1 className="text-black  text-3xl  font-[500] pt-[10px]">Understanding the Real Estate Market Trends</h1>
-    </div>
-    {/* Price and Area */}
-    <div className="flex flex-wrap flex-end gap-3 mt-4">
-      <div className="flex ">
-      <span className="flex  flex-col text-gray lg:text-[18px] text-sm  gap-2 font-meduim">
-   <h4 className="text-gray  lg:text-[18px]  text-sm font-meduim">July </h4><h4 className="text-[18px]">2024</h4>     </span>  
-        <h2 className="ml-2 mt-[17px] text-gray  font-meduim lg:text-[18px] ">Perfect property</h2>
-      </div>
-   
-    </div>
-
-    {/* Description */}
-    <p className="text-gray text-[1rem]  2xl:text-xl font-bricolage fomt-[300] w-full leading-5 mt-4">
-    Staying ahead the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buyin, selling, or investing. 
-    </p>
-  </div>
-
-  {/* Footer Section */}
-  {/* <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
-    <div className="flex items-center justify-center px-4 py-2 text-sm font-light text-[#1E1E1E] bg-[#D8F0F1] rounded-full">
-      Luxury Oasis
-    </div>
-    <Image
-      alt="export icon"
-      width={40}
-      height={40}
-      src={'/export.png'}
-      className="rounded-full"
-    />
-  </div> */}
-</div>
-<div className="relative flex flex-col h-[650px]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
-  {/* Image Section */}
-  <Image
-    alt="house image"
-    width={400}
-    height={300}
-    loading="lazy"
-    src={'/news-2.png'}
-    className="rounded-2xl 2xl:h-[30rem]  w-full object-cover h-[400px]"
-  />
-
-  {/* Content Section */}
-  <div className="flex flex-col my-4  relative">
-    {/* Title */}
-    <div className="flex gap-3">
-    <h1 className="text-4xl font-[600] text-primary absolute`">01</h1>
-    <h1 className="text-black  text-3xl  font-[500] pt-[10px]">Analyzing Modern Real Estate Market Movement</h1>
-    </div>
-    {/* Price and Area */}
-    <div className="flex flex-wrap flex-end gap-3 mt-4">
-      <div className="flex ">
-      <span className="flex  flex-col text-gray lg:text-[18px] text-sm  gap-2 font-meduim">
-   <h4 className="text-gray  lg:text-[18px]  text-sm font-meduim">July </h4><h4 className="text-[18px]">2024</h4>     </span>  
-        <h2 className="ml-2 mt-[17px] text-gray  font-meduim lg:text-[18px] ">Perfect property</h2>
-      </div>
-   
-    </div>
-
-    {/* Description */}
-    <p className="text-gray text-[1rem]  2xl:text-xl font-bricolage fomt-[300] w-full leading-5 mt-4">
-    Staying ahead the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buyin, selling, or investing. 
-    </p>
-  </div>
-
-  {/* Footer Section */}
-  {/* <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
-    <div className="flex items-center justify-center px-4 py-2 text-sm font-light text-[#1E1E1E] bg-[#D8F0F1] rounded-full">
-      Luxury Oasis
-    </div>
-    <Image
-      alt="export icon"
-      width={40}
-      height={40}
-      src={'/export.png'}
-      className="rounded-full"
-    />
-  </div> */}
-</div>
-
-</div>
-
-
-
-    </section>  
+    <ArticlesSection  /> 
     
       </>
   );

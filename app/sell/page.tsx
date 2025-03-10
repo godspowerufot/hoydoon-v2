@@ -32,7 +32,7 @@ export default function Home() {
   <div className="flex h-[3.5em] py-4 font-bricolage items-center m-2 bg-white rounded-full w-10/12 md:w-4/5 lg:w-[41em]">
     
     {/* Transparent Full-Width Input */}
-    <Input 
+    <input
       type="text" 
       className="flex-1 bg-transparent placeholder:text-[1.3rem] text-black placeholder-gray-500 border-none outline-none pl-4 w-[36.3rem]" 
       placeholder="Enter your home address" 
