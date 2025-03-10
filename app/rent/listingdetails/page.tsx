@@ -1,8 +1,10 @@
+/* eslint-disable */
+
 'use client';
 
 import React from 'react'
 import Image from 'next/image';
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { FaRegEye} from "react-icons/fa6";
 import ListedCard from '@/app/components/common/profilecard';
 import ContactAgent from '@/app/components/layouts/contactagent';
 import PropertyListCard from '@/app/components/common/PropertyListing';

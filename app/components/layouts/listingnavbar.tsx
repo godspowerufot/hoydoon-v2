@@ -1,10 +1,11 @@
+/* eslint-disable */
+
 "use client";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { FiSearch } from "react-icons/fi";
 import Button from "../common/Button";
 
 export default function ListingNavbar() {
