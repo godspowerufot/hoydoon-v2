@@ -15,7 +15,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
 
   return (
     <div
-      className={`flex flex-col h-[43rem] lg:w-[24rem] 2xl:w-[31rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
+      className={`flex flex-col h-[40rem] lg:w-[24rem] 2xl:w-[31rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
       group transition-all duration-500 ${isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : "border-none"}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -67,7 +67,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
       {/* Base Details (Always Visible) */}
       <div
         className={`mt-2 text-black transition-opacity duration-500 ${
-          isHovered ? "opacity-0" : "opacity-100"
+          isHovered ? "opacity-0 hidden" : " block opacity-100"
         }`}
       >
         <span className="flex gap-3">
@@ -77,12 +77,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
         <h4 className="text-gray font-light">{area} Area from 190 - 245 m²</h4>
       </div>
 
-      {/* Bottom Border */}
-      <div
-        className={`absolute bottom-0 left-0 w-full transition-all duration-500 ${
-          isHovered ? "border-b-[2px] border-gray" : "border-b-0"
-        }`}
-      />
+     
     </div>
   );
 };

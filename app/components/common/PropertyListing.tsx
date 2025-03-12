@@ -17,7 +17,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
   return (
     
     <div
-      className="flex flex-col h-fit lg:w-[26rem] 2xl:w-[31rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden p-4 rounded-lg relative 
+      className="flex flex-col h-fit lg:w-[26rem] 2xl:w-[31rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden pt-4  px-4 rounded-xl relative 
       group transition-all duration-500"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -25,7 +25,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
       {/* Image Container */}
       <div
         className={`overflow-hidden rounded-lg w-full transition-all duration-500 ${
-          isHovered ? "h-[350px] " : "h-[450px] lg:h-[500px] 2xl:h-[550px] "
+          isHovered ? "h-[300px] " : "h-[400px] lg:h-[400px] 2xl:h-[550px] "
         }`}
       >
         <Link href="/rent/listingdetails">
