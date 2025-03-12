@@ -3,44 +3,27 @@ name: Generate a build and push to another branch
 on:
   push:
     branches:
-      - build # The branch that triggers this workflow
+      - build # The branch name your are commit the new changes
 
 jobs:
   build:
     runs-on: ubuntu-latest
     name: Build and Push
     steps:
-      - name: Checkout Repository
+      - name: git-checkout
         uses: actions/checkout@v3
 
-      - name: Install Dependencies
+      - name: Install all dependencies
         run: npm install
 
-      - name: Build Project
-        run: npm run build # Adjust this if your build command is different
+      - name: Build
+        run: npm run build # The build command of your project
 
-      - name: Push Build to Another Branch
-        run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-          
-          # Fetch latest changes from the build branch
-          git fetch origin build || git checkout -b build
-
-          # Switch to the build branch
-          git checkout build
-
-          # Remove old files
-          rm -rf *
-
-          # Copy new build files
-          cp -r .next/* . # Adjust this if your build output is different
-
-          # Stage changes and commit
-          git add .
-          git commit -m "Automated Build: $(date)" || echo "No changes to commit"
-
-          # Push changes
-          git push origin build --force
+      - name: Push
+        uses: s0/git-publish-subdir-action@develop
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: self
+          BRANCH: build # The branch name where you want to push the assets
+          FOLDER: .next # The directory where your assets are generated
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          MESSAGE: "Build: ({sha}) {msg}" # The commit message
