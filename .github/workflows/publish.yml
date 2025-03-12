@@ -3,27 +3,44 @@ name: Generate a build and push to another branch
 on:
   push:
     branches:
-      - build # The branch name your are commit the new changes
+      - build # The branch that triggers this workflow
 
 jobs:
   build:
     runs-on: ubuntu-latest
     name: Build and Push
     steps:
-      - name: git-checkout
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Install all dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build # The build command of your project
+      - name: Build Project
+        run: npm run build # Adjust this if your build command is different
 
-      - name: Push
-        uses: s0/git-publish-subdir-action@develop
+      - name: Push Build to Another Branch
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          
+          # Fetch latest changes from the build branch
+          git fetch origin build || git checkout -b build
+
+          # Switch to the build branch
+          git checkout build
+
+          # Remove old files
+          rm -rf *
+
+          # Copy new build files
+          cp -r .next/* . # Adjust this if your build output is different
+
+          # Stage changes and commit
+          git add .
+          git commit -m "Automated Build: $(date)" || echo "No changes to commit"
+
+          # Push changes
+          git push origin build --force
         env:
-          REPO: self
-          BRANCH: build # The branch name where you want to push the assets
-          FOLDER: .next # The directory where your assets are generated
-          GITHUB_TOKEN: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDJk9icuacdA40UbcoST8iA0FcTHctQwXU5O1S7x64nhFwEZ/F0VfiG29V7P0PZwy3lNFMl8QeVMzuVl+3kL8W41m1WltOZjbapkspE+sRxsdOkvstlePLHGG/AubMbuS3tZvaNMG020d9uw+xV7vgo8Cv7fGhnehYUoizopbTkN3Z46S8AFx+7KFkwJyl8VaQjA1NQbWs119TGG924frTzVx70RUrCEZs7WE50v9BDaDkHjwyMRMLyyRh1CJqauh1YvFFgvH8EyrIpR7PCjiQbNTG9ly9KPFCLLII5bO1i8KVXQ+cKtXpRRtiJqhoDRig61/si7BxFvl3SZoH20SSxJGQD71d5yz1S+h1oA8alCOKF6f/An1dtKYJiB+6qjU5djoZ2GE4jwAGErqO5adOxrwmom1rdP/9LrNbyWjhgviIwILZfXBLCKjdqeKNr/LiWBicOi0BWNnMcw0Dm6FgFlR6DIhb/6v1vuJUCAok0NMF3A1G3Rp4+MgB6zsyz6bM= u460832090@uk-fast-web1860.main-hosting.eu # GitHub will automatically add this - you don't need to bother getting a token
-          MESSAGE: "Build: ({sha}) {msg}" # The commit message
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
