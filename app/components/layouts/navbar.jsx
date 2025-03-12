@@ -70,7 +70,7 @@ export default function Navbar() {
                     <div
                       className={`px-4 py-2 lg:text-base rounded-full ${
                         pathname === path
-                        ? "bg-primary text-white font-semibold"
+                        ? "bg-white text-primary font-semibold"
                         : scrolled
                         ? "text-black"
                         : "text-white"
