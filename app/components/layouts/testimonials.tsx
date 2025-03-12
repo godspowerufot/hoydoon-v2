@@ -5,7 +5,11 @@ import { testimonials } from "@/constants";
 import Image from "next/image";
 const TestimonialCarousel: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const totalTestimonials = testimonials.length;
 
+  // Get previous, current, and next indexes cyclically
+  const prevIndex = (currentIndex - 1 + totalTestimonials) % totalTestimonials;
+  const nextIndex = (currentIndex + 1) % totalTestimonials;
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
   };
@@ -15,6 +19,12 @@ const TestimonialCarousel: React.FC = () => {
       (prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length
     );
   };
+  const visibleTestimonials = [
+    testimonials[prevIndex], // Left avatar (index 0)
+    testimonials[currentIndex], // Center avatar (index 1)
+    testimonials[nextIndex], // Right avatar (index 2)
+  ];
+
 
   return (
     <div className="lg:w-8/10 w-full mx-auto px-4 py-8 mt-5">
@@ -37,6 +47,7 @@ const TestimonialCarousel: React.FC = () => {
         <div className="absolute inset-0 flex justify-between items-center px-4 w-full ">
           <div
             onClick={handlePrev}
+            className="absolute left-[8rem]"
           >
                 <Image
             height={40}
@@ -45,7 +56,8 @@ const TestimonialCarousel: React.FC = () => {
             src="/prev.png"/>
           </div>
           <div
-           
+                       className="absolute right-[10rem]"
+
             onClick={handleNext}
           >
     <Image
@@ -57,13 +69,15 @@ const TestimonialCarousel: React.FC = () => {
       </div> 
 
       {/* Avatars Section */}
-      <div className="flex justify-center gap-[19rem] mt-8 w-full">
-        {testimonials.map((testimonial, index) => (
+      <div className="relative w-full flex justify-center mt-8">
+  
+      <div className="flex justify-center gap-[15rem] mt-8 w-full">
+      {visibleTestimonials.map((testimonial, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`flex  items-center space-y-2 ${
-              index === currentIndex ? "opacity-100" : "hidden lg:flex lg:opacity-50"
+              index === 1 ? " justify-center opacity-100" : "hidden lg:flex lg:opacity-50"
             } transition-opacity duration-300`}
           >
             <Image
@@ -73,7 +87,7 @@ const TestimonialCarousel: React.FC = () => {
               alt={testimonial.name}
               className={`w-16 h-16 rounded-full  border-2 ${
                 index === currentIndex
-                  ? "border-primary"
+                  ?  "border-primary"
                   : "border-gray-300"
               }`}
             />
@@ -87,6 +101,7 @@ const TestimonialCarousel: React.FC = () => {
             </div>
           </button>
         ))}
+      </div>
       </div>
     </div>
   );

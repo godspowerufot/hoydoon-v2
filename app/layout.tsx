@@ -7,6 +7,9 @@ import AnimationWrapper from "@/utils/lib/_app"
 export const metadata: Metadata = {
   title: "Hoydoon",
   description: "Property Listing made simple",
+  icons: {
+    icon: "/Logo.ico" // Path to your favicon file
+  },
 };
 
 export default function RootLayout({

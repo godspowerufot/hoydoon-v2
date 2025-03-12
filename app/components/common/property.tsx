@@ -15,15 +15,15 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
 
   return (
     <div
-      className="flex flex-col h-fit lg:w-[26rem] 2xl:w-[31rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden p-4 rounded-lg relative 
-      group transition-all duration-500"
+      className={`flex flex-col h-[43rem] lg:w-[24rem] 2xl:w-[31rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
+      group transition-all duration-500 ${isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : "border-none"}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image Container */}
       <div
         className={`overflow-hidden rounded-lg w-full transition-all duration-500 ${
-          isHovered ? "h-[350px] " : "h-[450px] lg:h-[500px] 2xl:h-[550px] "
+          isHovered ? "h-[350px]" : "h-[450px] lg:h-[500px] 2xl:h-[550px]"
         }`}
       >
         <Image
@@ -32,16 +32,15 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
           height={500}
           quality={100}
           src={imageSrc}
-          className={`w-full h-full object-cover rounded-lg transition-transform duration-500 ${
-            isHovered ? "scale-95" : "scale-100"
-          }`}
+          className={`w-full h-full object-cover rounded-b-[1.6rem] transition-transform duration-500`
+         }
         />
       </div>
 
       {/* Details Section */}
-      <span
-        className={`mt-8 px-5 transition-all duration-500 w-full text-black flex-col ${
-          isHovered ? "opacity-100 block translate-y-0" : "opacity-0 hidden translate-y-5"
+      <div
+        className={`mt-8 px-5 transition-opacity duration-500 transform ${
+          isHovered ? "opacity-100 translate-y-0" : "h-0 opacity-0 translate-y-5"
         }`}
       >
         <h1 className="text-black text-base lg:text-[25px] font-bold">
@@ -60,15 +59,15 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
             <div className="text-base flex justify-center font-bricolage items-center rounded-full font-light h-[41px] lg:w-[180px] text-[#1E1E1E] bg-[#D8F0F1]">
               Luxury Oasis
             </div>
-            <Image alt="image1" width={50} height={50} src={"/export.png"} className="rounded-full" />
+            <Image alt="export icon" width={50} height={50} src={"/export.png"} className="rounded-full" />
           </div>
         </span>
-      </span>
+      </div>
 
       {/* Base Details (Always Visible) */}
       <div
-        className={`mt-4 text-black transition-all duration-500 ${
-          isHovered ? "opacity-0 hidden" : "opacity-100 block"
+        className={`mt-2 text-black transition-opacity duration-500 ${
+          isHovered ? "opacity-0" : "opacity-100"
         }`}
       >
         <span className="flex gap-3">
@@ -76,9 +75,14 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
           <h2 className="font-bold">${price}</h2>
         </span>
         <h4 className="text-gray font-light">{area} Area from 190 - 245 m²</h4>
-
-        
       </div>
+
+      {/* Bottom Border */}
+      <div
+        className={`absolute bottom-0 left-0 w-full transition-all duration-500 ${
+          isHovered ? "border-b-[2px] border-gray" : "border-b-0"
+        }`}
+      />
     </div>
   );
 };

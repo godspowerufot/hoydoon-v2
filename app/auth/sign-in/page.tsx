@@ -63,7 +63,7 @@ label="Password"
 type='password'
 placeholder='password *'
  />
- <p className='text-[0.7em] text-gray -mt-4  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
+ <p className='text-[0.7em] text-gray -mt-3  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
 <div className= 'flex items-center  justify-end w-full gap-[7rem]'>
 
 

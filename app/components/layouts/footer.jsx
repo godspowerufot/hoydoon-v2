@@ -18,7 +18,7 @@ const Appfooter = () => {
           {/* Subscribe Section */}
           <div>
             <div className="flex flex-col 2xl:ml-5 items-start w-[50em]">
-              <h1 className="text-white font-bricolage lg:ml-2 text-xl lg:text-3xl 2xl:text-4xl font-[600] w-full">
+              <h1 className="text-white font-bricolage lg:ml-2 text-xl lg:text-3xl 2xl:text-4xl font-[600] w-[25rem]">
                 Subscribe to our Newsletter
               </h1>
               <div className="flex items-center py-2 lg:w-[460px] w-full h-[60px] rounded-[50px] border border-[#F9FAFB] pl-3 pr-1 mt-4">
@@ -41,7 +41,7 @@ const Appfooter = () => {
             {/* Explore Links */}
             <div>
               <p className="font-medium text-[#F9FAFB]">Explore</p>
-              <ul className="mt-[0.8em] lg:mt-6 space-y-2 text-sm">
+              <ul className="mt-[0.8em] lg:mt-[4px] space-y-2 text-sm">
                 <li>
                   <a href="#" className="transition hover:opacity-75">
                     Home
@@ -68,7 +68,7 @@ const Appfooter = () => {
             {/* Social Links */}
             <div>
               <p className="font-medium text-[#F9FAFB]">Social</p>
-              <ul className="lg:mt-6  mt-1 space-y-2 text-sm">
+              <ul className="lg:mt-[4px]  mt-1 space-y-2 text-sm">
                 <li>
                   <a href="#" className="transition hover:opacity-75">
                     LinkedIn
@@ -94,7 +94,7 @@ const Appfooter = () => {
  {/* Location */}
  <div>
               <p className="font-medium text-[#F9FAFB]">Location</p>
-              <ul className="mt-1 lg:mt-6 space-y-2 text-sm">
+              <ul className="mt-1 lg:mt-[4px] space-y-2 text-sm">
                 <li>
                   <a href="#" className="transition hover:opacity-75">
                     123, Yorkshire Lane, New York, USA
@@ -115,7 +115,7 @@ const Appfooter = () => {
             {/* Legal Links */}
             <div className='hidden lg:block'>
               <p className="font-medium text-[#F9FAFB]">Legal</p>
-              <ul className=" mt-1 lg:mt-6 space-y-2 text-sm">
+              <ul className=" mt-1 lg:mt-[4px] space-y-2 text-sm">
                 <li>
                   <a href="#" className="transition hover:opacity-75">
                     Terms of use
@@ -132,7 +132,7 @@ const Appfooter = () => {
            
             <div>
               <p className="font-medium text-[#F9FAFB]">Mobile App</p>
-              <ul className="mt-1 lg:mt-6 space-y-2 text-sm">
+              <ul className="mt-1 lg:mt-[4px] space-y-2 text-sm">
                 <li>
                 <Image
         src="/app1.svg" // Use a high-quality image

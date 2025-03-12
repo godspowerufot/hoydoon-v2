@@ -37,11 +37,11 @@ const FAQComponent: React.FC = () => {
   };
 
   return (
-    <section className="bg-white max-md:w-full lg:w-[30rem]  2xl:w-[35rem]  2xl:h-[32rem] h-[29em] rounded-[20px] shadow-md p-6  mx-auto">
+    <section className="bg-white max-md:w-full lg:w-[30rem]   2xl:w-[35rem]  2xl:h-[32rem] h-[29em] rounded-[20px] shadow-md p-6  mx-auto">
       <h2 className="text-3xl font-[500] text-gray-900 mb-4">
         Find Your Answers Here
       </h2>
-      <div className="space-y-4 ">
+      <div className="space-y-4  ">
         {faqs.map((faq, index) => (
           <div key={index}>
             {/* Question Button */}
@@ -75,7 +75,7 @@ const FAQComponent: React.FC = () => {
             </button>
 
             
-            <div className='w-full  2xl:mt-[5rem] h-[2px] bg-[#D9D9D9] '/>
+            <div className='w-full   h-[2px] bg-[#D9D9D9] '/>
 
             {/* Answer Section */}
             {openIndex === index && (

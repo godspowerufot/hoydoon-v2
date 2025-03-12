@@ -139,13 +139,13 @@ export default function Home() {
         <div className="flex  gap-[4%] flex-col w-[90%] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
 <h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Find your ideal property with simple tools and guidance.</h1>
-<p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[2em] font-bricolage w-9/10 2xl:text-[20px] 2xl:w-[70%]">
+<p className="text-gray text-base lg:text-xl mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage w-9/10 2xl:text-[20px] 2xl:w-[70%]">
 Enjoy fast and easy access to a variety of properties that suit your needs. Use our smart filters to find the perfect places within your budget and preferences. We’ve done the hard work for you, so no need to stress about the search.
 </p>
 
 <Button className="text-base font-light mt-5 ">
   <Link href="/explore">
-  explore
+  Explore
   </Link>
 </Button>
           </span>
@@ -165,7 +165,7 @@ Enjoy fast and easy access to a variety of properties that suit your needs. Use 
         <div className="flex  w-[92%] flex-col lg:flex-row  items-center justify-around ">
           <span className="flex   lg:pl-5 flex-col w-full lg:w-6/10 ">
 <h1 className="text-black  text-[26px] lg:text-5xl font-[600]">Get the Hoydoon App</h1>
-<p className="text-gray text-base lg:text-xl   font-bricolage w-8/10">
+<p className="text-gray text-base lg:text-xl mt-4 font-[300]  font-bricolage w-8/10">
 Download our highly-rated real estate app for iOS or Android to receive instant alerts when your dream home becomes available.</p>
 
 <Button className="text-base font-light mt-5 ">
@@ -191,7 +191,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
       <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
       <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-2 2xl:ml-6  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Featured Properties for Rent</h1>
+      <h1 className="text-black lg:ml-4 2xl:ml-5  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Featured Properties for Rent</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestylecrafted to fit your taste and needs.
 </p>
@@ -199,7 +199,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
       
 
 </div>
-<div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
+<div className=" flex mt-[1em] h-fit   min-w-fit items-center lg:flex-row    justify-center  mb-2">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
     <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
@@ -223,7 +223,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
 <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex  w-[94%] 2xl:w-[89%] flex-col items-center justify-center">
       <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[10%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-5 text-[26px] lg:text-[2.2rem] font-[600]   w-full ">Explore Luxurious Living Spaces</h1>
+      <h1 className="text-black lg:ml-8 text-[26px] lg:text-[2.2rem] font-[600]   w-full ">Explore Luxurious Living Spaces</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestyl ecrafted to fit your taste and needs.
 </p>
@@ -241,10 +241,10 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
   className="mt-[1rem] relative p-8 2xl:w-[90rem] 2xl:h-[47rem] w-[75rem] h-[40rem] rounded-2xl"
 >
 
-
-  <div className="  bg-primarytransparent p-8 rounded-2xl 2xl:mt-[20rem] lg:mt-[14rem] h-[22rem]  2xl:w-[66rem] w-[60rem]">
-  <div className=" bg-white p-8 rounded-2xl   h-[18rem]  2xl:w-[61rem] w-[56rem] ">
-          <h1 className="text-black text-base  lg:text-xl 2xl:text-[2rem] font-[600]">Laurel Canyon Nest</h1>
+  <div className="absolute inset-0 bg-black opacity-15 transition-opacity duration-500  rounded-2xl"/>
+  <div className=" lg:-ml-[0.7rem] 2xl:ml-[2rem]  z-111 absolute    bg-primarytransparent p-4 rounded-2xl 2xl:mt-[23rem] lg:mt-[17rem] h-fit   w-fit">
+  <div className=" bg-white p-8 rounded-2xl   h-[18rem]  2xl:w-[65rem] w-[56rem] ">
+          <h1 className="text-black text-base  lg:text-2xl 2xl:text-[2rem] font-[600]">Laurel Canyon Nest</h1>
           <p className="text-gray lg:text-[1rem] mb-[2rem] 2xl:text-[1.05rem]  2xl:w-[55rem] mt-3 text-[10px] ">
             A charming 3-bedroom home featuring a bright, open-concept living area designed for both comfort and connection. The spacious layout flows seamlessly from the kitchen to the dining and living spaces, making it perfect for gatherings. Step outside to a private backyard, ideal for relaxing, entertaining, or enjoying a bit of gardening. This home offers the perfect blend of functionality and tranquility for everyday living.
           </p>
@@ -373,7 +373,7 @@ Explore
 </span>
    
 </div>
-<div className="mt-[3rem]  ml-[5rem] justify-center items-center max-md:w-full w-full gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row ">
+<div className="mt-[3px]  ml-[5rem] justify-center items-center max-md:w-full w-full gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row ">
 <div className="z-20 relative max-md:w-full  lg:h-[50em]  lg:left-[50px] 2xl:left-[80px] lg:top-[10em]">
 <FAQComponent/>
 </div>

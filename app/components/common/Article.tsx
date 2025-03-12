@@ -26,7 +26,7 @@ const articles = [
 
 const ArticleCard = ({ article }:any) => {
   return (
-    <div className="relative flex flex-col h-[650px] lg:w-[36em] 2xl:w-[44em] font-bricolage rounded-lg shrink-0">
+    <div className="relative flex flex-col h-[650px] lg:w-[36em] 2xl:w-[44em] font-bricolage rounded-lg  shrink-0">
       <Image
         alt="Article image"
         width={400}
@@ -37,20 +37,20 @@ const ArticleCard = ({ article }:any) => {
       />
       <div className="flex flex-col my-4 relative">
         <div className="flex gap-3">
-          <h1 className="text-4xl font-[600] text-primary">{article.id}</h1>
-          <h1 className="text-black text-3xl font-[500] pt-[10px]">
+          <h1 className="text-4xl font-[600] text-primary ">0{article.id}</h1>
+          <h1 className="text-black text-2xl w-[30rem] ml-3  2xl:text-[2rem] 2xl:w-[50rem] font-[500] pt-[15px]">
             {article.title}
           </h1>
         </div>
         <div className="flex flex-wrap gap-3 mt-4">
           <div className="flex">
             <span className="flex flex-col text-gray lg:text-[18px] text-sm gap-2 font-medium">
-              <h4 className="text-gray lg:text-[18px] text-sm font-medium">
+              <h4 className="text-gray lg:text-[18px] text-sm font-[400]">
                 {article.date.split(" ")[0]}
               </h4>
               <h4 className="text-[18px]">{article.date.split(" ")[1]}</h4>
             </span>
-            <h2 className="ml-2 mt-[17px] text-gray font-medium lg:text-[18px]">
+            <h2 className="ml-4 mt-[24px] text-gray font-[400] lg:text-[18px]">
               {article.category}
             </h2>
           </div>
@@ -65,7 +65,7 @@ const ArticleCard = ({ article }:any) => {
 
 const ArticlesSection = () => {
   return (
-    <section className="flex justify-center items-center w-full flex-col mt-[3rem] p-5 lg:p-0 font-bricolage">
+    <section className="flex justify-center items-center w-full flex-col mt-[3rem]  -mb-7 p-5 lg:p-0 font-bricolage">
       <div className="flex w-full flex-col lg:flex-row md:flex-row lg:gap-8 justify-around items-center">
         <span className="flex flex-col font-bricolage 2xl:ml-0 lg:ml-7 gap-2">
           <h1 className="text-black lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-2">
@@ -86,7 +86,7 @@ const ArticlesSection = () => {
           </Button>
         </span>
       </div>
-      <div className="flex justify-center w-full mt-[4%] lg:flex-1 lg:flex-row flex-col items-center lg:gap-10 2xl:gap-16">
+      <div className="flex justify-center w-full mt-[4%] lg:flex-1 lg:flex-row flex-col items-center lg:gap-6 2xl:gap-10">
         {articles.map((article) => (
           <ArticleCard key={article.id} article={article} />
         ))}
