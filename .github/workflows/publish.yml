@@ -25,5 +25,5 @@ jobs:
           REPO: self
           BRANCH: build # The branch name where you want to push the assets
           FOLDER: .next # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          GITHUB_TOKEN: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDJk9icuacdA40UbcoST8iA0FcTHctQwXU5O1S7x64nhFwEZ/F0VfiG29V7P0PZwy3lNFMl8QeVMzuVl+3kL8W41m1WltOZjbapkspE+sRxsdOkvstlePLHGG/AubMbuS3tZvaNMG020d9uw+xV7vgo8Cv7fGhnehYUoizopbTkN3Z46S8AFx+7KFkwJyl8VaQjA1NQbWs119TGG924frTzVx70RUrCEZs7WE50v9BDaDkHjwyMRMLyyRh1CJqauh1YvFFgvH8EyrIpR7PCjiQbNTG9ly9KPFCLLII5bO1i8KVXQ+cKtXpRRtiJqhoDRig61/si7BxFvl3SZoH20SSxJGQD71d5yz1S+h1oA8alCOKF6f/An1dtKYJiB+6qjU5djoZ2GE4jwAGErqO5adOxrwmom1rdP/9LrNbyWjhgviIwILZfXBLCKjdqeKNr/LiWBicOi0BWNnMcw0Dm6FgFlR6DIhb/6v1vuJUCAok0NMF3A1G3Rp4+MgB6zsyz6bM= u460832090@uk-fast-web1860.main-hosting.eu # GitHub will automatically add this - you don't need to bother getting a token
           MESSAGE: "Build: ({sha}) {msg}" # The commit message
