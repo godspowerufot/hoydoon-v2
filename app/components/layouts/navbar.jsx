@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -10,7 +10,8 @@ import ListingNavbar from './listingnavbar';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-  
+  const [scrolled, setScrolled] = useState(false);
+
   const hideNavbar = pathname.startsWith("/rent/listing");
   const hideAuth = pathname.startsWith("/auth");
   const showListingNavbar = pathname.includes("/listing");
@@ -18,11 +19,24 @@ export default function Navbar() {
   if (showListingNavbar) {
     return <ListingNavbar />;
   }
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []); 
 
   return (
     <>
       {!hideNavbar && !hideAuth && (
-        <nav className="text-xl z-[999999] relative mt-3 w-full bg-white lg:bg-transparent font-bricolage text-white">
+        <nav className={`text-xl z-[999999]  font-bricolage fixed top-0 w-full  transition-all duration-300 ${scrolled ? "bg-white text-black shadow-md" : "bg-transparent text-white  mt-3 "} `}>
           <div className="flex-1 mx-auto flex w-full items-center justify-around p-2">
             
             {/* Logo */}
@@ -36,7 +50,7 @@ export default function Navbar() {
                   height={30}
                   src={'/Logo.svg'}
                 />
-                <h3 className="text-black lg:font-[600] lg:text-[1em] lg:text-white text-lg">
+                <h3 className=" lg:font-[600] lg:text-[1em] text-lg">
                   Hoydoon
                 </h3>
               </Link>
@@ -56,8 +70,12 @@ export default function Navbar() {
                     <div
                       className={`px-4 py-2 lg:text-base rounded-full ${
                         pathname === path
-                          ? "bg-white text-primary font-light"
-                          : "text-white "
+                        ? "bg-primary text-white font-semibold"
+                        : scrolled
+                        ? "text-black"
+                        : "text-white"
+                  
+                      
                       }`}
                     >
                       <Link href={path}>{name}</Link>
@@ -69,7 +87,7 @@ export default function Navbar() {
 
             {/* Desktop Action Buttons */}
             <div className="flex gap-2">
-              <Button className="bg-primarytransparent p-2 w-[92px] h-[32px] bg-transparent">
+              <Button className={` p-2 w-[92px] h-[32px]  ${scrolled ?  "bg-primary text-white" :"bg-transparent bg-primarytransparent text-black" }}`}>
                 <Link href="/auth/sign-in" className="text-base">
                   Login
                 </Link>
