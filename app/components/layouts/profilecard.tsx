@@ -1,6 +1,18 @@
 import Image from "next/image";
-export const ProfileCard = ({ image, name, estate, priceRange, sales }:any) => {
+import Link from "next/link";
+interface ProfileCardProps {
+  image: string;
+  name: string;
+  estate: string;
+  priceRange: string;
+  sales: number;
+}
+
+export const ProfileCard = ({ image, name, estate, priceRange, sales }: ProfileCardProps) => {
     return (
+
+
+      <Link href="/agent/agent-description">
       <div className="p-6 flex gap-5 h-[250px] justify-start bg-[#ffffff]  w-[36rem] 2xl:w-[43.8rem]">
         <Image
           alt={name}
@@ -23,5 +35,6 @@ export const ProfileCard = ({ image, name, estate, priceRange, sales }:any) => {
           </div>
         </div>
       </div>
+      </Link>
     );
   };

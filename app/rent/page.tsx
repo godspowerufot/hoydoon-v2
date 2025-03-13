@@ -3,7 +3,6 @@ import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
 import PropertyListCard from "../components/common/PropertyListing";
-import { ProfileCard } from '@/app/components/layouts/profilecard';
 
 export default function Home() {
   return (

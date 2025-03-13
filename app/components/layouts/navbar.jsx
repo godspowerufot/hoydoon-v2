@@ -13,11 +13,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const hideNavbar = pathname.startsWith("/rent/listing");
   const hideAuth = pathname.startsWith("/auth");
-  const showListingNavbar = pathname.includes("/listing");
-  const showagentNavbar = pathname.includes("/agent/all-agent");
-
-
-  
+  const showNavbar = ["/listing", "/agent/all-agent", "/agent/agent-description", "/sell/sell-home"].some(route =>
+    pathname.includes(route)
+  );
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -30,7 +28,7 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []); 
-  if (showListingNavbar||showagentNavbar) {
+  if (showNavbar) {
     return <ListingNavbar />;
   }
   return (

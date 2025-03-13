@@ -102,10 +102,10 @@ export default function Home() {
           pricing, services, and ratings to find the one that fits your needs perfectly.
         </p>
 
-
+<Link href={"/sell/sell-home"}>
         <Button className='w-full 2xl:mt-[3rem] mt-9 text-base 2xl:text-xl h-[4rem] p-3'>
  Get Started
-</Button>
+</Button></Link>
       </div>
     </div>
 

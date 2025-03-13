@@ -100,7 +100,7 @@ export default function Home() {
 </div>
 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
         {agents.map((agent, index) => (
-          <ProfileCard key={index} {...agent} />
+          <ProfileCard key={index} {...agent} sales={Number(agent.sales)} />
         ))}
         <Link href={"/agent/all-agent"}>
 

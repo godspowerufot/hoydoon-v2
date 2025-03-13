@@ -106,8 +106,8 @@ const Appfooter = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="transition hover:opacity-75">
-                    +234 813 2254
+                  <a href="/help-center" className="transition hover:opacity-75">
+                 help center
                   </a>
                 </li>
               </ul>

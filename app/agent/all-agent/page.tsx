@@ -97,7 +97,7 @@ const page = () => {
     <div className='mt-8  2xl:w-[1520px]  '> <Breadcrumb/>
   <div className="lg:ml-[5rem] 2xl:ml-[2rem] grid w-[88%] 2xl:w-[95%]  grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
         {agents.map((agent, index) => (
-          <ProfileCard key={index} {...agent} />
+          <ProfileCard key={index} {...agent} sales={Number(agent.sales)} />
         ))}
         <Link href={"/agent/all-agent"}>
 
