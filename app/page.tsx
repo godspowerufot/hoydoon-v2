@@ -19,9 +19,9 @@ export default function Home() {
   ></div>
 
   {/* Content Section */}
-  <div className="flex flex-col items-center  mt-[6rem]  relative gap-4 z-10 h-full px-4">
+  <div className="flex flex-col items-center relative -z-[1]  mt-[6rem]   gap-4 h-full px-4">
     {/* Main Heading */}
-    <h1 className="text-white text-center font-bricolage font-semibold leading-tight text-[clamp(4em,4vw,4em)] w-[60%] max-w-[700px] 2xl:max-w-[700px]">
+    <h1 className="text-white text-center  font-bricolage font-semibold leading-tight text-[clamp(4em,4vw,4em)] w-[60%] max-w-[700px] 2xl:max-w-[700px]">
       Where Every House Feels Like Home
     </h1>
 
@@ -68,6 +68,8 @@ export default function Home() {
       <span className="text-sm font-semibold text-black">Number of Guests</span>
       <input
         type="number"
+        max={100}
+        min={0}
         placeholder="Add number"
         className="text-sm text-gray outline-none bg-transparent"
       />
@@ -191,7 +193,7 @@ Download our highly-rated real estate app for iOS or Android to receive instant 
       <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
       <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-4 2xl:ml-5  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Featured Properties for Rent</h1>
+      <h1 className="text-black lg:ml-[1rem] 2xl:ml-5  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Featured Properties for Rent</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
       Discover a home where every detail enhances your lifestylecrafted to fit your taste and needs.
 </p>
@@ -374,7 +376,7 @@ Explore
    
 </div>
 <div className="mt-[3px]  ml-[5rem] justify-center items-center max-md:w-full w-full gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row ">
-<div className="z-20 relative max-md:w-full  lg:h-[50em]  lg:left-[50px] 2xl:left-[80px] lg:top-[10em]">
+<div className="z-[4] relative max-md:w-full  lg:h-[50em]  lg:left-[50px] 2xl:left-[80px] lg:top-[10em]">
 <FAQComponent/>
 </div>
 <div className="relative lg:-ml-[10em] justify-center items-center  flex w-[255px] lg:w-auto">
@@ -386,7 +388,7 @@ Explore
         loading="lazy"
         height={500}
         src={'/q1.png'}
-        className="z-10  lg:w-[30rem] 2xl:w-[600px] rounded-[20px] relative top-0 left-[0.5rem] 2xl:left-[2rem]   object-cover h-5/10"
+        className="z-[3]  lg:w-[30rem] 2xl:w-[600px] rounded-[20px] relative top-0 left-[0.5rem] 2xl:left-[2rem]   object-cover h-5/10"
       /> <Image
       alt="image1"
       width={400}

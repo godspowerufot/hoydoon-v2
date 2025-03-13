@@ -39,42 +39,8 @@ html {
 body {
   color: black;
   background: #F4F4F4;
+ 
   font-family:'Bricolage Grotesque' Arial, Helvetica, sans-serif;
 }
-
-[data-animate], [data-lg], [data-mobile] {
-  opacity: 1; /* Ensure elements are visible by default */
-}
-
-
-/* General fix for small screens */
-@media screen and (max-width: 768px) {
-  html,body {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-
-  * {
-    max-width: 100%;
-  }
-
-  /* Ensure containers don’t cause overflow */
-  .container, .wrapper, .content {
-    width: 100%;
-  }
-
-  /* Fix navbar issues */
-  nav {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  body {
-    font-size: 14px;
-  }
-}
-
 
 

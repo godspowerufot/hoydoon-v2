@@ -15,15 +15,15 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
 
   return (
     <div
-      className={`flex flex-col h-[40rem] lg:w-[24rem] 2xl:w-[31rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
-      group transition-all duration-500 ${isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : "border-none"}`}
+      className={`flex flex-col h-[37rem] 2xl:h-[38rem] lg:w-[24rem] 2xl:w-[30rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
+      group transition-all duration-[1500ms] ${isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : "border-none"}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image Container */}
       <div
-        className={`overflow-hidden rounded-lg w-full transition-all duration-500 ${
-          isHovered ? "h-[350px]" : "h-[450px] lg:h-[500px] 2xl:h-[550px]"
+        className={`overflow-hidden rounded-lg w-full transition-all  duration-[1000ms] ${
+          isHovered ? "h-[320px]" : "h-[450px] lg:h-[500px] 2xl:h-[550px]"
         }`}
       >
         <Image
@@ -32,17 +32,18 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
           height={500}
           quality={100}
           src={imageSrc}
-          className={`w-full h-full object-cover rounded-b-[1.6rem] transition-transform duration-500`
+          className={`w-full h-full object-cover rounded-b-[1.6rem] transition-all duration-[2000ms] ease-in-out`
          }
         />
       </div>
 
       {/* Details Section */}
       <div
-        className={`mt-8 px-5 transition-opacity duration-500 transform ${
+        className={`mt-8 px-5   transition-all duration-[1500ms] ease-in-out transform ${
           isHovered ? "opacity-100 translate-y-0" : "h-0 opacity-0 translate-y-5"
         }`}
       >
+      
         <h1 className="text-black text-base lg:text-[25px] font-bold">
           Whispering Pines Estate
         </h1>

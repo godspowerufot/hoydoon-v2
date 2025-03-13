@@ -70,7 +70,7 @@ export default function Navbar() {
                     <div
                       className={`px-4 py-2 lg:text-base rounded-full ${
                         pathname === path
-                        ? "bg-white text-primary font-semibold"
+                        ? "bg-white text-primary font-light"
                         : scrolled
                         ? "text-black"
                         : "text-white"
@@ -87,8 +87,8 @@ export default function Navbar() {
 
             {/* Desktop Action Buttons */}
             <div className="flex gap-2">
-              <Button className={` p-2 w-[92px] h-[32px]  ${scrolled ?  "bg-primary text-white" :"bg-transparent bg-primarytransparent text-black" }}`}>
-                <Link href="/auth/sign-in" className="text-base">
+              <Button className={` p-2 w-[92px] h-[32px]  ${scrolled ?  "bg-white text-primary  border-primary border-[1px] border-solid" :"bg-transparent bg-primarytransparent text-black" }}`}>
+                <Link href="/auth/sign-in" className={`text-base  ${scrolled ? "text-primary" : "text-white"}`}>
                   Login
                 </Link>
               </Button>

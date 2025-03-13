@@ -11,7 +11,10 @@ const signup= () => {
 
   return (
     <>
- <div className='w-full h-screen justify-center items-center  flex  py-[1rem] 2xl:mt-[0.8rem]'>
+    <div className='flex items-center w-full justify-center'> 
+
+ 
+ <div className=' h-screen justify-center items-center  flex  py-[1rem] 2xl:mt-[0.8rem]'>
     <div className=' gap-[4rem]   flex flex-1 flex-col lg:flex-row'>
           <Image
               alt="authBanner"
@@ -56,12 +59,12 @@ const signup= () => {
 <Input
 label="Email Address"
 type='text'
-placeholder='Email address*'
+placeholder='please enter Email Address '
  />
 <Input
 label="Password"
 type='password'
-placeholder='password *'
+placeholder='please  enter password '
  />
  <p className='text-[0.7em] text-gray -mt-3  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
 <div className= 'flex items-center  justify-end w-full gap-[7rem]'>
@@ -128,7 +131,7 @@ placeholder='password *'
             </div>
     </div>
  </div>
-            </>
+ </div>     </>
     
   )
 }

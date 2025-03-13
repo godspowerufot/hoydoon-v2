@@ -5,6 +5,8 @@ import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
 import Input from "../components/common/inputs/input";
+import { ProfileCard } from '@/app/components/layouts/profilecard';
+
 import Link from "next/link";
 const agents = [
     { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
@@ -20,32 +22,7 @@ const agents = [
   
 export default function Home() {
 
-    const ProfileCard = ({ image, name, estate, priceRange, sales }:any) => {
-        return (
-          <div className="p-6 flex gap-5 h-[250px] justify-start bg-[#ffffff]  w-[36rem] 2xl:w-[43.8rem]">
-            <Image
-              alt={name}
-              src={image}
-              width={200}
-              height={200}
-              className="rounded-full aspect-square object-cover"
-            />
-            <div className="mt-[2em] font-bricolage ml-[0.3em]">
-              <h2 className="font-bricolage font-bold text-[1.3em] text-black">{name}</h2>
-              <p className="text-[#8F8F8F] text-[1em] font-[400] w-[200px]">{estate}</p>
-      
-              <div className="mt-4">
-                <p className="text-black text-[1em] font-[400] w-[280px]">
-                  <b>{priceRange}</b> <b className="text-[#8F8F8F] font-[400]">Price range</b>
-                </p>
-                <p className="text-black text-[1em] font-[400] w-[200px]">
-                  <b>{sales}</b> <b className="text-[#8F8F8F] font-[300]">Total sales</b>
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-      };
+  
       
   return (
     <>
@@ -134,8 +111,10 @@ export default function Home() {
           <ProfileCard key={index} {...agent} />
         ))}
       </div>
+<Link href={"/agent/all-agent"}>
 
-
+      <p className="text-[#09858D] 2xl:ml-[1rem]  ml-6  mt-5 text-2xl font-[500] ">See all 2500  rents estate agent  in lagos</p>
+      </Link>
    
       </section>
 

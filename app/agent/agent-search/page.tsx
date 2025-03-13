@@ -33,7 +33,7 @@ const highlights = [
   ];
 const Breadcrumb = () => {
     return (
-      <div className="flex  items-center justify-between gap-[0.2rem] pl-4 py-2 w-full  mt-[5rem]  bg-gray-100">
+      <div className="flex  items-center justify-between gap-[0.2rem] px-4 py-2  mt-[5rem] w-full  bg-gray-100">
         {/* Left Section: Back Arrow and Breadcrumb */}
         <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage text-gray-600">
           {/* Back Arrow */}
@@ -51,7 +51,7 @@ const Breadcrumb = () => {
         </div>
   
         {/* Right Section: Icons */}
-        <div className="flex  items-center gap-2">
+        <div className="flex ml-[33rem] items-center gap-2">
   <div className="p-2 border border-[#8F8F8F] rounded-md">
     <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
   </div>
@@ -77,7 +77,7 @@ const Breadcrumb = () => {
   
 const page = () => {
   return (
-    <div className='mt-8  2xl:w-[95rem] w-[90%]  ml-[5%] '> <Breadcrumb/>
+    <div className='mt-8  2xl:w-[1520px] '> <Breadcrumb/>
      <div className="grid grid-cols-5 gap-2 p-4">
       {/* Large Main Image */}
       <div className="col-span-2  row-span-2">
