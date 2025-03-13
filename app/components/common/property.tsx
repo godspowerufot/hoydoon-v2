@@ -16,14 +16,16 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
   return (
     <div
       className={`flex flex-col h-[37rem] 2xl:h-[38rem] lg:w-[24rem] 2xl:w-[30rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
-      group transition-all duration-[1500ms] ${isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : "border-none"}`}
+      group transition-all duration-[1500ms] ease-in-out ${
+        isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : "border-none"
+      }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image Container */}
+      {/* Image Container with smooth height transition */}
       <div
-        className={`overflow-hidden rounded-lg w-full transition-all  duration-[1000ms] ${
-          isHovered ? "h-[320px]" : "h-[450px] lg:h-[500px] 2xl:h-[550px]"
+        className={`overflow-hidden rounded-lg w-full transition-all duration-[1500ms] ease-in-out ${
+          isHovered ? "max-h-[350px]" : "max-h-[550px]"
         }`}
       >
         <Image
@@ -32,18 +34,16 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
           height={500}
           quality={100}
           src={imageSrc}
-          className={`w-full h-full object-cover rounded-b-[1.6rem] transition-all duration-[2000ms] ease-in-out`
-         }
+          className="w-full h-full object-cover rounded-b-[1.6rem] transition-all duration-[2000ms] ease-in-out"
         />
       </div>
 
       {/* Details Section */}
       <div
-        className={`mt-8 px-5   transition-all duration-[1500ms] ease-in-out transform ${
-          isHovered ? "opacity-100 translate-y-0" : "h-0 opacity-0 translate-y-5"
+        className={`mt-8 px-5 transition-all duration-[1500ms] ease-in-out ${
+          isHovered ? "opacity-100 translate-y-0 max-h-[300px]" : "h-0 opacity-0 translate-y-5 max-h-0"
         }`}
       >
-      
         <h1 className="text-black text-base lg:text-[25px] font-bold">
           Whispering Pines Estate
         </h1>
@@ -77,8 +77,6 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
         </span>
         <h4 className="text-gray font-light">{area} Area from 190 - 245 m²</h4>
       </div>
-
-     
     </div>
   );
 };

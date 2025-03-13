@@ -11,14 +11,12 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-
   const hideNavbar = pathname.startsWith("/rent/listing");
   const hideAuth = pathname.startsWith("/auth");
   const showListingNavbar = pathname.includes("/listing");
+  const showagentNavbar = pathname.includes("/agent/all-agent");
 
-  if (showListingNavbar) {
-    return <ListingNavbar />;
-  }
+
   
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +30,9 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []); 
-
+  if (showListingNavbar||showagentNavbar) {
+    return <ListingNavbar />;
+  }
   return (
     <>
       {!hideNavbar && !hideAuth && (

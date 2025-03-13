@@ -1,36 +1,14 @@
 /* eslint-disable */
-
 'use client';
-
 import React from 'react'
 import Image from 'next/image';
 import { FaRegEye} from "react-icons/fa6";
 import ListedCard from '@/app/components/common/profilecard';
 import ContactAgent from '@/app/components/layouts/contactagent';
 import PropertyListCard from '@/app/components/common/PropertyListing';
+import { highlights,images } from '@/constants';
 
 
-
-const images = [
-  '/afforable-1.png',
-  '/afforable-2.png',
-  '/house1.png',
-  '/house1.png',
-  '/house1.png',
-  '/house1.png',
-  '/house1.png',
-];
-
-const highlights = [
-    { icon: "/solar.png", text: "Solar power system" },
-    { icon: "/walkin.png", text: "Walk-in closet" },
-    { icon: "/garage.png", text: "Garage parking" },
-    { icon: "/balcony.png", text: "Balcony" },
-    { icon: "/patio.png", text: "Covered patio or porch" },
-    { icon: "/laundry.png", text: "Laundry" },
-    { icon: "/pet.png", text: "Pet allowed" },
-    { icon: "/heating.png", text: "Heating available" },
-  ];
 const Breadcrumb = () => {
     return (
       <div className="flex  items-center justify-between gap-[0.2rem] pl-4 py-2 w-full  mt-[5rem]  bg-gray-100">
@@ -51,7 +29,7 @@ const Breadcrumb = () => {
         </div>
   
         {/* Right Section: Icons */}
-        <div className="flex  items-center gap-2">
+        <div className="flex pl-[33rem] 2xl:pl-[50rem]  items-center gap-2">
   <div className="p-2 border border-[#8F8F8F] rounded-md">
     <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
   </div>
@@ -77,7 +55,8 @@ const Breadcrumb = () => {
   
 const page = () => {
   return (
-    <div className='mt-8  2xl:w-[95rem] w-[90%]  ml-[5%] '> <Breadcrumb/>
+    <div className='mt-8  2xl:w-[95rem] w-[90%]  ml-[2%] '>
+       <Breadcrumb/>
      <div className="grid grid-cols-5 gap-2 p-4">
       {/* Large Main Image */}
       <div className="col-span-2  row-span-2">

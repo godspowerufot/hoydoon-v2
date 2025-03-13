@@ -4,19 +4,11 @@
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
-import Input from "../components/common/inputs/input";
 import { ProfileCard } from '@/app/components/layouts/profilecard';
-
+import { agents } from "@/constants";
 import Link from "next/link";
-const agents = [
-    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
-    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
-    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
-    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
-    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
-    { image: "/ruka.jpg", name: "Ruka Oyefeso", estate: "Mapplewood Estate", priceRange: "$500k - $2.5M", sales: "20" },
+import Pagination from "../components/common/pagination";
 
-  ];
   
 
   
@@ -110,12 +102,12 @@ export default function Home() {
         {agents.map((agent, index) => (
           <ProfileCard key={index} {...agent} />
         ))}
-      </div>
-<Link href={"/agent/all-agent"}>
+        <Link href={"/agent/all-agent"}>
 
-      <p className="text-[#09858D] 2xl:ml-[1rem]  ml-6  mt-5 text-2xl font-[500] ">See all 2500  rents estate agent  in lagos</p>
-      </Link>
-   
+<p className="text-[#09858D] 2xl:-ml-[16rem]   -ml-[6rem] text-start   mt-5 text-2xl font-[500] ">See all 2500  rents estate agent  in lagos</p>
+</Link>
+      </div>
+
       </section>
 
 
@@ -138,7 +130,7 @@ Ready to sell your home? Let us help you maximize its value and make the process
               alt="image1"
               width={500} 
               quality={100}
-              className="2xl:w-[48rem] 2xl:h-[30rem]"// Reduced size of logo
+              className="2xl:w-[48rem] w-[45rem] 2xl:h-[30rem]"// Reduced size of logo
 
               height={400} // Reduced size of logo
               src={'/agent3.png'}
@@ -156,7 +148,7 @@ Ready to sell your home? Let us help you maximize its value and make the process
               width={500} 
               quality={100}
               height={400} 
-              className="2xl:w-[60rem] 2xl:h-[30rem]"// Reduced size of logo
+              className="2xl:w-[60rem]  w-[34rem] 2xl:h-[30rem]"// Reduced size of logo
               src={'/agent4.png'}
             />
 </span>

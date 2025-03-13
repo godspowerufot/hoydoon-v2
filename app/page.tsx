@@ -19,9 +19,9 @@ export default function Home() {
   ></div>
 
   {/* Content Section */}
-  <div className="flex flex-col items-center relative -z-[1]  mt-[6rem]   gap-4 h-full px-4">
+  <div className="flex flex-col items-center relative z-[1]  mt-[6rem]   gap-4 h-full px-4">
     {/* Main Heading */}
-    <h1 className="text-white text-center  font-bricolage font-semibold leading-tight text-[clamp(4em,4vw,4em)] w-[60%] max-w-[700px] 2xl:max-w-[700px]">
+    <h1 className="text-white text-center   relative  font-bricolage font-semibold leading-tight text-[clamp(4em,4vw,4em)] w-[60%] max-w-[700px] 2xl:max-w-[700px]">
       Where Every House Feels Like Home
     </h1>
 
