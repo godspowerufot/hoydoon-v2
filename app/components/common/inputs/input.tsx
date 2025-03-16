@@ -14,7 +14,7 @@ const Input: React.FC<InputProps> = ({ label, className,  ...rest }) => {
       {label && (
         <label
           htmlFor={rest.type}
-          className="block text-[1em] 2xl:text-[1.2em] font-normal font-bricolage leading-6 text-gray-700"
+          className="block text-[1em] mb-2 2xl:text-[1.2em] font-normal font-bricolage leading-6 text-gray-700"
         >
           {label}
         </label>

@@ -23,7 +23,7 @@ const signup= () => {
               height={400}
               quality={100} // Ensures maximum quality
               src={'/authBanner.png'} 
-              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[37rem] h-[39.5rem]  2xl:h-[48rem] 2xl:w-[50rem]'
+              className='hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[37rem] h-[39.5rem]  2xl:h-[48rem] 2xl:w-[50rem]'
               style={{ objectFit: 'cover' } }
             />
 

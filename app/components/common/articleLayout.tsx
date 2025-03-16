@@ -1,3 +1,5 @@
+// /* eslint-disable */
+
 "use client";
 
 import { useState } from "react";
@@ -71,7 +73,7 @@ const ArticleCard: React.FC<PropertyCardProps> = ({ imageSrc, altText }) => {
         <span className="flex flex-col text-black">
           <span className="font-medium flex gap-2 text-sm items-center ">             <Image alt="export icon" width={20} height={15} src={"/mage_file.png"} />
           General</span>
-          <h3 className="font-bold text-lg  mt-3 leading-tight w-[20rem]">What Does "Sold" Mean in Real Estate?</h3>
+          <h3 className="font-bold text-lg  mt-3 leading-tight w-[20rem]">What Does &quot;Sold&quot; Mean in Real Estate?</h3>
         </span>
         <span className="flex items-center gap-4  font-[400] text-sm mt-3">
           <span className="mr-2 flex gap-2">    <Image alt="export icon" width={20} height={15} src={"/time.png"} /> 1 min read</span>

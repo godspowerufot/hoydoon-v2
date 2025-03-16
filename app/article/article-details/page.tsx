@@ -54,18 +54,7 @@ const Breadcrumb = () => {
 };
 
 const page = () => {
-  const [activeTab, setActiveTab] = useState("all");
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
 
-  const tabs = [
-    { id: "all", label: "All listings" },
-    { id: "active", label: "Active listings" },
-    { id: "sold", label: "Sold with Ruka" },
-    { id: "bought", label: "Bought with Ruka" },
-  ];
 
   return (
     <div className="mt-2  2xl:w-[1520px] ">

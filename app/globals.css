@@ -39,7 +39,7 @@ html {
 body {
   color: black;
   background: #F4F4F4;
- 
+  overflow-x: hidden;
   font-family:'Bricolage Grotesque' Arial, Helvetica, sans-serif;
 }
 
