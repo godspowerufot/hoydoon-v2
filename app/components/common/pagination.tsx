@@ -35,7 +35,7 @@ const Pagination = ({ totalPages = 9 }) => {
             className={`px-2  py-2 text-center   font-bricolage  rounded-md text-gray-600 text-base ${
               currentPage === index + 1
                 ? "bg-[#F9FAFB]   w-[3rem] font-bold "
-                : "hover:text-black"
+                : "hover:text-black text-[#8F8F8F]"
             }`}
           >
             {index + 1}

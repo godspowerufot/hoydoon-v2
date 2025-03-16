@@ -22,7 +22,7 @@ const signup= () => {
               height={400}
               quality={100} // Ensures maximum quality
               src={'/signup.png'} 
-              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-2xl w-[37rem] h-[39.8rem]  2xl:h-[46rem] 2xl:w-[50rem]'
+              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-2xl w-[37rem] h-[39.8rem]  2xl:h-[49rem] 2xl:w-[50rem]'
               style={{ objectFit: 'cover' } }
             />
 
@@ -44,7 +44,7 @@ const signup= () => {
 
 
 
-            <span className=' 2xl:mt-01rem] flex justify-center flex-col font-bricolage items-center w-full '>
+            <span className=' 2xl:mt-[1rem] flex justify-center flex-col font-bricolage items-center w-full '>
             <div className='w-[80%] 2xl:mt-2 h-[1px] bg-[#D9D9D9] '/>
 
 <h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1rem]  2xl:text-4xl font-bricolage font-[600]">Create an Account</h1>
@@ -54,7 +54,7 @@ const signup= () => {
 
 
 
-<div className='mt-[1rem] flex flex-col gap-[1em] w-[80%] '>
+<div className='mt-[1rem] 2xl:mt-[2.3rem] flex flex-col gap-[1em] w-[80%] '>
 <Input
 label="Email Address"
 type='text'
@@ -63,9 +63,10 @@ placeholder='please enter Email Address '
 <Input
 label="Password"
 type='password'
+className='mt-1'
 placeholder=' please enter password *'
  />
- <p className='text-[0.7em] text-gray -mt-4  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
+ <p className='text-[0.7em] text-gray -mt-1 2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
 <div className= 'flex items-center  justify-end w-full gap-[7rem]'>
 
 
@@ -120,7 +121,7 @@ Sign Up
           </div>
           <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
 
-          <p className="text-black w-full text-end block  font-[500] -mt-[5px] text-base 2xl:text-xl">
+          <p className="text-black w-full text-end block  font-[500] -mt-[3px] text-base 2xl:text-xl">
           Already have an account?<Link href="/auth/sign-in" className="text-primary text-[1em]  2xl:text-xl font-bricolage">  Log in</Link>  </p>
 
 

@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = ({ label, className,  ...rest }) => {
           {label}
         </label>
       )}
-      <div className="mt-2 relative">
+      <div className=" relative">
         {rest.type === "password" && (
           <button
             type="button"

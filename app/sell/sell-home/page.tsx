@@ -4,11 +4,7 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image';
-import { FaRegEye} from "react-icons/fa6";
-import ListedCard from '@/app/components/common/profilecard';
-import ContactAgent from '@/app/components/layouts/contactagent';
-import PropertyListCard from '@/app/components/common/PropertyListing';
-import { agents, highlights, images } from '@/constants';
+import { agents } from '@/constants';
 import Input from '@/app/components/common/inputs/input';
 import Button from '@/app/components/common/Button';
 import { ProfileCard } from '@/app/components/layouts/profilecard';

@@ -22,7 +22,7 @@ export default function RootLayout({
     
     <html lang="en">
  
-    <body className="flex flex-col font-bricolage min-h-screen">
+    <body className="lg:flex flex-col  hidden font-bricolage min-h-screen">
       {/* Main content area */}
       
       <div className="absolute top-0 left-0 w-full z-10">

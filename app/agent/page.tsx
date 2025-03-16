@@ -7,7 +7,6 @@ import Button from "../components/common/Button";
 import { ProfileCard } from '@/app/components/layouts/profilecard';
 import { agents } from "@/constants";
 import Link from "next/link";
-import Pagination from "../components/common/pagination";
 
   
 

@@ -14,7 +14,7 @@ const signup= () => {
     <div className='flex items-center w-full justify-center'> 
 
  
- <div className=' h-screen justify-center items-center  flex  py-[1rem] 2xl:mt-[0.8rem]'>
+ <div className=' h-screen justify-center items-center  flex  py-[1rem] 2xl:mt-[0.6rem]'>
     <div className=' gap-[4rem]   flex flex-1 flex-col lg:flex-row'>
           <Image
               alt="authBanner"
@@ -23,7 +23,7 @@ const signup= () => {
               height={400}
               quality={100} // Ensures maximum quality
               src={'/authBanner.png'} 
-              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-2xl w-[37rem] h-[39.5rem]  2xl:h-[46rem] 2xl:w-[50rem]'
+              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[37rem] h-[39.5rem]  2xl:h-[48rem] 2xl:w-[50rem]'
               style={{ objectFit: 'cover' } }
             />
 
@@ -45,8 +45,8 @@ const signup= () => {
 
 
 
-            <span className=' 2xl:mt-01rem] flex justify-center flex-col font-bricolage items-center w-full '>
-            <div className='w-[80%] 2xl:mt-2 h-[1px] bg-[#D9D9D9] '/>
+            <span className=' 2xl:mt-[1rem] flex justify-center flex-col font-bricolage items-center w-full '>
+            <div className='w-[80%] 2xl:mt-1 h-[1px] bg-[#D9D9D9] '/>
 
 <h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1rem]  2xl:text-4xl font-bricolage font-[600]">Welcome Back</h1>
 <p className='font-light text-gray pt-1  2xl:mt-[0.8rem]  text-xs 2xl:text-base'>Please log in to continue</p>
@@ -55,18 +55,19 @@ const signup= () => {
 
 
 
-<div className='mt-[1rem] flex flex-col gap-[1em] w-[80%] '>
+<div className='2xl:mt-[2rem] mt-[1rem] flex flex-col gap-[1em] w-[80%] '>
 <Input
 label="Email Address"
 type='text'
-placeholder='please enter Email Address '
+placeholder='Please Enter Email Address '
  />
 <Input
 label="Password"
 type='password'
-placeholder='please  enter password '
+className='mt-1'
+placeholder='Please  Enter password '
  />
- <p className='text-[0.7em] text-gray -mt-3  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
+ <p className='text-[0.7em] text-gray -mt-1  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
 <div className= 'flex items-center  justify-end w-full gap-[7rem]'>
 
 

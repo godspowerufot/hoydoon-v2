@@ -6,16 +6,17 @@ import Image from 'next/image';
 import Button from '../common/Button';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import ListingNavbar from './listingnavbar';
-
+import HelpCenterNavbar from './Helpnavbar';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const hideNavbar = pathname.startsWith("/rent/listing");
   const hideAuth = pathname.startsWith("/auth");
-  const showNavbar = ["/listing", "/agent/all-agent", "/agent/agent-description", "/sell/sell-home"].some(route =>
+  const showNavbar = ["/listing", "/article/article-details","/rent/searchlisting", "/agent/all-agent", "/agent/agent-description", "/sell/sell-home"].some(route =>
     pathname.includes(route)
   );
+  const helpcenter=pathname.startsWith("/help-center");
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -30,6 +31,10 @@ export default function Navbar() {
   }, []); 
   if (showNavbar) {
     return <ListingNavbar />;
+  }
+
+  if(helpcenter){
+    return <HelpCenterNavbar />;
   }
   return (
     <>
