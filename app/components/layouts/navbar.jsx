@@ -16,7 +16,7 @@ export default function Navbar() {
   const showNavbar = ["/listing", "/article/article-details","/rent/searchlisting", "/agent/all-agent", "/agent/agent-description", "/sell/sell-home"].some(route =>
     pathname.includes(route)
   );
-  const helpcenter=pathname.startsWith("/help-center");
+  const helpcenter=pathname.startsWith("/helpcenter");
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {

@@ -18,7 +18,7 @@ export default function HelpCenterNavbar() {
 
         {/* Right: Links */}
         <div className="flex items-center  2xl:ml-[4rem] space-x-4">
-          <Link href="/help-center/submit-request" className="text-gray hover:text-gray text-base">Submit a request</Link>
+          <Link href="/helpcenter/submit-request" className="text-gray hover:text-gray text-base">Submit a request</Link>
           <Link href="/auth/sign-up" className="bg-primary text-white text-base px-4 py-1.5 rounded-full">Register</Link>
         </div>
       </div>
