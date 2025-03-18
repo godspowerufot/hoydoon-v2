@@ -60,7 +60,7 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Links */}
-            <div className="pr-[0.25rem] ml-[6%] w-fit text-lg sm:hidden max-md:hidden lg:flex items-center justify-center hidden md:hidden rounded-full lg:h-[37px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
+            <div className=" ml-[4.5rem] w-[30rem] text-lg sm:hidden max-md:hidden lg:flex items-center justify-center hidden md:hidden rounded-full lg:h-[37px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
               <ul className="lg:flex items-center space-x-5 font-[300]">
                 {[
                   { name: "Home", path: "/" },
@@ -90,16 +90,16 @@ export default function Navbar() {
 
             {/* Desktop Action Buttons */}
             <div className="flex gap-2">
-              <Button className={` p-2 w-[92px] h-[32px]  ${scrolled ?  "bg-white text-primary  border-primary border-[1px] border-solid" :"bg-transparent bg-primarytransparent text-black" }}`}>
-                <Link href="/auth/sign-in" className={`text-base  ${scrolled ? "text-primary" : "text-white"}`}>
+              <Button className={` p-1 w-[92px]   ${scrolled ?  "bg-white text-primary  border-primary border-[1px] border-solid" :"bg-transparent bg-primarytransparent text-black" }}`}>
+                <Link href="/auth/sign-in" className={`text-base  ${scrolled ? "text-primary " : "text-white  "}`}>
                   Login
                 </Link>
               </Button>
-              <Button className="w-[7.5rem] p-2 h-[32px]">
-                <Link href="/auth/sign-up" className="font-light text-base">
+              <button className=" font-bricolage   h-auto p-1 rounded-full bg-primary  flex justify-center items-center  text-white hover:bg-primary w-[7.5rem] ">
+                <Link href="/auth/sign-up" className="font-light h-[25px] text-base">
                   Register
                 </Link>
-              </Button>
+              </button>
             </div>
 
             {/* Mobile Menu Toggle */}

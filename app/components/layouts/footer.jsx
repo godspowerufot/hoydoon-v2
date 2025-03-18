@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 const Appfooter = () => {
@@ -106,9 +107,9 @@ const Appfooter = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/helpcenter" className="transition hover:opacity-75">
+                  <Link href="/helpcenter" className="transition hover:opacity-75">
                  help center
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

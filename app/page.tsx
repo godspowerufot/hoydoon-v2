@@ -18,7 +18,7 @@ export default function Home() {
         ></div>
 
         {/* Content Section */}
-        <div className="flex flex-col items-center relative z-[1]  mt-[6rem]   gap-4 h-full px-4">
+        <div className="flex flex-col items-center relative z-[1]  mt-[6rem]   gap-4 h-full ">
           {/* Main Heading */}
           <h1 className="text-white text-center   relative  font-bricolage font-semibold leading-tight text-[clamp(4em,4vw,4em)] w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Where Every House Feels Like Home
@@ -111,8 +111,8 @@ export default function Home() {
         </div>
 
         {/* Statistics Section */}
-        <div className="absolute bottom-3 lg:flex font-bricolage lg:mt-10 justify-center items-center w-full pt-10 px-4">
-          <div className="flex items-center rounded-lg w-9/10 ml-15 justify-between md:w-4/5 lg:w-6/10">
+        <div className="absolute bottom-7 lg:flex font-bricolage lg:mt-10 justify-center items-center w-full pt-10 px-4">
+          <div className="flex items-center rounded-lg w-9/10 ml-15 justify-between md:w-4/5 lg:w-[50rem]">
             {/* Hosts Section */}
             <div className="flex items-center text-start gap-2 px-4">
               <span className="text-2xl font-medium text-white">10M+</span>
@@ -147,8 +147,8 @@ export default function Home() {
       </header>
 
       {/* this hold the images */}
-      <section className="   font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-white">
-        <div className="flex  gap-[4%] flex-col w-[90%] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+      <section className=" w-full  font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
+        <div className="flex  gap-[4%] flex-col 2xl:pl-[3.4em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Find your ideal property with simple tools and guidance.
@@ -176,9 +176,9 @@ export default function Home() {
           </span>
         </div>
       </section>
-      <section className="mt-10  lg:mt-[100px]  font-bricolage flex justify-center flex-col flex-1 items-center">
-        <div className="flex  w-[92%] flex-col lg:flex-row  items-center justify-around ">
-          <span className="flex   lg:pl-5 flex-col w-full lg:w-6/10 ">
+      <section className="mt-10  w-full lg:mt-[100px]  font-bricolage flex justify-center flex-col flex-1 items-center">
+        <div className="flex   flex-col lg:flex-row  items-center justify-center">
+          <span className="flex   lg:pl-12 2xl:pl-[3rem] flex-col w-full lg:w-6/10 ">
             <h1 className="text-black  text-[26px] lg:text-5xl font-[600]">
               Get the Hoydoon App
             </h1>
@@ -206,17 +206,17 @@ export default function Home() {
 
       {/* explore */}
       <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   w-[92%]  2xl:w-[89%] flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-            <h1 className="text-black lg:ml-[1rem] 2xl:ml-5  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
+        <div className="flex     flex-col items-center justify-center">
+          <div className="flex   ml-[3rem]  2xl:ml-[3.2rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+            <h1 className="text-black   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               Featured Properties for Rent
             </h1>
-            <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
-              Discover a home where every detail enhances your lifestylecrafted
-              to fit your taste and needs.
+            <p className="text-gray -ml-[10rem]  text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-full">
+            Discover a home where every detail enhances your lifestyl ecrafted
+            to fit your taste and needs.
             </p>
           </div>
-          <div className=" flex mt-[1em] h-fit   min-w-fit items-center lg:flex-row    justify-center  mb-2">
+          <div className=" flex mt-[1em] h-fit   min-w-[70%] items-center lg:flex-row    justify-center  mb-2">
             {/* Horizontal Scrollable Container on Mobile */}
             {/* Card 1 */}
             <PropertyCard
@@ -245,16 +245,16 @@ export default function Home() {
       {/* card component */}
 
       <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex  w-[94%] 2xl:w-[89%] flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col md:flex-row 2xl:gap-[10%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-            <h1 className="text-black lg:ml-8 text-[26px] lg:text-[2.2rem] font-[600]   w-full ">
-              Explore Luxurious Living Spaces
-            </h1>
-            <p className="text-gray  lg:p-0 text-base lg:text-2xl font-bricolage w-full lg:w-full">
-              Discover a home where every detail enhances your lifestyl ecrafted
-              to fit your taste and needs.
+      <div className="flex     flex-col items-center justify-center">
+          <div className="flex   2xl:w-[90rem] ml-[5rem]  2xl:ml-[2.6rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+            <h1 className="text-black   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
+            Explore Luxurious Living Spaces            </h1>
+            <p className="text-gray -ml-[10rem]  text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:w-full">
+            Discover a home where every detail enhances your lifestyl ecrafted
+            to fit your taste and needs.
             </p>
-          </div>
+          </div> 
+       
           <div
             style={{
               backgroundImage: "url('/carousel.jpg')",
@@ -262,7 +262,7 @@ export default function Home() {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center", // Ensures the image is centered
             }}
-            className="mt-[1rem] relative p-8 2xl:w-[90rem] 2xl:h-[47rem] w-[75rem] h-[40rem] rounded-2xl"
+            className="mt-[1rem] relative p-8 2xl:w-[88rem] 2xl:h-[47rem] w-[73rem] h-[40rem] rounded-2xl"
           >
             <div className="absolute inset-0 bg-black opacity-15 transition-opacity duration-500  rounded-2xl" />
             <div className=" lg:-ml-[0.7rem] 2xl:ml-[2rem]  z-111 absolute    bg-primarytransparent p-4 rounded-2xl 2xl:mt-[23rem] lg:mt-[17rem] h-fit   w-fit">
@@ -366,11 +366,11 @@ export default function Home() {
       {/* testimonials */}
       <section className="mt-8 p-4 2xl:p-6 lg:p-0 font-bricolage ">
         <div className="flex  flex-col lg:flex-row md:flex-row 2xl:mt-4  lg:gap-12  justify-around items-center  ">
-          <span className="flex   w-[38%] 2xl:w-[40%] flex-col 2xl:-ml-5  font-bricolage gap-3">
-            <h1 className="text-black  text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">
+          <span className="flex   w-[38%] pl-[1rem] 2xl:w-full  flex-col 2xl:ml-1  font-bricolage gap-3">
+            <h1 className="text-black   text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">
               What People Are Saying
             </h1>
-            <p className="text-gray  lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-[30em]">
+            <p className="text-gray  text-xl font-bricolage w-full lg:w-[30em]">
               Discover a home where every detail enhances your lifestyle—crafted
               to fit your taste and needs.
             </p>
@@ -397,18 +397,18 @@ export default function Home() {
 
       {/* testimonials */}
       <section className=" mt-7  w-full  lg:mt-[7%]  flex flex-1 justify-center items-center  flex-col   p-5 lg:p-0 font-bricolage ">
-        <div className="flex w-full   flex-col lg:flex-row md:flex-row   lg:gap-8  justify-around items-center  ">
-          <span className="flex flex-col  font-bricolage ml-[3rem] 2xl:ml-9 gap-2">
+        <div className="flex   flex-col lg:flex-row md:flex-row   2xl:gap-[10rem] lg:gap-4  justify-around items-center  ">
+          <span className="flex flex-col  font-bricolage ml-[2rem]  gap-2">
             <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-3 ">
               Your Questions, Our Answers
             </h1>
-            <p className="text-gray  2xl:text-[20px] lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-[30em]">
+            <p className="text-gray   lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-[30em]">
               Whether you’re curious about our services, need help with specific
               issues..
             </p>
           </span>
           <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
-            <p className="text-gray 2xl:text-[20px]  lg:p-0 text-base lg:text-xl font-bricolage w-full lg:w-[30em]">
+            <p className="text-gray   lg:p-0 text-base lg:text-xl font-bricolage w-full lg:w-[30em]">
               Welcome to our FAQ center, where you can find answers to all your
               most pressuring questions
             </p>

@@ -15,7 +15,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
 
   return (
     <div
-      className={`flex flex-col rounded-[1.5rem] h-[37rem] 2xl:h-[38rem] lg:w-[24rem] 2xl:w-[30rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
+      className={`flex flex-col rounded-[1.5rem] h-[37rem]  border-gray  2xl:h-[38rem] lg:w-[24rem] 2xl:w-[29rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
       group transition-all duration-[1500ms] ease-in-out ${
         isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : "border-none"
       }`}

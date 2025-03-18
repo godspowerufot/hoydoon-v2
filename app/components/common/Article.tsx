@@ -26,7 +26,7 @@ const articles = [
 
 const ArticleCard = ({ article }: any) => {
   return (
-    <div className="relative flex flex-col h-[650px] lg:w-[36em] 2xl:w-[44em] font-bricolage rounded-lg  shrink-0">
+    <div className="relative flex flex-col h-[650px] lg:w-[36em] 2xl:w-[43em] font-bricolage rounded-lg  shrink-0">
       <Link href={"/article/article-details"}>
         {" "}
         <Image
@@ -35,7 +35,7 @@ const ArticleCard = ({ article }: any) => {
           height={300}
           loading="lazy"
           src={article.image}
-          className="rounded-2xl 2xl:h-[30rem] w-full object-cover h-[400px]"
+          className="rounded-2xl 2xl:h-[30rem] w-full object-cover h-[450px]"
         />
         <div className="flex flex-col my-4 relative">
           <div className="flex gap-3">
@@ -68,10 +68,10 @@ const ArticleCard = ({ article }: any) => {
 
 const ArticlesSection = () => {
   return (
-    <section className="flex justify-center items-center w-full flex-col mt-[3rem]  -mb-7 p-5 lg:p-0 font-bricolage">
-      <div className="flex w-full flex-col lg:flex-row md:flex-row lg:gap-8 justify-around items-center">
-        <span className="flex flex-col font-bricolage 2xl:ml-0 lg:ml-7 gap-2">
-          <h1 className="text-black lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-2">
+    <section className="flex justify-center items-center w-full flex-col my-[3rem]   p-5 lg:p-0 font-bricolage">
+      <div className="flex  flex-col lg:flex-row md:flex-row lg:gap-[8rem] 2xl:gap-[14rem]  justify-around items-center">
+        <span className="flex flex-col font-bricolage 2xl:ml-0  gap-2">
+          <h1 className="text-black lg:text-[2.5rem] 2xl:text-5xl font-[600] ">
             New Highlights & Articles
           </h1>
           <p className="text-gray 2xl:text-[20px] lg:p-0 text-base lg:text-xl w-full lg:w-[30em]">
