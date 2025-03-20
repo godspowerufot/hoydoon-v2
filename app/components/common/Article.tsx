@@ -70,7 +70,7 @@ const ArticlesSection = () => {
   return (
     <section className="flex justify-center items-center w-full flex-col my-[3rem]   p-5 lg:p-0 font-bricolage">
       <div className="flex  flex-col lg:flex-row md:flex-row lg:gap-[8rem] 2xl:gap-[14rem]  justify-around items-center">
-        <span className="flex flex-col font-bricolage 2xl:ml-0  gap-2">
+        <span className="flex flex-col font-bricolage  ml-8 2xl:ml-0  gap-2">
           <h1 className="text-black lg:text-[2.5rem] 2xl:text-5xl font-[600] ">
             New Highlights & Articles
           </h1>

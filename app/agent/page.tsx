@@ -7,6 +7,8 @@ import Button from "../components/common/Button";
 import { ProfileCard } from '@/app/components/layouts/profilecard';
 import { agents } from "@/constants";
 import Link from "next/link";
+import Article from "../components/common/Article";
+import FAQComponent from "../components/layouts/faq";
 
   
 
@@ -87,7 +89,7 @@ export default function Home() {
 
 
       {/* explore */}
-      <section className=" flex-wrap bg-white hidden lg:py-[2em] w-full  font-bricolage lg:flex justify-center flex-col gap-7 2xl:gap-[3rem] flex-1 items-center">
+      <section className=" flex-wrap bg-[#eeeeeec7] hidden lg:py-[2em] w-full  font-bricolage lg:flex justify-center flex-col gap-7 2xl:gap-[3rem] flex-1 items-center">
       <div className="flex   p-2 flex-col w-[80rem] 2xl:w-[94rem]  2xl:ml-0 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
       <h1 className="text-black lg:ml-[3rem] text-[26px] lg:text-[2rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-xl font-bricolage w-full lg:w-full">
@@ -110,16 +112,15 @@ export default function Home() {
       </section>
 
 
-      <section className="   font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
+      <section className="  bg-[#eeeeeec7]   w-full font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  gap-[4%] flex-col w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
-<h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Ready to sell your home?.</h1>
-<p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[2em] font-bricolage w-[85%] 2xl:text-[20px] 2xl:w-[70%]">
-Ready to sell your home? Let us help you maximize its value and make the process stress-free. Schedule a consultation today and take the first step toward a successful sale</p>
-
+<h1  className="text-black  text-[26px] lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Connect with local agent</h1>
+<p className="text-gray text-base lg:text-xl mt-2 2xl:mt-[1em] font-bricolage w-[38rem] 2xl:text-[22px] ">
+Benefit from local expertise. We'll connect you with a Hoydoon Premier Agent who understands your market and can guide you through the process.</p>
 <Button className="text-base font-light mt-5 ">
   <Link href="/explore">
-  Schedule
+  Connect
   </Link>
 </Button>
           </span>
@@ -129,7 +130,7 @@ Ready to sell your home? Let us help you maximize its value and make the process
               alt="image1"
               width={500} 
               quality={100}
-              className="2xl:w-[48rem] w-[45rem] 2xl:h-[30rem]"// Reduced size of logo
+              className=" 2xl:w-[50rem] w-[55rem]   h-[28rem] 2xl:h-[36rem]"
 
               height={400} // Reduced size of logo
               src={'/agent3.png'}
@@ -138,8 +139,8 @@ Ready to sell your home? Let us help you maximize its value and make the process
         </div>
       </section>
 
-      <section className="   font-bricolage lg:flex  flex-col j flex-1 items-center ">
-        <div className="flex   ml-[5rem] gap-[4%] 2xl:gap-[8%] flex-col  w-full 2xl:w-[110rem] 2xl:pl-[8em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+      <section className=" bg-[#eeeeeec7] w-full   font-bricolage lg:flex  flex-col j flex-1 items-center ">
+        <div className="flex   ml-[5.5rem] gap-[4%] 2xl:gap-[8%] flex-col  w-full 2xl:w-[110rem] 2xl:pl-[8em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
        
        <span className="mt-4 lg:mt-0">
  <Image
@@ -147,13 +148,13 @@ Ready to sell your home? Let us help you maximize its value and make the process
               width={500} 
               quality={100}
               height={400} 
-              className="2xl:w-[60rem]  w-[34rem] 2xl:h-[30rem]"// Reduced size of logo
+              className=" 2xl:w-[59rem] w-[32rem]   h-[28rem] 2xl:h-[36rem]"
               src={'/agent4.png'}
             />
 </span>
-          <span className="flex flex-col w-full  lg:w-[43em]  2xl:w-[80em] ">
+          <span className="flex flex-col w-full 2xl:-mr-[2rem]  lg:w-[43em]  2xl:w-[80em] ">
 <h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Rapid Finds, Ready to View</h1>
-<p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[2em] font-bricolage w-[90%] 2xl:text-[20px] 2xl:w-[70%]">
+<p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[1em] font-bricolage w-[90%] 2xl:text-[20px] 2xl:w-[70%]">
 Never miss out. We refresh listings every minute, ensuring you see new homes instantly. Book on-demand tours to view them fast</p>
 
 <Button className="text-base font-light mt-5 ">
@@ -173,125 +174,29 @@ Never miss out. We refresh listings every minute, ensuring you see new homes ins
 
     {/* New-articles */}
     <section className="   flex justify-center items-center  w-full  flex-col mt-[2rem] p-5 lg:p-0 font-bricolage ">
-    <div className="flex w-full   flex-col lg:flex-row md:flex-row  2xl:w-[106rem]  lg:gap-8  justify-around items-center  ">
-    <span className="flex flex-col  font-bricolage 2xl:ml-0 lg:ml-7 gap-2">
-
-
-      <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-2 ">New Highlights & Articles</h1>
-      <p className="text-gray  2xl:text-[20px] lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-[30em]">
-      Our top stories and features keeps you updated on industry trends, current events</p>
-
-      
-      </span>
-      <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
-      <p className="text-gray 2xl:text-[20px]  lg:p-0 text-base lg:text-xl font-bricolage 2xl:w-[30em]  lg:w-[24em]">
-      Stay Informed with our latest news and Insights where you’ find breaking stories</p>
-<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  text-gray">
- <p className="text-gray" style={{color:"#8F8F8F"}}> Explore </p>
-</Button>
-</span>
-   
-</div>
-    <div className="flex justify-center w-full mt-[4%] lg:flex-1 lg:flex-row flex-col  items-center lg:gap-10 2xl:gap-16 ">
-    <div className="relative flex flex-col h-[42rem]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
-  {/* Image Section */}
-  <Image
-    alt="house image"
-    width={400}
-    height={300}
-    loading="lazy"
-    src={'/news-1.png'}
-    className="rounded-2xl 2xl:h-[30rem]  w-full object-cover h-[400px]"
-  />
-
-  {/* Content Section */}
-  <div className="flex flex-col my-4  relative">
-    {/* Title */}
-    <div className="flex gap-3">
-    <h1 className="text-4xl font-[600] text-primary absolute`">01</h1>
-    <h1 className="text-black  text-3xl  font-[500] pt-[10px]">Understanding the Real Estate Market Trends</h1>
-    </div>
-    {/* Price and Area */}
-    <div className="flex flex-wrap flex-end gap-3 mt-4">
-      <div className="flex ">
-      <span className="flex  flex-col text-gray lg:text-[18px] text-sm  gap-2 font-meduim">
-   <h4 className="text-gray  lg:text-[18px]  text-sm font-meduim">July </h4><h4 className="text-[18px]">2024</h4>     </span>  
-        <h2 className="ml-2 mt-[17px] text-gray  font-meduim lg:text-[18px] ">Perfect property</h2>
-      </div>
-   
-    </div>
-
-    {/* Description */}
-    <p className="text-gray text-[1rem]  2xl:text-xl font-bricolage fomt-[300] w-full leading-5 mt-4">
-    Staying ahead the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buyin, selling, or investing. 
-    </p>
-  </div>
-
-  {/* Footer Section */}
-  {/* <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
-    <div className="flex items-center justify-center px-4 py-2 text-sm font-light text-[#1E1E1E] bg-[#D8F0F1] rounded-full">
-      Luxury Oasis
-    </div>
-    <Image
-      alt="export icon"
-      width={40}
-      height={40}
-      src={'/export.png'}
-      className="rounded-full"
-    />
-  </div> */}
-</div>
-<div className="relative flex flex-col h-[42rem]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
-  {/* Image Section */}
-  <Image
-    alt="house image"
-    width={400}
-    height={300}
-    loading="lazy"
-    src={'/news-2.png'}
-    className="rounded-2xl 2xl:h-[30rem]  w-full object-cover h-[400px]"
-  />
-
-  {/* Content Section */}
-  <div className="flex flex-col my-4  relative">
-    {/* Title */}
-    <div className="flex gap-3">
-    <h1 className="text-4xl font-[600] text-primary absolute`">01</h1>
-    <h1 className="text-black  text-3xl  font-[500] pt-[10px]">Analyzing Modern Real Estate Market Movement</h1>
-    </div>
-    {/* Price and Area */}
-    <div className="flex flex-wrap flex-end gap-3 mt-4">
-      <div className="flex ">
-      <span className="flex  flex-col text-gray lg:text-[18px] text-sm  gap-2 font-meduim">
-   <h4 className="text-gray  lg:text-[18px]  text-sm font-meduim">July </h4><h4 className="text-[18px]">2024</h4>     </span>  
-        <h2 className="ml-2 mt-[17px] text-gray  font-meduim lg:text-[18px] ">Perfect property</h2>
-      </div>
-   
-    </div>
-
-    {/* Description */}
-    <p className="text-gray text-[1rem]  2xl:text-xl font-bricolage fomt-[300] w-full leading-5 mt-4">
-    Staying ahead the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buyin, selling, or investing. 
-    </p>
-  </div>
-
-  {/* Footer Section */}
-  {/* <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
-    <div className="flex items-center justify-center px-4 py-2 text-sm font-light text-[#1E1E1E] bg-[#D8F0F1] rounded-full">
-      Luxury Oasis
-    </div>
-    <Image
-      alt="export icon"
-      width={40}
-      height={40}
-      src={'/export.png'}
-      className="rounded-full"
-    />
-  </div> */}
-</div>
-
-</div>
-
+    <div className="mt-[3px]  ml-[5rem] justify-center items-center max-md:w-full w-full gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row ">
+          <div className="z-[4] relative max-md:w-full  lg:h-[50em]  lg:left-[50px] 2xl:left-[80px] lg:top-[10em]">
+            <FAQComponent />
+          </div>
+          <div className="relative lg:-ml-[10em] justify-center items-center  flex w-[255px] lg:w-auto">
+            <Image
+              alt="image1"
+              width={420}
+              loading="lazy"
+              height={500}
+              src={"/q1.png"}
+              className="z-[3]  lg:w-[30rem] 2xl:w-[600px] rounded-[20px] relative top-0 left-[0.5rem] 2xl:left-[2rem]   object-cover h-5/10"
+            />{" "}
+            <Image
+              alt="image1"
+              width={400}
+              loading="lazy"
+              height={300}
+              src={"/q2.png"}
+              className=" z-2   bottom-[2em] lg:h-[30rem]  2xl:h-[38rem] lg:w-[40rem]  w-[86px] 2xl:w-[650px] mt-[17%] lg:-top-[rem] 2xl:-top-[3rem] lg:-left-[7em]  2xl:-left-[9rem] lg:mt-[11%] relative rounded-lg   object-cover "
+            />
+          </div>
+        </div>
 
 
     </section>  

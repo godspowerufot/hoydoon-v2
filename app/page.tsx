@@ -177,12 +177,12 @@ export default function Home() {
         </div>
       </section>
       <section className="mt-10  w-full lg:mt-[100px]  font-bricolage flex justify-center flex-col flex-1 items-center">
-        <div className="flex   flex-col lg:flex-row  items-center justify-center">
-          <span className="flex   lg:pl-12 2xl:pl-[3rem] flex-col w-full lg:w-6/10 ">
+        <div className="flex  gap-[4rem] 2xl:gap-[17rem]  flex-col lg:flex-row  items-center justify-center">
+          <span className="flex   lg:pl-1  2xl:pl-[0rem] flex-col w-full lg:w-6/10 ">
             <h1 className="text-black  text-[26px] lg:text-5xl font-[600]">
               Get the Hoydoon App
             </h1>
-            <p className="text-gray text-base lg:text-xl mt-4 font-[300]  font-bricolage w-8/10">
+            <p className="text-gray text-base lg:text-xl mt-4 font-[300]  font-bricolage w-[40rem]">
               Download our highly-rated real estate app for iOS or Android to
               receive instant alerts when your dream home becomes available.
             </p>
@@ -211,7 +211,7 @@ export default function Home() {
             <h1 className="text-black   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               Featured Properties for Rent
             </h1>
-            <p className="text-gray -ml-[10rem]  text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-full">
+            <p className="text-gray -ml-[10rem]    2xl:mr-[4rem] text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
             Discover a home where every detail enhances your lifestyl ecrafted
             to fit your taste and needs.
             </p>
@@ -249,7 +249,7 @@ export default function Home() {
           <div className="flex   2xl:w-[90rem] ml-[5rem]  2xl:ml-[2.6rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
             <h1 className="text-black   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
             Explore Luxurious Living Spaces            </h1>
-            <p className="text-gray -ml-[10rem]  text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:w-full">
+            <p className="text-gray -ml-[10rem]  lg:mr-[3rem] text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:w-[43rem]">
             Discover a home where every detail enhances your lifestyl ecrafted
             to fit your taste and needs.
             </p>
@@ -270,7 +270,7 @@ export default function Home() {
                 <h1 className="text-black text-base  lg:text-2xl 2xl:text-[2rem] font-[600]">
                   Laurel Canyon Nest
                 </h1>
-                <p className="text-gray lg:text-[1rem] mb-[2rem] 2xl:text-[1.05rem]  2xl:w-[55rem] mt-3 text-[10px] ">
+                <p className="text-gray lg:text-[1rem] mb-[2rem] 2xl:text-[1.05rem]  2xl:w-[55rem] 2xl:mt-5 mt-3 text-[10px] ">
                   A charming 3-bedroom home featuring a bright, open-concept
                   living area designed for both comfort and connection. The
                   spacious layout flows seamlessly from the kitchen to the
