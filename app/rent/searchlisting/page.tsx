@@ -14,7 +14,7 @@ const Breadcrumb = () => {
   const [selectedOption, setSelectedOption] = useState("Buy");
 
   return (
-    <div className="w-full  py-[2.3rem] px-4 lg:pl-[2.5rem] lg:pr-[4.5rem] 2xl:-px-[1.2rem]  flex  items-center justify-between">
+    <div className="w-full  py-[2.3rem] px-4 lg:pl-[2rem] lg:pr-[4.5rem] 2xl:-px-[1.2rem]  flex  items-center justify-between">
       {/* Filter Section */}
       <div className="flex items-center ml-[2rem] gap-2">
         <button className="px-4  py-[0.6rem] border-solid border-[1px] text-gray border-[#8F8F8F] bg-[#F9FAFB]  rounded-md flex items-center gap-2">
@@ -28,7 +28,7 @@ const Breadcrumb = () => {
         
         <div className="relative">  <select
             key={option}
-            className="border border-[#8F8F8F] bg-[#F9FAFB] rounded-md px-4 text-[#8F8F8F] w-[8rem] 2xl:w-[2rem]  py-2 text-gray-700 outline-none appearance-none "     
+            className="border border-[#8F8F8F] bg-[#F9FAFB] rounded-md px-4 text-[#8F8F8F] h-[3rem] w-[8rem]  py-2 text-gray-700 outline-none appearance-none "     
                    value={selectedOption === option ? selectedOption : ''}
             onChange={(e) => setSelectedOption(e.target.value)}
           >
@@ -65,9 +65,9 @@ const Breadcrumb = () => {
   
 const page = () => {
   return (
-    <div className='mt-10  2xl:w-[1580px]  '> 
+    <div className='mt-10  2xl:w-[1600px]  '> 
     <Breadcrumb/>
- <div className="lg:ml-[4rem] 2xl:ml-[2rem] grid w-[88%] 2xl:w-[95%]  grid-cols-1 md:grid-cols-3 gap-8 place-items-center">
+ <div className="lg:ml-[3rem] 2xl:ml-[2rem] grid w-[88%] 2xl:w-[95%]  grid-cols-1 md:grid-cols-3 gap-8 place-items-center">
     
 
         {properties.map((property, index) => (

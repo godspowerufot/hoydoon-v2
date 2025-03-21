@@ -21,8 +21,8 @@ const signup= () => {
               loading="lazy"
               height={400}
               quality={100} // Ensures maximum quality
-              src={'/signup.png'} 
-              className='  hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-2xl w-[37rem] h-[39.8rem]  2xl:h-[49rem] 2xl:w-[50rem]'
+              src={'/signup.jpg'} 
+              className='  hidden lg:block  brightness-75  2xl:-mt-[0.9rem] mt-[5px] rounded-2xl w-[37rem] h-[39.8rem]  2xl:h-[49rem] 2xl:w-[50rem]'
               style={{ objectFit: 'cover' } }
             />
 
@@ -85,11 +85,11 @@ placeholder=' please enter password *'
 </div> 
 </div>
 
-<Button className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[3rem] p-3'>
+<Button className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[3rem] p-4'>
 Sign Up
 </Button>
 <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
-<div className='w-full text-black text-right font-[400] font-bricolage'>
+<div className='w-full text-black text-right font-[500] font-bricolage'>
   Or sign up with:
 </div>
 
@@ -121,7 +121,7 @@ Sign Up
           </div>
           <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
 
-          <p className="text-black w-full text-end block  font-[500] -mt-[3px] text-base 2xl:text-xl">
+          <p className="text-black w-full text-end block  font-[500] -mt-[3px] text-base 2xl:text-base">
           Already have an account?<Link href="/auth/sign-in" className="text-primary text-[1em]  2xl:text-xl font-bricolage">  Log in</Link>  </p>
 
 

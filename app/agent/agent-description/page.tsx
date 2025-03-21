@@ -82,11 +82,22 @@ const page = () => {
             alt={`Gallery Image ${index + 1}`}
             width={index === 0 ? 500 : 250}
             height={index === 0 ? 400 : 200}
-            className={`w-full ${index === 0 ? 'h-[350px]' : 'h-[170px]'} object-cover rounded-lg`}
+            className={`w-full ${index === 0 ? ' h-[380px] 2xl:h-[450px]' : ' h-[185px] 2xl:h-[217px]'} object-cover rounded-lg`}
           />
           {index >=0 && (
-            <div className="absolute bottom-2 right-2 bg-white px-2 py-1 text-sm rounded shadow">
-              📷 32 photos
+            <div className="flex gap-2 font-[500]  item-center justify-center absolute bottom-2 right-2 bg-white px-2 py-1  text-base 2xl:text-xl rounded shadow">
+            <Image
+                         alt="logo"
+                         width={30}  
+                         priority
+                         quality={100}
+                         objectFit='cover'
+                         height={30}
+                         className=' h-6 w-7 2xl:w-7 2xl:h-7 ' // Reduced size of logo
+                         src={'/sold.png'}
+                       /> 
+                       <p> sold
+                        </p>
             </div>
           )}
         </div>

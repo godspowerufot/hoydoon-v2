@@ -87,11 +87,11 @@ placeholder='Please  Enter password '
 <p className="text-primary font-meduim w-full   2xl:text-xl font-bricolage">  Forgot password   </p>
 </div>
 
-<Button className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[3rem] p-3'>
-  Login
+<Button className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-[1.3rem] h-[4rem] p-4'>
+  Log in
 </Button>
 <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
-<div className='w-full text-black text-right font-[400] font-bricolage'>
+<div className='w-full text-black text-right font-[500] font-bricolage'>
   Or Log in with:
 </div>
 
@@ -123,7 +123,7 @@ placeholder='Please  Enter password '
           </div>
           <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
 
-          <p className="text-black w-full text-end block  font-[500] -mt-[5px] text-base 2xl:text-xl">
+          <p className="text-black w-full text-end block  font-[500] -mt-[5px] text-base 2xl:text-base">
           No account yet? <Link href="/auth/sign-up" className="text-primary text-[1em]  2xl:text-xl font-bricolage">  Sign Up  </Link>  </p>
 
 

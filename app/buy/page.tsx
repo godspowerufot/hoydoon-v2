@@ -1,7 +1,6 @@
 'use client '
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
-import Button from "../components/common/Button";
 import PropertyCard from "../components/common/property";
 import Input from "../components/common/inputs/input";
 import Link from "next/link";

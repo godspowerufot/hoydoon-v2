@@ -65,7 +65,7 @@ const page = () => {
             alt="Gallery Image"
             width={500}
             height={400}
-            className="w-full h-[300px] object-cover rounded-lg"
+            className="w-full   h-[380px] 2xl:h-[450px] object-cover rounded-lg"
           />
         </div>
 
@@ -76,7 +76,7 @@ const page = () => {
             alt="Gallery Image"
             width={250}
             height={200}
-            className="w-full h-[140px] object-cover rounded-lg"
+            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
           />
         </div>
         <div>
@@ -85,7 +85,7 @@ const page = () => {
             alt="Gallery Image"
             width={250}
             height={200}
-            className="w-full h-[140px] object-cover rounded-lg"
+            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
           />
         </div>
         <div>
@@ -94,7 +94,7 @@ const page = () => {
             alt="Gallery Image"
             width={250}
             height={200}
-            className="w-full h-[140px] object-cover rounded-lg"
+            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
           />
         </div>
         <div>
@@ -103,7 +103,7 @@ const page = () => {
             alt="Gallery Image"
             width={250}
             height={200}
-            className="w-full h-[140px] object-cover rounded-lg"
+            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
           />
         </div>
 
@@ -114,7 +114,7 @@ const page = () => {
             alt="Gallery Image"
             width={500}
             height={200}
-            className="w-full h-[140px] object-cover rounded-lg"
+            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
           />
         </div>
 
@@ -125,7 +125,7 @@ const page = () => {
             alt="Gallery Image"
             width={250}
             height={200}
-            className="w-full h-[140px] object-cover rounded-lg"
+            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
           />
           <div className="absolute bottom-2 right-2 bg-white px-2 py-1 text-sm rounded shadow">
             📷 32 photos

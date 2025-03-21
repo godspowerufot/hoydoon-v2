@@ -4,11 +4,34 @@ import { FaSearch } from "react-icons/fa";
 import { properties } from "@/constants";
 import ArticleCard from "../components/common/articleLayout";
 import Pagination from "../components/common/pagination";
+function SupportCategories() {
+  const categories = [
+    "Landlord & Agents",
+    "Buyers & Rentals",
+    "Email Alerts",
+    "Technical Assistance",
+    "Account Assistance",
+    "Mobile Apps",
+  ];
+
+  return (
+    <div className="grid w-[1230px] 2xl:w-[1580px] grid-cols-3 gap-4 p-4">
+      {categories.map((category, index) => (
+        <button
+          key={index}
+          className="border border-primary text-xl font-[500] px-6 py-3 rounded-md"
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export default function Home() {
   return (
     <>
-      <header className="relative h-[45em] lg:h-[30em] items-center justify-center w-screen">
+      <header className="relative h-[45em] lg:h-[35em] items-center justify-center w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
@@ -29,18 +52,18 @@ export default function Home() {
               {/* Transparent Full-Width Input */}
               <input
                 type="text"
-                className="flex-1 bg-transparent placeholder:text-[1.3rem] text-black placeholder-gray-500 border-none outline-none pl-4 w-[36.3rem]"
+                className="flex-1 bg-transparent placeholder:text-[1.2rem] text-black placeholder-gray-500 border-none outline-none pl-4 w-[36.3rem]"
                 placeholder="search"
               />
 
               {/* Search Button */}
               <div className="relative mr-2 p-1 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-gradient-to-r before:from-white before:via-white/30 before:to-white/10 before:p-[1px]">
-                <div className="relative bg-primary ml-[1em] p-3 w-[50px] h-[50px] rounded-full flex items-center justify-center">
+                <div className="relative bg-primary ml-[1em] p-2 3 w-[40px] h-[40px] rounded-full flex items-center justify-center">
                   <Image
                     alt="logo"
-                    width={30}
+                    width={40}
                     loading="lazy"
-                    height={30}
+                    height={40}
                     quality={100} // Ensures maximum quality
                     src={"/search.png"}
                     style={{ objectFit: "cover" }}
@@ -67,8 +90,8 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="   flex-col  hidden lg:mt-[4em] w-full  font-bricolage lg:flex justify-center   gap-7 2xl:gap-[3rem] flex-1 items-center">
-        <div className=" 2xl:ml-[2rem] grid  grid-row  grid-cols-1 md:grid-cols-3 gap-1 place-items-center gap-y-6">
+      <section className="  2xl:-mb-[8rem]  flex-col  hidden lg:mt-[3em] w-full  font-bricolage lg:flex justify-center   gap-4 2xl:gap-[1.5rem] flex-1 items-center">
+        <div className="  grid  grid-row  grid-cols-1 md:grid-cols-3 gap-0 place-items-center gap-y-6">
           {properties.map((property, index) => (
             <ArticleCard
               key={index}
@@ -78,6 +101,11 @@ export default function Home() {
           ))}
         </div>
         <Pagination />
+
+        <div className='w-full  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] '/>
+
+
+        <SupportCategories/>
       </section>
     </>
   );

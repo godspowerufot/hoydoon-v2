@@ -1,7 +1,6 @@
 'use client '
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
-import Button from "../components/common/Button";
 import PropertyListCard from "../components/common/PropertyListing";
 import Link from "next/link";
 import Article from "../components/common/Article";
@@ -249,7 +248,7 @@ export default function Home() {
       <section className="mt-10  hidden  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
       <div className="flex   w-[92%]  2xl:w-[95rem] flex-col items-center justify-center">
       <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[10%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-4 text-[26px] pl-[2rem] lg:text-[2.5rem] font-[600]   w-full ">  Single Family Homes for Rent</h1>
+      <h1 className="text-black lg:ml-4 text-[26px] 2xl:pl-[2rem] lg:text-[2.5rem] font-[600]   w-full ">  Single Family Homes for Rent</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-xl font-bricolage w-full lg:w-[50rem]">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
 </p>
