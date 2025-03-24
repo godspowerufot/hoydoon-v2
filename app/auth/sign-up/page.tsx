@@ -58,13 +58,13 @@ const signup= () => {
 <Input
 label="Email Address"
 type='text'
-placeholder='please enter Email Address '
+placeholder='Enter Email Address '
  />
 <Input
 label="Password"
 type='password'
 className='mt-1'
-placeholder=' please enter password *'
+placeholder='Enter Password '
  />
  <p className='text-[0.7em] text-gray -mt-1 2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
 <div className= 'flex items-center  justify-end w-full gap-[7rem]'>

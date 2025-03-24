@@ -1,6 +1,5 @@
 "use client ";
 import Image from "next/image";
-import { FaSearch } from "react-icons/fa";
 import { properties } from "@/constants";
 import ArticleCard from "../components/common/articleLayout";
 import Pagination from "../components/common/pagination";
@@ -79,8 +78,13 @@ export default function Home() {
               <div className="flex flex-col flex-1">
                 <div className="text-sm text-gray">search</div>
               </div>
-              <div className="bg-primary p-3 mr-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90">
-                <FaSearch className="text-white h-6 text-sm" />
+              <div className="bg-primary p-1 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90">
+                <Image
+                  alt="Search"
+                  width={20}
+                  height={20}
+                  src={"/search.png"}
+                />{" "}
               </div>
             </div>
           </div>
@@ -102,10 +106,9 @@ export default function Home() {
         </div>
         <Pagination />
 
-        <div className='w-full  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] '/>
+        <div className="w-full  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
 
-
-        <SupportCategories/>
+        <SupportCategories />
       </section>
     </>
   );
