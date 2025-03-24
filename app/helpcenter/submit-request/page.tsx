@@ -61,7 +61,7 @@ const SubmitRequest = () => {
           <div className="mb-4 relative">
             <label className="block text-gray-700 text-base mb-2 2xl:text-[1.2em]">Please choose your issue below</label>
             <div
-              className="border p-3  border-gray flex  text-base 2xl:text-xl justify-between items-center cursor-pointer bg-white"
+              className="border p-3  border-[#d6d5d5]  border-solid flex  text-base 2xl:text-xl justify-between items-center cursor-pointer bg-white"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               {category || "Select an option"}
@@ -98,12 +98,12 @@ const SubmitRequest = () => {
               <Input label="Enter your email address" type="email" className="w-full rounded-none border p-3 mb-4" />
               <Input label="Enter Subject" type="text" className="w-full border p-3 rounded-none mb-4" />
               <label className="block text-gray-700 text-base mb-2 2xl:text-[1.2em]">Enter Description</label>
-              <textarea className="w-full border p-3 h-[10rem]  bg-transparent mb-4" placeholder="Enter description"></textarea>
+              <textarea className="w-full border-[#d6d5d5]  border-solid border p-3 h-[10rem]  bg-transparent mb-4" placeholder="Enter description"></textarea>
             </>
           )}
 
           {category === "I'm seeking to update my contact details" && (
-            <textarea className="w-full border p-3 bg-transparent  h-[10rem] mb-4" placeholder="Enter listing address and name to verify ownership of listing"></textarea>
+            <textarea className="w-full border-[#d6d5d5]  border-solid  border p-3 bg-transparent  h-[10rem] mb-4" placeholder="Enter listing address and name to verify ownership of listing"></textarea>
           )}
 
           {category === "Assistance" && (
@@ -130,7 +130,7 @@ const SubmitRequest = () => {
 {category && category !== "Select" && (
             <>
               <label className="block text-gray-700 text-base mb-2 2xl:text-[1.2em]">Attachments</label>
-              <div className="border p-3 text-center cursor-pointer border-gray bg-white">
+              <div className="border border-[#d6d5d5]  p-3 text-center cursor-pointer border-solid bg-white">
                 <span className="text-primary cursor-pointer">Add files</span> or drop files here
                 <input type="file" className="hidden" />
               </div>

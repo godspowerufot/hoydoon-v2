@@ -55,9 +55,9 @@ const Breadcrumb = () => {
 
 const page = () => {
   return (
-    <div className="mt-8  2xl:w-[95rem] w-[90%]  ml-[2%] ">
+    <div className="mt-8  2xl:w-[98rem] w-[90%]  ml-[2%] ">
       <Breadcrumb />
-      <div className="grid grid-cols-5 gap-2 p-4">
+      <div className="grid grid-cols-5 gap-4 p-4">
         {/* Large Main Image */}
         <div className="col-span-2  row-span-2">
           <Image
@@ -138,16 +138,15 @@ const page = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
           {/* Left Section */}
           <div>
-            <h2 className="text-[1.7rem] font-bricolage font-semibold">
+            <h2 className="text-[2rem] font-bricolage font-semibold">
               Adron Homes
             </h2>
-            <p className="text-[#1E1E1E]">105 SE 156th Ave, Lagos, Nigeria</p>
-            <p className="text-[#1E1E1E]">LA 98245</p>
+            <p className="text-gray text-base">105 SE 156th Ave, Lagos, Nigeria</p>
+            <p className="text-gray text-base">LA 98245</p>
 
-            <div className="flex items-center gap-1 text-gray-700 mt-2">
-              <FaRegEye className="text-[#1E1E1E]" />
-              <span className="font-semibold mt-1">Total views</span>
-              <span className="font-bold">1,567</span>
+            <div className="flex items-center  gap-2 text-gray-700 mt-2">
+              <FaRegEye className="text-gray" />
+              <span className="font-meduim">Total views 1,567</span>
             </div>
           </div>
 
@@ -158,7 +157,7 @@ const page = () => {
               <img src="/stargreen.png" alt="Favorite" className="w-4 h-4" />
               <span className="ml-1 font-medium ">4.85</span>
             </div>
-            <p className="text-gray-600 text-sm">Est. $4000/month</p>
+            <p className="text-gray text-base">Est. $4000/month</p>
           </div>
         </div>
       </div>
@@ -168,7 +167,7 @@ const page = () => {
       <div className="w-full border-t border-b border-[#8F8F8F] py-3">
         <div className="flex items-center justify-center gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl lg:text-base">
           <div className="flex items-center gap-[8rem]">
-            <span>
+            <span className="flex items-center gap-1">
               <span className="font-bold text-black">3</span>
               <span>Beds</span>
             </span>
@@ -205,7 +204,7 @@ const page = () => {
         <div className="grid grid-cols- md:grid-cols-4 gap-2 mt-4 text-[#8F8F8F] font-bricolage text-sm">
           {highlights.map((item, index) => (
             <div key={index} className="flex items-center gap-2">
-              <Image src={item.icon} alt={item.text} width={20} height={20} />
+              <Image src={item.icon} alt={item.text} width={20} height={20} className="object-contain" quality={100} />
               <span className="2xl:text-xl">{item.text}</span>
             </div>
           ))}
@@ -218,7 +217,7 @@ const page = () => {
           Description
         </h2>
         <div>
-          <p className=" text-[#8F8F8F] font-bricolage text-base w-[73rem] 2xl:w-full 2xl:text-xl pt-4">
+          <p className=" text-[#8F8F8F] font-bricolage text-[18px] font-[300]  w-[73rem] 2xl:w-full 2xl:text-xl pt-4">
             This Craftsman Cottage in Lakewood Heights offers a perfect blend of
             timeless charm and modern updates. The home boasts beautiful
             hardwood floors, updated windows, and a bright, open kitchen
@@ -304,7 +303,7 @@ const page = () => {
 
       <section className="mt-10  hidden  2xl:mt-[4em] lg:mt-[3em] w-[75rem]  2xl:w-[88rem]  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:-mb-[5rem]    flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col w-[75rem]  2xl:w-[85rem] 2xl:-ml-2 md:flex-row 2xl:gap-[25%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+          <div className="flex   p-2 flex-col w-[75rem]  2xl:w-[85rem]  md:flex-row 2xl:gap-[25%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
             <h1 className="text-black  text-[26px] lg:text-[1.8rem] font-[600]   w-full ">
               {" "}
               Single Family House Rents
@@ -314,7 +313,7 @@ const page = () => {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col ml-[4em] 2xl:ml-[6rem]  ">
+          <div className="flex flex-col  2xl:ml-[6rem]  ">
             <div className=" flex mt-[1em]    min-w-fit items-center lg:flex-row    justify-center  mb-2">
               {/* Horizontal Scrollable Container on Mobile */}
               {/* Card 1 */}
