@@ -7,7 +7,7 @@ import ListedCard from "@/app/components/common/profilecard";
 import ContactAgent from "@/app/components/layouts/contactagent";
 import PropertyListCard from "@/app/components/common/PropertyListing";
 import { highlights, images } from "@/constants";
-import PropertyGalleryModal from "@/app/components/layouts/moda;s/page";
+import PropertyGalleryModal from "@/app/components/layouts/modals/page";
 
 const Breadcrumb = () => {
   return (

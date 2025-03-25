@@ -1,7 +1,11 @@
 "use client";
 import Image from "next/image";
+type PropertyGalleryModalProps= {
+  isOpen: boolean;
+  onClose: () => void;
+}
 
-export default function PropertyGalleryModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export default function PropertyGalleryModal({ isOpen, onClose }: PropertyGalleryModalProps) {
   if (!isOpen) return null;
 
   const images = [
@@ -21,7 +25,7 @@ export default function PropertyGalleryModal({ isOpen, onClose }: { isOpen: bool
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       {/* Modal Container */}
-      <div className="bg-white w-11/12 md:w-3/4 lg:w-2/3 p-6 shadow-lg relative max-h-[80vh] overflow-y-auto">
+      <div className="bg-white w-11/12 md:w-3/4 lg:w-5/6 py-5 px-[4rem] shadow-lg relative max-h-[90vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -29,12 +33,33 @@ export default function PropertyGalleryModal({ isOpen, onClose }: { isOpen: bool
         >
           ✕
         </button>
+        <div className="flex border-b mb-3 ">
+      {/* Tabs */}
+      <div className="flex space-x-6">
+        <button className="border-b-2 border-primary text-black pb-2">Photos</button>
+        <button className="text-gray pb-2">Map</button>
+        <button className="text-gray pb-2">Street view</button>
+      </div>
 
+      {/* Icons (aligned right) */}
+      <div className="ml-auto mb-3 flex space-x-2">
+      <div className="flex pl-[33rem] 2xl:pl-[50rem] items-center gap-2">
+        <div className="p-2 border border-[#8F8F8F] rounded-md">
+        <Image src="/favorite.png" alt="Favorite" width={16} height={16} className="w-4 h-4" />
+        </div>
+        <div className="p-2 border border-[#8F8F8F] rounded-md">
+        <Image src="/upload.png" alt="Download" width={16} height={16} className="w-4 h-4" />
+        </div>
+        <div className="p-2 border border-[#8F8F8F] rounded-md">
+        <Image src="/image2.png" alt="Share" width={16} height={16} className="w-4 h-4" />
+        </div>
+      </div>
+    </div>
+    </div>
         {/* Title */}
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">Property Photos</h2>
 
         {/* Flexbox Layout for Images */}
-        <div className="space-y-3">
+        <div className="space-y-3 mt-[2rem]">
           {/* Row 1: Two images, both taking 50% width */}
           <div className="flex gap-2">
             <Image src={images[0]} alt="Property 1" width={500} height={500} className="w-1/2 h-auto object-cover rounded-none" />

@@ -7,7 +7,7 @@ import Button from '@/app/components/common/Button'
 import { useSignupMutation } from '@/store/slices/api/authapi'
 import { useRouter } from 'next/navigation'
 import { sendDeviceInfo } from '@/utils/lib/devicinfo'
-const signup= () => {
+const Signup= () => {
 
     const [email, setEmail] =useState('');
     const [fullname,setfullname] =useState('');
@@ -17,7 +17,7 @@ const signup= () => {
     const role = "buyer";
    
     const router = useRouter();
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
        // Password validation
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -38,7 +38,7 @@ const signup= () => {
       } catch (error) {
         console.error('Login failed:', error);
         if (error && typeof error === 'object' && 'data' in error) {
-          const errorMessage = (error as { data: { message?: string } }).data?.message;
+          const errorMessage = error?.data?.message;
           alert(errorMessage || 'Login failed. Please check your credentials.');
         } else {
           alert('Login failed. Please check your credentials.');
@@ -100,14 +100,14 @@ label="fullname"
 type='text'
 placeholder='Enter fullname '
 value={fullname}
-onChange={(e:any) => setfullname(e.target.value)}
+onChange={(e) => setfullname(e.target.value)}
 />
 <Input
 label="Email Address"
 type='text'
 placeholder='Enter Email Address '
 value={email}
-onChange={(e:any) => setEmail(e.target.value)}
+onChange={(e) => setEmail(e.target.value)}
  />
 <Input
 label="Password"
@@ -115,9 +115,8 @@ type='password'
 className='mt-1'
 value={password}
 placeholder='Enter Password '
-onChange={(e:any) => {
+onChange={(e) => {
   setPassword(e.target.value);
-  // Check password validity while typing
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   setIsPasswordValid(passwordRegex.test(e.target.value));
 }}
@@ -195,4 +194,4 @@ onClick={handleSubmit} className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[
   )
 }
 
-export default signup;
+export default Signup;
