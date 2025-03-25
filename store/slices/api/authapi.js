@@ -3,7 +3,7 @@ import { setTokens, getAccessToken, getRefreshToken, removeTokens } from '@/util
 import { logout, setUser } from '../authslice';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl:process.env.BASE_URL, // Replace with your API URL
+  baseUrl:`${process.env.NEXT_PUBLIC_BASE_URL}`, // Replace with your API URL
   prepareHeaders: (headers) => {
     const token = getAccessToken();
     if (token) {
@@ -13,6 +13,8 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
+
+console.log(process.env.BASE_URL)
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
@@ -50,25 +52,37 @@ export const authApi = createApi({
         method: 'POST',
         body: credentials,
       }),
+      
+      transformResponse: (response) => {
+        setTokens(response.accessToken, response.refreshToken);
+        return response;
+      },
+    }),
+    signup: builder.mutation({
+      query: (credentials) => ({
+        url: '/v1/users',
+        method: 'POST',
+        body: credentials,
+      }),
+      
       transformResponse: (response) => {
         setTokens(response.accessToken, response.refreshToken);
         return response;
       },
     }),
     getUser: builder.query({
-      query: () => '/auth/me',
+      query: () => '/users/me',
     }),
     logout: builder.mutation({
-      query: () => ({
-        url: '/auth/logout',
-        method: 'POST',
-      }),
-      transformResponse: () => {
-        removeTokens();
+      queryFn: async (_, { dispatch }) => {
+        removeTokens(); // Clear stored tokens
+        dispatch(logout()); // Update Redux state
+        return { data: null };
       },
     }),
+    
   }),
 });
 
-export const { useLoginMutation, useGetUserQuery, useLogoutMutation } = authApi;
+export const { useLoginMutation,useSignupMutation, useGetUserQuery, useLogoutMutation } = authApi;
 export default authApi;

@@ -1,12 +1,13 @@
 /* eslint-disable */
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { FaRegEye } from "react-icons/fa6";
 import ListedCard from "@/app/components/common/profilecard";
 import ContactAgent from "@/app/components/layouts/contactagent";
 import PropertyListCard from "@/app/components/common/PropertyListing";
 import { highlights, images } from "@/constants";
+import PropertyGalleryModal from "@/app/components/layouts/moda;s/page";
 
 const Breadcrumb = () => {
   return (
@@ -54,12 +55,13 @@ const Breadcrumb = () => {
 };
 
 const page = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="mt-8  2xl:w-[98rem] w-[90%]  ml-[2%] ">
       <Breadcrumb />
       <div className="grid grid-cols-5 gap-4 p-4">
         {/* Large Main Image */}
-        <div className="col-span-2  row-span-2">
+        <div className="col-span-2  row-span-2"  onClick={() => setIsModalOpen(true)}>
           <Image
             src={images[0]}
             alt="Gallery Image"
@@ -70,7 +72,7 @@ const page = () => {
         </div>
 
         {/* Smaller Images in Grid */}
-        <div>
+        <div  onClick={() => setIsModalOpen(true)}>
           <Image
             src={images[1]}
             alt="Gallery Image"
@@ -79,7 +81,7 @@ const page = () => {
             className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
           />
         </div>
-        <div>
+        <div  onClick={() => setIsModalOpen(true)}>
           <Image
             src={images[2]}
             alt="Gallery Image"
@@ -88,7 +90,7 @@ const page = () => {
             className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
           />
         </div>
-        <div>
+        <div  onClick={() => setIsModalOpen(true)}>
           <Image
             src={images[3]}
             alt="Gallery Image"
@@ -97,7 +99,7 @@ const page = () => {
             className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
           />
         </div>
-        <div>
+        <div  onClick={() => setIsModalOpen(true)}>
           <Image
             src={images[4]}
             alt="Gallery Image"
@@ -108,7 +110,7 @@ const page = () => {
         </div>
 
         {/* Wide Image Spanning Two Columns */}
-        <div className="">
+        <div   onClick={() => setIsModalOpen(true)} className="">
           <Image
             src={images[5]}
             alt="Gallery Image"
@@ -119,7 +121,7 @@ const page = () => {
         </div>
 
         {/* Last Image with Overlay */}
-        <div className="relative">
+        <div  onClick={() => setIsModalOpen(true)} className="relative">
           <Image
             src={images[6]}
             alt="Gallery Image"
@@ -340,6 +342,10 @@ const page = () => {
           </div>
         </div>
       </section>
+
+
+      <PropertyGalleryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
     </div>
   );
 };

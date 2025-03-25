@@ -1,12 +1,52 @@
 'use client'
-import React  from 'react'
+import React,{useState}  from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Input from '@/app/components/common/inputs/input'
 import Button from '@/app/components/common/Button'
+import { useSignupMutation } from '@/store/slices/api/authapi'
+import { useRouter } from 'next/navigation'
+import { sendDeviceInfo } from '@/utils/lib/devicinfo'
 const signup= () => {
 
+    const [email, setEmail] =useState('');
+    const [fullname,setfullname] =useState('');
+    const [password, setPassword] = useState('');
+    const [signup, { isLoading }] = useSignupMutation();
+    const [isPasswordValid, setIsPasswordValid] = useState(true)
+    const role = "buyer";
+   
+    const router = useRouter();
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+       // Password validation
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+   setIsPasswordValid(false)
+      return;
+    }
   
+    console.log("Attempting login with:", { fullname,email, password });
+      console.log("Attempting login with:", { fullname ,email, password });
+    
+      try {
+        const device = await sendDeviceInfo();
+  
+        // Send login request with device info
+        const response = await signup({ fullname,email, password,role, device }).unwrap();   router.push('/')
+        console.log('User Data:', response);
+      } catch (error) {
+        console.error('Login failed:', error);
+        if (error && typeof error === 'object' && 'data' in error) {
+          const errorMessage = (error as { data: { message?: string } }).data?.message;
+          alert(errorMessage || 'Login failed. Please check your credentials.');
+        } else {
+          alert('Login failed. Please check your credentials.');
+        }
+      }
+    };
+    
+    
   
 
   return (
@@ -56,18 +96,34 @@ const signup= () => {
 
 <div className='mt-[1rem] 2xl:mt-[2.3rem] flex flex-col gap-[1em] w-[80%] '>
 <Input
+label="fullname"
+type='text'
+placeholder='Enter fullname '
+value={fullname}
+onChange={(e:any) => setfullname(e.target.value)}
+/>
+<Input
 label="Email Address"
 type='text'
 placeholder='Enter Email Address '
+value={email}
+onChange={(e:any) => setEmail(e.target.value)}
  />
 <Input
 label="Password"
 type='password'
 className='mt-1'
+value={password}
 placeholder='Enter Password '
+onChange={(e:any) => {
+  setPassword(e.target.value);
+  // Check password validity while typing
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  setIsPasswordValid(passwordRegex.test(e.target.value));
+}}
  />
- <p className='text-[0.7em] text-gray -mt-1 2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>
-<div className= 'flex items-center  justify-end w-full gap-[7rem]'>
+ { !isPasswordValid &&  <p className='text-[0.7em] text-gray -mt-1  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>}
+  <div className= 'flex items-center  justify-end w-full gap-[7rem]'>
 
 
  <div className="flex items-center w-full 2xl:mt-2">
@@ -85,8 +141,12 @@ placeholder='Enter Password '
 </div> 
 </div>
 
-<Button className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[3rem] p-4'>
-Sign Up
+<Button  
+type="submit"
+onClick={handleSubmit} className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[3rem] p-4'
+ disabled={isLoading}
+>
+  {isLoading ? 'Signing Up...' : 'Sign Up'}
 </Button>
 <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
 <div className='w-full text-black text-right font-[500] font-bricolage'>

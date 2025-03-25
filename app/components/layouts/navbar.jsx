@@ -1,5 +1,6 @@
 'use client';
-import { useState,useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -7,39 +8,45 @@ import Button from '../common/Button';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import ListingNavbar from './listingnavbar';
 import HelpCenterNavbar from './Helpnavbar';
+
+import { useLogoutMutation } from '@/store/slices/api/authapi';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  
+  // Fetch user data
+  const { isAuthenticated} = useSelector((state) => state.auth);
+  const [logout] = useLogoutMutation();
+
+  // Check routes to show/hide navbar
   const hideNavbar = pathname.startsWith("/rent/listing");
   const hideAuth = pathname.startsWith("/auth");
-  const showNavbar = ["/listing", "/article/article-details","/rent/searchlisting", "/agent/all-agent", "/agent/agent-description", "/sell/sell-home"].some(route =>
+  const showNavbar = ["/listing", "/article/article-details", "/rent/searchlisting", "/agent/all-agent", "/agent/agent-description", "/sell/sell-home"].some(route =>
     pathname.includes(route)
   );
-  const helpcenter=pathname.startsWith("/helpcenter");
+  const helpcenter = pathname.startsWith("/helpcenter");
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []); 
+
   if (showNavbar) {
     return <ListingNavbar />;
   }
 
-  if(helpcenter){
+  if (helpcenter) {
     return <HelpCenterNavbar />;
   }
+
   return (
     <>
       {!hideNavbar && !hideAuth && (
-        <nav className={`text-xl z-[999999]  font-bricolage fixed top-0 w-full  transition-all duration-300 ${scrolled ? "bg-white text-black shadow-md" : "bg-transparent text-white  mt-3 "} `}>
+        <nav className={`text-xl z-[999999] font-bricolage fixed top-0 w-full transition-all duration-300 ${scrolled ? "bg-white text-black shadow-md" : "bg-transparent text-white mt-3"}`}>
           <div className="flex-1 mx-auto flex w-full items-center justify-around p-2">
             
             {/* Logo */}
@@ -53,14 +60,14 @@ export default function Navbar() {
                   height={30}
                   src={'/Logo.svg'}
                 />
-                <h3 className=" lg:font-[600] lg:text-[1em] text-lg">
+                <h3 className="lg:font-[600] lg:text-[1em] text-lg">
                   Hoydoon
                 </h3>
               </Link>
             </div>
 
             {/* Desktop Links */}
-            <div className=" ml-[4.5rem] w-[30rem] text-lg sm:hidden max-md:hidden lg:flex items-center justify-center hidden md:hidden rounded-full lg:h-[37px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
+            <div className="ml-[4.5rem] w-[30rem] text-lg sm:hidden max-md:hidden lg:flex items-center justify-center hidden md:hidden rounded-full lg:h-[37px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
               <ul className="lg:flex items-center space-x-5 font-[300]">
                 {[
                   { name: "Home", path: "/" },
@@ -73,12 +80,10 @@ export default function Navbar() {
                     <div
                       className={`px-4 py-2 lg:text-base rounded-full ${
                         pathname === path
-                        ? "bg-white text-primary font-light"
-                        : scrolled
-                        ? "text-black"
-                        : "text-white"
-                  
-                      
+                          ? "bg-white text-primary font-light"
+                          : scrolled
+                          ? "text-black"
+                          : "text-white"
                       }`}
                     >
                       <Link href={path}>{name}</Link>
@@ -88,18 +93,33 @@ export default function Navbar() {
               </ul>
             </div>
 
-            {/* Desktop Action Buttons */}
+            {/* Authentication Buttons */}
             <div className="flex gap-2">
-              <Button className={` p-1 w-[92px]   ${scrolled ?  "bg-white text-primary  border-primary border-[1px] border-solid" :"bg-transparent bg-primarytransparent text-black" }}`}>
-                <Link href="/auth/sign-in" className={`text-base  ${scrolled ? "text-primary " : "text-white  "}`}>
-                  Login
-                </Link>
-              </Button>
-              <button className=" font-bricolage   h-auto p-1 rounded-full bg-primary  flex justify-center items-center  text-white hover:bg-primary w-[7.5rem] ">
-                <Link href="/auth/sign-up" className="font-light h-[25px] text-base">
-                  Register
-                </Link>
-              </button>
+              {isAuthenticated? (
+                // Logout button when user is logged in
+                <button
+                  onClick={async () => await logout()}
+                  className={`p-1 w-[92px] rounded-full border-[1px]   font-[300]  text-base  ${
+                    scrolled ? "border-primary border-solid text-primary  bg-white" : "bg-primary border-none text-white"
+                  }`}
+                >
+                  Logout
+                </button>
+              ) : (
+                // Login & Register buttons when user is not logged in
+                <>
+                  <Button className={`p-1 w-[92px] ${scrolled ? "bg-white text-primary border-primary border-[1px] border-solid" : "bg-transparent bg-primarytransparent text-black"}`}>
+                    <Link href="/auth/sign-in" className={`text-base ${scrolled ? "text-primary" : "text-white"}`}>
+                      Login
+                    </Link>
+                  </Button>
+                  <button className="font-bricolage h-auto p-1 rounded-full bg-primary flex justify-center items-center text-white hover:bg-primary w-[7.5rem]">
+                    <Link href="/auth/sign-up" className="font-light h-[25px] text-base">
+                      Register
+                    </Link>
+                  </button>
+                </>
+              )}
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -133,9 +153,7 @@ export default function Navbar() {
                   <Link
                     href={path}
                     className={`block py-2 rounded-full ${
-                      pathname === path
-                        ? "bg-white text-green-600 font-light"
-                        : "text-black"
+                      pathname === path ? "bg-white text-green-600 font-light" : "text-black"
                     }`}
                     onClick={() => setMenuOpen(false)}
                   >
@@ -145,7 +163,7 @@ export default function Navbar() {
               ))}
             </ul>
             <div className="text-center mt-8">
-              <Link href="/register" className="bg-primary px-5 py-2 rounded-md font-semibold hover:bg-orange-600">
+              <Link href="/auth/sign-up" className="bg-primary px-5 py-2 rounded-md font-semibold hover:bg-orange-600">
                 Register
               </Link>
             </div>
