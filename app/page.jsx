@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "./components/common/Button";
@@ -6,8 +7,38 @@ import TestimonialCarousel from "./components/layouts/testimonials";
 import FAQComponent from "./components/layouts/faq";
 import PropertyCard from "./components/common/property";
 import ArticlesSection from "./components/common/Article";
+import { useEffect } from "react";
+import { useGetFavoritesQuery } from "@/store/slices/api/authapi";
+import { useState } from "react";
+
+
 
 export default function Home() {
+  const { data: allListings, isLoading: isAllLoading, refetch } = useGetFavoritesQuery({ region: "somalia" });
+
+  const [displayListings, setDisplayListings] = useState([]);
+  console.log(displayListings);
+
+  useEffect(() => {
+    refetch(); // Refetch data on every mount
+  }, [refetch]);
+
+  useEffect(() => {
+    if (!isAllLoading && allListings) {
+      const firstThreeListings = allListings.listings?.slice(0, 3);
+      setDisplayListings(firstThreeListings); // Store in state
+    }
+  }, [allListings, isAllLoading]);
+
+  if (isAllLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
+        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
+      </div>
+    );
+  }
+
+
   return (
     <>
       <header className="relative h-[100vh] w-full overflow-hidden">
@@ -197,68 +228,56 @@ export default function Home() {
               alt="image1"
               width={500} // Reduced size of logo
               height={500} // Reduced size of logo
-              src={"/app.svg"}
-              className="lg:w-[500px]"
-            />
-          </span>
-        </div>
-      </section>
+                src={"/app.svg"}
+                className="lg:w-[500px]"
+              />
+              </span>
+            </div>
+            </section>
 
-      {/* explore */}
-      <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex     flex-col items-center justify-center">
-          <div className="flex   ml-[3rem]  2xl:ml-[3.2rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-            <h1 className="text-black   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
-              Featured Properties for Rent
-            </h1>
-            <p className="text-gray -ml-[10rem]    2xl:mr-[4rem] text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
-            Discover a home where every detail enhances your lifestyl ecrafted
-            to fit your taste and needs.
-            </p>
-          </div>
-          <div className=" flex mt-[1em] h-fit   min-w-[70%] items-center lg:flex-row    justify-center  mb-2">
-            {/* Horizontal Scrollable Container on Mobile */}
-            {/* Card 1 */}
-            <PropertyCard
-              imageSrc={"/house1.png"}
-              altText={"rent6"}
-              price={"18,000.00"}
-              area={""}
-            />
-            <PropertyCard
-              imageSrc={"/house1.png"}
-              altText={"rent6"}
-              price={"18,000.00"}
-              area={""}
-            />
+            /* explore */
+            <section className="mt-10 hidden lg:my-[4em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+            <div className="flex flex-col items-center justify-center">
+              <div className="flex ml-[3rem] 2xl:ml-[3.2rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
+              <h1 className="text-black text-[26px] lg:text-[2.5rem] font-[600] w-full">
+                Featured Properties for Rent
+              </h1>
+              <p className="text-gray -ml-[10rem] 2xl:mr-[4rem] text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
+                Discover a home where every detail enhances your lifestyle crafted to fit your taste and needs.
+              </p>
+              </div>
+              <div className="flex mt-[1em] h-fit min-w-[70%] items-center lg:flex-row justify-center mb-2">
+              {displayListings.map((items, index) => (
+                <PropertyCard
+                key={index}
+                imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                altText={items?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
+                price={items?.item.price || "Price not available"}
+                area={items?.item.squareFeet || "190 - 245 m² (Approximate area)"}
+                description={items?.item.description || "No description available for this property."}
+                title={items?.item.title || "Untitled Property"}
+                rent={items?.item.rent || "Rent details not provided"}
+                />
+              ))}
+              </div>
+            </div>
+            </section>
 
-            <PropertyCard
-              imageSrc={"/house1.png"}
-              altText={"rent6"}
-              price={"18,000.00"}
-              area={""}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* card component */}
-
-      <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-      <div className="flex     flex-col items-center justify-center">
-          <div className="flex   2xl:w-[90rem] ml-[5rem]  2xl:ml-[2.6rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-            <h1 className="text-black   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
-            Explore Luxurious Living Spaces            </h1>
-            <p className="text-gray -ml-[10rem]  lg:mr-[3rem] text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:w-[43rem]">
-            Discover a home where every detail enhances your lifestyl ecrafted
-            to fit your taste and needs.
-            </p>
-          </div> 
-       
-          <div
-            style={{
-              backgroundImage: "url('/carousel.jpg')",
-              backgroundSize: "cover", // Makes the image fill the entire container
+            <section className="mt-10  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+            <div className="flex     flex-col items-center justify-center">
+              <div className="flex   2xl:w-[90rem] ml-[5rem]  2xl:ml-[2.6rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+              <h1 className="text-black   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
+              Explore Luxurious Living Spaces            </h1>
+              <p className="text-gray -ml-[10rem]  lg:mr-[3rem] text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:w-[43rem]">
+              Discover a home where every detail enhances your lifestyle crafted
+              to fit your taste and needs.
+              </p>
+              </div> 
+             
+              <div
+              style={{
+                backgroundImage: "url('/carousel.jpg')",
+                backgroundSize: "cover", // Makes the image fill the entire container
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center", // Ensures the image is centered
             }}

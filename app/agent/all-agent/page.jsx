@@ -2,7 +2,7 @@
 
 'use client';
 
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Image from 'next/image';
 import { ProfileCard } from '@/app/components/layouts/profilecard';
 import { agents } from '@/constants';
@@ -10,6 +10,8 @@ import Link from 'next/link';
 import Pagination from '@/app/components/common/pagination';
 import Button from '@/app/components/common/Button';
 import FAQComponent from '@/app/components/layouts/faq';
+import { useGetAgentsQuery } from '@/store/slices/api/authapi';
+import Spinner from '@/app/components/common/Spinner';
 const Breadcrumb = () => {
   const [selectedOption, setSelectedOption] = useState("All");
 
@@ -93,6 +95,29 @@ const Breadcrumb = () => {
 
   
 const page = () => {
+
+  
+  const { data: allAgent, isLoading: isAllLoading, refetch } = useGetAgentsQuery({});
+  const [displayListings, setDisplayListings] = useState([]);
+console.log(displayListings)
+useEffect(() => {
+  refetch(); // Refetch data on every mount
+}, [refetch]);
+
+useEffect(() => {
+  if (!isAllLoading && allAgent) {
+    const firstThreeListings = allAgent;
+    setDisplayListings(firstThreeListings); // Store in state
+  }
+}, [allAgent, isAllLoading]);
+
+  
+if (isAllLoading) {
+  return (
+  <Spinner/>
+  );
+}
+
   return (
     <div className='mt-8  2xl:w-[1520px]  '> <Breadcrumb/>
   <div className="lg:ml-[5rem] 2xl:ml-[2rem] grid w-[88%] 2xl:w-[95%]  grid-cols-1 md:grid-cols-2 gap-8 place-items-center">

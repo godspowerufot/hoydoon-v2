@@ -1,15 +1,17 @@
-/* eslint-disable */
-
 'use client';
 
-import React, { useState } from 'react'
+/* eslint-disable */
+
+
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
-import { FaRegEye} from "react-icons/fa6";
-import ListedCard from '@/app/components/common/profilecard';
+
 import ContactAgent from '@/app/components/layouts/contactagent';
-import PropertyListCard from '@/app/components/common/PropertyListing';
-import { highlights, images } from '@/constants';
+import {  images } from '@/constants';
 import PropertyCard from '@/app/components/common/property';
+import { usePathname } from 'next/navigation';
+import { useGetAgentListingsQuery } from '@/store/slices/api/authapi';
+import Spinner from '@/app/components/common/Spinner';
 
 
 const Breadcrumb = () => {
@@ -56,9 +58,34 @@ const Breadcrumb = () => {
   
 
   
-const page = () => {
+  
+const page = ({params}) => {
   const [activeTab, setActiveTab] = useState("all");
+  const pathname = usePathname();
+  const [listingData, setListingData] = useState(null);
 
+  const userId = pathname?.split('/').pop();
+
+  const { data: listing, isLoading, isError } = useGetAgentListingsQuery({userId});
+
+console.log(listing,params.id)
+
+  // console.log(listingData,userId)
+
+
+  // useEffect(() => {
+  //   if (listing) {
+  //     setListingData(listing);
+  //   }
+  // }, [listing]);
+
+  
+  // if (isLoading) {
+  //   return (
+  //       <Spinner />
+     
+  //   );
+  // }
   const tabs = [
     { id: "all", label: "All listings" },
     { id: "active", label: "Active listings" },
@@ -253,11 +280,11 @@ const page = () => {
 <div className=" flex mt-[1em] h-fit  -mb-[4rem] -ml-[3rem]  min-w-fit items-center lg:flex-row    justify-center  ">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
-    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} description={undefined} title={undefined} />
+    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} description={undefined} title={undefined} />
 
   
-    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} description={undefined} title={undefined} />
 
 
 

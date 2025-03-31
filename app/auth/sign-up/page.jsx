@@ -1,11 +1,13 @@
 'use client'
-import React,{useState}  from 'react'
+import React,{useState,useEffect}  from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Input from '@/app/components/common/inputs/input'
 import Button from '@/app/components/common/Button'
-import { useSignupMutation } from '@/store/slices/api/authapi'
+import { useSignupMutation ,useGoogleAuthMutation} from '@/store/slices/api/authapi'
 import { useRouter } from 'next/navigation'
+import { gapi } from "gapi-script";
+
 import { sendDeviceInfo } from '@/utils/lib/devicinfo'
 const Signup= () => {
 
@@ -14,9 +16,13 @@ const Signup= () => {
     const [password, setPassword] = useState('');
     const [signup, { isLoading }] = useSignupMutation();
     const [isPasswordValid, setIsPasswordValid] = useState(true)
+    const [googleToken, setGoogleToken] = useState(null);
+    const [googleAuth, { isLoadings, error }] = useGoogleAuthMutation();
+
     const role = "buyer";
    
     const router = useRouter();
+    
     const handleSubmit = async (e) => {
       e.preventDefault();
        // Password validation
@@ -31,7 +37,7 @@ const Signup= () => {
     
       try {
         const device = await sendDeviceInfo();
-  
+
         // Send login request with device info
         const response = await signup({ fullname,email, password,role, device }).unwrap();   router.push('/')
         console.log('User Data:', response);
@@ -47,13 +53,54 @@ const Signup= () => {
     };
     
     
+  const handleGoogleLogin=async ()=>{
+    try {
+      const auth2 = gapi.auth2.getAuthInstance();
+      const googleUser = await auth2.signIn();
+      const idToken = googleUser.getAuthResponse().id_token;
   
+      console.log("ID Token:", idToken);
 
+      const device = await sendDeviceInfo(); // Assuming this function gets device info
+
+      // Construct payload for backend authentication
+      const payload = {
+        credential: idToken, // Using the decoded ID token
+        role: "buyer",
+        region: device.location,
+        device: device,
+      };
+
+      console.log("Payload to Backend:", payload);
+
+      // Send the payload to the backend
+      const response = await googleAuth({
+        ...payload,
+        redirect_uri: process.env.NEXTAUTH_URL, // Redirect URI for OAuth flow
+      }).unwrap();
+
+      console.log("Backend Response:", response);
+      router.push("/"); // Redirect after successful login
+    } catch (error) {
+      console.error("Error during Google login:", error);
+    }
+  }
+
+  useEffect(() => {
+    gapi.load("auth2", () => {
+      gapi.auth2.init({
+        client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      });
+    });
+  }, []);
+
+    
+    
   return (
     <>
         <div className='flex items-center w-full justify-center'> 
 
- <div className=' h-screen justify-center items-center  flex  py-[1rem] 2xl:mt-[0.8rem]'>
+ <div className=' h-screen justify-center mt-[3rem] items-center  flex  py-[1rem] 2xl:mt-[1.8rem]'>
     <div className=' gap-[4rem]   flex flex-1 flex-col lg:flex-row'>
           <Image
               alt="authBanner"
@@ -62,13 +109,13 @@ const Signup= () => {
               height={400}
               quality={100} // Ensures maximum quality
               src={'/signup.jpg'} 
-              className='  hidden lg:block  brightness-75  2xl:-mt-[0.9rem] mt-[5px] rounded-2xl w-[37rem] h-[39.8rem]  2xl:h-[49rem] 2xl:w-[50rem]'
+              className='  hidden lg:block  brightness-75  2xl:mt-[1rem] mt-[5px] rounded-2xl w-[37rem] h-[42.8rem]  2xl:h-[52.1rem] 2xl:w-[50rem]'
               style={{ objectFit: 'cover' } }
             />
 
 
 
-            <div className=' w-full lg:w-[50%] items-start mt-3 2xl:-mt-4  flex flex-col'>
+            <div className=' w-full lg:w-[50%] items-start mt-1 2xl:mt-3  flex flex-col'>
  <Link href="/" className='flex justify-start ml-[2rem]         '>
             <Image
               alt="logo"
@@ -94,14 +141,8 @@ const Signup= () => {
 
 
 
-<div className='mt-[1rem] 2xl:mt-[2.3rem] flex flex-col gap-[1em] w-[80%] '>
-<Input
-label="fullname"
-type='text'
-placeholder='Enter fullname '
-value={fullname}
-onChange={(e) => setfullname(e.target.value)}
-/>
+<div className='mt-[1rem] 2xl:mt-[1.3rem] flex flex-col gap-[1em] w-[80%] '>
+
 <Input
 label="Email Address"
 type='text'
@@ -112,7 +153,7 @@ onChange={(e) => setEmail(e.target.value)}
 <Input
 label="Password"
 type='password'
-className='mt-1'
+className=''
 value={password}
 placeholder='Enter Password '
 onChange={(e) => {
@@ -122,6 +163,14 @@ onChange={(e) => {
 }}
  />
  { !isPasswordValid &&  <p className='text-[0.7em] text-gray -mt-1  2xl:text-[0.8em] font-[300] '>It must be a combination of 8 words, letters,  numbers, symbols</p>}
+
+ <Input
+label="Username"
+type='text'
+placeholder='Enter Username '
+value={fullname}
+onChange={(e) => setfullname(e.target.value)}
+/>
   <div className= 'flex items-center  justify-end w-full gap-[7rem]'>
 
 
@@ -153,14 +202,16 @@ onClick={handleSubmit} className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[
 </div>
 
 <div className="w-full flex gap-3 mt-[2px] ">
-<span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">  <Image
+<span           onClick={() => handleGoogleLogin()} disabled={isLoadings}    className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
+    <Image
               alt="logo"
               width={20}  
               loading='lazy'
               objectFit='cover'
               height={20} // Reduced size of logo
               src={'/google.png'}
-            /> Google</span>
+               /> 
+               {isLoading ? 'Signing in...' : 'Google'}</span>
 <span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">  <Image
               alt="logo"
               width={20}  

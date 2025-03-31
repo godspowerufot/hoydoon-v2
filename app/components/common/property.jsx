@@ -3,14 +3,15 @@
 import { useState } from "react";
 import Image from "next/image";
 
-interface PropertyCardProps {
-  imageSrc: string;
-  altText: string;
-  price: number | string;
-  area: string;
-}
 
-const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, area }) => {
+const PropertyCard = ({ 
+  imageSrc = "/default-image.jpg", 
+  altText = "Default Alt Text", 
+  price = "N/A", 
+  area = "N/A", 
+  description = "No description available", 
+  title = "Untitled Property" 
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -45,16 +46,16 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
         }`}
       >
         <h1 className="text-black text-base lg:text-[25px] font-bold">
-          Whispering Pines Estate
+          {title}
         </h1>
         <span className="flex-col flex mt-3">
           <span className="flex gap-1">
             <h4 className="text-gray text-label flex items-center justify-center font-light">From</h4>
             <h2 className="font-bold">${price}</h2>
-            <h4 className="ml-9 text-label text-gray font-light">Area from 190 - 245 m²</h4>
+            <h4 className="ml-9 text-label text-gray font-light">Area from {area}</h4>
           </span>
           <p className="text-gray text-[16px] mt-4">
-            A cozy 3-bedroom home with an open living area and a private backyard. Perfect for comfort and relaxation.
+            {description}
           </p>
           <div className="mt-9 flex justify-between items-center">
             <div className="text-base flex justify-center font-bricolage items-center rounded-full font-light h-[41px] lg:w-[180px] text-[#1E1E1E] bg-[#D8F0F1]">
@@ -75,7 +76,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, a
           <h4 className="text-gray font-light">From</h4>
           <h2 className="font-bold">${price}</h2>
         </span>
-        <h4 className="text-gray font-light">{area} Area from 190 - 245 m²</h4>
+        <h4 className="text-gray font-light"> Area from {`${area} || 190 - 245 m²`}</h4>
       </div>
     </div>
   );

@@ -1,21 +1,40 @@
+'use client'
 /* eslint-disable */
 
-'use client '
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
 import { ProfileCard } from '@/app/components/layouts/profilecard';
 import { agents } from "@/constants";
 import Link from "next/link";
-import Article from "../components/common/Article";
 import FAQComponent from "../components/layouts/faq";
-
+import { useGetAgentsQuery } from "@/store/slices/api/authapi";
+import { useEffect, useState } from "react";
+  import Spinner from '@/app/components/common/Spinner';
   
+export default function Page() {
 
-  
-export default function Home() {
+    const { data: allAgent, isLoading: isAllLoading, refetch } = useGetAgentsQuery({});
+    const [displayListings, setDisplayListings] = useState([]);
+console.log(displayListings)
+ useEffect(() => {
+    refetch(); // Refetch data on every mount
+  }, [refetch]);
 
-  
+  useEffect(() => {
+    if (!isAllLoading && allAgent) {
+      const firstThreeListings = allAgent;
+      setDisplayListings(firstThreeListings); // Store in state
+    }
+  }, [allAgent, isAllLoading]);
+
+    
+  if (isAllLoading) {
+    return (
+    <Spinner/>
+    );
+  }
+
       
   return (
     <>
@@ -100,8 +119,8 @@ export default function Home() {
 
 </div>
 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
-        {agents.map((agent, index) => (
-          <ProfileCard key={index} {...agent} sales={Number(agent.sales)} />
+        {displayListings.map((agent) => (
+          <ProfileCard  key={agent._id} {...agent} sales={Number(agent.numberOfListings)} />
         ))}
         <Link href={"/agent/all-agent"}>
 

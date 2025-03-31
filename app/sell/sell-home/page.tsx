@@ -143,7 +143,14 @@ By submitting this form, you agree that Hoydoon, its affiliates, or associated t
    
    <div className="grid grid-cols-1 mt-[3rem] md:grid-cols-2 gap-8 place-items-center">
            {agents.map((agent, index) => (
-             <ProfileCard key={index} {...agent} sales={Number(agent.sales)} />
+             <ProfileCard 
+               key={index} 
+               pictureUrl={agent.image} 
+               fullname={agent.name} 
+             
+               priceRange={agent.priceRange ? { min: parseInt(agent.priceRange.split('-')[0]), max: parseInt(agent.priceRange.split('-')[1]) } : undefined} 
+               sales={Number(agent.sales)} 
+             />
            ))}
            <Link href={"/agent/all-agent"}>
    

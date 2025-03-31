@@ -1,11 +1,10 @@
+
+/* eslint-disable */
 "use client";
 import Image from "next/image";
-type PropertyGalleryModalProps= {
-  isOpen: boolean;
-  onClose: () => void;
-}
 
-export default function PropertyGalleryModal({ isOpen, onClose }: PropertyGalleryModalProps) {
+
+export default function PropertyGalleryModal({ isOpen, onClose }:any) {
   if (!isOpen) return null;
 
   const images = [

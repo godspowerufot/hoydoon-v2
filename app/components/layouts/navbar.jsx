@@ -10,13 +10,13 @@ import ListingNavbar from './listingnavbar';
 import HelpCenterNavbar from './Helpnavbar';
 
 import { useLogoutMutation } from '@/store/slices/api/authapi';
+import { getAccessToken } from '@/utils/cookies';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  
   // Fetch user data
-  const { isAuthenticated} = useSelector((state) => state.auth);
+  const isAuthenticated = getAccessToken();
   const [logout] = useLogoutMutation();
 
   // Check routes to show/hide navbar

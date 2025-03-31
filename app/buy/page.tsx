@@ -133,11 +133,31 @@ export default function Home() {
 <div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
   {/* Horizontal Scrollable Container on Mobile */}
     {/* Card 1 */}
-    <PropertyCard imageSrc={'/rent-1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-    <PropertyCard imageSrc={'/rent2.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-
-  
-    <PropertyCard imageSrc={'/rent3.png'} altText={'rent6'} price={'18,000.00'} area={''} />
+ 
+    <PropertyCard 
+      imageSrc={'/rent3.png'} 
+      altText={'rent6'} 
+      price={'18,000.00'} 
+      area={''} 
+      description={'A beautiful rental property with modern amenities.'} 
+      title={'Modern Rental Property'} 
+    />
+    <PropertyCard 
+      imageSrc={'/rent3.png'} 
+      altText={'rent6'} 
+      price={'18,000.00'} 
+      area={''} 
+      description={'A beautiful rental property with modern amenities.'} 
+      title={'Modern Rental Property'} 
+    />
+    <PropertyCard 
+      imageSrc={'/rent3.png'} 
+      altText={'rent6'} 
+      price={'18,000.00'} 
+      area={''} 
+      description={'A beautiful rental property with modern amenities.'} 
+      title={'Modern Rental Property'} 
+    />
 
 
 

@@ -4,7 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/layouts/navbar.jsx", "store/slices/api/authapi.js", "app/auth/sign-up/page.jsx", "app/components/layouts/modals/page.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/layouts/navbar.jsx", "store/slices/api/authapi.js", "app/auth/sign-up/page.jsx", "app/components/layouts/modals/page.tsx", "app/components/common/property.tsx", "app/page.jsx", "app/components/layouts/profilecard.jsx", "app/agent/page.jsx", "app/agent/all-agent/page.jsx", "app/agent/[id]/page.jsx"],
   "exclude": ["node_modules"]
 }
