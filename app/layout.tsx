@@ -5,7 +5,6 @@ import Appfooter from "./components/layouts/footer"
 import Navbar from "./components/layouts/navbar";
 import AnimationWrapper from "@/utils/lib/_app"
 import { Providers } from '@/store/provider';
-import { getAccessToken } from "@/utils/cookies";
 export const metadata: Metadata = {
   title: "Hoydoon",
   description: "Property Listing made simple",

@@ -7,7 +7,6 @@ import Button from '@/app/components/common/Button'
 import { useRouter } from 'next/navigation'
 import { useLoginMutation,useGoogleAuthMutation } from '@/store/slices/api/authapi'
 import {sendDeviceInfo} from "../../../utils/lib/devicinfo"
-import { jwtDecode } from "jwt-decode";
 import { gapi } from "gapi-script";
 const   Signup= () => {
 
