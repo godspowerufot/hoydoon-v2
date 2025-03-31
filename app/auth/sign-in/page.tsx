@@ -1,3 +1,4 @@
+
 'use client'
 import React, { useEffect, useState }  from 'react'
 import Image from 'next/image'
@@ -7,7 +8,6 @@ import Button from '@/app/components/common/Button'
 import { useRouter } from 'next/navigation'
 import { useLoginMutation,useGoogleAuthMutation } from '@/store/slices/api/authapi'
 import {sendDeviceInfo} from "../../../utils/lib/devicinfo"
-import { gapi } from "gapi-script";
 const   Signup= () => {
 
   const [email, setEmail] =useState('');
@@ -46,6 +46,7 @@ const router=useRouter()
     }
   };
   const handleGoogleLogin=async ()=>{
+    const { gapi } = await import("gapi-script");
     try {
       const auth2 = gapi.auth2.getAuthInstance();
       const googleUser = await auth2.signIn();
@@ -77,13 +78,16 @@ const router=useRouter()
       console.error("Error during Google login:", error);
     }
   }
-
   useEffect(() => {
-    gapi.load("auth2", () => {
-      gapi.auth2.init({
-        client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+    if (typeof window !== "undefined") {
+      import("gapi-script").then(({ gapi }) => {
+        gapi.load("auth2", () => {
+          gapi.auth2.init({
+            client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+          });
+        });
       });
-    });
+    }
   }, []);
 
 

@@ -6,7 +6,6 @@ import Input from '@/app/components/common/inputs/input'
 import Button from '@/app/components/common/Button'
 import { useSignupMutation ,useGoogleAuthMutation} from '@/store/slices/api/authapi'
 import { useRouter } from 'next/navigation'
-import { gapi } from "gapi-script";
 
 import { sendDeviceInfo } from '@/utils/lib/devicinfo'
 const Signup= () => {
@@ -16,7 +15,6 @@ const Signup= () => {
     const [password, setPassword] = useState('');
     const [signup, { isLoading }] = useSignupMutation();
     const [isPasswordValid, setIsPasswordValid] = useState(true)
-    const [googleToken, setGoogleToken] = useState(null);
     const [googleAuth, { isLoadings, error }] = useGoogleAuthMutation();
 
     const role = "buyer";
@@ -43,17 +41,14 @@ const Signup= () => {
         console.log('User Data:', response);
       } catch (error) {
         console.error('Login failed:', error);
-        if (error && typeof error === 'object' && 'data' in error) {
-          const errorMessage = error?.data?.message;
-          alert(errorMessage || 'Login failed. Please check your credentials.');
-        } else {
-          alert('Login failed. Please check your credentials.');
-        }
+      
       }
     };
     
     
   const handleGoogleLogin=async ()=>{
+    const { gapi } = await import("gapi-script");
+
     try {
       const auth2 = gapi.auth2.getAuthInstance();
       const googleUser = await auth2.signIn();
@@ -85,14 +80,27 @@ const Signup= () => {
       console.error("Error during Google login:", error);
     }
   }
-
   useEffect(() => {
-    gapi.load("auth2", () => {
-      gapi.auth2.init({
-        client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+    if (typeof window !== "undefined") {
+      import("gapi-script").then(({ gapi }) => {
+        gapi.load("auth2", () => {
+          gapi.auth2.init({
+            client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+          });
+        });
       });
-    });
+    }
   }, []);
+//   useEffect(() => {
+//     async function start() {
+//      const gapi = (await import('gapi-script')).default
+//       gapi.client.init({
+//         client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+//       });
+//     }
+//     gapi.load('client:auth2', start);
+// }, []);
+  
 
     
     
