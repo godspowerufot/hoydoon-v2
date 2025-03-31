@@ -1,0 +1,85 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+
+
+const PropertyCard = ({ 
+  imageSrc = "/default-image.jpg", 
+  altText = "Default Alt Text", 
+  price = "N/A", 
+  area = "N/A", 
+  description = "No description available", 
+  title = "Untitled Property" 
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className={`flex flex-col rounded-[1.5rem] h-[37rem]  border-gray  2xl:h-[38rem] lg:w-[24rem] 2xl:w-[29rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
+      group transition-all duration-[1500ms] ease-in-out ${
+        isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : "border-none"
+      }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Image Container with smooth height transition */}
+      <div
+        className={`overflow-hidden rounded-lg w-full transition-all duration-[1500ms] ease-in-out ${
+          isHovered ? "max-h-[350px]" : "max-h-[550px]"
+        }`}
+      >
+        <Image
+          alt={altText}
+          width={300}
+          height={500}
+          quality={100}
+          src={imageSrc}
+          className="w-full h-full object-cover rounded-b-[1.6rem] transition-all duration-[2000ms] ease-in-out"
+        />
+      </div>
+
+      {/* Details Section */}
+      <div
+        className={`mt-8 px-5 transition-all duration-[1500ms] ease-in-out ${
+          isHovered ? "opacity-100 translate-y-0 max-h-[300px]" : "h-0 opacity-0 translate-y-5 max-h-0"
+        }`}
+      >
+        <h1 className="text-black text-base lg:text-[25px] font-bold">
+          {title}
+        </h1>
+        <span className="flex-col flex mt-3">
+          <span className="flex gap-1">
+            <h4 className="text-gray text-label flex items-center justify-center font-light">From</h4>
+            <h2 className="font-bold">${price}</h2>
+            <h4 className="ml-9 text-label text-gray font-light">Area from {area}</h4>
+          </span>
+          <p className="text-gray text-[16px] mt-4">
+            {description}
+          </p>
+          <div className="mt-9 flex justify-between items-center">
+            <div className="text-base flex justify-center font-bricolage items-center rounded-full font-light h-[41px] lg:w-[180px] text-[#1E1E1E] bg-[#D8F0F1]">
+              Luxury Oasis
+            </div>
+            <Image alt="export icon" width={50} height={50} src={"/export.png"} className="rounded-full" />
+          </div>
+        </span>
+      </div>
+
+      {/* Base Details (Always Visible) */}
+      <div
+        className={`mt-2 text-black transition-opacity duration-500 ${
+          isHovered ? "opacity-0 hidden" : " block opacity-100"
+        }`}
+      >
+        <span className="flex gap-3">
+          <h4 className="text-gray font-light">From</h4>
+          <h2 className="font-bold">${price}</h2>
+        </span>
+        <h4 className="text-gray font-light"> Area from {`${area} || 190 - 245 m²`}</h4>
+      </div>
+    </div>
+  );
+};
+
+export default PropertyCard;

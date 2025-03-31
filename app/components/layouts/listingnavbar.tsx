@@ -50,7 +50,7 @@ export default function ListingNavbar() {
             </div>
 
             {/* Center: Navigation Links */}
-            <ul className="hidden lg:flex space-x-6 -mr-[16rem]  justify-center items-center text-[#8F8F8F] text-[1rem]">
+            <ul className="hidden lg:flex space-x-6 2xl:-mr-[33rem]  -mr-[16rem]  justify-center items-center text-[#8F8F8F] text-[1rem]">
               <li className="flex  gap-2  items-center justify-center"><Link href="/buy" className="hover:text-primary">Buy</Link>  <img src="/arrow-down.png" alt="Back" className="w-3 h-2 mt-1" /></li>
               <li className="flex  gap-2 items-center justify-center"><Link href="/sell" className="hover:text-primary">Sell</Link>  <img src="/arrow-down.png" alt="Back" className="w-3  h-2 mt-1" /></li>
               <li className="flex gap-2 items-center justify-center"><Link href="/agent" className="hover:text-primary">Find an agent</Link>  <img src="/arrow-down.png" alt="Back" className="w-3  h-2 mt-1" />   </li>

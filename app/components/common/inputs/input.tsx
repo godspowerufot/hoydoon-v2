@@ -14,12 +14,12 @@ const Input: React.FC<InputProps> = ({ label, className,  ...rest }) => {
       {label && (
         <label
           htmlFor={rest.type}
-          className="block text-[1em] 2xl:text-[1.2em] font-normal font-bricolage leading-6 text-gray-700"
+          className="block text-[1em] mb-2 2xl:text-[1.2em] font-normal font-bricolage leading-6 text-gray-700"
         >
           {label}
         </label>
       )}
-      <div className="mt-2 relative">
+      <div className=" relative">
         {rest.type === "password" && (
           <button
             type="button"
@@ -39,7 +39,7 @@ const Input: React.FC<InputProps> = ({ label, className,  ...rest }) => {
               : rest.type
           }
           className={
-            `block  font-light  w-full placeholder:font-bricolage placeholder:font-light placeholder:text-[1rem] h-[3rem] 2xl:h-[3.5rem] rounded-2xl border border-[#d6d5d5] p-4 text-gray-700  placeholder:px-2 placeholder:text-gray-500  ${className}`
+            `block  font-light  bg-transparent w-full placeholder:font-bricolage placeholder:font-light placeholder:text-[1rem] h-[3rem] 2xl:h-[3.5rem] rounded-2xl border border-[#d6d5d5] p-4 text-gray-700  placeholder:text-gray-500  ${className}`
           }
         />
       </div>

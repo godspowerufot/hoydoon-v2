@@ -17,15 +17,17 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
   return (
     
     <div
-      className="flex flex-col h-fit lg:w-[26rem] 2xl:w-[31rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden p-4 rounded-lg relative 
-      group transition-all duration-500"
+    className={`flex flex-col rounded-[1.5rem]    h-[37rem] 2xl:h-[38rem] lg:w-[24.2rem] 2xl:w-[29rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
+    group transition-all duration-[1500ms] ease-in-out ${
+      isHovered ? "border-solid p-0 border-[1px] border-gray" : "border-none"
+    }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image Container */}
       <div
-        className={`overflow-hidden rounded-lg w-full transition-all duration-500 ${
-          isHovered ? "h-[350px] " : "h-[450px] lg:h-[500px] 2xl:h-[550px] "
+        className={`overflow-hidden  w-full transition-all  duration-[1500ms] ease-in-out ${
+          isHovered ? "max-h-[350px]" : "max-h-[550px]"
         }`}
       >
         <Link href="/rent/listingdetails">
@@ -35,17 +37,16 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
           height={500}
           quality={100}
           src={imageSrc}
-          className={`w-full h-full object-cover rounded-lg transition-transform duration-500 ${
-            isHovered ? "scale-95" : "scale-100"
-          }`}
+          className="w-full h-full object-cover rounded-b-[1.6rem] transition-all duration-[2000ms] ease-in-out"
+
         />
         </Link>
       </div>
 
       {/* Details Section */}
       <span
-        className={`mt-8 px-5 transition-all duration-500 w-full text-black flex-col ${
-          isHovered ? "opacity-100 block translate-y-0" : "opacity-0 hidden translate-y-5"
+        className={`mt-8 px-5 transition-all duration-[1500ms] ease-in-out ${
+          isHovered ? "opacity-100 translate-y-0 max-h-[300px]" : "h-0 opacity-0 translate-y-5 max-h-0"
         }`}
       >
         <h1 className="text-black text-base lg:text-[25px] font-bold">
@@ -98,8 +99,8 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
 
       {/* Base Details (Always Visible) */}
       <div
-        className={`mt-4 text-black transition-all duration-500 ${
-          isHovered ? "opacity-0 hidden" : "opacity-100 block"
+        className={`mt-2 text-black transition-opacity duration-500 ${
+          isHovered ? "opacity-0 hidden" : " block opacity-100"
         }`}
       >
         <span className="flex gap-3">

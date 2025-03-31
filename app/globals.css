@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #F4F4F4;
   --foreground: #171717;
 }
 * {
@@ -15,10 +15,9 @@
 
 /* Ensure the html and body take full height */
 html, body {
-  width: 100%;  
-  height: 100%;
-  font-size: 16px;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+width:100%;
+max-width: 100%;
+  height: 100vh;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,12 +26,21 @@ html, body {
     --foreground: #ededed;
   }
 }
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optional: Add smooth scrolling to elements with scroll-triggered animations */
+[data-animate] {
+  visibility: hidden;
+}
+
 
 body {
   color: black;
-  overflow-x: hidden !important;
-  width: 100% !important;
-
-  background: white;
+  background: #F4F4F4;
+  overflow-x: hidden;
   font-family:'Bricolage Grotesque' Arial, Helvetica, sans-serif;
 }
+
+
