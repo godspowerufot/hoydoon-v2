@@ -97,9 +97,9 @@ export const authApi = createApi({
             }),
           }),
 
-          getFavorites: builder.query({
-            query: ({ region }) => ({
-              url: `/v1/listings?region=${region}`,
+          getAllListings: builder.query({
+            query: () => ({
+              url: `/v1/listings`,
               method: "GET",
             }),
           }),
@@ -130,7 +130,7 @@ export const {
   useGetAgentsQuery,
   useGoogleAuthMutation,
   useSignupMutation,
-  useGetFavoritesQuery,
+  useGetAllListingsQuery,
   useGetUserQuery,
   useGetAgentListingsQuery,
   useLogoutMutation,

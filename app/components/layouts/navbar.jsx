@@ -46,7 +46,7 @@ export default function Navbar() {
   return (
     <>
       {!hideNavbar && !hideAuth && (
-        <nav className={`text-xl z-[999999] font-bricolage fixed top-0 w-full transition-all duration-300 ${scrolled ? "bg-white text-black shadow-md" : "bg-transparent text-white mt-3"}`}>
+        <nav className={`text-xl z-[999999] hidden font-bricolage  lg:flex fixed top-0 w-full transition-all duration-300 ${scrolled ? "bg-white text-black shadow-md" : "bg-transparent text-white mt-3"}`}>
           <div className="flex-1 mx-auto flex w-full items-center justify-around p-2">
             
             {/* Logo */}

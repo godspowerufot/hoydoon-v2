@@ -79,7 +79,7 @@ const router=useRouter()
     }
   }
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    
       import("gapi-script").then(({ gapi }) => {
         gapi.load("auth2", () => {
           gapi.auth2.init({
@@ -87,7 +87,7 @@ const router=useRouter()
           });
         });
       });
-    }
+    
   }, []);
 
 

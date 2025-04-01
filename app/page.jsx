@@ -8,13 +8,13 @@ import FAQComponent from "./components/layouts/faq";
 import PropertyCard from "./components/common/property";
 import ArticlesSection from "./components/common/Article";
 import { useEffect } from "react";
-import { useGetFavoritesQuery } from "@/store/slices/api/authapi";
+import { useGetAllListingsQuery, useGetFavoritesQuery } from "@/store/slices/api/authapi";
 import { useState } from "react";
 
 
 
 export default function Home() {
-  const { data: allListings, isLoading: isAllLoading, refetch } = useGetFavoritesQuery({ region: "somalia" });
+  const { data: allListings, isLoading: isAllLoading, refetch } = useGetAllListingsQuery( );
 
   const [displayListings, setDisplayListings] = useState([]);
   console.log(displayListings);
