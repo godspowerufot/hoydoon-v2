@@ -1,23 +1,12 @@
 {
-    "headers": [
+    "routes": [
       {
-        "source": "/.well-known/assetlinks.json",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "Cache-Control",
-            "value": "no-transform"
-          }
-        ]
-      }
-    ],
-    "rewrites": [
-      {
-        "source": "/.well-known/assetlinks.json",
-        "destination": "/api/assetlinks"  
+        "src": "/.well-known/assetlinks.json",
+        "dest": "/api/assetlinks",
+        "headers": {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-transform"
+        }
       }
     ]
   }
