@@ -5,7 +5,18 @@ import PropertyListCard from "../components/common/PropertyListing";
 import Link from "next/link";
 import Article from "../components/common/Article";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
-import { useEffect, useState } from "react";
+interface Property {
+  imageUrls?: { url?: string; altText?: string }[];
+  item?: {
+    price?: string;
+    squareFeet?: number
+    bathrooms?: number;
+    bedrooms?: number;
+    description?: string;
+    title?: string;
+    rent?: string;
+  };
+}
 
 export default function Home() {
     const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({})
@@ -146,7 +157,7 @@ export default function Home() {
               {[...displayListings]
                 .slice(0, 6) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
-                .map((items: any, index: number) => (
+                .map((items:Property, index: number) => (
                   <PropertyListCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -164,7 +175,7 @@ export default function Home() {
                     }
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item.squareFeet}
+                    squareFeet={items?.item?.squareFeet}
                   />
                 ))}
             </div>
@@ -196,7 +207,7 @@ export default function Home() {
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
-                .map((items: any, index: number) => (
+                .map((items:Property, index: number) => (
                   <PropertyListCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -214,7 +225,7 @@ export default function Home() {
                     }
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item.squareFeet}
+                    squareFeet={items?.item?.squareFeet}
                   />
                 ))}
             </div>
@@ -244,7 +255,7 @@ export default function Home() {
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
-                .map((items: any, index: number) => (
+                .map((items:Property, index: number) => (
                   <PropertyListCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -262,7 +273,7 @@ export default function Home() {
                     }
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item.squareFeet}
+                    squareFeet={items?.item?.squareFeet}
                   />
                 ))}
             </div>
@@ -294,7 +305,7 @@ export default function Home() {
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
-                .map((items: any, index: number) => (
+                .map((items:Property, index: number) => (
                   <PropertyListCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -312,7 +323,7 @@ export default function Home() {
                     }
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item.squareFeet}
+                    squareFeet={items?.item?.squareFeet}
                   />
                 ))}
             </div>

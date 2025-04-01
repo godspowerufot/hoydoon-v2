@@ -7,7 +7,16 @@ import Link from "next/link";
 import Article from "../components/common/Article";
 import { useEffect, useState } from "react";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
-
+interface Property {
+  imageUrls?: { url?: string; altText?: string }[];
+  item?: {
+    price?: string;
+    squareFeet?: string;
+    description?: string;
+    title?: string;
+    rent?: string;
+  };
+}
 export default function Home() {
   const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({}, { pollingInterval: 60000 });
   const [displayListings, setDisplayListings] = useState([]);
@@ -157,7 +166,7 @@ export default function Home() {
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
   {[...displayListings].slice(0,6) // Create a shallow copy to avoid modifying the original array
     .sort(() => Math.random() - 0.5)
-    .map((items: any, index: number) => (
+    .map((items:Property, index: number) => (
       <PropertyCard
         key={index}
         imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -200,7 +209,7 @@ export default function Home() {
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
   {[...displayListings].slice(0,3) // Create a shallow copy to avoid modifying the original array
     .sort(() => Math.random() - 0.5)
-    .map((items: any, index: number) => (
+    .map((items:Property, index: number) => (
       <PropertyCard
         key={index}
         imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -240,7 +249,7 @@ export default function Home() {
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 2xl:gap-[1.2rem] mt-[1em] min-w-fit items-center justify-center mb-2">
   {[...displayListings].slice(0,3) // Create a shallow copy to avoid modifying the original array
     .sort(() => Math.random() - 0.5)
-    .map((items: any, index: number) => (
+    .map((items:Property, index: number) => (
       <PropertyCard
         key={index}
         imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -281,7 +290,7 @@ export default function Home() {
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 2xl:gap-[1.2rem] mt-[1em] min-w-fit items-center justify-center mb-2">
   {[...displayListings].slice(0,3) // Create a shallow copy to avoid modifying the original array
     .sort(() => Math.random() - 0.5)
-    .map((items: any, index: number) => (
+    .map((items:Property, index: number) => (
       <PropertyCard
         key={index}
         imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
