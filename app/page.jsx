@@ -235,7 +235,6 @@ export default function Home() {
             </div>
             </section>
 
-            /* explore */
             <section className="mt-10 hidden lg:my-[4em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
             <div className="flex flex-col items-center justify-center">
               <div className="flex ml-[3rem] 2xl:ml-[3.2rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">

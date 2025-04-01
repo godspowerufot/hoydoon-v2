@@ -5,19 +5,40 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface PropertyCardProps {
-  imageSrc: string;
-  altText: string;
-  price: number | string;
-  area: string;
+  imageSrc?: string;
+  altText?: string;
+  price?: number | string;
+  area?: number | string;
+  description?: string;
+  title?: string;
+  address?: string;
+  bathrooms?: number;
+  bedrooms?: number;
+  squareFeet?: number;
+  houseType?: string;
+  rent?:string
 }
 
-const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, price, area }) => {
+const PropertyListCard: React.FC<PropertyCardProps> = ({ 
+  imageSrc = "/default-image.jpg", 
+  altText = "Property Image", 
+  price = "N/A", 
+  area = "N/A", 
+  description = "No description available", 
+  title = "Untitled Property",
+  address = "Unknown Location",
+  bathrooms,
+  bedrooms,
+  squareFeet, 
+  houseType = "Unknown Type",
+  rent=""
+}) => {
   const [isHovered, setIsHovered] = useState(false);
-
+console.log(bedrooms)
   return (
     
     <div
-    className={`flex flex-col rounded-[1.5rem]    h-[37rem] 2xl:h-[38rem] lg:w-[24.2rem] 2xl:w-[29rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
+    className={`flex flex-col rounded-[1.5rem]    h-[37rem] 2xl:h-[38rem] lg:w-[23.4rem] 2xl:w-[29rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-4 relative 
     group transition-all duration-[1500ms] ease-in-out ${
       isHovered ? "border-solid p-0 border-[1px] border-gray" : "border-none"
     }`}
@@ -26,7 +47,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
     >
       {/* Image Container */}
       <div
-        className={`overflow-hidden  w-full transition-all  duration-[1500ms] ease-in-out ${
+        className={`overflow-hidden  w-full h-[27rem] transition-all  duration-[1500ms] ease-in-out ${
           isHovered ? "max-h-[350px]" : "max-h-[550px]"
         }`}
       >
@@ -50,21 +71,20 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
         }`}
       >
         <h1 className="text-black text-base lg:text-[25px] font-bold">
-        Maplewood Cottage
-        </h1>
+{title}        </h1>
         <span className="flex-col flex mt-3">
           <span className="flex gap-1 items-center">
             <h2 className="font-bold text-xl">${price} 
             <sub className="text-gray font-[300] text-base mt-1 2xl:text-[16px]">
                 /mth
             </sub>
-          </h2>            <h4 className="ml-9 text-label text-gray font-light">Area from 190 - 245 m² {area} </h4>
+          </h2>            <h4 className="ml-9 text-label text-gray font-light">Area from  {area} </h4>
           </span>
 
           <div className="flex  mt-2 justify-start gap-3 items-start font-[400] text-base 2xl:text-base  text-gray">
               <span className="flex items-center gap-2">
                 <Image src="/bed.png" alt="Icon" width={25} height={25} />
-                <p>{3} beds</p> {/* Rooms */}
+                <p>{bedrooms} beds</p> {/* Rooms */}
               </span>
               <span className="flex items-center gap-2">
                 <Image
@@ -73,7 +93,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
                   width={25}
                   height={25}
                 />
-                <p> {4} bath</p> 
+                <p> {bathrooms} bath</p> 
                 </span>
               <span className="flex items-center gap-2">
                 <Image
@@ -82,11 +102,11 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
                   width={25}
                   height={25}
                 />
-                <p> {4}1,885sq.</p> 
+                <p> {area}sq.</p> 
                 </span>
                 </div>
           <p className="text-gray text-[16px] 2xltext-xl mt-4">
-            A cozy 3-bedroom home with an open living area and a private backyard. Perfect for comfort and relaxation.
+{description}
           </p>
           <div className="mt-9 flex justify-between items-center">
             <div className="text-base flex justify-center font-bricolage items-center rounded-full font-light h-[41px] lg:w-[180px] text-[#1E1E1E] bg-[#D8F0F1]">
@@ -113,7 +133,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
         <div className="flex  mt-2 justify-start gap-5 items-start font-[400] text-base 2xl:text-base  text-gray">
               <span className="flex items-center gap-2">
                 <Image src="/bed.png" alt="Icon" width={20} height={20} />
-                <p>{3} beds</p> {/* Rooms */}
+                <p>{bedrooms} beds</p> {/* Rooms */}
               </span>
               <span className="flex items-center gap-2">
                 <Image
@@ -122,7 +142,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
                   width={20}
                   height={20}
                 />
-                <p> {4} bath</p> 
+                <p> {bathrooms} bath</p> 
                 </span>
               <span className="flex items-center gap-2">
                 <Image
@@ -131,7 +151,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({ imageSrc, altText, pric
                   width={20}
                   height={20}
                 />
-                <p> {4}1,885sq.</p> 
+                <p> {squareFeet}sq.</p> 
                 </span>
                 </div>{/* Toilets */}
       </div>

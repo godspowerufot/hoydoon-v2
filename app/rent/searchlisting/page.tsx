@@ -2,20 +2,21 @@
 
 'use client';
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import PropertyCard from '@/app/components/common/property';
 import Pagination from '@/app/components/common/pagination';
-import { properties } from '@/constants';
+import { useGetAllListingsQuery } from '@/store/slices/api/authapi';
 
 const Breadcrumb = () => {
-      const [selectedOptions, setSelectedOptions] = useState("List");
-    
   const [selectedOption, setSelectedOption] = useState("Buy");
 
+      const [selectedOptions, setSelectedOptions] = useState("List");
+     
+  
   return (
     
-    <div className="  pt-[2.3rem] lg:w-full  2xl:w-fit 2xl:gap-[37rem] px-4 lg:pl-[2rem] lg:pr-[4.5rem] 2xl:-ml-[3.2rem]   flex  items-center justify-between">
+    <div className="  pt-[2.3rem] lg:w-[95%]  2xl:w-fit 2xl:gap-[37rem] px-4 lg:pl-[2rem] lg:pr-[4.5rem] 2xl:-ml-[3.2rem]   flex  items-center justify-between">
       {/* Filter Section */}
       <div className="flex items-center ml-[2rem] gap-2">
         <button className="px-4  py-2 h-auto border-solid border-[1px] text-gray border-[#8F8F8F] bg-[#F9FAFB]  rounded-md flex items-center gap-2">
@@ -74,10 +75,33 @@ const Breadcrumb = () => {
 
   
 const page = () => {
+  const { data: allListings, isLoading: isAllLoading, refetch } = useGetAllListingsQuery({} );
+    
+  const [displayListings, setDisplayListings] = useState([]);
+   console.log(displayListings);
+ 
+   useEffect(() => {
+     refetch(); // Refetch data on every mount
+   }, [refetch]);
+   
+     useEffect(() => {
+       if (!isAllLoading && allListings) {
+         const firstThreeListings = allListings.listings;
+         setDisplayListings(firstThreeListings); // Store in state
+       }
+     }, [allListings, isAllLoading]);
+   
+     if (isAllLoading) {
+       return (
+         <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
+           <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
+         </div>
+       );
+     }
   return (
     <div className='mt-[4rem]    w-full h-full   flex-col flex justify-center items-center  '> 
     <Breadcrumb/>'  
-    <div className="flex justify-between gap-[19rem] 2xl:gap-[43rem] items-center  ">
+    <div className="flex justify-between gap-[15rem] 2xl:gap-[43rem] items-center  ">
       <h1 className="text-black 2xl:-ml-[2rem] font-semibold text-4xl">
         Lagos Real-estate & Homes for Sale
       </h1>
@@ -93,17 +117,20 @@ const page = () => {
     <div className='w-full  mt-[1rem] mb-[2rem] h-[2px] bg-[#D9D9D9] '/>
     <div className=" grid 2xl:mr-[4rem]   mr-4  grid-cols-1 md:grid-cols-3 gap-1 gap-y-[2rem] place-items-center">
     
-
-        {properties.map((property, index) => (
-            <PropertyCard
-                key={index}
-                imageSrc={property.imageSrc}
-                altText={property.altText}
-                price={property.price}
-                area={property.area}
-            />
-        ))}
-
+ {[...displayListings].slice(0,9) // Create a shallow copy to avoid modifying the original array
+    .sort(() => Math.random() - 0.5)
+    .map((items: any, index: number) => (
+      <PropertyCard
+        key={index}
+        imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+        altText={items?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
+        price={items?.item?.price || "Price not available"}
+        area={items?.item?.squareFeet || "190 - 245 m² (Approximate area)"}
+        description={items?.item?.description || "No description available for this property."}
+        title={items?.item?.title || "Untitled Property"}
+        rent={items?.item?.rent || "Rent details not provided"}
+      />
+    ))}
       </div>
       <Pagination/>
 {/* second div layout  */}

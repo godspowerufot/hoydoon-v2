@@ -10,13 +10,14 @@ const PropertyCard = ({
   price = "N/A", 
   area = "N/A", 
   description = "No description available", 
-  title = "Untitled Property" 
+  title = "Untitled Property" ,
+  rent=""
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className={`flex flex-col rounded-[1.5rem] h-[37rem]  border-gray  2xl:h-[38rem] lg:w-[24rem] 2xl:w-[29rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
+      className={`flex flex-col rounded-[1.5rem] h-[37rem]  border-gray  2xl:h-[38rem] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
       group transition-all duration-[1500ms] ease-in-out ${
         isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : "border-none"
       }`}
@@ -35,7 +36,7 @@ const PropertyCard = ({
           height={500}
           quality={100}
           src={imageSrc}
-          className="w-full h-full object-cover rounded-b-[1.6rem] transition-all duration-[2000ms] ease-in-out"
+          className="object-cover w-full h-[430px] rounded-b-[1.6rem] transition-all duration-[2000ms] ease-in-out"
         />
       </div>
 

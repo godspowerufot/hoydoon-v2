@@ -1,12 +1,35 @@
-'use client '
+'use client'
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import PropertyCard from "../components/common/property";
 import Input from "../components/common/inputs/input";
 import Link from "next/link";
 import Article from "../components/common/Article";
+import { useEffect, useState } from "react";
+import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 
 export default function Home() {
+  const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({}, { pollingInterval: 60000 });
+  const [displayListings, setDisplayListings] = useState([]);
+
+     console.log(displayListings);
+   
+  
+     
+       useEffect(() => {
+         if (!isAllLoading && allListings) {
+          const firstThreeListings = allListings.listings;
+          setDisplayListings(firstThreeListings); // Store in state
+         }
+       }, [allListings, isAllLoading]);
+     
+       if (isAllLoading) {
+         return (
+           <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
+             <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
+           </div>
+         );
+       }
   return (
     <>
       <header className="relative h-[80vh] w-full overflow-hidden">
@@ -130,52 +153,24 @@ export default function Home() {
 <div className="flex flex-col ">
 
 
-<div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
-  {/* Horizontal Scrollable Container on Mobile */}
-    {/* Card 1 */}
- 
-    <PropertyCard 
-      imageSrc={'/rent3.png'} 
-      altText={'rent6'} 
-      price={'18,000.00'} 
-      area={''} 
-      description={'A beautiful rental property with modern amenities.'} 
-      title={'Modern Rental Property'} 
-    />
-    <PropertyCard 
-      imageSrc={'/rent3.png'} 
-      altText={'rent6'} 
-      price={'18,000.00'} 
-      area={''} 
-      description={'A beautiful rental property with modern amenities.'} 
-      title={'Modern Rental Property'} 
-    />
-    <PropertyCard 
-      imageSrc={'/rent3.png'} 
-      altText={'rent6'} 
-      price={'18,000.00'} 
-      area={''} 
-      description={'A beautiful rental property with modern amenities.'} 
-      title={'Modern Rental Property'} 
-    />
 
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+  {[...displayListings].slice(0,6) // Create a shallow copy to avoid modifying the original array
+    .sort(() => Math.random() - 0.5)
+    .map((items: any, index: number) => (
+      <PropertyCard
+        key={index}
+        imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+        altText={items?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
+        price={items?.item?.price || "Price not available"}
+        area={items?.item?.squareFeet || "190 - 245 m² (Approximate area)"}
+        description={items?.item?.description || "No description available for this property."}
+        title={items?.item?.title || "Untitled Property"}
+        rent={items?.item?.rent || "Rent details not provided"}
+      />
+    ))}
+</div>
 
-
-   
-  </div>
-<div className=" flex mt-[2.5em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
-  {/* Horizontal Scrollable Container on Mobile */}
-    {/* Card 1 */}
-    <PropertyCard imageSrc={'/rent4.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-    <PropertyCard imageSrc={'/rent5.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-
-  
-    <PropertyCard imageSrc={'/rent6.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-
-
-
-   
-  </div>
 
   <p className="text-[#09858D]   ml-7 2xl:ml-6  2xl:mt-8   text-2xl font-[500] ">See all 2500 Lagos houses for sale</p>
   </div>
@@ -202,19 +197,22 @@ export default function Home() {
 <div className="flex flex-col ">
 
 
-<div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
-  {/* Horizontal Scrollable Container on Mobile */}
-    {/* Card 1 */}
-    <PropertyCard imageSrc={'/afforable-1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-    <PropertyCard imageSrc={'/afforable-2.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-
-  
-    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-
-
-
-   
-  </div>
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+  {[...displayListings].slice(0,3) // Create a shallow copy to avoid modifying the original array
+    .sort(() => Math.random() - 0.5)
+    .map((items: any, index: number) => (
+      <PropertyCard
+        key={index}
+        imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+        altText={items?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
+        price={items?.item?.price || "Price not available"}
+        area={items?.item?.squareFeet || "190 - 245 m² (Approximate area)"}
+        description={items?.item?.description || "No description available for this property."}
+        title={items?.item?.title || "Untitled Property"}
+        rent={items?.item?.rent || "Rent details not provided"}
+      />
+    ))}
+</div>
 
   <p className="text-[#09858D]   ml-5 2xl:ml-6  2xl:mt-8   text-2xl font-[500] ">See all 2500 afforable houses for sale</p>
   </div>
@@ -228,8 +226,8 @@ export default function Home() {
 <section className="mt-10  hidden  2xl:my-[3em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
 <div className="flex   flex-col items-center justify-center">
       <div className="flex   p-2 flex-col md:flex-row  2xl:gap-[5rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
-      <h1 className="text-black lg:pl-[4.3rem] 2xl:pl-[3rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Upcoming Open Homes</h1>
-      <p className="text-gray  lg:pr-4 text-base lg:text-xl font-bricolage w-full lg:w-[58rem] ">
+      <h1 className="text-black lg:pl-[5rem] 2xl:pl-[2rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">Upcoming Open Homes</h1>
+      <p className="text-gray  lg:pr-2 text-base lg:text-xl font-bricolage w-full lg:w-[58rem] ">
       Discover a home where every detail enhances your lifestyle-crafted to fit your taste and needs.
 </p>
 
@@ -239,19 +237,22 @@ export default function Home() {
 <div className="flex flex-col ">
 
 
-<div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
-  {/* Horizontal Scrollable Container on Mobile */}
-    {/* Card 1 */}
-    <PropertyCard imageSrc={'/afforable-1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-    <PropertyCard imageSrc={'/afforable-2.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-
-  
-    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-
-
-
-   
-  </div>
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 2xl:gap-[1.2rem] mt-[1em] min-w-fit items-center justify-center mb-2">
+  {[...displayListings].slice(0,3) // Create a shallow copy to avoid modifying the original array
+    .sort(() => Math.random() - 0.5)
+    .map((items: any, index: number) => (
+      <PropertyCard
+        key={index}
+        imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+        altText={items?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
+        price={items?.item?.price || "Price not available"}
+        area={items?.item?.squareFeet || "190 - 245 m² (Approximate area)"}
+        description={items?.item?.description || "No description available for this property."}
+        title={items?.item?.title || "Untitled Property"}
+        rent={items?.item?.rent || "Rent details not provided"}
+      />
+    ))}
+</div>
 
 
   <p className="text-[#09858D] 2xl:ml-[1.2rem]  ml-7  mt-5 text-2xl font-[500] ">See all 2500 Open houses for sale</p>
@@ -276,19 +277,23 @@ export default function Home() {
 <div className="flex flex-col ">
 
 
-<div className=" flex mt-[1em]   min-w-fit items-center lg:flex-row    justify-center  mb-2">
-  {/* Horizontal Scrollable Container on Mobile */}
-    {/* Card 1 */}
-    <PropertyCard imageSrc={'/afforable-1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-    <PropertyCard imageSrc={'/afforable-2.png'} altText={'rent6'} price={'18,000.00'} area={''} />
 
-  
-    <PropertyCard imageSrc={'/house1.png'} altText={'rent6'} price={'18,000.00'} area={''} />
-
-
-
-   
-  </div>
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 2xl:gap-[1.2rem] mt-[1em] min-w-fit items-center justify-center mb-2">
+  {[...displayListings].slice(0,3) // Create a shallow copy to avoid modifying the original array
+    .sort(() => Math.random() - 0.5)
+    .map((items: any, index: number) => (
+      <PropertyCard
+        key={index}
+        imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+        altText={items?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
+        price={items?.item?.price || "Price not available"}
+        area={items?.item?.squareFeet || "190 - 245 m² (Approximate area)"}
+        description={items?.item?.description || "No description available for this property."}
+        title={items?.item?.title || "Untitled Property"}
+        rent={items?.item?.rent || "Rent details not provided"}
+      />
+    ))}
+</div>
 
 
   <p className="text-[#09858D] 2xl:ml-[2rem]  ml-7  mt-5 text-2xl font-[500] ">See all 2500 luxury houses for sale</p>
