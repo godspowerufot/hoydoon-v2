@@ -1,11 +1,8 @@
-/* eslint-disable */
 
 'use client';
-
 import React, { useState,useEffect } from 'react'
 import Image from 'next/image';
 import { ProfileCard } from '@/app/components/layouts/profilecard';
-import { agents } from '@/constants';
 import Link from 'next/link';
 import Pagination from '@/app/components/common/pagination';
 import Button from '@/app/components/common/Button';
@@ -103,14 +100,24 @@ console.log(displayListings)
 useEffect(() => {
   refetch(); // Refetch data on every mount
 }, [refetch]);
-
-useEffect(() => {
-  if (!isAllLoading && allAgent) {
-    const firstThreeListings = allAgent;
-    setDisplayListings(firstThreeListings); // Store in state
-  }
-}, [allAgent, isAllLoading]);
-
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      const newParams = new URLSearchParams(searchParams.toString());
+      newParams.set("page", page.toString());
+      router.push(`/agent/all-agent?${newParams.toString()}`);
+    }
+  };
+ useEffect(() => {
+       if (!isAllloading && allListings) {
+         const firstThreeListings = allListings.listings;
+         setDisplayListings(firstThreeListings);
+         setTotalPages(allListings.totalPages || 1);
+        setCurrentPage(Number(searchParams.get("page")) || 1); // Store in state
+       }
+     }, [allListings, isAllloading]);
+   
   
 if (isAllLoading) {
   return (
@@ -121,15 +128,15 @@ if (isAllLoading) {
   return (
     <div className='mt-8  2xl:w-[1520px]  '> <Breadcrumb/>
   <div className="lg:ml-[5rem] 2xl:ml-[2rem] grid w-[88%] 2xl:w-[95%]  grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
-        {agents.map((agent, index) => (
-          <ProfileCard key={index} {...agent} sales={Number(agent.sales)} />
+  {displayListings.map((agent) => (
+          <ProfileCard  key={agent._id} {...agent} sales={Number(agent.numberOfListings)} />
         ))}
         <Link href={"/agent/all-agent"}>
 
 <p className="text-[#09858D] 2xl:-ml-[16rem]   -ml-[6rem] text-start   mt-5 text-2xl font-[500] ">See all 2500  rents estate agent  in lagos</p>
 </Link>
       </div>
-<Pagination/>
+      <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
 
 <section className="   font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  gap-[4%] flex-col w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">

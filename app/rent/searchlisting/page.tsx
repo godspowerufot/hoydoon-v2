@@ -7,54 +7,97 @@ import Image from 'next/image';
 import PropertyCard from '@/app/components/common/property';
 import Pagination from '@/app/components/common/pagination';
 import { useGetAllListingsQuery } from '@/store/slices/api/authapi';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-const Breadcrumb = () => {
-  const [selectedOption, setSelectedOption] = useState("Buy");
 
-      const [selectedOptions, setSelectedOptions] = useState("List");
-     
-  
+
+const Breadcrumb: React.FC = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const [selectedOption, setSelectedOption] = useState('Buy');
+  const [selectedOptions, setSelectedOptions] = useState('List');
+
+  // Handle filter change based on selected option
+  const handleFilterChange = (filterName: string, value: string) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+
+    // Map the filter names to the correct query parameters for the API
+   const filterMapping: Record<string, string> = {
+  price: 'minPrice',
+  "bed/baths": 'bedrooms',
+  "home type": 'listingType',
+    location: 'location',
+};
+
+// Set the new filter value using the appropriate API parameter
+newParams.set(filterMapping[filterName] || filterName, value);
+
+// Update the URL with the new query parameters
+router.push(`/rent/searchlisting?${newParams.toString()}`);
+
+  }
   return (
-    
-    <div className="  pt-[2.3rem] lg:w-[95%]  2xl:w-fit 2xl:gap-[37rem] px-4 lg:pl-[2rem] lg:pr-[4.5rem] 2xl:-ml-[3.2rem]   flex  items-center justify-between">
-      {/* Filter Section */}
+    <div className="pt-[2.3rem] lg:w-[95%] px-4 lg:pl-[2rem] lg:pr-[4.5rem] flex items-center justify-between">
       <div className="flex items-center ml-[2rem] gap-2">
-        <button className="px-4  py-2 h-auto border-solid border-[1px] text-gray border-[#8F8F8F] bg-[#F9FAFB]  rounded-md flex items-center gap-2">
-          <Image src="/allfilter.png" alt="Filter" width={16} height={15} />
-          All Filters
+        <button className="px-4 py-2 border text-gray border-[#8F8F8F] bg-[#F9FAFB] rounded-md flex items-center gap-2">
+          <Image src="/allfilter.png" alt="Filter" width={16} height={15} /> All Filters
         </button>
 
-        {/* Dropdown Buttons */}
-
-        {['Buy', 'Price', 'Bed/Baths', 'Home type'].map((option) => (
-          <div className="relative flex items-center">
+        {['Price', 'Bed/Baths', 'Home type'].map((option:any) => (
+          <div className="relative flex items-center" key={option}>
             <select
-              key={option}
-              className="border border-[#8F8F8F] bg-[#F9FAFB]  text-[14.5px] rounded-md text-[#8F8F8F] h-auto w-auto flex items-center justify-center gap-2 p-2 text-gray-700 outline-none appearance-none pr-6"
-              value={selectedOption === option ? selectedOption : ''}
-              onChange={(e) => setSelectedOption(e.target.value)}
+              className="border border-[#8F8F8F] bg-[#F9FAFB] text-[14.5px] rounded-md text-[#8F8F8F] p-2"
+              value={searchParams.get(option.toLowerCase().replace(/\s+/g, '-')) || ''}
+              onChange={(e) => handleFilterChange(option.toLowerCase().replace(/\s+/g, '-'), e.target.value)}
             >
-              <option className="bg-[#F9FAFB] text-gray text-center">{option}</option>
+              {option === 'Price' && (
+                <>
+                  <option value="">Price</option>
+                  <option value="1999">1999</option>
+                  <option value="10000">10000</option>
+                  <option value="50000">50000</option>
+                </>
+              )}
+
+              {option === 'Bed/Baths' && (
+                <>
+                  <option value="">Bed/Baths</option>
+                  {[1, 2, 3, 4, 5].map((bedrooms) => (
+                    <option key={bedrooms} value={bedrooms}>
+                      {bedrooms} Bedrooms
+                    </option>
+                  ))}
+                </>
+              )}
+
+              {option === 'Home type' && (
+                <>
+                  <option value="">Home Type</option>
+                  <option value="rent">Rent</option>
+                  <option value="sale">Sale</option>
+                  <option value="land">Land</option>
+                </>
+              )}
             </select>
             <img
               src="/arrow-down.png"
               alt="Dropdown"
-              className="w-3 h-2 absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none"
+              className="w-3 h-2 absolute right-2 top-1/2 transform -translate-y-1/2"
             />
           </div>
         ))}
 
-        {/* Save Search Button */}
-        <button className="px-4 py-2 h-a bg-teal-600 text-white rounded-md">Save Search</button>
+        <button className="px-4 py-2 bg-teal-600 text-white rounded-md">Save Search</button>
       </div>
 
       {/* List and Map Toggle */}
-      <div className="flex  bg-[#F9FAFB] border-[#8F8F8F] w-auto 2xl:-mr-[2rem]  justify-between border-solid border-[1px] items-center font-base rounded-[10px]  2xl:p-[4px] lg:p-[2px] h-auto relative">
-        {["List", "Map"].map((option, index) => (
+      <div className="flex bg-[#F9FAFB] border-[#8F8F8F] w-auto 2xl:-mr-[2rem] justify-between border-solid border-[1px] items-center font-base rounded-[10px] 2xl:p-[4px] lg:p-[2px] h-auto relative">
+        {['List', 'Map'].map((option:any, index: number) => (
           <React.Fragment key={index}>
             <button
-              className={`px-4 py-2   2xl:w-[5.5rem] w-[4.5rem]  text-[16px] rounded-md transition-all duration-300 ${
-                selectedOptions === option ? "bg-primary  mr-[3rem] text-white" : "text-[#8F8F8F]"
+              className={`px-4 py-2 2xl:w-[5.5rem] w-[4.5rem] text-[16px] rounded-md transition-all duration-300 ${
+                selectedOptions === option ? 'bg-primary  mr-[3rem] text-white' : 'text-[#8F8F8F]'
               }`}
               onClick={() => setSelectedOptions(option)}
             >
@@ -66,32 +109,48 @@ const Breadcrumb = () => {
           </React.Fragment>
         ))}
       </div>
-
-      
     </div>
   );
 };
 
-
   
 const page = () => {
-  const { data: allListings, isLoading: isAllLoading, refetch } = useGetAllListingsQuery({} );
-    
+  const searchParams = useSearchParams();
+  
+  const query = Object.fromEntries(searchParams.entries());
+
+  const { data: allListings, isLoading:isAllloading, refetch } = useGetAllListingsQuery(query);
+
   const [displayListings, setDisplayListings] = useState([]);
-   console.log(displayListings);
- 
-   useEffect(() => {
-     refetch(); // Refetch data on every mount
-   }, [refetch]);
-   
+  const router = useRouter();
+
+
+
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      const newParams = new URLSearchParams(searchParams.toString());
+      newParams.set("page", page.toString());
+      router.push(`/rent/searchlisting?${newParams.toString()}`);
+    }
+  };
+
+  useEffect(() => {
+    refetch();
+  }, [query, refetch]);
+  console.log("allListings", allListings);
+
      useEffect(() => {
-       if (!isAllLoading && allListings) {
+       if (!isAllloading && allListings) {
          const firstThreeListings = allListings.listings;
-         setDisplayListings(firstThreeListings); // Store in state
+         setDisplayListings(firstThreeListings);
+         setTotalPages(allListings.totalPages || 1);
+        setCurrentPage(Number(searchParams.get("page")) || 1); // Store in state
        }
-     }, [allListings, isAllLoading]);
+     }, [allListings, isAllloading]);
    
-     if (isAllLoading) {
+     if (isAllloading) {
        return (
          <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
            <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
@@ -115,10 +174,14 @@ const page = () => {
       </div>
     </div>
     <div className='w-full  mt-[1rem] mb-[2rem] h-[2px] bg-[#D9D9D9] '/>
-    <div className=" grid 2xl:mr-[4rem]   mr-4  grid-cols-1 md:grid-cols-3 gap-1 gap-y-[2rem] place-items-center">
+
+
+    {displayListings.length === 0 ? (
+        <p className="text-gray-600 text-center mt-6">No listings found for your search.</p>
+      ) :
+ (   <div className=" grid 2xl:mr-[4rem]   mr-4  grid-cols-1 md:grid-cols-3 gap-1 gap-y-[2rem] place-items-center">
     
  {[...displayListings].slice(0,9) // Create a shallow copy to avoid modifying the original array
-    .sort(() => Math.random() - 0.5)
     .map((items: any, index: number) => (
       <PropertyCard
         key={index}
@@ -131,9 +194,9 @@ const page = () => {
         rent={items?.item?.rent || "Rent details not provided"}
       />
     ))}
-      </div>
-      <Pagination/>
-{/* second div layout  */}
+      </div>)}
+      <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
+      {/* second div layout  */}
   
 
 

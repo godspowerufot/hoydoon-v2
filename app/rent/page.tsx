@@ -8,6 +8,7 @@ import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 interface Property {
   imageUrls?: { url?: string; altText?: string }[];
   item?: {
+    _id?:string;
     price?: string;
     squareFeet?: number
     bathrooms?: number;
@@ -21,11 +22,9 @@ interface Property {
 export default function Home() {
     const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({})
     const displayListings = allListings?.listings;
-
-       console.log(displayListings);
      
     
-       
+       console.log(displayListings);
         
          if (isAllLoading) {
            return (
@@ -158,8 +157,11 @@ export default function Home() {
                 .slice(0, 6) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items:Property, index: number) => (
-                  <PropertyListCard
+              <Link                     key={index}
+               href={`/rent/${items?.item?._id}`}>   
+              <PropertyListCard
                     key={index}
+                  
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                     altText={
                       items?.imageUrls?.[0]?.altText ||
@@ -176,7 +178,7 @@ export default function Home() {
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                     squareFeet={items?.item?.squareFeet}
-                  />
+                  /></Link>
                 ))}
             </div>
             <p className="text-[#09858D]   ml-6 2xl:ml-8  my-5 text-2xl font-[500] ">
@@ -208,7 +210,8 @@ export default function Home() {
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items:Property, index: number) => (
-                  <PropertyListCard
+                  <Link  key={index} href={`/rent/${items?.item?._id}`}>   
+  <PropertyListCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                     altText={
@@ -226,7 +229,7 @@ export default function Home() {
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                     squareFeet={items?.item?.squareFeet}
-                  />
+                  /></Link>
                 ))}
             </div>
 
@@ -256,7 +259,8 @@ export default function Home() {
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items:Property, index: number) => (
-                  <PropertyListCard
+                  <Link   key={index} href={`/rent/${items?.item?._id}`}>   
+ <PropertyListCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                     altText={
@@ -274,7 +278,7 @@ export default function Home() {
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                     squareFeet={items?.item?.squareFeet}
-                  />
+                  /></Link>
                 ))}
             </div>
 
@@ -306,7 +310,8 @@ export default function Home() {
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items:Property, index: number) => (
-                  <PropertyListCard
+                  <Link  key={index} href={`/rent/${items?.item?._id}`}>   
+   <PropertyListCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                     altText={
@@ -324,7 +329,7 @@ export default function Home() {
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                     squareFeet={items?.item?.squareFeet}
-                  />
+                  /></Link>
                 ))}
             </div>
 

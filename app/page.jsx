@@ -10,6 +10,7 @@ import ArticlesSection from "./components/common/Article";
 import { useEffect } from "react";
 import { useGetAllListingsQuery, useGetFavoritesQuery } from "@/store/slices/api/authapi";
 import { useState } from "react";
+import SearchBar from "./components/common/searchcomponent";
 
 
 
@@ -62,69 +63,7 @@ export default function Home() {
           </h2>
 
           {/* Search Bar (Large Screens) */}
-          <div className="hidden lg:flex justify-center items-center w-full max-w-[50em]">
-            <div className="flex items-center h-[3.4rem] bg-white rounded-full shadow-md w-full p-[0.4rem]">
-              {/* Location Input */}
-              <div className="flex flex-col flex-1 px-4">
-                <span className="text-sm font-semibold text-black">
-                  Location
-                </span>
-                <input
-                  type="text"
-                  placeholder="Search Locations"
-                  className="text-sm text-gray outline-none bg-transparent"
-                />
-              </div>
-
-              {/* Type Input */}
-              <div className="flex w-[8rem] flex-col pl-3 border-x border-[#8F8F8F]">
-                <span className="text-sm font-semibold text-black">Type</span>
-                <input
-                  type="text"
-                  placeholder="Add type"
-                  className="text-sm text-gray outline-none bg-transparent"
-                />
-              </div>
-
-              {/* Price Range Input */}
-              <div className="flex flex-col w-[8rem] pl-3 border-r border-gray">
-                <span className="text-sm font-semibold text-black">
-                  Price Range
-                </span>
-                <input
-                  type="text"
-                  placeholder="Add range"
-                  className="text-sm text-gray outline-none bg-transparent"
-                />
-              </div>
-
-              {/* Guests Input */}
-              <div className="flex flex-col mr-[5rem] px-4">
-                <span className="text-sm font-semibold text-black">
-                  Number of Guests
-                </span>
-                <input
-                  type="number"
-                  max={100}
-                  min={0}
-                  placeholder="Add number"
-                  className="text-sm text-gray outline-none bg-transparent"
-                />
-              </div>
-
-              {/* Search Button */}
-              <Link href={"/rent/searchlisting"}>
-                <div className="ml-2 bg-primary p-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90">
-                  <Image
-                    alt="Search"
-                    width={20}
-                    height={20}
-                    src={"/search.png"}
-                  />
-                </div>
-              </Link>
-            </div>
-          </div>
+     <SearchBar/>
 
           {/* Mobile Search Bar */}
           <div className="lg:hidden w-full px-2">

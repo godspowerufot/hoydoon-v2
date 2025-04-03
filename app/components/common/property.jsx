@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { truncateDescription } from "@/utils";
 
 
 const PropertyCard = ({ 
@@ -56,7 +57,7 @@ const PropertyCard = ({
             <h4 className="ml-9 text-label text-gray font-light">Area from {area}</h4>
           </span>
           <p className="text-gray text-[16px] mt-4">
-            {description}
+       {   truncateDescription (description,18)}
           </p>
           <div className="mt-9 flex justify-between items-center">
             <div className="text-base flex justify-center font-bricolage items-center rounded-full font-light h-[41px] lg:w-[180px] text-[#1E1E1E] bg-[#D8F0F1]">

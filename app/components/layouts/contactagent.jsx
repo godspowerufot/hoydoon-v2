@@ -1,25 +1,25 @@
 import Image from "next/image";
 
-export default function ContactAgent() {
+export default function ContactAgent({fullname,location, profileimage}) {
   return (
     <div className="bg-[#ffffffec] mt-[5rem]  text-[#8F8F8F] rounded-lg p-6 w-[75rem] 2xl:w-[90rem] mx-auto border border-gray-200">
       {/* Header */}
-      <h2 className="text-3xl font-bold text-black font-bricolage mt-4 mb-4 ">Contact Hoydoon Agent Ruka</h2>
+      <h2 className="text-3xl font-bold text-black font-bricolage mt-4 mb-4 ">Contact Hoydoon Agent {fullname}</h2>
 
       {/* Agent Info */}
       <div className="flex items-center gap-4">
         <Image
-          src="/ruka.jpg" // Replace with actual image
+          src={ profileimage} // Replace with actual image
           alt="Agent Ruka Oyefeso"
           width={60}
           height={60}
           className="w-[8rem]   h-[8rem] rounded-full object-cover"
         />
         <div className="text-[#8F8F8F]">
-          <p className="font-semibold text-xl text-black ">Ruka Oyefeso</p>
-          <p className="text-sm ">Adron Corporation</p>
+          <p className="font-semibold text-xl text-black ">{fullname}</p>
+          <p className="text-sm ">{location}</p>
           <p className="text-sm ">
-            Ruka Oyefeso will respond in about{" "}
+            {fullname} will respond in about{" "}
             <span className="text-primary font-medium">10 mins</span>
           </p>
         </div>

@@ -16,7 +16,6 @@ export default function Page() {
 
     const { data: allAgent, isLoading: isAllLoading, refetch } = useGetAgentsQuery({});
     const [displayListings, setDisplayListings] = useState([]);
-console.log(displayListings)
  useEffect(() => {
     refetch(); // Refetch data on every mount
   }, [refetch]);

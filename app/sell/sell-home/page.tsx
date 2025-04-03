@@ -2,14 +2,15 @@
 
 'use client';
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
-import { agents } from '@/constants';
 import Input from '@/app/components/common/inputs/input';
 import Button from '@/app/components/common/Button';
 import { ProfileCard } from '@/app/components/layouts/profilecard';
 import Link from 'next/link';
 import Article from '@/app/components/common/Article';
+import { useGetAgentsQuery } from '@/store/slices/api/authapi';
+import Spinner from '@/app/components/common/Spinner';
 
 
 const Breadcrumb = () => {
@@ -59,6 +60,25 @@ const page = () => {
     { id: "bought", label: "Bought with Ruka" },
   ];
 
+    const { data: allAgent, isLoading: isAllLoading, refetch } = useGetAgentsQuery({});
+    const [displayListings, setDisplayListings] = useState([]);
+ useEffect(() => {
+    refetch(); // Refetch data on every mount
+  }, [refetch]);
+
+  useEffect(() => {
+    if (!isAllLoading && allAgent) {
+      const firstThreeListings = allAgent;
+      setDisplayListings(firstThreeListings); // Store in state
+    }
+  }, [allAgent, isAllLoading]);
+
+    
+  if (isAllLoading) {
+    return (
+    <Spinner/>
+    );
+  }
 
   return (
     <div className='mt-2  2xl:w-[1520px] '> <Breadcrumb/>
@@ -142,16 +162,10 @@ By submitting this form, you agree that Hoydoon, its affiliates, or associated t
 
    
    <div className="grid grid-cols-1 mt-[3rem] md:grid-cols-2 gap-8 place-items-center">
-           {agents.map((agent, index) => (
-             <ProfileCard 
-               key={index} 
-               pictureUrl={agent.image} 
-               fullname={agent.name} 
-             
-               priceRange={agent.priceRange ? { min: parseInt(agent.priceRange.split('-')[0]), max: parseInt(agent.priceRange.split('-')[1]) } : undefined} 
-               sales={Number(agent.sales)} 
-             />
-           ))}
+   {displayListings.map((agent:any) => (
+          <ProfileCard  key={agent._id} {...agent} sales={Number(agent.numberOfListings)} />
+        ))}
+
            <Link href={"/agent/all-agent"}>
    
    <p className="text-[#09858D] 2xl:-ml-[16rem]   -ml-[6rem] text-start   mt-5 text-2xl font-[500] ">See all 2500  rents estate agent  in lagos</p>

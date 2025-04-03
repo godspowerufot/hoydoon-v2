@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
-
+import { truncateDescription } from "@/utils";
 interface PropertyCardProps {
   imageSrc?: string;
   altText?: string;
@@ -31,6 +30,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
   squareFeet=""
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
       className={`flex flex-col rounded-[1.5rem]    h-[37rem] 2xl:h-[38rem] lg:w-[23.4rem] 2xl:w-[29rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-4 relative 
@@ -46,7 +46,6 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
           isHovered ? "max-h-[350px]" : "max-h-[550px]"
         }`}
       >
-        <Link href="/rent/listingdetails">
           <Image
             alt={altText}
             width={300}
@@ -55,7 +54,6 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
             src={imageSrc}
             className="w-full h-full object-cover rounded-b-[1.6rem] transition-all duration-[2000ms] ease-in-out"
           />
-        </Link>
       </div>
 
       {/* Details Section */}
@@ -96,7 +94,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
               <p> {area}sq.</p>
             </span>
           </div>
-          <p className="text-gray text-[16px] 2xltext-xl mt-4">{description}</p>
+          <p className="text-gray text-[16px] 2xltext-xl mt-4">{truncateDescription (description,18)}</p>
           <div className="mt-9 flex justify-between items-center">
             <div className="text-base flex justify-center font-bricolage items-center rounded-full font-light h-[41px] lg:w-[180px] text-[#1E1E1E] bg-[#D8F0F1]">
               Luxury Oasis

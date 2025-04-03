@@ -8,6 +8,8 @@ import ContactAgent from "@/app/components/layouts/contactagent";
 import PropertyListCard from "@/app/components/common/PropertyListing";
 import { highlights, images } from "@/constants";
 import PropertyGalleryModal from "@/app/components/layouts/modals/page";
+import { useGetAgentListingsQuery, useGetSpecificListingsQuery } from "@/store/slices/api/authapi";
+import { usePathname } from "next/navigation";
 
 const Breadcrumb = () => {
   return (
@@ -56,6 +58,23 @@ const Breadcrumb = () => {
 
 const page = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+    const pathname = usePathname();
+  const listingId = pathname?.split('/').pop();
+console.log("listingID", listingId);
+
+  const {
+    data: listing,
+    isLoading,
+    isError,
+  } = useGetSpecificListingsQuery({listingId });
+
+
+
+
+  console.log(listing)
+
+
+
   return (
     <div className="mt-8  2xl:w-[98rem] w-[90%]  ml-[2%] ">
       <Breadcrumb />
@@ -301,7 +320,7 @@ const page = () => {
       </div>
 
       {/*contat agency  */}
-      <ContactAgent />
+      {/* <ContactAgent /> */}
 
       <section className="mt-10  hidden  2xl:mt-[4em] lg:mt-[3em] w-[75rem]  2xl:w-[88rem]  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:-mb-[5rem]    flex-col items-center justify-center">

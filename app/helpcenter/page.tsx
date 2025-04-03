@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { properties } from "@/constants";
 import ArticleCard from "../components/common/articleLayout";
-import Pagination from "../components/common/pagination";
 function SupportCategories() {
   const categories = [
     "Landlord & Agents",
@@ -104,7 +103,7 @@ export default function Home() {
             />
           ))}
         </div>
-        <Pagination />
+        {/* <Pagination totalPages={} /> */}
 
         <div className="w-full  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
 

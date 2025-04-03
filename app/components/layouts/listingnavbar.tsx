@@ -3,14 +3,29 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Button from "../common/Button";
 
 export default function ListingNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const router=useRouter()
+const [formData, setFormData] = useState({
+    location: "",
+  
+  });
+  const handleChange = (e:any) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+  const handleSearch = () => {
+    const queryParams = new URLSearchParams({
+      ...(formData.location && { location: formData.location }),
+  }).toString();
 
+    router.push(`/rent/searchlisting?${queryParams}`);
+  };
 
   return (
     <>
@@ -32,11 +47,14 @@ export default function ListingNavbar() {
               </Link>
               <div className="relative  w-[20rem]  h-[3rem] hidden border-[#8F8F8F] border-solid border-[1px]  lg:flex items-center bg-gray-100 rounded-[14px] px-2 py-2">
                 <input 
-                  type="text" 
+                   type="text"
+                   name="location"
+                   value={formData.location}
+                   onChange={handleChange}
                   placeholder="Lagos, Nigeria"
                   className="bg-transparent  placeholder:fonr-[300] placeholder:font-[1em] placeholder:text-gray focus:outline-none text-black text-sm w-full"
                 />
-                <button className="ml-2 bg-primary text-white p-2 rounded-md">
+                <button onClick={handleSearch} className="ml-2 bg-primary text-white p-2 rounded-md">
  <Image
           alt="logo"
           width={20}

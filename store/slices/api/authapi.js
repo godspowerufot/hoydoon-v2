@@ -64,8 +64,6 @@ export const authApi = createApi({
         setTokens(response.accessToken, response.refreshToken);
         return response;
       },
-
- 
     }),
     signup: builder.mutation({
       query: (credentials) => ({
@@ -88,36 +86,48 @@ export const authApi = createApi({
         removeTokens(); // Clear stored tokens
         dispatch(logout()); // Update Redux state
         return { data: null };
-            },
-          }),
-          getAgents: builder.query({
-            query: () => ({
-              url: "/v1/agents",
-              method: "GET",
-            }),
-          }),
+      },
+    }),
+    getAgents: builder.query({
+      query: () => ({
+        url: "/v1/agents",
+        method: "GET",
+      }),
+    }),
+    getAgentsInfo: builder.query({
+      query: ({ userId }) => ({
+        url: `v1/agents/${userId}`,
+        method: "GET",
+      }),
+    }),
 
-          getAllListings: builder.query({
-            query: () => ({
-              url: `/v1/listings`,
-              method: "GET",
-            }),
-          }),
+    getAllListings: builder.query({
+      query: (params) => ({
+        url: `/v1/listings?${new URLSearchParams(params).toString()}`,
+        method: "GET",
+      }),
+    }),
 
-          getAgentListings: builder.query({
-            query: ({ userId}) => ({
-              url: `/v1/listings/agent/${userId}`,
-              method: "GET",
-            }),
-          }),
+    getAgentListings: builder.query({
+      query: ({ userId }) => ({
+        url: `/v1/listings/agent/${userId}`,
+        method: "GET",
+      }),
+    }),
+    getSpecificListings: builder.query({
+      query: ({listingId} ) => ({
+        url: `/v1/listings/${listingId}`,
+        method: "GET",
+      }),
+    }),
 
-          googleAuth: builder.mutation({
-            query: (credentials) => ({
-              url: "/v1/auth/google",
-              method: "POST",
-              body: credentials,
-            }),
-            transformResponse: (response) => {
+    googleAuth: builder.mutation({
+      query: (credentials) => ({
+        url: "/v1/auth/google",
+        method: "POST",
+        body: credentials,
+      }),
+      transformResponse: (response) => {
         setTokens(response.accessToken, response.refreshToken);
         return response;
       },
@@ -131,6 +141,8 @@ export const {
   useGoogleAuthMutation,
   useSignupMutation,
   useGetAllListingsQuery,
+  useGetSpecificListingsQuery,
+  useGetAgentsInfoQuery,
   useGetUserQuery,
   useGetAgentListingsQuery,
   useLogoutMutation,

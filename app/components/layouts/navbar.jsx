@@ -20,11 +20,18 @@ export default function Navbar() {
   const [logout] = useLogoutMutation();
 
   // Check routes to show/hide navbar
-  const hideNavbar = pathname.startsWith("/rent/listing");
+  const hideNavbar = pathname.startsWith("/rent/listing") || /^\/agent\/[^/]+$/.test(pathname)||/^\/rent\/[^/]+$/.test(pathname); // Hide on /agent/[id]
   const hideAuth = pathname.startsWith("/auth");
-  const showNavbar = ["/listing", "/article/article-details", "/rent/searchlisting", "/agent/all-agent", "/agent/agent-description", "/sell/sell-home"].some(route =>
-    pathname.includes(route)
-  );
+  const showNavbar = [
+    "/listing",
+    "/article/article-details",
+   
+    "/rent/searchlisting",
+    "/agent/all-agent",
+    "/agent/agent-description",
+    "/sell/sell-home"
+  ].some(route => pathname.includes(route)) || /^\/agent\/[^/]+$/.test(pathname) ||/^\/rent\/[^/]+$/.test(pathname); // Matches /agent/{id}
+  
   const helpcenter = pathname.startsWith("/helpcenter");
 
   useEffect(() => {
@@ -42,6 +49,7 @@ export default function Navbar() {
   if (helpcenter) {
     return <HelpCenterNavbar />;
   }
+
 
   return (
     <>

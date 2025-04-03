@@ -7,7 +7,19 @@ import Image from "next/image";
 import PropertyListCard from "@/app/components/common/PropertyListing";
 import Button from "@/app/components/common/Button";
 import Link from "next/link";
-
+import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
+interface Property {
+  imageUrls?: { url?: string; altText?: string }[];
+  item?: {
+    price?: string;
+    squareFeet?: number
+    bathrooms?: number;
+    bedrooms?: number;
+    description?: string;
+    title?: string;
+    rent?: string;
+  };
+}
 const Breadcrumb = () => {
   return (
     <div className="flex  items-center justify-between gap-[0.2rem] pl-4 py-2 w-full  mt-[5rem]  bg-gray-100">
@@ -55,7 +67,19 @@ const Breadcrumb = () => {
 
 const page = () => {
 
-
+ const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({})
+    const displayListings = allListings?.listings;
+     
+    
+       
+        
+         if (isAllLoading) {
+           return (
+             <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
+               <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
+             </div>
+           );
+         }
   return (
     <div className="mt-2  2xl:w-[1520px] ">
       {" "}
@@ -210,28 +234,31 @@ const page = () => {
             </p>
           </div>
           <div className="flex flex-col  2xl:mb-[4rem] 2xl:ml-[6rem]  ">
-            <div className=" flex mt-[1em]    min-w-fit items-center lg:flex-row    justify-center  mb-2">
-              {/* Horizontal Scrollable Container on Mobile */}
-              {/* Card 1 */}
-              <PropertyListCard
-                imageSrc={"/afforable-1.png"}
-                altText={"rent6"}
-                price={"18,000.00"}
-                area={""}
-              />
-              <PropertyListCard
-                imageSrc={"/afforable-2.png"}
-                altText={"rent6"}
-                price={"18,000.00"}
-                area={""}
-              />
-
-              <PropertyListCard
-                imageSrc={"/house1.png"}
-                altText={"rent6"}
-                price={"4000.00"}
-                area={""}
-              />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+              {[...displayListings]
+                .slice(0, 3) // Create a shallow copy to avoid modifying the original array
+                .sort(() => Math.random() - 0.5)
+                .map((items:Property, index: number) => (
+                  <PropertyListCard
+                    key={index}
+                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                    altText={
+                      items?.imageUrls?.[0]?.altText ||
+                      "Property image showcasing a beautiful home"
+                    }
+                    price={items?.item?.price || "Price not available"}
+                    area={items?.item?.squareFeet}
+                    bathrooms={items?.item?.bathrooms}
+                    bedrooms={items?.item?.bedrooms}
+                    description={
+                      items?.item?.description ||
+                      "No description available for this property."
+                    }
+                    title={items?.item?.title || "Untitled Property"}
+                    rent={items?.item?.rent || "Rent details not provided"}
+                    squareFeet={items?.item?.squareFeet}
+                  />
+                ))}
             </div>
           </div>
         </div>

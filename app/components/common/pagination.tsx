@@ -1,16 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+interface PaginationProps {
+  totalPages: number;       // total number of pages
+  currentPage: number;      // current page number
+  onPageChange: (page: number) => void; // function to handle page change, takes a number (new page) as an argument
+}
 
-const Pagination = ({ totalPages = 9 }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const Pagination = ({ totalPages, currentPage, onPageChange }: PaginationProps) => {
 
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
 
   return (
     <div className="text-gray-700    flex flex-col gap-2 text-center mt-[3rem]">
@@ -30,21 +28,20 @@ const Pagination = ({ totalPages = 9 }) => {
         {/* Page Numbers */}
         {Array.from({ length: totalPages }, (_, index) => (
           <button
-            key={index + 1}
-            onClick={() => handlePageChange(index + 1)}
-            className={`px-2  py-2 text-center   font-bricolage  rounded-md text-gray-600 text-base ${
-              currentPage === index + 1
-                ? "bg-[#F9FAFB]   w-[3rem] font-bold "
-                : "hover:text-black text-[#8F8F8F]"
-            }`}
-          >
-            {index + 1}
-          </button>
-        ))}
-
+          key={index + 1}
+          onClick={() => onPageChange(index + 1)}
+          className={`px-2 py-2 text-center font-bricolage rounded-md text-gray-600 text-base ${
+            currentPage === index + 1
+              ? "bg-[#F9FAFB] w-[3rem] font-bold"
+              : "hover:text-black text-[#8F8F8F]"
+          }`}
+        >
+          {index + 1}
+        </button>
+      ))}
         {/* Right Arrow (Disabled on last page) */}
         <button
-          onClick={() => handlePageChange(currentPage + 1)}
+          onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
           className={`p-2 rounded-md ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-200"}`}
         >
@@ -54,9 +51,9 @@ const Pagination = ({ totalPages = 9 }) => {
 
       {/* Breadcrumbs */}
       <div className=" text-primary text-[19px]">
-        <Link href="#" className="hover:underline">Hoydorn</Link>          <span className="text-gray"> {'>'}</span>
+        <Link href="/" className="hover:underline">Hoydorn</Link>          <span className="text-gray"> {'>'}</span>
 
-        <Link href="#" className="hover:underline"> Find an agent</Link>          <span className="text-gray">{'>'}</span>
+        <Link href="/agent" className="hover:underline"> Find an agent</Link>          <span className="text-gray">{'>'}</span>
 
         <Link href="#" className="hover:underline"> Lagos</Link>
       </div>
