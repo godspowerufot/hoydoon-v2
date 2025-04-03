@@ -108,12 +108,6 @@ const page = ({params}) => {
     }
   }, [listing]);
   
-  console.log("Flattened Listings:", listing);
-  console.log("All Images:", imageUrls);
-  console.log("Statuses:", statuses);
-  console.log("agent", agentInfo)
-        console.log("coordinates:",coordinates);
-
   // console.log(listingData,userId)
 
 

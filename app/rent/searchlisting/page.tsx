@@ -158,6 +158,7 @@ const page = () => {
        );
      }
   return (
+    
     <div className='mt-[4rem]    w-full h-full   flex-col flex justify-center items-center  '> 
     <Breadcrumb/>'  
     <div className="flex justify-between gap-[15rem] 2xl:gap-[43rem] items-center  ">

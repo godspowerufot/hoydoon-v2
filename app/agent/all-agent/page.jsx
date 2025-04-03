@@ -94,7 +94,7 @@ const Breadcrumb = () => {
 const page = () => {
 
   
-  const { data: allAgent, isLoading: isAllLoading, refetch } = useGetAgentsQuery({});
+  const { data: allListings, isLoading: isAllLoading, refetch } = useGetAgentsQuery({});
   const [displayListings, setDisplayListings] = useState([]);
 console.log(displayListings)
 useEffect(() => {
@@ -110,13 +110,13 @@ useEffect(() => {
     }
   };
  useEffect(() => {
-       if (!isAllloading && allListings) {
+       if (!isAllLoading && allListings) {
          const firstThreeListings = allListings.listings;
          setDisplayListings(firstThreeListings);
          setTotalPages(allListings.totalPages || 1);
         setCurrentPage(Number(searchParams.get("page")) || 1); // Store in state
        }
-     }, [allListings, isAllloading]);
+     }, [allListings, isAllLoading]);
    
   
 if (isAllLoading) {

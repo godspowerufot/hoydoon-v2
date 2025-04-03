@@ -5,6 +5,8 @@ import Appfooter from "./components/layouts/footer"
 import Navbar from "./components/layouts/navbar";
 import AnimationWrapper from "@/utils/lib/_app"
 import { Providers } from '@/store/provider';
+import { Suspense } from "react";
+import Spinner from "./components/common/Spinner";
 export const metadata: Metadata = {
   title: "Hoydoon",
   description: "Property Listing made simple",
@@ -38,7 +40,7 @@ export default function RootLayout({
           {/* wrap the client id */}
          <GoogleOAuthProvider clientId={`438580118502-j5qth0chlkikrpreur0gjl9q1vm8a162.apps.googleusercontent.com`}>
       <main className="flex-1 flex items-center justify-center flex-col ">
-     {children}</main>
+      <Suspense fallback={<div><Spinner /></div>}>{children}</Suspense></main>
 </GoogleOAuthProvider>
       {/* Footer */}
     </AnimationWrapper>
