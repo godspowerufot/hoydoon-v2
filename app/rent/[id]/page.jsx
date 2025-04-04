@@ -59,74 +59,61 @@ const Breadcrumb = () => {
 
 const page = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const pathname = usePathname();
+    const pathname = usePathname();
   const listingId = pathname?.split('/').pop();
 
-  const { data: listing } = useGetSpecificListingsQuery({ listingId });
-  const { data: allListings, isLoading: isAllLoading, refetch } = useGetAllListingsQuery({});
-
-  const [displayListings, setDisplayListings] = useState([]);
-
-  useEffect(() => {
-    if (!isAllLoading && allListings) {
-      const firstThreeListings = allListings.listings?.slice(0, 3);
-      setDisplayListings(firstThreeListings);
-    }
-  }, [isAllLoading, allListings]);
-
   const {
-    averageRating,
-    createdAt,
-    editingCount,
-    item,
-    itemModel,
-    listedBy,
-    listingType,
-    region,
-    reviewCount,
-    status,
-    title,
-    tour3d,
-    updatedAt,
-    _id,
-  } = listing?.listing || {};
+    data: listing,
+    isloading:isAllLoading,
 
-  const { imageUrls } = listing?.listing || {};
-  const images = imageUrls || [];
-  const totalImages = 12;
-  const extendedImages = [...images];
+  } = useGetSpecificListingsQuery({listingId });
 
-  while (extendedImages.length < totalImages) {
-    extendedImages.push(...images);
-  }
+    
+     
+    
+  
 
-  const {
-    _id: itemId,
-    title: itemTitle,
-    bathrooms,
-    address,
-    bedrooms,
-    type,
-    coordinate,
-    description,
-    private: isPrivate,
-    price,
-  } = item || {};
-
-  const {
-    _id: listedById,
-    fullname,
-    pictureUrl,
-  } = listedBy || {};// Re-run only when data changes
+    const {
+      averageRating,
+      createdAt,
+      editingCount,
+      item, // This contains nested properties
+      itemModel,
+      listedBy,
+      listingType,
+      region,
+      reviewCount,
+      status,
+      title,
+      tour3d,
+      updatedAt,
+      _id,
+    } = listing?.listing || {}; // Provide a fallback to avoid errors when data is not available
+    const { imageUrls } = listing?.listing || {};
+  
+    const images = imageUrls || [];
+    const totalImages = 12; // 4 columns * 3 rows
+    
+    // Repeat images using mapping (no while loop)
+    const extendedImages = Array.from({ length: totalImages }, (_, index) => {
+      return images[index % images.length]; // loop over images if not enough
+    });
+    
+  // Further destructuring `item` if needed
+  const { _id: itemId, title: itemTitle, bathrooms:bathrooms,
+    address:address,
+    bedrooms:bedrooms ,type,  
+    coordinate:coordinate, description:description, private: isPrivate, price } = item || {};
+  
+  // Destructuring `listedBy` if needed
+  const { _id: listedById, fullname, pictureUrl } = listedBy || {};
+  
+  // Now you can use the variables directly
+  console.log(averageRating, createdAt, title, price, fullname,listing);
+  ; // Re-run only when data changes
   
 
   return (
-<>
-    {isAllLoading ? (
-      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
-        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
-      </div>
-    ) : (
     <div className="mt-8  2xl:w-[98rem] w-[90%]  ml-[2%] ">
       <Breadcrumb />
       <div className="grid grid-cols-5 gap-4 p-4">
@@ -334,7 +321,7 @@ const page = () => {
           </div>
           <div className="flex flex-col  2xl:ml-[6rem]  ">
               <div className="flex mt-[1em] h-fit min-w-[70%] items-center lg:flex-row justify-center mb-2">
-              {displayListings?.map((listing, index) => (
+              {/* {displayListings?.map((listing, index) => (
   <PropertyCard
     key={index}
     imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
@@ -345,7 +332,7 @@ const page = () => {
     title={listing?.item?.title || "Untitled Property"}
     rent={listing?.item?.rent || "Rent details not provided"}
   />
-))}
+))} */}
 
                      </div>
           </div>
@@ -356,7 +343,7 @@ const page = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
-    </div>)}</>
+    </div>
   );
 };
 
