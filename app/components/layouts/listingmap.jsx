@@ -1,7 +1,7 @@
 import React from "react";
 import { APIProvider, Map, AdvancedMarker, Pin } from "@vis.gl/react-google-maps";
 
-const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "YOUR_API_KEY";
+const API_KEY = process.env.NEXT_GOOGLE_MAPS_API_KEY || "YOUR_API_KEY";
 const MAP_ID = "a618b8ba2def9141";
 const mapContainerStyle = { width: "100%", height: "500px" };
 
