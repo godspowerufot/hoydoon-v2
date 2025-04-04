@@ -7,8 +7,9 @@ import Article from "../components/common/Article";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 interface Property {
   imageUrls?: { url?: string; altText?: string }[];
+  _id?:string;
   item?: {
-    _id?:string;
+  
     price?: string;
     squareFeet?: number
     bathrooms?: number;
@@ -158,7 +159,7 @@ export default function Home() {
                 .sort(() => Math.random() - 0.5)
                 .map((items:Property, index: number) => (
               <Link                     key={index}
-               href={`/rent/${items?.item?._id}`}>   
+               href={`/rent/${items?._id}`}>   
               <PropertyListCard
                     key={index}
                   
@@ -210,7 +211,7 @@ export default function Home() {
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items:Property, index: number) => (
-                  <Link  key={index} href={`/rent/${items?.item?._id}`}>   
+                  <Link  key={index} href={`/rent/${items?._id}`}>   
   <PropertyListCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -259,7 +260,7 @@ export default function Home() {
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items:Property, index: number) => (
-                  <Link   key={index} href={`/rent/${items?.item?._id}`}>   
+                  <Link   key={index} href={`/rent/${items?._id}`}>   
  <PropertyListCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -308,9 +309,8 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
-                .sort(() => Math.random() - 0.5)
                 .map((items:Property, index: number) => (
-                  <Link  key={index} href={`/rent/${items?.item?._id}`}>   
+                  <Link  key={index} href={`/rent/${items?._id}`}>   
    <PropertyListCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}

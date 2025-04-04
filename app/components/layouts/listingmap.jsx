@@ -11,7 +11,7 @@ const MapComponent = ({ coordinates }) => {
     coordinates && coordinates.length > 0 && !isNaN(coordinates[0]?.latitude) && !isNaN(coordinates[0]?.longitude)
       ? { lat: coordinates[0]?.latitude, lng: coordinates[0]?.longitude }
       : { lat: 6.5244, lng: 3.3792 }; // Fallback to Lagos, Nigeria
-
+      const safeCoordinates = Array.isArray(coordinates) ? coordinates : [coordinates];
   return (
     <APIProvider solutionChannel="GMP_devsite_samples_v3_rgmbasicmap" apiKey={API_KEY}>
       <Map
@@ -22,7 +22,7 @@ const MapComponent = ({ coordinates }) => {
         disableDefaultUI={true}
         mapId={MAP_ID}
       >
-        {coordinates?.map((coord, index) => (
+        {safeCoordinates?.map((coord, index) => (
           coord?.latitude && coord?.longitude ? (
             <AdvancedMarker key={index} position={{ lat: coord?.latitude, lng: coord?.longitude }}>
               <Pin background="red" borderColor="black" glyphColor="white" />

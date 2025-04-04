@@ -256,7 +256,7 @@ numberOfListings
 
     {/* map */}
     <div className="bg-gray-100 p-6 rounded-lg mb-3">
-    <h1 className="text-[2rem] font-semibold "> Ruka’s Listings & Deals</h1>
+    <h1 className="text-[2rem] font-semibold "> {agentInfo?.fullname} Listings & Deals</h1>
     <div className="border-b border-gray ">
       <div className="flex space-x-6">
         {tabs.map((tab) => (

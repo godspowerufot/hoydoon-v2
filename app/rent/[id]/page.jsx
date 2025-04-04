@@ -1,15 +1,16 @@
 /* eslint-disable */
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaRegEye } from "react-icons/fa6";
-import ListedCard from "@/app/components/common/profilecard";
 import ContactAgent from "@/app/components/layouts/contactagent";
-import PropertyListCard from "@/app/components/common/PropertyListing";
 import { highlights, images } from "@/constants";
 import PropertyGalleryModal from "@/app/components/layouts/modals/page";
-import { useGetAgentListingsQuery, useGetSpecificListingsQuery } from "@/store/slices/api/authapi";
+import {  useGetAllListingsQuery, useGetSpecificListingsQuery } from "@/store/slices/api/authapi";
 import { usePathname } from "next/navigation";
+import ListedCard from "@/app/components/common/profilecard";
+import MapComponent from "@/app/components/layouts/listingmap";
+import PropertyCard from "@/app/components/common/property";
 
 const Breadcrumb = () => {
   return (
@@ -58,101 +59,111 @@ const Breadcrumb = () => {
 
 const page = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-    const pathname = usePathname();
+  const pathname = usePathname();
   const listingId = pathname?.split('/').pop();
-console.log("listingID", listingId);
+
+  const { data: listing } = useGetSpecificListingsQuery({ listingId });
+  const { data: allListings, isLoading: isAllLoading, refetch } = useGetAllListingsQuery({});
+
+  const [displayListings, setDisplayListings] = useState([]);
+
+  useEffect(() => {
+    if (!isAllLoading && allListings) {
+      const firstThreeListings = allListings.listings?.slice(0, 3);
+      setDisplayListings(firstThreeListings);
+    }
+  }, [isAllLoading, allListings]);
 
   const {
-    data: listing,
-    isLoading,
-    isError,
-  } = useGetSpecificListingsQuery({listingId });
+    averageRating,
+    createdAt,
+    editingCount,
+    item,
+    itemModel,
+    listedBy,
+    listingType,
+    region,
+    reviewCount,
+    status,
+    title,
+    tour3d,
+    updatedAt,
+    _id,
+  } = listing?.listing || {};
 
+  const { imageUrls } = listing?.listing || {};
+  const images = imageUrls || [];
+  const totalImages = 12;
+  const extendedImages = [...images];
 
+  while (extendedImages.length < totalImages) {
+    extendedImages.push(...images);
+  }
 
+  const {
+    _id: itemId,
+    title: itemTitle,
+    bathrooms,
+    address,
+    bedrooms,
+    type,
+    coordinate,
+    description,
+    private: isPrivate,
+    price,
+  } = item || {};
 
-  console.log(listing)
-
-
+  const {
+    _id: listedById,
+    fullname,
+    pictureUrl,
+  } = listedBy || {};// Re-run only when data changes
+  
 
   return (
+<>
+    {isAllLoading ? (
+      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
+        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
+      </div>
+    ) : (
     <div className="mt-8  2xl:w-[98rem] w-[90%]  ml-[2%] ">
       <Breadcrumb />
       <div className="grid grid-cols-5 gap-4 p-4">
-        {/* Large Main Image */}
-        <div className="col-span-2  row-span-2"  onClick={() => setIsModalOpen(true)}>
-          <Image
-            src={images[0]}
-            alt="Gallery Image"
-            width={500}
-            height={400}
-            className="w-full   h-[380px] 2xl:h-[450px] object-cover rounded-lg"
-          />
-        </div>
-
-        {/* Smaller Images in Grid */}
-        <div  onClick={() => setIsModalOpen(true)}>
-          <Image
-            src={images[1]}
-            alt="Gallery Image"
-            width={250}
-            height={200}
-            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
-          />
-        </div>
-        <div  onClick={() => setIsModalOpen(true)}>
-          <Image
-            src={images[2]}
-            alt="Gallery Image"
-            width={250}
-            height={200}
-            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
-          />
-        </div>
-        <div  onClick={() => setIsModalOpen(true)}>
-          <Image
-            src={images[3]}
-            alt="Gallery Image"
-            width={250}
-            height={200}
-            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
-          />
-        </div>
-        <div  onClick={() => setIsModalOpen(true)}>
-          <Image
-            src={images[4]}
-            alt="Gallery Image"
-            width={250}
-            height={200}
-            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
-          />
-        </div>
-
-        {/* Wide Image Spanning Two Columns */}
-        <div   onClick={() => setIsModalOpen(true)} className="">
-          <Image
-            src={images[5]}
-            alt="Gallery Image"
-            width={500}
-            height={200}
-            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
-          />
-        </div>
-
-        {/* Last Image with Overlay */}
-        <div  onClick={() => setIsModalOpen(true)} className="relative">
-          <Image
-            src={images[6]}
-            alt="Gallery Image"
-            width={250}
-            height={200}
-            className="w-full  h-[185px] 2xl:h-[217px]  object-cover rounded-lg"
-          />
-          <div className="absolute bottom-2 right-2 bg-white px-2 py-1 text-sm rounded shadow">
-            📷 32 photos
-          </div>
-        </div>
+      {/* Large Main Image */}
+      <div
+        className="col-span-2 row-span-2"
+        onClick={() => setIsModalOpen(true)}
+      >
+        <Image
+          src={extendedImages[0]?.url || "/house1.png"}
+          alt="Gallery Image"
+          width={500}
+          height={400}
+          className="w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg"
+        />
       </div>
+
+      {/* Smaller Images in Grid */}
+      {extendedImages.slice(1, 7).map((image, index) => (
+        <div
+          key={index}
+          onClick={() => setIsModalOpen(true)}
+          className="relative"
+        >
+          <Image
+            src={image?.url || "/house1.png"}
+            alt="Gallery Image"
+            width={250}
+            height={200}
+            className="w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg"
+          />
+        </div>
+      ))}
+
+      {/* Wide Image Spanning Two Columns */}
+ 
+    </div>
 
       {/* second div layout  */}
       <div className="bg-gray-100 p-4 rounded-lg">
@@ -160,25 +171,25 @@ console.log("listingID", listingId);
           {/* Left Section */}
           <div>
             <h2 className="text-[2rem] font-bricolage font-semibold">
-              Adron Homes
+              {title}
             </h2>
-            <p className="text-gray text-base">105 SE 156th Ave, Lagos, Nigeria</p>
-            <p className="text-gray text-base">LA 98245</p>
+            <p className="text-gray text-base">{address}</p>
+            <p className="text-gray text-base">{region}</p>
 
             <div className="flex items-center  gap-2 text-gray-700 mt-2">
               <FaRegEye className="text-gray" />
-              <span className="font-meduim">Total views 1,567</span>
+              <span className="font-meduim">Total views{editingCount}</span>
             </div>
           </div>
 
           {/* Right Section */}
           <div className="text-right font-bricolage  text-[#1E1E1E] mt-4 md:mt-0">
-            <p className="text-[1.7rem] text-black font-bold">$450,000.00</p>
+            <p className="text-[1.7rem] text-black font-bold">${price}</p>
             <div className="flex items-center justify-end text-gray-700 mt-1">
               <img src="/stargreen.png" alt="Favorite" className="w-4 h-4" />
-              <span className="ml-1 font-medium ">4.85</span>
+              <span className="ml-1 font-medium ">{averageRating}</span>
             </div>
-            <p className="text-gray text-base">Est. $4000/month</p>
+            <p className="text-gray text-base">Est. ${price}/month</p>
           </div>
         </div>
       </div>
@@ -189,7 +200,7 @@ console.log("listingID", listingId);
         <div className="flex items-center justify-center gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl lg:text-base">
           <div className="flex items-center gap-[8rem]">
             <span className="flex items-center gap-1">
-              <span className="font-bold text-black">3</span>
+              <span className="font-bold text-black">{bedrooms}</span>
               <span>Beds</span>
             </span>
           </div>
@@ -197,7 +208,7 @@ console.log("listingID", listingId);
           <span className="text-gray-400">|</span>
 
           <div className="flex items-center gap-1">
-            <span className="font-bold text-black">3</span>
+            <span className="font-bold text-black">{bathrooms}</span>
             <span>Baths</span>
           </div>
 
@@ -225,7 +236,14 @@ console.log("listingID", listingId);
         <div className="grid grid-cols- md:grid-cols-4 gap-2 mt-4 text-[#8F8F8F] font-bricolage text-sm">
           {highlights.map((item, index) => (
             <div key={index} className="flex items-center gap-2">
-              <Image src={item.icon} alt={item.text} width={20} height={20} className="object-contain" quality={100} />
+              <Image
+                src={item.icon}
+                alt={item.text}
+                width={20}
+                height={20}
+                className="object-contain"
+                quality={100}
+              />
               <span className="2xl:text-xl">{item.text}</span>
             </div>
           ))}
@@ -239,21 +257,7 @@ console.log("listingID", listingId);
         </h2>
         <div>
           <p className=" text-[#8F8F8F] font-bricolage text-[18px] font-[300]  w-[73rem] 2xl:w-full 2xl:text-xl pt-4">
-            This Craftsman Cottage in Lakewood Heights offers a perfect blend of
-            timeless charm and modern updates. The home boasts beautiful
-            hardwood floors, updated windows, and a bright, open kitchen
-            equipped with granite countertops and stainless steel appliances,
-            making it both stylish and practical. The master suite includes a
-            recently renovated ensuite bathroom featuring a freestanding tub, a
-            separate shower, and a double vanity for added comfort. A front
-            bedroom doubles as a cozy home office, while the rare second living
-            area provides extra flexibility for entertaining or relaxation. The
-            spacious backyard features low-maintenance turf, a putting green,
-            and an automatic driveway gate, creating an ideal outdoor retreat.
-            Conveniently located within walking distance of Whole Foods and the
-            shops and restaurants in Lakewood, this home is perfectly positioned
-            for a vibrant lifestyle. Don’t miss your chance to own this
-            exceptional property!
+            {description}
           </p>
         </div>
       </div>
@@ -264,7 +268,7 @@ console.log("listingID", listingId);
           Listed by Agent
         </h2>
         <div className="mt-5">
-          <ListedCard />
+          <ListedCard  name={fullname} picture={pictureUrl} />
         </div>
       </div>
 
@@ -274,13 +278,7 @@ console.log("listingID", listingId);
 
         {/* Map Container */}
         <div className=" relative rounded-lg  flex items-center overflow-hidden">
-          <Image
-            src="/basemap-2.png" // Replace with actual map image
-            alt="Map"
-            width={700}
-            height={400}
-            className="w-[74rem] 2xl:w-full rounded-lg h-auto"
-          />
+              <MapComponent coordinates={coordinate} />
           <div className="py-4 px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
             <span className="font-medium">1500 Homes available in Lagos</span>
             <span className="text-primary cursor-pointer ml-2">
@@ -320,7 +318,7 @@ console.log("listingID", listingId);
       </div>
 
       {/*contat agency  */}
-      {/* <ContactAgent /> */}
+      <ContactAgent location={region}  profileimage={pictureUrl}  fullname={fullname}/>
 
       <section className="mt-10  hidden  2xl:mt-[4em] lg:mt-[3em] w-[75rem]  2xl:w-[88rem]  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:-mb-[5rem]    flex-col items-center justify-center">
@@ -335,37 +333,30 @@ console.log("listingID", listingId);
             </p>
           </div>
           <div className="flex flex-col  2xl:ml-[6rem]  ">
-            <div className=" flex mt-[1em]    min-w-fit items-center lg:flex-row    justify-center  mb-2">
-              {/* Horizontal Scrollable Container on Mobile */}
-              {/* Card 1 */}
-              <PropertyListCard
-                imageSrc={"/afforable-1.png"}
-                altText={"rent6"}
-                price={"18,000.00"}
-                area={""}
-              />
-              <PropertyListCard
-                imageSrc={"/afforable-2.png"}
-                altText={"rent6"}
-                price={"18,000.00"}
-                area={""}
-              />
+              <div className="flex mt-[1em] h-fit min-w-[70%] items-center lg:flex-row justify-center mb-2">
+              {displayListings?.map((listing, index) => (
+  <PropertyCard
+    key={index}
+    imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
+    altText={listing?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
+    price={listing?.item?.price || "Price not available"}
+    area={listing?.item?.squareFeet || "190 - 245 m² (Approximate area)"}
+    description={listing?.item?.description || "No description available for this property."}
+    title={listing?.item?.title || "Untitled Property"}
+    rent={listing?.item?.rent || "Rent details not provided"}
+  />
+))}
 
-              <PropertyListCard
-                imageSrc={"/house1.png"}
-                altText={"rent6"}
-                price={"4000.00"}
-                area={""}
-              />
-            </div>
+                     </div>
           </div>
         </div>
       </section>
 
-
-      <PropertyGalleryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-
-    </div>
+      <PropertyGalleryModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+    </div>)}</>
   );
 };
 
