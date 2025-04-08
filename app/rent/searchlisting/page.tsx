@@ -38,57 +38,62 @@ router.push(`/rent/searchlisting?${newParams.toString()}`);
 
   }
   return (
-    <div className="pt-[2.3rem] lg:w-[95%] px-4 lg:pl-[2rem] lg:pr-[4.5rem] flex items-center justify-between">
-      <div className="flex items-center ml-[2rem] gap-2">
-        <button className="px-2 py-2 border text-gray border-[#8F8F8F] bg-[#F9FAFB] rounded-md flex items-center gap-2">
+<div className="pt-[2.3rem] px-4 lg:pl-[2rem] lg:pr-[4.5rem] flex justify-between w-full">
+<div className="flex items-center ml-[2rem] gap-2">
+        <button className="px-4   text-sm py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F]  flex items-center gap-2">
           <Image src="/allfilter.png" alt="Filter" width={16} height={15} /> All Filters
         </button>
 
-        {['Price', 'Bed/Baths', 'Home type'].map((option:any) => (
-          <div className="relative flex items-center" key={option}>
-            <select
-              className="border  border-[#8F8F8F] bg-transparent text-[14.5px] rounded-md text-[#8F8F8F] p-2"
-              value={searchParams.get(option.toLowerCase().replace(/\s+/g, '-')) || ''}
-              onChange={(e) => handleFilterChange(option.toLowerCase().replace(/\s+/g, '-'), e.target.value)}
-            >
-              {option === 'Price' && (
-                <>
-                  <option value="">any</option>
-                  <option value="1999">1999</option>
-                  <option value="10000">10000</option>
-                  <option value="50000">50000</option>
-                </>
-              )}
+        {['Price', 'Bed/Baths', 'Home type'].map((option: any) => {
+  const paramKey = option.toLowerCase().replace(/\s+/g, '-');
+  const selectedValue = searchParams.get(paramKey) || '';
 
-              {option === 'Bed/Baths' && (
-                <>
-                  <option value="">Bed/Baths</option>
-                  {[1, 2, 3, 4, 5].map((bedrooms) => (
-                    <option key={bedrooms} value={bedrooms}>
-                      {bedrooms} Bedrooms
-                    </option>
-                  ))}
-                </>
-              )}
+  return (
+    <div className="relative flex items-center " key={option}>
+      <select
+        className="border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 pr-6 appearance-none"
+        value={selectedValue}
+        onChange={(e) => handleFilterChange(paramKey, e.target.value)}
+      >
+        <option value="">{option}</option>
 
-              {option === 'Home type' && (
-                <>
-                  <option value="">Home Type</option>
-                  <option value="rent">Rent</option>
-                  <option value="sale">Sale</option>
-                  <option value="land">Land</option>
-                </>
-              )}
-            </select>
-            <img
-              src="/arrow-down.png"
-              alt="Dropdown"
-              className="w-3 h-2 absolute right-2 top-1/2 transform -translate-y-1/2"
-            />
-          </div>
-        ))}
+        {option === 'Price' && (
+          <>
+            <option value="0-200">$0–200</option>
+            <option value="200-500">$200–500</option>
+            <option value="500-800">$500–800</option>
+            <option value="800-1000">$800–1,000</option>
+          </>
+        )}
 
-        <button className="px-4 py-2 bg-teal-600 text-white rounded-md">Save Search</button>
+        {option === 'Bed/Baths' && (
+          <>
+            <option value="2-4">2–4 Beds</option>
+            <option value="5+">5+ Beds</option>
+          </>
+        )}
+
+        {option === 'Home type' && (
+          <>
+            <option value="rent">Rent</option>
+            <option value="sale">Sale</option>
+            <option value="land">Land</option>
+          </>
+        )}
+      </select>
+
+      {/* Custom dropdown arrow */}
+      <img
+        src="/arrow-down.png"
+        alt="Dropdown"
+        className="w-3 h-2 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
+      />
+    </div>
+  );
+})}
+
+
+        <button className="px-4  py-[6px] bg-teal-600 text-base text-white font-light rounded-md">Save Search</button>
       </div>
 
       {/* List and Map Toggle */}
@@ -149,23 +154,23 @@ const page = () => {
         setCurrentPage(Number(searchParams.get("page")) || 1); // Store in state
        }
      }, [allListings, isAllloading]);
-   
-     if (isAllloading) {
-       return (
-         <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
-           <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
-         </div>
-       );
-     }
+    
+      //  if (isAllloading) {
+      //    return (
+      //      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
+      //        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
+      //      </div>
+      //    );
+      //  }
   return (
     
-    <div className='mt-[4rem]    w-full h-full   flex-col flex justify-center items-center  '> 
-    <Breadcrumb/>'  
-    <div className="flex justify-between gap-[15rem] 2xl:gap-[43rem] items-center  ">
-      <h1 className="text-black 2xl:-ml-[2rem] font-semibold text-4xl">
+    <div className='mt-[4rem]  2xl:w-[100rem] lg:w-[84rem]  flex-col flex justify-center items-center  '> 
+    <Breadcrumb/>'   
+    <div className="flex justify-between w-[76rem]  2xl:w-[95rem]  ">
+      <h1 className="text-black font-semibold text-4xl">
         Lagos Real-estate & Homes for Sale
       </h1>
-      <div className="text-gray-600 2xl:-ml-[8rem] text-sm flex items-center space-x-4">
+      <div className="text-gray-600  text-sm flex items-center space-x-4">
         <span className='flex gap-2'>350 <p className='font-[300] text-gray'> of</p> 1,500 Homes</span>
         <span className="text-black font-[400] flex gap-2  justify-center items-center cursor-pointer">Sort: <p className='text-primary'>  New listings  </p>  <img
               src="/arrow-down.png"

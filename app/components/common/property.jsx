@@ -18,7 +18,7 @@ const PropertyCard = ({
 
   return (
     <div
-      className={`flex flex-col rounded-[1.5rem] h-[32rem]  border-gray  2xl:h-[30rem] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
+      className={`flex flex-col rounded-[1.5rem] h-[30rem]  border-gray  2xl:h-[30rem] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
       group transition-all duration-[1500ms] ease-in-out ${
         isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : "border-none"
       }`}
@@ -28,7 +28,7 @@ const PropertyCard = ({
       {/* Image Container with smooth height transition */}
       <div
         className={`overflow-hidden rounded-lg w-full transition-all duration-[1500ms] ease-in-out ${
-          isHovered ? "max-h-[300px]" : "max-h-[400px]"
+          isHovered ? "max-h-[350px]" : "max-h-[350px]"
         }`}
       >
         <Image
@@ -37,7 +37,7 @@ const PropertyCard = ({
           height={500}
           quality={100}
           src={imageSrc}
-          className="object-cover w-full h-[430px] rounded-b-[1.6rem] transition-all duration-[2000ms] ease-in-out"
+          className="object-cover w-full h-[400px] rounded-b-[1.6rem] transition-all duration-[2000ms] ease-in-out"
         />
       </div>
 
