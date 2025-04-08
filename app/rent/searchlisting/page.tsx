@@ -40,20 +40,20 @@ router.push(`/rent/searchlisting?${newParams.toString()}`);
   return (
     <div className="pt-[2.3rem] lg:w-[95%] px-4 lg:pl-[2rem] lg:pr-[4.5rem] flex items-center justify-between">
       <div className="flex items-center ml-[2rem] gap-2">
-        <button className="px-4 py-2 border text-gray border-[#8F8F8F] bg-[#F9FAFB] rounded-md flex items-center gap-2">
+        <button className="px-2 py-2 border text-gray border-[#8F8F8F] bg-[#F9FAFB] rounded-md flex items-center gap-2">
           <Image src="/allfilter.png" alt="Filter" width={16} height={15} /> All Filters
         </button>
 
         {['Price', 'Bed/Baths', 'Home type'].map((option:any) => (
           <div className="relative flex items-center" key={option}>
             <select
-              className="border border-[#8F8F8F] bg-[#F9FAFB] text-[14.5px] rounded-md text-[#8F8F8F] p-2"
+              className="border  border-[#8F8F8F] bg-transparent text-[14.5px] rounded-md text-[#8F8F8F] p-2"
               value={searchParams.get(option.toLowerCase().replace(/\s+/g, '-')) || ''}
               onChange={(e) => handleFilterChange(option.toLowerCase().replace(/\s+/g, '-'), e.target.value)}
             >
               {option === 'Price' && (
                 <>
-                  <option value="">Price</option>
+                  <option value="">any</option>
                   <option value="1999">1999</option>
                   <option value="10000">10000</option>
                   <option value="50000">50000</option>

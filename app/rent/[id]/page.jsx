@@ -4,14 +4,13 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaRegEye } from "react-icons/fa6";
 import ContactAgent from "@/app/components/layouts/contactagent";
-import { highlights, images } from "@/constants";
-import PropertyGalleryModal from "@/app/components/layouts/modals/page";
+import { highlights } from "@/constants";
 import {  useGetAllListingsQuery, useGetSpecificListingsQuery } from "@/store/slices/api/authapi";
 import { usePathname } from "next/navigation";
 import ListedCard from "@/app/components/common/profilecard";
 import MapComponent from "@/app/components/layouts/listingmap";
 import PropertyCard from "@/app/components/common/property";
-
+import DynamicImageGrid from "@/app/components/layouts/dynamiclayout"
 const Breadcrumb = () => {
   return (
     <div className="flex  items-center justify-between gap-[0.2rem] pl-4 py-2 w-full  mt-[5rem]  bg-gray-100">
@@ -58,7 +57,6 @@ const Breadcrumb = () => {
 };
 
 const page = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
     const pathname = usePathname();
   const listingId = pathname?.split('/').pop();
 
@@ -68,9 +66,44 @@ const page = () => {
 
   } = useGetSpecificListingsQuery({listingId });
 
-    
-     
-    
+  const { data: allListings, refetch } = useGetAllListingsQuery( );
+
+  const [displayListings, setDisplayListings] = useState([]);
+  console.log(displayListings);
+
+  useEffect(() => {
+    refetch(); // Refetch data on every mount
+  }, [refetch]);
+
+  useEffect(() => {
+    if (!isAllLoading && allListings) {
+      const firstThreeListings = allListings.listings?.slice(0, 3);
+      setDisplayListings(firstThreeListings); // Store in state
+    }
+  }, [allListings, isAllLoading]);
+
+  if (isAllLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
+        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
+      </div>
+    );
+  } 
+     // These map the highlight text to the corresponding field(s) in the data
+const featureMap = {
+  "Pet allowed": (item) => item?.petFriendly,
+  "Laundry": (item) => item?.laundryType?.length > 0,
+  "Balcony": (item) => item?.amenities?.length > 0,
+  "Garage parking": (item) => item?.parkingType,
+  // Add more mappings as needed
+};
+
+// Dynamically filter highlights based on what's in the listing.item
+const relevantHighlights = highlights.filter((highlight) =>
+  featureMap[highlight.text]?.(listing?.listing?.item)
+);
+
+    console.log(relevantHighlights)
   
 
     const {
@@ -116,42 +149,8 @@ const page = () => {
   return (
     <div className="mt-8  2xl:w-[98rem] w-[90%]  ml-[2%] ">
       <Breadcrumb />
-      <div className="grid grid-cols-5 gap-4 p-4">
-      {/* Large Main Image */}
-      <div
-        className="col-span-2 row-span-2"
-        onClick={() => setIsModalOpen(true)}
-      >
-        <Image
-          src={extendedImages[0]?.url || "/house1.png"}
-          alt="Gallery Image"
-          width={500}
-          height={400}
-          className="w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg"
-        />
-      </div>
-
-      {/* Smaller Images in Grid */}
-      {extendedImages.slice(1, 7).map((image, index) => (
-        <div
-          key={index}
-          onClick={() => setIsModalOpen(true)}
-          className="relative"
-        >
-          <Image
-            src={image?.url || "/house1.png"}
-            alt="Gallery Image"
-            width={250}
-            height={200}
-            className="w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg"
-          />
-        </div>
-      ))}
-
-      {/* Wide Image Spanning Two Columns */}
- 
-    </div>
-
+  
+<DynamicImageGrid images={ images} />
       {/* second div layout  */}
       <div className="bg-gray-100 p-4 rounded-lg">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
@@ -165,7 +164,7 @@ const page = () => {
 
             <div className="flex items-center  gap-2 text-gray-700 mt-2">
               <FaRegEye className="text-gray" />
-              <span className="font-meduim">Total views{editingCount}</span>
+              <span className="font-meduim">Total views {editingCount}</span>
             </div>
           </div>
 
@@ -202,14 +201,14 @@ const page = () => {
           <span className="text-gray-400">|</span>
 
           <div className="flex items-center gap-1">
-            <span className="font-bold text-black">1,435</span>
+            <span className="font-bold text-black">_</span>
             <span>sq ft</span>
           </div>
 
           <span className="text-gray-400">|</span>
 
           <div className="flex items-center gap-1">
-            <span className="font-bold text-black">397</span>
+            <span className="font-bold text-black">_</span>
             <span>Price per sq ft</span>
           </div>
         </div>
@@ -220,21 +219,22 @@ const page = () => {
         <h2 className="text-2xl font-bold text-black font-bricolage">
           Home Highlights
         </h2>
-        <div className="grid grid-cols- md:grid-cols-4 gap-2 mt-4 text-[#8F8F8F] font-bricolage text-sm">
-          {highlights.map((item, index) => (
-            <div key={index} className="flex items-center gap-2">
-              <Image
-                src={item.icon}
-                alt={item.text}
-                width={20}
-                height={20}
-                className="object-contain"
-                quality={100}
-              />
-              <span className="2xl:text-xl">{item.text}</span>
-            </div>
-          ))}
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mt-4 text-[#8F8F8F] font-bricolage text-sm">
+  {relevantHighlights.map((item, index) => (
+    <div key={index} className="flex items-center gap-2">
+      <Image
+        src={item.icon}
+        alt={item.text}
+        width={20}
+        height={20}
+        className="object-contain"
+        quality={100}
+      />
+      <span className="2xl:text-xl">{item.text}</span>
+    </div>
+  ))}
+</div>
+
       </div>
 
       {/* description */}
@@ -321,7 +321,7 @@ const page = () => {
           </div>
           <div className="flex flex-col  2xl:ml-[6rem]  ">
               <div className="flex mt-[1em] h-fit min-w-[70%] items-center lg:flex-row justify-center mb-2">
-              {/* {displayListings?.map((listing, index) => (
+              {displayListings?.map((listing, index) => (
   <PropertyCard
     key={index}
     imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
@@ -332,17 +332,13 @@ const page = () => {
     title={listing?.item?.title || "Untitled Property"}
     rent={listing?.item?.rent || "Rent details not provided"}
   />
-))} */}
+))}
 
                      </div>
           </div>
         </div>
       </section>
 
-      <PropertyGalleryModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
     </div>
   );
 };

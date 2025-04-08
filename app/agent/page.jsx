@@ -5,7 +5,6 @@ import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
 import { ProfileCard } from '@/app/components/layouts/profilecard';
-import { agents } from "@/constants";
 import Link from "next/link";
 import FAQComponent from "../components/layouts/faq";
 import { useGetAgentsQuery } from "@/store/slices/api/authapi";
@@ -118,14 +117,26 @@ export default function Page() {
 
 </div>
 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
-        {displayListings.map((agent) => (
-          <ProfileCard  key={agent._id} {...agent} sales={Number(agent.numberOfListings)} />
-        ))}
-        <Link href={"/agent/all-agent"}>
+  {displayListings.slice(0, Math.min(displayListings.length < 4 ? 2 : 6, displayListings.length)).map((agent) => (
+    <ProfileCard
+      key={agent._id}
+      {...agent}
+      sales={Number(agent.numberOfListings)}
+    />
+  ))}
 
-<p className="text-[#09858D] 2xl:-ml-[16rem]   -ml-[6rem] text-start   mt-5 text-2xl font-[500] ">See all 2500  rents estate agent  in lagos</p>
-</Link>
-      </div>
+  {/* "See All" link aligned to the start */}
+  {displayListings.length > 0 && displayListings.length < 6 && (
+    <div className="w-full md:col-span-2 flex justify-start">
+      <Link href="/agent/all-agent">
+        <p className="text-[#09858D] mt-5 text-2xl font-medium">
+          See all 2500 rent estate agents in Lagos
+        </p>
+      </Link>
+    </div>
+  )}
+</div>
+
 
       </section>
 

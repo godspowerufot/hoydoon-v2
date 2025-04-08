@@ -20,7 +20,7 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-export const images = [
+export const imagees = [
   '/afforable-1.png',
   '/afforable-2.png',
   '/house1.png',

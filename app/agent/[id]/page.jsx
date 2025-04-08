@@ -11,7 +11,8 @@ import PropertyCard from '@/app/components/common/property';
 import { usePathname } from 'next/navigation';
 import { useGetAgentListingsQuery, useGetAgentsInfoQuery } from '@/store/slices/api/authapi';
 import Spinner from '@/app/components/common/Spinner';
-
+import Link from 'next/link';
+import DynamicImageGrid  from '@/app/components/layouts/dynamiclayout';
 
 const Breadcrumb = () => {
     return (
@@ -19,17 +20,41 @@ const Breadcrumb = () => {
         {/* Left Section: Back Arrow and Breadcrumb */}
         <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage text-gray-600">
           {/* Back Arrow */}
-          <img src="/arrow-right.png" alt="Back" className="w-3 h-4 mt-1" />
-  
+         
           {/* Breadcrumb Links */}
-          <span className="text-gray-500">Search |</span>
-          <a href="#" className="text-primary">Homes for sale</a>
-          <span>{'>'}</span>
-          <a href="#" className="text-primary">Nigeria</a>
-          <span>{'>'}</span>
-          <a href="#" className="text-primary">Lagos</a>
-          <span>{'>'}</span>
-          <a href="#" className="text-primary">Magodo Estate</a>
+          <div className="flex items-center gap-3 text-base text-gray-500">
+  {/* Initial Back Arrow + Static Text */}
+  <div className="flex font-light items-center gap-1">
+    <img src="/arrow-right.png" alt="Back" className="w-3 h-4" />
+    <span>Search |</span>
+  </div>
+
+  {/* Breadcrumb item: Homes for Sale */}
+  <div className="flex font-light items-center gap-1">
+    <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
+    <a href="#" className="text-primary">Homes for sale</a>
+  </div>
+
+  {/* Breadcrumb item: Nigeria */}
+  <div className="flex items-center gap-1">
+    <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
+    <a href="#" className="text-primary">Nigeria</a>
+  </div>
+
+  {/* Breadcrumb item: Lagos */}
+  <div className="flex items-center gap-1">
+    <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
+    <a href="#" className="text-primary">Lagos</a>
+  </div>
+
+  {/* Breadcrumb item: Magodo Estate */}
+  <div className="flex items-center gap-1">
+    <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
+    <a href="#" className="text-primary">Magodo Estate</a>
+  </div>
+</div>
+
+
         </div>
   
         {/* Right Section: Icons */}
@@ -68,6 +93,12 @@ const page = ({params}) => {
   const [prices, setPrices] = useState([]);
   const [ActiveListings, setActiveListings] = useState([])
   const userId = pathname?.split('/').pop();
+  const [showAll, setShowAll] = useState(false);
+
+  // Handle the "See All" button click
+  const handleSeeAllClick = () => {
+    setShowAll(true);
+  };
   const [coordinates, setCoordinates] = useState([]);
   const { data: listing, isLoading, isError } = useGetAgentListingsQuery({ userId });
   const { data: agentInfo } = useGetAgentsInfoQuery({ userId });
@@ -130,36 +161,20 @@ const page = ({params}) => {
 
   return (
     <div className='mt-2 w-[90%] 2xl:w-[1520px] '> <Breadcrumb/>
-    <div className="grid grid-col-3 lg:grid-cols-5 gap-2 p-4">
-    {flattenedListings?.slice(0, 7).map((listing, index) => (
-  <div
-    key={index}
-    className={`${
-      index === 0 ? 'col-span-2 row-span-2' : ''
-    } relative`}
-  >
-    <Image
-      src={listing?.imageUrls?.[0]?.url || "/house1.png"}
-      alt={listing?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
-      width={index === 0 ? 500 : 250}
-      height={index === 0 ? 400 : 200}
-      className={`w-full ${index === 0 ? ' h-[380px] 2xl:h-[450px]' : ' h-[185px] 2xl:h-[217px]'} object-cover rounded-lg`}
-    />
-    <div className="flex gap-2 font-[500] item-center justify-center absolute bottom-2 right-2 bg-white px-2 py-1 text-base 2xl:text-xl rounded shadow">
-      <Image
-        alt="logo"
-        width={30}
-        priority
-        quality={100}
-        height={30}
-        className='h-6 w-7 2xl:w-7 2xl:h-7'
-        src={'/sold.png'}
-      />
-      <p>{listing?.status || "Unknown"}</p>  
-    </div>
-  </div>
-))}
-
+    <div className="grid  lg:mt-2  gap-2 p-4">
+    <DynamicImageGrid statuses={statuses} images={imageUrls} />
+{/* <div className="flex gap-2 font-[500] items-center justify-center absolute bottom-2 right-2 bg-white px-2 py-1 text-base 2xl:text-xl rounded shadow">
+          <Image
+            alt="logo"
+            width={30}
+            priority
+            quality={100}
+            height={30}
+            className="h-6 w-7 2xl:w-7 2xl:h-7"
+            src="/sold.png"
+          />
+          <p>{statuses[0] || "Unknown"}</p>
+        </div> */}
     </div>
 
 {/* second div layout  */}
@@ -201,7 +216,7 @@ const page = ({params}) => {
           <img src="/stargreen.png" alt="Favorite" className="w-4 h-4" />
           <span className="ml-1 font-medium ">{ListedBy}</span>
           </div>
-          <p className="text-gray-600 text-sm">Avg lis.<b> ${averagelisting}</b></p>
+          <p className="text-gray-600 lg:mt-1 text-sm">Avg lis.<b> ${averagelisting}</b></p>
         </div>
       </div>
     </div>
@@ -292,24 +307,44 @@ numberOfListings
   
     </div>
 
-<div className='w-full  px-4 py-6'>
-<h1 className="text-[2rem] ml-[2rem] mb-5  font-semibold ">   Ruka’s Active Listings</h1>
-<div className=" grid 2xl:mr-[4rem]   -ml-2  grid-cols-1 md:grid-cols-3 gap-1 gap-y-[3rem] place-items-center">  {/* Horizontal Scrollable Container on Mobile */}
-  {ActiveListings?.map((items, index) => (
-  <PropertyCard
-    key={index}   
-    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-    altText={items?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
-    price={items?.item?.price || "Price not available"}
-    area={items?.item?.squareFeet || "190 - 245 m² (Approximate area)"}
-    description={items?.item?.description || "No description available for this property."}
-    title={items?.item?.title || "Untitled Property"}
-    rent={items?.item?.rent || "Rent details not provided"}
-  />
-))}
+<div className='w-full lg:mt-4  px-0 py-6'>
+<h1 className="text-[2rem] lg:ml-5   mb-7  font-semibold ">   {agentInfo?.fullname} Active Listings</h1>
+<div className="grid 2xl:mr-[4rem] lg:-ml-5 grid-cols-1 md:grid-cols-3 gap-1 gap-y-[3rem] place-items-center">
+      {/* Display only 3 listings initially, or all listings if showAll is true */}
+      {(showAll ? ActiveListings : ActiveListings.slice(0, 3)).map((items, index) => (
+        <PropertyCard
+          key={index}
+          imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+          altText={items?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
+          price={items?.item?.price || "Price not available"}
+          area={items?.item?.squareFeet || "190 - 245 m² (Approximate area)"}
+          description={items?.item?.description || "No description available for this property."}
+          title={items?.item?.title || "Untitled Property"}
+          rent={items?.item?.rent || "Rent details not provided"}
+        />
+      ))}
+
+      {/* Show "See All" link if we haven't displayed all listings yet */}
+      {!showAll && ActiveListings.length > 3 && (
+        <div className="w-full md:col-span-2 flex ml-[5rem] -mt-[2rem] justify-start">
+          <button onClick={handleSeeAllClick} className="text-[#09858D] mt-5 text-2xl font-medium">
+            See all listings
+          </button>
+        </div>
+      )}
+
+    
 
    
-  </div>
+    </div>
+      {/* If we show all listings, display the "See less" button */}
+      {showAll && ActiveListings.length > 0 && (
+        <div className="w-full md:col-span-2 flex justify-start">
+          <button onClick={() => setShowAll(false)} className="text-[#09858D] mt-5 text-2xl font-medium">
+            See less
+          </button>
+        </div>
+      )}
 </div>
     {/*contat agency  */}
     <ContactAgent location={agentInfo?.region}  profileimage={agentInfo?.pictureUrl}  fullname={agentInfo?.fullname}/>

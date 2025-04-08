@@ -93,31 +93,20 @@ const Breadcrumb = () => {
   
 const page = () => {
 
-  
-  const { data: allListings, isLoading: isAllLoading, refetch } = useGetAgentsQuery({});
+  const { data: allAgent, isLoading: isAllLoading, refetch } = useGetAgentsQuery({});
   const [displayListings, setDisplayListings] = useState([]);
-console.log(displayListings)
 useEffect(() => {
   refetch(); // Refetch data on every mount
 }, [refetch]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      const newParams = new URLSearchParams(searchParams.toString());
-      newParams.set("page", page.toString());
-      router.push(`/agent/all-agent?${newParams.toString()}`);
-    }
-  };
- useEffect(() => {
-       if (!isAllLoading && allListings) {
-         const firstThreeListings = allListings.listings;
-         setDisplayListings(firstThreeListings);
-         setTotalPages(allListings.totalPages || 1);
-        setCurrentPage(Number(searchParams.get("page")) || 1); // Store in state
-       }
-     }, [allListings, isAllLoading]);
-   
+
+useEffect(() => {
+  if (!isAllLoading && allAgent) {
+    const firstThreeListings = allAgent;
+    setDisplayListings(firstThreeListings); // Store in state
+  }
+}, [allAgent, isAllLoading]);
+
+  
   
 if (isAllLoading) {
   return (
@@ -131,12 +120,17 @@ if (isAllLoading) {
   {displayListings.map((agent) => (
           <ProfileCard  key={agent._id} {...agent} sales={Number(agent.numberOfListings)} />
         ))}
-        <Link href={"/agent/all-agent"}>
-
-<p className="text-[#09858D] 2xl:-ml-[16rem]   -ml-[6rem] text-start   mt-5 text-2xl font-[500] ">See all 2500  rents estate agent  in lagos</p>
-</Link>
-      </div>
-      <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
+    {/* "See All" link aligned to the start */}
+  {displayListings.length > 0 && displayListings.length < 6 && (
+    <div className="w-full md:col-span-2 flex justify-start">
+      <Link href="/agent/all-agent">
+        <p className="text-[#09858D] mt-5 text-2xl font-medium">
+          See all 2500 rent estate agents in Lagos
+        </p>
+      </Link>
+    </div>
+  )} </div>
+      {/* <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} /> */}
 
 <section className="   font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  gap-[4%] flex-col w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
