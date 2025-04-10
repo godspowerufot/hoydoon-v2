@@ -184,7 +184,7 @@ export default function Home() {
                 Discover a home where every detail enhances your lifestyle crafted to fit your taste and needs.
               </p>
               </div>
-              <div className="flex mt-[1em] h-fit min-w-[70%] items-center lg:flex-row justify-center mb-2">
+              <div className="flex mt-[1em] lg:mr-[2rem] h-fit min-w-[70%] items-center lg:flex-row justify-center mb-2">
               {displayListings.map((items, index) => (
                 <PropertyCard
                 key={index}
@@ -203,10 +203,10 @@ export default function Home() {
 
             <section className="mt-5  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
             <div className="flex     flex-col items-center justify-center">
-              <div className="flex   2xl:w-[90rem] lg:ml-[3rem]  2xl:ml-[2.6rem] flex-col md:flex-row my-[2rem] lg:flex-row lg:gap-[10rem]    justify-end items-center  md:items-start ">
-              <h1 className="text-black   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
+              <div className="flex   2xl:w-[90rem] lg:ml-[3rem]  2xl:-ml-[2.6rem] flex-col md:flex-row my-[2rem] lg:flex-row lg:gap-[10rem]    justify-end items-center  md:items-start ">
+              <h1 className="text-black   lg:ml-[2rem] text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               Explore Luxurious Living Spaces            </h1>
-              <p className="text-gray -ml-[10rem]  lg:mr-[3rem] text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:w-[43rem]">
+              <p className="text-gray -ml-[10rem]  lg:mr-[3rem] text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:w-[48rem]">
               Discover a home where every detail enhances your lifestyle crafted
               to fit your taste and needs.
               </p>
@@ -325,7 +325,7 @@ export default function Home() {
       {/* testimonials */}
       <section className=" p-4 2xl:p-6 lg:p-0 font-bricolage ">
         <div className="flex  flex-col lg:flex-row md:flex-row 2xl:mt-4  lg:gap-12  justify-around items-center  ">
-          <span className="flex    pl-[1rem] 2xl:w-full  flex-col 2xl:-ml-[2rem]  font-bricolage gap-3">
+          <span className="flex   lg:ml-[1rem] pl-[1rem] 2xl:w-full  flex-col 2xl:-ml-[2rem]  font-bricolage gap-3">
             <h1 className="text-black   text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">
               What People Are Saying
             </h1>
@@ -355,7 +355,7 @@ export default function Home() {
       {/* testimonials */}
       <section className=" mt-7  w-full  lg:mt-[7%]  flex flex-1 justify-center items-center  flex-col   p-5 lg:p-0 font-bricolage ">
         <div className="flex   flex-col lg:flex-row md:flex-row   2xl:gap-[14rem] lg:gap-[6rem]  justify-around items-center  ">
-          <span className="flex flex-col  font-bricolage ml-[2rem] 2xl:ml-[1rem]  gap-2">
+          <span className="flex flex-col  font-bricolage lg:ml-[1rem] 2xl:ml-[1rem]  gap-2">
             <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-3 ">
               Your Questions, Our Answers
             </h1>
