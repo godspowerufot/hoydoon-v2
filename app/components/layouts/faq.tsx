@@ -37,19 +37,23 @@ const FAQComponent: React.FC = () => {
   };
 
   return (
-    <section className="bg-white max-md:w-full lg:w-[30rem]   2xl:w-[35rem]  2xl:h-[32rem] h-[29em] rounded-[20px] shadow-md p-6  mx-auto">
-      <h2 className="text-3xl font-[500] text-gray-900 mb-4">
+<section
+  className={`bg-[#F4F4F4] max-md:w-full lg:w-[440px] 2xl:w-[34rem] rounded-[20px] shadow-md p-6 2xl:p-9 mx-auto transition-all duration-500 ease-in-out ${
+    openIndex === 0 ? 'h-auto min-h-[450px]' : 'h-[420px]'
+  }`}
+>
+      <h2 className="text-[25px] font-[500] text-[#1E1E1E]  mt-2">
         Find Your Answers Here
       </h2>
       <div className="space-y-4  ">
         {faqs.map((faq, index) => (
-          <div key={index}>
+          <div key={index} className='mt-[22px]'>
             {/* Question Button */}
             <button
               onClick={() => toggleFAQ(index)}
               className="flex justify-between items-center w-full focus:outline-none text-left"
             >
-              <h3 className=" text-base 2xl:text-xl mt-5 font-[300] text-gray-800">
+              <h3 className=" text-[18px]   2xl:text-xl my-[5px] font-[400] text-gray-800">
                 {faq.question}
               </h3>
               <span className="text-gray-500">
@@ -74,12 +78,17 @@ const FAQComponent: React.FC = () => {
               </span>
             </button>
 
-            
-            <div className='w-full   h-[2px] bg-[#D9D9D9] '/>
+            {/* horizontal 
+             */}
+        {/* horizontal line, only if not last item */}
+{index !== faqs.length - 1 && (
+  <div className="w-full h-[2px] bg-[#D9D9D9]" />
+)}
+
 
             {/* Answer Section */}
             {openIndex === index && (
-              <div className="mt-2 font-[300] text-base text-gray ">
+              <div className={`mt-2 font-[400] text-[15px]  text-[#8F8F8F] ${index !== faqs.length - 1 && "mb-6"} `}>
                 {faq.answer}
               </div>
               

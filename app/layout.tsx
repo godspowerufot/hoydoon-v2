@@ -47,16 +47,19 @@ export default function RootLayout({
               <GoogleOAuthProvider
                 clientId={`438580118502-j5qth0chlkikrpreur0gjl9q1vm8a162.apps.googleusercontent.com`}
               >
-                <main className="flex-1 flex items-center justify-center flex-col ">
+                <main className=" container flex-1 flex items-center justify-center flex-col ">
                   <Suspense fallback={<Spinner />}>{children}</Suspense>
                 </main>
               </GoogleOAuthProvider>
               {/* Footer */}
             </AnimationWrapper>
           </Providers>
-
-          <Appfooter />
+         
+ 
+        <Appfooter />
+        
         </body>
+     
       </html>
     </>
   );

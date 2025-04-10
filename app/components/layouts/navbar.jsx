@@ -75,18 +75,20 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Links */}
-            <div className="ml-[4.5rem] w-[30rem] text-lg sm:hidden max-md:hidden lg:flex items-center justify-center hidden md:hidden rounded-full lg:h-[37px] space-x-7 lg:gap-3 bg-primarytransparent text-white">
-              <ul className="lg:flex items-center space-x-5 font-[300]">
+            <div className="ml-[4.5rem]  w-[31rem] text-lg sm:hidden max-md:hidden lg:flex items-center justify-center hidden md:hidden rounded-full lg:h-[37px] space-x-5 lg:gap-3 bg-primarytransparent text-white">
+              <ul className="lg:flex items-center space-x-6 font-[300]">
                 {[
                   { name: "Home", path: "/" },
                   { name: "Buy", path: "/buy" },
                   { name: "Rent", path: "/rent" },
                   { name: "Sell", path: "/sell" },
                   { name: "Find an agent", path: "/agent" }
-                ].map(({ name, path }) => (
+                ].map(({ name, path },index) => (
                   <li key={path}>
                     <div
-                      className={`px-4 py-2 lg:text-base rounded-full ${
+                      className={`px-4 py-2 lg:text-base rounded-full${
+                        index === 0 ? " pl-5 rounded-full" : " "
+                      } ${
                         pathname === path
                           ? "bg-white text-primary font-light"
                           : scrolled
