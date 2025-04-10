@@ -37,7 +37,7 @@ const PropertyCard = ({
           height={500}
           quality={100}
           src={imageSrc}
-          className="object-cover w-full  rounded-b-[32px]  transition-all duration-[2000ms] ease-in-out"
+          className="object-cover w-full h-[400px]  rounded-b-[32px]  transition-all duration-[2000ms] ease-in-out"
         />
       </div>
 

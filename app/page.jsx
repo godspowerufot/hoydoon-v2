@@ -202,15 +202,15 @@ export default function Home() {
             </section>
 
             <section className="mt-5  hidden lg:my-[4em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-            <div className="flex     flex-col items-center justify-center">
-              <div className="flex   2xl:w-[90rem] lg:ml-[3rem]  2xl:-ml-[2.6rem] flex-col md:flex-row my-[2rem] lg:flex-row lg:gap-[10rem]    justify-end items-center  md:items-start ">
-              <h1 className="text-black   lg:ml-[2rem] text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
-              Explore Luxurious Living Spaces            </h1>
-              <p className="text-gray -ml-[10rem]  lg:mr-[3rem] text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:w-[48rem]">
-              Discover a home where every detail enhances your lifestyle crafted
-              to fit your taste and needs.
+            <div className="flex lg:max-w-[87rem] 2xl:max-w-[90rem]    flex-col items-center justify-center">
+            <div className="flex lg:ml-[5rem] xxl:ml-[7rem]  2xl:ml-[1rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
+              <h1 className="text-black text-[26px] lg:text-[2.5rem] font-[600] w-full">
+              Explore Luxurious Living Spaces 
+              </h1>
+              <p className="text-gray -ml-[10rem] 2xl:mr-[4rem] text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
+                Discover a home where every detail enhances your lifestyle crafted to fit your taste and needs.
               </p>
-              </div> 
+              </div>
              
               <div
               style={{
@@ -323,9 +323,9 @@ export default function Home() {
       {/* carousel */}
 
       {/* testimonials */}
-      <section className=" p-4 2xl:p-6 lg:p-0 font-bricolage ">
+      <section className=" p-4  2xl:p-6 lg:p-0 font-bricolage ">
         <div className="flex  flex-col lg:flex-row md:flex-row 2xl:mt-4  lg:gap-12  justify-around items-center  ">
-          <span className="flex   lg:ml-[1rem] pl-[1rem] 2xl:w-full  flex-col 2xl:-ml-[2rem]  font-bricolage gap-3">
+          <span className="flex   lg:ml-[1rem] xxl:ml-[3rem] pl-[1rem] 2xl:w-full  flex-col 2xl:-ml-[2rem]  font-bricolage gap-3">
             <h1 className="text-black   text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">
               What People Are Saying
             </h1>

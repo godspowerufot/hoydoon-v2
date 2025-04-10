@@ -10,7 +10,11 @@ export default {
     extend: {
         boxShadow: {
             custom: '0 2px 4px rgba(0, 0, 0, 0.25)',
-        },
+        }, 
+          screens: {
+            'xxl': '1440px',
+            'xlplus': '1240px',
+          },
         
         colors: {
             primary: '#09858D',
