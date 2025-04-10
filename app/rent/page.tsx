@@ -155,7 +155,7 @@ export default function Home() {
           <div className="flex flex-col ">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
               {[...displayListings]
-                .slice(0, 6) // Create a shallow copy to avoid modifying the original array
+                .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items:Property, index: number) => (
               <Link                     key={index}
