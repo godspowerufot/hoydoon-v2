@@ -36,7 +36,7 @@ export default function Home() {
          }
   return (
     <>
-      <header className="relative h-[80vh] w-full overflow-hidden">
+      <header className="relative h-[80vh] w-screen overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
@@ -141,7 +141,7 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="mt-10  hidden lg:my-[1em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="mt-4  hidden 2xl:mt-5  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   flex-col items-center justify-center">
           <div className="flex   p-2 flex-col md:flex-row  2xl:gap-[10rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
             <h1 className="text-black lg:-pl-[1rem]   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
@@ -153,37 +153,36 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col ">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
-                .map((items:Property, index: number) => (
-              <Link                     key={index}
-               href={`/rent/${items?._id}`}>   
-              <PropertyListCard
-                    key={index}
-                  
-                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                    altText={
-                      items?.imageUrls?.[0]?.altText ||
-                      "Property image showcasing a beautiful home"
-                    }
-                    price={items?.item?.price || "Price not available"}
-                    area={items?.item?.squareFeet}
-                    bathrooms={items?.item?.bathrooms}
-                    bedrooms={items?.item?.bedrooms}
-                    description={
-                      items?.item?.description ||
-                      "No description available for this property."
-                    }
-                    title={items?.item?.title || "Untitled Property"}
-                    rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item?.squareFeet}
-                  /></Link>
+                .map((items: Property, index: number) => (
+                  <Link key={index} href={`/rent/${items?._id}`}>
+                    <PropertyListCard
+                      key={index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      title={items?.item?.title || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                      squareFeet={items?.item?.squareFeet}
+                    />
+                  </Link>
                 ))}
             </div>
-            <p className="text-[#09858D]   ml-6 2xl:ml-8  my-5 text-2xl font-[500] ">
-              see 2500 new listings for rent
+            <p className="text-[#09858D]   ml-6 2xl:ml-8 2xl:  my-5 text-2xl font-[500] ">
+              see {displayListings.length} new listings for rent
             </p>
           </div>
         </div>
@@ -193,14 +192,13 @@ export default function Home() {
 
       {/* afforable component */}
 
-      <section className="mt-10  hidden  2xl:mt-[5em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   w-[92%]   2xl:w-[95rem]  flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[8%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-            <h1 className="text-black lg:ml-5  2xl:ml-9 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
-              {" "}
+      <section className="mt-4  hidden lg:-mt-[1em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex   flex-col items-center justify-center">
+          <div className="flex   p-2 flex-col md:flex-row  2xl:gap-[10rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
+            <h1 className="text-black lg:pl-[4.5rem] xxl:pl-[6.5rem]    2xl:pl-0 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               Explore Lagos Rentals
             </h1>
-            <p className="text-gray  lg:p-0 text-base lg:text-xl font-bricolage w-full lg:w-[50rem] ">
+            <p className="text-gray  lg:pr-5 text-base lg:text-xl font-bricolage w-full lg:w-[55rem] 2xl:w-[60rem] ">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
@@ -210,42 +208,41 @@ export default function Home() {
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
-                .map((items:Property, index: number) => (
-                  <Link  key={index} href={`/rent/${items?._id}`}>   
-  <PropertyListCard
-                    key={index}
-                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                    altText={
-                      items?.imageUrls?.[0]?.altText ||
-                      "Property image showcasing a beautiful home"
-                    }
-                    price={items?.item?.price || "Price not available"}
-                    area={items?.item?.squareFeet}
-                    bathrooms={items?.item?.bathrooms}
-                    bedrooms={items?.item?.bedrooms}
-                    description={
-                      items?.item?.description ||
-                      "No description available for this property."
-                    }
-                    title={items?.item?.title || "Untitled Property"}
-                    rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item?.squareFeet}
-                  /></Link>
+                .map((items: Property, index: number) => (
+                  <Link key={index} href={`/rent/${items?._id}`}>
+                    <PropertyListCard
+                      key={index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      title={items?.item?.title || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                      squareFeet={items?.item?.squareFeet}
+                    />
+                  </Link>
                 ))}
             </div>
-
-            <p className="text-[#09858D] 2xl:ml-[2rem]  ml-4  mt-5 text-2xl font-[500] ">
-              See all 2500 Lagos houses for sale
+            <p className="text-[#09858D]   ml-6 2xl:ml-8  my-5 text-2xl font-[500] ">
+              see {displayListings.length} explore listings for rent
             </p>
           </div>
         </div>
       </section>
-
       {/*  upcoming houdes*/}
       <section className="mt-10  hidden  2xl:my-[2em] lg:my-[2em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:w-[95rem] flex-col items-center justify-center">
           <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[10%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-            <h1 className="text-black lg:ml-4  2xl:pl-[2rem] text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
+            <h1 className="text-black lg:ml-4  2xl:pl-[2rem] xxl:pl-[3rem] text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               {" "}
               pet-friendly Rental
             </h1>
@@ -255,36 +252,37 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col ">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
-                .map((items:Property, index: number) => (
-                  <Link   key={index} href={`/rent/${items?._id}`}>   
- <PropertyListCard
-                    key={index}
-                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                    altText={
-                      items?.imageUrls?.[0]?.altText ||
-                      "Property image showcasing a beautiful home"
-                    }
-                    price={items?.item?.price || "Price not available"}
-                    area={items?.item?.squareFeet}
-                    bathrooms={items?.item?.bathrooms}
-                    bedrooms={items?.item?.bedrooms}
-                    description={
-                      items?.item?.description ||
-                      "No description available for this property."
-                    }
-                    title={items?.item?.title || "Untitled Property"}
-                    rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item?.squareFeet}
-                  /></Link>
+                .map((items: Property, index: number) => (
+                  <Link key={index} href={`/rent/${items?._id}`}>
+                    <PropertyListCard
+                      key={index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      title={items?.item?.title || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                      squareFeet={items?.item?.squareFeet}
+                    />
+                  </Link>
                 ))}
             </div>
 
             <p className="text-[#09858D] 2xl:ml-[2.5rem]  ml-6   mt-5 text-2xl font-[500] ">
-              See all 2500 pet-friendly houses for rent
+              See all {displayListings.length} pet-friendly houses for rent
             </p>
           </div>
         </div>
@@ -294,9 +292,9 @@ export default function Home() {
 
       {/* testimonials */}
       <section className="mt-10  hidden  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   w-[92%]  2xl:w-[95rem] flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[10%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-            <h1 className="text-black lg:ml-4 text-[26px] 2xl:pl-[2rem] lg:text-[2.5rem] font-[600]   w-full ">
+        <div className="flex  lg:w-[100%]  xxl:w-[89%]    2xl:w-full flex-col items-center justify-center">
+          <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row  my-[2rem] lg:flex-row     justify-end items-center  md:items-start ">
+            <h1 className="text-black  text-[26px] xl:ml-[3.2rem] 2xl:ml-[0rem] lg:text-[2.5rem] font-[600]   w-full ">
               {" "}
               Single Family Homes for Rent
             </h1>
@@ -306,35 +304,37 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col ">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
-                .map((items:Property, index: number) => (
-                  <Link  key={index} href={`/rent/${items?._id}`}>   
-   <PropertyListCard
-                    key={index}
-                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                    altText={
-                      items?.imageUrls?.[0]?.altText ||
-                      "Property image showcasing a beautiful home"
-                    }
-                    price={items?.item?.price || "Price not available"}
-                    area={items?.item?.squareFeet}
-                    bathrooms={items?.item?.bathrooms}
-                    bedrooms={items?.item?.bedrooms}
-                    description={
-                      items?.item?.description ||
-                      "No description available for this property."
-                    }
-                    title={items?.item?.title || "Untitled Property"}
-                    rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item?.squareFeet}
-                  /></Link>
+                .map((items: Property, index: number) => (
+                  <Link key={index} href={`/rent/${items?._id}`}>
+                    <PropertyListCard
+                      key={index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      title={items?.item?.title || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                      squareFeet={items?.item?.squareFeet}
+                    />
+                  </Link>
                 ))}
             </div>
 
             <p className="text-[#09858D]   lg:ml-[2.3rem] 2xl:ml-[2.5rem]  mt-5 text-2xl font-[500] ">
-              See all 2500 single family House rents for rent
+              See all {displayListings.length} single family House rents for
+              rent
             </p>
           </div>
         </div>

@@ -39,7 +39,7 @@ const Breadcrumb = () => {
       </div>
 
       {/* Right Section: Icons */}
-      <div className="flex pl-[33rem] 2xl:pl-[50rem]  items-center gap-2">
+      <div className="flex pl-[30rem] 2xl:pl-[50rem]  items-center gap-2">
         <div className="p-2 border border-[#8F8F8F] rounded-md">
           <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
         </div>
@@ -150,7 +150,7 @@ const relevantHighlights = highlights.filter((highlight) =>
     <div className="mt-8  2xl:w-[98rem] w-[90%]  ml-[2%] ">
       <Breadcrumb />
   
-<DynamicImageGrid images={ images} />
+<DynamicImageGrid images={ images} coordinates={coordinate} />
       {/* second div layout  */}
       <div className="bg-gray-100 p-4 rounded-lg">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center">

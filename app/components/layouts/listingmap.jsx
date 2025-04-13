@@ -16,7 +16,7 @@ const MapComponent = ({ coordinates }) => {
     <APIProvider solutionChannel="GMP_devsite_samples_v3_rgmbasicmap" apiKey={API_KEY}>
       <Map
         style={mapContainerStyle}
-        defaultZoom={8}
+        defaultZoom={8} 
         defaultCenter={defaultCenter}
         gestureHandling="greedy"
         disableDefaultUI={true}

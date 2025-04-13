@@ -25,9 +25,7 @@ export const imagees = [
   '/afforable-2.png',
   '/house1.png',
   '/house1.png',
-  '/house1.png',
-  '/house1.png',
-  '/house1.png',
+,
 ];
 
 

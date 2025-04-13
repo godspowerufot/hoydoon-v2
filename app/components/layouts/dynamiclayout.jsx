@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import PropertyGalleryModal from "./modals/page";
 
-const DynamicImageGrid = ({ images, statuses = [] }) => {
+const DynamicImageGrid = ({ images,coordinates, statuses = [] }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (!images || images.length === 0) return null;
@@ -67,15 +67,10 @@ const DynamicImageGrid = ({ images, statuses = [] }) => {
         </div>
       ),
       4: () => (
-        <div className="grid grid-cols-3 gap-4 p-4 grid-rows-2">
-          <div className="col-span-2 row-span-2">
-            {renderImage(images[0], 0, "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg", 500, 400)}
-          </div>
-          {renderImage(images[1], 1, "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg", 250, 200)}
-          {renderImage(images[2], 2, "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg", 250, 200)}
-          <div className="col-span-3">
-            {renderImage(images[3], 3, "w-full h-[180px] object-cover rounded-lg", 600, 200)}
-          </div>
+        <div className="grid grid-cols-2 gap-4 p-4">
+          {images.slice(0, 4).map((img, i) =>
+            renderImage(img, i, "w-full h-[300px] object-cover rounded-lg", 500, 300)
+          )}
         </div>
       ),
       5: () => (
@@ -90,17 +85,10 @@ const DynamicImageGrid = ({ images, statuses = [] }) => {
         </div>
       ),
       6: () => (
-        <div className="grid grid-cols-4 gap-4 p-4 grid-rows-2">
-          <div className="col-span-2 row-span-2">
-            {renderImage(images[0], 0, "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg", 500, 400)}
-          </div>
-          {renderImage(images[1], 1, "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg", 250, 200)}
-          {renderImage(images[2], 2, "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg", 250, 200)}
-          {renderImage(images[3], 3, "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg", 250, 200)}
-          {renderImage(images[4], 4, "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg", 250, 200)}
-          <div className="col-span-4">
-            {renderImage(images[5], 5, "w-full h-[180px] object-cover rounded-lg", 600, 200)}
-          </div>
+        <div className="grid grid-cols-3 gap-4 p-4">
+          {images.slice(0, 6).map((img, i) =>
+            renderImage(img, i, "w-full h-[200px] object-cover rounded-lg", 400, 250)
+          )}
         </div>
       ),
       default: () => (
@@ -123,6 +111,7 @@ const DynamicImageGrid = ({ images, statuses = [] }) => {
       {renderLayout()}
       <PropertyGalleryModal
         image={images}
+        coordinates={coordinates}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />

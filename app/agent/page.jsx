@@ -36,11 +36,11 @@ export default function Page() {
       
   return (
     <>
- <header className="relative h-[45em] lg:h-[52em] 2xl:w-full w-screen">
+ <header className="relative h-[45em] lg:h-[52em] w-screen">
   {/* Background Image Div */}
   <div className="absolute top-0 left-0 w-screen h-full bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('/agentheader.png')" }}>
     {/* Overlay Div */}
-    <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-[-1]"></div>
+    <div className="absolute top-0 left-0 w-full h-full bg-black opacity-[0.3] z-[-1]"></div>
   </div>
 
   {/* Content Section */}
@@ -87,7 +87,7 @@ export default function Page() {
 
     {/* Small Screen Search Bar */}
     <div className="lg:hidden justify-center items-center w-full px-2 py-3">
-      <div className="flex h-[4em] font-bricolage items-center m-5 bg-white rounded-full shadow-md w-[89%] md:w-4/5 lg:w-3/5">
+      <div className="flex h-[4em] font-bricolage items-center m-5  bg-white rounded-full shadow-md w-[89%] md:w-4/5 lg:w-3/5">
         <div className="flex flex-col flex-1">
           <div className="text-sm text-gray">
             Address, Neighborhood, City, Zip code...
@@ -106,7 +106,7 @@ export default function Page() {
 
 
       {/* explore */}
-      <section className=" flex-wrap bg-[#eeeeeec7] hidden lg:py-[2em] w-full  font-bricolage lg:flex justify-center flex-col gap-7 2xl:gap-[3rem] flex-1 items-center">
+      <section className=" flex-wrap w-screen bg-[#eeeeeec7] hidden lg:py-[2em]   font-bricolage lg:flex justify-center flex-col gap-7 2xl:gap-[3rem] flex-1 items-center">
       <div className="flex   p-2 flex-col w-[80rem] 2xl:w-[94rem]  2xl:ml-0 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
       <h1 className="text-black lg:ml-[3rem] text-[26px] lg:text-[2rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
       <p className="text-gray  lg:p-0 text-base lg:text-xl font-bricolage w-full lg:w-full">
@@ -130,7 +130,7 @@ export default function Page() {
     <div className="w-full md:col-span-2 flex justify-start">
       <Link href="/agent/all-agent">
         <p className="text-[#09858D] mt-5 text-2xl font-medium">
-          See all 2500 rent estate agents in Lagos
+          See all {displayListings.length} rent estate agents in Lagos
         </p>
       </Link>
     </div>
@@ -141,7 +141,7 @@ export default function Page() {
       </section>
 
 
-      <section className="  bg-[#eeeeeec7]   w-full font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
+      <section className="  bg-[#eeeeeec7]   w-screen font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  gap-[4%] flex-col w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
 <h1  className="text-black  text-[26px] lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Connect with local agent</h1>
@@ -168,7 +168,7 @@ Benefit from local expertise. We'll connect you with a Hoydoon Premier Agent who
         </div>
       </section>
 
-      <section className=" bg-[#eeeeeec7] w-full   font-bricolage lg:flex  flex-col j flex-1 items-center ">
+      <section className=" bg-[#eeeeeec7] w-screen   font-bricolage lg:flex  flex-col j flex-1 items-center ">
         <div className="flex   ml-[5.5rem] gap-[4%] 2xl:gap-[8%] flex-col  w-full 2xl:w-[110rem] 2xl:pl-[8em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
        
        <span className="mt-4 lg:mt-0">

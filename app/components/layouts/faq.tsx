@@ -38,7 +38,7 @@ const FAQComponent: React.FC = () => {
 
   return (
 <section
-  className={`bg-[#F4F4F4] max-md:w-full lg:w-[440px] 2xl:w-[34rem] rounded-[20px] shadow-md p-6 2xl:p-9 mx-auto transition-all duration-500 ease-in-out ${
+  className={`bg-[#eeeeee] max-md:w-full lg:w-[440px] 2xl:w-[34rem] rounded-[20px]  p-6 2xl:p-9 mx-auto transition-all duration-500 ease-in-out ${
     openIndex === 0 ? 'h-auto min-h-[450px]' : 'h-[420px]'
   }`}
 >

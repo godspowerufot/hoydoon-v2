@@ -12,8 +12,8 @@ import { usePathname } from 'next/navigation';
 import { useGetAgentListingsQuery, useGetAgentsInfoQuery } from '@/store/slices/api/authapi';
 import Spinner from '@/app/components/common/Spinner';
 import Link from 'next/link';
+import { imagees } from '@/constants';
 import DynamicImageGrid  from '@/app/components/layouts/dynamiclayout';
-
 const Breadcrumb = () => {
     return (
       <div className="flex  items-center justify-between gap-[0.2rem] px-4 py-2  mt-[5rem] w-full  bg-gray-100">
@@ -22,7 +22,7 @@ const Breadcrumb = () => {
           {/* Back Arrow */}
          
           {/* Breadcrumb Links */}
-          <div className="flex items-center gap-3 text-base text-gray-500">
+          <div className="flex  w-[32rem] items-center gap-3 text-base text-gray-500">
   {/* Initial Back Arrow + Static Text */}
   <div className="flex font-light items-center gap-1">
     <img src="/arrow-right.png" alt="Back" className="w-3 h-4" />
@@ -154,15 +154,15 @@ const page = ({params}) => {
   const tabs = [
     { id: "all", label: "All listings" },
     { id: "active", label: "Active listings" },
-    { id: "sold", label: "Sold with Ruka" },
-    { id: "bought", label: "Bought with Ruka" },
+    { id: "sold", label:  `Sold with ${agentInfo?.fullname}` },
+    { id: "bought", label: `Bought with ${agentInfo?.fullname}` },
   ];
 
 
   return (
     <div className='mt-2 w-[90%] 2xl:w-[1520px] '> <Breadcrumb/>
     <div className="grid  lg:mt-2  gap-2 p-4">
-    <DynamicImageGrid statuses={statuses} images={imageUrls} />
+    <DynamicImageGrid statuses={statuses} coordinates={coordinates} images={imageUrls} />
 {/* <div className="flex gap-2 font-[500] items-center justify-center absolute bottom-2 right-2 bg-white px-2 py-1 text-base 2xl:text-xl rounded shadow">
           <Image
             alt="logo"
@@ -314,13 +314,13 @@ numberOfListings
       {(showAll ? ActiveListings : ActiveListings.slice(0, 3)).map((items, index) => (
         <PropertyCard
           key={index}
-          imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-          altText={items?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
-          price={items?.item?.price || "Price not available"}
-          area={items?.item?.squareFeet || "190 - 245 m² (Approximate area)"}
-          description={items?.item?.description || "No description available for this property."}
-          title={items?.item?.title || "Untitled Property"}
-          rent={items?.item?.rent || "Rent details not provided"}
+          imageSrc={items?.imageUrls?.[0]?.url}
+          altText={items?.imageUrls?.[0]?.altText }
+          price={items?.item?.price }
+          area={items?.item?.squareFeet }
+          description={items?.item?.description }
+          title={items?.item?.title}
+          rent={items?.item?.rent }
         />
       ))}
 

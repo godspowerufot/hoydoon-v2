@@ -396,7 +396,7 @@ export default function Home() {
               loading="lazy"
               height={300}
               src={"/q2.png"}
-              className=" z-2   bottom-[2em] lg:h-[30rem]  2 lg:w-[35rem]  w-[86px]  mt-[17%] lg:-top-[3rem] 2xl:-top-[3rem] lg:-left-[11em]  2xl:-left-[9rem] lg:mt-[11%] relative rounded-lg   object-cover "
+              className=" z-2   bottom-[2em] lg:h-[30rem]  2 lg:w-[35rem]  w-[86px]  mt-[17%] lg:-top-[3rem] 2xl:-top-[3rem] lg:-left-[11em]  2xl:-left-[9rem] lg:mt-[11%] relative rounded-[20px]   object-cover "
             />
           </div>
         </div>
