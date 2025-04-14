@@ -1,5 +1,5 @@
 /* eslint-disable */
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import MapComponent from "../listingmap"; // Assuming this is a map component you already have
 import StreetViewComponent from "../streetvie"
