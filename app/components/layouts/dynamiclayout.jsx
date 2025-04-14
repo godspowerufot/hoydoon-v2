@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import PropertyGalleryModal from "./modals/page";
+import PropertyGalleryModal from "./modals/property";
 const DynamicImageGrid = ({ images,coordinates, statuses = [] }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
