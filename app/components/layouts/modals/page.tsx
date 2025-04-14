@@ -5,7 +5,7 @@ import MapComponent from "../listingmap"; // Assuming this is a map component yo
 import StreetViewComponent from "../streetvie"
 
 
-type PageProps = {
+type propertyModal = {
   isOpen: boolean;
   coordinates: any; // ideally, use a proper type like [number, number]
   onClose: () => void;
@@ -60,7 +60,7 @@ function FullScreenCarousel({ images, currentIndex, setCurrentIndex, onClose }:a
 }
 
 // PropertyGalleryModal Component
-export default function PropertyGalleryModal({ isOpen, coordinates, onClose, image }:PageProps) {
+ const PropertyGalleryModal=({ isOpen, coordinates, onClose, image }: propertyModal ) =>{
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0); // Default to first image
   const [activeTab, setActiveTab] = useState("photos"); // Tab state
@@ -207,3 +207,5 @@ export default function PropertyGalleryModal({ isOpen, coordinates, onClose, ima
     </>
   );
 }
+
+export default PropertyGalleryModal;
