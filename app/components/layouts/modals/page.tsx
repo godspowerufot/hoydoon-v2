@@ -21,7 +21,7 @@ type PropertyModalProps = {
 
 
 // Full Screen Carousel Component
-function FullScreenCarousel({ images, currentIndex, setCurrentIndex, onClose }:any) {
+const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any)=>{
   const [imageurl, setimageurl] = useState("");
   useEffect(() => {
     if (currentIndex >= 0 && currentIndex < images.length) {
@@ -78,7 +78,7 @@ function FullScreenCarousel({ images, currentIndex, setCurrentIndex, onClose }:a
   const images = image || [];
 
   const handleImageClick = (index: number) => {
-    setCurrentIndex(index); // Set clicked image index
+    setCurrentIndex(0); // Set clicked image index
     setIsCarouselOpen(true); // Open the carousel
   };
 
