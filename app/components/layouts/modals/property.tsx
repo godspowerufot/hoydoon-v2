@@ -166,16 +166,11 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
         <div className="bg-white w-11/12 md:w-3/4 lg:w-5/6 py-5 px-[2rem] shadow-lg relative max-h-[90vh] overflow-y-auto">
           {/* Close Button */}
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 bg-gray-200 hover:bg-gray-300 rounded-full p-2"
-          >
-            ✕
-          </button>
+        
 
           {/* Tabs */}
           <div className="flex border-b mb-3">
-            <div className="flex space-x-6">
+            <div className="flex  space-x-6">
               <button
                 onClick={() => setActiveTab("photos")}
                 className={`pb-2 ${activeTab === "photos" ? "border-b-2 border-primary text-black" : "text-gray"}`}
@@ -195,6 +190,23 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
                 Street View
               </button>
             </div>
+            <div className="flex  justify-end pr-4 pb-2  flex-1 gap-2">
+          <div className="p-2 border border-[#8F8F8F] rounded-md">
+          <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
+        </div>
+        <div className="p-2 border border-[#8F8F8F] rounded-md">
+          <img src="/upload.png" alt="Download" className="w-4 h-4" />
+        </div>
+        <div className="p-2 border border-[#8F8F8F] rounded-md">
+          <img src="/image2.png" alt="Share" className="w-4 h-4" />
+        </div>
+      
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 bg-gray-200 hover:bg-gray-300 rounded-full p-2"
+          >
+            ✕
+          </button>    </div>
           </div>
 
           {/* Tab Content */}
