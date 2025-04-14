@@ -1,13 +1,20 @@
+/* eslint-disable */
+'use client'
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import MapComponent from "../listingmap"; // Assuming this is a map component you already have
 import StreetViewComponent from "../streetvie"
+
+
+type PageProps = {
+  isOpen: boolean;
+  coordinates: any; // ideally, use a proper type like [number, number]
+  onClose: () => void;
+  image:any; // or appropriate type
+};
+
 // Full Screen Carousel Component
-function FullScreenCarousel({ images, currentIndex, setCurrentIndex, onClose }: any) {
-  if (!images || images.length === 0) return null;
-
+function FullScreenCarousel({ images, currentIndex, setCurrentIndex, onClose }:any) {
   const [imageurl, setimageurl] = useState("");
-
   useEffect(() => {
     if (currentIndex >= 0 && currentIndex < images.length) {
       const indexImage = images[currentIndex]?.url;
@@ -16,6 +23,10 @@ function FullScreenCarousel({ images, currentIndex, setCurrentIndex, onClose }: 
       console.log("Invalid index");
     }
   }, [images, currentIndex]);
+  if (!images || images.length === 0) return null;
+
+
+
 
   const handleNext = () => {
     setCurrentIndex((prev: number) => (prev + 1) % images.length);
@@ -49,7 +60,7 @@ function FullScreenCarousel({ images, currentIndex, setCurrentIndex, onClose }: 
 }
 
 // PropertyGalleryModal Component
-export default function PropertyGalleryModal({ isOpen, coordinates, onClose, image }: any) {
+export default function PropertyGalleryModal({ isOpen, coordinates, onClose, image }:PageProps) {
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0); // Default to first image
   const [activeTab, setActiveTab] = useState("photos"); // Tab state

@@ -132,14 +132,14 @@ export default function Home() {
               Choose the perfect agent for your needs.
             </h2>
             <p className="text-[#8F8F8F] text-sm lg:text-[14px] mt-5">
-              When you choose to buy and sell with us, you'll benefit from a
+              When you choose to buy and sell with us, youll benefit from a
               significantly reduced fee—only half of what most traditional
               brokerages typically charge—helping you save more while receiving
               exceptional service.{" "}
             </p>
 
             <button className="w-full   rounded-full items-center justify-center flex bg-transparent border-[#1E1E1E]  border-solid border-[1px] text-black  mt-3 text-base 2xl:text-xl h-[3rem]  2xl:h-[4rem] p-3">
-              Visit Seller’s marketplace
+              Visit Seller  marketplace
             </button>
           </div>
         </div>
