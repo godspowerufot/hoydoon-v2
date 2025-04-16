@@ -5,7 +5,7 @@ import Link from "next/link";
 interface PaginationProps {
   totalPages: number;       // total number of pages
   currentPage: number;     
-  display:any; // current page number
+  display:string[]; // current page number
   onPageChange: (page: number) => void; // function to handle page change, takes a number (new page) as an argument
 }
 
