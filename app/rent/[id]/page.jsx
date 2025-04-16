@@ -7,6 +7,7 @@ import ContactAgent from "@/app/components/layouts/contactagent";
 import { highlights } from "@/constants";
 import {  useGetAllListingsQuery, useGetSpecificListingsQuery } from "@/store/slices/api/authapi";
 import { usePathname } from "next/navigation";
+import Spinner from "@/app/components/common/Spinner";
 import ListedCard from "@/app/components/common/profilecard";
 import MapComponent from "@/app/components/layouts/listingmap";
 import PropertyCard from "@/app/components/common/property";
@@ -82,13 +83,7 @@ const page = () => {
     }
   }, [allListings, isAllLoading]);
 
-  if (isAllLoading) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
-        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
-      </div>
-    );
-  } 
+
      // These map the highlight text to the corresponding field(s) in the data
 const featureMap = {
   "Pet allowed": (item) => item?.petFriendly,
@@ -145,7 +140,11 @@ const relevantHighlights = highlights.filter((highlight) =>
 
   ; // Re-run only when data changes
   
-
+  if (isAllLoading) {
+    return (
+       <Spinner />
+    );
+  } 
   return (
     <div className="mt-8  2xl:w-[98rem] w-[90%]  ml-[2%] ">
       <Breadcrumb />
