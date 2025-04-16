@@ -36,7 +36,7 @@ export default function Page() {
       
   return (
     <>
- <header className="relative h-[45em] lg:h-[52em] w-screen">
+ <header className="relative h-[30em] lg:h-[52em] w-screen">
   {/* Background Image Div */}
   <div className="absolute top-0 left-0 w-screen h-full bg-cover bg-center z-[-1]" style={{ backgroundImage: "url('/agentheader.png')" }}>
     {/* Overlay Div */}

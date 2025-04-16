@@ -8,6 +8,7 @@ import Article from "../components/common/Article";
 import { useEffect, useState } from "react";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 interface Property {
+  _id?: string;
   imageUrls?: { url?: string; altText?: string }[];
   item?: {
     price?: string;
@@ -17,11 +18,12 @@ interface Property {
     rent?: string;
   };
 }
+
 export default function Home() {
   const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({}, { pollingInterval: 60000 });
   const [displayListings, setDisplayListings] = useState([]);
 
-     console.log(displayListings);
+
    
   
      
@@ -165,6 +167,7 @@ export default function Home() {
                 .map((items: Property, index: number) => (
                   <PropertyCard
                     key={index}
+                    _id={items?._id}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                     altText={
                       items?.imageUrls?.[0]?.altText ||
@@ -217,7 +220,7 @@ export default function Home() {
                     altText={
                       items?.imageUrls?.[0]?.altText ||
                       "Property image showcasing a beautiful home"
-                    }
+                    }_id={items?._id}
                     price={items?.item?.price || "Price not available"}
                     area={
                       items?.item?.squareFeet ||
@@ -259,6 +262,7 @@ export default function Home() {
                 .sort(() => Math.random() - 0.5)
                 .map((items: Property, index: number) => (
                   <PropertyCard
+
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                     altText={
@@ -270,6 +274,7 @@ export default function Home() {
                       items?.item?.squareFeet ||
                       "190 - 245 m² (Approximate area)"
                     }
+                    _id={items?._id}
                     description={
                       items?.item?.description ||
                       "No description available for this property."
@@ -317,7 +322,7 @@ export default function Home() {
                     area={
                       items?.item?.squareFeet ||
                       "190 - 245 m² (Approximate area)"
-                    }
+                    }_id={items?._id}
                     description={
                       items?.item?.description ||
                       "No description available for this property."
@@ -371,7 +376,7 @@ export default function Home() {
             </div>
           </span>
 
-          <span className="mt-4 lg:mt-0">
+          <span className="mt-4  w-[40rem] h-[30rem] 2xl:w-[50rem] 2xl:h-[35rem] rounded-2xl lg:mt-0">
             <Image
               alt="image1"
               width={500}

@@ -3,12 +3,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import { truncateDescription } from "@/utils";
-
+import Link from "next/link";
 
 const PropertyCard = ({ 
   imageSrc = "/default-image.jpg", 
   altText = "Default Alt Text", 
-  price = "N/A", 
+  price = "N/A",
+  _id, 
   area = "N/A", 
   description = "No description available", 
   title = "Untitled Property" ,
@@ -17,6 +18,8 @@ const PropertyCard = ({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
+                      <Link  href={`/rent/${_id}`}>
+    
     <div
       className={`flex flex-col rounded-[1.5rem] h-[500px] border-[1px] border-gray  2xl:h-[40rem] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-8 relative 
       group transition-all duration-[1500ms] ease-in-out ${
@@ -82,6 +85,7 @@ const PropertyCard = ({
         <h4 className="text-gray font-light"> Area from {`${area}`}</h4>
       </div>
     </div>
+    </Link>
   );
 };
 

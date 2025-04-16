@@ -7,13 +7,12 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import MapComponent from "@/app/components/layouts/listingmap"
 import ContactAgent from '@/app/components/layouts/contactagent';
-import PropertyCard from '@/app/components/common/property';
 import { usePathname } from 'next/navigation';
 import { useGetAgentListingsQuery, useGetAgentsInfoQuery } from '@/store/slices/api/authapi';
 import Spinner from '@/app/components/common/Spinner';
-import Link from 'next/link';
 import { imagees } from '@/constants';
 import DynamicImageGrid  from '@/app/components/layouts/dynamiclayout';
+import PropertyListCard from '@/app/components/common/PropertyListing';
 const Breadcrumb = () => {
     return (
       <div className="flex  items-center justify-between gap-[0.2rem] px-4 py-2  mt-[5rem] w-full  bg-gray-100">
@@ -110,7 +109,7 @@ const page = ({params}) => {
     );
 
   };
-  console.log("total:",ActiveListings.length);
+
 
   useEffect(() => {
     if (listing?.listings) {
@@ -139,7 +138,7 @@ const page = ({params}) => {
     }
   }, [listing]);
   
-  // console.log(listingData,userId)
+
 
 
 
@@ -312,7 +311,7 @@ numberOfListings
 <div className="grid 2xl:mr-[4rem] lg:-ml-5 grid-cols-1 md:grid-cols-3 gap-1 gap-y-[3rem] place-items-center">
       {/* Display only 3 listings initially, or all listings if showAll is true */}
       {(showAll ? ActiveListings : ActiveListings.slice(0, 3)).map((items, index) => (
-        <PropertyCard
+        <PropertyListCard
           key={index}
           imageSrc={items?.imageUrls?.[0]?.url}
           altText={items?.imageUrls?.[0]?.altText }
@@ -321,6 +320,7 @@ numberOfListings
           description={items?.item?.description }
           title={items?.item?.title}
           rent={items?.item?.rent }
+          {...items}
         />
       ))}
 

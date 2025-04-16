@@ -6,7 +6,7 @@ const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "YOUR_API_KEY";
 
 const StreetViewComponent = ({ coordinates }) => {
   const ref = useRef(null);
-console.log("streetview",coordinates.latitude,coordinates.longitude)
+
   const position =
     coordinates && coordinates.length > 0 &&
     !isNaN(coordinates?.latitude) &&

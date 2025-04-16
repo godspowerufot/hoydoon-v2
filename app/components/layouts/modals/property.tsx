@@ -28,7 +28,7 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
       const indexImage = images[currentIndex]?.url;
       setimageurl(indexImage); // Set the image based on currentIndex
     } else {
-      console.log("Invalid index");
+
     }
   }, [images, currentIndex]);
   if (!images || images.length === 0) return null;

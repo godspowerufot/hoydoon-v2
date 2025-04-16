@@ -18,7 +18,7 @@ export default function Home() {
   const { data: allListings, isLoading: isAllLoading, refetch } = useGetAllListingsQuery( );
 
   const [displayListings, setDisplayListings] = useState([]);
-  console.log(displayListings);
+
 
   useEffect(() => {
     refetch(); // Refetch data on every mount
@@ -50,14 +50,14 @@ export default function Home() {
         ></div>
 
         {/* Content Section */}
-        <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] lg:mt-[6rem]   gap-4 h-full ">
+        <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] lg:mt-[4rem]   gap-4 h-full ">
           {/* Main Heading */}
           <h1 className="text-white text-center   relative  font-bricolage font-semibold leading-tight text-[clamp(4em,4vw,4em)] w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Where Every House Feels Like Home
           </h1>
 
           {/* Subheading */}
-          <h2 className="text-[#FFFFFFB2] text-center  flex item-center justify-center font-[300] text-[clamp(1em,2vw,1.4em)] w-[47rem]">
+          <h2 className="text-[#FFFFFFB2]  lg:-mt-2 text-center  flex item-center justify-center font-[300] text-[clamp(1em,2vw,1.4em)] w-[47rem]">
             From urban flats to rural getaways, Hoydoon effortlessly links you
             to the home of your dreams with trust and ease.
           </h2>

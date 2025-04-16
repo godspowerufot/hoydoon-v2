@@ -30,15 +30,15 @@ const Signup= () => {
       return;
     }
   
-    console.log("Attempting login with:", { fullname,email, password });
-      console.log("Attempting login with:", { fullname ,email, password });
+
+
     
       try {
         const device = await sendDeviceInfo();
 
         // Send login request with device info
         const response = await signup({ fullname,email, password,role, device }).unwrap();   router.push('/')
-        console.log('User Data:', response);
+
       } catch (error) {
         console.error('Login failed:', error);
       
@@ -54,7 +54,7 @@ const Signup= () => {
       const googleUser = await auth2.signIn();
       const idToken = googleUser.getAuthResponse().id_token;
   
-      console.log("ID Token:", idToken);
+
 
       const device = await sendDeviceInfo(); // Assuming this function gets device info
 
@@ -66,7 +66,7 @@ const Signup= () => {
         device: device,
       };
 
-      console.log("Payload to Backend:", payload);
+
 
       // Send the payload to the backend
       const response = await googleAuth({
@@ -74,7 +74,7 @@ const Signup= () => {
         redirect_uri: process.env.NEXTAUTH_URL, // Redirect URI for OAuth flow
       }).unwrap();
 
-      console.log("Backend Response:", response);
+
       router.push("/"); // Redirect after successful login
     } catch (error) {
       console.error("Error during Google login:", error);

@@ -25,7 +25,7 @@ export default function Home() {
     const displayListings = allListings?.listings;
      
     
-       console.log(displayListings);
+
         
          if (isAllLoading) {
            return (
@@ -158,7 +158,6 @@ export default function Home() {
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items: Property, index: number) => (
-                  <Link key={index} href={`/rent/${items?._id}`}>
                     <PropertyListCard
                       key={index}
                       imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -174,11 +173,12 @@ export default function Home() {
                         items?.item?.description ||
                         "No description available for this property."
                       }
+                      _id={items?._id}
+
                       title={items?.item?.title || "Untitled Property"}
                       rent={items?.item?.rent || "Rent details not provided"}
                       squareFeet={items?.item?.squareFeet}
                     />
-                  </Link>
                 ))}
             </div>
             <p className="text-[#09858D]   ml-6 2xl:ml-8 2xl:  my-5 text-2xl font-[500] ">
@@ -209,7 +209,6 @@ export default function Home() {
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items: Property, index: number) => (
-                  <Link key={index} href={`/rent/${items?._id}`}>
                     <PropertyListCard
                       key={index}
                       imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -224,12 +223,12 @@ export default function Home() {
                       description={
                         items?.item?.description ||
                         "No description available for this property."
-                      }
+                      }                      _id={items?._id}
+
                       title={items?.item?.title || "Untitled Property"}
                       rent={items?.item?.rent || "Rent details not provided"}
                       squareFeet={items?.item?.squareFeet}
                     />
-                  </Link>
                 ))}
             </div>
             <p className="text-[#09858D]   ml-6 2xl:ml-8  my-5 text-2xl font-[500] ">
@@ -257,7 +256,6 @@ export default function Home() {
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items: Property, index: number) => (
-                  <Link key={index} href={`/rent/${items?._id}`}>
                     <PropertyListCard
                       key={index}
                       imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -273,11 +271,12 @@ export default function Home() {
                         items?.item?.description ||
                         "No description available for this property."
                       }
+                      _id={items?._id}
+
                       title={items?.item?.title || "Untitled Property"}
                       rent={items?.item?.rent || "Rent details not provided"}
                       squareFeet={items?.item?.squareFeet}
                     />
-                  </Link>
                 ))}
             </div>
 
@@ -308,7 +307,6 @@ export default function Home() {
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .map((items: Property, index: number) => (
-                  <Link key={index} href={`/rent/${items?._id}`}>
                     <PropertyListCard
                       key={index}
                       imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -324,11 +322,11 @@ export default function Home() {
                         items?.item?.description ||
                         "No description available for this property."
                       }
+                      _id={items?._id}
                       title={items?.item?.title || "Untitled Property"}
                       rent={items?.item?.rent || "Rent details not provided"}
                       squareFeet={items?.item?.squareFeet}
                     />
-                  </Link>
                 ))}
             </div>
 

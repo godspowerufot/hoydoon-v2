@@ -69,7 +69,7 @@ const page = () => {
   const { data: allListings, refetch } = useGetAllListingsQuery( );
 
   const [displayListings, setDisplayListings] = useState([]);
-  console.log(displayListings);
+
 
   useEffect(() => {
     refetch(); // Refetch data on every mount
@@ -103,7 +103,7 @@ const relevantHighlights = highlights.filter((highlight) =>
   featureMap[highlight.text]?.(listing?.listing?.item)
 );
 
-    console.log(relevantHighlights)
+
   
 
     const {
@@ -142,7 +142,7 @@ const relevantHighlights = highlights.filter((highlight) =>
   const { _id: listedById, fullname, pictureUrl } = listedBy || {};
   
   // Now you can use the variables directly
-  console.log(averageRating, createdAt, title, price, fullname,listing);
+
   ; // Re-run only when data changes
   
 
@@ -324,6 +324,8 @@ const relevantHighlights = highlights.filter((highlight) =>
               {displayListings?.map((listing, index) => (
   <PropertyCard
     key={index}
+    {...listing}
+    _id={listing._id}
     imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
     altText={listing?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
     price={listing?.item?.price || "Price not available"}

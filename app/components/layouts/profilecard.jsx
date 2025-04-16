@@ -12,15 +12,15 @@ export const ProfileCard = ({
 }) => {
   return (
     <Link href={`/agent/${_id}`} className="flex flex-col items-center justify-center">
-    <div className="p-6 flex gap-5 h-[250px] justify-start bg-[#ffffff]  w-[36rem] 2xl:w-[43.8rem]">
+    <div className="p-6 flex gap-5 h-[200px] justify-start bg-[#ffffff]  w-[36rem] 2xl:w-[43.8rem]">
     <Image
       alt={fullname}
       src={pictureUrl}
-      width={200}
-      height={200}
+      width={150}
+      height={50}
       className="rounded-full brightness-75 aspect-square object-cover"
     />
-    <div className="mt-[2em] font-bricolage ml-[0.3em]">
+    <div className="mt-[1em] font-bricolage ml-[0.3em]">
       <h2 className="font-bricolage font-bold text-[1.3em] text-black">{fullname}</h2>
       <p className="text-[#8F8F8F] text-[1em] font-[400] w-[200px]">{email}</p>
   

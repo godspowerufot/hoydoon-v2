@@ -1,23 +1,38 @@
 "use client";
 
+import { convertToCSV } from "@/utils/log";
 import Link from "next/link";
 interface PaginationProps {
   totalPages: number;       // total number of pages
-  currentPage: number;      // current page number
+  currentPage: number;     
+  display:any; // current page number
   onPageChange: (page: number) => void; // function to handle page change, takes a number (new page) as an argument
 }
 
-const Pagination = ({ totalPages, currentPage, onPageChange }: PaginationProps) => {
+const Pagination = ({ totalPages, currentPage, onPageChange,display}: PaginationProps) => {
 
-
+  const handleDownloadCSV = () => {
+    if (!display.length) return;
+  
+    const csv = convertToCSV(display);
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+  
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'listings_page.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <div className="text-gray-700    flex flex-col gap-2 text-center mt-[3rem]">
       {/* Viewing Status */}
       <p className=" font-bricolage font-[500] text-xl">
         Viewing page <span className="font-semibold">{currentPage}</span> of {totalPages}{" "}
-        <Link href="#" className="text-primary font-medium hover:underline">
+        <span   onClick={handleDownloadCSV}  className="text-primary font-medium hover:underline">
           (Download all)
-        </Link>
+        </span>
       </p>
 
       {/* Pagination Buttons */}

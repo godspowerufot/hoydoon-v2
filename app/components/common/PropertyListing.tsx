@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { truncateDescription } from "@/utils";
+import Link from "next/link";
 interface PropertyCardProps {
   imageSrc?: string;
   altText?: string;
@@ -15,7 +16,8 @@ interface PropertyCardProps {
   bedrooms?: number;
   squareFeet?: number;
   houseType?: string;
-  rent?:string
+  rent?:string;
+  _id?:string
 }
 
 const PropertyListCard: React.FC<PropertyCardProps> = ({
@@ -27,11 +29,16 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
   title = "Untitled Property",
   bathrooms,
   bedrooms,
+  _id,
   squareFeet=""
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
+
+    <>
+                  <Link  href={`/rent/${_id}`}>
+
     <div
       className={`flex flex-col rounded-[1.5rem]  h-[550px] 2xl:h-[38rem] lg:w-[23.6rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-4 relative 
     group transition-all duration-[1500ms] ease-in-out ${
@@ -143,6 +150,9 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
         {/* Toilets */}
       </div>
     </div>
+    </Link>
+    </>
+
   );
 };
 
