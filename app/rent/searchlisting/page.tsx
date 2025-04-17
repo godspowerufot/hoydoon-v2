@@ -2,20 +2,38 @@
 
 'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect,useRef, useState } from 'react'
 import Image from 'next/image';
 import PropertyCard from '@/app/components/common/property';
 import Pagination from '@/app/components/common/pagination';
 import { useGetAllListingsQuery } from '@/store/slices/api/authapi';
 import { useRouter, useSearchParams } from 'next/navigation';
+import PropertyListCard from '@/app/components/common/PropertyListing';
+import { flattenListings } from '@/utils';
 
 
-
+const PropertySkeleton = () => {
+  return (
+    <div className="space-y-4 w-full max-w-sm rounded-xl border border-gray p-4 shadow-sm bg-white">
+      <div className="h-48 rounded-md shimmer" />
+      <div className="h-4 rounded shimmer w-3/4" />
+      <div className="h-4 rounded shimmer w-1/2" />
+      <div className="h-3 rounded shimmer w-5/6" />
+      <div className="flex space-x-2 mt-2">
+        <div className="h-3 w-1/4 rounded shimmer" />
+        <div className="h-3 w-1/4 rounded shimmer" />
+        <div className="h-3 w-1/4 rounded shimmer" />
+      </div>
+    </div>
+  );
+};
 
 const Breadcrumb: React.FC = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-
+  // Add this state
+const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false); // New state for modal
   const [selectedOptions, setSelectedOptions] = useState("List");
   const [showBedBathDropdown, setShowBedBathDropdown] = useState(false);
   const [bedValue, setBedValue] = useState("");
@@ -27,14 +45,48 @@ const Breadcrumb: React.FC = () => {
     bedrooms: "",
     bathrooms: "",
   });
+  const modalRef = useRef<HTMLDivElement>(null);
 
+  // Close on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        setShowAllFiltersDropdown(false);
+      }
+    }
+  
+    if (showAllFiltersDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+  
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showAllFiltersDropdown]);
+  
   const handleFilterChange = (filterName: string, value: string) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
       [filterName]: value,
     }));
   };
+  const bedBathRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (bedBathRef.current && !bedBathRef.current.contains(event.target as Node)) {
+        setShowBedBathDropdown(false);
+      }
+    }
+  
+    if (showBedBathDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+  
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showBedBathDropdown]);
   const handleSearchClick = () => {
     const newParams = new URLSearchParams(searchParams.toString());
 
@@ -78,9 +130,120 @@ const Breadcrumb: React.FC = () => {
     <div className="pt-[2.3rem] px-4 lg:pl-[2rem] lg:pr-[4.5rem] 2xl:gap-[20rem] flex justify-between w-full">
       {/* Left Section: Filters */}
       <div className="flex items-center  2xl:-ml-[2.4rem] lg:ml-[2rem] gap-2">
-        <button className="px-4 text-sm py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F] flex items-center gap-2">
+      <button
+          onClick={() =>  setShowAllFiltersDropdown(true)}
+          className="px-4 text-sm py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F] flex items-center gap-2"
+        >
           <Image src="/allfilter.png" alt="Filter" width={16} height={15} /> All Filters
         </button>
+        {showAllFiltersDropdown && (
+          <>
+            <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>
+
+            <div
+  ref={modalRef}
+  className="absolute bg-white top-[20%] z-[1111] rounded-xl p-4 w-full max-w-[14rem]"
+>
+  <div className="flex justify-between items-center mb-4">
+    <h2 className="text-sm text-gray-600 font-[400]">Filters</h2>
+    <button
+      className="text-sm text-teal-600 font-[400]"
+      onClick={() => {
+        handleSearchClick();
+        setShowAllFiltersDropdown(false);
+      }}
+    >
+      Done
+    </button>
+  </div>
+
+  {/* Type Filter */}
+  <div className="mb-4">
+    <h3 className="text-sm text-gray-600 font-[400] mb-2">Type</h3>
+    <ul className="flex flex-col gap-1.5">
+      {["Buy", "Rent", "Land"].map((option) => (
+        <li
+          key={option}
+          className="flex justify-between items-center border-b border-gray-300 pb-1.5"
+        >
+          <span className="text-[12px] text-gray font-[400]">{option}</span>
+          <input
+            type="radio"
+            name="type"
+            className="w-3 h-3 accent-primary"
+            checked={filters["home-type"] === option.toLowerCase()}
+            onChange={() => handleFilterChange("home-type", option.toLowerCase())}
+          />
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Bed/Baths Filter */}
+  <div className="mb-4">
+    <h3 className="text-sm text-gray-600 font-[400] mb-2">Bed/Baths</h3>
+    <ul className="flex flex-col gap-1.5">
+      {["Any", "2–4", "5+"].map((option) => (
+        <li
+          key={option}
+          className="flex justify-between items-center border-b border-gray-300 pb-1.5"
+        >
+          <span className="text-[12px] text-gray font-[400]">{option}</span>
+          <input
+            type="radio"
+            name="bed-baths"
+            className="w-3 h-3 accent-primary"
+            checked={
+              (option === "Any" && filters.bedrooms === "" && filters.bathrooms === "") ||
+              (option === "2–4" && filters.bedrooms === "2" && filters.bathrooms === "2") ||
+              (option === "5+" && filters.bedrooms === "5+" && filters.bathrooms === "5+")
+            }
+            onChange={() => {
+              if (option === "Any") {
+                handleFilterChange("bedrooms", "");
+                handleFilterChange("bathrooms", "");
+              } else if (option === "2–4") {
+                handleFilterChange("bedrooms", "2");
+                handleFilterChange("bathrooms", "2");
+              } else {
+                handleFilterChange("bedrooms", "5+");
+                handleFilterChange("bathrooms", "5+");
+              }
+            }}
+          />
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Price Filter */}
+  <div>
+    <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
+    <ul className="flex flex-col gap-1.5">
+      {["Any", "50-200"].map((option) => (
+        <li
+          key={option}
+          className="flex justify-between items-center border-b border-gray-300 pb-1.5"
+        >
+          <span className="text-[12px] text-gray font-[400]">
+            {option === "Any" ? "Any" : "$50 – $200"}
+          </span>
+          <input
+            type="radio"
+            name="price"
+            className="w-3 h-3 accent-primary"
+            checked={filters.price === (option === "Any" ? "" : option)}
+            onChange={() => handleFilterChange("price", option === "Any" ? "" : option)}
+          />
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+</>
+
+ 
+  )}
 
         {["Price", "Bed/Baths", "Home type"].map((option) => {
           const paramKey = option.toLowerCase().replace(/\s+/g, "-");
@@ -88,7 +251,7 @@ const Breadcrumb: React.FC = () => {
 
           if (option === "Bed/Baths") {
             return (
-              <div className="relative" key={option}>
+              <div className="relative"  ref={bedBathRef} key={option}>
                 <button
                   onClick={() => setShowBedBathDropdown(!showBedBathDropdown)}
                   className="border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 pr-6 appearance-none flex items-center gap-2"
@@ -186,7 +349,7 @@ const Breadcrumb: React.FC = () => {
                     <option value="0-200">$0–200</option>
                     <option value="200-500">$200–500</option>
                     <option value="500-800">$500–800</option>
-                    <option value="800-1000">$800–1,000</option>
+                    <option value="800+">$800</option>
                   </>
                 )}
 
@@ -217,13 +380,13 @@ const Breadcrumb: React.FC = () => {
       </div>
 
       {/* Right Section: List / Map Toggle */}
-      <div className="flex bg-[#F9FAFB] border-[#8F8F8F] w-auto 2xl:-mr-[2rem] justify-between border-solid border-[1px] items-center font-base rounded-[10px] 2xl:p-[4px] lg:p-[2px] h-auto relative">
+      <div className="flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-4  border-[#8F8F8F]  2xl:-mr-[2rem] justify-between border-solid border-[1px] items-center font-base rounded-[10px] 2xl:p-[4px] lg:p-[2px] h-auto relative">
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
-              className={`px-4 py-2 2xl:w-[5.5rem] w-[4.5rem] text-[16px] rounded-md transition-all duration-300 ${
+              className={`px-4 py-2 gap-3 flex 2xl:w-[5.5rem] w-[4.5rem] text-[16px] rounded-md transition-all duration-300 ${
                 selectedOptions === option
-                  ? "bg-primary mr-[3rem] text-white"
+                  ? "bg-primary gap-[10px] flex text-white"
                   : "text-[#8F8F8F]"
               }`}
               onClick={() => setSelectedOptions(option)}
@@ -257,6 +420,7 @@ const page = () => {
   const router = useRouter();
 
 
+  const [coordinates, setCoordinates] = useState([]);
 
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -272,6 +436,14 @@ const page = () => {
      useEffect(() => {
        if (!isAllloading && allListings) {
          const firstThreeListings = allListings.listings;
+         const flatListings = flattenListings(firstThreeListings);
+         flatListings.forEach((item:any) => {
+          const coord = item?.item?.coordinate;
+          if (coord?.latitude && coord?.longitude) {
+            setCoordinates(coord); // ✅ show all listings on first load
+        
+          }
+        }); // ✅ update all state
          setDisplayListings(firstThreeListings);
 
          setTotalPages(allListings.totalPages || 1);
@@ -309,6 +481,14 @@ const page = () => {
         </div>
       </div>
       <div className="w-screen  lg:my-[2rem] 2xl:my-[2  rem]  h-[2px] bg-[#D9D9D9] " />
+  
+      {isAllloading && (
+  <div className="grid grid-cols-1 w-[90%] sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {[...Array(6)].map((_, index) => (
+      <PropertySkeleton key={index} />
+    ))}
+  </div>
+) }
       {displayListings.length === 0 ? (
         <p className="text-gray-600 text-center mt-6">
           No listings found for your search.
@@ -317,19 +497,27 @@ const page = () => {
         <div className=" grid   lg:-ml-[2.8rem] 2xl:mr-[0]   mr-2  grid-cols-1 md:grid-cols-3 gap-4 lg:gap-y-[2rem] place-items-center">
           {[...displayListings]
             .map((items: any, index: number) => (
-              <PropertyCard
-                key={index}
-                _id={items?._id}
-                imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                altText={items?.imageUrls?.[0]?.altText ||
-                  "Property image showcasing a beautiful home"}
-                price={items?.item?.price || "Price not available"}
-                area={items?.item?.squareFeet || "190 - 245 m² (Approximate area)"}
-                description={items?.item?.description ||
-                  "No description available for this property."}
-                title={items?.item?.title || "Untitled Property"}
-                rent={items?.item?.rent || "Rent details not provided"}           />
-            ))}
+             <PropertyListCard
+                                   key={index}
+                                   imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                                   altText={
+                                     items?.imageUrls?.[0]?.altText ||
+                                     "Property image showcasing a beautiful home"
+                                   }
+                                   price={items?.item?.price || "Price not available"}
+                                   area={items?.item?.squareFeet}
+                                   bathrooms={items?.item?.bathrooms}
+                                   bedrooms={items?.item?.bedrooms}
+                                   description={
+                                     items?.item?.description ||
+                                     "No description available for this property."
+                                   }
+                                   _id={items?._id}
+             
+                                   title={items?.item?.title || "Untitled Property"}
+                                   rent={items?.item?.rent || "Rent details not provided"}
+                                   squareFeet={items?.item?.squareFeet}
+                                 />     ))}
         </div>
       )}
       <Pagination

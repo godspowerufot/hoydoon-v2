@@ -187,6 +187,7 @@ export default function Home() {
               <div className="flex mt-[1em] lg:mr-[2rem] h-fit min-w-[70%] items-center lg:flex-row justify-center mb-2">
               {displayListings.map((items, index) => (
                 <PropertyCard
+                _id={items?._id}
                 key={index}
                 imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                 altText={items?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}

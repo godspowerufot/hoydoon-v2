@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable */
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import PropertyCard from "../components/common/property";
@@ -7,6 +8,8 @@ import Link from "next/link";
 import Article from "../components/common/Article";
 import { useEffect, useState } from "react";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
+import { log } from "@/utils/log";
+import MapComponent from "../components/layouts/listingmap";
 interface Property {
   _id?: string;
   imageUrls?: { url?: string; altText?: string }[];
@@ -22,9 +25,36 @@ interface Property {
 export default function Home() {
   const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({}, { pollingInterval: 60000 });
   const [displayListings, setDisplayListings] = useState([]);
+  const [searchLocation, setSearchLocation] = useState("");
+  const [coordinates, setCoordinates] = useState([]);
+  const { data: listing } = useGetAllListingsQuery(  { location: searchLocation }, // e.g. "Lekki" or Zip
+    { skip: !searchLocation, pollingInterval: 60000 });
+    const [inputValue, setInputValue] = useState("");
+    const handleSearch = () => {
+      setSearchLocation(inputValue.trim());
+    };
+      const flattenListings = (listings:any) => {
+        return listings.flatMap((item:any) => 
+          Array.isArray(item.listings) ? flattenListings(item.listings) : item
+        );
+    
+      };
+    useEffect(() => {
+      if (listing?.listings) {
+        const flatListings = flattenListings(listing.listings);
+       
+        // Extract coordinates
+      // Extract coordinates for active listings
+      const coords = flatListings?.map((item:any) => item.item?.coordinate) // Get coordinate object from item
+        .filter((coord:any) => coord?.latitude && coord?.longitude); // Ensure valid coordinates
+  
+      setCoordinates(coords); // Store coordinates for Google Maps
+    
+      log(coordinates,"locationlisitng")
 
+      }
+    }, [listing]);
 
-   
   
      
        useEffect(() => {
@@ -358,11 +388,13 @@ export default function Home() {
               <Input
                 label=""
                 type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
                 className="2xl:h-[4rem] rounded-[24px]"
                 placeholder="Address, Neighborhood, Zip code..."
               />
 
-              <div className="absolute right-2 top-[8%] 2xl:top-[13%] bg-primary ml-[6em] p-3  h-[40px] w-[40px] 2xl:w-[50px] 2xl:h-[50px] rounded-full flex items-center justify-center">
+              <div  onClick={handleSearch}  className="absolute right-2 top-[8%] 2xl:top-[13%] bg-primary ml-[6em] p-3  h-[40px] w-[40px] 2xl:w-[50px] 2xl:h-[50px] rounded-full flex items-center justify-center">
                 <Image
                   alt="logo"
                   width={30}
@@ -377,14 +409,8 @@ export default function Home() {
           </span>
 
           <span className="mt-4  w-[40rem] h-[30rem] 2xl:w-[50rem] 2xl:h-[35rem] rounded-2xl lg:mt-0">
-            <Image
-              alt="image1"
-              width={500}
-              quality={100}
-              height={400} // Reduced size of logo
-              src={"/basemap.png"}
-              className="w-[40rem] h-[30rem] 2xl:w-[50rem] 2xl:h-[35rem] rounded-2xl"
-            />
+                 <MapComponent coordinates={coordinates} />
+           
           </span>
         </div>
       </section>

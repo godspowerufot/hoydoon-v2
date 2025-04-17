@@ -107,6 +107,12 @@ export const authApi = createApi({
         method: "GET",
       }),
     }),
+    getAllListingsAddress: builder.query({
+      query: (params) => ({
+        url: `/v1/listings?${new URLSearchParams(params).toString()}`,
+        method: "GET",
+      }),
+    }),
     getAllLocationListings: builder.query({
       query: (params) => ({
         url: `/v1/listings?${new URLSearchParams(params).toString()}`,
@@ -152,6 +158,7 @@ export const {
   useGetUserQuery,
   useGetAgentListingsQuery,
   useLogoutMutation,
+  useGetAllListingsAddressQuery,
   useGetAllLocationListingsQuery,
 } = authApi;
 export default authApi;

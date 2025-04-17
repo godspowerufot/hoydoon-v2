@@ -10,10 +10,12 @@ import ContactAgent from '@/app/components/layouts/contactagent';
 import { usePathname } from 'next/navigation';
 import { useGetAgentListingsQuery, useGetAgentsInfoQuery } from '@/store/slices/api/authapi';
 import Spinner from '@/app/components/common/Spinner';
-import { imagees } from '@/constants';
+import { log } from '@/utils/log';
 import DynamicImageGrid  from '@/app/components/layouts/dynamiclayout';
 import PropertyListCard from '@/app/components/common/PropertyListing';
-const Breadcrumb = () => {
+import Link from 'next/link';
+import { flattenListings } from '@/utils';
+const Breadcrumb = ({ agentDetails}) => {
     return (
       <div className="flex  items-center justify-between gap-[0.2rem] px-4 py-2  mt-[5rem] w-full  bg-gray-100">
         {/* Left Section: Back Arrow and Breadcrumb */}
@@ -21,11 +23,11 @@ const Breadcrumb = () => {
           {/* Back Arrow */}
          
           {/* Breadcrumb Links */}
-          <div className="flex  w-[32rem] items-center gap-3 text-base text-gray-500">
+          <div className="flex  w-[30rem] items-center gap-3 text-base text-gray-500">
   {/* Initial Back Arrow + Static Text */}
   <div className="flex font-light items-center gap-1">
     <img src="/arrow-right.png" alt="Back" className="w-3 h-4" />
-    <span>Search |</span>
+   <Link href={"/search"}><span>Search |</span></Link> 
   </div>
 
   {/* Breadcrumb item: Homes for Sale */}
@@ -37,20 +39,10 @@ const Breadcrumb = () => {
   {/* Breadcrumb item: Nigeria */}
   <div className="flex items-center gap-1">
     <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
-    <a href="#" className="text-primary">Nigeria</a>
+    <a href="#" className="text-primary">{agentDetails}</a>
   </div>
 
-  {/* Breadcrumb item: Lagos */}
-  <div className="flex items-center gap-1">
-    <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
-    <a href="#" className="text-primary">Lagos</a>
-  </div>
 
-  {/* Breadcrumb item: Magodo Estate */}
-  <div className="flex items-center gap-1">
-    <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
-    <a href="#" className="text-primary">Magodo Estate</a>
-  </div>
 </div>
 
 
@@ -59,13 +51,13 @@ const Breadcrumb = () => {
         {/* Right Section: Icons */}
         <div className="flex ml-[33rem] 2xl:ml-[50rem] items-center gap-2">
   <div className="p-2 border border-[#8F8F8F] rounded-md">
-    <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
+  <Link href={"/auth/login"}>  <img src="/favorite.png" alt="Favorite" className="w-4 h-4" /></Link>
   </div>
   <div className="p-2 border border-[#8F8F8F] rounded-md">
-    <img src="/upload.png" alt="Download" className="w-4 h-4" />
+  <Link href={"/auth/login"}> <img src="/upload.png" alt="Download" className="w-4 h-4" /></Link>
   </div>
   <div className="p-2 border border-[#8F8F8F] rounded-md">
-    <img src="/image2.png" alt="Share" className="w-4 h-4" />
+  <Link href={"/auth/login"}>  <img src="/image2.png" alt="Share" className="w-4 h-4" /></Link>
   </div>
 </div>
 
@@ -99,16 +91,18 @@ const page = ({params}) => {
     setShowAll(true);
   };
   const [coordinates, setCoordinates] = useState([]);
+  const [allCoordinates, setAllCoordinates] = useState({
+    all:[],
+    active: [],
+    sold: [],
+    bought: [],
+  });
+  
   const { data: listing, isLoading, isError } = useGetAgentListingsQuery({ userId });
   const { data: agentInfo } = useGetAgentsInfoQuery({ userId });
   const averagelisting=(agentInfo?.priceRange?.min +agentInfo?.priceRange?.max)/2;
   // Recursive function to fully flatten nested listings
-  const flattenListings = (listings) => {
-    return listings.flatMap((item) => 
-      Array.isArray(item.listings) ? flattenListings(item.listings) : item
-    );
 
-  };
 
 
   useEffect(() => {
@@ -118,23 +112,37 @@ const page = ({params}) => {
       const statusList = flatListings.map((item) => item.status || "Unknown");
       const totalReviewCount = flatListings.map((item) =>  (item.reviewCount ));
       const Price = flatListings.reduce((sum, items) => sum + (items?.item?.price || 0), 0);
-      const activeListings = flatListings.filter(item => item.status === "active");  
       
       // Extract coordinates
     // Extract coordinates for active listings
-    const coords = flatListings?.map((item) => item.item?.coordinate) // Get coordinate object from item
-      .filter((coord) => coord?.latitude && coord?.longitude); // Ensure valid coordinates
+    const groupedCoords = {
+      all: [],
+      active: [],
+      sold: [],
+      bought: [],
+    };
 
-    setCoordinates(coords); // Store coordinates for Google Maps
+    flatListings.forEach((item) => {
+      const coord = item?.item?.coordinate;
+      if (coord?.latitude && coord?.longitude) {
+        groupedCoords.all.push(coord); // Add to "all"
+        const status = item.status?.toLowerCase();
+        if (groupedCoords[status]) {
+          groupedCoords[status].push(coord);
+        }
+      }
+    }); // ✅ update all state
+    setAllCoordinates(groupedCoords);
+    setCoordinates(groupedCoords["all"]); // ✅ show all listings on first load
+    setActiveTab("all"); // ✅ default active tab
+
   
-    setCoordinates(coords);
       
       setFlattenedListings(flatListings);
       setImageUrls(images);
       setStatuses(statusList);
       setListedBy(totalReviewCount)
-      setActiveListings(activeListings); 
-      setPrices(Price)
+      setActiveListings(flatListings.filter((item) => item.status === "active"));      setPrices(Price)
     }
   }, [listing]);
   
@@ -142,6 +150,7 @@ const page = ({params}) => {
 
 
 
+  log("all listing",coordinates)
 
   
   if (isLoading) {
@@ -159,7 +168,7 @@ const page = ({params}) => {
 
 
   return (
-    <div className='mt-2 w-[90%] 2xl:w-[1520px] '> <Breadcrumb/>
+    <div className='mt-2 w-[90%] 2xl:w-[1520px] '> <Breadcrumb agentDetails={agentInfo?.region}/>
     <div className="grid  lg:mt-2  gap-2 p-4">
     <DynamicImageGrid statuses={statuses} coordinates={coordinates} images={imageUrls} />
 {/* <div className="flex gap-2 font-[500] items-center justify-center absolute bottom-2 right-2 bg-white px-2 py-1 text-base 2xl:text-xl rounded shadow">
@@ -274,28 +283,39 @@ numberOfListings
     <div className="border-b border-gray ">
       <div className="flex space-x-6">
         {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`relative py-2 text-base  transition-colors duration-300 ${
-              activeTab === tab.id
-                ? "text-black  font-semibold"
-                : "text-[#8F8F8F]"
-            }`}
-          >
-            {tab.label}
-
-            {/* Underline for active tab */}
-            {activeTab === tab.id && (
-              <span className="absolute left-0 bottom-[-1px] w-full h-[2px] bg-primary"></span>
-            )}
-          </button>
+        <button
+        key={tab.id}
+        onClick={() => {
+          setActiveTab(tab.id);
+          setCoordinates(allCoordinates[tab.id] || []); // Update map based on tab
+        }}
+        className={`relative py-2 text-base transition-colors duration-300 ${
+          activeTab === tab.id ? "text-black font-semibold" : "text-[#8F8F8F]"
+        }`}
+      >
+        {tab.label}
+        {activeTab === tab.id && (
+          <span className="absolute left-0 bottom-[-1px] w-full h-[2px] bg-primary"></span>
+        )}
+      </button>
+      
         ))}
       </div>
     </div>
       {/* Map Container */}
       <div className=" mt-3 relative rounded-lg  flex items-center overflow-hidden">
-      <MapComponent coordinates={coordinates} />
+      <div className="relative h-[500px] w-full">
+  {coordinates.length === 0 && (
+    <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-70 z-10">
+      <div className="text-center text-gray-400 py-4 text-lg">
+        No listings found for this category.
+      </div>
+    </div>
+  )}
+
+  <MapComponent coordinates={coordinates} />
+</div>
+
      <div className="py-4 px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
     <span className="font-medium">{ActiveListings.length} Homes available in {agentInfo?.region}</span> 
     <span className="text-primary cursor-pointer ml-2">Remove map boundary</span>

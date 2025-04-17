@@ -27,26 +27,7 @@ const MapComponent = ({ coordinates }) => {
     setMapCenter(mainLocation);
 
     // Calculate time to nearby location (e.g., Lekki Phase 1)
-    const destination = { lat: 6.4449, lng: 3.4505 }; // Example: Lekki
-    if (window.google && mainLocation.lat && mainLocation.lng) {
-      const service = new window.google.maps.DirectionsService();
-      service.route(
-        {
-          origin: mainLocation,
-          destination,
-          travelMode: window.google.maps.TravelMode.DRIVING,
-        },
-        (result, status) => {
-          if (status === "OK" && result?.routes?.[0]) {
-            const duration =
-              result.routes[0].legs?.[0]?.duration?.text || "Unknown";
-            console.log(`Travel time to Lekki: ${duration}`);
-          } else {
-            console.warn("Directions request failed due to", status);
-          }
-        }
-      );
-    }
+  
   }, [coordinates]);
 
   return (

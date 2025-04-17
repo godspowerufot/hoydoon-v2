@@ -8,35 +8,41 @@ import { highlights } from "@/constants";
 import {  useGetAllListingsQuery, useGetSpecificListingsQuery } from "@/store/slices/api/authapi";
 import { usePathname } from "next/navigation";
 import Spinner from "@/app/components/common/Spinner";
+import { log } from "@/utils/log";
+import { truncateDescription } from "@/utils";
 import ListedCard from "@/app/components/common/profilecard";
 import MapComponent from "@/app/components/layouts/listingmap";
 import PropertyCard from "@/app/components/common/property";
 import DynamicImageGrid from "@/app/components/layouts/dynamiclayout"
-const Breadcrumb = () => {
+const Breadcrumb = ({region,address}) => {
   return (
     <div className="flex  items-center justify-between gap-[0.2rem] pl-4 py-2 w-full  mt-[5rem]  bg-gray-100">
       {/* Left Section: Back Arrow and Breadcrumb */}
-      <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage text-gray-600">
+      <div className="flex items-start justify-start  gap-1 text-[1.08rem] font-bricolage text-gray-600">
         {/* Back Arrow */}
-        <img src="/arrow-right.png" alt="Back" className="w-3 h-4 mt-1" />
+        <Image src="/arrow-right.png" alt="arrow" height={12} width={12} className="mt-[0.9] mr-2" />
 
         {/* Breadcrumb Links */}
         <span className="text-gray-500">Search |</span>
-        <a href="#" className="text-primary">
-          Homes for sale
-        </a>
-        <span>{">"}</span>
-        <a href="#" className="text-primary">
-          Nigeria
-        </a>
-        <span>{">"}</span>
-        <a href="#" className="text-primary">
-          Lagos
-        </a>
-        <span>{">"}</span>
-        <a href="#" className="text-primary">
-          Magodo Estate
-        </a>
+          {/* Breadcrumb item: Homes for Sale */}
+          <div className="flex font-light items-center gap-1">
+           <a href="#" className="text-primary">Homes for sale</a>
+         </div>
+       
+         {/* Breadcrumb item: Nigeria */}
+         <div className="flex items-center gap-1">
+           <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
+           <a href="#" className="text-primary">{region}</a>
+         </div>
+       
+     
+       
+         {/* Breadcrumb item: Magodo Estate */}
+         <div className="flex items-center gap-1">
+           <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
+           <a href="#" className="text-primary">{truncateDescription(address,3)}</a>
+         </div>
+     
       </div>
 
       {/* Right Section: Icons */}
@@ -84,6 +90,7 @@ const page = () => {
   }, [allListings, isAllLoading]);
 
 
+  log("initial listing",displayListings)
      // These map the highlight text to the corresponding field(s) in the data
 const featureMap = {
   "Pet allowed": (item) => item?.petFriendly,
@@ -146,8 +153,8 @@ const relevantHighlights = highlights.filter((highlight) =>
     );
   } 
   return (
-    <div className="mt-8  2xl:w-[98rem] w-[90%]  ml-[2%] ">
-      <Breadcrumb />
+    <div className="lg:mt-8  2xl:w-[98rem] lg:w-[90%]  lg:ml-[2%] ">
+      <Breadcrumb  address={address} region={region}/>
   
 <DynamicImageGrid images={ images} coordinates={coordinate} />
       {/* second div layout  */}
@@ -266,7 +273,7 @@ const relevantHighlights = highlights.filter((highlight) =>
         <div className=" relative rounded-lg  flex items-center overflow-hidden">
               <MapComponent coordinates={coordinate} />
           <div className="py-4 px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
-            <span className="font-medium">1500 Homes available in Lagos</span>
+            <span className="font-medium">{displayListings?.length} Homes available in {truncateDescription(address,1)}</span>
             <span className="text-primary cursor-pointer ml-2">
               Remove map boundary
             </span>

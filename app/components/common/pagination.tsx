@@ -2,6 +2,7 @@
 
 import { convertToCSV } from "@/utils/log";
 import Link from "next/link";
+import Image from "next/image";
 interface PaginationProps {
   totalPages: number;       // total number of pages
   currentPage: number;     
@@ -26,7 +27,7 @@ const Pagination = ({ totalPages, currentPage, onPageChange,display}: Pagination
     document.body.removeChild(link);
   };
   return (
-    <div className="text-gray-700    flex flex-col gap-2 text-center mt-[3rem]">
+    <div className="text-gray-700   w-full justify-center items-center  flex flex-col gap-2 text-center mt-[3rem]">
       {/* Viewing Status */}
       <p className=" font-bricolage font-[500] text-xl">
         Viewing page <span className="font-semibold">{currentPage}</span> of {totalPages}{" "}
@@ -60,17 +61,19 @@ const Pagination = ({ totalPages, currentPage, onPageChange,display}: Pagination
           disabled={currentPage === totalPages}
           className={`p-2 rounded-md ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-200"}`}
         >
-          &gt;
+                 <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
+
         </button>
       </div>
 
       {/* Breadcrumbs */}
-      <div className=" text-primary text-[19px]">
-        <Link href="/" className="hover:underline">Hoydorn</Link>          <span className="text-gray"> {'>'}</span>
+      <div className="flex gap-3  text-primary text-[19px]">
+        <Link href="/" className="hover:underline">Hoydoon</Link>                    <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
 
-        <Link href="/agent" className="hover:underline"> Find an agent</Link>          <span className="text-gray">{'>'}</span>
 
-        <Link href="#" className="hover:underline"> Lagos</Link>
+        <Link href="/agent" className="hover:underline"> Find an agent</Link>         
+        
+
       </div>
     </div>
   );

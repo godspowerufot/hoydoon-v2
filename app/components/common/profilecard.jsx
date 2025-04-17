@@ -20,7 +20,7 @@ const ListedCard = ({name,picture}) => {
      {name}
         </span>
         <span className="text-base text-[#8F8F8F] font-bricolage">
-          Adron Corporation
+          {/* Adron Corporation */}
         </span>
       </div>
     </div>

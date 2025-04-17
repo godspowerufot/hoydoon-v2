@@ -51,8 +51,8 @@ const [formData, setFormData] = useState({
                    name="location"
                    value={formData.location}
                    onChange={handleChange}
-                  placeholder="Lagos, Nigeria"
-                  className="bg-transparent  placeholder:fonr-[300] placeholder:font-[1em] placeholder:text-gray focus:outline-none text-black text-sm w-full"
+                  placeholder="City, Address, State, Zip..."
+                  className="bg-transparent  placeholder:fonr-[300] placeholder:font-[1em] lg:pl-2 placeholder:text-[#8F8F8F]  focus:outline-none text-black text-sm w-full"
                 />
                 <button onClick={handleSearch} className="ml-2 bg-primary text-white p-2 rounded-md">
  <Image
