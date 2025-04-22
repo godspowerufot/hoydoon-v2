@@ -83,13 +83,7 @@ const DynamicImageGrid = ({ images,coordinates, statuses = [] }) => {
           {renderImage(images[4], 4, "w-full h-[180px] object-cover rounded-lg", 300, 200)}
         </div>
       ),
-      6: () => (
-        <div className="grid grid-cols-3 gap-4 p-4">
-          {images.slice(0, 6).map((img, i) =>
-            renderImage(img, i, "w-full h-[200px] object-cover rounded-lg", 400, 250)
-          )}
-        </div>
-      ),
+   
       default: () => (
         <div className="grid grid-cols-5 gap-4 p-4">
           <div className="col-span-2 row-span-2">

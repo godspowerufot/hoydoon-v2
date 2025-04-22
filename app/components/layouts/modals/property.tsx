@@ -153,12 +153,12 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
     if (activeTab === "map") {
       return <MapComponent coordinates={coordinates} />;
     }
-    if (activeTab === "streetview") {
-      return (
-        <StreetViewComponent coordinates={coordinates} />
+    // if (activeTab === "streetview") {
+    //   return (
+    //     <StreetViewComponent coordinates={coordinates} />
 
-      );
-    }
+    //   );
+    // }
   };
 
   return (

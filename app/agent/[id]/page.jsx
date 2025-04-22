@@ -150,7 +150,6 @@ const page = ({params}) => {
 
 
 
-  log("all listing",coordinates)
 
   
   if (isLoading) {
