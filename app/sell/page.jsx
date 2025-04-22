@@ -1,12 +1,29 @@
-'use client '
+'use client'
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
 import Input from "../components/common/inputs/input";
 import Link from "next/link";
 import Article from "../components/common/Article";
-
+  import { useRouter } from "next/navigation";
+  import { useState } from "react";
 export default function Home() {
+      const [formData, setFormData] = useState({
+        location: "",
+      
+      });
+        const router=useRouter()
+        const handleChange = (e) => {
+          const { name, value } = e.target;
+          setFormData((prev) => ({ ...prev, [name]: value }));
+        };
+        const handleSearch = () => {
+          const queryParams = new URLSearchParams({
+            ...(formData.location && { location: formData.location }),
+        }).toString();
+      
+          router.push(`/rent/searchlisting?${queryParams}`);
+        };
   return (
     <>
       <header className="relative h-[45em] lg:h-[80vh] w-screen">
@@ -38,12 +55,16 @@ export default function Home() {
               {/* Transparent Full-Width Input */}
               <input
                 type="text"
+                      name="location"
+                
+                      value={formData.location}
+                      onChange={handleChange}
                 className="flex-1 bg-transparent placeholder:text-[1.3rem] text-black placeholder-gray-500 border-none outline-none pl-4 w-[36.3rem]"
                 placeholder="Enter your home address"
               />
 
               {/* Search Button */}
-              <div className="relative mr-2 p-1 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-gradient-to-r before:from-white before:via-white/30 before:to-white/10 before:p-[1px]">
+              <div  onClick={handleSearch} className="relative mr-2 p-1 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-gradient-to-r before:from-white before:via-white/30 before:to-white/10 before:p-[1px]">
                 <div className="relative bg-primary ml-[1em] p-3 w-[50px] h-[50px] rounded-full flex items-center justify-center">
                   <Image
                     alt="logo"
