@@ -342,7 +342,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
           return (
             <div className="relative flex items-center" key={option}>
               <select
-                className="border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 pr-6 appearance-none"
+                className="border  outline-none focus:outline-none border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 pr-6 appearance-none"
                 value={selectedValue}
                 onChange={(e) => handleFilterChange(paramKey, e.target.value)}
               >
@@ -385,7 +385,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
 
       {/* Right Section: List / Map Toggle */}
       <div className="flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-4  border-[#8F8F8F]  2xl:-mr-[2rem] justify-between border-solid border-[1px] items-center font-base rounded-[10px] 2xl:p-[4px] lg:p-[2px] h-auto relative">
-        {["List", "Map"].map((option, index) => (
+        {["List", "Map"].map((option:any, index:number) => (
           <React.Fragment key={index}>
             <button
               className={`px-4 py-2 gap-3 flex 2xl:w-[5.5rem] w-[4.5rem] text-[16px] rounded-md transition-all duration-300 ${
