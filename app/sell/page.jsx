@@ -158,10 +158,11 @@ export default function Home() {
               brokerages typically charge—helping you save more while receiving
               exceptional service.{" "}
             </p>
-
+            <Link href={"/sell/sell-home"}>
             <button className="w-full   rounded-full items-center justify-center flex bg-transparent border-[#1E1E1E]  border-solid border-[1px] text-black  mt-3 text-base 2xl:text-xl h-[3rem]  2xl:h-[4rem] p-3">
               Visit Seller  marketplace
             </button>
+            </Link>
           </div>
         </div>
 
@@ -193,11 +194,14 @@ export default function Home() {
               <Input
                 label=""
                 type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
                 className="2xl:h-[4rem]  p-5 rounded-[24px] mt-[3rem]"
                 placeholder="Enter your home address"
               />
 
-              <div className="absolute right-2 top-[12%]  2xl:top-[12%] bg-primary ml-[6em] p-3  h-[35px] w-[35px] 2xl:w-[50px] 2xl:h-[50px] rounded-full flex items-center justify-center">
+              <div  onClick={handleSearch} className="absolute right-2 top-[12%]  2xl:top-[12%] bg-primary ml-[6em] p-3  h-[35px] w-[35px] 2xl:w-[50px] 2xl:h-[50px] rounded-full flex items-center justify-center">
                 <Image
                   alt="logo"
                   width={30}
