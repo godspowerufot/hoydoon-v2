@@ -349,7 +349,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
                     <option value="0-200">$0–200</option>
                     <option value="200-500">$200–500</option>
                     <option value="500-800">$500–800</option>
-                    <option value="800+">$800</option>
+                    <option value="800">$800</option>
                   </>
                 )}
 
