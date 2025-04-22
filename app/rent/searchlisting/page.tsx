@@ -65,6 +65,8 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
   }, [showAllFiltersDropdown]);
   
   const handleFilterChange = (filterName: string, value: string) => {
+    
+    
     setFilters((prevFilters) => ({
       ...prevFilters,
       [filterName]: value,
@@ -106,8 +108,10 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
         newParams.delete("maxPrice");
       } else {
         const [min, max] = filters.price.split("-");
-        newParams.set("minPrice", min);
-        newParams.set("maxPrice", max);
+        if (!isNaN(Number(min)) && !isNaN(Number(max))) {
+          newParams.set("minPrice", min);
+          newParams.set("maxPrice", max);
+        }
       }
     }
 
@@ -349,7 +353,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
                     <option value="0-200">$0–200</option>
                     <option value="200-500">$200–500</option>
                     <option value="500-800">$500–800</option>
-                    <option value="800">$800</option>
+                    <option value="800-5000000">$800+</option>
                   </>
                 )}
 
