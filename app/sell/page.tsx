@@ -9,7 +9,7 @@ import Article from "../components/common/Article";
 export default function Home() {
   return (
     <>
-      <header className="relative h-[45em] lg:h-[50em] w-screen">
+      <header className="relative h-[45em] lg:h-[80vh] w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
