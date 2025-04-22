@@ -183,12 +183,12 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
               >
                 Map
               </button>
-              <button
+              {/* <button
                 onClick={() => setActiveTab("streetview")}
                 className={`pb-2 ${activeTab === "streetview" ? "border-b-2 border-primary text-black" : "text-gray"}`}
               >
                 Street View
-              </button>
+              </button> */}
             </div>
             <div className="flex  justify-end pr-4 pb-2  flex-1 gap-2">
           <div className="p-2 border border-[#8F8F8F] rounded-md">
