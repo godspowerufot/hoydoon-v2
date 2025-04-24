@@ -6,6 +6,7 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    "typeRoots": ["./types", "./node_modules/@types"],
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
@@ -22,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/layouts/navbar.jsx", "store/slices/api/authapi.js", "app/auth/sign-up/page.jsx", "app/components/layouts/modals/property.tsx", "app/components/common/property.tsx", "app/page.jsx", "app/components/layouts/profilecard.jsx", "app/agent/page.jsx", "app/agent/all-agent/page.jsx", "app/agent/[id]/page.jsx", "app/api/assetlinks.js", "app/components/layouts/contactagent.jsx", "app/components/common/searchcomponent.jsx", "app/components/common/profilecard.jsx", "app/rent/[id]/page.jsx", "app/sell/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/layouts/navbar.jsx", "store/slices/api/authapi.js", "app/auth/sign-up/page.jsx", "app/components/layouts/modals/property.tsx", "app/components/common/property.tsx", "app/page.jsx", "app/components/layouts/profilecard.jsx", "app/agent/page.jsx", "app/agent/all-agent/page.jsx", "app/agent/[id]/page.jsx", "pages/api/assetlinks.jss", "app/components/layouts/contactagent.jsx", "app/components/common/searchcomponent.jsx", "app/components/common/profilecard.jsx", "app/rent/[id]/page.jsx", "app/sell/page.jsx", "app/rent/searchlisting/page.jsx"],
   "exclude": ["node_modules"]
 }

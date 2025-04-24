@@ -6,13 +6,15 @@ import {
   getAccessToken,
   getRefreshToken,
 } from "@/utils/cookies";
+import { log } from "@/utils/log";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   prepareHeaders: (headers) => {
     const token = getAccessToken();
+    log("",token)
     if (token) {
-      headers.set("Authorization", `Bearer ${token}`);
+      headers.set("x-auth-token", `Bearer ${token}`);
     }
     return headers;
   },
@@ -132,7 +134,21 @@ export const authApi = createApi({
         method: "GET",
       }),
     }),
-
+    sendMessage: builder.mutation({
+      query: (messageData) => ({
+        url: "/v1/messages",
+        method: "POST",
+        body: messageData,
+      }),
+    }),
+    verifyOtp: builder.mutation({
+      query: (otp) => ({
+        url: "v1/otp/verify",
+        method: "POST",
+        body: { otp },
+      }),
+    }),
+    
     googleAuth: builder.mutation({
       query: (credentials) => ({
         url: "/v1/auth/google",
@@ -144,6 +160,7 @@ export const authApi = createApi({
         return response;
       },
     }),
+    
   }),
 });
 
@@ -156,7 +173,9 @@ export const {
   useGetSpecificListingsQuery,
   useGetAgentsInfoQuery,
   useGetUserQuery,
+  useSendMessageMutation,
   useGetAgentListingsQuery,
+  useVerifyOtpMutation,
   useLogoutMutation,
   useGetAllListingsAddressQuery,
   useGetAllLocationListingsQuery,

@@ -4,10 +4,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Input from '@/app/components/common/inputs/input'
 import Button from '@/app/components/common/Button'
-import { useSignupMutation ,useGoogleAuthMutation} from '@/store/slices/api/authapi'
+import { useSignupMutation} from '@/store/slices/api/authapi'
 import { useRouter } from 'next/navigation'
-
+import LoginButtons from '@/app/components/common/googlebutton'
 import { sendDeviceInfo } from '@/utils/lib/devicinfo'
+import { log } from '@/utils/log'
 const Signup= () => {
 
     const [email, setEmail] =useState('');
@@ -15,7 +16,6 @@ const Signup= () => {
     const [password, setPassword] = useState('');
     const [signup, { isLoading }] = useSignupMutation();
     const [isPasswordValid, setIsPasswordValid] = useState(true)
-    const [googleAuth, { isLoadings, error }] = useGoogleAuthMutation();
 
     const role = "buyer";
    
@@ -34,11 +34,13 @@ const Signup= () => {
 
     
       try {
-        const device = await sendDeviceInfo();
-
+        const { region, ...device } = await sendDeviceInfo();
         // Send login request with device info
-        const response = await signup({ fullname,email, password,role, device }).unwrap();   router.push('/')
 
+     
+      await signup({ fullname,email, password,role, device,region }).unwrap();   router.push('/')
+
+        router.push("//auth/sign-up/verification")
       } catch (error) {
         console.error('Login failed:', error);
       
@@ -46,51 +48,8 @@ const Signup= () => {
     };
     
     
-  const handleGoogleLogin=async ()=>{
-    const { gapi } = await import("gapi-script");
-
-    try {
-      const auth2 = gapi.auth2.getAuthInstance();
-      const googleUser = await auth2.signIn();
-      const idToken = googleUser.getAuthResponse().id_token;
-  
 
 
-      const device = await sendDeviceInfo(); // Assuming this function gets device info
-
-      // Construct payload for backend authentication
-      const payload = {
-        credential: idToken, // Using the decoded ID token
-        role: "buyer",
-        region: device.location,
-        device: device,
-      };
-
-
-
-      // Send the payload to the backend
-      const response = await googleAuth({
-        ...payload,
-        redirect_uri: process.env.NEXTAUTH_URL, // Redirect URI for OAuth flow
-      }).unwrap();
-
-
-      router.push("/"); // Redirect after successful login
-    } catch (error) {
-      console.error("Error during Google login:", error);
-    }
-  }
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      import("gapi-script").then(({ gapi }) => {
-        gapi.load("auth2", () => {
-          gapi.auth2.init({
-            client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-          });
-        });
-      });
-    }
-  }, []);
 //   useEffect(() => {
 //     async function start() {
 //      const gapi = (await import('gapi-script')).default
@@ -210,16 +169,7 @@ onClick={handleSubmit} className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[
 </div>
 
 <div className="w-full flex gap-3 mt-[2px] ">
-<span           onClick={() => handleGoogleLogin()} disabled={isLoadings}    className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
-    <Image
-              alt="logo"
-              width={20}  
-              loading='lazy'
-              objectFit='cover'
-              height={20} // Reduced size of logo
-              src={'/google.png'}
-               /> 
-               {isLoading ? 'Signing in...' : 'Google'}</span>
+       <LoginButtons />
 <span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">  <Image
               alt="logo"
               width={20}  

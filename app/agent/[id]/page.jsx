@@ -151,7 +151,7 @@ const page = ({params}) => {
 
 
 
-  
+ log("agentDetails", agentInfo);  
   if (isLoading) {
     return (
         <Spinner />
@@ -192,7 +192,7 @@ const page = ({params}) => {
                <div className='flex gap-3'>
                 <div className="w-[6rem] h-[6rem] relative">
                   <Image
-                    src={agentInfo?.pictureUrl}// Replace with actual image path
+                    src={agentInfo?.pictureUrl || ""}// Replace with actual image path
                     alt="Profile Picture"
                     fill
                     className="rounded-full object-cover"
@@ -366,7 +366,7 @@ numberOfListings
       )}
 </div>
     {/*contat agency  */}
-    <ContactAgent location={agentInfo?.region}  profileimage={agentInfo?.pictureUrl}  fullname={agentInfo?.fullname}/>
+    <ContactAgent listedBy={agentInfo?._id} location={agentInfo?.region}  profileimage={agentInfo?.pictureUrl}  fullname={agentInfo?.fullname}/>
 
 
 

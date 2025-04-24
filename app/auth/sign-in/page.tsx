@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Input from "@/app/components/common/inputs/input";
@@ -7,17 +7,16 @@ import Button from "@/app/components/common/Button";
 import { useRouter } from "next/navigation";
 import {
   useLoginMutation,
-  useGoogleAuthMutation,
 } from "@/store/slices/api/authapi";
 import { sendDeviceInfo } from "../../../utils/lib/devicinfo";
 import { log, error } from "@/utils/log";
+import LoginButtons from "@/app/components/common/googlebutton";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, { isLoading }] = useLoginMutation();
   const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [googleAuth] = useGoogleAuthMutation();
 
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,9 +32,13 @@ const Signup = () => {
     try {
       const device = await sendDeviceInfo();
 
-      // Send login request with device info
-      const response = await login({ email, password, device }).unwrap();
-      router.push("/");
+// Destructure to exclude region
+const { region, ...deviceWithoutRegion } = device;
+log("Device info:",region);
+// Send login request with device info (without region)
+const response = await login({ email, password, device: deviceWithoutRegion }).unwrap();
+router.push("/");
+
       log("Login successful", response);
     } catch (err) {
       error("Login failed:", err);
@@ -48,44 +51,8 @@ const Signup = () => {
       }
     }
   };
-  const handleGoogleLogin = async () => {
-    const { gapi } = await import("gapi-script");
-    try {
-      const auth2 = gapi.auth2.getAuthInstance();
-      const googleUser = await auth2.signIn();
-      const idToken = googleUser.getAuthResponse().id_token;
+ 
 
-      const device = await sendDeviceInfo(); // Assuming this function gets device info
-
-      // Construct payload for backend authentication
-      const payload = {
-        credential: idToken, // Using the decoded ID token
-        role: "buyer",
-        region: device.location,
-        device: device,
-      };
-
-      // Send the payload to the backend
-      const response = await googleAuth({
-        ...payload,
-        redirect_uri: process.env.NEXTAUTH_URL, // Redirect URI for OAuth flow
-      }).unwrap();
-      log(response)
-
-      router.push("/"); // Redirect after successful login
-    } catch (error) {
-      console.error("Error during Google login:", error);
-    }
-  };
-  useEffect(() => {
-    import("gapi-script").then(({ gapi }) => {
-      gapi.load("auth2", () => {
-        gapi.auth2.init({
-          client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-        });
-      });
-    });
-  }, []);
 
   return (
     <>
@@ -191,23 +158,10 @@ const Signup = () => {
                   <div className="w-full text-black text-right font-[500] font-bricolage">
                     Or Log in with:
                   </div>
-
+                
                   <div className="w-full flex gap-3 mt-[2px] ">
-                    <span
-                      onClick={() => handleGoogleLogin()}
-                      className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center "
-                    >
-                      {" "}
-                      <Image
-                        alt="logo"
-                        width={20}
-                        loading="lazy"
-                        objectFit="cover"
-                        height={20}
-                        src={"/google.png"}
-                      />{" "}
-                      Google
-                    </span>
+                  <LoginButtons />
+          
                     <span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
                       {" "}
                       <Image

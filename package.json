@@ -16,6 +16,8 @@
     "axios": "^1.7.9",
     "classnames": "^2.5.1",
     "gapi-script": "^1.2.0",
+    "google-auth-library": "^9.15.1",
+    "google-oauth-gsi": "^4.0.1",
     "gsap": "^3.12.7",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
