@@ -1,68 +1,70 @@
 "use client";
-import React, {  useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useVerifyOtpMutation } from "@/store/slices/api/authapi";
-import { useResendOtpMutation } from "@/store/slices/api/authapi";
+import { useActivateAccountMutation, useResendOtpMutation } from "@/store/slices/api/authapi";
 import { useSelector } from "react-redux";
 import { log } from "@/utils/log";
+import { useRouter } from "next/navigation";
 const OtpVerify = () => {
-    const [verifyOtp, { isLoading, isSuccess, error }] = useVerifyOtpMutation();
-    const [ResendCode] = useResendOtpMutation ();
-    const [otp, setOtp] = useState(Array(6).fill(""));
-    const [activeInput, setActiveInput] = useState(0);
-    const email = useSelector((state) => state.auth.unverifiedEmail);
-    const [isResent, setIsResent] = useState(false);
+  const [activateOtp, { isLoading, isSuccess, error }] = useActivateAccountMutation();
+  const [ResendCode] = useResendOtpMutation();
+  const [otp, setOtp] = useState(Array(6).fill(""));
+  const [activeInput, setActiveInput] = useState(0);
+  const email = useSelector((state) => state.auth.unverifiedEmail);
+  const [isResent, setIsResent] = useState(false);
 
+  const router = useRouter();
 
-    log("email", email)
-    const resendOtp = async () => {
-      if (!email) return;
-      try {
-        const response = await ResendCode("rufixduke09@gmail.com").unwrap();
-        console.log("OTP auto-resent:", response);
-        setIsResent(true); // Mark as resent after successful resend
-      } catch (err) {
-        console.error("Error resending OTP:", err);
-      }
-    };
-  
-    useEffect(() => {
-      if (email && !isResent) {
-        resendOtp(); // Auto-resend on mount
-      }
-    }, [email, isResent]); // Depend on email and isResent
-  
-    const handleResendClick = () => {
-      setIsResent(false); // Reset before manual resend
-      resendOtp(); // Trigger resend on button click
-    };
-  
-    const handleChange = (index, value) => {
-      if (/^\d?$/.test(value)) {
-        const newOtp = [...otp];
-        newOtp[index] = value;
-        setOtp(newOtp);
-        if (value && index < 5) {
-          setActiveInput(index + 1);
-        }
-      }
-    };
-  
-    const isOtpComplete = otp.every((digit) => digit !== "");
-  
-    const handleSubmit =async  () => {
-      if (!isOtpComplete) return;
-      const code = otp.join("");
-  
-      // Call the API here to verify the OTP
-      const response = await verifyOtp({ email, code }).unwrap();
-            console.log("OTP verified:", response);
-      console.log("OTP to verify:", code);
-      // Example using fetch or RTK mutation can go here
-    };
- 
+  const resendOtp = async () => {
+    if (!email) return;
+    try {
+      const response = await ResendCode(email).unwrap();
+      console.log("OTP auto-resent:", response);
+      setIsResent(true); // Mark as resent after successful resend
+    } catch (err) {
+      console.error("Error resending OTP:", err);
+    }
+  };
 
+  useEffect(() => {
+    if (email && !isResent) {
+      resendOtp(); // Auto-resend on mount
+    }
+  }, [email, isResent]); // Depend on email and isResent
+
+  const handleResendClick = () => {
+    setIsResent(false); // Reset before manual resend
+    resendOtp(); // Trigger resend on button click
+  };
+
+  const handleChange = (index, value) => {
+    if (/^\d?$/.test(value)) {
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp);
+      if (value && index < 5) {
+        setActiveInput(index + 1);
+      }
+    }
+  };
+
+  const isOtpComplete = otp.every((digit) => digit !== "");
+
+  const handleSubmit = async () => {
+    if (!isOtpComplete) return;
+    const code = otp.join("");
+    try {
+       await activateOtp({ email, otp: code }).unwrap();
+      alert("account successfully activated");
+      router.push("/auth/sign-in"); // Mark as resent after successful resend
+    } catch (err) {
+      console.error("Error resending OTP:", err);
+    }
+    // Call the API here to verify the OTP
+
+    // Example using fetch or RTK mutation can go here
+  };
 
   return (
     <>
@@ -81,7 +83,10 @@ const OtpVerify = () => {
             />
 
             <div className=" w-full lg:w-[60%] items-start mt-3 2xl:-mt-4  flex flex-col">
-              <Link href="/" className="flex justify-start lg:ml-[2rem]         ">
+              <Link
+                href="/"
+                className="flex justify-start lg:ml-[2rem]         "
+              >
                 <Image
                   alt="logo"
                   width={30}
@@ -98,57 +103,57 @@ const OtpVerify = () => {
                 <div className="lg:w-[80%] w-full  2xl:mt-1 h-[1px] bg-[#D9D9D9] " />
 
                 <h1 className="text-black  text-[2rem] lg:text-[2rem]  pt-3 lg:pt-[1rem]   2xl:pt-[1rem]  2xl:text-4xl font-bricolage font-[600]">
-                Confirm your Number
+                  Confirm your Number
                 </h1>
                 <p className="font-light text-gray   lg:pt-[0.6rem]     text-center w-[23rem] text-[13.5px]">
-                Enter the verification code we sent to email. ( <b>Use a different phone number</b>)
+                  Enter the verification code we sent to email. ({" "}
+                  <b>Use a different phone number</b>)
                 </p>
 
                 <div className="2xl:mt-[2rem]  lg:mt-[32px] text-[32px]  font-[500]  p-4 lg:p-0 flex flex-col gap-[1em] w-full  lg:w-[80%] ">
-                
-                <div className="flex gap-3">
-                  {otp.map((digit, idx) => (
-                    <input
-                      key={idx}
-                      type="text"
-                      maxLength={1}
-                      inputMode="numeric"
-                      value={digit}
-                      onChange={(e) => handleChange(idx, e.target.value)}
-                      autoFocus={idx === activeInput}
-                      className="w-[55px] h-[55px] text-center bg-white text-xl border border-[#8F8F8F] rounded-[16px] focus:outline-none"
+                  <div className="flex gap-3">
+                    {otp.map((digit, idx) => (
+                      <input
+                        key={idx}
+                        type="text"
+                        maxLength={1}
+                        inputMode="numeric"
+                        value={digit}
+                        onChange={(e) => handleChange(idx, e.target.value)}
+                        autoFocus={idx === activeInput}
+                        className="w-[55px] h-[55px] text-center bg-white text-xl border border-[#8F8F8F] rounded-[16px] focus:outline-none"
                       />
-                  ))}
-                </div>
-                 <div className="flex items-center w-full " onClick={handleResendClick}>
-                      <p
-                        id="rememberme"
-                        className="flex items-center underline  decoration-[#1e1e1e] text-[#1E1E1E] text-[1rem] font-[300]   cursor-pointer"
-                      >
-                      Resend  Code
-                      </p>
-                  
+                    ))}
                   </div>
-               
-
+                  <div
+                    className="flex items-center w-full "
+                    onClick={handleResendClick}
+                  >
+                    <p
+                      id="rememberme"
+                      className="flex items-center underline  decoration-[#1e1e1e] text-[#1E1E1E] text-[1rem] font-[300]   cursor-pointer"
+                    >
+                      Resend Code
+                    </p>
+                  </div>
 
                   <button
-                  onClick={handleSubmit}
-                  disabled={!isOtpComplete}
-                  className={`w-full mt-[2rem] rounded-full font-[500] text-[17.5px] p-2 h-[3rem] ${
-                    isOtpComplete ? "bg-primary text-white" : "bg-primary text-white cursor-not-allowed"
-                  }`}
-                >
-                  Submit
-                </button>
+                    onClick={handleSubmit}
+                    disabled={!isOtpComplete}
+                    className={`w-full mt-[2rem] rounded-full font-[500] text-[17.5px] p-2 h-[3rem] ${
+                      isOtpComplete
+                        ? "bg-primary text-white"
+                        : "bg-primary text-white cursor-not-allowed"
+                    }`}
+                  >
+                    Submit
+                  </button>
                   <p
-                        id="rememberme"
-                        className="flex items-center underline mt-1 decoration-[#1e1e1e] text-[#1E1E1E] text-[1rem] font-[300]   cursor-pointer"
-                      >
-                 Remind me later
-                      </p>
-                  
-
+                    id="rememberme"
+                    className="flex items-center underline mt-1 decoration-[#1e1e1e] text-[#1E1E1E] text-[1rem] font-[300]   cursor-pointer"
+                  >
+                    Remind me later
+                  </p>
                 </div>
               </span>
             </div>

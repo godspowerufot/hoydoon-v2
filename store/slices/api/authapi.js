@@ -141,11 +141,13 @@ export const authApi = createApi({
         body: messageData,
       }),
     }),
-    verifyOtp: builder.mutation({
+    activateAccount: builder.mutation({
       query: (otp) => ({
-        url: "v1/otp/verify",
-        method: "POST",
-        body: { otp },
+
+        url: "v1/users/activate",
+        method: "PUT",
+        body: { ...otp },
+        
       }),
     }),
     resendOtp: builder.mutation({
@@ -183,7 +185,7 @@ export const {
   useGetUserQuery,
   useSendMessageMutation,
   useGetAgentListingsQuery,
-  useVerifyOtpMutation,
+  useActivateAccountMutation,
   useLogoutMutation,
   useGetAllListingsAddressQuery,
   useGetAllLocationListingsQuery,

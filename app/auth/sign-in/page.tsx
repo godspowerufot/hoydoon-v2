@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 import React, {  useState } from "react";
 import Image from "next/image";
@@ -5,12 +6,12 @@ import Link from "next/link";
 import Input from "@/app/components/common/inputs/input";
 import Button from "@/app/components/common/Button";
 import { useRouter } from "next/navigation";
-import { useDispatch, UseDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import {
   useLoginMutation,
 } from "@/store/slices/api/authapi";
 import { sendDeviceInfo } from "../../../utils/lib/devicinfo";
-import { log, error } from "@/utils/log";
+import { log} from "@/utils/log";
 import LoginButtons from "@/app/components/common/googlebutton";
 import { setUnverifiedEmail } from "@/store/slices/authslice";
 
@@ -38,10 +39,11 @@ const dispatch=useDispatch()
 const { region, ...deviceWithoutRegion } = device;
 log("Device info:",region);
 // Send login request with device info (without region)
-const response = await login({ email, password, device: deviceWithoutRegion }).unwrap();
-router.push("/");
+ await login({ email, password, device: deviceWithoutRegion }).unwrap();
 
-      log("Login successful", response);
+      alert("Login successful");
+      router.push("/");
+
     } catch (err:any) {
     
    // inside handleSubmit
