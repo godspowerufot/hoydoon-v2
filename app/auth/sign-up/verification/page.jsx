@@ -1,14 +1,42 @@
 "use client";
-import React, {  useState } from "react";
+import React, {  useState ,useEffect} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useVerifyOtpMutation } from "@/store/slices/api/authapi";
-
-
+import { useResendOtpMutation } from "@/store/slices/api/authapi";
+import { useSelector } from "react-redux";
+import { log } from "@/utils/log";
 const OtpVerify = () => {
     const [verifyOtp, { isLoading, isSuccess, error }] = useVerifyOtpMutation();
+    const [ResendCode] = useResendOtpMutation ();
     const [otp, setOtp] = useState(Array(6).fill(""));
     const [activeInput, setActiveInput] = useState(0);
+    const email = useSelector((state) => state.auth.unverifiedEmail);
+    const [isResent, setIsResent] = useState(false);
+
+
+    log("email", email)
+    const resendOtp = async () => {
+      if (!email) return;
+      try {
+        const response = await ResendCode("rufixduke09@gmail.com").unwrap();
+        console.log("OTP auto-resent:", response);
+        setIsResent(true); // Mark as resent after successful resend
+      } catch (err) {
+        console.error("Error resending OTP:", err);
+      }
+    };
+  
+    useEffect(() => {
+      if (email && !isResent) {
+        resendOtp(); // Auto-resend on mount
+      }
+    }, [email, isResent]); // Depend on email and isResent
+  
+    const handleResendClick = () => {
+      setIsResent(false); // Reset before manual resend
+      resendOtp(); // Trigger resend on button click
+    };
   
     const handleChange = (index, value) => {
       if (/^\d?$/.test(value)) {
@@ -28,8 +56,8 @@ const OtpVerify = () => {
       const code = otp.join("");
   
       // Call the API here to verify the OTP
-      const response = await verifyOtp(code).unwrap();
-      console.log("OTP verified:", response);
+      const response = await verifyOtp({ email, code }).unwrap();
+            console.log("OTP verified:", response);
       console.log("OTP to verify:", code);
       // Example using fetch or RTK mutation can go here
     };
@@ -92,7 +120,7 @@ const OtpVerify = () => {
                       />
                   ))}
                 </div>
-                 <div className="flex items-center w-full ">
+                 <div className="flex items-center w-full " onClick={handleResendClick}>
                       <p
                         id="rememberme"
                         className="flex items-center underline  decoration-[#1e1e1e] text-[#1E1E1E] text-[1rem] font-[300]   cursor-pointer"

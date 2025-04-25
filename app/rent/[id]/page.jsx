@@ -311,7 +311,7 @@ const relevantHighlights = highlights.filter((highlight) =>
       </div>
 
       {/*contat agency  */}
-      <ContactAgent location={region}  profileimage={pictureUrl}  fullname={fullname}/>
+      <ContactAgent location={region}  profileimage={pictureUrl}  fullname={fullname} listedBy={listedBy?._id}/>
 
       <section className="mt-10  hidden  2xl:mt-[4em] lg:mt-[3em] w-[75rem]  2xl:w-[88rem]  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:-mb-[5rem]    flex-col items-center justify-center">

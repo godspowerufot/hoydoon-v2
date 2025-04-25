@@ -14,7 +14,7 @@ const baseQuery = fetchBaseQuery({
     const token = getAccessToken();
     log("",token)
     if (token) {
-      headers.set("x-auth-token", `Bearer ${token}`);
+      headers.set("x-auth-token", `${token}`);
     }
     return headers;
   },
@@ -148,6 +148,13 @@ export const authApi = createApi({
         body: { otp },
       }),
     }),
+    resendOtp: builder.mutation({
+      query: (email) => ({
+        url: "v1/otp/generate",
+        method: "POST",
+        body: { email },
+      }),
+    }),
     
     googleAuth: builder.mutation({
       query: (credentials) => ({
@@ -172,6 +179,7 @@ export const {
   useGetAllListingsQuery,
   useGetSpecificListingsQuery,
   useGetAgentsInfoQuery,
+  useResendOtpMutation,
   useGetUserQuery,
   useSendMessageMutation,
   useGetAgentListingsQuery,

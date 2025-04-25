@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import LoginButtons from '@/app/components/common/googlebutton'
 import { sendDeviceInfo } from '@/utils/lib/devicinfo'
 import { log } from '@/utils/log'
+import { useDispatch } from 'react-redux'
 const Signup= () => {
 
     const [email, setEmail] =useState('');
@@ -16,7 +17,7 @@ const Signup= () => {
     const [password, setPassword] = useState('');
     const [signup, { isLoading }] = useSignupMutation();
     const [isPasswordValid, setIsPasswordValid] = useState(true)
-
+const dispatch=useDispatch()
     const role = "buyer";
    
     const router = useRouter();
@@ -38,9 +39,9 @@ const Signup= () => {
         // Send login request with device info
 
      
-      await signup({ fullname,email, password,role, device,region }).unwrap();   router.push('/')
-
-        router.push("//auth/sign-up/verification")
+    const res=  await signup({ fullname,email, password,role, device,region }).unwrap(); 
+    dispatch(setUnverifiedEmail(email));
+        router.push("/auth/sign-up/verification")
       } catch (error) {
         console.error('Login failed:', error);
       

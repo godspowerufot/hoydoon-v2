@@ -5,19 +5,21 @@ import Link from "next/link";
 import Input from "@/app/components/common/inputs/input";
 import Button from "@/app/components/common/Button";
 import { useRouter } from "next/navigation";
+import { useDispatch, UseDispatch } from "react-redux";
 import {
   useLoginMutation,
 } from "@/store/slices/api/authapi";
 import { sendDeviceInfo } from "../../../utils/lib/devicinfo";
 import { log, error } from "@/utils/log";
 import LoginButtons from "@/app/components/common/googlebutton";
+import { setUnverifiedEmail } from "@/store/slices/authslice";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, { isLoading }] = useLoginMutation();
   const [isPasswordValid, setIsPasswordValid] = useState(true);
-
+const dispatch=useDispatch()
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,15 +42,14 @@ const response = await login({ email, password, device: deviceWithoutRegion }).u
 router.push("/");
 
       log("Login successful", response);
-    } catch (err) {
-      error("Login failed:", err);
-      if (err && typeof err === "object" && "data" in err) {
-        const errorMessage = (err as { data: { message?: string } }).data
-          ?.message;
-        alert(errorMessage || "Login failed. Please check your credentials.");
-      } else {
-        alert("Login failed. Please check your credentials.");
-      }
+    } catch (err:any) {
+    
+   // inside handleSubmit
+if (err?.data?.error === "account is not active") {
+  dispatch(setUnverifiedEmail(email));
+  router.push("/auth/sign-up/verification");
+}
+     
     }
   };
  

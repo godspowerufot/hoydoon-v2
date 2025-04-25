@@ -1,19 +1,34 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSendMessageMutation } from "@/store/slices/api/authapi";
-export default function ContactAgent({ fullname, location, profileimage,listedBy }) {
-  const [message, setMessage] = useState("");
-  const [sendMessage, { isLoading, isSuccess, isError }] = useSendMessageMutation();
 
-  const handleSend = async () => {
+export default function ContactAgent({ fullname, location, profileimage, listedBy }) {
+  const [message, setMessage] = useState("");
+  const [isMessageLoading, setIsMessageLoading] = useState(false); // Loading state for "Ask a question"
+  const [isReviewLoading, setIsReviewLoading] = useState(false);   // Loading state for "Reviews"
+  const [sendMessage, { isSuccess, isError }] = useSendMessageMutation();
+
+  const handleSend = async (type) => {
     if (!message.trim()) return;
 
     try {
+      if (type === "message") {
+        setIsMessageLoading(true); // Set loading for message
+      } else if (type === "review") {
+        setIsReviewLoading(true); // Set loading for review
+      }
+
       await sendMessage({ message, listedBy }).unwrap();
       setMessage(""); // Clear after sending
       alert("Message sent successfully!");
     } catch (err) {
       alert(err.message);
+    } finally {
+      if (type === "message") {
+        setIsMessageLoading(false); // Reset message loading
+      } else if (type === "review") {
+        setIsReviewLoading(false); // Reset review loading
+      }
     }
   };
 
@@ -50,10 +65,9 @@ export default function ContactAgent({ fullname, location, profileimage,listedBy
         />
         {/* Optional: Quick Replies */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4">
-          {["Can you share more details about the home?",
-            "I want to buy the home. What’s next?",
-            "Is this home still available for purchase?",
-          ].map((text, i) => (
+          {["Can you share more details about the home?", 
+            "I want to buy the home. What’s next?", 
+            "Is this home still available for purchase?"].map((text, i) => (
             <button
               key={i}
               onClick={() => setMessage(text)}
@@ -68,14 +82,18 @@ export default function ContactAgent({ fullname, location, profileimage,listedBy
       {/* Buttons */}
       <div className="mt-6 flex gap-4">
         <button
-          onClick={handleSend}
+          onClick={() => handleSend("message")}
           className="bg-primary w-[9rem] 2xl:w-[15rem] rounded-full text-white text-base px-4 py-2 2xl:py-4"
-          disabled={isLoading}
+          disabled={isMessageLoading}
         >
-          {isLoading ? "Sending..." : "Ask a question"}
+          {isMessageLoading ? "Sending..." : "Ask a question"}
         </button>
-        <button className="border px-4 py-2 w-[9rem] 2xl:w-[15rem] rounded-full border-primary text-gray-600">
-          Reviews
+        <button
+          onClick={() => handleSend("review")} // Send the current message for reviews
+          className="border px-4 py-2 w-[9rem] 2xl:w-[15rem] rounded-full border-primary text-gray-600"
+          disabled={isReviewLoading}
+        >
+          {isReviewLoading ? "Sending..." : "Reviews"}
         </button>
       </div>
     </div>
