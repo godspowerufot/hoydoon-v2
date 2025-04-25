@@ -14,6 +14,7 @@ import { sendDeviceInfo } from "../../../utils/lib/devicinfo";
 import { log} from "@/utils/log";
 import LoginButtons from "@/app/components/common/googlebutton";
 import { setUnverifiedEmail } from "@/store/slices/authslice";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -41,13 +42,14 @@ log("Device info:",region);
 // Send login request with device info (without region)
  await login({ email, password, device: deviceWithoutRegion }).unwrap();
 
-      alert("Login successful");
-      router.push("/");
+ toast.success("Login successful!");
+ router.push("/");
 
     } catch (err:any) {
     
    // inside handleSubmit
 if (err?.data?.error === "account is not active") {
+  toast.error("Your account is not active. Please verify your email address.");
   dispatch(setUnverifiedEmail(email));
   router.push("/auth/sign-up/verification");
 }

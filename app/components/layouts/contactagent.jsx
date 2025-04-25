@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSendMessageMutation } from "@/store/slices/api/authapi";
-
+import { toast } from "react-toastify";
 export default function ContactAgent({ fullname, location, profileimage, listedBy }) {
   const [message, setMessage] = useState("");
   const [isMessageLoading, setIsMessageLoading] = useState(false); // Loading state for "Ask a question"
@@ -20,7 +20,7 @@ export default function ContactAgent({ fullname, location, profileimage, listedB
 
       await sendMessage({ message, listedBy }).unwrap();
       setMessage(""); // Clear after sending
-      alert("Message sent successfully!");
+      toast.success("Message sent successfully!");
     } catch (err) {
       alert(err.message);
     } finally {

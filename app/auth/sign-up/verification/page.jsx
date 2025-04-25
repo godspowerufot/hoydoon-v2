@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useActivateAccountMutation, useResendOtpMutation } from "@/store/slices/api/authapi";
 import { useSelector } from "react-redux";
 import { log } from "@/utils/log";
+import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 const OtpVerify = () => {
   const [activateOtp, { isLoading, isSuccess, error }] = useActivateAccountMutation();
@@ -56,7 +57,7 @@ const OtpVerify = () => {
     const code = otp.join("");
     try {
        await activateOtp({ email, otp: code }).unwrap();
-      alert("account successfully activated");
+    toast.error("account successfully activated");
       router.push("/auth/sign-in"); // Mark as resent after successful resend
     } catch (err) {
       console.error("Error resending OTP:", err);

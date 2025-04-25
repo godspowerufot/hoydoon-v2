@@ -6,6 +6,8 @@ import Navbar from "./components/layouts/navbar";
 import AnimationWrapper from "@/utils/lib/_app"
 import { Providers } from '@/store/provider';
 import { Suspense } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Spinner from "./components/common/Spinner";
 export const metadata: Metadata = {
   title: "Hoydoon",
@@ -48,7 +50,10 @@ export default function RootLayout({
                 clientId={`438580118502-j5qth0chlkikrpreur0gjl9q1vm8a162.apps.googleusercontent.com`}
               >
                 <main className=" container flex-1 flex items-center justify-center flex-col ">
-                  <Suspense fallback={<Spinner />}>{children}</Suspense>
+                  <Suspense fallback={<Spinner />}>
+                  <ToastContainer   position="top-center" autoClose={3000} /> 
+
+                  {children}</Suspense>
                 </main>
               </GoogleOAuthProvider>
               {/* Footer */}
