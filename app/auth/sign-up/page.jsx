@@ -11,6 +11,7 @@ import { sendDeviceInfo } from '@/utils/lib/devicinfo'
 import { log } from '@/utils/log'
 import { setUnverifiedEmail } from "@/store/slices/authslice";
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 const Signup= () => {
 
     const [email, setEmail] =useState('');
@@ -42,7 +43,9 @@ const dispatch=useDispatch()
      
     const res=  await signup({ fullname,email, password,role, device,region }).unwrap(); 
     dispatch(setUnverifiedEmail(email));
+    toast.success("kindly activate your account ")
         router.push("/auth/sign-up/verification")
+      
       } catch (error) {
         console.error('Login failed:', error);
       

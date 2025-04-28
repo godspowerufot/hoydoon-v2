@@ -46,13 +46,19 @@ log("Device info:",region);
  router.push("/");
 
     } catch (err:any) {
-    
+
    // inside handleSubmit
 if (err?.data?.error === "account is not active") {
   toast.error("Your account is not active. Please verify your email address.");
   dispatch(setUnverifiedEmail(email));
   router.push("/auth/sign-up/verification");
 }
+  
+else{
+  toast.error("An error occurred. Please try again later.");
+
+}
+
      
     }
   };

@@ -13,6 +13,7 @@ import { useGoogleAuthMutation } from '@/store/slices/api/authapi';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { log } from '@/utils/log';
+import { toast } from 'react-toastify';
 const LoginButtons = () => {
       const [googleAuth] = useGoogleAuthMutation();
     const router=useRouter()
@@ -44,7 +45,7 @@ log(region)
     await googleAuth({
         ...payload,
       }).unwrap();
-      
+      toast.success("Login Success!");
       router.push("/");
             // Send id_token to BE
         } catch (err) {

@@ -14,7 +14,6 @@ const OtpVerify = () => {
   const [activeInput, setActiveInput] = useState(0);
   const email = useSelector((state) => state.auth.unverifiedEmail);
   const [isResent, setIsResent] = useState(false);
-
   const router = useRouter();
 
   const resendOtp = async () => {
@@ -57,7 +56,7 @@ const OtpVerify = () => {
     const code = otp.join("");
     try {
        await activateOtp({ email, otp: code }).unwrap();
-    toast.error("account successfully activated");
+    toast.success("account successfully activated");
       router.push("/auth/sign-in"); // Mark as resent after successful resend
     } catch (err) {
       console.error("Error resending OTP:", err);
