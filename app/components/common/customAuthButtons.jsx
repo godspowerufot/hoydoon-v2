@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function CustomAuthButtons() {
   return (
-    <div>
+    <div className="flex gap-2">
       {/* Apple Login Button */}
       <span
         onClick={() => signIn("apple")}  // Trigger Apple sign-in

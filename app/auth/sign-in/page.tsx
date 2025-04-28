@@ -15,7 +15,6 @@ import { log} from "@/utils/log";
 import LoginButtons from "@/app/components/common/googlebutton";
 import { setUnverifiedEmail } from "@/store/slices/authslice";
 import { toast } from "react-toastify";
-import CustomAuthButtons from "@/app/components/common/customAuthButtons"
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -164,11 +163,34 @@ if (err?.data?.error === "account is not active") {
                   <div className="w-full text-black text-right font-[500] font-bricolage">
                     Or Log in with:
                   </div>
-
+                
                   <div className="w-full flex gap-3 mt-[2px] ">
-                    <LoginButtons />
-
-                    <CustomAuthButtons />
+                  <LoginButtons />
+          
+                    <span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
+                      {" "}
+                      <Image
+                        alt="logo"
+                        width={20}
+                        loading="lazy"
+                        objectFit="cover"
+                        height={20} // Reduced size of logo
+                        src={"/apple.png"}
+                      />{" "}
+                      Apple
+                    </span>
+                    <span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
+                      {" "}
+                      <Image
+                        alt="logo"
+                        width={20}
+                        loading="lazy"
+                        objectFit="cover"
+                        height={20} // Reduced size of logo
+                        src={"/facebook.png"}
+                      />{" "}
+                      Facebook
+                    </span>
                   </div>
                   <div className="w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] " />
 

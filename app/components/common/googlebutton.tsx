@@ -43,7 +43,6 @@ log(region)
       // Send the payload to the backend
     await googleAuth({
         ...payload,
-        redirect_uri: process.env.NEXTAUTH_URL, // Redirect URI for OAuth flow
       }).unwrap();
       
       router.push("/");
