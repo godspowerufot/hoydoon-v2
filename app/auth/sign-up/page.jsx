@@ -43,10 +43,11 @@ const dispatch=useDispatch()
      
     const res=  await signup({ fullname,email, password,role, device,region }).unwrap(); 
     dispatch(setUnverifiedEmail(email));
-    toast.success("kindly activate your account ")
+    toast.success("check your email for OTP code");
         router.push("/auth/sign-up/verification")
       
       } catch (error) {
+        toast.error(err?.data?.error);
         console.error('Login failed:', error);
       
       }
