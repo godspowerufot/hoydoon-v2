@@ -56,6 +56,7 @@ log(region)
         flow: 'auth-code',
         onSuccess: onGoogleLoginSuccess,
         onError: (res) => console.error('Failed to login with google', res),
+        redirect_uri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI// 👈 explicitly tell it
     })
 //     const loginWithToken = provider.useGoogleLogin({
 //         flow: 'implicit',
