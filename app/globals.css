@@ -90,6 +90,10 @@ body {
   .container {
     width: 95%;
   }
+
+  body{
+    overflow-x: hidden;
+  }
 }
 
 @media (min-width: 992px) {

@@ -35,7 +35,7 @@ const ArticleCard = ({ article }: any) => {
           height={300}
           loading="lazy"
           src={article.image}
-          className="rounded-2xl 2xl:h-[30rem] w-full object-cover h-[450px]"
+          className="rounded-2xl w-[35em] 2xl:h-[30rem] lg:w-full object-cover h-[450px]"
         />
         <div className="flex flex-col my-4 relative">
           <div className="flex gap-3">

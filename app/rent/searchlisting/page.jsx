@@ -46,24 +46,9 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
     bathrooms: "",
   });
   const modalRef = useRef<HTMLDivElement>(null);
+  const bedBathRef = useRef<HTMLDivElement>(null);
 
-  // Close on outside click
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setShowAllFiltersDropdown(false);
-      }
-    }
-  
-    if (showAllFiltersDropdown) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-  
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showAllFiltersDropdown]);
-  
+
   const handleFilterChange = (filterName, value) => {
     
     
@@ -72,23 +57,6 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
       [filterName]: value,
     }));
   };
-  const bedBathRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (bedBathRef.current && !bedBathRef.current.contains(event.target)) {
-        setShowBedBathDropdown(false);
-      }
-    }
-  
-    if (showBedBathDropdown) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-  
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showBedBathDropdown]);
   const handleSearchClick = () => {
     const newParams = new URLSearchParams(searchParams.toString());
 
@@ -129,6 +97,39 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
     // Trigger search with the updated query parameters
     router.push(`/rent/searchlisting?${newParams.toString()}`);
   };
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (bedBathRef.current && !bedBathRef.current.contains(event.target)) {
+        setShowBedBathDropdown(false);
+      }
+    }
+  
+    if (showBedBathDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+  
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showBedBathDropdown]);
+    // Close on outside click
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+          setShowAllFiltersDropdown(false);
+        }
+      }
+    
+      if (showAllFiltersDropdown) {
+        document.addEventListener("mousedown", handleClickOutside);
+      }
+    
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [showAllFiltersDropdown]);
+    
+  
 
   return (
     <div className="pt-[2.3rem] px-4 lg:pl-[2rem] lg:pr-[4.5rem] 2xl:gap-[20rem] flex justify-between w-full">
@@ -145,7 +146,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
             <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>
 
             <div
-  ref={modalRef}
+
   className="absolute bg-white top-[20%] z-[1111] rounded-xl p-4 w-full max-w-[14rem]"
 >
   <div className="flex justify-between items-center mb-4">
@@ -255,7 +256,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
 
           if (option === "Bed/Baths") {
             return (
-              <div className="relative"  ref={bedBathRef} key={option}>
+              <div className="relative"   key={option}>
                 <button
                   onClick={() => setShowBedBathDropdown(!showBedBathDropdown)}
                   className="border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 pr-6 appearance-none flex items-center gap-2"
