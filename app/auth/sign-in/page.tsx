@@ -15,7 +15,7 @@ import { log} from "@/utils/log";
 import LoginButtons from "@/app/components/common/googlebutton";
 import { setUnverifiedEmail } from "@/store/slices/authslice";
 import { toast } from "react-toastify";
-
+import { signIn } from "next-auth/react";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -171,7 +171,7 @@ if (err?.data?.error === "account is not active") {
                   <div className="w-full flex gap-3 mt-[2px] ">
                   <LoginButtons />
           
-                    <span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
+                    <span  onClick={() => signIn("apple")} className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
                       {" "}
                       <Image
                         alt="logo"
@@ -183,7 +183,7 @@ if (err?.data?.error === "account is not active") {
                       />{" "}
                       Apple
                     </span>
-                    <span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
+                    <span onClick={() => signIn("facebook")} className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
                       {" "}
                       <Image
                         alt="logo"
