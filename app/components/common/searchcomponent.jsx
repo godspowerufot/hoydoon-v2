@@ -30,6 +30,7 @@ const SearchBar = () => {
   };
 
   return (
+    <>
     <div className="hidden lg:flex justify-center items-center w-full max-w-[50em]">
       <div className="flex items-center h-[3.4rem] bg-white rounded-full shadow-md w-full p-[0.4rem]">
         {/* Location Input */}
@@ -97,6 +98,26 @@ const SearchBar = () => {
         </div>
       </div>
     </div>
+    <div className="flex h-[10px] lg:hidden justify-center items-center w-full px-4 py-2">
+  <div className="flex items-center w-full bg-white rounded-full shadow-md px-4 py-2">
+    <input
+      type="text"
+      name="location"
+      value={formData.location}
+      onChange={handleChange}
+      placeholder="Address, Neighborhood, City, Zip code..."
+      className="flex-1 text-sm text-gray-700 outline-none bg-transparent placeholder:text-gray-400"
+    />
+    <button
+      onClick={handleSearch}
+      className="ml-2 bg-primary p-2 rounded-full flex items-center justify-center hover:bg-opacity-90"
+    >
+      <Image alt="Search" width={18} height={18} src="/search.png" />
+    </button>
+  </div>
+</div>
+
+    </>
   );
 };
 

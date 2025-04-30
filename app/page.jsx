@@ -42,7 +42,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative h-[100vh] w-screen overflow-hidden">
+      <header className="relative  h-[38vh] lg:h-[100vh] p-2 lg:p-0 w-screen overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-full h-full  bg-cover bg-center z-[-1]"
@@ -52,36 +52,29 @@ export default function Home() {
         {/* Content Section */}
         <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] lg:mt-[4rem]   gap-4 h-full ">
           {/* Main Heading */}
-          <h1 className="text-white text-center   relative  font-bricolage font-semibold leading-tight text-[clamp(4em,4vw,4em)] w-[60%] max-w-[700px] 2xl:max-w-[700px]">
+          <h1 className="text-white text-center w-[20rem]   relative  font-bricolage font-semibold leading-tight  text-[2.1em] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Where Every House Feels Like Home
           </h1>
 
           {/* Subheading */}
-          <h2 className="text-[#FFFFFFB2]  lg:-mt-2 text-center  flex item-center justify-center font-[300] text-[clamp(1em,2vw,1.4em)] w-[47rem]">
+          <h2 className="text-[#FFFFFFB2]  hidden  lg:-mt-2 text-center  lg:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
             From urban flats to rural getaways, Hoydoon effortlessly links you
             to the home of your dreams with trust and ease.
           </h2>
+          <h2 className="text-[#FFFFFFB2]  lg:hidden lg:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm lg:text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
+          Hoydoon connects you to your dream home — easily and reliably. </h2>
+
+
 
           {/* Search Bar (Large Screens) */}
      <SearchBar/>
 
           {/* Mobile Search Bar */}
-          <div className="lg:hidden w-full px-2">
-            <div className="flex items-center bg-white rounded-full shadow-md w-full p-3">
-              <input
-                type="text"
-                placeholder="Address, Neighborhood, City..."
-                className="flex-1 text-sm text-gray outline-none"
-              />
-              <div className="bg-primary p-3 rounded-full flex items-center justify-center cursor-pointer">
-                <FaSearch className="text-white h-6" />
-              </div>
-            </div>
-          </div>
+
         </div>
 
         {/* Statistics Section */}
-        <div className="absolute bottom-7 lg:flex font-bricolage lg:mt-10 justify-center items-center w-full pt-10 px-4">
+        <div className="absolute hidden  bottom-7 lg:flex font-bricolage lg:mt-10 justify-center items-center w-full pt-10 px-4">
           <div className="flex items-center rounded-lg w-9/10 ml-15 justify-between md:w-4/5 lg:w-[50rem]">
             {/* Hosts Section */}
             <div className="flex items-center text-start gap-2 px-4">

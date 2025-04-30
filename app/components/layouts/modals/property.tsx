@@ -6,7 +6,7 @@ import StreetViewComponent from "../streetvie"
 import { useToggleFavoriteMutation } from "@/store/slices/api/authapi";
 import { toast } from "react-toastify";
 import { log } from "@/utils/log";
-
+import { useRouter } from "next/navigation";
 type Coordinates = [number, number]; // Or a more specific object type if needed
 
 type ImageType = {
@@ -74,7 +74,8 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
  const PropertyGalleryModal=({ isOpen, coordinates, onClose, image,listingId }:PropertyModalProps ) =>{
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0); // Default to first image
-  const [activeTab, setActiveTab] = useState("photos"); // Tab state
+  const [activeTab, setActiveTab] = useState("photos");
+  const router=useRouter() // Tab state
   const [toggleFavorite, { isLoading, isError, isSuccess }] = useToggleFavoriteMutation();
   if (!isOpen) return null;
 
@@ -171,6 +172,7 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
       toast.success("Added to favorites!");
     } catch (error) {
       console.error("Failed to favorite listing:", error);
+      router.push("/auth/sign-in")
     }
   };
   return (
