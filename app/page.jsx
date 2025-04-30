@@ -175,7 +175,7 @@ export default function Home() {
             </section>
 
             <section className="mt-10 hidden  lg:mt-[4em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col   items-start justify-center">
               <div className="flex ml-[4rem] 2xl:ml-[2.2rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
               <h1 className="text-black text-[26px] lg:text-[2.5rem] font-[600] w-full">
                 Featured Properties for Rent
@@ -184,7 +184,7 @@ export default function Home() {
                 Discover a home where every detail enhances your lifestyle crafted to fit your taste and needs.
               </p>
               </div>
-              <div className="flex mt-[1em] lg:mr-[2rem] h-fit min-w-[70%] items-center lg:flex-row justify-center mb-2">
+              <div className="flex mt-[1em] lg:mr-[2rem] h-fit min-w-[70%] items-start lg:flex-row justify-center mb-2">
               {displayListings.map((items, index) => (
                 <PropertyCard
                 _id={items?._id}
