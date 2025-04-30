@@ -154,9 +154,13 @@ const relevantHighlights = highlights.filter((highlight) =>
   } 
   return (
     <div className="lg:mt-8  2xl:w-[98rem] lg:w-[90%]  lg:ml-[2%] ">
-      <Breadcrumb  address={address} region={region}/>
-  
-<DynamicImageGrid images={ images} coordinates={coordinate} />
+      <Breadcrumb address={address} region={region} />
+
+      <DynamicImageGrid
+       listingId={_id}
+        images={images}
+        coordinates={coordinate}
+      />
       {/* second div layout  */}
       <div className="bg-gray-100 p-4 rounded-lg">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
@@ -226,21 +230,20 @@ const relevantHighlights = highlights.filter((highlight) =>
           Home Highlights
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mt-4 text-[#8F8F8F] font-bricolage text-sm">
-  {relevantHighlights.map((item, index) => (
-    <div key={index} className="flex items-center gap-2">
-      <Image
-        src={item.icon}
-        alt={item.text}
-        width={20}
-        height={20}
-        className="object-contain"
-        quality={100}
-      />
-      <span className="2xl:text-xl">{item.text}</span>
-    </div>
-  ))}
-</div>
-
+          {relevantHighlights.map((item, index) => (
+            <div key={index} className="flex items-center gap-2">
+              <Image
+                src={item.icon}
+                alt={item.text}
+                width={20}
+                height={20}
+                className="object-contain"
+                quality={100}
+              />
+              <span className="2xl:text-xl">{item.text}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* description */}
@@ -261,7 +264,7 @@ const relevantHighlights = highlights.filter((highlight) =>
           Listed by Agent
         </h2>
         <div className="mt-5">
-          <ListedCard  name={fullname} picture={pictureUrl} />
+          <ListedCard name={fullname} picture={pictureUrl} />
         </div>
       </div>
 
@@ -271,9 +274,12 @@ const relevantHighlights = highlights.filter((highlight) =>
 
         {/* Map Container */}
         <div className=" relative rounded-lg  flex items-center overflow-hidden">
-              <MapComponent coordinates={coordinate} />
+          <MapComponent coordinates={coordinate} />
           <div className="py-4 px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
-            <span className="font-medium">{displayListings?.length} Homes available in {truncateDescription(address,1)}</span>
+            <span className="font-medium">
+              {displayListings?.length} Homes available in{" "}
+              {truncateDescription(address, 1)}
+            </span>
             <span className="text-primary cursor-pointer ml-2">
               Remove map boundary
             </span>
@@ -311,7 +317,12 @@ const relevantHighlights = highlights.filter((highlight) =>
       </div>
 
       {/*contat agency  */}
-      <ContactAgent location={region}  profileimage={pictureUrl}  fullname={fullname} listedBy={listedBy?._id}/>
+      <ContactAgent
+        location={region}
+        profileimage={pictureUrl}
+        fullname={fullname}
+        listedBy={listedBy?._id}
+      />
 
       <section className="mt-10  hidden  2xl:mt-[4em] lg:mt-[3em] w-[75rem]  2xl:w-[88rem]  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   w-[92%]  2xl:-mb-[5rem]    flex-col items-center justify-center">
@@ -326,27 +337,34 @@ const relevantHighlights = highlights.filter((highlight) =>
             </p>
           </div>
           <div className="flex flex-col  2xl:ml-[6rem]  ">
-              <div className="flex mt-[1em] h-fit min-w-[70%] items-center lg:flex-row justify-center mb-2">
+            <div className="flex mt-[1em] h-fit min-w-[70%] items-center lg:flex-row justify-center mb-2">
               {displayListings?.map((listing, index) => (
-  <PropertyCard
-    key={index}
-    {...listing}
-    _id={listing._id}
-    imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
-    altText={listing?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
-    price={listing?.item?.price || "Price not available"}
-    area={listing?.item?.squareFeet || "190 - 245 m² (Approximate area)"}
-    description={listing?.item?.description || "No description available for this property."}
-    title={listing?.item?.title || "Untitled Property"}
-    rent={listing?.item?.rent || "Rent details not provided"}
-  />
-))}
-
-                     </div>
+                <PropertyCard
+                  key={index}
+                  {...listing}
+                  _id={listing._id}
+                  imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
+                  altText={
+                    listing?.imageUrls?.[0]?.altText ||
+                    "Property image showcasing a beautiful home"
+                  }
+                  price={listing?.item?.price || "Price not available"}
+                  area={
+                    listing?.item?.squareFeet ||
+                    "190 - 245 m² (Approximate area)"
+                  }
+                  description={
+                    listing?.item?.description ||
+                    "No description available for this property."
+                  }
+                  title={listing?.item?.title || "Untitled Property"}
+                  rent={listing?.item?.rent || "Rent details not provided"}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
-
     </div>
   );
 };

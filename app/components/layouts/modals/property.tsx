@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import MapComponent from "../listingmap"; // Assuming this is a map component you already have
 import StreetViewComponent from "../streetvie"
-
+import { useToggleFavoriteMutation } from "@/store/slices/api/authapi";
+import { toast } from "react-toastify";
+import { log } from "@/utils/log";
 
 type Coordinates = [number, number]; // Or a more specific object type if needed
 
@@ -14,6 +16,7 @@ type ImageType = {
 
 type PropertyModalProps = {
   isOpen: boolean;
+  listingId:string;
   coordinates: Coordinates;
   onClose: () => void;
   image: ImageType[];
@@ -68,11 +71,11 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
 }
 
 // PropertyGalleryModal Component
- const PropertyGalleryModal=({ isOpen, coordinates, onClose, image }:PropertyModalProps ) =>{
+ const PropertyGalleryModal=({ isOpen, coordinates, onClose, image,listingId }:PropertyModalProps ) =>{
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0); // Default to first image
   const [activeTab, setActiveTab] = useState("photos"); // Tab state
-
+  const [toggleFavorite, { isLoading, isError, isSuccess }] = useToggleFavoriteMutation();
   if (!isOpen) return null;
 
   const images = image || [];
@@ -161,6 +164,15 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
     // }
   };
 
+  const handleFavoriteClick = async () => {
+    log("listingid",listingId)
+    try {
+      await toggleFavorite({ listingId }).unwrap();
+      toast.success("Added to favorites!");
+    } catch (error) {
+      console.error("Failed to favorite listing:", error);
+    }
+  };
   return (
     <>
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
@@ -191,7 +203,7 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
               </button> */}
             </div>
             <div className="flex  justify-end pr-4 pb-2  flex-1 gap-2">
-          <div className="p-2 border border-[#8F8F8F] rounded-md">
+          <div onClick={handleFavoriteClick} className="p-2 border border-[#8F8F8F] rounded-md">
           <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
         </div>
         <div className="p-2 border border-[#8F8F8F] rounded-md">

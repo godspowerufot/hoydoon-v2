@@ -169,6 +169,13 @@ export const authApi = createApi({
         return response;
       },
     }),
+    toggleFavorite: builder.mutation({
+      query: (listingId ) => ({
+        url: "/v1/favorites",
+        method: "POST",
+        body: { ...listingId },
+      }),
+    }),
     
   }),
 });
@@ -182,6 +189,7 @@ export const {
   useGetSpecificListingsQuery,
   useGetAgentsInfoQuery,
   useResendOtpMutation,
+  useToggleFavoriteMutation,
   useGetUserQuery,
   useSendMessageMutation,
   useGetAgentListingsQuery,

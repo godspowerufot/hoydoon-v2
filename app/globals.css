@@ -77,6 +77,8 @@ body {
   padding-left: 9px;
   margin-right: auto;
   margin-left: auto;
+  overflow-x: hidden;
+
 }
 
 

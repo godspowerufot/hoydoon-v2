@@ -168,7 +168,7 @@ export default function Home() {
               width={500} // Reduced size of logo
               height={500} // Reduced size of logo
                 src={"/app.svg"}
-                className="lg:w-[500px]"
+                className="lg:w-[500px] w-[200px]https://hoydoon-backend.azurewebsites.net/api/v1/favorites"
               />
               </span>
             </div>
@@ -355,7 +355,7 @@ export default function Home() {
 
       {/* testimonials */}
       <section className=" mt-7  w-full  lg:mt-[7%]  flex flex-1 justify-center items-center  flex-col   p-5 lg:p-0 font-bricolage ">
-        <div className="flex   flex-col lg:flex-row md:flex-row   2xl:gap-[14rem] lg:gap-[6rem]  justify-around items-center  ">
+        <div className="lg:flex  hidden flex-col lg:flex-row md:flex-row   2xl:gap-[14rem] lg:gap-[6rem]  justify-around items-center  ">
           <span className="flex flex-col  font-bricolage lg:ml-[1rem] 2xl:ml-[1rem]  gap-2">
             <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-3 ">
               Your Questions, Our Answers
@@ -382,14 +382,14 @@ export default function Home() {
           <div className="z-[4] relative max-md:w-full  lg:h-[50em]  lg:left-[30px] 2xl:left-[10px] lg:top-[11em]">
             <FAQComponent />
           </div>
-          <div className="relative lg:-ml-[7em] justify-center items-center  flex w-[255px] lg:w-auto">
+          <div className="relative ml-5 lg:-ml-[7em] justify-center items-center  flex w-[255px] lg:w-auto">
             <Image
               alt="image1"
               width={420}
               loading="lazy"
               height={500}
               src={"/q1.png"}
-              className="z-[3]  lg:w-[27rem] 2xl:w-[600px] rounded-[20px] relative  left-[0.5rem] 2xl:left-[2rem] h-[34rem]  object-cover "
+              className="z-[3]  w-[13rem] h-[21rem] lg:w-[27rem] 2xl:w-[600px] rounded-[20px] relative  left-[0.5rem] 2xl:left-[2rem] lg:h-[34rem]  object-cover "
             />{" "}
             <Image
               alt="image1"
@@ -397,7 +397,7 @@ export default function Home() {
               loading="lazy"
               height={300}
               src={"/q2.png"}
-              className=" z-2   bottom-[2em] lg:h-[30rem]  2 lg:w-[35rem]  w-[86px]  mt-[17%] lg:-top-[3rem] 2xl:-top-[3rem] lg:-left-[11em]  2xl:-left-[9rem] lg:mt-[11%] relative rounded-[20px]   object-cover "
+              className=" z-2  top-[0.5rem]  w-[12rem] h-[18rem]  bottom-[2em] lg:h-[30rem]   lg:w-[35rem]   2xl:mt-[17%] lg:-top-[3rem] 2xl:-top-[3rem] lg:-left-[11em] -left-[2em]  2xl:-left-[9rem] lg:mt-[11%]  relative rounded-[20px]   object-cover "
             />
           </div>
         </div>

@@ -73,7 +73,7 @@ const dispatch=useDispatch()
     <>
         <div className='flex items-center w-full justify-center'> 
 
- <div className=' h-screen justify-center mt-[3rem] items-center  flex  py-[1rem] 2xl:mt-[1.8rem]'>
+ <div className='h-full  lg:h-screen justify-center lg:mt-[3rem] items-center  flex  py-[1rem] 2xl:mt-[1.8rem]'>
     <div className=' gap-[4rem]   flex flex-1 flex-col lg:flex-row'>
           <Image
               alt="authBanner"
@@ -164,10 +164,11 @@ onChange={(e) => setfullname(e.target.value)}
 
 <Button  
 type="submit"
-onClick={handleSubmit} className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[3rem] p-4'
+onClick={handleSubmit} className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[2.4rem] lg:h-[3rem] p-4'
  disabled={isLoading}
 >
-  {isLoading ? 'Signing Up...' : 'Sign Up'}
+  
+<p className="text-[18px] lg:text-xl">{isLoading ? 'Signing Up...' : 'Sign Up'}</p>
 </Button>
 <div className='w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] '/>
 <div className='w-full text-black text-right font-[500] font-bricolage'>

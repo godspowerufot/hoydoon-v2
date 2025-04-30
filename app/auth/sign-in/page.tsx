@@ -66,7 +66,7 @@ if (err?.data?.error === "account is not active") {
   return (
     <>
       <div className="flex items-center w-full justify-center">
-        <div className=" h-screen justify-center items-center  flex  py-[1rem] 2xl:mt-[0.6rem]">
+        <div className="h-full lg:h-screen justify-center items-center  flex  py-[1rem] 2xl:mt-[0.6rem]">
           <div className=" gap-[4rem]   flex flex-1 flex-col lg:flex-row">
             <Image
               alt="authBanner"
@@ -79,7 +79,7 @@ if (err?.data?.error === "account is not active") {
               style={{ objectFit: "cover" }}
             />
 
-            <div className=" w-full lg:w-[50%] items-start mt-3 2xl:-mt-4  flex flex-col">
+            <div className=" w-full lg:w-[50%] items-start mt-[3rem] lg:mt-3 2xl:-mt-4  flex flex-col">
               <Link href="/" className="flex justify-start ml-[2rem]         ">
                 <Image
                   alt="logo"
@@ -103,7 +103,7 @@ if (err?.data?.error === "account is not active") {
                   Please log in to continue
                 </p>
 
-                <div className="2xl:mt-[2rem] mt-[1rem] flex flex-col gap-[1em] w-[80%] ">
+                <div className="2xl:mt-[2rem] mt-[1rem] flex flex-col gap-[1.5rem] lg:gap-[1em] w-[80%] ">
                   <Input
                     label="Email Address"
                     type="text"
@@ -138,17 +138,17 @@ if (err?.data?.error === "account is not active") {
                     <div className="flex items-center w-full 2xl:mt-2">
                       <label
                         id="rememberme"
-                        className="flex items-center text-grey-700 font-[300]   cursor-pointer"
+                        className="flex text-sm lg:text-base  w-[10em] lg:w-full items-center text-grey-700 font-[300]   cursor-pointer"
                       >
                         <input
                           name="rememberme"
                           type="checkbox"
-                          className="mr-2 rounded-lg h-[20px] w-[25px]  cursor-pointer"
+                          className="mr-2  rounded-lg h-[20px] w-[25px]  cursor-pointer"
                         />
                         Remember me
                       </label>
                     </div>
-                    <p className="text-primary font-meduim w-full   2xl:text-xl font-bricolage">
+                    <p className="text-primary font-meduim w-full  text-sm lg:text-base  2xl:text-xl font-bricolage">
                       {" "}
                       Forgot password{" "}
                     </p>
@@ -157,10 +157,11 @@ if (err?.data?.error === "account is not active") {
                   <Button
                     type="submit"
                     onClick={handleSubmit} // ✅ Correct way
-                    className="w-full 2xl:mt-2 mt-2 text-base 2xl:text-[1.3rem] h-[4rem] p-4"
+                    className="w-full 2xl:mt-2 lg:mt-2 text-base 2xl:text-[1.3rem] h-[2.5rem] lg:h-[3rem] p-4"
                     disabled={isLoading}
                   >
-                    {isLoading ? "Logging in..." : "Log in"}
+                   <p className="text-[18px] lg:text-xl">{isLoading ? "Logging in..." : "Log in"}
+                    </p> 
                   </Button>
 
                   <div className="w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] " />

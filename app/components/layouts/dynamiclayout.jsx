@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import PropertyGalleryModal from "./modals/property";
-const DynamicImageGrid = ({ images,coordinates, statuses = [] }) => {
+const DynamicImageGrid = ({ images,coordinates, statuses = [] ,listingId}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (!images || images.length === 0) return null;
@@ -104,6 +104,7 @@ const DynamicImageGrid = ({ images,coordinates, statuses = [] }) => {
       {renderLayout()}
       <PropertyGalleryModal
         image={images}
+        listingId={listingId}
         coordinates={coordinates}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
