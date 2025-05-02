@@ -109,7 +109,7 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="   p-2 w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="   p-3 lg:p-0  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   flex-col items-center justify-center">
           <div className="flex   lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
             <h1 className="text-black lg:pl-[4.5rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
@@ -151,7 +151,7 @@ export default function Home() {
       <div className="w-screen  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
 
       {/* afforable component */}
-      <section className="  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-start">
+      <section className=" p-3 lg:p-0   w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-start">
         <div className="flex   flex-col items-center justify-center">
           <div className="flex lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
             <h1 className="text-black lg:pl-[4.5rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
@@ -192,7 +192,7 @@ export default function Home() {
       </section>
       <div className="w-screen  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
 
-      <section className="  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className=" p-3 lg:p-0   w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   flex-col items-center justify-center">
           <div className="flex  lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
             <h1 className="text-black lg:pl-[4.5rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
@@ -234,7 +234,7 @@ export default function Home() {
       <div className="w-screen  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
       {/* luxury */}
 
-      <section className="  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="  w-full p-3 lg:p-0 font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   flex-col items-center justify-center">
           <div className="flex lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
             <h1 className="text-black lg:pl-[4.5rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">

@@ -97,7 +97,7 @@ body {
 @media (max-width: 768px) {
   .container {
     width: 100%;
-padding: 9px;
+padding: 13px;
   }
   html,body{
     overflow-x: hidden;
