@@ -69,7 +69,7 @@ export default function Home() {
       {/* explore */}
       <section className="mt-4  2xl:mt-5  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col md:flex-row  2xl:gap-[10rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
+          <div className="flex   p-2 flex-col md:flex-row  2xl:gap-[10rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
             <h1 className="text-black lg:-pl-[1rem]   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               Newest Listings
             </h1>
@@ -79,7 +79,7 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col ">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
@@ -130,7 +130,7 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col ">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
               {[...displayListings]
                 ?.slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 ?.sort(() => Math.random() - 0.5)
@@ -165,7 +165,7 @@ export default function Home() {
       </section>
       {/*  upcoming houdes*/}
       <section className="lg:mt-10   2xl:my-[2em] lg:my-[2em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   w-[92%]  2xl:w-[95rem] flex-col items-center justify-center">
+        <div className="flex   lg:w-[92%]  2xl:w-[95rem] flex-col items-center justify-center">
           <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[10%] lg:my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
             <h1 className="text-black lg:ml-4  2xl:pl-[2rem] xxl:pl-[3rem] text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               {" "}
@@ -177,7 +177,7 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col ">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
@@ -218,7 +218,7 @@ export default function Home() {
       {/* testimonials */}
       <section className="lg:mt-10  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex  lg:w-[100%]  xxl:w-[89%]    2xl:w-full flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row  my-[2rem] lg:flex-row     justify-end items-center  md:items-start ">
+          <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row  lg:my-[2rem] lg:flex-row     justify-end items-center  md:items-start ">
             <h1 className="text-black  text-[26px] xl:ml-[3.2rem] 2xl:ml-[0rem] lg:text-[2.5rem] font-[600]   w-full ">
               {" "}
               Single Family Homes for Rent
@@ -229,7 +229,7 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col ">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 ?.map((items: Property, index: number) => (
