@@ -169,8 +169,8 @@ export default function Home() {
 
             <section className="   lg:mt-[4em] p-5 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
             <div className="flex flex-col   items-start justify-center">
-              <div className="flex lg:ml-[4rem] 2xl:ml-[2.2rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
-              <h1 className="text-black text-[26px] 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full">
+              <div className="flex lg:ml-[4rem] 2xl:ml-[2.2rem] flex-col md:flex-row lg:my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
+              <h1 className="text-black text-[24px] 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full">
                 Featured Properties for Rent
               </h1>
               <p className="text-gray text-sm lg:-ml-[10rem] 2xl:mr-[4rem]  lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
@@ -202,7 +202,7 @@ export default function Home() {
 
             <section className="mt-5 w-screen     lg:my-[4em] lg:w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
             <div className="flex lg:max-w-[87rem] 2xl:max-w-[90rem]    flex-col items-center justify-center">
-            <div className="flex  p-5 lg:p-0 lg:ml-[5rem] xxl:ml-[7rem]  2xl:ml-[1rem] flex-col md:flex-row my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
+            <div className="flex  p-5 lg:p-0 lg:ml-[5rem] xxl:ml-[7rem]  2xl:ml-[1rem] flex-col md:flex-row lg:my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
               <h1 className="text-black text-[24px] lg:text-[2.5rem] font-[600] w-full">
               Explore Luxurious Living Spaces 
               </h1>
@@ -218,7 +218,7 @@ export default function Home() {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center", // Ensures the image is centered
             }}
-            className="mt-[1rem] rounded-none  hidden lg:block relative p-8 2xl:w-[88rem] 2xl:h-[47rem]   lg:w-[73rem] h-[40rem] lg:rounded-2xl"
+            className="lg:mt-[1rem] rounded-none  hidden lg:block relative p-8 2xl:w-[88rem] 2xl:h-[47rem]   lg:w-[73rem] h-[40rem] lg:rounded-2xl"
           >
             <div className="absolute rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  lg:rounded-2xl" />
             <div className=" lg:-ml-[0.7rem] 2xl:ml-[2rem]  z-111 absolute    bg-primarytransparent p-5 2xl:p-10 rounded-2xl 2xl:mt-[20rem] lg:mt-[16rem] h-fit   w-fit">
@@ -321,11 +321,11 @@ export default function Home() {
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
   }}
-  className="mt-[1rem] lg:hidden relative p-4 sm:p-6 lg:p-8 w-full max-w-full lg:w-[73rem] h-[26rem] 2xl:w-[88rem] 2xl:h-[47rem] "
+  className="lg:mt-[1rem] lg:hidden relative p-4 sm:p-6 lg:p-8 w-full max-w-full lg:w-[73rem] h-[26rem] 2xl:w-[88rem] 2xl:h-[47rem] "
 >
   <div className="absolute inset-0 bg-black opacity-15 transition-opacity duration-500 " />
   
-  <div className="lg:-ml-[0.7rem] 2xl:ml-[2rem] z-111 absolute bg-primarytransparent p-2 sm:p-2 2xl:p-10 2xl:mt-[20rem] rounded-2xl top-[50%] right-0 h-fit w-full">
+  <div className="lg:-ml-[0.7rem] 2xl:ml-[2rem] z-111 absolute bg-primarytransparent p-2 sm:p-2 2xl:p-10 2xl:mt-[20rem] rounded-2xl top-[46%] right-0 h-fit w-full">
     <div className="bg-white px-3 pt-3 sm:p-6 lg:p-8 rounded-2xl h-fit w-full max-w-full lg:w-[56rem] 2xl:w-[65rem]">
       <h1 className="text-black text-[0.9rem] sm:text-base lg:text-2xl 2xl:text-[2rem] font-[600]">
         Laurel Canyon Nest
@@ -445,7 +445,7 @@ export default function Home() {
             </Button>
           </span>
         </div>
-        <div className=" w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:w-[90%] auto-rows-auto">
+        <div className="mt-5 lg:mt-0 w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:w-[90%] auto-rows-auto">
   <span className="mt-[10rem]    hidden lg:flex gap-y-5 flex-col ">
   <TestimonialCard />
   <TestimonialCard />
@@ -534,9 +534,8 @@ export default function Home() {
       </section>
 
 
-      <section className="-mt-[4rem]">
       {/* New-articles */}
-      <ArticlesSection /></section>
+      <ArticlesSection />
     </>
   );
 }

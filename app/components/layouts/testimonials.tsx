@@ -22,7 +22,7 @@ export default function TestimonialCard() {
       </div>
 
       {/* Testimonial Text */}
-      <p className="text-[#8F8F8F] font-400 font-bricolage  font-medium lg:text-[12px] mt-4 leading-relaxed">
+      <p className="text-[#8F8F8F] font-[300] font-bricolage  lg:font-medium lg:text-[12px] mt-4 leading-relaxed">
         “The services was exceptional! From start to finish, the team made the
         process smooth and stress-free. I found the perfect place to call home,
         and I couldn’t be happier.”
