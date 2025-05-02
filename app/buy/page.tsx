@@ -109,9 +109,9 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="   p-3 lg:p-0  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="    lg:p-0  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   flex-col items-center justify-center">
-          <div className="flex   lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
+          <div className="flex   lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
             <h1 className="text-black lg:pl-[4.5rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               Lagos Houses for Sale
             </h1>
@@ -142,19 +142,19 @@ export default function Home() {
                 ))}
             </div>
 
-            <p className="text-[#09858D]   mt-4 lg:ml-7 2xl:ml-6  2xl:mt-8   text-2xl font-[500] ">
+            <p className="text-[#09858D]  text-base  mt-4 lg:ml-7 2xl:ml-6  2xl:mt-8   lg:text-2xl font-[500] ">
               See all {displayListings.length} Lagos houses for sale
             </p>
           </div>
         </div>
       </section>
-      <div className="w-screen  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
 
       {/* afforable component */}
-      <section className=" p-3 lg:p-0   w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-start">
+      <section className=" p-1 lg:p-0   w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-start">
         <div className="flex   flex-col items-center justify-center">
-          <div className="flex lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
-            <h1 className="text-black lg:pl-[4.5rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
+          <div className="flex lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
+            <h1 className="text-black lg:pl-[4.5rem]  text-[24px] lg:text-[2.5rem] font-[600]   w-full ">
               Afforable Houses for Sale
             </h1>
             <p className="text-gray  lg:pr-5 text-base lg:text-xl font-bricolage w-full lg:w-[55rem] ">
@@ -184,21 +184,24 @@ export default function Home() {
                 ))}
             </div>
 
-            <p className="text-[#09858D]   lg:ml-7 2xl:ml-6  2xl:mt-8   text-2xl font-[500] ">
+            <p className="text-[#09858D]   text-base lg:ml-7 2xl:ml-6  2xl:mt-8   lg:text-2xl font-[500] ">
               See all {displayListings.length} Afforable houses for sale
             </p>
           </div>
         </div>
       </section>
-      <div className="w-screen  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
 
-      <section className=" p-3 lg:p-0   w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className=" p-1 lg:p-0   w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   flex-col items-center justify-center">
-          <div className="flex  lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
-            <h1 className="text-black lg:pl-[4.5rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
+          <div className="flex  lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
+            <h1 className="text-black hidden lg:block lg:pl-[4.5rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               Upcoming Open Houses for Sale
             </h1>
-            <p className="text-gray  lg:pr-5 text-base lg:text-xl font-bricolage w-full lg:w-[55rem] ">
+            <h1 className="text-black  text-[23px] block lg:hidden lg:pl-[4.5rem]   lg:text-[2.5rem] font-[600]   w-full ">
+              Upcoming Open Houses 
+            </h1>
+            <p className="text-gray text-sm  lg:pr-5 lg:text-xl font-bricolage w-full lg:w-[55rem] ">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
@@ -225,16 +228,16 @@ export default function Home() {
                 ))}
             </div>
 
-            <p className="text-[#09858D]   lg:ml-7 2xl:ml-6  2xl:mt-8   text-2xl font-[500] ">
+            <p className="text-[#09858D] text-base  lg:ml-7 2xl:ml-6  2xl:mt-8   lg:text-2xl font-[500] ">
               See all {displayListings.length} open houses for sale
             </p>
           </div>
         </div>
       </section>
-      <div className="w-screen  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  hidden lg:block mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
       {/* luxury */}
 
-      <section className="  w-full p-3 lg:p-0 font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="  hidden  w-full p-1 lg:p-0 font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   flex-col items-center justify-center">
           <div className="flex lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
             <h1 className="text-black lg:pl-[4.5rem]  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
@@ -273,13 +276,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="w-screen  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
       {/* testimonials */}
 
       <section className="    font-bricolage lg:flex  justify-center flex-col flex-1 items-center ">
-        <div className="flex  gap-[4%]  2xl:w-[95rem] flex-col  w-full lg:w-[90%] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+        <div className="flex  gap-[4%]  2xl:w-[95rem] flex-col-reverse  w-full lg:w-[90%] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex  p-4 flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
-            <h1 className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
+            <h1 className="text-black  mt-4 lg:mt-0 text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Get the Local Information
             </h1>
             <p className="text-gray text-sm lg:text-xl mt-3 2xl:mt-[1em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">

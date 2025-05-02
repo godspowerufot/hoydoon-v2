@@ -33,7 +33,7 @@ const PropertyCard = ({
   return (
     <Link href={`/rent/${_id}`}>
       <div
-        className={`flex flex-col rounded-[16px] lg:rounded-[1.5rem]  border-[1px] border-gray 2xl:h-[40rem]  h-[36rem] lg:h-[500px] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden lg:ml-8 relative group transition-all duration-[1500ms] ease-in-out ${
+        className={`flex flex-col rounded-[16px] lg:rounded-[1.5rem]  border-[1px] border-gray 2xl:h-[40rem]  h-[32rem] lg:h-[500px] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden lg:ml-8 relative group transition-all duration-[1500ms] ease-in-out ${
           isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : " border lg:border-none"
         }`}
         onMouseEnter={() => setIsHovered(true)}
@@ -108,7 +108,7 @@ const PropertyCard = ({
                       </span>
                     </div>
         
-                    <p className="text-gray w-[20rem] text-[14px] mt-4">
+                    <p className="text-gray w-[16rem] text-[14px] mt-4">
                       {truncateDescription(description, 10)}
                     </p>
         
