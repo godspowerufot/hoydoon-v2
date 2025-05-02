@@ -1,3 +1,4 @@
+/* eslint-disable */
 import NextAuth from 'next-auth';
 import FacebookProvider from 'next-auth/providers/facebook';
 import AppleProvider from 'next-auth/providers/apple';

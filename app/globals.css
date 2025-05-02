@@ -42,7 +42,6 @@
   }}
 /* Ensure the html and body take full height */
 html, body {
-
 margin: auto;
 height: 100vh;
 }
@@ -65,8 +64,17 @@ html {
 
 body {
   color: black;
-  background: #F4F4F4;
+  background: #F4F4F4;overflow-x: hidden;
   font-family:'Bricolage Grotesque' Arial, Helvetica, sans-serif;
+}
+/* global.css or a module.css file */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 
@@ -86,12 +94,12 @@ body {
 
 
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .container {
-    width: 95%;
-
+    width: 100%;
+padding: 9px;
   }
-  body{
+  html,body{
     overflow-x: hidden;
   }
 }

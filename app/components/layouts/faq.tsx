@@ -37,8 +37,9 @@ const FAQComponent: React.FC = () => {
   };
 
   return (
+    <>
 <section
-  className={`bg-[#eeeeee] max-md:w-full lg:w-[440px] 2xl:w-[34rem] rounded-[20px]  p-6 2xl:p-9 mx-auto transition-all duration-500 ease-in-out ${
+  className={`bg-[#eeeeee] hidden lg:block w-full lg:w-[440px] 2xl:w-[34rem] rounded-[20px]  p-6 2xl:p-9 mx-auto transition-all duration-500 ease-in-out ${
     openIndex === 0 ? 'h-auto min-h-[450px]' : 'h-[420px]'
   }`}
 >
@@ -97,6 +98,68 @@ const FAQComponent: React.FC = () => {
         ))}
       </div>
     </section>
+      <section
+      className={`bg-[#eeeeee] lg:hidden block w-full lg:w-[440px] 2xl:w-[34rem] rounded-[20px] p-6 2xl:p-9 mx-auto min-h-[450px] transition-all duration-500 ease-in-out`}
+    >
+      <h2 className="text-[25px] font-[500] text-[#1E1E1E] mt-2">
+        Find Your Answers Here
+      </h2>
+      <div className="space-y-4">
+        {faqs.map((faq, index) => (
+          <div key={index} className="mt-[22px]">
+            {/* Question Button */}
+            <button
+              onClick={() => toggleFAQ(index)}
+              className="flex justify-between items-center w-full focus:outline-none text-left"
+            >
+              <h3 className="text-[18px] 2xl:text-xl my-[5px] font-[400] text-gray-800">
+                {faq.question}
+              </h3>
+              <span className="text-gray-500">
+                {openIndex === index ? (
+                  <Image
+                    alt="minus icon"
+                    width={15}
+                    height={15}
+                    src="/minus.png"
+                    priority
+                    quality={100}
+                    objectFit="cover"
+                  />
+                ) : (
+                  <Image
+                    alt="plus icon"
+                    width={15}
+                    height={15}
+                    src="/plus.png"
+                    priority
+                    quality={100}
+                    objectFit="cover"
+                  />
+                )}
+              </span>
+            </button>
+
+            {/* Horizontal line */}
+            {index !== faqs.length - 1 && (
+              <div className="w-full h-[2px] bg-[#D9D9D9]" />
+            )}
+
+            {/* Answer Section */}
+            {openIndex === index && (
+              <div
+                className={`mt-2 font-[400] text-[15px] text-[#8F8F8F] ${
+                  index !== faqs.length - 1 && 'mb-6'
+                }`}
+              >
+                {faq.answer}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+    </>
   );
 };
 

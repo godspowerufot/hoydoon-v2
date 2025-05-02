@@ -98,8 +98,8 @@ const SearchBar = () => {
         </div>
       </div>
     </div>
-    <div className="flex h-[10px] lg:hidden justify-center items-center w-full px-4 py-2">
-  <div className="flex items-center w-full bg-white rounded-full shadow-md px-4 py-2">
+    <div className="flex  lg:hidden justify-center items-center w-full px-1 py-1">
+  <div className="flex  items-center w-full bg-white rounded-full h-[2.4em] px-2 py-1">
     <input
       type="text"
       name="location"
@@ -112,7 +112,7 @@ const SearchBar = () => {
       onClick={handleSearch}
       className="ml-2 bg-primary p-2 rounded-full flex items-center justify-center hover:bg-opacity-90"
     >
-      <Image alt="Search" width={18} height={18} src="/search.png" />
+      <Image alt="Search" width={15} height={15} src="/search.png" />
     </button>
   </div>
 </div>

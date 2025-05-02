@@ -8,9 +8,50 @@ import Button from '../common/Button';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import ListingNavbar from './listingnavbar';
 import HelpCenterNavbar from './Helpnavbar';
-
 import { useLogoutMutation } from '@/store/slices/api/authapi';
 import { getAccessToken } from '@/utils/cookies';
+
+const MobileNavbar = () => {
+  return (
+    <nav className="flex items-center justify-between px-4 py-3 bg-white shadow-md lg:hidden">
+      {/* Logo */}
+      <div className="flex items-center space-x-2">
+      <Image
+                  alt="logo"
+                  width={30}
+                  priority
+                  quality={100}
+                  height={30}
+                  src={'/Logo.svg'}
+                />
+        <span className="font-semibold text-gray-800 text-[16px]">Hoydoon</span>
+      </div>
+
+    <div className='flex gap-3'>
+      <Button className="bg-[#008D8D] text-white text-sm px-4 py-[8px] rounded-full font-medium">
+        Download App
+      </Button>
+
+      {/* Hamburger Menu */}
+      <button className="text-gray-800 focus:outline-none">
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      </div>  {/* Download App Button */}
+
+    </nav>
+  );
+};
+
+
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -180,6 +221,11 @@ export default function Navbar() {
           </div>
         </nav>
       )}
+
+      {
+<MobileNavbar/>
+        
+      }
     </>
   );
 }
