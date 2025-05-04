@@ -10,7 +10,7 @@ import ListingNavbar from './listingnavbar';
 import HelpCenterNavbar from './Helpnavbar';
 import { useLogoutMutation } from '@/store/slices/api/authapi';
 import { getAccessToken } from '@/utils/cookies';
-
+import { toast } from 'react-toastify';
 const MobileNavbar = () => {
   return (
     <nav className="flex items-center justify-between px-4 py-3 bg-white shadow-md lg:hidden">
@@ -59,7 +59,22 @@ export default function Navbar() {
   // Fetch user data
   const isAuthenticated = getAccessToken();
   const [logout] = useLogoutMutation();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
+
+  const handlelogout = async () => {
+    setIsLoggingOut(true);
+  
+    try {
+      await logout(null); // wait for mutation
+      toast.success("Logged out successfully");
+      window.location.href = "/auth/sign-in";
+    } catch (error) {
+      toast.error("Logout failed. Try again.");
+      setIsLoggingOut(false);
+    }
+  };
+  
   // Check routes to show/hide navbar
   const hideNavbar = pathname.startsWith("/rent/listing") || /^\/agent\/[^/]+$/.test(pathname)||/^\/rent\/[^/]+$/.test(pathname); // Hide on /agent/[id]
   const hideAuth = pathname.startsWith("/auth");
@@ -149,13 +164,17 @@ export default function Navbar() {
               {isAuthenticated? (
                 // Logout button when user is logged in
                 <button
-                  onClick={async () => await logout()}
-                  className={`p-1 w-[92px] rounded-full border-[1px]   font-[300]  text-base  ${
-                    scrolled ? "border-primary border-solid text-primary  bg-white" : "bg-primary border-none text-white"
-                  }`}
-                >
-                  Logout
-                </button>
+  onClick={handlelogout}
+  disabled={isLoggingOut}
+  className={`px-4 py-1 rounded-full border-[1px] font-[300] text-base transition-all duration-200 ${
+    scrolled
+      ? "border-primary border-solid text-primary bg-white"
+      : "bg-primary border-none text-white"
+  } ${isLoggingOut ? "opacity-50 cursor-not-allowed" : ""}`}
+>
+  {isLoggingOut ? "Logging out..." : "Logout"}
+</button>
+
               ) : (
                 // Login & Register buttons when user is not logged in
                 <>

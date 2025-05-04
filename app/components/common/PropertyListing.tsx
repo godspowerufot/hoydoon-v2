@@ -22,16 +22,16 @@ interface PropertyCardProps {
 }
 
 const PropertyListCard: React.FC<PropertyCardProps> = ({
-  imageSrc = "/default-image.jpg",
-  altText = "Property Image",
-  price = "N/A",
-  area = "N/A",
-  description = "No description available",
-  title = "Untitled Property",
-  bathrooms,
-  bedrooms,
+  imageSrc = "_",
+  altText = "_",
+  price = "_",
+  area = "_",
+  description = "_",
+  title = "_",
+  bathrooms="_",
+  bedrooms="_",
   _id,
-  squareFeet = ""
+  squareFeet = "_"
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -93,8 +93,8 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
           </h1>
 
           <span className="flex-col flex mt-3">
-            <span className="flex gap-1 items-center">
-              <span className="flex items-center">
+            <span className="flex gap-1 justify-between items-center">
+              <span className="flex  items-center">
                 <h2 className="font-bold lg:text-[23px]">${price}.00</h2>
                 <p className="text-gray mt-[2px] font-[400] text-[14px]">/mth</p>
               </span>

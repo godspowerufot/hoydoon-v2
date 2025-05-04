@@ -7,10 +7,17 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Button from "../common/Button";
+import { useLogoutMutation } from "@/store/slices/api/authapi";
+import { getAccessToken } from "@/utils/cookies";
+import { toast } from "react-toastify";
 
 export default function ListingNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const router=useRouter()
+  const router=useRouter();
+  const isAuthenticated = getAccessToken();
+  const [logout] = useLogoutMutation();
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
+  
 const [formData, setFormData] = useState({
     location: "",
   
@@ -19,6 +26,21 @@ const [formData, setFormData] = useState({
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+ 
+  
+  
+ const handlelogout = async () => {
+    setIsLoggingOut(true);
+  
+    try {
+      await logout(null); // wait for mutation
+      toast.success("Logged out successfully");
+      window.location.href = "/auth/sign-in";
+    } catch (error) {
+      toast.error("Logout failed. Try again.");
+      setIsLoggingOut(false);
+    }
+  };
   const handleSearch = () => {
     const queryParams = new URLSearchParams({
       ...(formData.location && { location: formData.location }),
@@ -26,6 +48,8 @@ const [formData, setFormData] = useState({
 
     router.push(`/rent/searchlisting?${queryParams}`);
   };
+  
+
 
   return (
     <>
@@ -67,27 +91,48 @@ const [formData, setFormData] = useState({
               </div>
             </div>
 
-            {/* Center: Navigation Links */}
-            <ul className="hidden lg:flex space-x-6 2xl:-mr-[33rem]  -mr-[16rem]  justify-center items-center text-[#8F8F8F] text-[1rem]">
-              <li className="flex  gap-2  items-center justify-center"><Link href="/buy" className="hover:text-primary">Buy</Link>  <img src="/arrow-down.png" alt="Back" className="w-3 h-2 mt-1" /></li>
-              <li className="flex  gap-2 items-center justify-center"><Link href="/sell" className="hover:text-primary">Sell</Link>  <img src="/arrow-down.png" alt="Back" className="w-3  h-2 mt-1" /></li>
-              <li className="flex gap-2 items-center justify-center"><Link href="/agent" className="hover:text-primary">Find an agent</Link>  <img src="/arrow-down.png" alt="Back" className="w-3  h-2 mt-1" />   </li>
-            </ul>
+          {/* Center: Navigation Links + Auth Buttons */}
+<div className="hidden lg:flex items-center gap-x-6">
+  {/* Navigation Links */}
+  <ul className="flex space-x-6 text-[#8F8F8F] text-[1rem]">
+    <li>
+      <Link href="/buy" className="hover:text-primary">Buy</Link>
+    </li>
+    <li>
+      <Link href="/sell" className="hover:text-primary">Sell</Link>
+    </li>
+    <li>
+      <Link href="/agent" className="hover:text-primary">Find an agent</Link>
+    </li>
+  </ul>
 
-            {/* Right: Action Buttons */}
-            <div className="hidden lg:flex  justify-center items-center gap-3">
-            
-         <button className='bg-black      "flex   font-bricolage  rounded-full   flex justify-center items-center  text-white hover:bg-primary p-3  w-[92px] h-[37px] '>
-          
-          <Link href="/auth/sign-in" className='  text-white text-base'> {/* Reduced width and padding */}
-              Login
-            </Link></button> 
-          <Button  className='w-[7.5rem] p-2 h-[32px] '>
-          <Link href="/auth/sign-up"  className='font-light  text-base'> {/* Reduced width and padding */}
-            Register
-          </Link>
-          </Button>
-            </div>
+  {/* Auth Buttons */}
+  {isAuthenticated ? (
+    <button
+      onClick={handlelogout}
+      disabled={isLoggingOut}
+      className={`rounded-full border border-primary px-4 py-1 font-[300] text-base transition-all duration-200 ${
+        isLoggingOut
+          ? "bg-primary text-white opacity-50 cursor-not-allowed"
+          : "bg-primary text-white"
+      }`}
+    >
+      Logout
+    </button>
+  ) : (
+    <>
+      <button className="bg-black text-white hover:bg-primary px-4 py-1 rounded-full text-base font-bricolage">
+        <Link href="/auth/sign-in">Login</Link>
+      </button>
+      <Button className="px-4 py-1 h-[32px] rounded-full">
+        <Link href="/auth/sign-up" className="font-light text-base">
+          Register
+        </Link>
+      </Button>
+    </>
+  )}
+</div>
+
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden">
@@ -111,9 +156,15 @@ const [formData, setFormData] = useState({
               <li className="py-3"><Link href="/agent" onClick={() => setMenuOpen(false)}>Find an agent</Link></li>
             </ul>
             <div className="text-center mt-5">
-              <Link href="/auth/sign-in" className="block bg-black text-white py-2 px-5 rounded-md my-2">Login</Link>
-              <Link href="/auth/sign-up" className="block bg-primary text-white py-2 px-5 rounded-md">Register</Link>
-            </div>
+  {isAuthenticated ? (
+    <button onClick={handlelogout} className="block bg-black text-white py-2 px-5 rounded-md my-2">Logout</button>
+  ) : (
+    <>
+      <Link href="/auth/sign-in" className="block bg-black text-white py-2 px-5 rounded-md my-2">Login</Link>
+      <Link href="/auth/sign-up" className="block bg-primary text-white py-2 px-5 rounded-md">Register</Link>
+    </>
+  )}
+</div>
           </div>
         </nav>
     

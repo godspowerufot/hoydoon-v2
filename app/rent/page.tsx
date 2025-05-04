@@ -43,7 +43,7 @@ export default function Home() {
         ></div>
 
         {/* Content Section */}
-        <div className="flex flex-col items-center relative z-[1]  mt-[6rem]   gap-4 h-full ">
+        <div className="flex flex-col items-center relative z-[1]  mt-[6rem]   lg:gap-4 h-full ">
           {/* Main Heading */}
           <h1 className="text-white text-center w-[20rem]   relative  font-bricolage font-semibold leading-tight  text-[2.1em] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Find Your Future, Feel at Home!{" "}
@@ -73,7 +73,7 @@ export default function Home() {
             <h1 className="text-black lg:-pl-[1rem]   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               Newest Listings
             </h1>
-            <p className="text-gray  lg:pr-5 text-base lg:text-xl font-bricolage w-full lg:w-[55rem] 2xl:w-[60rem] ">
+            <p className="text-gray  lg:pr-5 text-sm lg:text-xl font-bricolage w-full lg:w-[55rem] 2xl:w-[60rem] ">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
@@ -107,7 +107,7 @@ export default function Home() {
                     />
                 ))}
             </div>
-            <p className="text-[#09858D]  text-base  lg:ml-6 2xl:ml-8 2xl:my-5 lg:text-2xl font-[500] ">
+            <p className="text-[#09858D]  text-sm  lg:ml-6 2xl:ml-8 2xl:my-5 lg:text-2xl font-[500] ">
               see {displayListings.length} new listings for rent
             </p>
           </div>
@@ -165,13 +165,13 @@ export default function Home() {
       </section>
       {/*  upcoming houdes*/}
       <section className="lg:mt-10   2xl:my-[2em] lg:my-[2em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   lg:w-[92%]  2xl:w-[95rem] flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[10%] lg:my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+        <div className="flex   lg:w-[92%]   2xl:w-[95rem] flex-col items-center justify-center">
+          <div className="flex    p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[10%] lg:my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
             <h1 className="text-black lg:ml-4  2xl:pl-[2rem] xxl:pl-[3rem] text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               {" "}
               pet-friendly Rental
             </h1>
-            <p className="text-gray  lg:p-0 text-base lg:text-xl font-bricolage w-full lg:w-[50rem]">
+            <p className="text-gray  lg:p-0 text-sm lg:text-xl font-bricolage w-full lg:w-[50rem]">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
@@ -223,7 +223,7 @@ export default function Home() {
               {" "}
               Single Family Homes for Rent
             </h1>
-            <p className="text-gray  lg:p-0 text-base lg:text-xl font-bricolage w-full lg:w-[50rem]">
+            <p className="text-gray  text-sm lg:p-0 lg:text-xl font-bricolage w-full lg:w-[50rem]">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
@@ -256,7 +256,7 @@ export default function Home() {
                 ))}
             </div>
 
-            <p className="text-[#09858D]  text-base  lg:ml-[2.3rem] 2xl:ml-[2.5rem]  mt-5 lg:text-2xl font-[500] ">
+            <p className="text-[#09858D]  text-sm  lg:ml-[2.3rem] 2xl:ml-[2.5rem]  mt-5 lg:text-2xl font-[500] ">
               See all {displayListings.length} single family House rents for
               rent
             </p>

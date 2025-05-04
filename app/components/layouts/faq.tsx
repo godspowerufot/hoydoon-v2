@@ -112,7 +112,7 @@ const FAQComponent: React.FC = () => {
               onClick={() => toggleFAQ(index)}
               className="flex justify-between items-center w-full focus:outline-none text-left"
             >
-              <h3 className="text-[18px] 2xl:text-xl my-[5px] font-[400] text-gray-800">
+              <h3 className=" text-base lg:text-[18px] 2xl:text-xl my-[5px] font-[400] text-gray-800">
                 {faq.question}
               </h3>
               <span className="text-gray-500">
@@ -148,7 +148,7 @@ const FAQComponent: React.FC = () => {
             {/* Answer Section */}
             {openIndex === index && (
               <div
-                className={`mt-2 font-[400] text-[15px] text-[#8F8F8F] ${
+                className={`mt-2 font-[400]  text-sm lg:text-[15px] text-[#8F8F8F] ${
                   index !== faqs.length - 1 && 'mb-6'
                 }`}
               >

@@ -60,7 +60,7 @@ export default function ContactAgent({ fullname, location, profileimage, listedB
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="w-full outline-none h-[10rem] font-light text-xl border-none focus:ring-0 text-gray-500"
+          className="w-full  outline-none h-[10rem] font-light text-xl border-none focus:ring-0 text-black"
           placeholder="Write a message..."
         />
         {/* Optional: Quick Replies */}

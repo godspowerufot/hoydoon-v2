@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
-import FAQComponent from "./components/layouts/faq";
 import PropertyCard from "./components/common/property";
 import ArticlesSection from "./components/common/Article";
 import { useEffect } from "react";
@@ -12,6 +11,7 @@ import SearchBar from "./components/common/searchcomponent";
 import {useIsMobile} from "@/hooks/usemobile"
 import Button from "./components/common/Button";
 import TestimonialCard from "./components/layouts/testimonials";
+import FagsSection  from "../app/components/layouts/FaqSection"
 
 export default function Home() {
   const { data: allListings, isLoading: isAllLoading, refetch } = useGetAllListingsQuery( );
@@ -42,7 +42,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative  h-[60vh] lg:h-[100vh] p-2 lg:p-0 w-screen overflow-hidden">
+      <header className="relative  h-[40vh] lg:h-[100vh] p-2 lg:p-0 w-screen overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-full h-full  bg-cover bg-center z-[-1]"
@@ -52,7 +52,7 @@ export default function Home() {
         {/* Content Section */}
         <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] mt-[4rem]  p-3 lg:p-0  gap-4 h-full ">
           {/* Main Heading */}
-          <h1 className="text-white text-center w-[20rem]   relative  font-bricolage font-semibold leading-tight  text-[2.1em] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
+          <h1 className="text-white text-center w-[20rem]   relative  font-bricolage font-semibold leading-tight  text-[2.1em] lg:text-[clamp(4em,4vw,4em)] lg:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
             Where Every House Feels Like Home
           </h1>
 
@@ -113,17 +113,17 @@ export default function Home() {
       <section className=" w-screen  p-5 lg:p-0 font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
         <div className="flex  gap-[4%] flex-col-reverse 2xl:pl-[3.4em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
-            <h1 className="text-black  text-[24px]  mt-3 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
+            <h1 className="text-black  text-[24px]  mt-4 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Find your ideal property with simple tools and guidance.
             </h1>
-            <p className="text-gray text-sm lg:text-xl  mt-1 lg:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
+            <p className="text-gray text-sm lg:text-xl  mt-4 lg:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
               Enjoy fast and easy access to a variety of properties that suit
               your needs. Use our smart filters to find the perfect places
               within your budget and preferences. We’ve done the hard work for
               you, so no need to stress about the search.
             </p>
 
-            <Button className="text-base font-light mt-5 ">
+            <Button className="text-base font-light mt-4 ">
               <Link href="/explore">Explore</Link>
             </Button>
           </span>
@@ -167,13 +167,13 @@ export default function Home() {
             </div>
             </section>
 
-            <section className="   lg:mt-[4em] p-5 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+            <section className="   lg:mt-[4em] p-2 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
             <div className="flex flex-col   items-start justify-center">
               <div className="flex lg:ml-[4rem] 2xl:ml-[2.2rem] flex-col md:flex-row lg:my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
               <h1 className="text-black text-[24px] 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full">
                 Featured Properties for Rent
               </h1>
-              <p className="text-gray text-sm lg:-ml-[10rem] 2xl:mr-[4rem]  lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
+              <p className="text-gray my-4 text-sm lg:-ml-[10rem] 2xl:mr-[4rem]  lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
                 Discover a home where every detail enhances your lifestyle crafted to fit your taste and needs.
               </p>
               </div>
@@ -193,7 +193,7 @@ export default function Home() {
           rent={items?.item.rent || "Rent details not provided"}
         />
       ))}
-        <Link  href="/" className="text-[#09858D] lg:hidden my-5 text-2xl font-[500] ">
+        <Link  href="/" className="text-[#09858D] lg:hidden  my-4 text-sm lg:my-5 lg:text-2xl font-[500] ">
               see {displayListings.length} lagos housing for sale
             </Link>
     </div>
@@ -206,7 +206,7 @@ export default function Home() {
               <h1 className="text-black text-[24px] lg:text-[2.5rem] font-[600] w-full">
               Explore Luxurious Living Spaces 
               </h1>
-              <p className="text-gray lg:-ml-[10rem] 2xl:mr-[4rem] text-base lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
+              <p className="text-gray lg:-ml-[10rem] 2xl:mr-[4rem] text-sm lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
                 Discover a home where every detail enhances your lifestyle crafted to fit your taste and needs.
               </p>
               </div>
@@ -433,7 +433,7 @@ export default function Home() {
             </p>
           </span>
           <span className=" hidden lg:flex flex-col font-bricolage gap-3 ">
-            <p className="text-gray  lg:p-0 text-base 2xl:text-[20px] lg:text-xl font-bricolage w-full lg:w-[24em]">
+            <p className="text-gray  lg:p-0 text-sm 2xl:text-[20px] lg:text-xl font-bricolage w-full lg:w-[24em]">
               Discover a home where every detail enhances your lifestyle—crafted
               to fit your taste and needs.
             </p>
@@ -468,70 +468,7 @@ export default function Home() {
       </section>
 
       {/* testimonials */}
-      <section className=" mt-[20px]  w-full  lg:mt-[7%]   flex flex-1 justify-center items-center  flex-col   p-2 lg:p-0 font-bricolage ">
-        <div className="lg:flex  hidden flex-col lg:flex-row md:flex-row   2xl:gap-[14rem] lg:gap-[6rem]  justify-around  items-start lg:items-center  ">
-          <span className="flex flex-col  font-bricolage lg:ml-[1rem] 2xl:ml-[1rem]  gap-2">
-            <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-3 ">
-              Your Questions, Our Answers
-            </h1>
-            <p className="text-gray   lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-[30em]">
-              Whether you’re curious about our services, need help with specific
-              issues..
-            </p>
-          </span>
-          <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
-            <p className="text-gray    lg:p-0 text-base lg:text-xl font-bricolage w-full lg:w-[25em]">
-              Welcome to our FAQ center, where you can find answers to all your
-              most pressuring questions
-            </p>
-            <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px] ">
-              <p className="text-gray" >
-                {" "}
-                Explore{" "}
-              </p>
-            </Button>
-          </span>
-        </div>
-        <div className="-mt-[3rem]  lg:ml-[8rem] 2xl:ml-[4rem]  justify-center items-center max-md:w-full w-full gap-6 flex flex-col-reverse max-md:justify-center max-md:items-center lg:flex-row ">
-   
-          <div className="z-[4] lg:block relative max-md:w-full  lg:h-[50em]  lg:left-[30px] 2xl:left-[10px] lg:top-[11em]">
-          <div className="lg:hidden flex  flex-col lg:flex-row md:flex-row   2xl:gap-[14rem] lg:gap-[6rem]  justify-around items-start lg:items-center  ">
-          <span className="flex flex-col  font-bricolage lg:ml-[1rem] 2xl:ml-[1rem]  gap-2">
-            <h1 className="text-black  text-[1.5rem] 2xl:text-5xl font-[600] mr-3 ">
-              Your Questions, Our Answers
-            </h1>
-           
-          </span>
-          <span className=" flex flex-col  my-4 mb-8 font-bricolage gap-3 text-gray">
-            <p className="text-gray     font-[300] lg:p-0 text-[1.1rem] lg:text-xl font-bricolage w-full lg:w-[25em]">
-              Welcome to our FAQ center, where you can find answers to all your
-              most pressuring questions
-            </p>
-        
-          </span>
-        </div>
-            <FAQComponent />
-          </div>
-          <div className="relative mt-[4rem] lg:0 ml-10 lg:-ml-[7em] justify-center items-center  flex w-3/5 lg:w-auto">
-            <Image
-              alt="image1"
-              width={420}
-              loading="lazy"
-              height={500}
-              src={"/q1.png"}
-              className="z-[3]  w-[16rem] h-[21rem] lg:w-[27rem] 2xl:w-[600px] rounded-[20px] relative  left-[0.5rem] 2xl:left-[2rem] lg:h-[34rem]  object-cover "
-            />{" "}
-            <Image
-              alt="image1"
-              width={400}
-              loading="lazy"
-              height={300}
-              src={"/q2.png"}
-              className=" z-2  top-[0.5rem]  w-[12rem] h-[18rem]  bottom-[2em] lg:h-[30rem]   lg:w-[35rem]   2xl:mt-[17%] lg:-top-[3rem] 2xl:-top-[3rem] lg:-left-[11em] -left-[2.8em]  2xl:-left-[9rem] lg:mt-[11%]  relative rounded-[20px]   object-cover "
-            />
-          </div>
-        </div>
-      </section>
+     <FagsSection/>
 
 
       {/* New-articles */}

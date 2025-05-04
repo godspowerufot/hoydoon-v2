@@ -12,7 +12,7 @@ const PropertyCard = ({
   _id, 
   bathrooms,
   bedrooms,
-  area = "N/A", 
+  area = "_", 
   description = "No description available", 
   title = "Untitled Property",
   rent = ""
@@ -33,7 +33,7 @@ const PropertyCard = ({
   return (
     <Link href={`/rent/${_id}`}>
       <div
-        className={`flex flex-col rounded-[16px] lg:rounded-[1.5rem]  border-[1px] border-gray 2xl:h-[40rem]  h-[32rem] lg:h-[500px] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden lg:ml-8 relative group transition-all duration-[1500ms] ease-in-out ${
+        className={`hidden lg:flex flex-col rounded-[16px] lg:rounded-[1.5rem]  border-[1px] border-gray 2xl:h-[40rem]  h-[32rem] lg:h-[500px] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden lg:ml-8 relative group transition-all duration-[1500ms] ease-in-out ${
           isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : " border lg:border-none"
         }`}
         onMouseEnter={() => setIsHovered(true)}
@@ -137,9 +137,68 @@ const PropertyCard = ({
             <h4 className="text-gray font-light">From</h4>
             <h2 className="font-bold text-[28px]">${price}</h2>
           </span>
-          <h4 className="text-gray font-light"> Area from {`${area}`}</h4>
+          <h4 className="text-gray font-light ml-3"> Area from {`${area}`}</h4>
         </div>
       </div>
+      <div className="flex lg:hidden flex-col border border-gray h-auto w-full max-w-[23rem] font-bricolage overflow-hidden rounded-[16px]">
+  {/* Image */}
+  <div className="w-full h-[16rem] overflow-hidden">
+    <Image
+      src={imageSrc} // Replace with your image path
+      alt="Hebron Homes"
+      width={500}
+      height={300}
+      quality={100}
+      className="object-cover w-full h-full rounded-b-[20px]"
+    />
+  </div>
+
+  {/* Details */}
+  <div className="px-5 py-3 bg-white">
+    <h1 className="text-black text-[24px] font-bold">Hebron Homes</h1>
+
+    <div className="mt-2 flex flex-col gap-2">
+      <div className="flex justify-between items-center">
+        <h2 className="font-bold text-[20px]">${price}.00</h2>
+        <h4 className="text-sm text-gray font-light">Area from {area}</h4>
+      </div>
+
+      <div className="flex gap-3 text-gray text-[13px]">
+        <span className="flex items-center gap-1">
+          <Image src="/bed.png" alt="Icon" width={12} height={12} />
+          <p>{bedrooms} beds</p>
+        </span>
+        <span className="flex items-center gap-1">
+          <Image src="/bath.png" alt="Icon" width={12} height={12} />
+          <p>{bathrooms} bath</p>
+        </span>
+        <span className="flex items-center gap-1">
+          <Image src="/home.png" alt="Icon" width={12} height={11} />
+          <p>{area}sq.</p>
+        </span>
+      </div>
+
+      <p className="text-gray text-sm mt-1 w-full">
+        {truncateDescription(description, 10)}
+      </p>
+
+      <div className="mt-4 flex justify-between items-center">
+        <div className="text-sm flex justify-center items-center rounded-full font-light w-1/2 h-[41px] bg-[#D8F0F1] text-[#1E1E1E]">
+          Luxury Oasis
+        </div>
+        <Image
+          alt="export"
+          width={35}
+          height={35}
+          src="/export.png"
+          className="rounded-full"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+
     </Link>
   );
 };

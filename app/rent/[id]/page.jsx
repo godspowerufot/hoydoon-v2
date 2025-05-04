@@ -5,20 +5,34 @@ import Image from "next/image";
 import { FaRegEye } from "react-icons/fa6";
 import ContactAgent from "@/app/components/layouts/contactagent";
 import { highlights } from "@/constants";
-import {  useGetAllListingsQuery, useGetSpecificListingsQuery } from "@/store/slices/api/authapi";
-import { usePathname } from "next/navigation";
+import { useToggleFavoriteMutation, useGetAllListingsQuery, useGetSpecificListingsQuery } from "@/store/slices/api/authapi";
+import { usePathname,useRouter } from "next/navigation";
 import Spinner from "@/app/components/common/Spinner";
-import { log } from "@/utils/log";
 import { truncateDescription } from "@/utils";
 import ListedCard from "@/app/components/common/profilecard";
 import MapComponent from "@/app/components/layouts/listingmap";
 import PropertyCard from "@/app/components/common/property";
+import { toast } from "react-toastify";
 import DynamicImageGrid from "@/app/components/layouts/dynamiclayout"
-const Breadcrumb = ({region,address}) => {
+const Breadcrumb = ({region,address,listingId  }) => {
+  const router=useRouter() // Tab state
+  const [toggleFavorite, { isLoading, isError, isSuccess }] = useToggleFavoriteMutation();
+
+  const handleFavoriteClick = async () => {
+   
+    try {
+      await toggleFavorite({ listingId }).unwrap();
+      toast.success("Added to favorites!");
+    } catch (error) {
+      console.error("Failed to favorite listing:", error);
+      router.push("/auth/sign-in")
+    }
+  };
+ 
   return (
-    <div className="flex  items-center justify-between gap-[0.2rem] pl-4 py-2 w-full  mt-[5rem]  bg-gray-100">
+    <div className="flex    items-center justify-between gap-[0.2rem] pl-4 py-2 w-[99%]  mt-[5rem]  bg-gray-100">
       {/* Left Section: Back Arrow and Breadcrumb */}
-      <div className="flex items-start justify-start  gap-1 text-[1.08rem] font-bricolage text-gray-600">
+      <div className="flex w-1/2 items-start justify-start  gap-1 text-[1.08rem] font-bricolage text-gray-600">
         {/* Back Arrow */}
         <Image src="/arrow-right.png" alt="arrow" height={12} width={12} className="mt-[0.9] mr-2" />
 
@@ -46,8 +60,8 @@ const Breadcrumb = ({region,address}) => {
       </div>
 
       {/* Right Section: Icons */}
-      <div className="flex pl-[30rem] 2xl:pl-[50rem]  items-center gap-2">
-        <div className="p-2 border border-[#8F8F8F] rounded-md">
+      <div className="flex  items-center  w-1/2 justify-end gap-2">
+        <div onClick={handleFavoriteClick} className="p-2 border border-[#8F8F8F] rounded-md">
           <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
         </div>
         <div className="p-2 border border-[#8F8F8F] rounded-md">
@@ -90,7 +104,6 @@ const page = () => {
   }, [allListings, isAllLoading]);
 
 
-  log("initial listing",displayListings)
      // These map the highlight text to the corresponding field(s) in the data
 const featureMap = {
   "Pet allowed": (item) => item?.petFriendly,
@@ -153,8 +166,8 @@ const relevantHighlights = highlights.filter((highlight) =>
     );
   } 
   return (
-    <div className="lg:mt-8  2xl:w-[98rem] lg:w-[90%]  lg:ml-[2%] ">
-      <Breadcrumb address={address} region={region} />
+    <div className="lg:mt-8  2xl:w-[98rem] lg:w-[94%]  lg:ml-[2%] ">
+      <Breadcrumb listingId={listingId } address={address} region={region} />
 
       <DynamicImageGrid
        listingId={_id}
@@ -324,8 +337,8 @@ const relevantHighlights = highlights.filter((highlight) =>
         listedBy={listedBy?._id}
       />
 
-      <section className="mt-10  hidden  2xl:mt-[4em] lg:mt-[3em] w-[75rem]  2xl:w-[88rem]  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   w-[92%]  2xl:-mb-[5rem]    flex-col items-center justify-center">
+      <section className="mt-10  hidden  2xl:mt-[4em] lg:mt-[3em] w-[75rem]  2xl:w-[88rem]  font-bricolage lg:flex  flex-col flex-1 ">
+        <div className="flex   w-[92%]  2xl:-mb-[5rem]    flex-col">
           <div className="flex   p-2 flex-col w-[75rem]  2xl:w-[85rem]  md:flex-row 2xl:gap-[25%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
             <h1 className="text-black  text-[26px] lg:text-[1.8rem] font-[600]   w-full ">
               {" "}
@@ -336,8 +349,8 @@ const relevantHighlights = highlights.filter((highlight) =>
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col  2xl:ml-[6rem]  ">
-            <div className="flex mt-[1em] h-fit min-w-[70%] items-center lg:flex-row justify-center mb-2">
+          <div className="flex flex-col lg:-ml-[2em]  ">
+            <div className="flex mt-[1em] h-fit w-full  lg:flex-row mb-2">
               {displayListings?.map((listing, index) => (
                 <PropertyCard
                   key={index}
