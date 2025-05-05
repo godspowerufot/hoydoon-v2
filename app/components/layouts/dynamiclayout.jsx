@@ -4,7 +4,7 @@ import PropertyGalleryModal from "./modals/property";
 const DynamicImageGrid = ({ images,coordinates, statuses = [] ,listingId}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (!images || images.length === 0) return null;
+  if (!images || images.length === 0) return <div className="text-center lg:text-3xl">No images available </div>;  
 
   const hasStatuses = statuses?.some(status => status); // Check if any status exists
 

@@ -151,7 +151,7 @@ const page = ({params}) => {
 
 
 
- log("agentDetails", agentInfo);  
+ log("agentDetails", listing);  
   if (isLoading) {
     return (
         <Spinner />
