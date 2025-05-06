@@ -81,7 +81,7 @@ log(region)
       <>
                  <span
                             onClick={() => loginWithCode()}   
-                                  className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center "
+                                  className="lg:w-[9em] hidden gap-3 h-[2.5em]  2xl:text-[1.em] w-full lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]  lg:flex items-center text-black font-[500] text-[1em] justify-center "
                                 >
                                   {" "}
                                   <Image
@@ -94,7 +94,21 @@ log(region)
                                   />{" "}
                                   Google
                                 </span>
-            
+                                <span
+                  onClick={() => loginWithCode()}   
+                  className="lg:w-[9em] lg:hidden gap-3 h-[2.5em] 2xl:text-[1.em] w-full lg:rounded-full p-3 2xl:h-[3em] 2x:p-4 border-[#8F8F8F] border-solid border-[0.8px] flex items-center text-black text-[1em] justify-center lg:justify-center sm:justify-start"
+                 >
+                  <Image
+                    alt="logo"
+                    width={20}
+                    loading="lazy"
+                    objectFit="cover"
+                    height={20}
+                    src={"/google.png"}
+                    className="mr-2"
+                  />
+                  <span className="text-center w-full sm:w-auto">Continue with Google</span>
+                 </span>
             {/* <button onClick={() => loginWithToken()}>
                 Sign in with google (implicit)
             </button>
