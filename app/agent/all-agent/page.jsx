@@ -189,8 +189,33 @@ if (isAllLoading) {
     </div>
   )} 
       {/* <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} /> */}
+ <section className="  bg-[#eeeeeec7]  w-full   lg:w-screen font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
+        <div className="flex  lg:gap-[4%] flex-col-reverse lg:w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+          <span className="flex flex-col gap-y-1 lg:gap-y-0 w-full lg:w-[45em] 2xl:w-[60em] ">
+<h1  className="text-black  text-2xl mt-4  lg:mt-0  lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Connect with local agent</h1>
+<p className="text-gray text-xs lg:text-xl mt-2 2xl:mt-[1em] font-bricolage lg:w-[38rem] 2xl:text-[22px] ">
+Benefit from local expertise. We'll connect you with a Hoydoon Premier Agent who understands your market and can guide you through the process.</p>
+<Button className="text-base font-light mt-4 ">
+  <Link href="/explore">
+  Connect
+  </Link>
+</Button>
+          </span>
 
-<section className="   font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
+<span className=" mt-[3rem]  lg:mt-0">
+ <Image
+              alt="image1"
+              width={500} 
+              quality={100}
+              className=" 2xl:w-[50rem] lg:w-[55rem]   w-fit lg:h-[28rem] 2xl:h-[36rem]"
+
+              height={400} // Reduced size of logo
+              src={'/agent3.png'}
+            />
+</span>
+        </div>
+      </section>
+<section className="  hidden  font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  gap-[4%] flex-col w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
 <h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Ready to sell your home?.</h1>
