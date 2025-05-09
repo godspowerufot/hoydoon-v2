@@ -33,7 +33,7 @@ export default function ContactAgent({ fullname, location, profileimage, listedB
   };
 
   return (
-    <div className="bg-[#ffffffec] mt-[2rem] text-[#8F8F8F] rounded-lg px-10 w-fit py-10 2xl:w-[90rem] mx-auto border border-[#8F8F8F]">
+    <div className="lg:bg-[#ffffffec] mt-[2rem] text-[#8F8F8F] rounded-lg p-5 *:lg:px-10 w-fit lg:py-10 2xl:w-[90rem] mx-auto lg:border border-[#8F8F8F]">
       <h2 className="text-3xl font-bold text-black font-bricolage mb-4">
         Contact Hoydoon Agent {fullname}
       </h2>
@@ -56,15 +56,15 @@ export default function ContactAgent({ fullname, location, profileimage, listedB
       </div>
 
       {/* Message Box */}
-      <div className="my-6 border border-[#8F8F8F] rounded-[24px] p-5">
+      <div className="my-6 border border-[#8F8F8F] rounded-md lg:rounded-[24px] p-5">
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="w-full  outline-none h-[10rem] font-light text-xl border-none focus:ring-0 text-black"
+          className="w-full  max-md:bg-transparent  outline-none h-[10rem] font-light text-sm lg:text-xl border-none focus:ring-0 text-black"
           placeholder="Write a message..."
         />
         {/* Optional: Quick Replies */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4">
+        <div className="hidden lg:grid grid-cols-2 md:grid-cols-4 gap-2 mt-4">
           {["Can you share more details about the home?", 
             "I want to buy the home. What’s next?", 
             "Is this home still available for purchase?"].map((text, i) => (
@@ -83,14 +83,14 @@ export default function ContactAgent({ fullname, location, profileimage, listedB
       <div className="mt-6 flex gap-4">
         <button
           onClick={() => handleSend("message")}
-          className="bg-primary w-[9rem] 2xl:w-[15rem] rounded-full text-white text-base px-4 py-2 2xl:py-4"
+          className="bg-primary w-[9rem] 2xl:w-[15rem]  rounded-md lg:rounded-full text-white text-base px-4 py-2 2xl:py-4"
           disabled={isMessageLoading}
         >
           {isMessageLoading ? "Sending..." : "Ask a question"}
         </button>
         <button
           onClick={() => handleSend("review")} // Send the current message for reviews
-          className="border px-4 py-2 w-[9rem] 2xl:w-[15rem] rounded-full border-primary text-gray-600"
+          className="border px-4 py-2 w-[9rem] 2xl:w-[15rem] rounded-md lg:rounded-full border-primary text-gray-600"
           disabled={isReviewLoading}
         >
           {isReviewLoading ? "Sending..." : "Reviews"}

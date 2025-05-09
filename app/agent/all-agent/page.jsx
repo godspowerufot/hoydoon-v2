@@ -13,11 +13,11 @@ const Breadcrumb = () => {
   const [selectedOption, setSelectedOption] = useState("All");
 
     return (
-      <div className="w-full  py-6 px-4 lg:px-[3.5rem] 2xl:px-3  lg:flex-col items-center justify-between">
+      <div className="w-full \ py-2 lg:py-6 px-2 lg:px-[3.5rem] 2xl:px-3 items-start  lg:flex-col lg:items-center justify-between">
       {/* Left Section */}
       <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
       <h1 className="text-black lg:ml-1 text-[26px] lg:text-[2rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
-      <p className="text-gray  lg:p-0 text-base lg:text-xl font-bricolage w-full lg:w-full">
+      <p className="text-gray  lg:p-0 text-sm lg:text-xl font-bricolage w-full lg:w-full">
       Leverage a local agent's expertise with access to millions of listings, guiding you through every step.
 </p>
 
@@ -27,7 +27,7 @@ const Breadcrumb = () => {
 
       {/* Right Section - Filters */}
 
-      <div className=" ml-[1rem] flex flex-col lg:flex-row  items-center gap-[1rem] 2xl:gap-[2rem] mt-4 lg:mt-0">
+      <div className=" hidden  ml-[1rem] lg:flex flex-col lg:flex-row  items-center gap-[1rem] 2xl:gap-[2rem] mt-4 lg:mt-0">
         {/* Location Input */}
                <div className="relative  bg-[#F9FAFB]   w-[20rem]  2xl:w-[30rem] h-[3.6rem] hidden border-[#8F8F8F] border-solid border-[1px]  lg:flex items-center bg-gray-100 rounded-[14px] px-2 py-2">
                         <input 
@@ -85,6 +85,63 @@ const Breadcrumb = () => {
   <img src="/arrow-down.png" alt="Dropdown" className="w-3 h-2 absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none" />
 </div>
       </div>
+      <div className="flex lg:hidden flex-row flex-wrap items-center gap-2 mt-4 w-full">
+
+{/* Location Input */}
+<div className="relative flex items-center border border-[#8F8F8F] bg-[#F9FAFB] rounded-[14px] px-2 py-1 flex-1 min-w-[140px] max-w-[180px]">
+  <input 
+    type="text" 
+    placeholder="Agege, Lagos..."
+    className="bg-[#F9FAFB] placeholder:text-gray-400 focus:outline-none text-black text-sm w-full"
+  />
+  <button className="ml-2 bg-primary text-white p-2 rounded-md">
+    <Image
+      alt="arrow"
+      width={14}
+      height={14}
+      src="/arrow-left.png"
+    />
+  </button>
+</div>
+
+{/* Buy/Sell Toggle */}
+<div className="flex flex-1 min-w-[120px] max-w-[160px] bg-[#F9FAFB] border border-[#8F8F8F] rounded-[10px] p-1 justify-between">
+  {["All", "Buy", "Sell"].map((option) => (
+    <button
+      key={option}
+      className={`flex-1 px-1 py-1 text-xs rounded-md ${
+        selectedOption === option ? "bg-primary text-white" : "text-[#8F8F8F]"
+      }`}
+      onClick={() => setSelectedOption(option)}
+    >
+      {option}
+    </button>
+  ))}
+</div>
+
+{/* Language Dropdown */}
+<div className="relative flex-1 min-w-[120px] max-w-[150px]">
+  <select className="w-full border border-[#8F8F8F] bg-[#F9FAFB] rounded-md px-2 py-[6px] text-xs text-[#8F8F8F] appearance-none outline-none">
+    <option>Language</option>
+    <option>English</option>
+    <option>French</option>
+  </select>
+  <img src="/arrow-down.png" alt="Dropdown" className="w-3 h-2 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+</div>
+
+{/* Speciality Dropdown */}
+<div className="relative flex-1 min-w-[120px] max-w-[150px]">
+  <select className="w-full border border-[#8F8F8F] bg-[#F9FAFB] rounded-md px-2 py-[6px] text-xs text-[#8F8F8F] appearance-none outline-none">
+    <option>Specialty</option>
+    <option>Sales</option>
+    <option>Rent</option>
+  </select>
+  <img src="/arrow-down.png" alt="Dropdown" className="w-3 h-2 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+</div>
+
+</div>
+
+
     </div>
     );
   };
@@ -116,20 +173,21 @@ if (isAllLoading) {
 
   return (
     <div className='mt-8  2xl:w-[1520px]  '> <Breadcrumb/>
-  <div className="lg:ml-[5rem] 2xl:ml-[2rem] grid w-[88%] 2xl:w-[95%]  grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
+  <div className="lg:ml-[5rem] 2xl:ml-[2rem] gap-y-3  grid lg:w-[88%] 2xl:w-[95%]  grid-cols-2 md:grid-cols-2 sm:gap-4 lg:gap-8 place-items-center">
   {displayListings.map((agent) => (
           <ProfileCard  key={agent._id} {...agent} sales={Number(agent.numberOfListings)} />
         ))}
     {/* "See All" link aligned to the start */}
-  {displayListings.length > 0 && displayListings.length < 6 && (
-    <div className="w-full md:col-span-2 flex justify-start">
+ </div>
+ {displayListings.length > 0 && displayListings.length < 6 && (
+    <div className="w-full   md:col-span-2 lg:hidden justify-start">
       <Link href="/agent/all-agent">
-        <p className="text-[#09858D] mt-5 text-2xl font-medium">
+        <p className="text-[#09858D] mt-5  text-xs lg:text-2xl font-medium">
           See all 2500 rent estate agents in Lagos
         </p>
       </Link>
     </div>
-  )} </div>
+  )} 
       {/* <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} /> */}
 
 <section className="   font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">

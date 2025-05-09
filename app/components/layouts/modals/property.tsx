@@ -107,7 +107,7 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
         index += 1;
       } else if (remaining === 2) {
         blocks.push(
-          <div key={index} className="grid grid-cols-2 gap-3">
+          <div key={index} className="grid grid-col-1 lg:grid-cols-2 gap-3">
             {images.slice(index, index + 2).map((img: any, i: number) => (
               <img
                 key={i}
@@ -122,7 +122,7 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
         index += 2;
       } else {
         blocks.push(
-          <div key={index} className="grid grid-cols-2 gap-3 grid-rows-2">
+          <div key={index} className="grid  grid-col-1 lg:grid-cols-2 gap-3 grid-rows-2">
             <div className="col-span-2">
               <img
                 src={images[index]?.url || "/house1.png"}

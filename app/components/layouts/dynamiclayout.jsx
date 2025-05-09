@@ -47,17 +47,17 @@ const DynamicImageGrid = ({ images,coordinates, statuses = [] ,listingId}) => {
 
     const gridTemplate = {
       1: () => (
-        <div className="grid grid-cols-1 gap-4 p-4">
+        <div className=" hidden lg:grid grid-cols-1 gap-4 p-4">
           {renderImage(images[0], 0, "w-full h-[400px] 2xl:h-[500px] object-cover rounded-lg", 800, 500)}
         </div>
       ),
       2: () => (
-        <div className="grid grid-cols-2 gap-4 p-4">
+        <div className="hidden lg:grid grid-cols-2 gap-4 p-4">
           {images.map((img, i) => renderImage(img, i, "w-full h-[300px] object-cover rounded-lg", 500, 400))}
         </div>
       ),
       3: () => (
-        <div className="grid grid-cols-3 grid-rows-2 gap-4 p-4">
+        <div className="hidden lg:grid grid-cols-3 grid-rows-2 gap-4 p-4">
           <div className="col-span-2 row-span-2">
             {renderImage(images[0], 0, "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg", 500, 400)}
           </div>
@@ -66,7 +66,7 @@ const DynamicImageGrid = ({ images,coordinates, statuses = [] ,listingId}) => {
         </div>
       ),
       4: () => (
-        <div className="grid grid-cols-2 gap-4 p-4">
+        <div className="hidden lg:grid grid-cols-2 gap-4 p-4">
           {images.slice(0, 4).map((img, i) =>
             renderImage(img, i, "w-full h-[300px] object-cover rounded-lg", 500, 300)
           )}
@@ -85,7 +85,7 @@ const DynamicImageGrid = ({ images,coordinates, statuses = [] ,listingId}) => {
       ),
    
       default: () => (
-        <div className="grid grid-cols-5 gap-4 p-4">
+        <div className="hidden lg:grid grid-cols-5 gap-4 p-4">
           <div className="col-span-2 row-span-2">
             {renderImage(images[0], 0, "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg", 500, 400)}
           </div>

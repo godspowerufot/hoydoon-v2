@@ -132,14 +132,14 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
   
 
   return (
-    <div className="pt-[2.3rem] px-4 lg:pl-[2rem] lg:pr-[4.5rem] 2xl:gap-[20rem] flex justify-between w-full">
+    <div className="lg:pt-[2.3rem]   px-4 lg:pl-[2rem] lg:pr-[4.5rem] 2xl:gap-[20rem] flex-col lg:flex-row lg:flex justify-between w-full">
       {/* Left Section: Filters */}
-      <div className="flex items-center  2xl:-ml-[2.4rem] lg:ml-[2rem] gap-2">
+      <div className="flex items-center  2xl:-ml-[2.4rem] lg:ml-[2rem] gap-1 lg:gap-2">
       <button
           onClick={() =>  setShowAllFiltersDropdown(true)}
-          className="px-4 text-sm py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F] flex items-center gap-2"
+          className="px-2 lg:px-4 h-[37px] text-xs  lg:h-fit lg:text-sm lg:py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F] flex items-center gap-2"
         >
-          <Image src="/allfilter.png" alt="Filter" width={16} height={15} /> All Filters
+          <Image src="/allfilter.png" alt="Filter" width={16} height={15} className='w-4 h-4 lg:w-[16px] lg:h-[16px]' /> All Filters
         </button>
         {showAllFiltersDropdown && (
           <>
@@ -222,7 +222,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
   </div>
 
   {/* Price Filter */}
-  <div>
+  <div className='lg:block hidden '>
     <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
     <ul className="flex flex-col gap-1.5">
       {["Any", "50-200"].map((option) => (
@@ -259,7 +259,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
               <div className="relative"   key={option}>
                 <button
                   onClick={() => setShowBedBathDropdown(!showBedBathDropdown)}
-                  className="border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 pr-6 appearance-none flex items-center gap-2"
+                  className="border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 lg:pr-6 appearance-none flex items-center gap-2"
                 >
                   {bedValue || bathValue
                     ? `${bedValue } Beds, ${bathValue } Baths`
@@ -342,39 +342,64 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
 
           return (
             <div className="relative flex items-center" key={option}>
-              <select
-                className="border  outline-none focus:outline-none border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 pr-6 appearance-none"
-                value={selectedValue}
-                onChange={(e) => handleFilterChange(paramKey, e.target.value)}
-              >
+            <select
+              className={`${
+                option === "Home type" ? "hidden lg:block" : "block"
+              } border outline-none focus:outline-none border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 pr-[0.5rem] lg:pr-6 appearance-none`}
+              value={selectedValue}
+              onChange={(e) => handleFilterChange(paramKey, e.target.value)}
+            >
+              {/* Label Option */}
+              {option === "Price" ? (
+                <>
+                  <option className="block lg:hidden" value="">
+                    Buy
+                  </option>
+                  <option className="hidden lg:block" value="">
+                    Price
+                  </option>
+                </>
+              ) : (
                 <option value="">{option}</option>
-
-                {option === "Price" && (
-                  <>
-                    <option value="0-200">$0–200</option>
-                    <option value="200-500">$200–500</option>
-                    <option value="500-800">$500–800</option>
-                    <option value="800-5000000">$800+</option>
-                  </>
-                )}
-
-                {option === "Home type" && (
-                  <>
-                    <option value="rent">Rent</option>
-                    <option value="sale">Sale</option>
-                    <option value="land">Land</option>
-                  </>
-                )}
-              </select>
-
-              <img
-                src="/arrow-down.png"
-                alt="Dropdown"
-                className="w-3 h-2 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
-              />
-            </div>
+              )}
+          
+              {/* Price Options */}
+              {option === "Price" && (
+                <>
+                  <option value="0-200">$0–200</option>
+                  <option value="200-500">$200–500</option>
+                  <option value="500-800">$500–800</option>
+                  <option value="800-5000000">$800+</option>
+                </>
+              )}
+          
+              {/* Home Type Options */}
+              {option === "Home type" && (
+                <>
+                  <option className="hidden lg:block" value="">
+                    Home type
+                  </option>
+                  <option className="block lg:hidden" value="">
+                    Buy
+                  </option>
+                  <option value="rent">Rent</option>
+                  <option value="sale">Sale</option>
+                  <option value="land">Land</option>
+                </>
+              )}
+            </select>
+          
+            {/* Arrow icon */}
+            <img
+              src="/arrow-down.png"
+              alt="Dropdown"
+              className="w-3 h-2 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
+            />
+          </div>
+          
           );
         })}
+   
 
         <button
           onClick={handleSearchClick}
@@ -385,7 +410,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
       </div>
 
       {/* Right Section: List / Map Toggle */}
-      <div className="flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-4  border-[#8F8F8F]  2xl:-mr-[2rem] justify-between border-solid border-[1px] items-center font-base rounded-[10px] 2xl:p-[4px] lg:p-[2px] h-auto relative">
+      <div className=" hidden lg:flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-4  border-[#8F8F8F]  2xl:-mr-[2rem] justify-between border-solid border-[1px] items-center font-base rounded-[10px] 2xl:p-[4px] lg:p-[2px] h-auto relative">
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
@@ -465,11 +490,14 @@ const page = () => {
       //    );
       //  }
   return (
-    <div className="lg:mt-[4rem] 2xl:mt-[3rem] 2xl:w-[94rem]  lg:w-[84rem]  flex-col flex justify-center items-center 2xl:items-stretch ">
+    <div className="lg:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] 2xl:w-[94rem]  lg:w-[84rem]  flex-col flex justify-center items-center 2xl:items-stretch ">
       <Breadcrumb />'
-      <div className="flex justify-between w-[76rem]  2xl:w-[90rem]  ">
-        <h1 className="text-black font-semibold text-4xl">
+      <div className="flex items-start p-4 lg:p-0  w-full lg:justify-between flex-col  gap-3 lg:gap-0 lg:flex-row lg:w-[76rem]  2xl:w-[90rem]  ">
+        <h1 className="text-black  hidden lg:block font-semibold text-2xl lg:text-4xl">
           Lagos Real-estate & Homes for Sale
+        </h1>
+        <h1 className="text-black lg:hidden font-semibold text-2xl lg:text-4xl">
+        Lagos   Homes for Sale
         </h1>
         <div className="text-gray-600  fex-end lg:-ml-[2rem] 2xl:ml-0 text-sm flex items-center space-x-4">
           <span className="flex gap-2">
@@ -500,7 +528,7 @@ const page = () => {
           No listings found for your search.
         </p>
       ) : (
-        <div className=" grid   lg:-ml-[2.8rem] 2xl:mr-[0]   mr-2  grid-cols-1 md:grid-cols-3 gap-4 lg:gap-y-[2rem] place-items-center">
+        <div className=" grid    lg:-ml-[2.8rem] 2xl:mr-[0]   lg:mr-2  grid-cols-1 md:grid-cols-3 gap-4 lg:gap-y-[2rem]  p-5 lg:p-0 place-items-center">
           {[...displayListings]
             .map((items, index) => (
              <PropertyListCard

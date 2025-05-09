@@ -8,16 +8,18 @@ import Image from 'next/image';
 import MapComponent from "@/app/components/layouts/listingmap"
 import ContactAgent from '@/app/components/layouts/contactagent';
 import { usePathname } from 'next/navigation';
+import { truncateDescription } from '@/utils';
 import { useGetAgentListingsQuery, useGetAgentsInfoQuery } from '@/store/slices/api/authapi';
 import Spinner from '@/app/components/common/Spinner';
 import { log } from '@/utils/log';
 import DynamicImageGrid  from '@/app/components/layouts/dynamiclayout';
 import PropertyListCard from '@/app/components/common/PropertyListing';
 import Link from 'next/link';
+import DynamicImageMobile from '@/app/components/layouts/mobiledynamic';
 import { flattenListings } from '@/utils';
 const Breadcrumb = ({ agentDetails}) => {
     return (
-      <div className="flex  items-center justify-between gap-[0.2rem] px-4 py-2  mt-[5rem] w-full  bg-gray-100">
+      <div className=" hidden lg:flex  items-center justify-between gap-[0.2rem] px-4 py-2  mt-[5rem] w-full  bg-gray-100">
         {/* Left Section: Back Arrow and Breadcrumb */}
         <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage text-gray-600">
           {/* Back Arrow */}
@@ -161,15 +163,17 @@ const page = ({params}) => {
   const tabs = [
     { id: "all", label: "All listings" },
     { id: "active", label: "Active listings" },
-    { id: "sold", label:  `Sold with ${agentInfo?.fullname}` },
-    { id: "bought", label: `Bought with ${agentInfo?.fullname}` },
+    { id: "sold", label:  `Sold with ${truncateDescription(agentInfo?.fullname,1)}` },
+    { id: "bought", label: `Bought with ${truncateDescription(agentInfo?.fullname,1)}` },
   ];
 
 
   return (
-    <div className='mt-2 w-[90%] 2xl:w-[1520px] '> <Breadcrumb agentDetails={agentInfo?.region}/>
+    <div className='mt-2 lg:w-[90%] 2xl:w-[1520px] '> <Breadcrumb agentDetails={agentInfo?.region}/>
     <div className="grid  lg:mt-2  gap-2 p-4">
     <DynamicImageGrid statuses={statuses} coordinates={coordinates} images={imageUrls} />
+<DynamicImageMobile
+     statuses={statuses} coordinates={coordinates} images={imageUrls} />
 {/* <div className="flex gap-2 font-[500] items-center justify-center absolute bottom-2 right-2 bg-white px-2 py-1 text-base 2xl:text-xl rounded shadow">
           <Image
             alt="logo"
@@ -183,14 +187,15 @@ const page = ({params}) => {
           <p>{statuses[0] || "Unknown"}</p>
         </div> */}
     </div>
+  
 
 {/* second div layout  */}
-    <div className="bg-gray-100 mt-5 p-4 rounded-lg">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+    <div className="bg-gray-100 mt-2 lg:mt-5 lg:p-4 rounded-lg">
+      <div className="flex flex-row mx-[1.2rem] lg:p-0 justify-between items-start md:items-center">
 
                {/* Profile Image */}
                <div className='flex gap-3'>
-                <div className="w-[6rem] h-[6rem] relative">
+                <div className="w-[4rem] h-[4rem] lg:w-[6rem] lg:h-[6rem] relative">
                   <Image
                     src={agentInfo?.pictureUrl || ""}// Replace with actual image path
                     alt="Profile Picture"
@@ -218,22 +223,32 @@ const page = ({params}) => {
                     alt="Profile Picture"
                     width={200}
                     height={200}
-                    className="object-cover"
-                  />          <div className="flex items-center justify-end text-gray-700 mt-1">
+                    className="object-cover w-[10rem]  lg:w-full"
+                  />          <div className="flex items-center justify-end  my-3 gap-2 lg:gap-0 text-gray-700 mt-1">
           <img src="/stargreen.png" alt="Favorite" className="w-4 h-4" />
           <span className="ml-1 font-medium ">{ListedBy}</span>
           </div>
-          <p className="text-gray-600 lg:mt-1 text-sm">Avg lis.<b> ${averagelisting}</b></p>
+          <p className="text-gray-600 lg:mt-1 my-3 text-sm">Avg lis .${averagelisting} </p>
+      
+          <div className="flex lg:hidden items-center justify-end gap-2 mt-3 w-full md:w-auto">
+        <div  className="p-2 border border-[#8F8F8F] rounded-md">
+          <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
         </div>
+        <div className="p-2 border border-[#8F8F8F] rounded-md">
+          <img src="/upload.png" alt="Download" className="w-4 h-4" />
+        </div>
+        <div className="p-2 border border-[#8F8F8F] rounded-md">
+          <img src="/image2.png" alt="Share" className="w-4 h-4" />
+        </div>
+      </div>  </div>
       </div>
     </div>
   
-
   {/* new layout
    */}
- <div className="w-full border-t border-b border-[#8F8F8F] py-3">
-      <div className="flex items-center justify-center gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl lg:text-base">
-        <div className="flex items-center  text-[18px] gap-[8rem]">
+ <div className="w-full border-t border-b border-[#8F8F8F] mt-3 lg:mt-0  py-3">
+      <div className="flex items-center justify-center gap-3  lg:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl lg:text-base">
+        <div className="flex items-center  font-light  test-sm lg:text-[18px] gap-3  lg:gap-[8rem]">
          <span>
           <span className="font-bold text-black">{agentInfo?.
 numberOfListings
@@ -243,14 +258,14 @@ numberOfListings
 
         <span className="text-gray-400">|</span>
 
-        <div className="flex items-center text-[18px] gap-1">
+        <div className="flex items-center text-sm lg:text-[18px] gap-1">
           <span className="font-bold text-black">${prices} </span>
           <span>Total value</span>
         </div>
 
         <span className="text-gray-400">|</span>
 
-        <div className="flex items-center  text-[18px] gap-1">
+        <div className="flex items-center  text-sm lg:text-[18px] gap-1">
           <span className="font-bold text-black">${agentInfo?.priceRange?.min} - ${agentInfo?.priceRange?.max}</span>
           <span> Price range</span>
         </div>
@@ -260,11 +275,12 @@ numberOfListings
     </div>
 
 
+
     {/* second layout */}
-    <div className=' w-full px-4 py-7'>
+    <div className=' w-full px-[1.5rem] lg:px-4 py-7'>
   <h1 className="text-[2rem] font-semibold ">    About {agentInfo?.fullname}
     </h1>
-    <p className=' text-[#8F8F8F] font-bricolage text-[18px] w-[73rem] 2xl:w-full 2xl:text-xl py-2'>
+    <p className=' text-[#8F8F8F] font-bricolage text-sm lg:text-[18px] lg:w-[73rem] 2xl:w-full 2xl:text-xl py-2'>
 
 {agentInfo?.profileDescription ||  "no description found"}
     </p>
@@ -277,9 +293,9 @@ numberOfListings
    
 
     {/* map */}
-    <div className="bg-gray-100 p-6 rounded-lg mb-3">
-    <h1 className="text-[2rem] font-semibold "> {agentInfo?.fullname} Listings & Deals</h1>
-    <div className="border-b border-gray ">
+    <div className="bg-gray-100 lg:p-6 rounded-lg mb-3">
+    <h1 className="text-[2rem] pl-[1.75rem] font-semibold "> {agentInfo?.fullname} Listings & Deals</h1>
+    <div className="border-b  px-[1.75rem]  my-4 lg:my-0  border-gray ">
       <div className="flex space-x-6">
         {tabs.map((tab) => (
         <button
@@ -325,7 +341,7 @@ numberOfListings
   
     </div>
 
-<div className='w-full lg:mt-4  px-0 py-6'>
+<div className='w-full lg:mt-4  px-7 lg:px-0 py-6'>
 <h1 className="text-[2rem] lg:ml-5   mb-7  font-semibold ">   {agentInfo?.fullname} Active Listings</h1>
 <div className="grid 2xl:mr-[4rem] lg:-ml-5 grid-cols-1 md:grid-cols-3 gap-1 gap-y-[3rem] place-items-center">
       {/* Display only 3 listings initially, or all listings if showAll is true */}
@@ -366,15 +382,16 @@ numberOfListings
       )}
 </div>
     {/*contat agency  */}
+    <div className='w-full px-6 lg:px-0'>
     <ContactAgent listedBy={agentInfo?._id} location={agentInfo?.region}  profileimage={agentInfo?.pictureUrl}  fullname={agentInfo?.fullname}/>
 
-
-
-
+    </div>
 
 
 
 </div>
+
+
   )
 }
 

@@ -13,24 +13,12 @@ import ListedCard from "@/app/components/common/profilecard";
 import MapComponent from "@/app/components/layouts/listingmap";
 import PropertyCard from "@/app/components/common/property";
 import { toast } from "react-toastify";
+import DynamicImageMobile from "@/app/components/layouts/mobiledynamic"
 import DynamicImageGrid from "@/app/components/layouts/dynamiclayout"
-const Breadcrumb = ({region,address,listingId  }) => {
-  const router=useRouter() // Tab state
-  const [toggleFavorite, { isLoading, isError, isSuccess }] = useToggleFavoriteMutation();
+const Breadcrumb = ({region,address,listingId,handleFavoriteClick  }) => {
 
-  const handleFavoriteClick = async () => {
-   
-    try {
-      await toggleFavorite({ listingId }).unwrap();
-      toast.success("Added to favorites!");
-    } catch (error) {
-      console.error("Failed to favorite listing:", error);
-      router.push("/auth/sign-in")
-    }
-  };
- 
   return (
-    <div className="flex    items-center justify-between gap-[0.2rem] pl-4 py-2 w-[99%]  mt-[5rem]  bg-gray-100">
+    <div className=" hidden lg:flex    items-center justify-between gap-[0.2rem] pl-4 py-2 w-[99%]  mt-[5rem]  bg-gray-100">
       {/* Left Section: Back Arrow and Breadcrumb */}
       <div className="flex w-1/2 items-start justify-start  gap-1 text-[1.08rem] font-bricolage text-gray-600">
         {/* Back Arrow */}
@@ -80,6 +68,7 @@ const Breadcrumb = ({region,address,listingId  }) => {
 const page = () => {
     const pathname = usePathname();
   const listingId = pathname?.split('/').pop();
+  const router=useRouter() // Tab state
 
   const {
     data: listing,
@@ -90,7 +79,19 @@ const page = () => {
   const { data: allListings, refetch } = useGetAllListingsQuery( );
 
   const [displayListings, setDisplayListings] = useState([]);
+  const [toggleFavorite, { isLoading, isError, isSuccess }] = useToggleFavoriteMutation();
 
+  const handleFavoriteClick = async () => {
+   
+    try {
+      await toggleFavorite({ listingId }).unwrap();
+      toast.success("Added to favorites!");
+    } catch (error) {
+      console.error("Failed to favorite listing:", error);
+      router.push("/auth/sign-in")
+    }
+  };
+ 
 
   useEffect(() => {
     refetch(); // Refetch data on every mount
@@ -128,6 +129,7 @@ const relevantHighlights = highlights.filter((highlight) =>
       item, // This contains nested properties
       itemModel,
       listedBy,
+squareFeet,      
       listingType,
       region,
       reviewCount,
@@ -167,52 +169,76 @@ const relevantHighlights = highlights.filter((highlight) =>
   } 
   return (
     <div className="lg:mt-8  2xl:w-[98rem] lg:w-[94%]  lg:ml-[2%] ">
-      <Breadcrumb listingId={listingId } address={address} region={region} />
+      <Breadcrumb handleFavoriteClick={handleFavoriteClick} listingId={listingId } address={address} region={region} />
 
       <DynamicImageGrid
        listingId={_id}
         images={images}
         coordinates={coordinate}
       />
+
+<DynamicImageMobile
+        listingId={_id}
+        images={images}
+        coordinates={coordinate}/>
+
+  
+
       {/* second div layout  */}
       <div className="bg-gray-100 p-4 rounded-lg">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-          {/* Left Section */}
-          <div>
-            <h2 className="text-[2rem] font-bricolage font-semibold">
-              {title}
-            </h2>
-            <p className="text-gray text-base">{address}</p>
-            <p className="text-gray text-base">{region}</p>
-
-            <div className="flex items-center  gap-2 text-gray-700 mt-2">
-              <FaRegEye className="text-gray" />
-              <span className="font-meduim">Total views {editingCount}</span>
-            </div>
-          </div>
-
-          {/* Right Section */}
-          <div className="text-right font-bricolage  text-[#1E1E1E] mt-4 md:mt-0">
-            <p className="text-[1.7rem] text-black font-bold">${price}</p>
-            <div className="flex items-center justify-end text-gray-700 mt-1">
-              <img src="/stargreen.png" alt="Favorite" className="w-4 h-4" />
-              <span className="ml-1 font-medium ">{averageRating}</span>
-            </div>
-            <p className="text-gray text-base">Est. ${price}/month</p>
-          </div>
-        </div>
+  <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 lg:gap-4">
+    {/* Left Section */}
+    <div className="flex-1 flex flex-col  gap-1 lg:block">
+      <h2 className="text-2xl lg:text-[2rem] hidden  lg:block font-bricolage font-semibold">{title}</h2>
+      <h2 className=" text-2xl lg:text-[2rem] lg:hidden font-bricolage font-semibold">{truncateDescription(title,1)}</h2>
+      
+      {/* Address */}
+      <div className=" text-black text-sm  lg:text-gray lg:text-base">
+        <p>{truncateDescription(address,1)}</p>
+        <p>{region}</p>
       </div>
 
-      {/* new layout
-       */}
-      <div className="w-full border-t border-b border-[#8F8F8F] py-3">
-        <div className="flex items-center justify-center gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl lg:text-base">
-          <div className="flex items-center gap-[8rem]">
+      {/* Views */}
+      <div className="flex items-center gap-2 text-gray-700  mt-[16px] lg:mt-2">
+        <FaRegEye className="lg:text-gray text-black" />
+        <span className="lg:font-medium   lg:mt-0 text-base text-black lg:text-gray">Total views {editingCount?.toLocaleString()}</span>
+      </div>
+    </div>
+
+    {/* Right Section */}
+    <div className="text-right flex-1 flex flex-col  gap-1 lg:block md:text-right w-full md:w-auto">
+      <p className="text-[1.7rem] text-black font-bold">${price}</p>
+      
+      <div className="flex items-center justify-end mt-1 text-gray-700">
+        <img src="/stargreen.png" alt="Star" className="w-4 h-4" />
+        <span className="ml-1 font-medium">{averageRating}</span>
+      </div>
+
+      <p className=" lg:text-gray text-sm lg:text-base">Est. ${price}/month</p>
+    
+      <div className="flex items-center justify-end gap-2 mt-2 w-full md:w-auto">
+        <div onClick={handleFavoriteClick} className="p-2 border border-[#8F8F8F] rounded-md">
+          <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
+        </div>
+        <div className="p-2 border border-[#8F8F8F] rounded-md">
+          <img src="/upload.png" alt="Download" className="w-4 h-4" />
+        </div>
+        <div className="p-2 border border-[#8F8F8F] rounded-md">
+          <img src="/image2.png" alt="Share" className="w-4 h-4" />
+        </div>
+      </div></div>
+  </div>
+</div>
+
+
+<div className="w-full mt-3 lg:mt-0 border-t border-b border-[#8F8F8F] py-3">
+        <div className="flex items-center justify-center gap-[1.1rem] lg:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl lg:text-base">
+          <div className="flex items-center gap-4  lg:gap-[8rem]">
             <span className="flex items-center gap-1">
               <span className="font-bold text-black">{bedrooms}</span>
               <span>Beds</span>
             </span>
-          </div>
+          </div>   
 
           <span className="text-gray-400">|</span>
 
@@ -234,43 +260,50 @@ const relevantHighlights = highlights.filter((highlight) =>
             <span className="font-bold text-black">_</span>
             <span>Price per sq ft</span>
           </div>
-        </div>
+        </div>  
       </div>
 
-      {/* second layout */}
-      <div className="w-full px-4 py-6">
-        <h2 className="text-2xl font-bold text-black font-bricolage">
-          Home Highlights
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mt-4 text-[#8F8F8F] font-bricolage text-sm">
-          {relevantHighlights.map((item, index) => (
-            <div key={index} className="flex items-center gap-2">
-              <Image
-                src={item.icon}
-                alt={item.text}
-                width={20}
-                height={20}
-                className="object-contain"
-                quality={100}
-              />
-              <span className="2xl:text-xl">{item.text}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* description */}
+         
+          
+              <div className="w-full px-4 py-6">
+                <h2 className="text-2xl font-bold text-black font-bricolage">
+                  Home Highlights
+                </h2>
+                {relevantHighlights.length > 0 ? (
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4 text-[#8F8F8F] font-bricolage text-sm">
+                {relevantHighlights.map((item, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <Image
+                  src={item.icon}
+                  alt={item.text}
+                  width={20}
+                  height={20}
+                  className="object-contain"
+                  quality={100}
+                    />
+                    <span className="2xl:text-xl">{item.text}</span>
+                  </div>
+                ))}
+                  </div>
+                ) : (
+                  <p className="text-[#8F8F8F] font-bricolage text-sm mt-4">
+                No home highlights found for this listing.
+                  </p>
+                )}
+              </div>
+       
+              {/* description */}
       <div className=" w-full px-4 py-6">
         <h2 className="text-2xl font-bold text-black font-bricolage">
           Description
         </h2>
         <div>
-          <p className=" text-[#8F8F8F] font-bricolage text-[18px] font-[300]  w-[73rem] 2xl:w-full 2xl:text-xl pt-4">
+          <p className=" text-[#8F8F8F] font-bricolage text-sm lg:text-[18px] font-[300]  lg:w-[73rem] 2xl:w-full 2xl:text-xl pt-4">
             {description}
           </p>
         </div>
       </div>
-
+   
       {/* listed by agent */}
       <div className=" w-full px-4 py-6">
         <h2 className="text-2xl font-bold text-black font-bricolage">
@@ -280,27 +313,27 @@ const relevantHighlights = highlights.filter((highlight) =>
           <ListedCard name={fullname} picture={pictureUrl} />
         </div>
       </div>
-
+  
       {/* map */}
-      <div className="bg-gray-100 p-6 rounded-lg">
-        <h2 className="text-xl font-semibold mb-4">Map</h2>
+      <div className="bg-gray-100 lg:p-6 rounded-lg">
+        <h2 className="text-xl font-semibold mb-4 pl-2 p-0">Map</h2>
 
         {/* Map Container */}
-        <div className=" relative rounded-lg  flex items-center overflow-hidden">
+        <div className="w-screen lg:w-full relative rounded-lg  flex items-center overflow-hidden">
           <MapComponent coordinates={coordinate} />
           <div className="py-4 px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
             <span className="font-medium">
               {displayListings?.length} Homes available in{" "}
               {truncateDescription(address, 1)}
             </span>
-            <span className="text-primary cursor-pointer ml-2">
+            <span className="text-primary hidden lg:block cursor-pointer ml-2">
               Remove map boundary
             </span>
           </div>
         </div>
 
         {/* Distance Information */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6  2xl:text-base text-gray-700 text-sm">
+        <div className="grid p-4 lg:p-0 text-xs grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6  2xl:text-base text-gray-700 lg:text-sm">
           <div className="flex items-center gap-2">
             <Image src="/bus.png" alt="Bus" width={20} height={20} />
             <span className="text-primary  font-medium">.... 5 mins</span> to
@@ -321,7 +354,7 @@ const relevantHighlights = highlights.filter((highlight) =>
             <span className="text-primary font-medium">.... 10 mins</span> to
             School
           </div>
-          <div className="flex items-center gap-2">
+          <div className=" hidden lg:flex items-center gap-2">
             <Image src="/pharmacy.png" alt="Pharmacy" width={20} height={20} />
             <span className="text-primary font-medium ">.... 15 mins</span> to
             Pharmacy
@@ -336,7 +369,7 @@ const relevantHighlights = highlights.filter((highlight) =>
         fullname={fullname}
         listedBy={listedBy?._id}
       />
-
+      <div className="hidden lg:block w-full">
       <section className="mt-10  hidden  2xl:mt-[4em] lg:mt-[3em] w-[75rem]  2xl:w-[88rem]  font-bricolage lg:flex  flex-col flex-1 ">
         <div className="flex   w-[92%]  2xl:-mb-[5rem]    flex-col">
           <div className="flex   p-2 flex-col w-[75rem]  2xl:w-[85rem]  md:flex-row 2xl:gap-[25%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
@@ -379,6 +412,8 @@ const relevantHighlights = highlights.filter((highlight) =>
         </div>
       </section>
     </div>
+    </div>
+
   );
 };
 

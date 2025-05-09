@@ -12,6 +12,10 @@ import { log } from '@/utils/log'
 import { setUnverifiedEmail } from "@/store/slices/authslice";
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
+import { MobileSignIn } from '../sign-in/mobile'
+
+
+
 const Signup= () => {
 
     const [email, setEmail] =useState('');
@@ -71,7 +75,7 @@ const dispatch=useDispatch()
     
   return (
     <>
-        <div className='flex items-center w-full justify-center'> 
+        <div className='  hidden lg:flex items-center w-full justify-center'> 
 
  <div className='h-full  lg:h-screen justify-center lg:mt-[3rem] items-center  flex  py-[1rem] 2xl:mt-[1.8rem]'>
     <div className=' gap-[4rem]   flex flex-1 flex-col lg:flex-row'>
@@ -205,7 +209,10 @@ onClick={handleSubmit} className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[
             </div>
     </div>
  </div>
-     </div>       </>
+     </div>   
+     
+     <MobileSignIn/>
+         </>
     
   )
 }

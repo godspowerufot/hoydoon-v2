@@ -10,6 +10,7 @@ import Button from "../common/Button";
 import { useLogoutMutation } from "@/store/slices/api/authapi";
 import { getAccessToken } from "@/utils/cookies";
 import { toast } from "react-toastify";
+import MobileNavbar from "./mobile";
 
 export default function ListingNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,7 +27,13 @@ const [formData, setFormData] = useState({
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
- 
+  const handleSearch = () => {
+    const queryParams = new URLSearchParams({
+      ...(formData.location && { location: formData.location }),
+  }).toString();
+
+    router.push(`/rent/searchlisting?${queryParams}`);
+  };
   
   
  const handlelogout = async () => {
@@ -41,20 +48,14 @@ const [formData, setFormData] = useState({
       setIsLoggingOut(false);
     }
   };
-  const handleSearch = () => {
-    const queryParams = new URLSearchParams({
-      ...(formData.location && { location: formData.location }),
-  }).toString();
-
-    router.push(`/rent/searchlisting?${queryParams}`);
-  };
+ 
   
 
 
   return (
     <>
      
-        <nav className="relative z-[9999] w-full  ">
+        <nav className="hidden lg:block relative z-[9999] w-full  ">
           <div className="2xl:max-w-[1520px] max-w-[1230px] mx-auto flex items-center justify-between py-3 px-5 lg:px-0">
             
             {/* Left: Logo & Search Bar */}
@@ -167,6 +168,9 @@ const [formData, setFormData] = useState({
 </div>
           </div>
         </nav>
+        {
+          <MobileNavbar/>
+        }
     
     </>
   );
