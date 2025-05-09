@@ -194,7 +194,7 @@ const page = ({params}) => {
       <div className="flex flex-row mx-[1.2rem] lg:p-0 justify-between items-start md:items-center">
 
                {/* Profile Image */}
-               <div className='flex gap-3'>
+               <div className='flex mt-4 lg:mt-0 gap-3'>
                 <div className="w-[4rem] h-[4rem] lg:w-[6rem] lg:h-[6rem] relative">
                   <Image
                     src={agentInfo?.pictureUrl || ""}// Replace with actual image path
@@ -209,7 +209,7 @@ const page = ({params}) => {
 
              
         
-          <h2 className="text-[1.7rem] font-bricolage font-semibold">{agentInfo?.fullname}</h2>
+          <h2 className="text-xl lg:text-[1.7rem] font-bricolage font-semibold">{agentInfo?.fullname}</h2>
           <p className="text-[#1E1E1E] font-light">{agentInfo?.region}</p>
           <p className="text-[#1E1E1E] font-light">LA 98245</p>
          
@@ -224,7 +224,7 @@ const page = ({params}) => {
                     width={200}
                     height={200}
                     className="object-cover w-[10rem]  lg:w-full"
-                  />          <div className="flex items-center justify-end  my-3 gap-2 lg:gap-0 text-gray-700 mt-1">
+                  />          <div className="flex pr-3 lg:pr-0 items-center justify-end  my-3 gap-2 lg:gap-0 text-gray-700 mt-1">
           <img src="/stargreen.png" alt="Favorite" className="w-4 h-4" />
           <span className="ml-1 font-medium ">{ListedBy}</span>
           </div>
@@ -247,7 +247,7 @@ const page = ({params}) => {
   {/* new layout
    */}
  <div className="w-full border-t border-b border-[#8F8F8F] mt-3 lg:mt-0  py-3">
-      <div className="flex items-center justify-center gap-3  lg:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl lg:text-base">
+      <div className="flex items-center justify-center gap-2  lg:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl lg:text-base">
         <div className="flex items-center  font-light  test-sm lg:text-[18px] gap-3  lg:gap-[8rem]">
          <span>
           <span className="font-bold text-black">{agentInfo?.
@@ -278,7 +278,7 @@ numberOfListings
 
     {/* second layout */}
     <div className=' w-full px-[1.5rem] lg:px-4 py-7'>
-  <h1 className="text-[2rem] font-semibold ">    About {agentInfo?.fullname}
+  <h1 className=" text-xl lg:text-[2rem] font-semibold ">    About {agentInfo?.fullname}
     </h1>
     <p className=' text-[#8F8F8F] font-bricolage text-sm lg:text-[18px] lg:w-[73rem] 2xl:w-full 2xl:text-xl py-2'>
 
@@ -294,7 +294,7 @@ numberOfListings
 
     {/* map */}
     <div className="bg-gray-100 lg:p-6 rounded-lg mb-3">
-    <h1 className="text-[2rem] pl-[1.75rem] font-semibold "> {agentInfo?.fullname} Listings & Deals</h1>
+    <h1 className="text-xl lg:text-[2rem] pl-[1.75rem] font-semibold "> {agentInfo?.fullname} Listings & Deals</h1>
     <div className="border-b  px-[1.75rem]  my-4 lg:my-0  border-gray ">
       <div className="flex space-x-6">
         {tabs.map((tab) => (
@@ -304,7 +304,7 @@ numberOfListings
           setActiveTab(tab.id);
           setCoordinates(allCoordinates[tab.id] || []); // Update map based on tab
         }}
-        className={`relative py-2 text-base transition-colors duration-300 ${
+        className={`relative py-2 text-sm lg:text-base transition-colors duration-300 ${
           activeTab === tab.id ? "text-black font-semibold" : "text-[#8F8F8F]"
         }`}
       >
@@ -342,8 +342,8 @@ numberOfListings
     </div>
 
 <div className='w-full lg:mt-4  px-7 lg:px-0 py-6'>
-<h1 className="text-[2rem] lg:ml-5   mb-7  font-semibold ">   {agentInfo?.fullname} Active Listings</h1>
-<div className="grid 2xl:mr-[4rem] lg:-ml-5 grid-cols-1 md:grid-cols-3 gap-1 gap-y-[3rem] place-items-center">
+<h1 className="text-xl lg:text-[2rem] lg:ml-5   mb-7  font-semibold ">   {agentInfo?.fullname} Active Listings</h1>
+<div className="grid 2xl:mr-[4rem] px-1 lg:px-0 lg:-ml-5 grid-cols-1 md:grid-cols-3 gap-1 gap-y-[2rem] place-items-center">
       {/* Display only 3 listings initially, or all listings if showAll is true */}
       {(showAll ? ActiveListings : ActiveListings.slice(0, 3)).map((items, index) => (
         <PropertyListCard

@@ -77,6 +77,12 @@ const [formData, setFormData] = useState({
 
   return (
     <>
+    {isSidebarOpen && (
+  <div
+    className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-40"
+    onClick={() => setSidebarOpen(false)} // optional
+  ></div>
+)}
   <nav className="flex items-center justify-between px-4 py-3 bg-white shadow-md lg:hidden">
   {!pathname.startsWith("/rent/searchlisting") && (
     <div className="flex items-center space-x-2">
@@ -127,6 +133,7 @@ const [formData, setFormData] = useState({
     </button>
 </nav>
 
+<div className={`fixed top-0 right-0 h-full w-64 bg-white transform transition-transform duration-300 z-50 ${isSidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
 
       {/* Sidebar */}
       <div className={`fixed top-0 right-0 h-full w-64 bg-white transform transition-transform duration-300 z-50 ${isSidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
@@ -195,6 +202,7 @@ const [formData, setFormData] = useState({
 </Link>
 
         </div>
+      </div>
       </div>
     </>
   );

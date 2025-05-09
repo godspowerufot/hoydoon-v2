@@ -34,33 +34,35 @@ export default function ContactAgent({ fullname, location, profileimage, listedB
 
   return (
     <div className="lg:bg-[#ffffffec] mt-[2rem] text-[#8F8F8F] rounded-lg p-5 *:lg:px-10 w-fit lg:py-10 2xl:w-[90rem] mx-auto lg:border border-[#8F8F8F]">
-      <h2 className="text-3xl font-bold text-black font-bricolage mb-4">
+      <h2 className="text-xl lg:text-3xl font-bold text-black font-bricolage mb-4">
         Contact Hoydoon Agent {fullname}
       </h2>
 
       <div className="flex items-center gap-4">
-        <Image
+       
+      <div className="flex relative h-[5.5rem] w-[6rem] lg:w-[120px] lg:h-[120px] items-center gap-4">
+       <Image
           src={profileimage}
           alt={`Agent ${fullname}`}
-          width={60}
-          height={60}
-          className="w-[6rem] h-[6rem] rounded-full object-cover"
+          fill
+          className="rounded-full object-cover"
         />
+        </div>
         <div>
           <p className="font-semibold text-xl text-black">{fullname}</p>
-          <p className="text-base">{location}</p>
-          <p className="text-base">
+          <p className="text-sm lg:text-base">{location}</p>
+          <p className="text-sm lg:text-base">
             {fullname} will respond in about <span className="text-primary font-medium">10 mins</span>
           </p>
         </div>
       </div>
 
       {/* Message Box */}
-      <div className="my-6 border border-[#8F8F8F] rounded-md lg:rounded-[24px] p-5">
+      <div className="my-6 border  lg:ml-[3rem]  border-[#8F8F8F] rounded-md lg:rounded-[24px] p-5">
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="w-full  max-md:bg-transparent  outline-none h-[10rem] font-light text-sm lg:text-xl border-none focus:ring-0 text-black"
+          className="w-full max-md:bg-transparent  outline-none h-[10rem] font-light text-sm lg:text-xl border-none focus:ring-0 text-black"
           placeholder="Write a message..."
         />
         {/* Optional: Quick Replies */}

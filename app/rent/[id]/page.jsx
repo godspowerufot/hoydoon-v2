@@ -189,8 +189,8 @@ squareFeet,
   <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 lg:gap-4">
     {/* Left Section */}
     <div className="flex-1 flex flex-col  gap-1 lg:block">
-      <h2 className="text-2xl lg:text-[2rem] hidden  lg:block font-bricolage font-semibold">{title}</h2>
-      <h2 className=" text-2xl lg:text-[2rem] lg:hidden font-bricolage font-semibold">{truncateDescription(title,1)}</h2>
+      <h2 className="text-xl lg:text-[2rem] hidden  lg:block font-bricolage font-semibold">{title}</h2>
+      <h2 className="text-xl lg:text-[2rem] lg:hidden font-bricolage font-semibold">{truncateDescription(title,1)}</h2>
       
       {/* Address */}
       <div className=" text-black text-sm  lg:text-gray lg:text-base">
@@ -199,7 +199,7 @@ squareFeet,
       </div>
 
       {/* Views */}
-      <div className="flex items-center gap-2 text-gray-700  mt-[16px] lg:mt-2">
+      <div className="flex items-center gap-2 text-gray-700  mt-[2.2rem] lg:mt-2">
         <FaRegEye className="lg:text-gray text-black" />
         <span className="lg:font-medium   lg:mt-0 text-base text-black lg:text-gray">Total views {editingCount?.toLocaleString()}</span>
       </div>
@@ -266,7 +266,7 @@ squareFeet,
          
           
               <div className="w-full px-4 py-6">
-                <h2 className="text-2xl font-bold text-black font-bricolage">
+                <h2 className="text-xl font-bold text-black font-bricolage">
                   Home Highlights
                 </h2>
                 {relevantHighlights.length > 0 ? (
@@ -294,7 +294,7 @@ squareFeet,
        
               {/* description */}
       <div className=" w-full px-4 py-6">
-        <h2 className="text-2xl font-bold text-black font-bricolage">
+        <h2 className="text-xl font-bold text-black font-bricolage">
           Description
         </h2>
         <div>
@@ -306,7 +306,7 @@ squareFeet,
    
       {/* listed by agent */}
       <div className=" w-full px-4 py-6">
-        <h2 className="text-2xl font-bold text-black font-bricolage">
+        <h2 className="text-xl font-bold text-black font-bricolage">
           Listed by Agent
         </h2>
         <div className="mt-5">
@@ -316,7 +316,7 @@ squareFeet,
   
       {/* map */}
       <div className="bg-gray-100 lg:p-6 rounded-lg">
-        <h2 className="text-xl font-semibold mb-4 pl-2 p-0">Map</h2>
+        <h2 className="text-xl font-semibold mb-4 pl-4 p-0">Map</h2>
 
         {/* Map Container */}
         <div className="w-screen lg:w-full relative rounded-lg  flex items-center overflow-hidden">

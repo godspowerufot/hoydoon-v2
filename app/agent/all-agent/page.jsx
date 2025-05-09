@@ -4,7 +4,7 @@ import React, { useState,useEffect } from 'react'
 import Image from 'next/image';
 import { ProfileCard } from '@/app/components/layouts/profilecard';
 import Link from 'next/link';
-import Pagination from '@/app/components/common/pagination';
+import FagsSection from "@/app/components/layouts/FaqSection"
 import Button from '@/app/components/common/Button';
 import FAQComponent from '@/app/components/layouts/faq';
 import { useGetAgentsQuery } from '@/store/slices/api/authapi';
@@ -13,10 +13,10 @@ const Breadcrumb = () => {
   const [selectedOption, setSelectedOption] = useState("All");
 
     return (
-      <div className="w-full \ py-2 lg:py-6 px-2 lg:px-[3.5rem] 2xl:px-3 items-start  lg:flex-col lg:items-center justify-between">
+      <div className="w-full  py-2 lg:py-6 px-2 lg:px-[3.5rem] 2xl:px-3 items-start  lg:flex-col lg:items-center justify-between">
       {/* Left Section */}
       <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-1 text-[26px] lg:text-[2rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
+      <h1 className="text-black lg:ml-1 text-xl lg:text-[2rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
       <p className="text-gray  lg:p-0 text-sm lg:text-xl font-bricolage w-full lg:w-full">
       Leverage a local agent's expertise with access to millions of listings, guiding you through every step.
 </p>
@@ -242,7 +242,7 @@ Ready to sell your home? Let us help you maximize its value and make the process
 </span>
         </div>
       </section>
-<div className="mt-[3px]  ml-[2rem] justify-center items-center max-md:w-full w-full gap-6 flex flex-col max-md:justify-center max-md:items-center lg:flex-row ">
+<div className="mt-[3px] hidden   ml-[2rem] justify-center items-center max-md:w-full w-full gap-6 lg:flex flex-col max-md:justify-center max-md:items-center lg:flex-row ">
 <div className="z-[4] relative max-md:w-full  lg:h-[50em]  lg:left-[50px] 2xl:left-[80px] lg:top-[10em]">
 <FAQComponent/>
 </div>
@@ -266,6 +266,7 @@ Ready to sell your home? Let us help you maximize its value and make the process
     />
     </div>
 </div>
+ <FagsSection/>
 
 {/* second div layout  */}
   
