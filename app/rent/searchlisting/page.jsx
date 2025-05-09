@@ -14,7 +14,7 @@ import { flattenListings } from '@/utils';
 
 const PropertySkeleton = () => {
   return (
-    <div className="space-y-4 w-full max-w-sm rounded-xl border border-gray p-4 shadow-sm bg-white">
+    <div className="space-y-4 w-full  mt-[3rem] lg:mt-0 max-w-sm rounded-xl border border-gray p-4 shadow-sm bg-white">
       <div className="h-48 rounded-md shimmer" />
       <div className="h-4 rounded shimmer w-3/4" />
       <div className="h-4 rounded shimmer w-1/2" />
@@ -272,7 +272,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
                 </button>
 
                 {showBedBathDropdown && (
-                  <div className="absolute z-10 top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-64">
+                  <div className="absolute z-10  lg:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 lg:mt-0 lg:w-64">
                     <div className="flex justify-between mb-2">
                       <span className="font-medium text-sm">Beds</span>
                       <button

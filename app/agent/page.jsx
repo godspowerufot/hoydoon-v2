@@ -31,6 +31,10 @@ export default function Page() {
     
         router.push(`/rent/searchlisting?${queryParams}`);
       };
+
+
+     
+      
  useEffect(() => {
     refetch(); // Refetch data on every mount
   }, [refetch]);
@@ -43,14 +47,15 @@ export default function Page() {
   }, [allAgent, isAllLoading]);
 
 
+
+
   if (isAllLoading) {
     return (
     <Spinner/>
     );
   }
-
-      
   return (
+    
     <>
  <header className="relative h-[38vh] lg:h-[80vh] w-screen">
   {/* Background Image Div */}

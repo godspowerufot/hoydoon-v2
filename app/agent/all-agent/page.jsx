@@ -9,6 +9,45 @@ import Button from '@/app/components/common/Button';
 import FAQComponent from '@/app/components/layouts/faq';
 import { useGetAgentsQuery } from '@/store/slices/api/authapi';
 import Spinner from '@/app/components/common/Spinner';
+import {HiChevronDown} from "react-icons/hi";
+const Dropdown = () => {
+  const [selectedOption, setSelectedOption] = useState("Buy");
+  const [isOpen, setIsOpen] = useState(false);
+  const options = ["All", "Buy", "Sell"];
+
+  return (
+    <div className="relative  2xl:w-[25rem] font-bricolage">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex h-[2rem] text-sm justify-between items-center w-full bg-[#F9FAFB] border border-[#8F8F8F] rounded-[10px] p-2 text-[#8F8F8F]"
+      >
+        {selectedOption}
+        <HiChevronDown className="w-5 h-5" />      </button>
+
+      {isOpen && (
+        <div className="absolute text-sm z-10 mt-1 w-full bg-white border border-[#8F8F8F] rounded-[10px] shadow-md">
+          {options.map((option) => (
+            <button
+              key={option}
+              onClick={() => {
+                setSelectedOption(option);
+                setIsOpen(false);
+              }}
+              className={`w-full  text-sm text-left px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300 ${
+                selectedOption === option ? "bg-primary text-white" : "text-[#8F8F8F]"
+              }`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+
 const Breadcrumb = () => {
   const [selectedOption, setSelectedOption] = useState("All");
 
@@ -88,7 +127,7 @@ const Breadcrumb = () => {
       <div className="flex lg:hidden flex-row flex-wrap items-center gap-2 mt-4 w-full">
 
 {/* Location Input */}
-<div className="relative flex items-center border border-[#8F8F8F] bg-[#F9FAFB] rounded-[14px] px-2 py-1 flex-1 min-w-[140px] max-w-[180px]">
+<div className="relative flex items-center border border-[#8F8F8F] bg-[#F9FAFB] rounded-md px-2 py-1 flex-1 min-w-[128px] max-w-[180px]">
   <input 
     type="text" 
     placeholder="Agege, Lagos..."
@@ -105,22 +144,10 @@ const Breadcrumb = () => {
 </div>
 
 {/* Buy/Sell Toggle */}
-<div className="flex flex-1 min-w-[120px] max-w-[160px] bg-[#F9FAFB] border border-[#8F8F8F] rounded-[10px] p-1 justify-between">
-  {["All", "Buy", "Sell"].map((option) => (
-    <button
-      key={option}
-      className={`flex-1 px-1 py-1 text-xs rounded-md ${
-        selectedOption === option ? "bg-primary text-white" : "text-[#8F8F8F]"
-      }`}
-      onClick={() => setSelectedOption(option)}
-    >
-      {option}
-    </button>
-  ))}
-</div>
+<Dropdown/>
 
 {/* Language Dropdown */}
-<div className="relative flex-1 min-w-[120px] max-w-[150px]">
+<div className="relative flex-1 lg:min-w-[120px] w-[40px] lg:max-w-[150px]">
   <select className="w-full border border-[#8F8F8F] bg-[#F9FAFB] rounded-md px-2 py-[6px] text-xs text-[#8F8F8F] appearance-none outline-none">
     <option>Language</option>
     <option>English</option>
@@ -130,7 +157,7 @@ const Breadcrumb = () => {
 </div>
 
 {/* Speciality Dropdown */}
-<div className="relative flex-1 min-w-[120px] max-w-[150px]">
+<div className="relative flex-1  w-fit lg:min-w-[120px] lg:max-w-[150px]">
   <select className="w-full border border-[#8F8F8F] bg-[#F9FAFB] rounded-md px-2 py-[6px] text-xs text-[#8F8F8F] appearance-none outline-none">
     <option>Specialty</option>
     <option>Sales</option>
