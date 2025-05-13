@@ -29,7 +29,7 @@ const Pagination = ({ totalPages, currentPage, onPageChange,display}: Pagination
   return (
     <div className="text-gray-700   w-full justify-center items-center  flex flex-col gap-2 text-center mt-[3rem]">
       {/* Viewing Status */}
-      <p className=" font-bricolage font-[500] text-xl">
+      <p className=" font-bricolage lg:font-[500] lg:text-xl">
         Viewing page <span className="font-semibold">{currentPage}</span> of {totalPages}{" "}
         <span   onClick={handleDownloadCSV}  className="text-primary font-medium hover:underline">
           (Download all)
@@ -67,11 +67,11 @@ const Pagination = ({ totalPages, currentPage, onPageChange,display}: Pagination
       </div>
 
       {/* Breadcrumbs */}
-      <div className="flex gap-3  text-primary text-[19px]">
+      <div className="flex gap-3  text-primary lg:text-[19px]">
         <Link href="/" className="hover:underline">Hoydoon</Link>                    <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
 
 
-        <Link href="/agent" className="hover:underline"> Find an agent</Link>         
+        <Link href="/agent" className="hover:underline "> Find an agent</Link>         
         
 
       </div>

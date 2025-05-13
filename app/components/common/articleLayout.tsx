@@ -2,7 +2,6 @@
 
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 
 interface PropertyCardProps {
@@ -11,76 +10,69 @@ interface PropertyCardProps {
 }
 
 const ArticleCard: React.FC<PropertyCardProps> = ({ imageSrc, altText }) => {
-  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      className={`flex flex-col mt-5 rounded-[1.5rem] h-[37rem] 2xl:h-[38rem] lg:w-[23.6rem] 2xl:w-[32rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden ml-6 relative 
-      group transition-all duration-[1500ms] ease-in-out ${
-        isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : "border-none"
-      }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Image Container */}
-      <div
-        className={`overflow-hidden rounded-lg w-full transition-all duration-[1500ms] ease-in-out ${
-          isHovered ? "max-h-[350px]" : "max-h-[550px]"
-        }`}
-      >
+    <>
+
+    <div className="w-full lg:w-[23rem] max-w-[500px] mx-auto bg-white rounded-xl overflow-hidden border border-thin border-solid border-[#8F8F8F] ">
+      {/* Image */}
+      <div className="w-full h-fit">
         <Image
           alt={altText}
-          width={300}
-          height={500}
-          quality={150}
-          src={imageSrc}
-          className="w-full h-full object-cover rounded-b-[1.6rem] transition-all duration-[1500ms] ease-in-out"
+          width={500}
+          height={250}
+          quality={100}
+          src={imageSrc || "/placeholder.svg"}
+          className="w-full h-[260px] object-cover rounded-xl"
         />
       </div>
 
-      {/* Details Section */}
-      <div
-        className={`mt-8 px-5 transition-all duration-[1500ms] ease-in-out ${
-          isHovered ? "opacity-150 translate-y-0 max-h-[300px]" : "h-0 opacity-0 translate-y-5 max-h-0"
-        }`}
-      >
-        <h1 className="text-black text-base lg:text-[25px] font-bold">
-          Whispering Pines Estate
-        </h1>
-        <span className="flex-col flex mt-3">
-          <span className="flex gap-1">
-            <h4 className="text-gray text-label flex items-center justify-center font-light">From</h4>
-            <h4 className="ml-9 text-label text-gray font-light">Area from 190 - 245 m²</h4>
-          </span>
-          <p className="text-gray text-[16px] mt-4">
-            A cozy 3-bedroom home with an open living area and a private backyard. Perfect for comfort and relaxation.
-          </p>
-          <div className="mt-9 flex justify-between items-center">
-            <div className="text-base flex justify-center font-bricolage items-center rounded-full font-light h-[41px] lg:w-[180px] text-[#1E1E1E] bg-[#D8F0F1]">
-              Luxury Oasis
-            </div>
-            <Image alt="export icon" width={50} height={50} src={"/export.png"} className="rounded-full" />
-          </div>
-        </span>
-      </div>
+      {/* Content */}
+      <div className="p-4">
+        {/* Category */}
+        <div className="flex items-center gap-1.5 mb-2">
+        <Image alt="tag" width={18} height={18} src="/mage_file.png" />
+          <span className="text-xs text-black"> General</span>
+        </div>
 
-      {/* Base Details (Always Visible) */}
-      <div
-        className={`-mt-5 2xl:ml-3 text-black transition-opacity duration-500 ${
-          isHovered ? "opacity-0 hidden" : "block opacity-150"
-        }`}
-      >
-        <span className="flex flex-col text-black">
-          <span className="font-medium flex gap-2 text-sm ju items-center ">             <Image alt="export icon" width={20} height={15} src={"/mage_file.png"} />
-          General</span>
-          <h3 className="font-bold text-xl  mt-3 leading-tight w-[20rem]">What Does &quot;Sold&quot; Mean in Real Estate?</h3>
-        </span>
-        <span className="flex items-center gap-4  font-[400] text-sm mt-3">
-          <span className="mr-2 flex gap-2">    <Image alt="export icon" width={20} height={15} src={"/time.png"} /> 1 min read</span>
-          <span className="flex gap-2"> <Image alt="export icon" width={20} height={15} src={"/calender.png"} />March 28, 1525</span>
-        </span>
+        {/* Title */}
+        <h3 className="font-meduim text-xl  text-black mb-2">        Rental Scams Uncovered: How to Spot and Avoid Fraudulent Listings
+</h3>
+
+        {/* Description */}
+        <p className="text-xs  text-[#1E1E1E99] text-gray-700 mb-4 leading-relaxed">       This article dives into the most common rental scams, revealing the deceptive tactics scammers use to lure in unsuspecting renters. From fake listings and fraudulent landlords to pressure tactics and upfront payment schemes, learn how to recognize red flags, protect your money and personal information, and secure a legitimate rental with confidence.
+</p>
+
+        {/* Footer */}
+        <div className="flex items-center gap-3 text-xs text-gray-500">
+          <div className="flex items-center gap-1.5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
+              <path
+                d="M12 7V12L15 15"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            3 min read
+          </div>
+          <div className="flex items-center gap-1.5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="6" width="18" height="15" rx="2" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M3 10H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M8 3V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M16 3V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+              March 13, 2025
+          </div>
+        </div>
       </div>
     </div>
+
+</>
+
   );
 };
 

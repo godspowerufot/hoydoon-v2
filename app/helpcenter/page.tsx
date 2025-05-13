@@ -1,7 +1,9 @@
-"use client ";
+"use client";
 import Image from "next/image";
 import { properties } from "@/constants";
 import ArticleCard from "../components/common/articleLayout";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 function SupportCategories() {
   const categories = [
     "Landlord & Agents",
@@ -13,7 +15,7 @@ function SupportCategories() {
   ];
 
   return (
-    <div className="grid w-[1230px] 2xl:w-[1580px] grid-cols-3 gap-4 p-4">
+    <div className=" hidden lg:grid w-[1230px] 2xl:w-[1580px] grid-cols-3 gap-4 p-4">
       {categories.map((category, index) => (
         <button
           key={index}
@@ -27,9 +29,37 @@ function SupportCategories() {
 }
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+        location: "",
+      
+      });
+        const router=useRouter()
+        interface FormData {
+          location: string;
+        }
+
+        interface ChangeEvent {
+          target: {
+            name: string;
+            value: string;
+          };
+        }
+
+        const handleChange = (e: ChangeEvent) => {
+          const { name, value } = e.target;
+          setFormData((prev: FormData) => ({ ...prev, [name]: value }));
+        };
+        const handleSearch = () => {
+          const queryParams = new URLSearchParams({
+            ...(formData.location && { location: formData.location }),
+        }).toString();
+      
+          router.push(`/rent/searchlisting?${queryParams}`);
+        };
+  
   return (
     <>
-      <header className="relative h-[45em] lg:h-[35em] items-center justify-center w-screen">
+      <header className=" relative h-[25vh] lg:h-[32em] items-center justify-center w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
@@ -40,7 +70,7 @@ export default function Home() {
         </div>
 
         {/* Content Section */}
-        <div className="flex z-[1] mt-[12rem]  relative gap-6 justify-center items-center flex-col">
+        <div className="flex z-[1]  mt-[7rem] lg:mt-[12rem]  p-3 relative gap-6 justify-center items-center flex-col">
           {/* Main Heading */}
 
           {/* Large Screen Search Bar */}
@@ -72,29 +102,32 @@ export default function Home() {
           </div>
 
           {/* Small Screen Search Bar */}
-          <div className="lg:hidden  justify-center items-center w-full px-2 py-3">
-            <div className="flex h-[4em] font-bricolage items-center m-5 bg-white rounded-full shadow-md w-[89%] md:w-4/5 lg:w-3/5">
-              <div className="flex flex-col flex-1">
-                <div className="text-sm text-gray">search</div>
-              </div>
-              <div className="bg-primary p-1 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90">
-                <Image
-                  alt="Search"
-                  width={20}
-                  height={20}
-                  src={"/search.png"}
-                />{" "}
-              </div>
-            </div>
+         <div className="flex  lg:hidden justify-center items-center w-full px-1 py-1">
+          <div className="flex  items-center w-full bg-white rounded-full h-[2.4em] px-2 py-1">
+            <input
+              type="text"
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              placeholder="search"
+              className="flex-1 text-sm text-gray-700 outline-none bg-transparent placeholder:text-gray-400"
+            />
+            <button
+              onClick={handleSearch}
+              className="ml-2 bg-primary p-2 rounded-full flex items-center justify-center hover:bg-opacity-90"
+            >
+              <Image alt="Search" width={15} height={15} src="/search.png" />
+            </button>
           </div>
+        </div>
         </div>
       </header>
 
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="  2xl:-mb-[8rem]  flex-col  hidden lg:mt-[3em] w-full  font-bricolage lg:flex justify-center   gap-4 2xl:gap-[1.5rem] flex-1 items-center">
-        <div className="  grid  grid-row  grid-cols-1 md:grid-cols-3 gap-0 place-items-center gap-y-6">
+      <section className="  2xl:-mb-[8rem]  flex-col mt-[2rem]   lg:mt-[3em] w-full  font-bricolage lg:flex justify-center   gap-4 2xl:gap-[1.5rem] flex-1 items-center">
+        <div className=" p-2 grid  grid-row  grid-cols-1 md:grid-cols-3 gap-7 place-items-center gap-y-6">
           {properties.map((property, index) => (
             <ArticleCard
               key={index}
@@ -105,7 +138,7 @@ export default function Home() {
         </div>
         {/* <Pagination totalPages={} /> */}
 
-        <div className="w-full  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
+        <div className="w-full hidden lg:block  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
 
         <SupportCategories />
       </section>

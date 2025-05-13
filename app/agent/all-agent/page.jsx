@@ -1,6 +1,6 @@
 
 'use client';
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useMemo } from 'react'
 import Image from 'next/image';
 import { ProfileCard } from '@/app/components/layouts/profilecard';
 import Link from 'next/link';
@@ -9,6 +9,8 @@ import Button from '@/app/components/common/Button';
 import FAQComponent from '@/app/components/layouts/faq';
 import { useGetAgentsQuery } from '@/store/slices/api/authapi';
 import Spinner from '@/app/components/common/Spinner';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Pagination from '@/app/components/common/pagination';
 import {HiChevronDown} from "react-icons/hi";
 const Dropdown = () => {
   const [selectedOption, setSelectedOption] = useState("Buy");
@@ -52,7 +54,7 @@ const Breadcrumb = () => {
   const [selectedOption, setSelectedOption] = useState("All");
 
     return (
-      <div className="w-full  py-2 lg:py-6 px-2 lg:px-[3.5rem] 2xl:px-3 items-start  lg:flex-col lg:items-center justify-between">
+      <div className="w-full  py-2 lg:py-6 px-1 lg:px-[3.5rem] 2xl:px-3 items-start  lg:flex-col lg:items-center justify-between">
       {/* Left Section */}
       <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[20%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
       <h1 className="text-black lg:ml-1 text-xl lg:text-[2rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
@@ -72,7 +74,7 @@ const Breadcrumb = () => {
                         <input 
                           type="text" 
                           placeholder="Agege, Lagos State..."
-                          className="bg-[#F9FAFB]  placeholder:fonr-[300] placeholder:font-[1em] placeholder:text-gray focus:outline-none text-black text-sm w-full"
+                          className="bg-[#F9FAFB]  placeholder:font-[300] placeholder:text-[12px] placeholder:text-gray focus:outline-none text-black text-sm w-full"
                         />
                         <button className="ml-2 bg-primary text-white p-3 rounded-lg">
          <Image
@@ -176,9 +178,23 @@ const Breadcrumb = () => {
 
   
 const page = () => {
-
+  const searchParams = useSearchParams();
+  
+  const query = useMemo(() => {
+    return Object.fromEntries(searchParams?.entries() ?? []);
+  }, [searchParams]);
   const { data: allAgent, isLoading: isAllLoading, refetch } = useGetAgentsQuery({});
   const [displayListings, setDisplayListings] = useState([]);
+    const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+    const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      const newParams = new URLSearchParams(searchParams.toString());
+      newParams.set("page", page.toString());
+      router.push(`/agent/all-agent?${newParams.toString()}`);
+    }
+  };
+
 useEffect(() => {
   refetch(); // Refetch data on every mount
 }, [refetch]);
@@ -187,7 +203,9 @@ useEffect(() => {
   if (!isAllLoading && allAgent) {
     const firstThreeListings = allAgent;
     setDisplayListings(firstThreeListings); // Store in state
-  }
+ setTotalPages(allAgent.totalPages || 1);
+        setCurrentPage(Number(searchParams.get("page")) || 1); // Store in state
+       }
 }, [allAgent, isAllLoading]);
 
   
@@ -200,7 +218,7 @@ if (isAllLoading) {
 
   return (
     <div className='mt-8  2xl:w-[1520px]  '> <Breadcrumb/>
-  <div className="lg:ml-[5rem] 2xl:ml-[2rem] gap-y-3  grid lg:w-[88%] 2xl:w-[95%]  grid-cols-2 md:grid-cols-2 sm:gap-4 lg:gap-8 place-items-center">
+  <div className="lg:ml-[5rem] grid 2xl:ml-[2rem] gap-y-3  grid lg:w-[88%] 2xl:w-[95%]  grid-cols-2 sm:gap-4 lg:gap-8 place-items-center">
   {displayListings.map((agent) => (
           <ProfileCard  key={agent._id} {...agent} sales={Number(agent.numberOfListings)} />
         ))}
@@ -215,7 +233,11 @@ if (isAllLoading) {
       </Link>
     </div>
   )} 
-      {/* <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} /> */}
+      <Pagination totalPages={totalPages}        display={allAgent}
+      
+ currentPage={currentPage} onPageChange={handlePageChange} />
+
+
  <section className="  bg-[#eeeeeec7]  w-full   lg:w-screen font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  lg:gap-[4%] flex-col-reverse lg:w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col gap-y-1 lg:gap-y-0 w-full lg:w-[45em] 2xl:w-[60em] ">

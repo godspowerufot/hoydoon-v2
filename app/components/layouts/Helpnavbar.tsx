@@ -2,10 +2,12 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import MobileNavbar from "./mobile";
 
 export default function HelpCenterNavbar() {
   return (
-    <nav className="w-full border-b border-gray-300 bg-[#f1f1f1] py-2">
+    <>
+    <nav className=" hidden lg:block w-full border-b border-gray-300 bg-[#f1f1f1] py-2">
       <div className="max-w-[1200px] 2xl:max-w-[1550px] mx-auto flex items-center justify-between px-4">
         {/* Left: Logo and Title */}
         <Link href={"/"}>
@@ -23,5 +25,7 @@ export default function HelpCenterNavbar() {
         </div>
       </div>
     </nav>
+    <MobileNavbar/>
+    </>
   );
 }

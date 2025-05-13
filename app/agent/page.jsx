@@ -138,7 +138,7 @@ export default function Page() {
 
       {/* explore */}
       <section className="   lg:w-screen bg-[#eeeeeec7]  lg:py-[2em] ont-bricolage lg:flex justify-center flex-col lg:gap-7 2xl:gap-[3rem] flex-1 items-center">
-      <div className="flex   p-2 flex-col lg:w-[80rem] 2xl:w-[94rem]  my-4  2xl:ml-0 md:flex-row 2xl:gap-[20%] lg:my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+      <div className="flex   p-2 flex-col lg:w-[80rem] 2xl:w-[94rem]  mt-4  2xl:ml-0 md:flex-row 2xl:gap-[20%] lg:my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
       <h1 className="text-black lg:ml-[3rem]  text-2xl  lg:text-[2rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
       <p className="text-gray  lg:p-0 text-[12px] lg:text-xl font-bricolage w-full lg:w-full">
       Leverage a local agent's expertise with access to millions of listings, guiding you through every step.
@@ -149,7 +149,7 @@ export default function Page() {
 </div>
 
 
-<div className="grid    w-full lg:w-[90%] grid-cols-2    gap-2 lg:gap-6 lg:place-items-center">
+<div className="grid p-3 gap-y-3  w-full lg:w-[90%]  grid-col-1 lg:grid-cols-2    gap-2 lg:gap-6 lg:place-items-center">
   {displayListings.slice(0, Math.min(displayListings.length < 4 ? 2 : 6, displayListings.length)).map((agent) => (
     <ProfileCard
       key={agent._id}
