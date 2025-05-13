@@ -218,7 +218,7 @@ if (isAllLoading) {
 
   return (
     <div className='mt-8  2xl:w-[1520px]  '> <Breadcrumb/>
-  <div className="lg:ml-[5rem] grid 2xl:ml-[2rem] gap-y-3  grid lg:w-[88%] 2xl:w-[95%]  grid-cols-2 sm:gap-4 lg:gap-8 place-items-center">
+  <div className="lg:ml-[5rem]  2xl:ml-[2rem] gap-y-3  grid lg:w-[88%] 2xl:w-[95%]  grid-cols-1 lg:grid-cols-2 sm:gap-4 lg:gap-8 place-items-center">
   {displayListings.map((agent) => (
           <ProfileCard  key={agent._id} {...agent} sales={Number(agent.numberOfListings)} />
         ))}
