@@ -30,7 +30,7 @@ export const ProfileCard = ({
 />
 
     <div className="lg:mt-[1em]  p-[1rem] lg:p-0 w-fit  flex flex-col gap-y-1 lg:gap-y-2 lg:block  font-bricolage lg:ml-[0.3em]">
-      <h2 className="font-bricolage  text-[15px] font-bold lg:text-[1.3em] text-black">{fullname}</h2>
+      <h2 className="font-bricolage  text-base font-bold lg:text-[1.3em] text-black">{fullname}</h2>
       <p className="text-[#8F8F8F]  text-[12px] lg:text-[1em] font-[400] lg:w-[200px]">{email}</p>
   
       <div className="lg:mt-3">
@@ -38,7 +38,7 @@ export const ProfileCard = ({
         <b>${formatNumber(priceRange.min)} - ${formatNumber(priceRange.max)}</b> <b className="text-[#8F8F8F] font-[400]">Price range</b>
       </p>
       <p className="text-black text-[12px] lg:text-[1em] font-[400] lg:w-[200px]">
-        <b>{sales}</b> <b className="text-[#8F8F8F] font-[300]">Total sales</b>
+        <b>{sales}</b> <b className="text-[#8F8F8F] ">Total sales</b>
       </p>
       </div>
     </div>

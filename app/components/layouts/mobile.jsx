@@ -186,13 +186,13 @@ const [formData, setFormData] = useState({
       </nav>
 
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white transform transition-transform duration-300 z-50 ${
+        className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Sidebar */}
         <div
-          className={`fixed top-0 right-0 h-full w-64 bg-white transform transition-transform duration-300 z-50 ${
+          className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${
             isSidebarOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -201,7 +201,7 @@ const [formData, setFormData] = useState({
                <div className="flex items-center space-x-2">
               <Image alt="logo" width={30} height={30} src="/Logo.svg" />
             
-                <span className="font-semibold text-gray-800 text-base">
+                <span className="font-semibold text-[#1E1E1E] text-base">
                   Hoydoon
                 </span>
            
@@ -209,7 +209,7 @@ const [formData, setFormData] = useState({
               onClick={() => setSidebarOpen(false)}
               className="text-gray-800"
             >
-              <Image src="/close.svg" alt="close icon" width={10} height={10} />
+              <Image src="/close.svg" alt="close icon" width={10} height={10} classname="w-[24px] h-[24px]  " />
             </button>
           </div>
 
@@ -238,7 +238,7 @@ const [formData, setFormData] = useState({
                 >
                   {section}
               
-              <div className='border-y-0 border-r-0  border-l-[1px] h-6 flex justify-center items-center pl-3 border-solid border-[#8F8F8F'>
+              <div className='border-y-0 border-r-0 w-[36px] h-[24px]  border-l-[1px]  flex justify-center items-center pl-3 border-solid border-[#8F8F8F]'>
                 <Image
                     src={
                       openDropdown === section
@@ -248,6 +248,7 @@ const [formData, setFormData] = useState({
                     alt="dropdown arrow"
                     width={16}
                     height={16}
+                    className='w-[10px] h-[5px]'
                   />  </div>  
                 </button>
                 {openDropdown === section && (
