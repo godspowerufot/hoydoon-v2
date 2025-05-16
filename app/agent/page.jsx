@@ -137,9 +137,9 @@ export default function Page() {
 
 
       {/* explore */}
-      <section className="   lg:w-screen bg-none  lg:bg-[#eeeeeec7]  lg:py-[2em] ont-bricolage lg:flex justify-center flex-col lg:gap-7 2xl:gap-[3rem] flex-1 items-center">
+      <section className="   lg:w-screen bg-white  lg:bg-[#eeeeeec7]  lg:py-[2em] ont-bricolage lg:flex justify-center flex-col lg:gap-7 2xl:gap-[3rem] flex-1 items-center">
       <div className="flex   p-2 flex-col lg:w-[80rem] 2xl:w-[94rem]  mt-4  2xl:ml-0 md:flex-row 2xl:gap-[20%] lg:my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-[3rem]  text-2xl  lg:text-[2rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
+      <h1 className="text-black lg:ml-[0]  text-2xl  lg:text-[2.6rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
       <p className="text-gray  lg:p-0 text-[12px] lg:text-xl font-bricolage w-full lg:w-full">
       Leverage a local agent's expertise with access to millions of listings, guiding you through every step.
 </p>
@@ -181,7 +181,7 @@ export default function Page() {
       </section>
 
 
-      <section className="  bg-[#eeeeeec7]  w-full   lg:w-screen font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
+      <section className="  bg-white  lg:bg-[#eeeeeec7]  w-full   lg:w-screen font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  lg:gap-[4%] flex-col-reverse lg:w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col gap-y-1 lg:gap-y-0 w-full lg:w-[45em] 2xl:w-[60em] ">
 <h1  className="text-black  text-2xl mt-4  lg:mt-0  lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Connect with local agent</h1>

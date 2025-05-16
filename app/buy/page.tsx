@@ -76,13 +76,16 @@ export default function Home() {
        }
   return (
     <>
-      <header className="relative   h-[40vh]   p-2 lg:h-[80vh] w-screen overflow-hidden">
+      <header className="relative   h-[43vh]   p-2 lg:h-[80vh] w-screen overflow-hidden">
       {/* Background Image */}
         <div
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
+          className="absolute lg:block hidden  top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
           style={{ backgroundImage: "url('/rent.png')" }}
         ></div>
-
+  <div
+          className="absolute lg:hidden top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
+          style={{ backgroundImage: "url('/rentmobile.png')" }}
+        ></div>
         {/* Content Section */}
         <div className="flex flex-col items-center relative z-[1]  mt-[4rem] lg:mt-[6rem]    gap-2 lg:gap-4 h-full ">
           {/* Main Heading */}
@@ -97,7 +100,7 @@ export default function Home() {
           </h2>
 
               <h2 className="text-[#FFFFFFB2]  lg:hidden lg:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm lg:text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
-                Hoydoon connects you to your dream home — easily and reliably. </h2>
+              Find your dream home—great locations, modern amenities, endless possibilities. Move in today! </h2>
       
       
       

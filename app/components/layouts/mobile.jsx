@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -12,6 +12,7 @@ import { useLogoutMutation } from '@/store/slices/api/authapi';
 const MobileNavbar = () => {
   const pathname = usePathname();
     const router=useRouter();
+      const sidebarRef = useRef(null);
   const authPaths = ["/auth/sign-in", "/auth/sign-up", "/auth/forgot-password"];
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -53,7 +54,21 @@ const [formData, setFormData] = useState({
   const toggleDropdown = (name) => {
     setOpenDropdown((prev) => (prev === name ? null : name));
   };
+// ⛔ Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isSidebarOpen &&
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target)
+      ) {
+        setSidebarOpen(false);
+      }
+    };
 
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isSidebarOpen]);
   const sections = {
     Buy: {
       title: "Homes for Sale",
@@ -136,7 +151,7 @@ const [formData, setFormData] = useState({
               <img src="/mobilelog.png" alt="globe" className="w-8 h-8" />
 
               {/* Input Field with Search Button */}
-              <div className="flex items-center border border-[#8F8F8F] rounded-full   px-2 py-1">
+              <div className="flex items-center  border-[2px] border-[#8F8F8F] rounded-full   px-2 py-1">
                 <input
                   type="text"
                   name="location"
@@ -160,8 +175,8 @@ const [formData, setFormData] = useState({
             </div>
           ) : (
             <>
-              <div className="w-full mr-[5px] flex justify-end">
-                <Button className="bg-[#008D8D] text-white text-sm px-4 py-[8px] rounded-full font-medium">
+              <div className="w-full mr-[5px]  text-[12px] flex justify-end">
+                <Button className="bg-[#008D8D] text-white text-[12px] px-2 !w-[111px] py-[6px] rounded-full font-medium">
                   Download App
                 </Button>
               </div>
@@ -169,27 +184,18 @@ const [formData, setFormData] = useState({
           )}
         </div>
         <button onClick={() => setSidebarOpen(true)} className="text-gray-800">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="3"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
+                       <Image alt="logo" width={30} height={30} src="/menu.svg" className='w-[18px] h-[12px]' />
+
         </button>
       </nav>
 
-      <div
-        className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${
-          isSidebarOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
+    <div
+  ref={sidebarRef}
+  className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${
+    isSidebarOpen ? "translate-x-0" : "translate-x-full"
+  }`}
+>
+
         {/* Sidebar */}
         <div
           className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${
@@ -213,8 +219,8 @@ const [formData, setFormData] = useState({
             </button>
           </div>
 
-          <div className="px-4 py-2">
-            <div className="flex items-center my-5 gap-2 ">
+          <div className=" py-2">
+            <div className="flex items-center my-4 px-4 gap-2 ">
               <Image
                 alt="phone icon"
                 width={13}
@@ -222,7 +228,7 @@ const [formData, setFormData] = useState({
                 src="/phone.png"
                 className="w-[24px] h-[24px]"
               />
-              <span className="text-primary text-base font-[500]">
+              <span className="text-primary text-[16px] font-[500]">
                 Download App
               </span>
             </div>
@@ -230,7 +236,7 @@ const [formData, setFormData] = useState({
             {Object.entries(sections).map(([section, content]) => (
               <div
                 key={section}
-                className="border-b border-t border-[#E5E5E5] py-2"
+                className="border-x-0  border-[0.6px] border-[#8F8F8F] px-4 py-2"
               >
                 <button
                   className="flex justify-between  items-center w-full text-black text-base h-[2.4rem]"
@@ -274,7 +280,7 @@ const [formData, setFormData] = useState({
             <Link href="/auth/sign-in">
               <div
                 onClick={() => setSidebarOpen(false)}
-                className="py-4 text-primary border-b text-base border-x-0  border-[#E5E5E5] border-[1px] border-solid cursor-pointer"
+                className="py-4 px-4 text-primary border-b  border-[-0.6px] text-base border-x-0  border-[#8F8F8F]  border-solid cursor-pointer"
               >
                 Become an Agent
               </div>
@@ -283,7 +289,7 @@ const [formData, setFormData] = useState({
             <Link href="/helpcenter">
               <div
                 onClick={() => setSidebarOpen(false)}
-                className="py-4 text-base text-gray-600 border-b border-[#E5E5E5] border-solid cursor-pointer"
+                className="py-4  px-4 text-base text-gray-600 border-b border-[#8F8F8F] border-solid cursor-pointer"
               >
                 Help
               </div>
@@ -296,7 +302,7 @@ const [formData, setFormData] = useState({
                           <div
             onClick={handlelogout}
             disabled={isLoggingOut}
-                            className={`ont-bricolage h-auto p-1 rounded-none mt-5 border-primary brder-solid border-[1px] text-primary  flex justify-center items-center  w-[7.5rem]
+                            className={`ont-bricolage h-auto p-1 rounded-none mt-5 border-primary brder-solid text-primary  flex justify-center items-center  w-[7.5rem]
             ${isLoggingOut ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             {isLoggingOut ? "Logging out..." : "Logout"}
@@ -307,9 +313,9 @@ const [formData, setFormData] = useState({
                           <>
                     
                             <button 
-                            className="font-bricolage h-auto p-1 rounded-none mt-5 border-primary brder-solid border-[1px] text-primary  flex justify-center items-center  w-[7.5rem]">
+                            className="font-bricolage ml-4  h-auto p-1 rounded-none mt-5 border-primary brder-solid border-[1px] text-primary  flex justify-center items-center  w-[7.5rem]">
                               <Link href="/auth/sign-up" className="font-light h-[25px] text-base">
-                                Register
+                             Login
                               </Link>
                             </button>
                           </>

@@ -21,7 +21,7 @@ interface Property {
 
 export default function Home() {
     const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({})
-    const displayListings = allListings?.listings;
+    const displayListings = Array.isArray(allListings?.listings) ? allListings.listings : [];
      
     
 
@@ -35,7 +35,7 @@ export default function Home() {
          }
   return (
     <>
-      <header className="relative   h-[40vh]   p-2 lg:h-[80vh] w-screen overflow-hidden">
+      <header className="relative   h-[322.62px]   p-2 lg:h-[80vh] w-screen overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
@@ -45,7 +45,7 @@ export default function Home() {
         {/* Content Section */}
         <div className="flex flex-col items-center relative z-[1]  mt-[6rem]   lg:gap-4 h-full ">
           {/* Main Heading */}
-          <h1 className="text-white text-center w-[20rem]   relative  font-bricolage font-semibold leading-tight  text-[2.1em] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
+          <h1 className="text-white text-center w-[20rem]   relative  font-bricolage font-semibold leading-tight  text-[32px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Find Your Future, Feel at Home!{" "}
           </h1>
 

@@ -90,12 +90,17 @@ export const authApi = createApi({
         return { data: null };
       },
     }),
-    getAgents: builder.query({
-      query: () => ({
-        url: "/v1/agents",
-        method: "GET",
-      }),
-    }),
+ // In authapi.ts or wherever you define your endpoints
+getAgents: builder.query({
+  query: (params = {}) => {
+    const searchParams = new URLSearchParams(params).toString();
+    return {
+      url: `/v1/agents?${searchParams}`,
+      method: 'GET',
+    };
+  },
+}),
+
     getAgentsInfo: builder.query({
       query: ({ userId }) => ({
         url: `v1/agents/${userId}`,
