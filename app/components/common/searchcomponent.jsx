@@ -99,20 +99,20 @@ const SearchBar = () => {
       </div>
     </div>
     <div className="flex  lg:hidden justify-center items-center w-full px-1 py-1">
-  <div className="flex  items-center w-full bg-white rounded-full h-[2.4em] px-2 py-1">
+  <div className="flex  items-center w-full bg-white rounded-full h-[32px] placeholder:textt-[12px] px-2 py-1">
     <input
       type="text"
       name="location"
       value={formData.location}
       onChange={handleChange}
       placeholder="Address, Neighborhood, City, Zip code..."
-      className="flex-1 text-sm text-gray-700 outline-none bg-transparent placeholder:text-gray-400"
+      className="flex-1 text-[12px] text-[#8F8F8F] placeholder:text-[12px]  outline-none bg-transparent placeholder:text-[#8F8F8F]"
     />
     <button
       onClick={handleSearch}
-      className="ml-2 bg-primary p-2 rounded-full flex items-center justify-center hover:bg-opacity-90"
+      className="ml-2 h-[24px]  bg-primary px-1 w-[26px] p-1 rounded-full flex items-center justify-center hover:bg-opacity-90"
     >
-      <Image alt="Search" width={15} height={15} src="/search.png" />
+      <Image alt="Search" width={10} height={10} src="/search.png" className="w-[12px] h-[12px]" />
     </button>
   </div>
 </div>

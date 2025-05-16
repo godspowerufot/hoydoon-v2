@@ -89,7 +89,7 @@ export default function Home() {
         {/* Content Section */}
         <div className="flex flex-col items-center relative z-[1]  mt-[4rem] lg:mt-[6rem]    gap-2 lg:gap-4 h-full ">
           {/* Main Heading */}
-          <h1 className="text-white text-center w-[18rem]   relative  font-bricolage font-semibold leading-tight  text-[1.6em] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
+          <h1 className="text-white text-center w-[25rem]   relative  font-bricolage font-semibold leading-tight  text-[36px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Find Your Perfect Dream Home Today!
           </h1>
 

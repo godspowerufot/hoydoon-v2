@@ -67,7 +67,7 @@ export default function Page() {
   {/* Content Section */}
   <div className="flex z-[1] p-4 lg:p-0 relative  gap-2 lg:gap-6 justify-center items-center flex-col">
     {/* Main Heading */}
-    <h1 className="w-[10em]  capitalize  mt-[2em] 2xl:mt-[9rem] lg:mt-[1.4em] text-white text-[2em] lg:w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
+    <h1 className="w-[10em]  capitalize  mt-[1.5em] 2xl:mt-[9rem] lg:mt-[1.4em] text-white text-[2em] lg:w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
     A top agent matters!    </h1>
 
     {/* Subheading */}
@@ -108,20 +108,20 @@ export default function Page() {
   </div>
 </div>
  <div className="flex  lg:hidden justify-center items-center w-full px-1 py-1">
-  <div className="flex  items-center w-full bg-white rounded-full h-[2.4em] px-2 py-1">
+  <div className="flex  items-center w-full bg-white rounded-full h-[32px] px-2 py-1">
     <input
       type="text"
       name="location"
       value={formData.location}
       onChange={handleChange}
-      placeholder="Address, Neighborhood, City, Zip code..."
-      className="flex-1 text-sm text-gray-700 outline-none bg-transparent placeholder:text-gray-400"
+      placeholder="Find an Agent in your area..."
+      className="flex-1 text-sm text-gray-700 placeholder:text-[12px] outline-none bg-transparent placeholder:text-gray-400"
     />
     <button
       onClick={handleSearch}
-      className="ml-2 bg-primary p-2 rounded-full flex items-center justify-center hover:bg-opacity-90"
+      className="ml-2 h-[24px]  bg-primary px-1 w-[26px] p- rounded-full flex items-center justify-center hover:bg-opacity-90"
     >
-      <Image alt="Search" width={15} height={15} src="/search.png" />
+      <Image alt="Search" width={10} height={10} src="/search.png" />
     </button>
   </div>
 </div>
