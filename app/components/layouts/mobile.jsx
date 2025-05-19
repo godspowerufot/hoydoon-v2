@@ -125,7 +125,7 @@ const [formData, setFormData] = useState({
           <>
             {" "}
             <div className="flex items-center space-x-2">
-              <Image alt="logo" width={30} height={30} src="/Logo.svg" />
+             <Link href="/" className='flex items-center space-x-2'> <Image alt="logo" width={30} height={30} src="/Logo.svg" />
               {pathname === "/helpcenter" ? (
                 <div className="flex items-center space-x-2">
                   {/* vertical line */}
@@ -139,6 +139,7 @@ const [formData, setFormData] = useState({
                   Hoydoon
                 </span>
               )}
+              </Link>
             </div>
           </>
         )}
@@ -175,7 +176,7 @@ const [formData, setFormData] = useState({
             </div>
           ) : (
             <>
-              <div className="w-full mr-[5px]  text-[12px] flex justify-end">
+              <div className="w-full mr-[7px]  text-[12px] flex justify-end">
                 <Button className="bg-[#008D8D] text-white text-[12px] px-2 !w-[111px] py-[6px] rounded-full font-medium">
                   Download App
                 </Button>
@@ -184,7 +185,7 @@ const [formData, setFormData] = useState({
           )}
         </div>
         <button onClick={() => setSidebarOpen(true)} className="text-gray-800">
-                       <Image alt="logo" width={30} height={30} src="/menu.svg" className='w-[18px] h-[12px]' />
+                       <Image alt="logo" width={30} height={30} src="/menu.svg" className='w-[32px] h-[12px]' />
 
         </button>
       </nav>
@@ -196,106 +197,113 @@ const [formData, setFormData] = useState({
   }`}
 >
 
-        {/* Sidebar */}
-        <div
-          className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${
-            isSidebarOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          <div className="flex items-center justify-between p-4 border-b  border-[#8F8F8F]">
-           
-               <div className="flex items-center space-x-2">
-              <Image alt="logo" width={30} height={30} src="/Logo.svg" />
-            
-                <span className="font-semibold text-[#1E1E1E] text-base">
-                  Hoydoon
-                </span>
-           
-            </div>  <button
-              onClick={() => setSidebarOpen(false)}
-              className="text-gray-800"
-            >
-              <Image src="/close.svg" alt="close icon" width={10} height={10} classname="w-[24px] h-[24px]  " />
-            </button>
-          </div>
-
-          <div className=" py-2">
-            <div className="flex items-center my-4 px-4 gap-2 ">
-              <Image
-                alt="phone icon"
-                width={13}
-                height={13}
-                src="/phone.png"
-                className="w-[24px] h-[24px]"
-              />
-              <span className="text-primary text-[16px] font-[500]">
-                Download App
-              </span>
+        {/* /* Sidebar */ }
+          <div
+            className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${
+              isSidebarOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="flex items-center justify-between p-4 border-b  border-[#8F8F8F]">
+             
+                 <Link href={"/"} className="flex cursor-pointer items-center space-x-2">
+                <Image alt="logo" width={30} height={30} src="/Logo.svg" />
+              
+            <span className="font-semibold text-[#1E1E1E] text-base">
+              Hoydoon
+            </span>
+             
+              </Link>  <button
+                onClick={() => setSidebarOpen(false)}
+                className="text-gray-800"
+              >
+                <Image src="/close.svg" alt="close icon" width={10} height={10} classname="w-[24px] h-[24px]  " />
+              </button>
             </div>
 
-            {Object.entries(sections).map(([section, content]) => (
-              <div
-                key={section}
-                className="border-x-0  border-[0.6px] border-[#8F8F8F] px-4 py-2"
-              >
-                <button
-                  className="flex justify-between  items-center w-full text-black text-base h-[2.4rem]"
-                  onClick={() => toggleDropdown(section)}
-                >
-                  {section}
-              
-              <div className='border-y-0 border-r-0 w-[36px] h-[24px]  border-l-[1px]  flex justify-center items-center pl-3 border-solid border-[#8F8F8F]'>
+            <div className=" py-2">
+              <div className="flex items-center my-4 px-4 gap-2 ">
                 <Image
-                    src={
-                      openDropdown === section
-                        ? "/arrowup-green.png"
-                        : "/arrowdown.png"
-                    }
-                    alt="dropdown arrow"
-                    width={16}
-                    height={16}
-                    className='w-[10px] h-[5px]'
-                  />  </div>  
-                </button>
-                {openDropdown === section && (
-                  <div className="mt-1 pl-2">
-                    <p className="text-black font-medium text-sm mb-2">
-                      {content.title}
-                    </p>
-                    {content.items.map((item, index) => (
-                      <Link key={index} href={item.href}>
-                        <p
-                          onClick={() => setSidebarOpen(false)}
-                          className="text-[#007B7B] text-sm font-normal py-1 cursor-pointer"
-                        >
-                          {item.label}
-                        </p>
-                      </Link>
-                    ))}
-                  </div>
-                )}
+            alt="phone icon"
+            width={13}
+            height={13}
+            src="/phone.png"
+            className="w-[24px] h-[24px]"
+                />
+                <span className="text-primary text-[16px] font-[500]">
+            Download App
+                </span>
               </div>
-            ))}
 
-            <Link href="/auth/sign-in">
-              <div
-                onClick={() => setSidebarOpen(false)}
-                className="py-4 px-4 text-primary border-b  border-[-0.6px] text-base border-x-0  border-[#8F8F8F]  border-solid cursor-pointer"
+              {Object.entries(sections).map(([section, content]) => {
+                // Add custom border classes for specific sections
+                let borderClass = "border-x-0 border-[1px] border-[#8F8F8F] px-4 py-2";
+                if (section === "Rent") borderClass += " border-b-0";
+                if (section === "Rent") borderClass += " border-b border-t-0";
+                if (section === "Find an Agent") borderClass += " border-t-0";
+                return (
+            <div
+              key={section}
+              className={borderClass}
+            >
+              <button
+                className="flex justify-between  items-center w-full text-black text-base h-[2.4rem]"
+                onClick={() => toggleDropdown(section)}
               >
-                Become an Agent
-              </div>
-            </Link>
+                {section}
+            
+            <div className='border-y-0 border-r-0 w-[36px] h-[24px]  border-l-[1px]  flex justify-center items-center pl-3 border-solid border-[#8F8F8F]'>
+              <Image
+                  src={
+              openDropdown === section
+                ? "/arrow-down.svg"
+                : "/arrow-up.svg"
+                  }
+                  alt="dropdown arrow"
+                  width={16}
+                  height={16}
+                  className='w-[10px] h-[5px]'
+                />  </div>  
+              </button>
+              {openDropdown === section && (
+                <div className="mt-1 pl-2">
+                  <p className="text-black font-medium text-sm mb-2">
+              {content.title}
+                  </p>
+                  {content.items.map((item, index) => (
+              <Link key={index} href={item.href}>
+                <p
+                  onClick={() => setSidebarOpen(false)}
+                  className="text-[#007B7B] text-sm font-normal py-1 cursor-pointer"
+                >
+                  {item.label}
+                </p>
+              </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+                );
+              })}
 
-            <Link href="/helpcenter">
-              <div
-                onClick={() => setSidebarOpen(false)}
-                className="py-4  px-4 text-base text-gray-600 border-b border-[#8F8F8F] border-solid cursor-pointer"
-              >
-                Help
-              </div>
-            </Link>
-          
-                      {/* Authentication Buttons */}
+              <Link href="/auth/sign-in">
+                <div
+            onClick={() => setSidebarOpen(false)}
+            className="py-4 px-4 text-primary border-b border-top-[1px]  border-[-0.6px] text-base border-x-0  border-[#8F8F8F]  border-solid cursor-pointer"
+                >
+            Become an Agent
+                </div>
+              </Link>
+
+              <Link href="/helpcenter">
+                <div
+            onClick={() => setSidebarOpen(false)}
+            className="py-4  px-4 text-base text-gray-600 border-b border-[#8F8F8F] border-solid cursor-pointer"
+                >
+            Help
+                </div>
+              </Link>
+            
+                  {/* Authentication Buttons */}
                       <div className="flex flex-col gap-2">
                         {isAuthenticated? (
                           // Logout button when user is logged in

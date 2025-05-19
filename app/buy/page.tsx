@@ -87,7 +87,7 @@ export default function Home() {
           style={{ backgroundImage: "url('/rentmobile.png')" }}
         ></div>
         {/* Content Section */}
-        <div className="flex flex-col items-center relative z-[1]  mt-[4rem] lg:mt-[6rem]    gap-2 lg:gap-4 h-full ">
+        <div className="flex flex-col items-center relative z-[1]  mt-[2.6rem] lg:mt-[6rem]    gap-1 lg:gap-4 h-full ">
           {/* Main Heading */}
           <h1 className="text-white text-center w-[25rem]   relative  font-bricolage font-semibold leading-tight  text-[36px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Find Your Perfect Dream Home Today!
@@ -115,8 +115,8 @@ export default function Home() {
       <section className="    lg:p-0  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   flex-col items-center justify-center">
           <div className="flex   lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
-            <h1 className="text-black lg:pl-[4.5rem] my-4 lg:my-0  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
-              Lagos Houses for Sale
+            <h1 className="text-black lg:pl-[4.5rem] my-3 lg:my-0  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
+              All Houses for Sale
             </h1>
             <p className="text-gray text-sm  lg:pr-5  lg:text-xl font-bricolage w-full lg:w-[55rem] ">
               Discover a home where every detail enhances your lifestyle-crafted
@@ -146,7 +146,7 @@ export default function Home() {
             </div>
 
             <p className="text-[#09858D]  text-sm  mt-4 lg:ml-7 2xl:ml-6  2xl:mt-8   lg:text-2xl font-[500] ">
-              See all {displayListings.length} Lagos houses for sale
+              see All houses for sale
             </p>
           </div>
         </div>
@@ -188,7 +188,7 @@ export default function Home() {
             </div>
 
             <p className="text-[#09858D]   text-sm lg:ml-7 2xl:ml-6  2xl:mt-8   lg:text-2xl font-[500] ">
-              See all {displayListings.length} Afforable houses for sale
+              see all Afforable houses for sale
             </p>
           </div>
         </div>
@@ -232,7 +232,7 @@ export default function Home() {
             </div>
 
             <p className="text-[#09858D] text-sm  lg:ml-7 2xl:ml-6  2xl:mt-8   lg:text-2xl font-[500] ">
-              See all {displayListings.length} open houses for sale
+              see all open houses for sale
             </p>
           </div>
         </div>
@@ -274,7 +274,7 @@ export default function Home() {
             </div>
 
             <p className="text-[#09858D]   lg:ml-7 2xl:ml-6  2xl:mt-8   text-2xl font-[500] ">
-              See all {displayListings.length} luxury houses for sale
+              see all luxury houses for sale
             </p>
           </div>
         </div>

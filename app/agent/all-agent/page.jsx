@@ -80,17 +80,17 @@ const router = useRouter();
         <h1 className="text-black lg:ml-1 text-[24px] lg:text-[2rem] font-[600] w-full">
           Real Estate Agents In Lagos
         </h1>
-        <p className="text-gray font-[400] lg:p-0  my-1 text-sm lg:text-xl font-bricolage w-full lg:w-full">
+        <p className="text-gray font-[400] lg:p-0 lg:my-3 my-1 text-sm lg:text-xl font-bricolage w-full lg:w-full">
           Leverage a local agent's expertise with access to millions of listings, guiding you through every step.
         </p>
       </div>
 
       <div className="hidden ml-[1rem] lg:flex flex-col lg:flex-row items-center gap-[1rem] 2xl:gap-[2rem] mt-4 lg:mt-0">
-        <div className="relative bg-[#F9FAFB] w-[113px] h-[32px] 2xl:w-[30rem] hidden border-[#8F8F8F] border-solid border-[1px] lg:flex items-center bg-gray-100 rounded-[14px] px-2 py-2">
+        <div className="relative bg-[#F9FAFB] w-[300px]  h-[3.4rem] 2xl:w-[30rem] hidden border-[#8F8F8F] border-solid border-[1px] lg:flex items-center bg-gray-100 rounded-[14px] px-2 py-2">
           <input
             type="text"
             placeholder="Agege, Lagos State..."
-            className="bg-[#F9FAFB] placeholder:font-[400] placeholder:text-[12px] placeholder:text-gray focus:outline-none text-black text-sm w-full"
+            className="bg-[#F9FAFB] placeholder:font-[400]   placeholder:text-[12px] placeholder:text-gray focus:outline-none text-black text-sm w-full"
           />
           <button className="ml-2 bg-primary text-white p-3 rounded-lg">
             <Image
@@ -252,7 +252,7 @@ if (isAllLoading) {
 
   return (
     <div className='mt-8  2xl:w-[1520px]  '> <Breadcrumb/>
-  <div className="lg:ml-[5rem]  2xl:ml-[2rem] gap-y-3  grid lg:w-[88%] 2xl:w-[95%]  grid-cols-1 lg:grid-cols-2 sm:gap-4 lg:gap-8 place-items-center">
+  <div className="lg:ml-[5rem] my-3  2xl:ml-[2rem] gap-y-3  grid lg:w-[88%] 2xl:w-[95%]  grid-cols-1 lg:grid-cols-2 sm:gap-4 lg:gap-8 place-items-center">
   {displayListings.map((agent) => (
           <ProfileCard  key={agent._id} {...agent} sales={Number(agent.numberOfListings)} />
         ))}

@@ -50,7 +50,7 @@ export default function Home() {
         ></div>
 
         {/* Content Section */}
-        <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] mt-[4rem]  p-3 lg:p-0  gap-4 h-full ">
+        <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] mt-[2rem] lg:mt-[4rem]  p-3 lg:p-0  lg:gap-4 h-full ">
           {/* Main Heading */}
           <h1 className="text-white text-center w-[20rem]   relative  font-bricolage font-semibold leading-tight  text-[2.1em] lg:text-[clamp(4em,4vw,4em)] lg:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
             Where Every House Feels Like Home
@@ -170,7 +170,7 @@ export default function Home() {
             <section className="   lg:mt-[4em] p-2 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
             <div className="flex flex-col   items-start justify-center">
               <div className="flex lg:ml-[4rem] 2xl:ml-[2.2rem] flex-col md:flex-row lg:my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
-              <h1 className="text-black text-[24px] 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full">
+              <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full">
                 Featured Properties for Rent
               </h1>
               <p className="text-gray my-4 text-sm lg:-ml-[10rem] 2xl:mr-[4rem]  lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
@@ -194,7 +194,7 @@ export default function Home() {
         />
       ))}
         <Link  href="/" className="text-[#09858D] lg:hidden  my-4 text-sm lg:my-5 lg:text-2xl font-[500] ">
-              see {displayListings.length} lagos housing for sale
+              see  housing for sale
             </Link>
     </div>
             </div>
