@@ -13,6 +13,8 @@ export const truncateDescription = (text:string, wordLimit:number) => {
     };
 
 
+
+
 export const provider = new GoogleOAuthProvider({
     clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
     onScriptLoadError: () => console.log('onScriptLoadError'),
@@ -22,6 +24,14 @@ export const provider = new GoogleOAuthProvider({
     },
 });
 
+ export const formatNumber = (num:number) => {
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+    } else if (num >= 1000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+    }
+    return num;
+  };
 // const oneTap = provider.useGoogleOneTapLogin({
 // 	cancel_on_tap_outside: true,
 // 	onSuccess: (tokenResponse) => {

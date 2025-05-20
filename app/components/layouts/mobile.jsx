@@ -152,13 +152,13 @@ const [formData, setFormData] = useState({
               <img src="/mobilelog.png" alt="globe" className="w-8 h-8" />
 
               {/* Input Field with Search Button */}
-              <div className="flex items-center  border-[2px] border-[#8F8F8F] rounded-full   px-2 py-1">
+              <div className="flex items-center  border-[0.6px] border-[#8F8F8F] rounded-full   px-2 py-1">
                 <input
                   type="text"
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
-                  placeholder="Lagos, Nigeria"
+                  placeholder="location"
                   className="text-gray-500 placeholder:text-gray-400  text-sm bg-transparent outline-none px-2 w-[180px]"
                 />
                 <button
@@ -310,7 +310,7 @@ const [formData, setFormData] = useState({
                           <div
             onClick={handlelogout}
             disabled={isLoggingOut}
-                            className={`ont-bricolage h-auto p-1 rounded-none mt-5 border-primary brder-solid text-primary  flex justify-center items-center  w-[7.5rem]
+                            className={`font-bricolage h-auto p-1 rounded-none mt-5 border-primary brder-solid text-white bg-primary  flex justify-center items-center  w-[7.5rem]
             ${isLoggingOut ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             {isLoggingOut ? "Logging out..." : "Logout"}
@@ -321,7 +321,7 @@ const [formData, setFormData] = useState({
                           <>
                     
                             <button 
-                            className="font-bricolage ml-4  h-auto p-1 rounded-none mt-5 border-primary brder-solid border-[1px] text-primary  flex justify-center items-center  w-[7.5rem]">
+                            className="font-bricolage ml-4  h-auto p-1 rounded-none mt-5 border-primary brder-solid border-[1px] bg-primary text-white  flex justify-center items-center  w-[7.5rem]">
                               <Link href="/auth/sign-up" className="font-light h-[25px] text-base">
                              Login
                               </Link>

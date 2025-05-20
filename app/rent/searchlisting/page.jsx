@@ -250,7 +250,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
  
   )}
 
-        {["Price", "Bed/Baths", "Home type"].map((option) => {
+        {["Price", "Home type","Bed/Baths" ].map((option) => {
           const paramKey = option.toLowerCase().replace(/\s+/g, "-");
           const selectedValue = searchParams.get(paramKey) || "";
 
@@ -344,25 +344,26 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
             <div className="relative flex items-center" key={option}>
             <select
               className={`${
-                option === "Home type" ? "hidden lg:block" : "block"
-              } border outline-none focus:outline-none border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 pr-[0.5rem] lg:pr-6 appearance-none`}
+                option === "Price" ? "hidden lg:block" : "block"
+              } border outline-none focus:outline-none border-[#8F8F8F] bg-transparent text-[12.5px] w-[67px] font-light rounded-md text-[#8F8F8F] p-2 pr-[0.5rem] lg:pr-6 appearance-none`}
               value={selectedValue}
               onChange={(e) => handleFilterChange(paramKey, e.target.value)}
             >
               {/* Label Option */}
-              {option === "Price" ? (
+           
+          
+ {option === "Home type" ? (
                 <>
                   <option className="block lg:hidden" value="">
                     Buy
                   </option>
                   <option className="hidden lg:block" value="">
-                    Price
+                    Home type
                   </option>
                 </>
               ) : (
                 <option value="">{option}</option>
               )}
-          
               {/* Price Options */}
               {option === "Price" && (
                 <>
@@ -376,12 +377,7 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
               {/* Home Type Options */}
               {option === "Home type" && (
                 <>
-                  <option className="hidden lg:block" value="">
-                    Home type
-                  </option>
-                  <option className="block lg:hidden" value="">
-                    Buy
-                  </option>
+               
                   <option value="rent">Rent</option>
                   <option value="sale">Sale</option>
                   <option value="land">Land</option>
@@ -494,10 +490,10 @@ const page = () => {
       <Breadcrumb />'
       <div className="flex items-start p-4 lg:p-0  w-full lg:justify-between flex-col  gap-3 lg:gap-0 lg:flex-row lg:w-[76rem]  2xl:w-[90rem]  ">
         <h1 className="text-black  hidden lg:block font-semibold text-2xl lg:text-4xl">
-          Lagos Real-estate & Homes for Sale
+           All Real-estate & Homes for Sale
         </h1>
         <h1 className="text-black lg:hidden font-semibold text-2xl lg:text-4xl">
-        Lagos   Homes for Sale
+         All   Homes for Sale
         </h1>
         <div className="text-gray-600  fex-end lg:-ml-[2rem] 2xl:ml-0 text-sm flex items-center space-x-4">
           <span className="flex gap-2">

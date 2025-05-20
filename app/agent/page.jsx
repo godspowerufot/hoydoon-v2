@@ -65,9 +65,9 @@ export default function Page() {
   </div>
 
   {/* Content Section */}
-  <div className="flex z-[1] p-4 lg:p-0 relative  gap-2 lg:gap-6 justify-center items-center flex-col">
+  <div className="flex z-[1] p-4 lg:p-0 relative  gap-1 lg:gap-6 justify-center items-center flex-col">
     {/* Main Heading */}
-    <h1 className="w-[10em]  capitalize  mt-[1.5em] 2xl:mt-[9rem] lg:mt-[1.4em] text-white text-[2em] lg:w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
+    <h1 className="w-[10em]  capitalize  mt-[1em] 2xl:mt-[9rem] lg:mt-[1.4em] text-white text-[2em] lg:w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
     A top agent matters!    </h1>
 
     {/* Subheading */}
