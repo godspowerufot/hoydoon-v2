@@ -31,7 +31,7 @@ export const ProfileCard = ({
         <b>${formatNumber(priceRange.min)} - ${formatNumber(priceRange.max)}</b> <b className="text-[#8F8F8F] font-[400]">Price range</b>
       </p>
       <p className="text-black text-[12px] lg:text-[1em] font-[400] lg:w-[200px]">
-        <b>{sales}</b> <b className="text-[#8F8F8F] ">Total sales</b>
+        <b>{sales}</b> <b className="text-[#8F8F8F] font-[400]">Total sales</b>
       </p>
       </div>
     </div>
