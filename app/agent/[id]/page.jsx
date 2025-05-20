@@ -16,7 +16,7 @@ import DynamicImageGrid  from '@/app/components/layouts/dynamiclayout';
 import PropertyListCard from '@/app/components/common/PropertyListing';
 import Link from 'next/link';
 import DynamicImageMobile from '@/app/components/layouts/mobiledynamic';
-import { flattenListings } from '@/utils';
+import { flattenListings,formatNumber } from '@/utils';
 const Breadcrumb = ({ agentDetails}) => {
     return (
       <div className=" hidden lg:flex  items-center justify-between gap-[0.2rem] px-4 py-2  mt-[5rem] w-full  bg-gray-100">
@@ -259,14 +259,14 @@ numberOfListings
         <span className="text-gray-400">|</span>
 
         <div className="flex items-center text-sm lg:text-[18px] gap-1">
-          <span className="font-bold text-black">${prices} </span>
+          <span className="font-bold text-black">${formatNumber(prices)} </span>
           <span>Total value</span>
         </div>
 
         <span className="text-gray-400">|</span>
 
         <div className="flex items-center  text-sm lg:text-[18px] gap-1">
-          <span className="font-bold text-black">${agentInfo?.priceRange?.min} - ${agentInfo?.priceRange?.max}</span>
+          <span className="font-bold text-black">${formatNumber(agentInfo?.priceRange?.min)} - ${formatNumber(agentInfo?.priceRange?.max)}</span>
           <span> Price range</span>
         </div>
 
