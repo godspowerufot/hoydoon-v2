@@ -60,7 +60,7 @@ export default async function handler(req, res) {
 
     const mailOptions = {
       from: email,
-      to: 'gpx77344@gmail.com',
+      to: 'devteam@quorvixconsulting.com',
       subject: `Hoydoon Request - ${category}`,
       html: emailContent,
     };
