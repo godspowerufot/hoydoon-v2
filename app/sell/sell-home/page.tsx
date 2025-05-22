@@ -24,13 +24,7 @@ const Breadcrumb = () => {
           {/* Breadcrumb Links */}
           <span className="text-gray-400">Search |</span>
           <a href="#" className="text-primary">Homes for sale</a>
-          <span>{'>'}</span>
-          <a href="#" className="text-primary">Nigeria</a>
-          <span>{'>'}</span>
-          <a href="#" className="text-primary">Lagos</a>
-          <span>{'>'}</span>
-          <a href="#" className="text-primary">Magodo Estate</a>
-        </div>
+    </div>
   
 
 

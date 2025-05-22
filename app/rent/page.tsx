@@ -108,7 +108,7 @@ export default function Home() {
                 ))}
             </div>
             <p className="text-[#09858D]  text-sm  lg:ml-6 2xl:ml-8 2xl:my-5 lg:text-2xl font-[500] ">
-              see {displayListings.length} new listings for rent
+              see all new listings for rent
             </p>
           </div>
         </div>
@@ -158,7 +158,7 @@ export default function Home() {
                 ))}
             </div>
             <p className="text-[#09858D]  text-base lg:ml-6 2xl:ml-8  my-5 lg:text-2xl font-[500] ">
-              see {displayListings.length} explore listings for rent
+              see all explore listings for rent
             </p>
           </div>
         </div>
@@ -207,7 +207,7 @@ export default function Home() {
             </div>
 
             <p className="text-[#09858D] 2xl:ml-[2.5rem]  lg:ml-6  text-base mt-5 lg:text-2xl font-[500] ">
-              See all {displayListings.length} pet-friendly houses for rent
+              See all all pet-friendly houses for rent
             </p>
           </div>
         </div>
@@ -257,7 +257,7 @@ export default function Home() {
             </div>
 
             <p className="text-[#09858D]  text-sm  lg:ml-[2.3rem] 2xl:ml-[2.5rem]  mt-5 lg:text-2xl font-[500] ">
-              See all {displayListings.length} single family House rents for
+              See all all single family House rents for
               rent
             </p>
           </div>
