@@ -1,12 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "@/app/components/common/inputs/input";
 import Image from "next/image";
 
 const SubmitRequest = () => {
-  const [category, setCategory] = useState(""); 
+  const [category, setCategory] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  // 🟢 Inject Tawk.to script only for this page
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://embed.tawk.to/67dd7bad1297d6190a7b4b0b/1imsim8qk";
+    script.async = true;
+    script.charset = "UTF-8";
+    script.setAttribute("crossorigin", "*");
+
+    document.body.appendChild(script);
+
+    // Cleanup the script on unmount
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   const categories = [
     "Select",
@@ -14,13 +30,13 @@ const SubmitRequest = () => {
     "I'm seeking to update my contact details",
     "Assistance",
     "I'm an agent and I'm unable to edit my listings",
-    "My listing was flagged for review"
+    "My listing was flagged for review",
   ];
 
   return (
-    <div className="mt-10  w-full  2xl:w-[96rem]  lg:w-[75rem] p-4 md:p-6 bg-white  min-h-screen lg:min-h-0">
+    <div className="mt-10 w-full 2xl:w-[96rem] lg:w-[75rem] p-4 md:p-6 bg-white min-h-screen lg:min-h-0">
       {/* 🔹 Breadcrumb */}
-      <div className={`flex flex-col md:flex-row items-start md:items-center justify-between gap-4 py-2 w-full bg-gray-100`}>
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 py-2 w-full bg-gray-100">
         <div className="flex items-center gap-2 text-sm lg:text-lg text-gray-600">
           <Image src="/arrow-right.png" alt="Back" width={500} height={500} className="w-3 h-5" />
           <span className="text-primary">Hoydoon Help Center |</span>
@@ -28,9 +44,9 @@ const SubmitRequest = () => {
         </div>
 
         {/* Search Bar */}
-        <div className=" hidden lg:block relative w-full md:w-[20rem] 2xl:w-[25rem]">
+        <div className="hidden lg:block relative w-full md:w-[20rem] 2xl:w-[25rem]">
           <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-            <Image alt="Search" src={'/Search2.png'} width={20} height={20} className="text-gray" />
+            <Image alt="Search" src={"/Search2.png"} width={20} height={20} className="text-gray" />
           </div>
           <Input
             label=""
@@ -42,9 +58,9 @@ const SubmitRequest = () => {
       </div>
 
       {/* 🔹 Form Layout */}
-      <div className={`mt-6 flex flex-col md:flex-row gap-6`}>
+      <div className="mt-6 flex flex-col md:flex-row gap-6">
         {/* Left Section */}
-        <div className="w-full md:flex-1 2xl:max-w-[45rem] lg:max-w-[40rem]  max-w-full">
+        <div className="w-full md:flex-1 2xl:max-w-[45rem] lg:max-w-[40rem] max-w-full">
           <h1 className="text-2xl md:text-3xl font-medium lg:font-semibold mb-6">Submit a request</h1>
 
           {/* 🔹 Category Dropdown */}
@@ -93,10 +109,13 @@ const SubmitRequest = () => {
           )}
 
           {category === "I'm seeking to update my contact details" && (
-           <>
-                         <label className="block text-gray-700 text-base mb-2 2xl:text-[1.2em]">Enter  listing address and name to verify ownership of listing:</label>
-<textarea className="w-full border-[#d6d5d5] border p-3 bg-transparent h-[10rem] mb-4" placeholder="" />
-    </>      )}
+            <>
+              <label className="block text-gray-700 text-base mb-2 2xl:text-[1.2em]">
+                Enter listing address and name to verify ownership of listing:
+              </label>
+              <textarea className="w-full border-[#d6d5d5] border p-3 bg-transparent h-[10rem] mb-4" placeholder="" />
+            </>
+          )}
 
           {category === "Assistance" && (
             <>
@@ -107,13 +126,6 @@ const SubmitRequest = () => {
 
           {category === "I'm an agent and I'm unable to edit my listings" && (
             <Input label="Provide listing's address or a link to the home" type="text" className="w-full !rounded-none border p-3 mb-4" />
-          )}
-
-          {category === "My listing was flagged for review" && (
-            <>
-              <label className="block text-gray-700 text-base mb-2 2xl:text-[1.2em]">Attachments</label>
-             
-            </>
           )}
 
           {/* Final Attachments and Submit */}
@@ -129,9 +141,9 @@ const SubmitRequest = () => {
           )}
         </div>
 
-        {/* 🔹 Right Section: Hide on mobile */}
+        {/* Right Section */}
         {category && category !== "Select" && (
-          <div className="hidden md:block md:max-w-[25rem]  2xl:ml-[24rem] lg:ml-[12rem]">
+          <div className="hidden md:block md:max-w-[25rem] 2xl:ml-[24rem] lg:ml-[12rem]">
             <h2 className="text-xl font-semibold mb-4">Articles in this section</h2>
             <div className="space-y-2 text-base">
               {[
