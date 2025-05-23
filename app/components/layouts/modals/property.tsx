@@ -122,7 +122,7 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
         index += 2;
       } else {
         blocks.push(
-          <div key={index} className="grid  grid-col-1 lg:grid-cols-2 gap-3 grid-rows-2">
+          <div key={index} className="grid  grid-col-1 lg:grid-cols-2 gap-3 grid-rows-2 -mb-[2pc]">
             <div className="col-span-2">
               <img
                 src={images[index]?.url || "/house1.png"}
@@ -152,7 +152,7 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
   // Switch between tabs
   const renderTabContent = () => {
     if (activeTab === "photos") {
-      return <div className="space-y-6 mt-8">{generateGridLayout()}</div>;
+      return <div className="space-y-6 mt-8 -mb-[2pc]">{generateGridLayout()}</div>;
     }
     if (activeTab === "map") {
       return <MapComponent coordinates={coordinates} />;

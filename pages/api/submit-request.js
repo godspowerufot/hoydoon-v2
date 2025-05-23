@@ -1,6 +1,6 @@
 // pages/api/submit-request.ts
 import { IncomingForm } from 'formidable';
-import fs from 'fs';
+
 import nodemailer from 'nodemailer';
 
 // Disable the default body parser

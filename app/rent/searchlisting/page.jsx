@@ -31,6 +31,7 @@ const PropertySkeleton = () => {
 const Breadcrumb = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [isSearching, setIsSearching] = useState(false)
   // Add this state
 const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false); // New state for modal
@@ -395,17 +396,27 @@ const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
           
           );
         })}
-   
 
         <button
-          onClick={handleSearchClick}
-          className="px-4 py-[6px] bg-teal-600 text-base text-white font-light rounded-md"
+          onClick={async () => {
+            setIsSearching(true);
+            handleSearchClick();
+            setIsSearching(false);
+          }}
+          className="px-4 py-[6px] bg-teal-600 text-base text-white font-light rounded-md flex items-center justify-center"
+          disabled={isSearching}
         >
-          Search
+          {isSearching ? (
+            <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+            </svg>
+          ) : null}
+          {isSearching ? "Searching..." : "Search"}
         </button>
-      </div>
+            </div>
 
-      {/* Right Section: List / Map Toggle */}
+            {/* Right Section: List / Map Toggle */}
       <div className=" hidden lg:flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-4  border-[#8F8F8F]  2xl:-mr-[2rem] justify-between border-solid border-[1px] items-center font-base rounded-[10px] 2xl:p-[4px] lg:p-[2px] h-auto relative">
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
