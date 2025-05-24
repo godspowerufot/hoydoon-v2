@@ -319,13 +319,14 @@ const [formData, setFormData] = useState({
                         ) : (
                           // Login & Register buttons when user is not logged in
                           <>
-                    
+                                                  <Link href="/auth/sign-up" className="font-light h-[25px] text-base">
+
                             <button 
                             className="font-bricolage ml-4  h-auto p-1 rounded-none mt-5 border-primary brder-solid border-[1px] bg-primary text-white  flex justify-center items-center  w-[7.5rem]">
-                              <Link href="/auth/sign-up" className="font-light h-[25px] text-base">
                              Login
-                              </Link>
+                              
                             </button>
+                            </Link>
                           </>
                         )}
                       </div>

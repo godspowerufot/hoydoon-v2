@@ -107,9 +107,8 @@ import { signIn } from "next-auth/react";
         <Link href={"/"}>
           <Image src="/mobilelog.png" alt="logo" width={40} height={40} />
         </Link> 
-        <div    onClick={() => router.back()}>
-        <Image src="/close.svg" alt="close icon" width={20} height={20} />
-  
+        <div onClick={() => router.back()} style={{ cursor: "pointer" }}>
+          <Image src="/close.svg" alt="close icon" width={20} height={20} />
         </div>
         </div>
   
