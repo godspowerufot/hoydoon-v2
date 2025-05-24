@@ -10,9 +10,10 @@ import { getAccessToken } from '@/utils/cookies';
 import { logout } from '@/store/slices/authslice';
 import { useLogoutMutation } from '@/store/slices/api/authapi';
 const MobileNavbar = () => {
-  const pathname = usePathname();
     const router=useRouter();
       const sidebarRef = useRef(null);
+        const pathname = usePathname();
+
   const authPaths = ["/auth/sign-in", "/auth/sign-up", "/auth/forgot-password"];
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -20,10 +21,25 @@ const [formData, setFormData] = useState({
     location: "",
   
   });
+
    const isAuthenticated = getAccessToken();
     const [logout] = useLogoutMutation();
     const [isLoggingOut, setIsLoggingOut] = useState(false);
-  
+  // ⛔ Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isSidebarOpen &&
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target)
+      ) {
+        setSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isSidebarOpen]);
   
     const handlelogout = async () => {
       setIsLoggingOut(true);
@@ -54,21 +70,7 @@ const [formData, setFormData] = useState({
   const toggleDropdown = (name) => {
     setOpenDropdown((prev) => (prev === name ? null : name));
   };
-// ⛔ Close sidebar when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        isSidebarOpen &&
-        sidebarRef.current &&
-        !sidebarRef.current.contains(event.target)
-      ) {
-        setSidebarOpen(false);
-      }
-    };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isSidebarOpen]);
   const sections = {
     Buy: {
       title: "Homes for Sale",
