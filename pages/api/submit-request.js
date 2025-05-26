@@ -1,7 +1,6 @@
 import { IncomingForm } from 'formidable';
 import nodemailer from 'nodemailer';
-import fs from 'fs';
-import path from 'path';
+
 
 // Disable default body parser for file streaming
 export const config = {
