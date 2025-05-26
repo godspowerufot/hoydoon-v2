@@ -1,9 +1,9 @@
-// pages/api/submit-request.ts
 import { IncomingForm } from 'formidable';
-
 import nodemailer from 'nodemailer';
+import fs from 'fs';
+import path from 'path';
 
-// Disable the default body parser
+// Disable default body parser for file streaming
 export const config = {
   api: {
     bodyParser: false,
@@ -15,7 +15,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const form = new IncomingForm({ keepExtensions: true });
+  const form = new IncomingForm({
+    keepExtensions: true,
+    maxFileSize: 10 * 1024 * 1024, // Max individual file size: 10MB
+    multiples: true,
+  });
 
   try {
     const data = await new Promise((resolve, reject) => {
@@ -36,7 +40,18 @@ export default async function handler(req, res) {
       listingLink,
     } = data.fields;
 
-    const file = data.files.attachments;
+    let attachmentsArray = data.files.attachments;
+
+    if (!attachmentsArray) attachmentsArray = [];
+    if (!Array.isArray(attachmentsArray)) attachmentsArray = [attachmentsArray];
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
+    const validAttachments = attachmentsArray.filter((file) => allowedTypes.includes(file.mimetype));
+
+    const totalSize = validAttachments.reduce((sum, file) => sum + file.size, 0);
+    if (totalSize > 6 * 1024 * 1024) {
+      return res.status(400).json({ success: false, message: 'Total file size must be under 6MB' });
+    }
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -56,6 +71,7 @@ export default async function handler(req, res) {
       ${appVersion ? `<p><strong>App Version:</strong> ${appVersion}</p>` : ''}
       ${browser ? `<p><strong>Browser:</strong> ${browser}</p>` : ''}
       ${listingLink ? `<p><strong>Listing Link:</strong> ${listingLink}</p>` : ''}
+      <p><strong>Files Attached:</strong> ${validAttachments.length}</p>
     `;
 
     const mailOptions = {
@@ -63,16 +79,11 @@ export default async function handler(req, res) {
       to: 'devteam@quorvixconsulting.com',
       subject: `Hoydoon Request - ${category}`,
       html: emailContent,
+      attachments: validAttachments.map((file) => ({
+        filename: file.originalFilename,
+        path: file.filepath,
+      })),
     };
-
-    if (file) {
-      mailOptions.attachments = [
-        {
-          filename: file.originalFilename,
-          path: file.filepath,
-        },
-      ];
-    }
 
     await transporter.sendMail(mailOptions);
 

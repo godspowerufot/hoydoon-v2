@@ -16,20 +16,8 @@ const SubmitRequest = () => {
   const [appVersion, setAppVersion] = useState("");
   const [browser, setBrowser] = useState("");
   const [listingLink, setListingLink] = useState("");
-  const [attachments, setAttachments] = useState<File | null>(null);
-const [loading, setLoading] = useState(false)
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://embed.tawk.to/67dd7bad1297d6190a7b4b0b/1imsim8qk";
-    script.async = true;
-    script.charset = "UTF-8";
-    script.setAttribute("crossorigin", "*");
-
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  const [attachments, setAttachments] = useState<File[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const categories = [
     "Select",
@@ -40,54 +28,95 @@ const [loading, setLoading] = useState(false)
     "My listing was flagged for review",
   ];
 
- const handleSubmit = async () => {
-  setLoading(true);
-  const formData = new FormData();
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://embed.tawk.to/67dd7bad1297d6190a7b4b0b/1imsim8qk";
+    script.async = true;
+    script.charset = "UTF-8";
+    script.setAttribute("crossorigin", "*");
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
-  formData.append("category", category);
+  const handleSubmit = async () => {
+    setLoading(true);
 
-  if (category !== "Select") {
-    formData.append("email", email);
-    formData.append("subject", subject);
-    formData.append("description", description);
-  }
+    const formData = new FormData();
+    formData.append("category", category);
+    if (category !== "Select") {
+      formData.append("email", email);
+      formData.append("subject", subject);
+      formData.append("description", description);
+    }
 
-  if (category === "I'm seeking to update my contact details") {
-    formData.append("listingInfo", listingInfo);
-  }
+    if (category === "I'm seeking to update my contact details") {
+      formData.append("listingInfo", listingInfo);
+    }
 
-  if (category === "Assistance") {
-    formData.append("appVersion", appVersion);
-    formData.append("browser", browser);
-  }
+    if (category === "Assistance") {
+      formData.append("appVersion", appVersion);
+      formData.append("browser", browser);
+    }
 
-  if (category === "I'm an agent and I'm unable to edit my listings") {
-    formData.append("listingLink", listingLink);
-  }
+    if (category === "I'm an agent and I'm unable to edit my listings") {
+      formData.append("listingLink", listingLink);
+    }
 
-  if (attachments) {
-    formData.append("attachments", attachments); // Actual File
-  }
-
-  try {
-    const response = await fetch("/api/submit-request", {
-      method: "POST",
-      body: formData,
+    let totalSize = 0;
+    attachments.forEach(file => {
+      totalSize += file.size;
+      formData.append("attachments", file);
     });
 
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message || "Submission failed");
-    toast.success("Request submitted successfully!");
-  } catch (error) {
-    console.error("Submission error:", error);
-    toast.error("Failed to submit request.");
-  } finally {
-    setLoading(false);
-  }
-};
+    if (totalSize > 6 * 1024 * 1024) {
+      toast.error("Total file size exceeds 6MB limit.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/submit-request", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Submission failed");
+
+      toast.success("Request submitted successfully!");
+      setAttachments([]);
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Failed to submit request.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selected = Array.from(e.target.files || []);
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif", "application/pdf"];
+
+    const filtered = selected.filter(file => allowedTypes.includes(file.type));
+    const rejected = selected.length - filtered.length;
+
+    const newAttachments = [...attachments, ...filtered];
+    const totalSize = newAttachments.reduce((sum, file) => sum + file.size, 0);
+
+    if (totalSize > 6 * 1024 * 1024) {
+      toast.error("Total file size exceeds 6MB.");
+    } else if (newAttachments.length > 10) {
+      toast.error("You can upload a maximum of 10 files.");
+    } else {
+      setAttachments(newAttachments);
+      toast.success(`${filtered.length} file(s) added.${rejected ? ` ${rejected} file(s) rejected.` : ""}`);
+    }
+  };
 
   return (
-    <div className="mt-10 w-full 2xl:w-[96rem] lg:w-[75rem] p-4 md:p-6 bg-white min-h-screen lg:min-h-0">
+     <div className="mt-10 w-full 2xl:w-[96rem] lg:w-[75rem] p-4 md:p-6 bg-white min-h-screen lg:min-h-0">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 py-2 w-full bg-gray-100">
         <div className="flex items-center gap-2 text-sm lg:text-lg text-gray-600">
           <Image src="/arrow-right.png" alt="Back" width={500} height={500} className="w-3 h-5" />
@@ -176,25 +205,23 @@ const [loading, setLoading] = useState(false)
             <>
                 <label className="block text-gray-700 text-base mb-2 2xl:text-[1.2em]">Attachments</label>
                 <div className="border border-[#d6d5d5] p-3 text-center cursor-pointer bg-white relative">
-                <span
-                  className="text-primary cursor-pointer"
-                  onClick={() => document.getElementById("file-upload")?.click()}
-                >
-                  Add files
-                </span>{" "}
-                or drop files here
-                <input
-                  id="file-upload"
-                  type="file"
-                  className="hidden"
-                  onChange={(e) => {
-                  setAttachments(e.target.files?.[0] || null);
-                  if (e.target.files && e.target.files.length > 0) {
-                    toast.success("File has been uploaded successfully");
-                  }
-                  }}
-                />
-                </div>
+              <span onClick={() => document.getElementById("file-upload")?.click()} className="text-primary cursor-pointer">Add files</span> or drop files here
+            <input
+              id="file-upload"
+              type="file"
+              multiple
+              className="hidden"
+              accept="image/*,.pdf"
+              onChange={handleFileChange}
+            />
+          </div>
+
+          <ul className="mt-2 text-sm text-gray-600">
+            {attachments.map((file, index) => (
+              <li key={index}>{file.name}</li>
+            ))}
+          </ul>
+                
                 <button
                 onClick={handleSubmit}
                 disabled={loading}
