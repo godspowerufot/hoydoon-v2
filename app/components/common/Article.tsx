@@ -44,9 +44,9 @@ const ArticleCard = ({ article }: any) => {
               {article.title}
             </h1>
           </div>
-          <div className="flex flex-wrap gap-3 mt-4">
+          <div className="flex flex-wrap gap-3 mt-1">
             <div className="flex">
-              <span className="flex flex-col text-gray lg:text-[18px] text-sm gap-2 font-medium">
+              <span className="flex flex-col text-gray lg:text-[18px] text-sm -gap-2 lg:gap-2 font-medium">
                 <h4 className="text-gray lg:text-[18px] text-[12px] font-[400]">
                   {article.date.split(" ")[0]}
                 </h4>
@@ -57,7 +57,7 @@ const ArticleCard = ({ article }: any) => {
               </h2>
             </div>
           </div>
-          <p className="text-gray  text-[12px] lg:text-xl font-bricolage font-[300] w-full leading-5 mt-4">
+          <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
             {article.description}
           </p>
         </div>
@@ -84,7 +84,7 @@ const ArticlesSection = () => {
             Stay informed with our latest news and insights where you’ll find
             breaking stories.
           </p>
-          <p className="text-gray lg:hidden block text-sm 2xl:text-[20px] lg:p-0  lg:text-xl 2xl:w-[30em] lg:w-[24em]">
+          <p className="text-gray font-light lg:hidden block text-sm 2xl:text-[20px] lg:p-0  lg:text-xl 2xl:w-[30em] lg:w-[24em]">
           Stay Informed with our latest news and Insights where you’ find breaking stories. Our top stories and features keeps you updated on industry trends, current events.
           </p>
           <Button className="bg-transparent  hidden lg:block mt-2 font-[3px] border-primary border-solid border-[1px] text-gray">

@@ -12,7 +12,7 @@ const Appfooter = () => {
 
     <>
     {!hideNavbar &&
-    <footer className="bg-primary font-bricolage max-md:h-[50vh]  w-screen px-4 lg:p-0  text-white flex flex-col justify-center 2xl:mt-[14rem] items-center lg:mt-[5rem]">
+    <footer className="bg-primary font-bricolage max-md:h-[42vh]  w-screen px-4 lg:p-0  text-white flex flex-col justify-center 2xl:mt-[14rem] items-center lg:mt-[5rem]">
       <div className="w-[95%] 2xl:w-[100rem]  2xl:flex 2xl:items-center 2xl:flex-col 2xl:justify-center space-y-8  mt-[2rem] lg:px-9   lg:py-16 sm:px-6 lg:space-y-16 ">
         {/* Top Section */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">

@@ -4,14 +4,114 @@ import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import PropertyCard from "./components/common/property";
 import ArticlesSection from "./components/common/Article";
-import { useEffect } from "react";
+import { useEffect ,useRef} from "react";
 import { useGetAllListingsQuery, useGetFavoritesQuery } from "@/store/slices/api/authapi";
 import { useState } from "react";
 import SearchBar from "./components/common/searchcomponent";
 import {useIsMobile} from "@/hooks/usemobile"
 import Button from "./components/common/Button";
+import clsx from 'clsx';
+
 import TestimonialCard from "./components/layouts/testimonials";
 import FagsSection  from "../app/components/layouts/FaqSection"
+// carousel
+
+
+function Carousel({ images }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const startX = useRef(null);
+
+  const goToSlide = (index) => {
+    if (index >= 0 && index < images.length) {
+      setCurrentIndex(index);
+    }
+  };
+
+  const handleTouchStart = (e) => {
+    startX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (!startX.current) return;
+    const endX = e.changedTouches[0].clientX;
+    const diffX = startX.current - endX;
+
+    if (diffX > 50) {
+      // Swipe left
+      goToSlide(currentIndex + 1);
+    } else if (diffX < -50) {
+      // Swipe right
+      goToSlide(currentIndex - 1);
+    }
+
+    startX.current = null;
+  };
+
+  return (
+    <div
+      style={{
+        backgroundImage: `url('${images[currentIndex]}')`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }}
+      className="lg:mt-[1rem] lg:hidden relative p-4 sm:p-6 lg:p-8 w-full max-w-full lg:w-[73rem] h-[26rem] 2xl:w-[88rem] 2xl:h-[47rem]"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div className="absolute inset-0 bg-black opacity-15 transition-opacity duration-500" />
+
+      <div className="lg:-ml-[0.7rem] 2xl:ml-[2rem] z-111 absolute bg-primarytransparent p-2 sm:p-2 2xl:p-10 2xl:mt-[20rem] rounded-2xl top-[50%] right-0 h-fit w-full">
+        <div className="bg-white px-3 pt-3 sm:p-6 lg:p-8 rounded-2xl h-fit w-full max-w-full lg:w-[56rem] 2xl:w-[65rem]">
+          <h1 className="text-black text-[0.9rem] sm:text-base lg:text-2xl 2xl:text-[2rem] font-[600]">
+            Laurel Canyon Nest
+          </h1>
+          <p className="text-gray text-[8px] sm:text-sm lg:text-[1rem] 2xl:text-[1.05rem] 2xl:w-[55rem] mt-2 2xl:mt-5">
+            A charming 3-bedroom home featuring a bright, open-concept living area designed for both comfort and connection. The spacious layout flows seamlessly from the kitchen to the dining and living spaces, making it perfect for gatherings. Step outside to a private backyard, ideal for relaxing, entertaining, or enjoying a bit of gardening. This home offers the perfect blend of functionality and tranquility for everyday living.
+          </p>
+
+          <div className="flex flex-wrap mt-[2px] sm:flex-nowrap w-full sm:w-[60%] 2xl:w-[75%] font-bricolage items-center gap-3 sm:gap-0">
+            <div className="flex flex-col-reverse flex-1 px-2 py-3">
+              <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">1,200sqft</span>
+              <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Size</div>
+            </div>
+
+            <div className="h-3 sm:h-10 w-[1px] bg-black my-1 mx-1 sm:-mx-[15%]"></div>
+
+            <div className="flex flex-col-reverse flex-1 px-2 py-3">
+              <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">Berbera, Somalia</span>
+              <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Location</div>
+            </div>
+
+            <div className="h-3 sm:h-10 w-[1px] bg-black my-1 mx-1"></div>
+
+            <div className="flex flex-col-reverse flex-1 px-2 py-3">
+              <span className="flex flex-row gap-[0.2em] items-center mt-[3px] text-[0.75rem] sm:text-base 2xl:text-[1.2rem] font-semibold text-black">
+                <Image alt="logo" width={20} height={20} src="/star.png" className="h-2 w-2" />
+                <p className="text-[8px] sm:text-sm">5.0</p>
+                <p className="text-gray font-[500] text-[0.5rem] sm:text-xs hidden lg:block">(200 reviews)</p>
+              </span>
+              <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Reviews</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Dots */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-50">
+        {images.map((_, index) => (
+          <div
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
+              currentIndex === index ? 'bg-primary scale-110' : 'bg-white opacity-60'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   const { data: allListings, isLoading: isAllLoading, refetch } = useGetAllListingsQuery( );
@@ -113,17 +213,17 @@ export default function Home() {
       <section className=" w-screen  p-5 lg:p-0 font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
         <div className="flex  gap-[4%] flex-col-reverse 2xl:pl-[3.4em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
-            <h1 className="text-black  text-[24px]  mt-4 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
+            <h1 className="text-black  text-[24px]  mt-4 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
               Find your ideal property with simple tools and guidance.
             </h1>
-            <p className="text-gray text-sm lg:text-xl  mt-4 lg:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
+            <p className="text-gray text-sm lg:text-xl  mt-2 lg:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
               Enjoy fast and easy access to a variety of properties that suit
               your needs. Use our smart filters to find the perfect places
               within your budget and preferences. We’ve done the hard work for
               you, so no need to stress about the search.
             </p>
 
-            <Button className="text-base font-light mt-4 ">
+            <Button className="text-base font-light mt-4  !w-[115px] !p-[0.3rem]">
               <Link href="/explore">Explore</Link>
             </Button>
           </span>
@@ -173,7 +273,7 @@ export default function Home() {
               <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full">
                 Featured Properties for Rent
               </h1>
-              <p className="text-gray my-4 text-sm lg:-ml-[10rem] 2xl:mr-[4rem]  lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
+              <p className="text-gray font-light mb-4 text-sm lg:-ml-[10rem] 2xl:mr-[4rem]  lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
                 Discover a home where every detail enhances your lifestyle crafted to fit your taste and needs.
               </p>
               </div>
@@ -193,7 +293,7 @@ export default function Home() {
           rent={items?.item.rent || "Rent details not provided"}
         />
       ))}
-        <Link  href="/" className="text-[#09858D] lg:hidden  my-4 text-sm lg:my-5 lg:text-2xl font-[500] ">
+        <Link  href="/" className="text-[#09858D] lg:hidden  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] ">
               see  housing for sale
             </Link>
     </div>
@@ -206,7 +306,7 @@ export default function Home() {
               <h1 className="text-black text-[24px] lg:text-[2.5rem] font-[600] w-full">
               Explore Luxurious Living Spaces 
               </h1>
-              <p className="text-gray lg:-ml-[10rem] 2xl:mr-[4rem] text-sm lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
+              <p className="text-gray font-light lg:-ml-[10rem] 2xl:mr-[4rem] text-sm lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
                 Discover a home where every detail enhances your lifestyle crafted to fit your taste and needs.
               </p>
               </div>
@@ -314,101 +414,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div
-  style={{
-    backgroundImage: "url('/carousel.jpg')",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-  }}
-  className="lg:mt-[1rem] lg:hidden relative p-4 sm:p-6 lg:p-8 w-full max-w-full lg:w-[73rem] h-[26rem] 2xl:w-[88rem] 2xl:h-[47rem] "
->
-  <div className="absolute inset-0 bg-black opacity-15 transition-opacity duration-500 " />
-  
-  <div className="lg:-ml-[0.7rem] 2xl:ml-[2rem] z-111 absolute bg-primarytransparent p-2 sm:p-2 2xl:p-10 2xl:mt-[20rem] rounded-2xl top-[46%] right-0 h-fit w-full">
-    <div className="bg-white px-3 pt-3 sm:p-6 lg:p-8 rounded-2xl h-fit w-full max-w-full lg:w-[56rem] 2xl:w-[65rem]">
-      <h1 className="text-black text-[0.9rem] sm:text-base lg:text-2xl 2xl:text-[2rem] font-[600]">
-        Laurel Canyon Nest
-      </h1>
-      <p className="text-gray text-[8px] sm:text-sm lg:text-[1rem] 2xl:text-[1.05rem]  2xl:w-[55rem] mt-2 2xl:mt-5">
-        A charming 3-bedroom home featuring a bright, open-concept living area designed for both comfort and connection. The spacious layout flows seamlessly from the kitchen to the dining and living spaces, making it perfect for gatherings. Step outside to a private backyard, ideal for relaxing, entertaining, or enjoying a bit of gardening. This home offers the perfect blend of functionality and tranquility for everyday living.
-      </p>
+     <Carousel images={['/carousel.jpg', '/carousel2.jpg', '/carousel3.jpg','/carousel4.jpg']} />
 
-      <div className="flex flex-wrap mt-[2px] sm:flex-nowrap w-full sm:w-[60%] 2xl:w-[75%] font-bricolage items-center  gap-3 sm:gap-0">
-        {/* Property Details */}
-        <div className="flex flex-col-reverse flex-1 px-2 py-3">
-          <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">
-            1,200sqft
-          </span>
-          <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">
-            Size
-          </div>
-        </div>
-
-        <div className="h-3 sm:h-10 w-[1px] bg-black my-1 mx-1 sm:-mx-[15%]"></div>
-
-        <div className="flex flex-col-reverse flex-1 px-2 py-3">
-          <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">
-            Berbera, Somalia
-          </span>
-          <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">
-            Location
-          </div>
-        </div>
-
-        <div className="h-3 sm:h-10 w-[1px] bg-black my-1 mx-1"></div>
-
-        <div className="flex flex-col-reverse flex-1 px-2 py-3">
-          <span className="flex flex-row gap-[0.2em] items-center mt-[3px] text-[0.75rem] sm:text-base 2xl:text-[1.2rem] font-semibold text-black">
-            <Image
-              alt="logo"
-              width={20}
-              height={20}
-              loading="lazy"
-              objectFit="cover"
-              src="/star.png"
-              className="h-2 w-2"
-            />
-            <p className="text-[8px] sm:text-sm">5.0</p>
-            <p className="text-gray font-[500] text-[0.5rem] sm:text-xs hidden lg:block">
-              (200 reviews)
-            </p>
-          </span>
-          <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">
-            Reviews
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {/* Navigation Buttons at Bottom Right */}
-  <div className="absolute bottom-5 right-5 flex gap-3">
-    {/* Previous Button */}
-    <div className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-2 sm:p-3 w-6 h-6 sm:w-12 sm:h-12 shadow-md cursor-pointer hover:bg-gray-200">
-      <Image
-        alt="left arrow"
-        width={20}
-        height={20}
-        loading="lazy"
-        src="/left.png"
-        className="w-[5px]"
-      />
-    </div>
-
-    {/* Next Button */}
-    <div className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-2 sm:p-3 w-6 h-6 sm:w-12 sm:h-12 shadow-md cursor-pointer hover:bg-gray-200">
-      <Image
-        alt="right arrow"
-        width={20}
-        height={20}
-        loading="lazy"
-        src="/right.png"
-        className="w-[5px]"
-      />
-    </div>
-  </div>
-</div>
 
         </div>
       </section>
@@ -428,7 +435,7 @@ export default function Home() {
               Discover a home where every detail enhances your lifestyle—crafted
               to fit your taste and needs.
             </p>
-            <p className="text-gray lg:hidden block text-sm lg:text-xl font-bricolage w-full lg:w-[30em]">
+            <p className="text-gray font-light lg:hidden block text-sm lg:text-xl font-bricolage w-full lg:w-[30em]">
             Discover what our clients have to say in our customer testimonials section. We take pride in the positive feedback and experiences shared by those we’ve had.
             </p>
           </span>
