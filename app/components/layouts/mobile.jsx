@@ -194,7 +194,7 @@ const [formData, setFormData] = useState({
 
     <div
   ref={sidebarRef}
-  className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${
+  className={`fixed top-0 right-0 h-full w-[295px] bg-white transform transition-transform duration-300 z-50 ${
     isSidebarOpen ? "translate-x-0" : "translate-x-full"
   }`}
 >
@@ -216,9 +216,9 @@ const [formData, setFormData] = useState({
              
               </Link>  <button
                 onClick={() => setSidebarOpen(false)}
-                className="text-gray-800"
+                className="text-gray-800 mr-[9px]"
               >
-                <Image src="/close.svg" alt="close icon" width={10} height={10} classname="w-[24px] h-[24px]  " />
+                <Image src="/close.svg" alt="close icon" width={10} height={10} className="!w-[15px] !h-[15px]  " />
               </button>
             </div>
 
@@ -263,7 +263,7 @@ const [formData, setFormData] = useState({
                   alt="dropdown arrow"
                   width={16}
                   height={16}
-                  className='w-[10px] h-[5px]'
+                  className='!w-[12px] h-[13px]'
                 />  </div>  
               </button>
               {openDropdown === section && (

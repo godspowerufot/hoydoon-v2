@@ -60,7 +60,7 @@ export default function Home() {
 
       {/* explore */}
       <section className="mt-10   lg:my-[4em] w-full  font-bricolage flex justify-center  flex-col lg:flex-row gap-7 2xl:gap-[3rem] flex-1 items-center">
-        <div className="lg:w-[24rem] lg:h-[32rem] 2xl:w-[28rem]    rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
+        <div className="lg:w-[24rem]  w-[388px]lg:h-[32rem] 2xl:w-[28rem]    rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
@@ -86,14 +86,14 @@ export default function Home() {
             </p>
 
             <Link href={"/sell/sell-home"}>
-              <Button className="!w-full 2xl:mt-[3rem] mt-8 text-base 2xl:text-xl lg:h-[4rem]  h-[3rem] lg:p-3">
+              <Button className="!w-full 2xl:mt-[3rem] mt-6 text-base 2xl:text-xl lg:h-[3rem]  h-[3rem] lg:!p-2">
                 Get Started
               </Button>
             </Link>
           </div>
         </div>
 
-        <div className="lg:w-[24rem] lg:h-[32rem] 2xl:w-[28rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
+        <div className="lg:w-[24rem] w-[388px] lg:h-[32rem] 2xl:w-[28rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
@@ -119,10 +119,11 @@ export default function Home() {
             </p>
             <Link  className=" hidden lg:block "href={"/sell/sell-home"}>
             <button className="w-full   rounded-full items-center justify-center flex bg-transparent border-[#1E1E1E]  border-solid border-[1px] text-black  mt-3 text-base 2xl:text-xl h-[3rem]  2xl:h-[4rem] p-3">
-            </button>
+               Visit Seller  marketplace
+ </button>
             </Link>
             <Link className="lg:hidden block " href={"/sell/sell-home"}>
-              <Button className="w-full 2xl:mt-[3rem] mt-8 text-base 2xl:text-xl lg:h-[4rem]  h-[3rem] lg:p-3">
+              <Button className="w-full 2xl:mt-[3rem] mt-8 text-base 2xl:text-xl  text-gray lg:h-[4rem]  h-[3rem] lg:p-3">
               Visit Seller  marketplace
 
               </Button>
@@ -130,7 +131,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="lg:w-[24rem] lg:h-[32rem] 2xl:w-[28rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
+        <div className="lg:w-[24rem]  w-[388px] lg:h-[32rem] 2xl:w-[28rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
@@ -154,14 +155,14 @@ export default function Home() {
               other homes in your area.{" "}
             </p>
 
-            <div className="  rounded-full relative w-[21rem] mt-[4.5rem] 2xl:w-[25rem]">
+            <div className="  rounded-full relative w-[21rem] mt-[1.5rem] 2xl:w-[25rem]">
               <Input
                 label=""
                 type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="2xl:h-[4rem]  p-5 rounded-[24px] mt-[3rem]"
+                className="2xl:h-[4rem]  p-5 !rounded-[24px] mt-[3rem]"
                 placeholder="Enter your home address"
               />
 
@@ -182,7 +183,7 @@ export default function Home() {
       </section>
 
       <section className="   font-bricolage flex  justify-center flex-col flex-1 items-center ">
-        <div className="flex  lg:w-9/10 2xl:gap-[1%]  gap-[2rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+        <div className="flex  lg:w-9/10 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col 2xl:pl-[1rem] w-full lg:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Ready to sell your home?.
@@ -193,7 +194,7 @@ export default function Home() {
               take the first step toward a successful sale
             </p>
 
-            <Button className="text-base font-light mt-5 ">
+            <Button className="text-base py-1 w-[115px] font-light mt-5 ">
               <Link href="/explore">Schedule</Link>
             </Button>
           </span>
@@ -205,7 +206,7 @@ export default function Home() {
               quality={100}
               height={400} // Reduced size of logo
               src={"/sell-1.png"}
-              className=" 2xl:w-[43rem] lg:w-[55rem]   lg:h-[28rem] 2xl:h-[35rem]"
+              className=" 2xl:w-[43rem] lg:w-[55rem]  w-[388px] lg:h-[28rem] 2xl:h-[35rem]"
             />
           </span>
         </div>
