@@ -47,7 +47,8 @@ function Carousel({ images }) {
     startX.current = null;
   };
 
-  return (
+  return (<>
+  <main className="relative w-full  flex-col flex justify-center items-center">
     <div
       style={{
         backgroundImage: `url('${images[currentIndex]}')`,
@@ -98,18 +99,23 @@ function Carousel({ images }) {
       </div>
 
       {/* Dots */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-50">
-        {images.map((_, index) => (
-          <div
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-              currentIndex === index ? 'bg-primary scale-110' : 'bg-white opacity-60'
-            }`}
-          />
-        ))}
-      </div>
+     
     </div>
+   {/* Dots now placed below image, not inside */}
+  <div className="mt-4 flex gap-2 z-50">
+    {images.map((_, index) => (
+      <div
+        key={index}
+        onClick={() => goToSlide(index)}
+        className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
+          currentIndex === index ? 'bg-primary scale-110' : 'bg-gray opacity-60'
+        }`}
+      />
+    ))}
+  </div>
+      </main>
+      </>
+
   );
 }
 

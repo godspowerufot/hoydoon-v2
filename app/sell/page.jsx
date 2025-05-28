@@ -86,7 +86,7 @@ export default function Home() {
             </p>
 
             <Link href={"/sell/sell-home"}>
-              <Button className="w-full 2xl:mt-[3rem] mt-8 text-base 2xl:text-xl lg:h-[4rem]  h-[3rem] lg:p-3">
+              <Button className="!w-full 2xl:mt-[3rem] mt-8 text-base 2xl:text-xl lg:h-[4rem]  h-[3rem] lg:p-3">
                 Get Started
               </Button>
             </Link>
