@@ -249,11 +249,16 @@ const [formData, setFormData] = useState({
             >
               <button
                 className="flex justify-between  items-center w-full text-black text-base h-[2.4rem]"
-                onClick={() => toggleDropdown(section)}
               >
-                {section}
-            
-            <div className='border-y-0 border-r-0 w-[36px] h-[24px]  border-l-[1px]  flex justify-center items-center pl-3 border-solid border-[#8F8F8F]'>
+              <Link
+      href={content.items[0]?.href || "#"}
+      onClick={() => setSidebarOpen(false)}
+      className="flex-1 text-left"
+    >
+      {section}
+    </Link>
+            <div                  onClick={() => toggleDropdown(section)}
+ className='border-y-0 border-r-0 w-[36px] h-[24px]  border-l-[1px]  flex justify-center items-center pl-3 border-solid border-[#8F8F8F]'>
               <Image
                   src={
               openDropdown === section
