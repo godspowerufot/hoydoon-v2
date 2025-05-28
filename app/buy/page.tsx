@@ -115,7 +115,7 @@ export default function Home() {
       <section className="    lg:p-0  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex   flex-col items-center justify-center">
           <div className="flex   lg:ml-[2rem]  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
-            <h1 className="text-black lg:pl-[4.5rem] my-3 lg:my-0  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
+            <h1 className="text-black lg:pl-[4.5rem] my-1 lg:my-0  text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
               All Houses for Sale
             </h1>
             <p className="text-gray text-sm  lg:pr-5  lg:text-xl font-bricolage w-full lg:w-[55rem] ">
@@ -156,11 +156,11 @@ export default function Home() {
       {/* afforable component */}
       <section className=" p-1 lg:p-0   w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-start">
         <div className="flex   flex-col items-center justify-center">
-          <div className="flex lg:ml-[2rem] gap-y-4  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
+          <div className="flex lg:ml-[2rem] gap-y-2  xxl:ml-[5rem] 2xl:ml-[2rem]  2xl:w-[96rem] p-2 flex-col md:flex-row  2xl:gap-[9rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
             <h1 className="text-black lg:pl-[4.5rem]  text-[24px] lg:text-[2.5rem] font-[600]   w-full ">
               Afforable Houses for Sale
             </h1>
-            <p className="text-gray  lg:pr-5 text-sm lg:text-xl font-bricolage w-full lg:w-[55rem] ">
+            <p className="text-gray   font-light  lg:pr-5 text-sm lg:text-xl font-bricolage w-full lg:w-[55rem] ">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
@@ -318,7 +318,7 @@ export default function Home() {
             </div>
           </span>
 
-          <span className="mt-8  w-screen lg:w-[40rem] h-[30rem] 2xl:w-[50rem] 2xl:h-[35rem] rounded-2xl lg:mt-0">
+          <span className="mt-8  w-screen lg:w-[40rem] h-[25rem] 2xl:w-[50rem] 2xl:h-[35rem] rounded-2xl lg:mt-0">
                  <MapComponent coordinates={coordinates} />
            
           </span>

@@ -9,7 +9,7 @@ import {
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "YOUR_API_KEY";
 const MAP_ID = "a618b8ba2def9141";
-const mapContainerStyle = { width: "100%", height: "500px" };
+const mapContainerStyle = { width: "100%", height: "400px" };
 
 const MapComponent = ({ coordinates }) => {
   const safeCoordinates = Array.isArray(coordinates) ? coordinates : [coordinates];

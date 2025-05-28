@@ -140,16 +140,16 @@ const PropertyCard = ({
           <h4 className="text-gray font-light ml-3"> Area from {`${area}`}</h4>
         </div>
       </div>
-      <div className="flex lg:hidden flex-col border border-gray h-auto w-full max-w-[23rem] font-bricolage overflow-hidden rounded-[16px]">
+      <div className="flex lg:hidden flex-col border border-gray h-auto w-full max-w-[25rem] font-bricolage overflow-hidden rounded-[16px]">
   {/* Image */}
-  <div className="w-full h-[16rem] overflow-hidden">
+  <div className="w-full h-[19rem] rounded-b-[20px] overflow-hidden">
     <Image
       src={imageSrc} // Replace with your image path
       alt="Hebron Homes"
       width={500}
       height={300}
       quality={100}
-      className="object-cover w-full h-full rounded-b-[20px]"
+      className="object-cover w-full h-full "
     />
   </div>
 

@@ -53,7 +53,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
   return (
     <Link href={`/rent/${_id}`}>
       <div
-        className={`flex flex-col rounded-[1.5rem] lg:h-[550px] 2xl:h-[38rem] lg:w-[23.6rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden  lg:ml-4 relative 
+        className={`flex flex-col  rounded-[18px] lg:rounded-[1.5rem] lg:h-[550px] 2xl:h-[38rem] lg:w-[23.6rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden  lg:ml-4 relative 
         group transition-all duration-[1500ms] ease-in-out ${
           isHovered ? "border-solid p-0 border-[1px] border-gray" : "border-none"
         }`}
@@ -66,7 +66,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
       >
         {/* Image */}
         <div
-          className={`overflow-hidden w-full lg:h-[28rem] transition-all duration-[1500ms] ease-in-out ${
+          className={`overflow-hidden rounded-b-[20px] w-full lg:h-[28rem] h-[20rem] transition-all duration-[1500ms] ease-in-out ${
             isHovered ? "max-h-[300px] 2xl:max-h-[330px]" : "max-h-[450px]"
           }`}
         >
@@ -76,7 +76,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
             height={500}
             quality={100}
             src={imageSrc}
-            className="w-full h-full object-cover rounded-b-[1.6rem] transition-all duration-[2000ms] ease-in-out"
+            className="w-full h-full object-cover lg:transition-all lg:duration-[2000ms] lg:ease-in-out"
           />
         </div>
 
@@ -88,14 +88,14 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
               : "h-0 opacity-0 translate-y-5 max-h-0"
           }`}
         >
-          <h1 className="text-black text-base lg:text-[25px] font-bold">
+          <h1 className="text-black text-[22px] lg:text-[25px] font-bold">
             {truncateDescription(title, 2)}
           </h1>
 
-          <span className="flex-col flex mt-3">
+          <span className="flex-col flex mt-[6px] lg:mt-3">
             <span className="flex gap-1 justify-between items-center">
               <span className="flex  items-center">
-                <h2 className="font-bold lg:text-[23px]">${price}.00</h2>
+                <h2 className="font-bold text-[23px]">${price?.toLocaleString()}.00</h2>
                 <p className="text-gray mt-[2px] font-[400] text-[14px]">/mth</p>
               </span>
               <h4 className="lg:ml-[5rem] 2xl:ml-[10rem] text-label text-gray font-light">
