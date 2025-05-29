@@ -190,11 +190,11 @@ squareFeet,
     {/* Left Section */}
     <div className="flex-1 flex flex-col  gap-1 lg:block">
       <h2 className="text-xl lg:text-[2rem] hidden  lg:block font-bricolage font-semibold">{title}</h2>
-      <h2 className="text-xl lg:text-[2rem] lg:hidden font-bricolage font-semibold">{truncateDescription(title,1)}</h2>
+      <h2 className="text-xl lg:text-[2rem] lg:hidden font-bricolage font-semibold">{truncateDescription(title,3)}</h2>
       
       {/* Address */}
       <div className=" text-black text-sm  lg:text-gray lg:text-base">
-        <p>{truncateDescription(address,1)}</p>
+        <p>{truncateDescription(address,10)}</p>
         <p>{region}</p>
       </div>
 

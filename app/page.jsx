@@ -10,8 +10,10 @@ import { useState } from "react";
 import SearchBar from "./components/common/searchcomponent";
 import {useIsMobile} from "@/hooks/usemobile"
 import Button from "./components/common/Button";
+import { flattenListings } from "@/utils";
 import clsx from 'clsx';
-
+import { log } from "@/utils/log";
+import {truncateDescription} from "@/utils/index";
 import TestimonialCard from "./components/layouts/testimonials";
 import FagsSection  from "../app/components/layouts/FaqSection"
 // carousel
@@ -37,105 +39,140 @@ function Carousel({ images }) {
     const diffX = startX.current - endX;
 
     if (diffX > 50) {
-      // Swipe left
-      goToSlide(currentIndex + 1);
+      goToSlide(currentIndex + 1); // Swipe left
     } else if (diffX < -50) {
-      // Swipe right
-      goToSlide(currentIndex - 1);
+      goToSlide(currentIndex - 1); // Swipe right
     }
 
     startX.current = null;
   };
 
-  return (<>
-  <main className="relative w-full  flex-col flex justify-center items-center">
-    <div
-      style={{
-        backgroundImage: `url('${images[currentIndex]}')`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-      }}
-      className="lg:mt-[1rem] lg:hidden relative p-4 sm:p-6 lg:p-8 w-full max-w-full lg:w-[73rem] h-[26rem] 2xl:w-[88rem] 2xl:h-[47rem]"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
-      <div className="absolute inset-0 bg-black opacity-15 transition-opacity duration-500" />
+  return (
+    <>
+      <main className="relative w-full flex-col flex justify-center items-center">
+        <div
+          style={{
+            backgroundImage: `url('${images[currentIndex]?.imageUrl}')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+          }}
+          className="lg:mt-[1rem] lg:hidden relative p-4 sm:p-6 lg:p-8 w-full max-w-full lg:w-[73rem] h-[26rem] 2xl:w-[88rem] 2xl:h-[47rem]"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div className="absolute inset-0 bg-black opacity-15 transition-opacity duration-500" />
 
-      <div className="lg:-ml-[0.7rem] 2xl:ml-[2rem] z-111 absolute bg-primarytransparent p-2 sm:p-2 2xl:p-10 2xl:mt-[20rem] rounded-2xl top-[50%] right-0 h-fit w-full">
-        <div className="bg-white px-3 pt-3 sm:p-6 lg:p-8 rounded-2xl h-fit w-full max-w-full lg:w-[56rem] 2xl:w-[65rem]">
-          <h1 className="text-black text-[0.9rem] sm:text-base lg:text-2xl 2xl:text-[2rem] font-[600]">
-            Laurel Canyon Nest
-          </h1>
-          <p className="text-gray text-[8px] sm:text-sm lg:text-[1rem] 2xl:text-[1.05rem] 2xl:w-[55rem] mt-2 2xl:mt-5">
-            A charming 3-bedroom home featuring a bright, open-concept living area designed for both comfort and connection. The spacious layout flows seamlessly from the kitchen to the dining and living spaces, making it perfect for gatherings. Step outside to a private backyard, ideal for relaxing, entertaining, or enjoying a bit of gardening. This home offers the perfect blend of functionality and tranquility for everyday living.
-          </p>
+          <div className="lg:-ml-[0.7rem] 2xl:ml-[2rem] z-111 absolute bg-primarytransparent p-2 sm:p-2 2xl:p-10 2xl:mt-[20rem] rounded-2xl top-[50%] right-0 h-fit w-full">
+            <div className="bg-white px-3 pt-3 sm:p-6 lg:p-8 rounded-2xl h-fit w-full max-w-full lg:w-[56rem] 2xl:w-[65rem]">
+              <h1 className="text-black text-[0.9rem] sm:text-base lg:text-2xl 2xl:text-[2rem] font-[600]">
+                {images[currentIndex]?.title}
+              </h1>
+              <p className="text-gray text-[8px] sm:text-sm lg:text-[1rem] 2xl:text-[1.05rem] 2xl:w-[55rem] mt-2 2xl:mt-5">
+                                   {truncateDescription(images[currentIndex]?.description,60)}
 
-          <div className="flex flex-wrap mt-[2px] sm:flex-nowrap w-full sm:w-[60%] 2xl:w-[75%] font-bricolage items-center gap-3 sm:gap-0">
-            <div className="flex flex-col-reverse flex-1 px-2 py-3">
-              <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">1,200sqft</span>
-              <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Size</div>
-            </div>
+              </p>
 
-            <div className="h-3 sm:h-10 w-[1px] bg-black my-1 mx-1 sm:-mx-[15%]"></div>
+              <div className="flex flex-wrap mt-[2px] sm:flex-nowrap w-full sm:w-[60%] 2xl:w-[75%] font-bricolage items-center gap-3 sm:gap-0">
+                <div className="flex flex-col-reverse flex-1 px-2 py-3">
+                  <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">
+                    1,200sqft
+                  </span>
+                  <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Size</div>
+                </div>
 
-            <div className="flex flex-col-reverse flex-1 px-2 py-3">
-              <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">Berbera, Somalia</span>
-              <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Location</div>
-            </div>
+                <div className="h-3 sm:h-10 w-[1px] bg-black my-1 mx-1 sm:-mx-[15%]"></div>
 
-            <div className="h-3 sm:h-10 w-[1px] bg-black my-1 mx-1"></div>
+                <div className="flex flex-col-reverse flex-1 px-2 py-3">
+                  <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">
+                    {images[currentIndex]?.location}
+                  </span>
+                  <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Location</div>
+                </div>
 
-            <div className="flex flex-col-reverse flex-1 px-2 py-3">
-              <span className="flex flex-row gap-[0.2em] items-center mt-[3px] text-[0.75rem] sm:text-base 2xl:text-[1.2rem] font-semibold text-black">
-                <Image alt="logo" width={20} height={20} src="/star.png" className="h-2 w-2" />
-                <p className="text-[8px] sm:text-sm">5.0</p>
-                <p className="text-gray font-[500] text-[0.5rem] sm:text-xs hidden lg:block">(200 reviews)</p>
-              </span>
-              <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Reviews</div>
+                <div className="h-3 sm:h-10 w-[1px] bg-black my-1 mx-1"></div>
+
+                <div className="flex flex-col-reverse flex-1 px-2 py-3">
+                  <span className="flex flex-row gap-[0.2em] items-center mt-[3px] text-[0.75rem] sm:text-base 2xl:text-[1.2rem] font-semibold text-black">
+                    <Image
+                      alt="logo"
+                      width={20}
+                      height={20}
+                      src="/star.png"
+                      className="h-2 w-2"
+                    />
+                    <p className="text-[8px] sm:text-sm">
+                      {images[currentIndex]?.rating.toFixed(1)}
+                    </p>
+                    <p className="text-gray font-[500] text-[0.5rem] sm:text-xs hidden lg:block">
+                      ({images[currentIndex]?.reviewCount} reviews)
+                    </p>
+                  </span>
+                  <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Reviews</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Dots */}
-     
-    </div>
-   {/* Dots now placed below image, not inside */}
-  <div className="mt-4 flex gap-2 z-50">
-    {images.map((_, index) => (
-      <div
-        key={index}
-        onClick={() => goToSlide(index)}
-        className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-          currentIndex === index ? 'bg-primary scale-110' : 'bg-gray opacity-60'
-        }`}
-      />
-    ))}
-  </div>
+        {/* Dots */}
+        <div className="mt-4 flex gap-2 z-50">
+          {images.map((_, index) => (
+            <div
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                currentIndex === index ? 'bg-primary scale-110' : 'bg-gray opacity-60'
+              }`}
+            />
+          ))}
+        </div>
       </main>
-      </>
-
+    </>
   );
 }
 
+
+
 export default function Home() {
-  const { data: allListings, isLoading: isAllLoading, refetch } = useGetAllListingsQuery( );
-  const isMobile = useIsMobile();
+ const { data: allListings, isLoading: isAllLoading, refetch: refetchAll } = useGetAllListingsQuery();
+const { data: luxuryListings, isLoading: isLuxuryLoading, refetch: refetchLuxury } = useGetAllListingsQuery({ category: 'luxury' });
 
-  const [displayListings, setDisplayListings] = useState([]);
+const isMobile = useIsMobile();
+
+const [displayListings, setDisplayListings] = useState([]);
+const [luxuryDisplayListings, setLuxuryDisplayListings] = useState([]);
+
+useEffect(() => {
+  refetchAll();     // Refetch all listings on mount
+  refetchLuxury();  // Refetch luxury listings on mount
+}, [refetchAll, refetchLuxury]);
+
+useEffect(() => {
+  if (!isAllLoading && allListings) {
+    const firstThreeListings = allListings.listings?.slice(0, 3);
+    setDisplayListings(firstThreeListings);
+  }
+}, [allListings, isAllLoading]);
 
 
-  useEffect(() => {
-    refetch(); // Refetch data on every mount
-  }, [refetch]);
+useEffect(() => {
+  if (!isLuxuryLoading && luxuryListings?.listings) {
+    const flatListings = flattenListings(luxuryListings.listings);
 
-  useEffect(() => {
-    if (!isAllLoading && allListings) {
-      const firstThreeListings = allListings.listings?.slice(0, 3);
-      setDisplayListings(firstThreeListings); // Store in state
-    }
-  }, [allListings, isAllLoading]);
+    const slides = flatListings.map((listing) => ({
+      imageUrl: listing.imageUrls?.[0]?.url || '',
+      title: listing.title || '',
+      rating: listing.averageRating ,
+      reviewCount: listing.reviewCount ,
+      location: listing.region || '',
+      description:listing.item.description
+    }));
+
+    setLuxuryDisplayListings(slides);
+  }
+}, [luxuryListings, isLuxuryLoading]);
+log("luxury Listings:", luxuryListings);
 
   if (isAllLoading) {
     return (
@@ -420,7 +457,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-     <Carousel images={['/carousel.jpg', '/carousel2.jpg', '/carousel3.jpg','/carousel4.jpg']} />
+<Carousel images={luxuryDisplayListings} />
 
 
         </div>
