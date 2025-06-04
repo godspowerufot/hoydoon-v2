@@ -19,7 +19,7 @@ import DynamicImageMobile from '@/app/components/layouts/mobiledynamic';
 import { flattenListings,formatNumber } from '@/utils';
 const Breadcrumb = ({ agentDetails}) => {
     return (
-      <div className=" hidden lg:flex  items-center justify-between gap-[0.2rem] px-4 py-2  mt-[5rem] w-full  bg-gray-100">
+      <div className=" hidden lg:flex  ml-[2rem] items-center justify-between gap-[0.2rem] px-4 py-2  mt-[5rem] w-full  bg-gray-100">
         {/* Left Section: Back Arrow and Breadcrumb */}
         <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage text-gray-600">
           {/* Back Arrow */}
@@ -194,10 +194,10 @@ const page = ({params}) => {
       <div className="flex flex-row mx-[1.2rem] lg:p-0 justify-between items-start md:items-center">
 
                {/* Profile Image */}
-               <div className='flex mt-4 lg:mt-0 gap-3'>
+               <div className='flex mt-4 lg:-mt-3 gap-3'>
                 <div className="w-[4rem] h-[4rem] lg:w-[6rem] lg:h-[6rem] relative">
                   <Image
-                    src={agentInfo?.pictureUrl || ""}// Replace with actual image path
+                    src={agentInfo?.pictureUrl || "/Avatar.svg"}// Replace with actual image path
                     alt="Profile Picture"
                     fill
                     className="rounded-full object-cover"
@@ -205,7 +205,7 @@ const page = ({params}) => {
                 </div>
           
                 {/* Text Section */}
-              <div className='flex flex-col'>
+              <div className='flex flex-col lg:mt-3'>
 
              
         
@@ -218,13 +218,7 @@ const page = ({params}) => {
           </div>
         {/* Right Section */}
         <div className="text-right font-bricolage  text-[#1E1E1E] mt-4 md:mt-0">
-        <Image
-                    src="/mapple.png" // Replace with actual image path
-                    alt="Profile Picture"
-                    width={200}
-                    height={200}
-                    className="object-cover w-[10rem]  lg:w-full"
-                  />          <div className="flex pr-3 lg:pr-0 items-center justify-end  my-3 gap-2 lg:gap-0 text-gray-700 mt-1">
+               <div className="flex pr-3 lg:pr-0 items-center justify-end  my-3 gap-2 lg:gap-0 text-gray-700 mt-1">
           <img src="/stargreen.png" alt="Favorite" className="w-4 h-4" />
           <span className="ml-1 font-medium ">{ListedBy}</span>
           </div>
@@ -232,13 +226,13 @@ const page = ({params}) => {
       
           <div className="flex lg:hidden items-center justify-end gap-2 mt-3 w-full md:w-auto">
         <div  className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
+          <img src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
         </div>
         <div className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/upload.png" alt="Download" className="w-4 h-4" />
+          <img src="/upload.svg" alt="Download" className="w-4 h-4" />
         </div>
         <div className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/image2.png" alt="Share" className="w-4 h-4" />
+          <img src="/image2.svg" alt="Share" className="w-4 h-4 object-cover" />
         </div>
       </div>  </div>
       </div>
@@ -294,8 +288,8 @@ numberOfListings
 
     {/* map */}
     <div className="bg-gray-100 lg:p-6 rounded-lg mb-3">
-    <h1 className="text-xl lg:text-[2rem] pl-[1.75rem] font-semibold "> {agentInfo?.fullname} Listings & Deals</h1>
-    <div className="border-b  px-[1.75rem]  my-4 lg:my-0  border-gray ">
+    <h1 className="text-xl lg:text-[2rem] lg:py-2 font-semibold "> {agentInfo?.fullname} Listings & Deals</h1>
+    <div className="border-b  px-[1.75rem] lg:px-0  my-4 lg:my-0  border-gray ">
       <div className="flex space-x-6">
         {tabs.map((tab) => (
         <button

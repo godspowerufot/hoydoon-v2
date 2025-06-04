@@ -4,7 +4,6 @@ import PropertyListCard from "../components/common/PropertyListing";
 import SearchBar from "../components/common/searchcomponent";
 import Article from "../components/common/Article";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
-import { log } from "@/utils/log";
 import { useState ,useEffect} from "react";
 interface Property {
   imageUrls?: { url?: string; altText?: string }[];

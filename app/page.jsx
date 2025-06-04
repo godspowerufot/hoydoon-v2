@@ -13,6 +13,7 @@ import Button from "./components/common/Button";
 import { flattenListings } from "@/utils";
 import clsx from 'clsx';
 import { log } from "@/utils/log";
+import { toast } from "react-toastify";
 import {truncateDescription} from "@/utils/index";
 import TestimonialCard from "./components/layouts/testimonials";
 import FagsSection  from "../app/components/layouts/FaqSection"
@@ -369,31 +370,36 @@ log("all Listings:", allListings);
         </div>
       </header>
 
-      {/* this hold the images */}
-      <section className=" w-screen  p-5 lg:p-0 font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
-        <div className="flex  gap-[4%] flex-col-reverse 2xl:pl-[3.4em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
-          <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
-            <h1 className="text-black  text-[24px]  mt-4 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
-              Find your ideal property with simple tools and guidance.
-            </h1>
-            <p className="text-gray text-sm lg:text-xl  mt-2 lg:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
-              Enjoy fast and easy access to a variety of properties that suit
-              your needs. Use our smart filters to find the perfect places
-              within your budget and preferences. We’ve done the hard work for
-              you, so no need to stress about the search.
-            </p>
+        <section className=" w-screen  p-5 lg:p-0 font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
+          <div className="flex  gap-[4%] flex-col-reverse 2xl:pl-[3.4em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+            <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
+          <h1 className="text-black  text-[24px]  mt-4 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
+            Find your ideal property with simple tools and guidance.
+          </h1>
+          <p className="text-gray text-sm lg:text-xl  mt-2 lg:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
+            Enjoy fast and easy access to a variety of properties that suit
+            your needs. Use our smart filters to find the perfect places
+            within your budget and preferences. We’ve done the hard work for
+            you, so no need to stress about the search.
+          </p>
 
-  <Button className="text-base font-light mt-4  !w-[115px] !p-[0.3rem]">
-              <Link href="/explore">Explore</Link>
-            </Button>
-          </span>
+        <Button
+          className="text-base font-light mt-4  !w-[115px] !p-[0.3rem]"
+          onClick={() => {     toast.success("Coming soon!");
+        
+    
+          }}
+        >
+          <span>Explore</span>
+        </Button>
+            </span>
 
-          <span className="mt-4 lg:mt-0">
-            <Image
-              alt="image1"
-              width={500}
-              quality={100}
-              height={400} // Reduced size of logo
+            <span className="mt-4 lg:mt-0">
+          <Image
+            alt="image1"
+            width={500}
+            quality={100}
+            height={400} // Reduced size of logo
               src={"/house-app.png"} 
             />
           </span>

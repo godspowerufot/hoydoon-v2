@@ -166,7 +166,7 @@ if (err?.data?.error === "account is not active") {
                   <Button
                     type="submit"
                     onClick={handleSubmit} // ✅ Correct way
-                    className="w-full 2xl:mt-2 lg:mt-2 text-base 2xl:text-[1.3rem] h-[2.5rem] lg:h-[3rem] p-4"
+                    className="!w-full lg:!w-full 2xl:mt-2 lg:mt-2 text-base 2xl:text-[1.3rem] h-[2.5rem] lg:h-[3rem] p-4"
                     disabled={isLoading}
                   >
                    <p className="text-[18px] lg:text-xl">{isLoading ? "Logging in..." : "Log in"}

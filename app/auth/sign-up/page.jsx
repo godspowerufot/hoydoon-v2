@@ -168,7 +168,7 @@ onChange={(e) => setfullname(e.target.value)}
 
 <Button  
 type="submit"
-onClick={handleSubmit} className='w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[2.4rem] lg:h-[3rem] p-4'
+onClick={handleSubmit} className='!w-full lg:!w-full 2xl:mt-2 mt-2 text-base 2xl:text-xl h-[2.4rem] lg:h-[3rem] p-4'
  disabled={isLoading}
 >
   

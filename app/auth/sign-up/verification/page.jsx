@@ -68,8 +68,8 @@ const OtpVerify = () => {
 
   return (
     <>
-      <div className="flex items-center w-full justify-center">
-        <div className=" h-screen justify-center lg:items-center  flex  py-[1rem] 2xl:mt-[0.6rem]">
+      <div className="flex items-center w-full justify-center h-screen lg:h-full ">
+        <div className=" h-screen  lg:py-1 justify-center lg:items-center  flex  py-[6rem] 2xl:mt-[0.6rem] ">
           <div className=" gap-[4rem]   flex flex-1 flex-col lg:flex-row">
             <Image
               alt="authBanner"
@@ -82,10 +82,10 @@ const OtpVerify = () => {
               style={{ objectFit: "cover" }}
             />
 
-            <div className=" w-full lg:w-[60%] items-start mt-3 2xl:-mt-4  flex flex-col">
+            <div className=" w-full px-4 lg:w-[60%] items-start mt-3 2xl:-mt-4  flex flex-col">
               <Link
                 href="/"
-                className="flex justify-start lg:ml-[2rem]         "
+                className="flex lg:justify-start  lg:ml-[2rem]         "
               >
                 <Image
                   alt="logo"

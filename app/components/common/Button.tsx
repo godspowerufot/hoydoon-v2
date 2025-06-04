@@ -9,7 +9,7 @@ const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => {
   const defaultClassName =
-    "flex justify-center  font-bricolage items-center  text-white  p-2 rounded-full bg-primary group-hover:text-white lg:w-[115px] flex justify-center items-center   ";
+    "flex justify-center  font-bricolage items-center  text-white  p-2 rounded-full bg-primary group-hover:text-white lg:w-[115px]  flex justify-center items-center   ";
 
   const finalClassName = `${defaultClassName} ${className}`.trim(); 
 
