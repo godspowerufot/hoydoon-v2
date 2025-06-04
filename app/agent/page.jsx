@@ -159,17 +159,16 @@ export default function Page() {
   ))}
 
   {/* "See All" link aligned to the start */}
-  {displayListings.length > 0 && displayListings.length < 6 && (
-    <div className="w-full hidden  lg::col-span-2 lg:flex justify-start">
+    <div className="w-full  lg:col-span-2 lg:flex justify-start">
       <Link href="/agent/all-agent">
         <p className="text-[#09858D] mt-5  w-full text-sm lg:text-2xl font-medium">
-          See all {displayListings.length} rent estate agents in Lagos
+          See all  rent estate agents 
         </p>
       </Link>
     </div>
-  )}
+
 {displayListings.length > 0 && displayListings.length < 6 && (
-    <div className="w-full  lg:hidden lflex justify-start">
+    <div className="w-full  flex justify-start">
       <Link href="/agent/all-agent">
         <p className="text-[#09858D] mt-5  w-full text-sm lg:text-2xl font-medium">
           See all {displayListings.length} rent estate agents in Lagos

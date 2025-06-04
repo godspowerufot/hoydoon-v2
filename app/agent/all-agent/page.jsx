@@ -75,7 +75,7 @@ const router = useRouter();
 
 
   return (
-    <div className="w-full py-2 lg:py-6 px-1 lg:px-[3.5rem] 2xl:px-3 items-start lg:flex-col lg:items-center justify-between">
+    <div className=" py-2 lg:py-6 px-1 lg:px-[6rem] 2xl:px-3 items-start lg:flex-col lg:items-center justify-between">
       <div className="flex p-2 flex-col w-full 2xl:ml-0 md:flex-row 2xl:gap-[20%] mt-[1rem] lg:flex-row md:gap-10 justify-end items-center md:items-start ">
         <h1 className="text-black lg:ml-1 text-[24px] lg:text-[2rem] font-[600] w-full">
           Real Estate Agents In Lagos
@@ -85,48 +85,66 @@ const router = useRouter();
         </p>
       </div>
 
-      <div className="hidden ml-[1rem] lg:flex flex-col lg:flex-row items-center gap-[1rem] 2xl:gap-[2rem] mt-4 lg:mt-0">
-        <div className="relative bg-[#F9FAFB] w-[300px]  h-[3.4rem] 2xl:w-[30rem] hidden border-[#8F8F8F] border-solid border-[1px] lg:flex items-center bg-gray-100 rounded-[14px] px-2 py-2">
+    <div className="hidden lg:flex flex-col lg:flex-row items-center gap-3 lg:gap-4 2xl:gap-6 w-full mt-4">
+        {/* Location Search */}
+        <div className="relative w-full  lg:w-[300px] 2xl:min-w-[350px]">
           <input
             type="text"
+            value={region}
+            onChange={(e) => setRegion(e.target.value)}
             placeholder="Agege, Lagos State..."
-            className="bg-[#F9FAFB] placeholder:font-[400]   placeholder:text-[12px] placeholder:text-gray focus:outline-none text-black text-sm w-full"
+            className="w-full h-[54px] bg-[#F9FAFB] border border-[#8F8F8F] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-none"
           />
-          <button className="ml-2 bg-primary text-white p-3 rounded-lg">
-            <Image
-              alt="logo"
-              width={20}
-              height={10}
-              quality={100}
-              src={'/arrow-left.png'}
-              style={{ objectFit: 'cover' }}
-            />
+          <button
+            onClick={() => updateQueryParam('region', region.toLowerCase())}
+            disabled={!region}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white p-3 rounded-lg"
+          >
+            <Image alt="arrow" width={14} height={14} src="/arrow-left.png" />
           </button>
         </div>
 
-        <div className="flex bg-[#F9FAFB] border-[#8F8F8F] w-[15rem] 2xl:w-[25rem] justify-between border-solid border-[1px] items-center font-bricolage rounded-[10px] p-2">
+        {/* Buy/Sell Toggle */}
+        <div className="w-full lg:w-auto bg-[#F9FAFB] border border-[#8F8F8F] rounded-xl p-1.5 flex items-center justify-between">
           {options.map((option) => (
             <button
               key={option}
-              className={`px-4 py-2 w-[7rem] rounded-md transition-all duration-300 ${
-                selectedOption === option ? "bg-primary text-white" : "text-[#8F8F8F]"
+              className={`px-6 py-2.5 rounded-lg transition-all duration-300 ${
+                selectedOption === option ? "bg-primary text-white" : "text-[#8F8F8F] hover:bg-gray-100"
               }`}
-              onClick={() => setSelectedOption(option)}
+              onClick={() => {
+                setSelectedOption(option);
+                updateQueryParam('listingType', option.toLowerCase());
+              }}
             >
               {option}
             </button>
           ))}
         </div>
 
-        <div className="relative">
-          <select className="border border-[#8F8F8F] bg-[#F9FAFB] rounded-md px-4 text-[#8F8F8F] w-[18rem] 2xl:w-[20rem] py-4 text-gray-700 outline-none appearance-none">
-            <option>Select Language...</option>
+        {/* Language Dropdown */}
+        <div className="relative w-full lg:w-auto lg:min-w-[220px] 2xl:min-w-[250px]">
+          <select
+            value={selectedLanguage}
+            onChange={(e) => {
+              setSelectedLanguage(e.target.value);
+              updateQueryParam('spokenLanguage', e.target.value.toLowerCase());
+            }}
+            className="w-full h-[54px] appearance-none bg-[#F9FAFB] border border-[#8F8F8F] rounded-xl px-4 py-3 text-[#8F8F8F] focus:outline-none focus:ring-1 focus:ring-none"
+          >
+            <option value="">Select Language...</option>
             {languages.map((lang) => (
-              <option key={lang}>{lang}</option>
+              <option key={lang} value={lang}>
+                {lang}
+              </option>
             ))}
           </select>
-          <img src="/arrow-down.png" alt="Dropdown" className="w-[6px] h-[3px] absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+          <span className="pointer-events-none absolute right-4 top-1/2 transform -translate-y-1/2">
+            <Image src="/arrow-downed.svg" alt="dropdown arrow" width={14} height={14} />
+          </span>
         </div>
+
+     
       </div>
 
       <div className="flex lg:hidden flex-row lg:flex-wrap items-center gap-2 w-full">
@@ -136,7 +154,7 @@ const router = useRouter();
               value={region}
   onChange={(e) => setRegion(e.target.value)}
             placeholder="Agege, Lagos..."
-            className="bg-[#F9FAFB] placeholder:text-gray-400 focus:outline-none text-black text-sm w-full"
+            className="bg-[#F9FAFB] placeholder:text-[#8F8F8F] focus:outline-none text-black text-sm w-full"
           />
           <button  onClick={() => updateQueryParam('region', region.toLowerCase())}
           disabled={!region}
@@ -300,40 +318,14 @@ if (isAllLoading) {
             alt="image1"
             width={500}
             quality={100}
-            className=" 2xl:w-[50rem] lg:w-[55rem]   w-fit lg:h-[28rem] 2xl:h-[36rem]"
+              className="2xl:w-[48rem] w-[45rem] 2xl:h-[30rem]"// Reduced size of logo
             height={400} // Reduced size of logo
               src={'/agent3.png'}
             />
 </span>
         </div>
       </section>
-<section className="  hidden  font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
-        <div className="flex  gap-[4%] flex-col w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
-          <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
-<h1  className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Ready to sell your home?.</h1>
-<p className="text-gray text-base lg:text-xl mt-3 2xl:mt-[2em] font-bricolage w-[85%] 2xl:text-[20px] 2xl:w-[70%]">
-Ready to sell your home? Let us help you maximize its value and make the process stress-free. Schedule a consultation today and take the first step toward a successful sale</p>
 
-<Button className="text-base font-light mt-5 ">
-  <Link href="/explore">
-  Schedule
-  </Link>
-</Button>
-          </span>
-
-<span className="mt-4 lg:mt-0">
- <Image
-              alt="image1"
-              width={500} 
-              quality={100}
-              className="2xl:w-[48rem] w-[45rem] 2xl:h-[30rem]"// Reduced size of logo
-
-              height={400} // Reduced size of logo
-              src={'/agent3.png'}
-            />
-</span>
-        </div>
-      </section>
 <div className="mt-[3px] hidden   ml-[2rem] justify-center items-center max-md:w-full w-full gap-6 lg:flex flex-col max-md:justify-center max-md:items-center lg:flex-row ">
 <div className="z-[4] relative max-md:w-full  lg:h-[50em]  lg:left-[50px] 2xl:left-[80px] lg:top-[10em]">
 <FAQComponent/>

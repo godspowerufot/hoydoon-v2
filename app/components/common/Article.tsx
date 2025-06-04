@@ -87,11 +87,13 @@ const ArticlesSection = () => {
           <p className="text-gray font-light lg:hidden block text-sm 2xl:text-[20px] lg:p-0  lg:text-xl 2xl:w-[30em] lg:w-[24em]">
           Stay Informed with our latest news and Insights where you’ find breaking stories. Our top stories and features keeps you updated on industry trends, current events.
           </p>
-          <Button className="bg-transparent  hidden lg:block mt-2 font-[3px] border-primary border-solid border-[1px] text-gray">
+       <Link href={"/helpcenter"}>
+       <Button className="bg-transparent  hidden lg:block mt-2 font-[3px] border-primary border-solid border-[1px] text-gray">
             <p className="text-gray" style={{ color: "#8F8F8F" }}>
               Explore
             </p>
           </Button>
+           </Link>  
         </span>
       </div>
       <div className="lg:flex  hidden justify-center w-full  mt-[1.3rem] lg:mt-[4%] lg:flex-1 lg:flex-row flex-col items-center lg:gap-6 2xl:gap-10">

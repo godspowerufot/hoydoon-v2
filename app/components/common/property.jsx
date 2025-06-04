@@ -33,7 +33,7 @@ const PropertyCard = ({
   return (
     <Link href={`/rent/${_id}`}>
       <div
-        className={`hidden lg:flex flex-col rounded-[16px] lg:rounded-[1.5rem]  border-[1px] border-gray 2xl:h-[40rem]  h-[32rem] lg:h-[500px] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden lg:ml-8 relative group transition-all duration-[1500ms] ease-in-out ${
+        className={`hidden lg:flex flex-col rounded-[16px] lg:rounded-[1.5rem]  border-[1px] border-gray 2xl:h-[40rem]  h-[32rem] lg:h-[600px] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden lg:ml-8 relative group transition-all duration-[1500ms] ease-in-out ${
           isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : " border lg:border-none"
         }`}
         onMouseEnter={() => setIsHovered(true)}
@@ -57,7 +57,7 @@ const PropertyCard = ({
 
         {/* Details Section - Always open on mobile */}
         <div
-          className={`mt-3 lg:mt-8 px-5 transition-all duration-[1500ms] ease-in-out ${
+          className={`mt-3 lg:mt-5 px-5 transition-all duration-[1500ms] ease-in-out ${
             showDetails ? "opacity-100 translate-y-0  h-fit lg:h-[175px]" : "h-0 opacity-0 translate-y-5 max-h-0"
           }`}
         >
@@ -75,7 +75,7 @@ const PropertyCard = ({
             <p className="text-gray mb-[1.1rem] text-[16px] mt-4">
               {truncateDescription(description, 12)}
             </p>
-            <div className="mt-[1rem] mb-1 flex justify-between items-center">
+            <div className="mt-[6px] mb-1 flex justify-between items-center">
               <div className="text-base flex justify-center font-bricolage items-center rounded-full font-light h-[41px] lg:w-[180px] text-[#1E1E1E] bg-[#D8F0F1]">
                 Luxury Oasis
               </div>

@@ -22,12 +22,12 @@ export default function FagsSection() {
           Welcome to our FAQ center, where you can find answers to all your
           most pressuring questions
         </p>
-        <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px] ">
+        {/* <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px] ">
           <p className="text-gray" >
             {" "}
             Explore{" "}
           </p>
-        </Button>
+        </Button> */}
       </span>
     </div>
     <div className="-mt-[3rem]  lg:ml-[8rem] 2xl:ml-[4rem]  justify-center items-center max-md:w-full w-full gap-6 flex flex-col-reverse max-md:justify-center max-md:items-center lg:flex-row ">

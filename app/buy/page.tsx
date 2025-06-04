@@ -27,7 +27,11 @@ interface Property {
 
 export default function Home() {
   const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({}, { pollingInterval: 60000 });
-  const [displayListings, setDisplayListings] = useState([]);
+ const { data: luxuryListings, isLoading: isLuxuryLoading, refetch: refetchLuxury } = useGetAllListingsQuery({ category: 'luxury' });
+  const { data: affordableListings, isLoading: isAffordableLoading, refetch: refetchAffordable } = useGetAllListingsQuery({ category: 'affordable' });  
+  const { data: openHouseListings, isLoading: isOpenHouseLoading, refetch: refetchOpenHouse } = useGetAllListingsQuery({ category: 'open-house' });
+  const { data: upcomingListings, isLoading: isUpcomingLoading, refetch: refetchUpcoming } = useGetAllListingsQuery({ category: 'upcoming' });
+ const [displayListings, setDisplayListings] = useState([]);
   const [searchLocation, setSearchLocation] = useState("");
   const [coordinates, setCoordinates] = useState([]);
   const { data: listing } = useGetAllListingsQuery(  { location: searchLocation }, // e.g. "Lekki" or Zip
@@ -167,7 +171,7 @@ export default function Home() {
           </div>
           <div className="flex lg:ml-[1.5rem] flex-col ">
             <div className="grid grid-cols-1 gap-8  sm:grid-cols-2 lg:grid-cols-3 lg:gap-1 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...displayListings]
+              {[...affordableListings?.listings || []]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items: Property, index: number) => (
@@ -211,7 +215,7 @@ export default function Home() {
           </div>
           <div className="flex lg:ml-[1.5rem] flex-col ">
             <div className="grid gap-8  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-1 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...displayListings]
+              {[...openHouseListings?.listings || []]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items: Property, index: number) => (
@@ -253,7 +257,7 @@ export default function Home() {
           </div>
           <div className="flex lg:ml-[1.5rem] flex-col ">
             <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-1 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...displayListings]
+              {[...luxuryListings?.listings || []]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
                 .map((items: Property, index: number) => (

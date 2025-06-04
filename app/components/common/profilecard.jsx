@@ -5,15 +5,14 @@ const ListedCard = ({name,picture}) => {
   return (
     <div className="w-full bg-[#F9FAFB] max-w-[15rem] lg:max-w-[25rem] flex items-center gap-3 p-4 border rounded-xl  bg-[#f1f1f166]">
       {/* Profile Image */}
-      <div className="w-[4rem] h-[4rem] lg:w-[6rem] lg:h-[6rem] relative">
+      <div className="w-12 h-12 lg:w-16 lg:h-16 relative">
         <Image
-          src={picture} // Replace with actual image path
+          src={picture}
           alt="Profile Picture"
           fill
           className="rounded-full object-cover"
         />
       </div>
-
       {/* Text Section */}
       <div className="flex flex-col">
         <span className="text-[1.23rem] lg:text-xl font-bold text-black font-bricolage">

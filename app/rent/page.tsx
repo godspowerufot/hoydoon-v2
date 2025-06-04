@@ -4,6 +4,8 @@ import PropertyListCard from "../components/common/PropertyListing";
 import SearchBar from "../components/common/searchcomponent";
 import Article from "../components/common/Article";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
+import { log } from "@/utils/log";
+import { useState ,useEffect} from "react";
 interface Property {
   imageUrls?: { url?: string; altText?: string }[];
   _id?:string;
@@ -16,14 +18,28 @@ interface Property {
     description?: string;
     title?: string;
     rent?: string;
+    petFriendly: boolean;
   };
 }
 
 export default function Home() {
     const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({})
-    const displayListings = Array.isArray(allListings?.listings) ? allListings.listings : [];
-     
+    const { data: familyFriendlyListings } = useGetAllListingsQuery({ category: 'family-friendly' });
+    const { data: rentListings } = useGetAllListingsQuery({ listingType: 'rent' });
+
     
+    const displayListings = Array.isArray(allListings?.listings) ? allListings.listings : [];
+
+    const [petFriendlyListings, setPetFriendlyListings] = useState([]);
+
+    useEffect(() => {
+      if (Array.isArray(allListings?.listings)) {
+      const filtered = allListings.listings?.filter(
+        (item: Property) => item?.item?.petFriendly===true
+      );
+      setPetFriendlyListings(filtered);
+      }
+    }, [allListings]);
 
         
          if (isAllLoading) {
@@ -131,9 +147,8 @@ export default function Home() {
           </div>
           <div className="flex flex-col ">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...displayListings]
-                ?.slice(0, 3) // Create a shallow copy to avoid modifying the original array
-                ?.sort(() => Math.random() - 0.5)
+              {[...rentListings?.listings || []]
+                ?.slice(2, 5)?.sort(() => Math.random() - 0.5)
                 ?.map((items: Property, index: number) => (
                     <PropertyListCard
                       key={index}
@@ -177,11 +192,14 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col ">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...displayListings]
-                .slice(0, 3) // Create a shallow copy to avoid modifying the original array
-                .sort(() => Math.random() - 0.5)
-                ?.map((items: Property, index: number) => (
+            {petFriendlyListings.length === 0 ? (
+              <div className="text-center text-gray-500 py-8">No listings found.</div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+                {[...petFriendlyListings]
+                  .slice(0, 3)
+                  .sort(() => Math.random() - 0.5)
+                  ?.map((items: Property, index: number) => (
                     <PropertyListCard
                       key={index}
                       imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -198,13 +216,13 @@ export default function Home() {
                         "No description available for this property."
                       }
                       _id={items?._id}
-
                       title={items?.item?.title || "Untitled Property"}
                       rent={items?.item?.rent || "Rent details not provided"}
                       squareFeet={items?.item?.squareFeet}
                     />
-                ))}
-            </div>
+                  ))}
+              </div>
+            )}
 
             <p className="text-[#09858D] 2xl:ml-[2.5rem]  lg:ml-6  text-base mt-5 lg:text-2xl font-[500] ">
               See all all pet-friendly houses for rent
@@ -230,8 +248,8 @@ export default function Home() {
           </div>
           <div className="flex flex-col ">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...displayListings]
-                .slice(0, 3) // Create a shallow copy to avoid modifying the original array
+              {[...familyFriendlyListings?.listings || []]
+                .slice(1, 4) // Create a shallow copy to avoid modifying the original array
                 ?.map((items: Property, index: number) => (
                     <PropertyListCard
                       key={index}

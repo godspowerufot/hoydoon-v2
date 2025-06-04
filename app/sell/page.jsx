@@ -44,7 +44,7 @@ export default function Home() {
             Get Personalized Proposals — No Cost!
           </h1>
           {/* Subheading */}
-          <h2 className="lg:text-[1.5em]  text-sm 2xl:text-[1.6em]  font-[400] text-center text-[#FFFFFFB2] lg:w-[33em]">
+          <h2 className="lg:text-[1.5em] capitalize lg:leading-[2rem] text-sm 2xl:text-[1.6em]  font-[400] text-center text-[#FFFFFFB2] lg:w-[33em]">
             Get free, customized quotes from local agents ready to assist you.
             Fast, easy, and no obligation.
           </h2>
@@ -52,7 +52,55 @@ export default function Home() {
           {/* Large Screen Search Bar */}
           {/* Large Screen Search Bar */}
               {/* Search Bar (Large Screens) */}
-     <SearchBar/>
+    <div className="hidden lg:flex   justify-center items-center ">
+      <div className="flex h-[3.5em] py-4 font-bricolage items-center m-2 bg-white rounded-full w-10/12 md:w-4/5 lg:w-[35em]">
+       
+        {/* Transparent Full-Width Input */}
+        <input 
+          type="text" 
+          name="location"
+    
+          value={formData.location}
+          onChange={handleChange}
+          className="flex-1 bg-transparent placeholder:text-[1.3rem] text-black placeholder-gray-500 border-none outline-none pl-4 w-[36.3rem] placeholder:font-light" 
+          placeholder="Enter your Property address" 
+        />
+    
+        {/* Search Button */}
+        <div onClick={handleSearch} className="relative mr-2 p-1 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-gradient-to-r before:from-white before:via-white/30 before:to-white/10 before:p-[1px]">
+          <div className="relative bg-primary ml-[1em] p-3 w-[47px] h-[47px] rounded-full flex items-center justify-center">
+            <Image
+              alt="logo"
+              width={30}
+              loading="lazy"
+              height={30}
+              quality={100} // Ensures maximum quality
+              src={'/arrow-left.png'}
+              style={{ objectFit: 'cover' }}
+            />
+    
+          </div> 
+        </div>
+      </div>
+    </div>
+     <div className="flex  lg:hidden justify-center items-center w-full px-1 py-1">
+      <div className="flex  items-center w-full bg-white rounded-full h-[32px] px-2 py-1">
+        <input
+          type="text"
+          name="location"
+          value={formData.location}
+          onChange={handleChange}
+          placeholder="Find an Agent in your area..."
+          className="flex-1 text-sm text-gray-700 placeholder:text-[12px] outline-none bg-transparent placeholder:text-gray-400"
+        />
+        <button
+          onClick={handleSearch}
+          className="ml-2 h-[24px]  bg-primary px-1 w-[26px] p- rounded-full flex items-center justify-center hover:bg-opacity-90"
+        >
+          <Image alt="Search" width={10} height={10} src="/search.png" />
+        </button>
+      </div>
+    </div>
         </div>
       </header>
 

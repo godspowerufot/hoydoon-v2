@@ -80,7 +80,7 @@ const DynamicImageMobile = ({ images, coordinates, statuses = [], listingId }) =
 
           {/* Image Counter */}
           {i === currentIndex && (
-            <div className="absolute bottom-4 left-4 bg-white px-3 py-1 rounded-[12px]  h-[34px]  justify-center items-center flex w-[46px] text-sm font-medium shadow">
+            <div className="absolute bottom-4 left-4 bg-white px-3 py-1 rounded-[12px]  h-[34px]  justify-center items-center flex w-[46px] text-sm font-light">
               {currentIndex + 1}/{images.length}
             </div>
           )}

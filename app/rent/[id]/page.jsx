@@ -50,13 +50,13 @@ const Breadcrumb = ({region,address,listingId,handleFavoriteClick  }) => {
       {/* Right Section: Icons */}
       <div className="flex  items-center  w-1/2 justify-end gap-2">
         <div onClick={handleFavoriteClick} className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
+          <img src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
         </div>
         <div className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/upload.png" alt="Download" className="w-4 h-4" />
+          <img src="/upload.svg" alt="Download" className="w-4 h-4" />
         </div>
         <div className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/image2.png" alt="Share" className="w-4 h-4" />
+          <img src="/image2.svg" alt="Share" className="w-4 h-4" />
         </div>
       </div>
 
@@ -168,7 +168,7 @@ squareFeet,
     );
   } 
   return (
-    <div className="lg:mt-8  2xl:w-[98rem] lg:w-[94%]  lg:ml-[2%] ">
+    <div className="lg:mt-8  2xl:w-[98rem] lg:w-[87%]  lg:ml-[2%] ">
       <Breadcrumb handleFavoriteClick={handleFavoriteClick} listingId={listingId } address={address} region={region} />
 
       <DynamicImageGrid
@@ -188,43 +188,43 @@ squareFeet,
       <div className="bg-gray-100 p-4 rounded-lg">
   <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 lg:gap-4">
     {/* Left Section */}
-    <div className="flex-1 flex flex-col  gap-1 lg:block">
+    <div className="flex-1 flex flex-col  gap-1  lg:flex">
       <h2 className="text-xl lg:text-[2rem] hidden  lg:block font-bricolage font-semibold">{title}</h2>
       <h2 className="text-xl lg:text-[2rem] lg:hidden font-bricolage font-semibold">{truncateDescription(title,3)}</h2>
       
       {/* Address */}
-      <div className=" text-black text-sm  lg:text-gray lg:text-base">
+      <div className=" text-black text-sm  font-light lg:text-gray block lg:text-base">
         <p>{truncateDescription(address,10)}</p>
-        <p>{region}</p>
+        <p >{region}</p>
       </div>
 
       {/* Views */}
-      <div className="flex items-center gap-2 text-gray-700  mt-[2.2rem] lg:mt-2">
-        <FaRegEye className="lg:text-gray text-black" />
-        <span className="lg:font-medium   lg:mt-0 text-base text-black lg:text-gray">Total views {editingCount?.toLocaleString()}</span>
+      <div className="flex items-center gap-2 text-gray-700  mt-[0.5rem] lg:mt-2">
+          <img src="/eye.svg" alt="Share" className="w-3 h-3 lg:w-5 lg:h-5" />
+        <span className="lg:font-medium   lg:mt-0 text-base font-light text-black lg:text-black">Total views {editingCount?.toLocaleString()}</span>
       </div>
     </div>
 
     {/* Right Section */}
-    <div className="text-right flex-1 flex flex-col  gap-1 lg:block md:text-right w-full md:w-auto">
-      <p className="text-[1.7rem] text-black font-bold">${price}</p>
+    <div className="text-right flex-1 lg:-mt-[2.5rem]  flex flex-col  gap-1 lg:flex md:text-right w-full md:w-auto">
+      <p className="text-[1.5rem] text-black font-[600] lg:font-bold">${price}</p>
       
       <div className="flex items-center justify-end mt-1 text-gray-700">
         <img src="/stargreen.png" alt="Star" className="w-4 h-4" />
         <span className="ml-1 font-medium">{averageRating}</span>
       </div>
 
-      <p className=" lg:text-gray text-sm lg:text-base">Est. ${price}/month</p>
+      <p className=" lg:text-gray  font-light text-sm lg:text-base">Est. ${price}/month</p>
     
-      <div className="flex items-center justify-end gap-2 mt-2 w-full md:w-auto">
-        <div onClick={handleFavoriteClick} className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
+      <div className="flex items-center lg:hidden  lg:p-2 justify-end gap-2 mt-2 w-full md:w-auto">
+        <div onClick={handleFavoriteClick} className="justify-center flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm">
+          <img src="/favorite.svg" alt="Favorite" className="w-3 h-3" />
         </div>
-        <div className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/upload.png" alt="Download" className="w-4 h-4" />
+        <div className=" justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm">
+          <img src="/upload.svg" alt="Download" className="w-3 h-3" />
         </div>
-        <div className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/image2.png" alt="Share" className="w-4 h-4" />
+        <div className="justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm">
+          <img src="/image2.svg" alt="Share" className="w-3 h-3" />
         </div>
       </div></div>
   </div>

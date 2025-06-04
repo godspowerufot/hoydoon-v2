@@ -46,6 +46,16 @@ function Carousel({ images }) {
 
     startX.current = null;
   };
+    // Go to next slide
+ // Go to next slide (with loop)
+const prev = () => {
+  goToSlide(currentIndex + 1);
+};
+
+// Go to previous slide (with loop)
+const next = () => {
+  goToSlide(currentIndex - 1);
+};
 
   return (
     <>
@@ -66,14 +76,14 @@ function Carousel({ images }) {
           <div className="lg:-ml-[0.7rem] 2xl:ml-[2rem] z-111 absolute bg-primarytransparent p-2 sm:p-2 2xl:p-10 2xl:mt-[20rem] rounded-2xl top-[50%] right-0 h-fit w-full">
             <div className="bg-white px-3 pt-3 sm:p-6 lg:p-8 rounded-2xl h-fit w-full max-w-full lg:w-[56rem] 2xl:w-[65rem]">
               <h1 className="text-black text-[0.9rem] sm:text-base lg:text-2xl 2xl:text-[2rem] font-[600]">
-                {images[currentIndex]?.title}
+                {truncateDescription(images[currentIndex]?.title,15)}
               </h1>
               <p className="text-gray text-[8px] sm:text-sm lg:text-[1rem] 2xl:text-[1.05rem] 2xl:w-[55rem] mt-2 2xl:mt-5">
-                                   {truncateDescription(images[currentIndex]?.description,60)}
+                                   {truncateDescription(images[currentIndex]?.description,55)}
 
               </p>
 
-              <div className="flex flex-wrap mt-[2px] sm:flex-nowrap w-full sm:w-[60%] 2xl:w-[75%] font-bricolage items-center gap-3 sm:gap-0">
+              <div className="flex flex-wrap -mt-[10px] sm:flex-nowrap w-full sm:w-[60%] 2xl:w-[75%] font-bricolage items-center gap-3 sm:gap-0">
                 <div className="flex flex-col-reverse flex-1 px-2 py-3">
                   <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">
                     1,200sqft
@@ -116,7 +126,111 @@ function Carousel({ images }) {
         </div>
 
         {/* Dots */}
-        <div className="mt-4 flex gap-2 z-50">
+       
+
+
+
+
+
+         <div  
+                style={{
+            backgroundImage: `url('${images[currentIndex]?.imageUrl}')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+          }}
+           onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+            className="lg:mt-[1rem] rounded-none  hidden lg:block relative p-8 2xl:w-[88rem] 2xl:h-[47rem]   lg:w-[73rem] h-[40rem] lg:rounded-2xl"
+          >
+            <div className="absolute rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  lg:rounded-2xl" />
+            <div className=" lg:-ml-[0.7rem] 2xl:ml-[2rem]  z-111 absolute    bg-primarytransparent p-5 2xl:p-10 rounded-2xl 2xl:mt-[20rem] lg:mt-[16rem] h-fit   w-fit">
+              <div className=" bg-white p-8 lg:rounded-2xl   h-[18rem]  2xl:w-[65rem] w-[56rem] ">
+                <h1 className="text-black text-base  lg:text-2xl 2xl:text-[2rem] font-[600]">
+ {images[currentIndex]?.title}                </h1>
+                <p className="text-gray lg:text-[1rem] mb-[2rem] 2xl:text-[1.05rem] font-[400]  2xl:w-[55rem] 2xl:mt-5 mt-3 text-[10px] ">
+                                   {truncateDescription(images[currentIndex]?.description,50)}
+                </p>
+
+                <div className="flex  w-[60%]  2xl:w-[75%] font-bricolage items-center mt-5 ">
+                  {/* Property Details */}
+                  <div className="flex flex-col-reverse w-1/2 flex-1 px-1 py-3">
+                    <span className="text-base   mt-[3px] 2xl:text-[1.2rem] font-semibold text-black">
+                      1,200sqft
+                    </span>
+                    <div className="text-sm 2xl:text-[1rem] text-gray">
+                      Size
+                    </div>
+                  </div>
+
+                  {/* Vertical Divider */}
+                  <div className="h-10 w-[1px] - bg-black -mx-[15%] my-1"></div>
+
+                  <div className="flex ml-[20%] flex-col-reverse w-[40%] flex-1 px-2 py-3">
+                    <span className="text-base  mt-[3px]  2xl:text-[1.2rem]  font-semibold text-black">
+                    {images[currentIndex]?.location}
+                    </span>
+                    <div className="text-sm 2xl:text-[1rem] text-gray">
+                      Location
+                    </div>
+                  </div>
+
+                  {/* Vertical Divider */}
+                  <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
+
+                  <div className="flex w-max flex-col-reverse ml-[3%] flex-1 px-2 py-3">
+                    <span className="text-[0.9em]  2xl:text-[1.2rem] font-semibold text-black">
+                      <span className="flex  mt-[3px] lg:flex-row flex-col gap-[0.2em]  w-full  items-center -ml-[9%] justify-center">
+                        <Image
+                          alt="logo"
+                          width={20}
+                          loading="lazy"
+                          objectFit="cover"
+                          height={20} // Reduced size of logo
+                          src={"/star.png"}
+                          className="h-5 w-5 "
+                        />
+                        <p className="text-base">                      {images[currentIndex]?.rating.toFixed(1)}
+</p>
+                        <p className="text-gray  font-[500] lg:block  hidden">
+                      ({images[currentIndex]?.reviewCount} reviews)
+                        </p>
+                      </span>
+                    </span>
+                    <div className="text-sm 2xl:text-[1rem] text-gray">
+                      Reviews
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Navigation Buttons at Bottom Right */}
+            <div className="absolute bottom-5 right-5 flex gap-3 ">
+              {/* Previous Button */}
+              <div  onClick={next}className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-3 w-12 h-12 shadow-md cursor-pointer hover:bg-gray-200">
+                <Image
+                  alt="logo"
+                  width={20}
+                  loading="lazy"
+                  height={20} // Reduced size of logo
+                  src={"/left.png"}
+                  className="text-gray w-[9px]  text-lg"
+                />
+              </div>
+              {/* Next Button */}
+              <div onClick={prev} className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-3 w-12 h-12 shadow-md cursor-pointer hover:bg-gray-200">
+                <Image
+                  alt="logo"
+                  width={20}
+                  loading="lazy"
+                  height={20} // Reduced size of logo
+                  src={"/right.png"}
+                  className="text-gray w-[9px]  text-lg"
+                />
+              </div>
+            </div>
+          </div>
+           <div className="mt-4 flex gap-2 z-50">
           {images.map((_, index) => (
             <div
               key={index}
@@ -128,6 +242,9 @@ function Carousel({ images }) {
           ))}
         </div>
       </main>
+
+
+      
     </>
   );
 }
@@ -135,7 +252,7 @@ function Carousel({ images }) {
 
 
 export default function Home() {
- const { data: allListings, isLoading: isAllLoading, refetch: refetchAll } = useGetAllListingsQuery();
+ const { data: allListings, isLoading: isAllLoading, refetch: refetchAll } = useGetAllListingsQuery({ category: 'Featured' });
 const { data: luxuryListings, isLoading: isLuxuryLoading, refetch: refetchLuxury } = useGetAllListingsQuery({ category: 'luxury' });
 
 const isMobile = useIsMobile();
@@ -172,7 +289,7 @@ useEffect(() => {
     setLuxuryDisplayListings(slides);
   }
 }, [luxuryListings, isLuxuryLoading]);
-log("luxury Listings:", luxuryListings);
+log("all Listings:", allListings);
 
   if (isAllLoading) {
     return (
@@ -266,7 +383,7 @@ log("luxury Listings:", luxuryListings);
               you, so no need to stress about the search.
             </p>
 
-            <Button className="text-base font-light mt-4  !w-[115px] !p-[0.3rem]">
+  <Button className="text-base font-light mt-4  !w-[115px] !p-[0.3rem]">
               <Link href="/explore">Explore</Link>
             </Button>
           </span>
@@ -292,10 +409,16 @@ log("luxury Listings:", luxuryListings);
               Download our highly-rated real estate app for iOS or Android to
               receive instant alerts when your dream home becomes available.
             </p>
-
+          <Link
+  href="
+https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk" 
+  target="_blank" 
+  rel="noopener noreferrer"
+>
             <Button className="text-base font-light mt-5 ">
-              <Link href="/download">Download</Link>
+               Download
             </Button>
+            </Link>
           </span>
 
           <span className="mt-4 lg:mt-0">
@@ -354,109 +477,7 @@ log("luxury Listings:", luxuryListings);
               </p>
               </div>
              
-              <div  
-              style={{
-                backgroundImage: "url('/carousel.jpg')",
-                backgroundSize: "cover", // Makes the image fill the entire container
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center", // Ensures the image is centered
-            }}
-            className="lg:mt-[1rem] rounded-none  hidden lg:block relative p-8 2xl:w-[88rem] 2xl:h-[47rem]   lg:w-[73rem] h-[40rem] lg:rounded-2xl"
-          >
-            <div className="absolute rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  lg:rounded-2xl" />
-            <div className=" lg:-ml-[0.7rem] 2xl:ml-[2rem]  z-111 absolute    bg-primarytransparent p-5 2xl:p-10 rounded-2xl 2xl:mt-[20rem] lg:mt-[16rem] h-fit   w-fit">
-              <div className=" bg-white p-8 lg:rounded-2xl   h-[18rem]  2xl:w-[65rem] w-[56rem] ">
-                <h1 className="text-black text-base  lg:text-2xl 2xl:text-[2rem] font-[600]">
-                  Laurel Canyon Nest
-                </h1>
-                <p className="text-gray lg:text-[1rem] mb-[2rem] 2xl:text-[1.05rem] font-[400]  2xl:w-[55rem] 2xl:mt-5 mt-3 text-[10px] ">
-                  A charming 3-bedroom home featuring a bright, open-concept
-                  living area designed for both comfort and connection. The
-                  spacious layout flows seamlessly from the kitchen to the
-                  dining and living spaces, making it perfect for gatherings.
-                  Step outside to a private backyard, ideal for relaxing,
-                  entertaining, or enjoying a bit of gardening. This home offers
-                  the perfect blend of functionality and tranquility for
-                  everyday living.
-                </p>
-
-                <div className="flex  w-[60%]  2xl:w-[75%] font-bricolage items-center mt-5 ">
-                  {/* Property Details */}
-                  <div className="flex flex-col-reverse w-1/2 flex-1 px-1 py-3">
-                    <span className="text-base   mt-[3px] 2xl:text-[1.2rem] font-semibold text-black">
-                      1,200sqft
-                    </span>
-                    <div className="text-sm 2xl:text-[1rem] text-gray">
-                      Size
-                    </div>
-                  </div>
-
-                  {/* Vertical Divider */}
-                  <div className="h-10 w-[1px] - bg-black -mx-[15%] my-1"></div>
-
-                  <div className="flex ml-[20%] flex-col-reverse w-[40%] flex-1 px-2 py-3">
-                    <span className="text-base  mt-[3px]  2xl:text-[1.2rem]  font-semibold text-black">
-                      Berbera, Somalia
-                    </span>
-                    <div className="text-sm 2xl:text-[1rem] text-gray">
-                      Location
-                    </div>
-                  </div>
-
-                  {/* Vertical Divider */}
-                  <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
-
-                  <div className="flex w-max flex-col-reverse ml-[3%] flex-1 px-2 py-3">
-                    <span className="text-[0.9em]  2xl:text-[1.2rem] font-semibold text-black">
-                      <span className="flex  mt-[3px] lg:flex-row flex-col gap-[0.2em]  w-full  items-center -ml-[9%] justify-center">
-                        <Image
-                          alt="logo"
-                          width={20}
-                          loading="lazy"
-                          objectFit="cover"
-                          height={20} // Reduced size of logo
-                          src={"/star.png"}
-                          className="h-5 w-5 "
-                        />
-                        <p className="text-base">5.0 </p>
-                        <p className="text-gray  font-[500] lg:block  hidden">
-                          (200 reviews)
-                        </p>
-                      </span>
-                    </span>
-                    <div className="text-sm 2xl:text-[1rem] text-gray">
-                      Reviews
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Navigation Buttons at Bottom Right */}
-            <div className="absolute bottom-5 right-5 flex gap-3 ">
-              {/* Previous Button */}
-              <div className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-3 w-12 h-12 shadow-md cursor-pointer hover:bg-gray-200">
-                <Image
-                  alt="logo"
-                  width={20}
-                  loading="lazy"
-                  height={20} // Reduced size of logo
-                  src={"/left.png"}
-                  className="text-gray w-[9px]  text-lg"
-                />
-              </div>
-              {/* Next Button */}
-              <div className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-3 w-12 h-12 shadow-md cursor-pointer hover:bg-gray-200">
-                <Image
-                  alt="logo"
-                  width={20}
-                  loading="lazy"
-                  height={20} // Reduced size of logo
-                  src={"/right.png"}
-                  className="text-gray w-[9px]  text-lg"
-                />
-              </div>
-            </div>
-          </div>
+             
 <Carousel images={luxuryDisplayListings} />
 
 
