@@ -195,8 +195,9 @@ squareFeet,
 
 
       {/* second div layout  */}
-      <div className="bg-gray-100 p-4 rounded-lg">
-  <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 lg:gap-4">
+
+<div className={`bg-gray-100 p-4 rounded-lg ${!showListings ? 'mt-[2rem] lg:mt-0' : ''}`}> 
+   <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 lg:gap-4">
     {/* Left Section */}
     <div className="flex-1 flex flex-col  gap-1  lg:flex">
       <h2 className="text-xl lg:text-[2rem] hidden  lg:block font-bricolage font-semibold">{title}</h2>

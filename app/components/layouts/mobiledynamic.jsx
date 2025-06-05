@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import PropertyGalleryModal from "./modals/property";
 
-const DynamicImageMobile = ({ showListings,images, coordinates, statuses = [], listingId }) => {
+const DynamicImageMobile = ({ images, coordinates, statuses = [], listingId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const sliderRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -62,9 +62,7 @@ const DynamicImageMobile = ({ showListings,images, coordinates, statuses = [], l
 
   const renderMobileSlider = () => (
     <div
-      className={`overflow-x-auto lg:hidden snap-x snap-mandatory flex no-scrollbar w-screen h-full ${
-        showListings ? "mt-[2rem]" : "lg:mt-0"
-      }`}
+      className="overflow-x-auto lg:hidden snap-x snap-mandatory flex no-scrollbar w-screen h-full"
       ref={sliderRef}
     >
       {images.map((img, i) => (

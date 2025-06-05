@@ -215,7 +215,7 @@ const listingId = listing?.listings[0]?._id; // Use the first listing's ID or th
   
 
 {/* second div layout  */}
-    <div className="bg-gray-100 mt-2 lg:mt-5 lg:p-4 rounded-lg">
+    <div className={`bg-gray-100 mt-2 lg:mt-5 ${!showListings ? 'mt-[2rem] lg:mt-0' : ''} lg:p-4 rounded-lg`}>
       <div className="flex flex-row mx-[1.2rem] lg:p-0 justify-between items-start md:items-center">
 
                {/* Profile Image */}
