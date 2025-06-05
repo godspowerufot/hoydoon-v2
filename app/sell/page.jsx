@@ -196,7 +196,7 @@ export default function Home() {
             </p>
 
             <Button className="text-base py-2 w-[115px] font-light mt-5 ">
-              <Link href="/agent/all-agent">                Get Started
+              <Link href="/sell/sell-home">                Get Started
 </Link>
             </Button>
           </span>

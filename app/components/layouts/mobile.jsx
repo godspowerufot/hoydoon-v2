@@ -179,9 +179,17 @@ const [formData, setFormData] = useState({
           ) : (
             <>
               <div className="w-full mr-[7px]  text-[12px] flex justify-end">
+                      <Link
+                  href="
+                https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                
                 <Button className="bg-[#008D8D] text-white text-[12px] px-2 !w-[111px] py-[6px] rounded-full font-medium">
                   Download App
                 </Button>
+                </Link>
               </div>
             </>
           )}
@@ -232,7 +240,12 @@ const [formData, setFormData] = useState({
             className="w-[24px] h-[24px]"
                 />
                 <span className="text-primary text-[16px] font-[500]">
-            Download App
+                 <Link
+                  href="
+                https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                > Download App</Link>  
                 </span>
               </div>
 

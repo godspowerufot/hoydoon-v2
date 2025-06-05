@@ -88,7 +88,7 @@ const LocationSearchBar = () => {
             name="location"
             value={formData.location}
             onChange={handleChange}
-            placeholder={pathname === '/sell' ? "Enter your property address" : "Enter your home address"}
+            placeholder={pathname === '/sell' ? "Enter your property address" : "Find an Agent in your area"}
             className="flex-1 bg-transparent placeholder:text-[1.3rem] text-black placeholder-gray-500 border-none outline-none pl-4 w-[36.3rem]"
             />
             <div

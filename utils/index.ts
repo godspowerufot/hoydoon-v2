@@ -1,5 +1,5 @@
 import { GoogleOAuthProvider } from 'google-oauth-gsi';
-
+import { toast } from 'react-toastify';
 export const truncateDescription = (text:string, wordLimit:number) => {
     const words = text?.split(" ");
     return words?.length > wordLimit ? words?.slice(0, wordLimit).join(" ") + "..." : text;
@@ -12,7 +12,14 @@ export const truncateDescription = (text:string, wordLimit:number) => {
   
     };
 
-
+    export const handleShareClick = () => {
+      if (typeof window !== "undefined") {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        toast.success("Page URL copied! You can now share it.");
+      });
+      }
+    };
 
 
 export const provider = new GoogleOAuthProvider({

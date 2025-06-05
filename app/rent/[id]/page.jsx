@@ -13,9 +13,10 @@ import ListedCard from "@/app/components/common/profilecard";
 import MapComponent from "@/app/components/layouts/listingmap";
 import PropertyCard from "@/app/components/common/property";
 import { toast } from "react-toastify";
+import { handleShareClick } from "@/utils";
 import DynamicImageMobile from "@/app/components/layouts/mobiledynamic"
 import DynamicImageGrid from "@/app/components/layouts/dynamiclayout"
-const Breadcrumb = ({region,address,listingId,handleFavoriteClick  }) => {
+const Breadcrumb = ({handleToggleListings,region,address,listingId,handleFavoriteClick  }) => {
 
   return (
     <div className=" hidden lg:flex    items-center justify-between gap-[0.2rem] pl-4 py-2 w-[99%]  mt-[5rem]  bg-gray-100">
@@ -52,10 +53,10 @@ const Breadcrumb = ({region,address,listingId,handleFavoriteClick  }) => {
         <div onClick={handleFavoriteClick} className="p-2 border border-[#8F8F8F] rounded-md">
           <img src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
         </div>
-        <div className="p-2 border border-[#8F8F8F] rounded-md">
+        <div onClick={handleShareClick} className="p-2 border border-[#8F8F8F] rounded-md">
           <img src="/upload.svg" alt="Download" className="w-4 h-4" />
         </div>
-        <div className="p-2 border border-[#8F8F8F] rounded-md">
+        <div onClick={handleToggleListings} className="p-2 border border-[#8F8F8F] rounded-md">
           <img src="/image2.svg" alt="Share" className="w-4 h-4" />
         </div>
       </div>
@@ -80,7 +81,12 @@ const page = () => {
 
   const [displayListings, setDisplayListings] = useState([]);
   const [toggleFavorite, { isLoading, isError, isSuccess }] = useToggleFavoriteMutation();
+  const [showListings, setShowListings] = useState(true);
 
+  // Function to toggle the listings section
+  const handleToggleListings = () => {
+    setShowListings((prev) => !prev);
+  };
   const handleFavoriteClick = async () => {
    
     try {
@@ -169,7 +175,7 @@ squareFeet,
   } 
   return (
     <div className="lg:mt-8  2xl:w-[98rem] lg:w-[87%]  lg:ml-[2%] ">
-      <Breadcrumb handleFavoriteClick={handleFavoriteClick} listingId={listingId } address={address} region={region} />
+      <Breadcrumb  handleToggleListings={handleToggleListings} handleFavoriteClick={handleFavoriteClick} listingId={listingId } address={address} region={region} />
 
       <DynamicImageGrid
        listingId={_id}
@@ -220,10 +226,10 @@ squareFeet,
         <div onClick={handleFavoriteClick} className="justify-center flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm">
           <img src="/favorite.svg" alt="Favorite" className="w-3 h-3" />
         </div>
-        <div className=" justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm">
+        <div  onClick={handleShareClick} className=" justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm">
           <img src="/upload.svg" alt="Download" className="w-3 h-3" />
         </div>
-        <div className="justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm">
+        <div  onClick={handleToggleListings} className="justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm">
           <img src="/image2.svg" alt="Share" className="w-3 h-3" />
         </div>
       </div></div>

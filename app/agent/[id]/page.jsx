@@ -9,66 +9,69 @@ import MapComponent from "@/app/components/layouts/listingmap"
 import ContactAgent from '@/app/components/layouts/contactagent';
 import { usePathname } from 'next/navigation';
 import { truncateDescription } from '@/utils';
-import { useGetAgentListingsQuery, useGetAgentsInfoQuery } from '@/store/slices/api/authapi';
+import { useGetAgentListingsQuery, useGetAgentsInfoQuery,useToggleFavoriteMutation} from '@/store/slices/api/authapi';
 import Spinner from '@/app/components/common/Spinner';
 import { log } from '@/utils/log';
+import { useRouter } from "next/navigation";
+import { handleShareClick } from '@/utils';
 import DynamicImageGrid  from '@/app/components/layouts/dynamiclayout';
 import PropertyListCard from '@/app/components/common/PropertyListing';
 import Link from 'next/link';
 import DynamicImageMobile from '@/app/components/layouts/mobiledynamic';
 import { flattenListings,formatNumber } from '@/utils';
-const Breadcrumb = ({ agentDetails}) => {
+import { toast } from 'react-toastify';
+const Breadcrumb = ({ handleToggleListings,agentDetails,handleFavoriteClick }) => {
+
+
     return (
       <div className=" hidden lg:flex  ml-[2rem] items-center justify-between gap-[0.2rem] px-4 py-2  mt-[5rem] w-full  bg-gray-100">
-        {/* Left Section: Back Arrow and Breadcrumb */}
-        <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage text-gray-600">
-          {/* Back Arrow */}
+      {/* Left Section: Back Arrow and Breadcrumb */}
+      <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage text-gray-600">
+        {/* Back Arrow */}
+       
+        {/* Breadcrumb Links */}
+        <div className="flex  w-[30rem] items-center gap-3 text-base text-gray-500">
+        {/* Initial Back Arrow + Static Text */}
+        <div className="flex font-light items-center gap-1">
+          <img src="/arrow-right.png" alt="Back" className="w-3 h-5" />
+          <Link href={"/search"}><span>Search |</span></Link> 
+        </div>
+
+        {/* Breadcrumb item: Homes for Sale */}
+        <div className="flex font-light items-center gap-1">
+          <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
+          <a href="#" className="text-primary">Homes for sale</a>
+        </div>
+
+        {/* Breadcrumb item: Nigeria */}
+        <div className="flex items-center gap-1">
+          <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
+          <a href="#" className="text-primary">{agentDetails}</a>
+        </div>
+        </div>
+      </div>
+    
+      {/* Right Section: Icons */}
+      <div className="flex ml-[33rem] 2xl:ml-[50rem] items-center gap-2">
+        <div className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md">
+        <img onClick={handleFavoriteClick} src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
+        </div>
+        <div  style={{ cursor: "pointer" }}
+          onClick={handleShareClick}  className="p-2 border border-[#8F8F8F] rounded-md">
+        <img src="/upload.svg" alt="Download" className="w-4 h-4" />
+        </div>
+        <div onClick={handleToggleListings} className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md">
+        <img 
+          src="/image2.svg"
+          alt="Share"
+          className="w-4 h-4"
          
-          {/* Breadcrumb Links */}
-          <div className="flex  w-[30rem] items-center gap-3 text-base text-gray-500">
-  {/* Initial Back Arrow + Static Text */}
-  <div className="flex font-light items-center gap-1">
-    <img src="/arrow-right.png" alt="Back" className="w-3 h-4" />
-   <Link href={"/search"}><span>Search |</span></Link> 
-  </div>
-
-  {/* Breadcrumb item: Homes for Sale */}
-  <div className="flex font-light items-center gap-1">
-    <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
-    <a href="#" className="text-primary">Homes for sale</a>
-  </div>
-
-  {/* Breadcrumb item: Nigeria */}
-  <div className="flex items-center gap-1">
-    <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
-    <a href="#" className="text-primary">{agentDetails}</a>
-  </div>
-
-
-</div>
-
-
+        />
         </div>
-  
-        {/* Right Section: Icons */}
-        <div className="flex ml-[33rem] 2xl:ml-[50rem] items-center gap-2">
-  <div className="p-2 border border-[#8F8F8F] rounded-md">
-  <Link href={"/auth/login"}>  <img src="/favorite.png" alt="Favorite" className="w-4 h-4" /></Link>
-  </div>
-  <div className="p-2 border border-[#8F8F8F] rounded-md">
-  <Link href={"/auth/login"}> <img src="/upload.png" alt="Download" className="w-4 h-4" /></Link>
-  </div>
-  <div className="p-2 border border-[#8F8F8F] rounded-md">
-  <Link href={"/auth/login"}>  <img src="/image2.png" alt="Share" className="w-4 h-4" /></Link>
-  </div>
-</div>
+      </div>
 
-
-
-
-
-        <div>
-        </div>
+      <div>
+      </div>
       </div>
     );
   };
@@ -87,7 +90,13 @@ const page = ({params}) => {
   const [ActiveListings, setActiveListings] = useState([])
   const userId = pathname?.split('/').pop();
   const [showAll, setShowAll] = useState(false);
+  const router=useRouter() // Tab state
+  const [showListings, setShowListings] = useState(true);
 
+  // Function to toggle the listings section
+  const handleToggleListings = () => {
+    setShowListings((prev) => !prev);
+  };
   // Handle the "See All" button click
   const handleSeeAllClick = () => {
     setShowAll(true);
@@ -104,6 +113,7 @@ const page = ({params}) => {
   const { data: agentInfo } = useGetAgentsInfoQuery({ userId });
   const averagelisting=(agentInfo?.priceRange?.min +agentInfo?.priceRange?.max)/2;
   // Recursive function to fully flatten nested listings
+  const [toggleFavorite] = useToggleFavoriteMutation();
 
 
 
@@ -147,8 +157,20 @@ const page = ({params}) => {
       setActiveListings(flatListings.filter((item) => item.status === "active"));      setPrices(Price)
     }
   }, [listing]);
-  
 
+  log("flattenedListings", listing?.listings[0]?._id);
+const listingId = listing?.listings[0]?._id; // Use the first listing's ID or the provided ID
+  const handleFavoriteClick = async () => {
+   
+    try {
+      await toggleFavorite({ listingId }).unwrap();
+      toast.success("Added to favorites!");
+    } catch (error) {
+      toast.error(error)
+      console.error("Failed to favorite listing:", error);
+      router.push("/auth/sign-in")
+    }
+  };
 
 
 
@@ -167,10 +189,12 @@ const page = ({params}) => {
     { id: "bought", label: `Bought with ${truncateDescription(agentInfo?.fullname,1)}` },
   ];
 
+  // State to control visibility of the listings section
+
 
   return (
-    <div className='mt-2 lg:w-[90%] 2xl:w-[1520px] '> <Breadcrumb agentDetails={agentInfo?.region}/>
-    <div className="grid  lg:mt-2  gap-2 p-4">
+    <div className='mt-2 lg:w-[90%] 2xl:w-[1520px] '> <Breadcrumb  handleToggleListings={handleToggleListings} handleFavoriteClick={handleFavoriteClick} listingId={listingId } agentDetails={agentInfo?.region}/>
+    {showListings && (  <div className="grid  lg:-mt-1  gap-2 p-3">
     <DynamicImageGrid statuses={statuses} coordinates={coordinates} images={imageUrls} />
 <DynamicImageMobile
      statuses={statuses} coordinates={coordinates} images={imageUrls} />
@@ -186,7 +210,8 @@ const page = ({params}) => {
           />
           <p>{statuses[0] || "Unknown"}</p>
         </div> */}
-    </div>
+    </div>)}
+  
   
 
 {/* second div layout  */}
@@ -217,7 +242,7 @@ const page = ({params}) => {
           </div>
           </div>
         {/* Right Section */}
-        <div className="text-right font-bricolage  text-[#1E1E1E] mt-4 md:mt-0">
+        <div className="text-right font-bricolage  text-[#1E1E1E] mt-4 md:-mt-[2.5rem]">
                <div className="flex pr-3 lg:pr-0 items-center justify-end  my-3 gap-2 lg:gap-0 text-gray-700 mt-1">
           <img src="/stargreen.png" alt="Favorite" className="w-4 h-4" />
           <span className="ml-1 font-medium ">{ListedBy}</span>
@@ -225,13 +250,13 @@ const page = ({params}) => {
           <p className="text-gray-600 lg:mt-1 my-3 text-sm">Avg lis .${averagelisting} </p>
       
           <div className="flex lg:hidden items-center justify-end gap-2 mt-3 w-full md:w-auto">
-        <div  className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
+        <div  onClick={handleFavoriteClick} className="p-2 border border-[#8F8F8F] rounded-md">
+          <img  src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
         </div>
-        <div className="p-2 border border-[#8F8F8F] rounded-md">
+        <div onClick={handleShareClick} className="p-2 border border-[#8F8F8F] rounded-md">
           <img src="/upload.svg" alt="Download" className="w-4 h-4" />
         </div>
-        <div className="p-2 border border-[#8F8F8F] rounded-md">
+        <div onClick={handleToggleListings} className="p-2 border border-[#8F8F8F] rounded-md">
           <img src="/image2.svg" alt="Share" className="w-4 h-4 object-cover" />
         </div>
       </div>  </div>
@@ -288,7 +313,7 @@ numberOfListings
 
     {/* map */}
     <div className="bg-gray-100 lg:p-6 rounded-lg mb-3">
-    <h1 className="text-xl lg:text-[2rem] lg:py-2 font-semibold "> {agentInfo?.fullname} Listings & Deals</h1>
+    <h1 className="text-xl lg:text-[2rem] lg:py-2 ml-[1.7rem] lg:ml-0 font-semibold "> {agentInfo?.fullname} Listings & Deals</h1>
     <div className="border-b  px-[1.75rem] lg:px-0  my-4 lg:my-0  border-gray ">
       <div className="flex space-x-6">
         {tabs.map((tab) => (

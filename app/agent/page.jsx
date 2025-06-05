@@ -80,9 +80,9 @@ export default function Page() {
 
       {/* explore */}
       <section className="   lg:w-screen bg-white  lg:bg-[#eeeeeec7]  lg:py-[2em] ont-bricolage lg:flex justify-center flex-col lg:gap-7 2xl:gap-[3rem] flex-1 items-center">
-      <div className="flex   p-2 flex-col lg:w-[80rem] 2xl:w-[94rem]  mt-4  2xl:ml-0 md:flex-row 2xl:gap-[20%] lg:my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-      <h1 className="text-black lg:ml-[0]  text-2xl  lg:text-[2.6rem] font-[600]   w-full ">  Real Estate Agents In Lagos</h1>
-      <p className="text-gray  lg:p-0 text-[12px] lg:text-xl font-bricolage w-full lg:w-full">
+      <div className="flex   p-2 flex-col lg:w-[90rem] 2xl:w-[94rem]  mt-4  2xl:ml-0 md:flex-row 2xl:gap-[20%] lg:my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+      <h1 className="text-black lg:ml-[6.5rem] 2xl:ml-0 text-2xl  lg:text-[2.6rem] font-[600]   w-full ">  Real Estate Agents In Hoydoon</h1>
+      <p className="text-gray  lg:p-0 text-[12px] lg:text-xl font-bricolage w-full lg:w-[60rem]">
       Leverage a local agent's expertise with access to millions of listings, guiding you through every step.
 </p>
 
@@ -100,14 +100,7 @@ export default function Page() {
     />
   ))}
 
-  {/* "See All" link aligned to the start */}
-    <div className="w-full  lg:col-span-2 lg:flex justify-start">
-      <Link href="/agent/all-agent">
-        <p className="text-[#09858D] mt-5  w-full text-sm lg:text-2xl font-medium">
-          See all  rent estate agents 
-        </p>
-      </Link>
-    </div>
+  
 
 {displayListings.length > 0 && displayListings.length < 6 && (
     <div className="w-full  flex justify-start">
@@ -119,6 +112,14 @@ export default function Page() {
     </div>
   )}
 </div>
+{/* "See All" link aligned to the start */}
+    <div className="w-full  lg:col-span-2  lg:flex justify-start">
+      <Link href="/agent/all-agent">
+        <p className="text-[#09858D] mt-5  lg:ml-[7rem] 2xl:ml-[10rem]  w-full text-sm lg:text-2xl font-medium">
+          See all  real estate agents  on Hoydoon
+        </p>
+      </Link>
+    </div>
       </section>
 
 
@@ -128,8 +129,8 @@ export default function Page() {
 <h1  className="text-black  text-2xl mt-4  lg:mt-0  lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Connect with local agent</h1>
 <p className="text-gray text-xs lg:text-xl mt-2 2xl:mt-[1em] font-bricolage lg:w-[38rem] 2xl:text-[22px] ">
 Benefit from local expertise. We'll connect you with a Hoydoon Premier Agent who understands your market and can guide you through the process.</p>
-<Button className="text-base font-light mt-4 ">
-  <Link href="/explore">
+<Button className="text-base !w-[115px] font-light mt-4 ">
+  <Link href="/agent/all-agent">
   Connect
   </Link>
 </Button>
@@ -140,7 +141,7 @@ Benefit from local expertise. We'll connect you with a Hoydoon Premier Agent who
               alt="image1"
               width={500} 
               quality={100}
-              className=" 2xl:w-[50rem] lg:w-[55rem]   w-fit lg:h-[28rem] 2xl:h-[36rem]"
+              className=" 2xl:w-[50rem] lg:w-[50rem]   w-fit lg:h-[28rem] 2xl:h-[36rem]"
 
               height={400} // Reduced size of logo
               src={'/agent3.png'}
@@ -167,9 +168,9 @@ Benefit from local expertise. We'll connect you with a Hoydoon Premier Agent who
 <p className="text-gray  lg:text-xl text-xs  2xl:mt-[1em] font-bricolage lg:w-[90%] 2xl:text-[20px] 2xl:w-[70%]">
 Never miss out. We refresh listings every minute, ensuring you see new homes instantly. Book on-demand tours to view them fast</p>
 
-<Button className="text-base font-light mt-5 ">
+<Button className="text-base  !w-[115px] font-light mt-5 ">
   <Link href="/explore">
-  Schedule
+ explore
   </Link>
 </Button>
           </span>
