@@ -176,7 +176,8 @@ squareFeet,
   return (
     <div className="lg:mt-8  2xl:w-[98rem] lg:w-[87%]  lg:ml-[2%] ">
       <Breadcrumb  handleToggleListings={handleToggleListings} handleFavoriteClick={handleFavoriteClick} listingId={listingId } address={address} region={region} />
-
+ {showListings &&(
+<div className="w-full">
       <DynamicImageGrid
        listingId={_id}
         images={images}
@@ -186,9 +187,12 @@ squareFeet,
 <DynamicImageMobile
         listingId={_id}
         images={images}
+        showListings={showListings}
         coordinates={coordinate}/>
 
-  
+  </div>
+ )}
+
 
       {/* second div layout  */}
       <div className="bg-gray-100 p-4 rounded-lg">
