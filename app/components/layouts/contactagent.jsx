@@ -2,12 +2,15 @@ import { useState } from "react";
 import Image from "next/image";
 import { useSendMessageMutation } from "@/store/slices/api/authapi";
 import { toast } from "react-toastify";
+import { log } from "@/utils/log";
+import { useRouter } from "next/navigation";
+
 export default function ContactAgent({ fullname, location, profileimage, listedBy }) {
   const [message, setMessage] = useState("");
   const [isMessageLoading, setIsMessageLoading] = useState(false); // Loading state for "Ask a question"
   const [isReviewLoading, setIsReviewLoading] = useState(false);   // Loading state for "Reviews"
   const [sendMessage, { isSuccess, isError }] = useSendMessageMutation();
-
+const router=useRouter()
   const handleSend = async (type) => {
     if (!message.trim()) return;
 
@@ -22,12 +25,20 @@ export default function ContactAgent({ fullname, location, profileimage, listedB
       setMessage(""); // Clear after sending
       toast.success("Message sent successfully!");
     } catch (err) {
-      alert(err.message);
+      if (err?.data?.error === "ACCESS DENIED: No token provided") {
+      toast.error("Kindly sign in or log in");
+     router("/auth/sign-in")
+    } else if (err?.status === 401) {
+      toast.error("Action not allowed (405)");
+      } else {
+      toast.error(err?.error);
+      }
+      log(err)
     } finally {
       if (type === "message") {
-        setIsMessageLoading(false); // Reset message loading
+      setIsMessageLoading(false); // Reset message loading
       } else if (type === "review") {
-        setIsReviewLoading(false); // Reset review loading
+      setIsReviewLoading(false); // Reset review loading
       }
     }
   };

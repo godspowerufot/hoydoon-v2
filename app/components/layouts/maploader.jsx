@@ -30,34 +30,28 @@ const LocationSearchBar = () => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries,
   });
+const handlePlaceChanged = (inputRef) => {
+  const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
+    componentRestrictions: { country: 'so' },
+    fields: ['name'],
+  });
 
-  const handlePlaceChanged = (inputRef) => {
-    const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
-      componentRestrictions: { country: 'so' },
-      fields: ['address_components', 'formatted_address', 'geometry'],
+  autocomplete.addListener('place_changed', () => {
+    const place = autocomplete.getPlace();
+
+    // Just use the place name (e.g., "Military Academy")
+    const name = place.name || '';
+
+    setFormData({
+      location: name,
+   
     });
 
-    autocomplete.addListener('place_changed', () => {
-      const place = autocomplete.getPlace();
-      const address = place.formatted_address;
+    console.log({ location: name });
+  });
+};
 
-      const state = place.address_components.find((comp) =>
-        comp.types.includes('administrative_area_level_1')
-      )?.long_name;
 
-      const region = place.address_components.find((comp) =>
-        comp.types.includes('locality') || comp.types.includes('sublocality')
-      )?.long_name;
-
-      setFormData({
-        location: address,
-        state: state || '',
-        region: region || '',
-      });
-
-      console.log({ address, state, region });
-    });
-  };
 
   useEffect(() => {
     if (!isLoaded || loadError) return;

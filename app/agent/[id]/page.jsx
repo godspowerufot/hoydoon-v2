@@ -8,7 +8,7 @@ import Image from 'next/image';
 import MapComponent from "@/app/components/layouts/listingmap"
 import ContactAgent from '@/app/components/layouts/contactagent';
 import { usePathname } from 'next/navigation';
-import { truncateDescription } from '@/utils';
+import { decodeId, truncateDescription } from '@/utils';
 import { useGetAgentListingsQuery, useGetAgentsInfoQuery,useToggleFavoriteMutation} from '@/store/slices/api/authapi';
 import Spinner from '@/app/components/common/Spinner';
 import { log } from '@/utils/log';
@@ -88,7 +88,9 @@ const page = ({params}) => {
   const [ListedBy, setListedBy] = useState([]);
   const [prices, setPrices] = useState([]);
   const [ActiveListings, setActiveListings] = useState([])
-  const userId = pathname?.split('/').pop();
+  
+  const Id = pathname?.split('/').pop();
+  const userId=decodeId(Id)
   const [showAll, setShowAll] = useState(false);
   const router=useRouter() // Tab state
   const [showListings, setShowListings] = useState(true);
@@ -175,7 +177,6 @@ const listingId = listing?.listings[0]?._id; // Use the first listing's ID or th
 
 
 
- log("agentDetails", listing);  
   if (isLoading) {
     return (
         <Spinner />
@@ -186,7 +187,6 @@ const listingId = listing?.listings[0]?._id; // Use the first listing's ID or th
     { id: "all", label: "All listings" },
     { id: "active", label: "Active listings" },
     { id: "sold", label:  `Sold with ${truncateDescription(agentInfo?.fullname,1)}` },
-    { id: "bought", label: `Bought with ${truncateDescription(agentInfo?.fullname,1)}` },
   ];
 
   // State to control visibility of the listings section
@@ -236,7 +236,6 @@ const listingId = listing?.listings[0]?._id; // Use the first listing's ID or th
         
           <h2 className="text-xl lg:text-[1.7rem] font-bricolage font-semibold">{agentInfo?.fullname}</h2>
           <p className="text-[#1E1E1E] font-light">{agentInfo?.region}</p>
-          <p className="text-[#1E1E1E] font-light">LA 98245</p>
          
          
           </div>
@@ -247,7 +246,7 @@ const listingId = listing?.listings[0]?._id; // Use the first listing's ID or th
           <img src="/stargreen.png" alt="Favorite" className="w-4 h-4" />
           <span className="ml-1 font-medium ">{ListedBy}</span>
           </div>
-          <p className="text-gray-600 lg:mt-1 my-3 text-sm">Avg lis .${averagelisting} </p>
+          <p className="text-gray-600 lg:mt-1 my-3 text-sm">Avg listing  ${averagelisting} </p>
       
           <div className="flex lg:hidden items-center justify-end gap-2 mt-3 w-full md:w-auto">
         <div  onClick={handleFavoriteClick} className="p-2 border border-[#8F8F8F] rounded-md">
@@ -352,7 +351,6 @@ numberOfListings
 
      <div className="py-4 px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
     <span className="font-medium">{ActiveListings.length} Homes available in {agentInfo?.region}</span> 
-    <span className="text-primary cursor-pointer ml-2">Remove map boundary</span>
   </div>
       </div>
 

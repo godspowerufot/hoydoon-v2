@@ -87,20 +87,21 @@ const router = useRouter();
 
     <div className="hidden lg:flex flex-col lg:flex-row items-center gap-3 lg:gap-4 2xl:gap-6 w-full mt-4">
         {/* Location Search */}
-        <div className="relative w-full  lg:w-[300px] 2xl:min-w-[350px]">
+        <div className="relative w-full lg:w-[300px] 2xl:min-w-[350px]">
           <input
             type="text"
             value={region}
             onChange={(e) => setRegion(e.target.value)}
-            placeholder="Agege, Lagos State..."
+            placeholder="Search agent by location "
             className="w-full h-[54px] bg-[#F9FAFB] border border-[#8F8F8F] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-none"
           />
           <button
             onClick={() => updateQueryParam('region', region.toLowerCase())}
             disabled={!region}
             className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white p-3 rounded-lg"
+            aria-label="Search agent by location"
           >
-            <Image alt="arrow" width={14} height={14} src="/arrow-left.png" />
+            <Image alt="search arrow" width={14} height={14} src="/arrow-left.png" />
           </button>
         </div>
 
@@ -277,7 +278,7 @@ if (isAllLoading) {
     </div>
     {displayListings.length === 0 ? (
       <div className="w-full col-span-2 flex justify-center items-center py-10">
-        <p className="text-[#8F8F8F] text-sm font-light">No agents have been created.</p>
+        <p className="text-[#8F8F8F] lg:text-2xl text-sm font-light">No agents have been created.</p>
       </div>
     ) : (
       <>
@@ -306,7 +307,7 @@ if (isAllLoading) {
           <p className="text-gray text-xs lg:text-xl mt-2 2xl:mt-[1em] font-bricolage lg:w-[38rem] 2xl:text-[22px] ">
             Benefit from local expertise. We'll connect you with a Hoydoon Premier Agent who understands your market and can guide you through the process.
           </p>
-          <Button className="text-base font-light mt-4 ">
+          <Button className="text-base  !w-[115px] font-light mt-4 ">
             <Link href="/explore">
               Connect
             </Link>
@@ -326,30 +327,7 @@ if (isAllLoading) {
         </div>
       </section>
 
-<div className="mt-[3px] hidden   ml-[2rem] justify-center items-center max-md:w-full w-full gap-6 lg:flex flex-col max-md:justify-center max-md:items-center lg:flex-row ">
-<div className="z-[4] relative max-md:w-full  lg:h-[50em]  lg:left-[50px] 2xl:left-[80px] lg:top-[10em]">
-<FAQComponent/>
-</div>
-<div className="relative lg:-ml-[10em] justify-center items-center  flex w-[255px] lg:w-auto">
 
-
-      <Image
-        alt="image1"
-        width={420}
-        loading="lazy"
-        height={500}
-        src={'/q1.png'}
-        className="z-[3]  lg:w-[30rem] 2xl:w-[600px] rounded-[20px] relative top-0 left-[0.5rem] 2xl:left-[2rem]   object-cover h-5/10"
-      /> <Image
-      alt="image1"
-      width={400}
-      loading="lazy"
-      height={300}
-      src={'/q2.png'}
-      className=" z-2   bottom-[2em] lg:h-[30rem]  2xl:h-[38rem] lg:w-[40rem]  w-[86px] 2xl:w-[650px] mt-[17%] lg:-top-[rem] 2xl:-top-[3rem] lg:-left-[7em]  2xl:-left-[9rem] lg:mt-[11%] relative rounded-lg   object-cover "
-    />
-    </div>
-</div>
  <FagsSection/>
 
 {/* second div layout  */}

@@ -11,6 +11,7 @@ import Link from 'next/link';
 import Article from '@/app/components/common/Article';
 import { useGetAgentsQuery } from '@/store/slices/api/authapi';
 import Spinner from '@/app/components/common/Spinner';
+import { toast } from 'react-toastify';
 
 
 const Breadcrumb = () => {
@@ -46,7 +47,9 @@ const page = () => {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
+const [submitting, setSubmitting] = useState(false);
+const [submitSuccess, setSubmitSuccess] = useState(false);
+const [submitError, setSubmitError] = useState("");
   const tabs = [
     { id: "all", label: "All listings" },
     { id: "active", label: "Active listings" },
@@ -59,7 +62,40 @@ const page = () => {
  useEffect(() => {
     refetch(); // Refetch data on every mount
   }, [refetch]);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setSubmitting(true);
+  setSubmitSuccess(false);
+  setSubmitError("");
+  try {
+    const formData = new FormData();
+    formData.append("name", fullName);
+    formData.append("email", email);
+    formData.append("phone", phoneNumber);
+    formData.append("requestType", "agent");
+    formData.append("message", "I want to find an agent. Address: " + address);
 
+    const res = await fetch("/api/find-agent", {
+      method: "POST",
+      body: formData,
+    });
+    if (res.ok) {
+      setSubmitSuccess(true);
+      setFullName("");
+      setEmail("");
+      setAddress("");
+      setPhoneNumber("");
+      toast.success("Message successfully Sent")
+    } else {
+      const data = await res.json();
+      toast.error(data.message || "Submission failed");
+    }
+  } catch (err: any) {
+    toast.error(err.message || "Submission failed");
+  } finally {
+    setSubmitting(false);
+  }
+};
   useEffect(() => {
     if (!isAllLoading && allAgent) {
       const firstThreeListings = allAgent;
@@ -75,7 +111,7 @@ const page = () => {
   }
 
   return (
-    <div className='mt-2  w-full 2xl:w-[1520px] '> <Breadcrumb/>
+    <div className='mt-2 flex flex-col justify-center items-center  w-full lg:w-[90%] px-4  2xl:w-[1520px] '> <Breadcrumb/>
     <div className=" mt-3 relative rounded-lg  flex items-center overflow-hidden">
         <Image
           src="/sell.png" // Replace with actual map image
@@ -89,19 +125,19 @@ const page = () => {
 
 
     {/* second layout */}
-    <div className=' w-full lg:px-4 py-7'>
+    <div className='  max-md:w-full lg:px-4 py-7'>
   <h1 className="lg:text-[2rem] text-xl  font-semibold ">  Sell your Home with Hoydoon
     </h1>
-    <p className=' text-[#8F8F8F] font-bricolage lg:text-[19px] text-sm lg:w-[75rem] 2xl:w-full 2xl:text-xl py-2'>
+    <p className='text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4'>
     Are you thinking about selling your home? We’re here to help you every step of the way! Our team will work closely with you to highlight your home’s best features, attract the right buyers, and maximize its value. From preparing your property for sale to navigating offers and closing the deal, we’ll ensure the entire process is smooth, simple, and stress-free. Schedule a consultation with us today, and let’s start planning for a successful and rewarding home-selling experience!    </p>
   
 </div>
     <div className=' w-full lg:px-4 py-4'>
   <h1 className="lg:text-[2rem] text-xl  font-semibold "> Choose the perfect agent for your needs.
     </h1>
-    <p className=' text-[#8F8F8F] font-bricolage lg:text-[19px] text-sm lg:w-[75rem] 2xl:w-full 2xl:text-xl py-2'>
+    <p className=' text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4'>
     Hoydoon makes finding the right real estate agent simple and stress-free. Whether you're buying, selling, or renting, we connect you with trusted professionals tailored to your needs. Browse detailed profiles, compare expertise, and read reviews to make an informed choice. Start your real estate journey with the perfect agent today!</p>
-    <p className=' text-[#8F8F8F] font-bricolage lg:text-[19px] text-sm lg:w-[75rem] 2xl:w-full 2xl:text-xl py-2'>
+    <p className=' text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4'>
 
     Complete a quick questionnaire to discover the best agents in your area. Review their pricing, services, and ratings to find the one that fits your needs perfectly</p>  
 
@@ -144,10 +180,11 @@ const page = () => {
     </div>
 </div>
 <div className='w-full flex items-center lg:justify-center justify-start'>
-<Button type="submit" className="text-base  rounded-none  w-[20rem] font-light mt-5 "> Submit</Button>
-
+<Button onClick={handleSubmit} className="text-base rounded-none w-[20rem] font-light mt-5" disabled={submitting}>
+      {submitting ? "Submitting..." : "Submit"}
+    </Button>
 </div>
-<p className=' text-[#8F8F8F] font-bricolage lg:text-[19px] text-sm lg:w-[75rem] 2xl:w-full 2xl:text-xl mt-5 py-2'>
+<p className='text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4'>
 
 By submitting this form, you agree that Hoydoon, its affiliates, or associated third parties may contact you, including through calls or texts using automated systems. You also agree to our Terms of Service and Privacy Policy. Message and data rates may apply. Providing consent is not a condition for accessing real estate services. </p>
 

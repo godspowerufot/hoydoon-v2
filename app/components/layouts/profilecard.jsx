@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { truncateDescription } from "@/utils";
+import { encodeId } from "@/utils";
 import { formatNumber } from "@/utils";
 export const ProfileCard = ({ 
   pictureUrl = "/Avatar.svg", 
@@ -17,7 +17,7 @@ export const ProfileCard = ({
   };
 
   return (<>
-    <Link href={`/agent/${_id}`} className="flex flex-col w-full items-center justify-center">
+    <Link href={`/agent/${encodeId(_id)}`} className="flex flex-col w-full items-center justify-center">
       <div className="  lg:p-6 sm:h-fit flex rounded-[8px] lg:rounded-none  w-full h-[120px] gap-2 lg:gap-5 lg:h-[200px] justify-start bg-[#ffffff]  lg:w-[36rem] 2xl:w-[43.8rem]">
         <Image
           alt={fullname}

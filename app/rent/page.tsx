@@ -25,6 +25,7 @@ export default function Home() {
     const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({})
     const { data: familyFriendlyListings } = useGetAllListingsQuery({ category: 'family-friendly' });
     const { data: rentListings } = useGetAllListingsQuery({ listingType: 'rent' });
+ const { data: regionListings } = useGetAllListingsQuery({ region: 'Nigeria' });
 
     
     const displayListings = Array.isArray(allListings?.listings) ? allListings.listings : [];
@@ -137,7 +138,7 @@ export default function Home() {
         <div className="flex   flex-col items-center justify-center">
           <div className="flex   p-2 flex-col md:flex-row  2xl:gap-[10rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
             <h1 className="text-black lg:pl-[4.5rem] xxl:pl-[6.5rem]    2xl:pl-0 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
-              Explore Lagos Rentals
+              Explore    Rentals in Somalia
             </h1>
             <p className="text-gray  lg:pr-5 text-base lg:text-xl font-bricolage w-full lg:w-[55rem] 2xl:w-[60rem] ">
               Discover a home where every detail enhances your lifestyle-crafted
@@ -171,6 +172,56 @@ export default function Home() {
                     />
                 ))}
             </div>
+            <p className="text-[#09858D]  text-base lg:ml-6 2xl:ml-8  my-5 lg:text-2xl font-[500] ">
+              see all explore listings for rent
+            </p>
+          </div>
+        </div>
+      </section>
+      <div className="w-full  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9]" />
+
+      <section className="mt-4 lg:-mt-[1em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex   flex-col items-center justify-center">
+          <div className="flex   p-2 flex-col md:flex-row  2xl:gap-[10rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
+            <h1 className="text-black lg:pl-[4.5rem] xxl:pl-[6.5rem]    2xl:pl-0 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
+              Explore    Rentals in Nigeria
+            </h1>
+            <p className="text-gray  lg:pr-5 text-base lg:text-xl font-bricolage w-full lg:w-[55rem] 2xl:w-[60rem] ">
+              Discover a home where every detail enhances your lifestyle-crafted
+              to fit your taste and needs.
+            </p>
+          </div>
+          <div className="flex flex-col ">
+            {(!regionListings?.listings || regionListings.listings.length === 0) ? (
+              <div className="text-center text-gray-500 py-8">No listings found.</div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+                {[...regionListings?.listings || []]
+                  ?.slice(2, 5)
+                  ?.map((items: Property, index: number) => (
+                    <PropertyListCard
+                      key={index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      _id={items?._id}
+                      title={items?.item?.title || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                      squareFeet={items?.item?.squareFeet}
+                    />
+                  ))}
+              </div>
+            )}
             <p className="text-[#09858D]  text-base lg:ml-6 2xl:ml-8  my-5 lg:text-2xl font-[500] ">
               see all explore listings for rent
             </p>

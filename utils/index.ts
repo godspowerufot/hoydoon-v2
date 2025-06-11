@@ -45,3 +45,21 @@ export const provider = new GoogleOAuthProvider({
 // 		console.log('(one-tap) tokenResponse: ', tokenResponse);
 // 	}
 // });
+
+
+// encrypt id 
+export function encodeId(id?: string) {
+  if (!id) return "";
+  if (typeof window !== "undefined") {
+    return btoa(id);
+  }
+  return Buffer.from(id).toString("base64");
+}
+
+export function decodeId(encoded?: string) {
+  if (!encoded) return "";
+  if (typeof window !== "undefined") {
+    return atob(encoded);
+  }
+  return Buffer.from(encoded, "base64").toString();
+}

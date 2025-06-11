@@ -2,18 +2,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { FaRegEye } from "react-icons/fa6";
 import ContactAgent from "@/app/components/layouts/contactagent";
 import { highlights } from "@/constants";
 import { useToggleFavoriteMutation, useGetAllListingsQuery, useGetSpecificListingsQuery } from "@/store/slices/api/authapi";
 import { usePathname,useRouter } from "next/navigation";
 import Spinner from "@/app/components/common/Spinner";
-import { truncateDescription } from "@/utils";
 import ListedCard from "@/app/components/common/profilecard";
 import MapComponent from "@/app/components/layouts/listingmap";
 import PropertyCard from "@/app/components/common/property";
 import { toast } from "react-toastify";
-import { handleShareClick } from "@/utils";
+import { handleShareClick,decodeId,truncateDescription } from "@/utils";
 import DynamicImageMobile from "@/app/components/layouts/mobiledynamic"
 import DynamicImageGrid from "@/app/components/layouts/dynamiclayout"
 const Breadcrumb = ({handleToggleListings,region,address,listingId,handleFavoriteClick  }) => {
@@ -68,7 +66,8 @@ const Breadcrumb = ({handleToggleListings,region,address,listingId,handleFavorit
 
 const page = () => {
     const pathname = usePathname();
-  const listingId = pathname?.split('/').pop();
+  const Id = pathname?.split('/').pop();
+const listingId=decodeId(Id)
   const router=useRouter() // Tab state
 
   const {
@@ -155,7 +154,6 @@ squareFeet,
       return images[index % images.length]; // loop over images if not enough
     });
     
-  // Further destructuring `item` if needed
   const { _id: itemId, title: itemTitle, bathrooms:bathrooms,
     address:address,
     bedrooms:bedrooms ,type,  
@@ -166,7 +164,7 @@ squareFeet,
   
   // Now you can use the variables directly
 
-  ; // Re-run only when data changes
+  
   
   if (isAllLoading) {
     return (
@@ -337,9 +335,7 @@ squareFeet,
               {displayListings?.length} Homes available in{" "}
               {truncateDescription(address, 1)}
             </span>
-            <span className="text-primary hidden lg:block cursor-pointer ml-2">
-              Remove map boundary
-            </span>
+        
           </div>
         </div>
 

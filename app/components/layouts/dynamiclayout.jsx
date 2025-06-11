@@ -73,7 +73,7 @@ const DynamicImageGrid = ({ images,coordinates, statuses = [] ,listingId}) => {
         </div>
       ),
       5: () => (
-        <div className="grid grid-cols-4 grid-rows-2 gap-4 p-4">
+        <div className="hidden lg:grid grid-cols-4 grid-rows-2 gap-4 p-4">
           <div className="col-span-2 row-span-2">
             {renderImage(images[0], 0, "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg", 500, 400)}
           </div>

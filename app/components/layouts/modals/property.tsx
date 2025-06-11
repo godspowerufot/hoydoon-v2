@@ -6,6 +6,8 @@ import StreetViewComponent from "../streetvie"
 import { useToggleFavoriteMutation } from "@/store/slices/api/authapi";
 import { toast } from "react-toastify";
 import { log } from "@/utils/log";
+import { handleShareClick } from '@/utils';
+
 import { useRouter } from "next/navigation";
 type Coordinates = [number, number]; // Or a more specific object type if needed
 
@@ -76,6 +78,8 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
   const [currentIndex, setCurrentIndex] = useState(0); // Default to first image
   const [activeTab, setActiveTab] = useState("photos");
   const router=useRouter() // Tab state
+  const [showListings, setShowListings] = useState(true);
+  
   const [toggleFavorite, { isLoading, isError, isSuccess }] = useToggleFavoriteMutation();
   if (!isOpen) return null;
 
@@ -175,6 +179,14 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
       router.push("/auth/sign-in")
     }
   };
+  
+
+    // Function to toggle the listings section
+    const handleToggleListings = () => {
+      setShowListings((prev) => !prev);
+    };
+    // Handle the "See All" button click
+
   return (
     <>
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
@@ -206,13 +218,13 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
             </div>
             <div className="flex  justify-end pr-4 pb-2  flex-1 gap-2">
           <div onClick={handleFavoriteClick} className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/favorite.png" alt="Favorite" className="w-4 h-4" />
+          <img src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
         </div>
-        <div className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/upload.png" alt="Download" className="w-4 h-4" />
+        <div  onClick={handleShareClick} className="p-2 border border-[#8F8F8F] rounded-md">
+          <img src="/upload.svg" alt="Download" className="w-4 h-4" />
         </div>
-        <div className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/image2.png" alt="Share" className="w-4 h-4" />
+        <div onClick={handleToggleListings} className="p-2 border border-[#8F8F8F] rounded-md">
+          <img src="/image2.svg" alt="Share" className="w-4 h-4" />
         </div>
       
           <button
@@ -224,7 +236,7 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
           </div>
 
           {/* Tab Content */}
-          {renderTabContent()}
+          {showListings && (renderTabContent())}
 
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { truncateDescription } from "@/utils";
+import { encodeId, truncateDescription } from "@/utils";
 import Link from "next/link";
 
 interface PropertyCardProps {
@@ -51,7 +51,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
   }, []);
 
   return (
-    <Link href={`/rent/${_id}`}>
+    <Link href={`/rent/${encodeId(_id)}`}>
       <div
         className={`flex flex-col  rounded-[18px] lg:rounded-[1.5rem] lg:h-[550px] 2xl:h-[38rem] lg:w-[23.6rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden  lg:ml-4 relative 
         group transition-all duration-[1500ms] ease-in-out ${

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { truncateDescription } from "@/utils";
+import { truncateDescription,encodeId } from "@/utils";
 import Link from "next/link";
 
 const PropertyCard = ({ 
@@ -31,7 +31,7 @@ const PropertyCard = ({
   const showDetails = isMobile || isHovered;
 
   return (
-    <Link href={`/rent/${_id}`}>
+    <Link href={`/rent/${encodeId(_id)}`}>
       <div
         className={`hidden lg:flex flex-col rounded-[16px] lg:rounded-[1.5rem]  border-[1px] border-gray 2xl:h-[40rem]  h-[32rem] lg:h-[600px] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden lg:ml-8 relative group transition-all duration-[1500ms] ease-in-out ${
           isHovered ? "border-solid rounded-2xl p-0 border-[1px] border-gray" : " border lg:border-none"

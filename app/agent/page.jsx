@@ -169,7 +169,7 @@ Benefit from local expertise. We'll connect you with a Hoydoon Premier Agent who
 Never miss out. We refresh listings every minute, ensuring you see new homes instantly. Book on-demand tours to view them fast</p>
 
 <Button className="text-base  !w-[115px] font-light mt-5 ">
-  <Link href="/explore">
+  <Link href="/rent/searchlisting">
  explore
   </Link>
 </Button>
