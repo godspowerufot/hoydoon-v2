@@ -1,76 +1,39 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import axios from "axios";
 
-const destinations = [
-  {
-    label: "Public Transit",
-    icon: "/bus.png",
-    coords: { lat: 6.531, lng: 3.3756 },
-  },
-  {
-    label: "Bank",
-    icon: "/bank.png",
-    coords: { lat: 6.5255, lng: 3.3791 },
-  },
-  {
-    label: "Shopping mall",
-    icon: "/shopping.png",
-    coords: { lat: 6.5183, lng: 3.3843 },
-  },
-  {
-    label: "School",
-    icon: "/school.png",
-    coords: { lat: 6.5351, lng: 3.3869 },
-  },
-  {
-    label: "Pharmacy",
-    icon: "/pharmacy.png",
-    coords: { lat: 6.5202, lng: 3.3777 },
-  },
+const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+const userLocation = { lat: 6.5244, lng: 3.3792 }; // Replace with dynamic values
+
+const placeTypes = [
+  "transit_station",
+  "bank",
+  "shopping_mall",
+  "school",
+  "pharmacy",
 ];
 
-const TravelTimesDisplay = ({ origin }) => {
-  const [travelTimes, setTravelTimes] = useState([]);
+async function getNearbyPlaces() {
+  const results = await Promise.all(
+    placeTypes.map(async (type) => {
+      const placeSearchUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${userLocation.lat},${userLocation.lng}&radius=3000&type=${type}&key=${API_KEY}`;
 
-  useEffect(() => {
-    if (!window.google || !origin?.lat || !origin?.lng) return;
+      const placeRes = await axios.get(placeSearchUrl);
+      const firstPlace = placeRes.data.results[0];
 
-    const service = new window.google.maps.DistanceMatrixService();
+      if (!firstPlace) return { type, duration: "Not found", distance: "N/A" };
 
-    service.getDistanceMatrix(
-      {
-        origins: [origin],
-        destinations: destinations.map((d) => d.coords),
-        travelMode: window.google.maps.TravelMode.DRIVING,
-      },
-      (response, status) => {
-        if (status === "OK" && response?.rows?.length > 0) {
-          const updatedTimes = response.rows[0].elements.map((el, idx) => ({
-            ...destinations[idx],
-            duration: el.status === "OK" ? el.duration.text : "Unavailable",
-          }));
-          setTravelTimes(updatedTimes);
-        } else {
-          console.error("Distance Matrix failed:", status);
-        }
-      }
-    );
-  }, [origin]);
+      const dest = `${firstPlace.geometry.location.lat},${firstPlace.geometry.location.lng}`;
+      const matrixUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${userLocation.lat},${userLocation.lng}&destinations=${dest}&key=${API_KEY}`;
 
-  return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6 2xl:text-base text-gray-700 text-sm">
-      {travelTimes.map((item, i) => (
-        <div key={i} className="flex items-center gap-2">
-          <Image src={item.icon} alt={item.label} width={20} height={20} />
-          <span className="text-primary font-medium">
-            .... {item.duration}
-          </span>{" "}
-          to {item.label}
-        </div>
-      ))}
-    </div>
+      const distRes = await axios.get(matrixUrl);
+      const element = distRes.data.rows[0].elements[0];
+
+      return {
+        type,
+        duration: element.duration.text,
+        distance: element.distance.text,
+      };
+    })
   );
-};
 
-export default TravelTimesDisplay;
+  return results;
+}

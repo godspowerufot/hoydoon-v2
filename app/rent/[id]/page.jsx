@@ -4,57 +4,173 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ContactAgent from "@/app/components/layouts/contactagent";
 import { highlights } from "@/constants";
-import { useToggleFavoriteMutation, useGetAllListingsQuery, useGetSpecificListingsQuery } from "@/store/slices/api/authapi";
-import { usePathname,useRouter } from "next/navigation";
+import {
+  useToggleFavoriteMutation,
+  useGetAllListingsQuery,
+  useGetSpecificListingsQuery,
+} from "@/store/slices/api/authapi";
+import { usePathname, useRouter } from "next/navigation";
 import Spinner from "@/app/components/common/Spinner";
 import ListedCard from "@/app/components/common/profilecard";
 import MapComponent from "@/app/components/layouts/listingmap";
 import PropertyCard from "@/app/components/common/property";
 import { toast } from "react-toastify";
-import { handleShareClick,decodeId,truncateDescription } from "@/utils";
-import DynamicImageMobile from "@/app/components/layouts/mobiledynamic"
-import DynamicImageGrid from "@/app/components/layouts/dynamiclayout"
-const Breadcrumb = ({handleToggleListings,region,address,listingId,handleFavoriteClick  }) => {
+import { handleShareClick, decodeId, truncateDescription } from "@/utils";
+import DynamicImageMobile from "@/app/components/layouts/mobiledynamic";
+import DynamicImageGrid from "@/app/components/layouts/dynamiclayout";
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Image from "next/image";
+
+const PLACE_TYPES = [
+  { type: "transit_station", label: "Public Transit", icon: "/bus.png" },
+  { type: "bank", label: "Bank", icon: "/bank.png" },
+  { type: "shopping_mall", label: "Shopping mall", icon: "/shopping.png" },
+  { type: "school", label: "School", icon: "/school.png" },
+  { type: "pharmacy", label: "Pharmacy", icon: "/pharmacy.png" },
+];
+
+const DistanceComponent = ({ coordinates }) => {
+  const [distances, setDistances] = useState({});
+
+  useEffect(() => {
+    const fetchPlacesAndDistances = async () => {
+      const { latitude, longitude } = coordinates;
+      const location = `${latitude},${longitude}`;
+      const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+
+      let destinations = [];
+
+      for (const { type } of PLACE_TYPES) {
+        const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=2000&type=${type}&key=${API_KEY}`;
+        const placesRes = await axios.get(
+          `/api/proxy?url=${encodeURIComponent(placesUrl)}`
+        );
+        const place = placesRes.data.results[0];
+        if (place) {
+          destinations.push(
+            `${place.geometry.location.lat},${place.geometry.location.lng}`
+          );
+        } else {
+          destinations.push("");
+        }
+      }
+
+      const distanceUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${location}&destinations=${destinations.join(
+        "|"
+      )}&key=${API_KEY}`;
+      const distanceRes = await axios.get(
+        `/api/proxy?url=${encodeURIComponent(distanceUrl)}`
+      );
+      const elements = distanceRes.data.rows[0].elements;
+
+      const results = {};
+      elements.forEach((el, i) => {
+        results[PLACE_TYPES[i].type] =
+          el.status === "OK" ? el.duration.text : "N/A";
+      });
+
+      setDistances(results);
+    };
+
+    fetchPlacesAndDistances();
+  }, [coordinates]);
+
+  return (
+    <div className="grid p-4 lg:p-0 text-xs grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6 2xl:text-base text-gray-700 lg:text-sm">
+      {PLACE_TYPES.map(({ type, label, icon }) => (
+        <div
+          key={type}
+          className={`flex items-center gap-2 ${
+            type === "pharmacy" ? "hidden lg:flex" : ""
+          }`}
+        >
+          <Image src={icon} alt={label} width={20} height={20} />
+          <span className="text-primary font-medium">
+            {distances[type] ? `.... ${distances[type]}` : "...."} mins
+          </span>{" "}
+          to {label}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const Breadcrumb = ({
+  handleToggleListings,
+  region,
+  address,
+  listingId,
+  handleFavoriteClick,
+}) => {
   return (
     <div className=" hidden lg:flex    items-center justify-between gap-[0.2rem] pl-4 py-2 w-[99%]  mt-[5rem]  bg-gray-100">
       {/* Left Section: Back Arrow and Breadcrumb */}
       <div className="flex w-1/2 items-start justify-start  gap-1 text-[1.08rem] font-bricolage text-gray-600">
         {/* Back Arrow */}
-        <Image src="/arrow-right.png" alt="arrow" height={12} width={12} className="mt-[0.9] mr-2" />
+        <Image
+          src="/arrow-right.png"
+          alt="arrow"
+          height={12}
+          width={12}
+          className="mt-[0.9] mr-2"
+        />
 
         {/* Breadcrumb Links */}
         <span className="text-gray-500">Search |</span>
-          {/* Breadcrumb item: Homes for Sale */}
-          <div className="flex font-light items-center gap-1">
-           <a href="#" className="text-primary">Homes for sale</a>
-         </div>
-       
-         {/* Breadcrumb item: Nigeria */}
-         <div className="flex items-center gap-1">
-           <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
-           <a href="#" className="text-primary">{region}</a>
-         </div>
-       
-     
-       
-         {/* Breadcrumb item: Magodo Estate */}
-         <div className="flex items-center gap-1">
-           <Image src="/arrow-right-top.png" alt="arrow" height={12} width={12} />
-           <a href="#" className="text-primary">{truncateDescription(address,3)}</a>
-         </div>
-     
+        {/* Breadcrumb item: Homes for Sale */}
+        <div className="flex font-light items-center gap-1">
+          <a href="#" className="text-primary">
+            Homes for sale
+          </a>
+        </div>
+
+        {/* Breadcrumb item: Nigeria */}
+        <div className="flex items-center gap-1">
+          <Image
+            src="/arrow-right-top.png"
+            alt="arrow"
+            height={12}
+            width={12}
+          />
+          <a href="#" className="text-primary">
+            {region}
+          </a>
+        </div>
+
+        {/* Breadcrumb item: Magodo Estate */}
+        <div className="flex items-center gap-1">
+          <Image
+            src="/arrow-right-top.png"
+            alt="arrow"
+            height={12}
+            width={12}
+          />
+          <a href="#" className="text-primary">
+            {truncateDescription(address, 3)}
+          </a>
+        </div>
       </div>
 
       {/* Right Section: Icons */}
       <div className="flex  items-center  w-1/2 justify-end gap-2">
-        <div onClick={handleFavoriteClick} className="p-2 border border-[#8F8F8F] rounded-md">
+        <div
+          onClick={handleFavoriteClick}
+          className="p-2 border border-[#8F8F8F] rounded-md"
+        >
           <img src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
         </div>
-        <div onClick={handleShareClick} className="p-2 border border-[#8F8F8F] rounded-md">
+        <div
+          onClick={handleShareClick}
+          className="p-2 border border-[#8F8F8F] rounded-md"
+        >
           <img src="/upload.svg" alt="Download" className="w-4 h-4" />
         </div>
-        <div onClick={handleToggleListings} className="p-2 border border-[#8F8F8F] rounded-md">
+        <div
+          onClick={handleToggleListings}
+          className="p-2 border border-[#8F8F8F] rounded-md"
+        >
           <img src="/image2.svg" alt="Share" className="w-4 h-4" />
         </div>
       </div>
@@ -65,21 +181,19 @@ const Breadcrumb = ({handleToggleListings,region,address,listingId,handleFavorit
 };
 
 const page = () => {
-    const pathname = usePathname();
-  const Id = pathname?.split('/').pop();
-const listingId=decodeId(Id)
-  const router=useRouter() // Tab state
+  const pathname = usePathname();
+  const Id = pathname?.split("/").pop();
+  const listingId = decodeId(Id);
+  const router = useRouter(); // Tab state
 
-  const {
-    data: listing,
-    isloading:isAllLoading,
+  const { data: listing, isloading: isAllLoading } =
+    useGetSpecificListingsQuery({ listingId });
 
-  } = useGetSpecificListingsQuery({listingId });
-
-  const { data: allListings, refetch } = useGetAllListingsQuery( );
+  const { data: allListings, refetch } = useGetAllListingsQuery();
 
   const [displayListings, setDisplayListings] = useState([]);
-  const [toggleFavorite, { isLoading, isError, isSuccess }] = useToggleFavoriteMutation();
+  const [toggleFavorite, { isLoading, isError, isSuccess }] =
+    useToggleFavoriteMutation();
   const [showListings, setShowListings] = useState(true);
 
   // Function to toggle the listings section
@@ -87,16 +201,14 @@ const listingId=decodeId(Id)
     setShowListings((prev) => !prev);
   };
   const handleFavoriteClick = async () => {
-   
     try {
       await toggleFavorite({ listingId }).unwrap();
       toast.success("Added to favorites!");
     } catch (error) {
       console.error("Failed to favorite listing:", error);
-      router.push("/auth/sign-in")
+      router.push("/auth/sign-in");
     }
   };
- 
 
   useEffect(() => {
     refetch(); // Refetch data on every mount
@@ -109,145 +221,177 @@ const listingId=decodeId(Id)
     }
   }, [allListings, isAllLoading]);
 
+  // These map the highlight text to the corresponding field(s) in the data
+  const featureMap = {
+    "Pet allowed": (item) => item?.petFriendly,
+    Laundry: (item) => item?.laundryType?.length > 0,
+    Balcony: (item) => item?.amenities?.length > 0,
+    "Garage parking": (item) => item?.parkingType,
+    // Add more mappings as needed
+  };
 
-     // These map the highlight text to the corresponding field(s) in the data
-const featureMap = {
-  "Pet allowed": (item) => item?.petFriendly,
-  "Laundry": (item) => item?.laundryType?.length > 0,
-  "Balcony": (item) => item?.amenities?.length > 0,
-  "Garage parking": (item) => item?.parkingType,
-  // Add more mappings as needed
-};
+  // Dynamically filter highlights based on what's in the listing.item
+  const relevantHighlights = highlights.filter((highlight) =>
+    featureMap[highlight.text]?.(listing?.listing?.item)
+  );
 
-// Dynamically filter highlights based on what's in the listing.item
-const relevantHighlights = highlights.filter((highlight) =>
-  featureMap[highlight.text]?.(listing?.listing?.item)
-);
+  const {
+    averageRating,
+    createdAt,
+    editingCount,
+    item, // This contains nested properties
+    itemModel,
+    listedBy,
+    squareFeet,
+    listingType,
+    region,
+    reviewCount,
+    status,
+    title,
+    tour3d,
+    updatedAt,
+    _id,
+  } = listing?.listing || {}; // Provide a fallback to avoid errors when data is not available
+  const { imageUrls } = listing?.listing || {};
 
+  const images = imageUrls || [];
+  const totalImages = 12; // 4 columns * 3 rows
 
-  
+  // Repeat images using mapping (no while loop)
+  const extendedImages = Array.from({ length: totalImages }, (_, index) => {
+    return images[index % images.length]; // loop over images if not enough
+  });
 
-    const {
-      averageRating,
-      createdAt,
-      editingCount,
-      item, // This contains nested properties
-      itemModel,
-      listedBy,
-squareFeet,      
-      listingType,
-      region,
-      reviewCount,
-      status,
-      title,
-      tour3d,
-      updatedAt,
-      _id,
-    } = listing?.listing || {}; // Provide a fallback to avoid errors when data is not available
-    const { imageUrls } = listing?.listing || {};
-  
-    const images = imageUrls || [];
-    const totalImages = 12; // 4 columns * 3 rows
-    
-    // Repeat images using mapping (no while loop)
-    const extendedImages = Array.from({ length: totalImages }, (_, index) => {
-      return images[index % images.length]; // loop over images if not enough
-    });
-    
-  const { _id: itemId, title: itemTitle, bathrooms:bathrooms,
-    address:address,
-    bedrooms:bedrooms ,type,  
-    coordinate:coordinate, description:description, private: isPrivate, price } = item || {};
-  
+  const {
+    _id: itemId,
+    title: itemTitle,
+    bathrooms: bathrooms,
+    address: address,
+    bedrooms: bedrooms,
+    type,
+    coordinate: coordinate,
+    description: description,
+    private: isPrivate,
+    price,
+  } = item || {};
+
   // Destructuring `listedBy` if needed
   const { _id: listedById, fullname, pictureUrl } = listedBy || {};
-  
+
   // Now you can use the variables directly
 
-  
-  
   if (isAllLoading) {
-    return (
-       <Spinner />
-    );
-  } 
+    return <Spinner />;
+  }
   return (
     <div className="lg:mt-8  2xl:w-[98rem] lg:w-[87%]  lg:ml-[2%] ">
-      <Breadcrumb  handleToggleListings={handleToggleListings} handleFavoriteClick={handleFavoriteClick} listingId={listingId } address={address} region={region} />
- {showListings &&(
-<div className="w-full">
-      <DynamicImageGrid
-       listingId={_id}
-        images={images}
-        coordinates={coordinate}
+      <Breadcrumb
+        handleToggleListings={handleToggleListings}
+        handleFavoriteClick={handleFavoriteClick}
+        listingId={listingId}
+        address={address}
+        region={region}
       />
+      {showListings && (
+        <div className="w-full">
+          <DynamicImageGrid
+            listingId={_id}
+            images={images}
+            coordinates={coordinate}
+          />
 
-<DynamicImageMobile
-        listingId={_id}
-        images={images}
-        showListings={showListings}
-        coordinates={coordinate}/>
-
-  </div>
- )}
-
+          <DynamicImageMobile
+            listingId={_id}
+            images={images}
+            showListings={showListings}
+            coordinates={coordinate}
+          />
+        </div>
+      )}
 
       {/* second div layout  */}
 
-<div className={`bg-gray-100 p-4 rounded-lg ${!showListings ? 'mt-[2rem] lg:mt-0' : ''}`}> 
-   <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 lg:gap-4">
-    {/* Left Section */}
-    <div className="flex-1 flex flex-col  gap-1  lg:flex">
-      <h2 className="text-xl lg:text-[2rem] hidden  lg:block font-bricolage font-semibold">{title}</h2>
-      <h2 className="text-xl lg:text-[2rem] lg:hidden font-bricolage font-semibold">{truncateDescription(title,3)}</h2>
-      
-      {/* Address */}
-      <div className=" text-black text-sm  font-light lg:text-gray block lg:text-base">
-        <p>{truncateDescription(address,10)}</p>
-        <p >{region}</p>
+      <div
+        className={`bg-gray-100 p-4 rounded-lg ${
+          !showListings ? "mt-[2rem] lg:mt-0" : ""
+        }`}
+      >
+        <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 lg:gap-4">
+          {/* Left Section */}
+          <div className="flex-1 flex flex-col  gap-1  lg:flex">
+            <h2 className="text-xl lg:text-[2rem] hidden  lg:block font-bricolage font-semibold">
+              {title}
+            </h2>
+            <h2 className="text-xl lg:text-[2rem] lg:hidden font-bricolage font-semibold">
+              {truncateDescription(title, 3)}
+            </h2>
+
+            {/* Address */}
+            <div className=" text-black text-sm  font-light lg:text-gray block lg:text-base">
+              <p>{truncateDescription(address, 10)}</p>
+              <p>{region}</p>
+            </div>
+
+            {/* Views */}
+            <div className="flex items-center gap-2 text-gray-700  mt-[0.5rem] lg:mt-2">
+              <img
+                src="/eye.svg"
+                alt="Share"
+                className="w-3 h-3 lg:w-5 lg:h-5"
+              />
+              <span className="lg:font-medium   lg:mt-0 text-base font-light text-black lg:text-black">
+                Total views {editingCount?.toLocaleString()}
+              </span>
+            </div>
+          </div>
+
+          {/* Right Section */}
+          <div className="text-right flex-1 lg:-mt-[2.5rem]  flex flex-col  gap-1 lg:flex md:text-right w-full md:w-auto">
+            <p className="text-[1.5rem] text-black font-[600] lg:font-bold">
+              ${price}
+            </p>
+
+            <div className="flex items-center justify-end mt-1 text-gray-700">
+              <img src="/stargreen.png" alt="Star" className="w-4 h-4" />
+              <span className="ml-1 font-medium">{averageRating}</span>
+            </div>
+
+            <p className=" lg:text-gray  font-light text-sm lg:text-base">
+              Est. ${price}/month
+            </p>
+
+            <div className="flex items-center lg:hidden  lg:p-2 justify-end gap-2 mt-2 w-full md:w-auto">
+              <div
+                onClick={handleFavoriteClick}
+                className="justify-center flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
+              >
+                <img src="/favorite.svg" alt="Favorite" className="w-3 h-3" />
+              </div>
+              <div
+                onClick={handleShareClick}
+                className=" justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
+              >
+                <img src="/upload.svg" alt="Download" className="w-3 h-3" />
+              </div>
+              <div
+                onClick={handleToggleListings}
+                className="justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
+              >
+                <img src="/image2.svg" alt="Share" className="w-3 h-3" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Views */}
-      <div className="flex items-center gap-2 text-gray-700  mt-[0.5rem] lg:mt-2">
-          <img src="/eye.svg" alt="Share" className="w-3 h-3 lg:w-5 lg:h-5" />
-        <span className="lg:font-medium   lg:mt-0 text-base font-light text-black lg:text-black">Total views {editingCount?.toLocaleString()}</span>
-      </div>
-    </div>
-
-    {/* Right Section */}
-    <div className="text-right flex-1 lg:-mt-[2.5rem]  flex flex-col  gap-1 lg:flex md:text-right w-full md:w-auto">
-      <p className="text-[1.5rem] text-black font-[600] lg:font-bold">${price}</p>
-      
-      <div className="flex items-center justify-end mt-1 text-gray-700">
-        <img src="/stargreen.png" alt="Star" className="w-4 h-4" />
-        <span className="ml-1 font-medium">{averageRating}</span>
-      </div>
-
-      <p className=" lg:text-gray  font-light text-sm lg:text-base">Est. ${price}/month</p>
-    
-      <div className="flex items-center lg:hidden  lg:p-2 justify-end gap-2 mt-2 w-full md:w-auto">
-        <div onClick={handleFavoriteClick} className="justify-center flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm">
-          <img src="/favorite.svg" alt="Favorite" className="w-3 h-3" />
-        </div>
-        <div  onClick={handleShareClick} className=" justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm">
-          <img src="/upload.svg" alt="Download" className="w-3 h-3" />
-        </div>
-        <div  onClick={handleToggleListings} className="justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm">
-          <img src="/image2.svg" alt="Share" className="w-3 h-3" />
-        </div>
-      </div></div>
-  </div>
-</div>
-
-
-<div className="w-full mt-3 lg:mt-0 border-t border-b border-[#8F8F8F] py-3">
+      <div className="w-full mt-3 lg:mt-0 border-t border-b border-[#8F8F8F] py-3">
         <div className="flex items-center justify-center gap-[1.1rem] lg:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl lg:text-base">
           <div className="flex items-center gap-4  lg:gap-[8rem]">
             <span className="flex items-center gap-1">
               <span className="font-bold text-black">{bedrooms}</span>
               <span>Beds</span>
             </span>
-          </div>   
+          </div>
 
           <span className="text-gray-400">|</span>
 
@@ -269,39 +413,37 @@ squareFeet,
             <span className="font-bold text-black">_</span>
             <span>Price per sq ft</span>
           </div>
-        </div>  
+        </div>
       </div>
 
-         
-          
-              <div className="w-full px-4 py-6">
-                <h2 className="text-xl font-bold text-black font-bricolage">
-                  Home Highlights
-                </h2>
-                {relevantHighlights.length > 0 ? (
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4 text-[#8F8F8F] font-bricolage text-sm">
-                {relevantHighlights.map((item, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <Image
+      <div className="w-full px-4 py-6">
+        <h2 className="text-xl font-bold text-black font-bricolage">
+          Home Highlights
+        </h2>
+        {relevantHighlights.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4 text-[#8F8F8F] font-bricolage text-sm">
+            {relevantHighlights.map((item, index) => (
+              <div key={index} className="flex items-center gap-2">
+                <Image
                   src={item.icon}
                   alt={item.text}
                   width={20}
                   height={20}
                   className="object-contain"
                   quality={100}
-                    />
-                    <span className="2xl:text-xl">{item.text}</span>
-                  </div>
-                ))}
-                  </div>
-                ) : (
-                  <p className="text-[#8F8F8F] font-bricolage text-sm mt-4">
-                No home highlights found for this listing.
-                  </p>
-                )}
+                />
+                <span className="2xl:text-xl">{item.text}</span>
               </div>
-       
-              {/* description */}
+            ))}
+          </div>
+        ) : (
+          <p className="text-[#8F8F8F] font-bricolage text-sm mt-4">
+            No home highlights found for this listing.
+          </p>
+        )}
+      </div>
+
+      {/* description */}
       <div className=" w-full px-4 py-6">
         <h2 className="text-xl font-bold text-black font-bricolage">
           Description
@@ -312,7 +454,7 @@ squareFeet,
           </p>
         </div>
       </div>
-   
+
       {/* listed by agent */}
       <div className=" w-full px-4 py-6">
         <h2 className="text-xl font-bold text-black font-bricolage">
@@ -322,7 +464,7 @@ squareFeet,
           <ListedCard name={fullname} picture={pictureUrl} />
         </div>
       </div>
-  
+
       {/* map */}
       <div className="bg-gray-100 lg:p-6 rounded-lg">
         <h2 className="text-xl font-semibold mb-4 pl-4 p-0">Map</h2>
@@ -335,11 +477,12 @@ squareFeet,
               {displayListings?.length} Homes available in{" "}
               {truncateDescription(address, 1)}
             </span>
-        
           </div>
         </div>
 
         {/* Distance Information */}
+        <DistanceComponent coordinates={coordinate} />
+
         <div className="grid p-4 lg:p-0 text-xs grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6  2xl:text-base text-gray-700 lg:text-sm">
           <div className="flex items-center gap-2">
             <Image src="/bus.png" alt="Bus" width={20} height={20} />
@@ -377,50 +520,49 @@ squareFeet,
         listedBy={listedBy?._id}
       />
       <div className="hidden lg:block w-full">
-      <section className="mt-10  hidden  2xl:mt-[4em] lg:mt-[3em] w-[75rem]  2xl:w-[88rem]  font-bricolage lg:flex  flex-col flex-1 ">
-        <div className="flex   w-[92%]  2xl:-mb-[5rem]    flex-col">
-          <div className="flex   p-2 flex-col w-[75rem]  2xl:w-[85rem]  md:flex-row 2xl:gap-[25%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-            <h1 className="text-black  text-[26px] lg:text-[1.8rem] font-[600]   w-full ">
-              {" "}
-              Single Family House Rents
-            </h1>
-            <p className="text-gray  lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-full">
-              Discover a home where every detail enhances your lifestyle-crafted
-              to fit your taste and needs.
-            </p>
-          </div>
-          <div className="flex flex-col lg:-ml-[2em]  ">
-            <div className="flex mt-[1em] h-fit w-full  lg:flex-row mb-2">
-              {displayListings?.map((listing, index) => (
-                <PropertyCard
-                  key={index}
-                  {...listing}
-                  _id={listing._id}
-                  imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
-                  altText={
-                    listing?.imageUrls?.[0]?.altText ||
-                    "Property image showcasing a beautiful home"
-                  }
-                  price={listing?.item?.price || "Price not available"}
-                  area={
-                    listing?.item?.squareFeet ||
-                    "190 - 245 m² (Approximate area)"
-                  }
-                  description={
-                    listing?.item?.description ||
-                    "No description available for this property."
-                  }
-                  title={listing?.item?.title || "Untitled Property"}
-                  rent={listing?.item?.rent || "Rent details not provided"}
-                />
-              ))}
+        <section className="mt-10  hidden  2xl:mt-[4em] lg:mt-[3em] w-[75rem]  2xl:w-[88rem]  font-bricolage lg:flex  flex-col flex-1 ">
+          <div className="flex   w-[92%]  2xl:-mb-[5rem]    flex-col">
+            <div className="flex   p-2 flex-col w-[75rem]  2xl:w-[85rem]  md:flex-row 2xl:gap-[25%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
+              <h1 className="text-black  text-[26px] lg:text-[1.8rem] font-[600]   w-full ">
+                {" "}
+                Single Family House Rents
+              </h1>
+              <p className="text-gray  lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-full">
+                Discover a home where every detail enhances your
+                lifestyle-crafted to fit your taste and needs.
+              </p>
+            </div>
+            <div className="flex flex-col lg:-ml-[2em]  ">
+              <div className="flex mt-[1em] h-fit w-full  lg:flex-row mb-2">
+                {displayListings?.map((listing, index) => (
+                  <PropertyCard
+                    key={index}
+                    {...listing}
+                    _id={listing._id}
+                    imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
+                    altText={
+                      listing?.imageUrls?.[0]?.altText ||
+                      "Property image showcasing a beautiful home"
+                    }
+                    price={listing?.item?.price || "Price not available"}
+                    area={
+                      listing?.item?.squareFeet ||
+                      "190 - 245 m² (Approximate area)"
+                    }
+                    description={
+                      listing?.item?.description ||
+                      "No description available for this property."
+                    }
+                    title={listing?.item?.title || "Untitled Property"}
+                    rent={listing?.item?.rent || "Rent details not provided"}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
-    </div>
-
   );
 };
 
