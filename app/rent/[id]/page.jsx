@@ -18,79 +18,114 @@ import { toast } from "react-toastify";
 import { handleShareClick, decodeId, truncateDescription } from "@/utils";
 import DynamicImageMobile from "@/app/components/layouts/mobiledynamic";
 import DynamicImageGrid from "@/app/components/layouts/dynamiclayout";
-
-import { useEffect, useState } from "react";
 import axios from "axios";
-import Image from "next/image";
 
 const PLACE_TYPES = [
-  { type: "transit_station", label: "Public Transit", icon: "/bus.png" },
-  { type: "bank", label: "Bank", icon: "/bank.png" },
-  { type: "shopping_mall", label: "Shopping mall", icon: "/shopping.png" },
-  { type: "school", label: "School", icon: "/school.png" },
-  { type: "pharmacy", label: "Pharmacy", icon: "/pharmacy.png" },
+  { type: "transit_station", icon: "/bus.png" },
+  { type: "bank", icon: "/bank.png" },
+  { type: "shopping_mall", icon: "/shopping.png" },
+  { type: "school", icon: "/school.png" },
+  { type: "pharmacy", icon: "/pharmacy.png" },
 ];
 
+// Infer human-readable label from types array
+const getLabelFromTypes = (types = []) => {
+  const lowered = types.map((t) => t.toLowerCase());
+
+  if (lowered.some((t) => t.includes("shop"))) return "Shopping Mall";
+  if (lowered.includes("school")) return "School";
+  if (lowered.includes("bank")) return "Bank";
+  if (lowered.includes("pharmacy")) return "Pharmacy";
+  if (lowered.includes("transit_station")) return "Public Transit";
+
+  return "Nearby Place";
+};
+
 const DistanceComponent = ({ coordinates }) => {
-  const [distances, setDistances] = useState({});
+  const [placesData, setPlacesData] = useState([]);
 
   useEffect(() => {
-    const fetchPlacesAndDistances = async () => {
+    const fetchData = async () => {
+      if (!coordinates) return;
+
       const { latitude, longitude } = coordinates;
       const location = `${latitude},${longitude}`;
-      const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+      const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+      const DISTANCE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_DISTANCE_API_KEY;
 
-      let destinations = [];
+      const foundPlaces = [];
+      const destinations = [];
 
-      for (const { type } of PLACE_TYPES) {
+      // 1. Fetch nearest places for each type
+      for (const { type, icon } of PLACE_TYPES) {
         const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=2000&type=${type}&key=${API_KEY}`;
         const placesRes = await axios.get(
           `/api/proxy?url=${encodeURIComponent(placesUrl)}`
         );
-        const place = placesRes.data.results[0];
+
+        const place = placesRes.data.results?.[0];
         if (place) {
+          foundPlaces.push({
+            type,
+            icon,
+            name: place.name,
+            types: place.types,
+            lat: place.geometry.location.lat,
+            lng: place.geometry.location.lng,
+          });
+
           destinations.push(
             `${place.geometry.location.lat},${place.geometry.location.lng}`
           );
         } else {
-          destinations.push("");
+          destinations.push(""); // placeholder to maintain index
+          foundPlaces.push(null);
         }
       }
 
+      // 2. Fetch distances
       const distanceUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${location}&destinations=${destinations.join(
         "|"
-      )}&key=${API_KEY}`;
+      )}&key=${DISTANCE_API_KEY}`;
       const distanceRes = await axios.get(
         `/api/proxy?url=${encodeURIComponent(distanceUrl)}`
       );
-      const elements = distanceRes.data.rows[0].elements;
 
-      const results = {};
-      elements.forEach((el, i) => {
-        results[PLACE_TYPES[i].type] =
-          el.status === "OK" ? el.duration.text : "N/A";
+      const distanceElements = distanceRes.data.rows[0].elements;
+
+      // 3. Combine place info with distance
+      const finalData = foundPlaces.map((place, idx) => {
+        if (!place || distanceElements[idx].status !== "OK") return null;
+
+        return {
+          ...place,
+          label: getLabelFromTypes(place.types),
+          distance: distanceElements[idx].distance.text,
+        };
       });
 
-      setDistances(results);
+      setPlacesData(finalData.filter(Boolean)); // remove nulls
     };
 
-    fetchPlacesAndDistances();
+    fetchData();
   }, [coordinates]);
-
+  console.log("placedata", placesData);
   return (
     <div className="grid p-4 lg:p-0 text-xs grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6 2xl:text-base text-gray-700 lg:text-sm">
-      {PLACE_TYPES.map(({ type, label, icon }) => (
+      {placesData.map(({ type, icon, name, label, distance }) => (
         <div
           key={type}
-          className={`flex items-center gap-2 ${
+          className={`flex items-start gap-2 ${
             type === "pharmacy" ? "hidden lg:flex" : ""
           }`}
         >
           <Image src={icon} alt={label} width={20} height={20} />
-          <span className="text-primary font-medium">
-            {distances[type] ? `.... ${distances[type]}` : "...."} mins
-          </span>{" "}
-          to {label}
+          <div className="flex flex-col">
+            <span className="text-primary font-[500] lowercase">{name}</span>
+            <span className="text-gray-500 text-xs">
+              {label} · {distance}
+            </span>
+          </div>
         </div>
       ))}
     </div>
@@ -480,10 +515,10 @@ const page = () => {
           </div>
         </div>
 
-        {/* Distance Information */}
+        {/* Distance Information*/}
         <DistanceComponent coordinates={coordinate} />
 
-        <div className="grid p-4 lg:p-0 text-xs grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6  2xl:text-base text-gray-700 lg:text-sm">
+        {/* <div className="grid p-4 lg:p-0 text-xs grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6  2xl:text-base text-gray-700 lg:text-sm">
           <div className="flex items-center gap-2">
             <Image src="/bus.png" alt="Bus" width={20} height={20} />
             <span className="text-primary  font-medium">.... 5 mins</span> to
@@ -509,7 +544,7 @@ const page = () => {
             <span className="text-primary font-medium ">.... 15 mins</span> to
             Pharmacy
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/*contat agency  */}
