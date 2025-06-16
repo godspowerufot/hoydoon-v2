@@ -86,7 +86,7 @@ const DistanceComponent = ({ coordinates }) => {
       // 2. Fetch distances
       const distanceUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${location}&destinations=${destinations.join(
         "|"
-      )}&key=${DISTANCE_API_KEY}`;
+      )}&key=AIzaSyCpqbVnVDGFmauYDDt7pl18vgJ4pR2TYyE`;
       const distanceRes = await axios.get(
         `/api/proxy?url=${encodeURIComponent(distanceUrl)}`
       );
