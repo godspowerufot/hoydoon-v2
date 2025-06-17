@@ -12,8 +12,9 @@ const MAP_ID = "a618b8ba2def9141";
 const mapContainerStyle = { width: "100%", height: "400px" };
 
 const MapComponent = ({ coordinates }) => {
-  const safeCoordinates = Array.isArray(coordinates) ? coordinates : [coordinates];
-
+  const safeCoordinates = Array.isArray(coordinates)
+    ? coordinates
+    : [coordinates];
   const mainLocation =
     safeCoordinates.length > 0 &&
     !isNaN(safeCoordinates[0]?.latitude) &&
@@ -27,7 +28,6 @@ const MapComponent = ({ coordinates }) => {
     setMapCenter(mainLocation);
 
     // Calculate time to nearby location (e.g., Lekki Phase 1)
-  
   }, [coordinates]);
 
   return (

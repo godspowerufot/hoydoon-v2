@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 "use client";
-
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import PropertyCard from "@/app/components/common/property";
@@ -9,7 +8,8 @@ import Pagination from "@/app/components/common/pagination";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useRouter, useSearchParams } from "next/navigation";
 import PropertyListCard from "@/app/components/common/PropertyListing";
-import { flattenListings } from "@/utils";
+import { flattenListings, log } from "@/utils";
+import MapComponent from "@/app/components/layouts/listingmap";
 
 const PropertySkeleton = () => {
   return (
@@ -27,7 +27,7 @@ const PropertySkeleton = () => {
   );
 };
 
-const Breadcrumb = () => {
+const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isSearching, setIsSearching] = useState(false);
@@ -45,8 +45,8 @@ const Breadcrumb = () => {
     bedrooms: "",
     bathrooms: "",
   });
-  const modalRef = useRef < HTMLDivElement > null;
-  const bedBathRef = useRef < HTMLDivElement > null;
+  const modalRef = useRef(null);
+  const bedBathRef = useRef(null);
 
   const handleFilterChange = (filterName, value) => {
     setFilters((prevFilters) => ({
@@ -463,11 +463,11 @@ const Breadcrumb = () => {
           <React.Fragment key={index}>
             <button
               className={`px-4 py-2 gap-3 flex 2xl:w-[5.5rem] w-[4.5rem] text-[16px] rounded-md transition-all duration-300 ${
-                selectedOptions === option
+                (showMap ? "Map" : "List") === option
                   ? "bg-primary gap-[10px] flex text-white"
                   : "text-[#8F8F8F]"
               }`}
-              onClick={() => setSelectedOptions(option)}
+              onClick={() => setShowMap(option === "Map")}
             >
               {option}
             </button>
@@ -483,7 +483,7 @@ const Breadcrumb = () => {
 
 const page = () => {
   const searchParams = useSearchParams();
-
+  const [showMap, setShowMap] = useState(false);
   const query = useMemo(() => {
     return Object.fromEntries(searchParams?.entries() ?? []);
   }, [searchParams]);
@@ -512,16 +512,15 @@ const page = () => {
     if (!isAllloading && allListings) {
       const firstThreeListings = allListings.listings;
       const flatListings = flattenListings(firstThreeListings);
-      flatListings.forEach((item) => {
-        const coord = item?.item?.coordinate;
-        if (coord?.latitude && coord?.longitude) {
-          setCoordinates(coord); // ✅ show all listings on first load
-        }
-      }); // ✅ update all state
-      setDisplayListings(firstThreeListings);
-
+      // Filter listings with valid coordinates
+      const listingsWithCoords = flatListings.filter(
+        (item) =>
+          item?.item?.coordinate?.latitude && item?.item?.coordinate?.longitude
+      );
+      setCoordinates(listingsWithCoords.map((item) => item.item.coordinate)); // set all coordinates for the map
+      setDisplayListings(listingsWithCoords); // only show listings with coordinates
       setTotalPages(allListings.totalPages || 1);
-      setCurrentPage(Number(searchParams.get("page")) || 1); // Store in state
+      setCurrentPage(Number(searchParams.get("page")) || 1);
     }
   }, [allListings, isAllloading]);
 
@@ -532,9 +531,10 @@ const page = () => {
   //      </div>
   //    );
   //  }
+  console.log("coordinae", coordinates);
   return (
     <div className="lg:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] 2xl:w-[94rem]  lg:w-[84rem]  flex-col flex justify-center items-center 2xl:items-stretch ">
-      <Breadcrumb />'
+      <Breadcrumb showMap={showMap} setShowMap={setShowMap} />'
       <div className="flex items-start p-4 lg:p-0  w-full lg:justify-between flex-col  gap-3 lg:gap-0 lg:flex-row lg:w-[76rem]  2xl:w-[90rem]  ">
         <h1 className="text-black  hidden lg:block font-semibold text-2xl lg:text-4xl">
           All Real-estate & Homes for Sale
@@ -559,49 +559,55 @@ const page = () => {
         </div>
       </div>
       <div className="w-screen  lg:my-[2rem] 2xl:my-[2  rem]  h-[2px] bg-[#D9D9D9] " />
-      {isAllloading && (
-        <div className="grid grid-cols-1 w-[90%] sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, index) => (
-            <PropertySkeleton key={index} />
-          ))}
-        </div>
-      )}
-      {displayListings.length === 0 ? (
-        <p className="text-gray-600 text-center mt-6">
-          No listings found for your search.
-        </p>
+      {showMap ? (
+        <MapComponent coordinates={coordinates} />
       ) : (
-        <div className=" grid    lg:-ml-[2.8rem] 2xl:mr-[0]   lg:mr-2  grid-cols-1 md:grid-cols-3 gap-4 lg:gap-y-[2rem]  p-5 lg:p-0 place-items-center">
-          {[...displayListings].map((items, index) => (
-            <PropertyListCard
-              key={index}
-              imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-              altText={
-                items?.imageUrls?.[0]?.altText ||
-                "Property image showcasing a beautiful home"
-              }
-              price={items?.item?.price || "Price not available"}
-              area={items?.item?.squareFeet}
-              bathrooms={items?.item?.bathrooms}
-              bedrooms={items?.item?.bedrooms}
-              description={
-                items?.item?.description ||
-                "No description available for this property."
-              }
-              _id={items?._id}
-              title={items?.item?.title || "Untitled Property"}
-              rent={items?.item?.rent || "Rent details not provided"}
-              squareFeet={items?.item?.squareFeet}
-            />
-          ))}
-        </div>
+        <>
+          {isAllloading && (
+            <div className="grid grid-cols-1 w-[90%] sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, index) => (
+                <PropertySkeleton key={index} />
+              ))}
+            </div>
+          )}
+          {displayListings.length === 0 ? (
+            <p className="text-gray-600 text-center mt-6">
+              No listings found for your search.
+            </p>
+          ) : (
+            <div className=" grid    lg:-ml-[2.8rem] 2xl:mr-[0]   lg:mr-2  grid-cols-1 md:grid-cols-3 gap-4 lg:gap-y-[2rem]  p-5 lg:p-0 place-items-center">
+              {[...displayListings].map((items, index) => (
+                <PropertyListCard
+                  key={index}
+                  imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                  altText={
+                    items?.imageUrls?.[0]?.altText ||
+                    "Property image showcasing a beautiful home"
+                  }
+                  price={items?.item?.price || "Price not available"}
+                  area={items?.item?.squareFeet}
+                  bathrooms={items?.item?.bathrooms}
+                  bedrooms={items?.item?.bedrooms}
+                  description={
+                    items?.item?.description ||
+                    "No description available for this property."
+                  }
+                  _id={items?._id}
+                  title={items?.item?.title || "Untitled Property"}
+                  rent={items?.item?.rent || "Rent details not provided"}
+                  squareFeet={items?.item?.squareFeet}
+                />
+              ))}
+            </div>
+          )}
+          <Pagination
+            totalPages={totalPages}
+            display={displayListings}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </>
       )}
-      <Pagination
-        totalPages={totalPages}
-        display={displayListings}
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-      />
       {/* second div layout  */}
     </div>
   );

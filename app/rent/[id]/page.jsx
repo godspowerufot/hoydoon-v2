@@ -241,7 +241,6 @@ const page = () => {
       toast.success("Added to favorites!");
     } catch (error) {
       console.error("Failed to favorite listing:", error);
-      router.push("/auth/sign-in");
     }
   };
 
@@ -280,11 +279,9 @@ const page = () => {
     squareFeet,
     listingType,
     region,
-    reviewCount,
-    status,
+
     title,
-    tour3d,
-    updatedAt,
+
     _id,
   } = listing?.listing || {}; // Provide a fallback to avoid errors when data is not available
   const { imageUrls } = listing?.listing || {};
