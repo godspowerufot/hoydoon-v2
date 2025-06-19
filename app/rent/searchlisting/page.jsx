@@ -32,9 +32,11 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   const router = useRouter();
   const [isSearching, setIsSearching] = useState(false);
   // Add this state
+
+  const [showPriceDropdown, setShowPriceDropdown] = useState(false);
+  const [showHomeTypeDropdown, setShowHomeTypeDropdown] = useState(false);
+
   const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
-  const [showFilterModal, setShowFilterModal] = useState(false); // New state for modal
-  const [selectedOptions, setSelectedOptions] = useState("List");
   const [showBedBathDropdown, setShowBedBathDropdown] = useState(false);
   const [bedValue, setBedValue] = useState("");
   const [bathValue, setBathValue] = useState("");
@@ -44,6 +46,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     location: "",
     bedrooms: "",
     bathrooms: "",
+    houseType: "",
   });
   const modalRef = useRef(null);
   const bedBathRef = useRef(null);
@@ -90,17 +93,20 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
         newParams.delete(paramKey);
       }
     });
-
-    // Trigger search with the updated query parameters
+    if (filters.houseType) {
+      newParams.set("houseType", filters.houseType);
+    } else {
+      newParams.delete("houseType");
+    }
     router.push(`/rent/searchlisting?${newParams.toString()}`);
 
-    // Clear the search query after searching
     setFilters({
       price: "",
       "home-type": "",
       location: "",
       bedrooms: "",
       bathrooms: "",
+      houseType: "",
     });
     setBedValue("");
     setBathValue("");
@@ -159,7 +165,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
           <>
             <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>
 
-            <div className="absolute bg-white top-[20%] z-[1111] rounded-xl p-4 w-full max-w-[14rem]">
+            <div className="absolute bg-white top-[20%] z-[1111] rounded-xl p-4 w-full max-w-[14rem] overflow-y-auto h-[400px] no-scrollbar">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-sm text-gray-600 font-[400]">Filters</h2>
                 <button
@@ -199,6 +205,36 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                 </ul>
               </div>
 
+              {/* price secction */}
+              <div className="mb-4">
+                <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
+                <ul className="flex flex-col gap-1.5">
+                  {[
+                    { label: "$0k–$30k", value: "0-30000" },
+                    { label: "$30k–$60k", value: "30000-60000" },
+                    { label: "$60k–$100k", value: "60000-100000" },
+                    { label: "$100k+", value: "100000-10000000" },
+                  ].map((option) => (
+                    <li
+                      key={option.value}
+                      className="flex justify-between items-center border-b border-gray-300 pb-1.5"
+                    >
+                      <span className="text-[12px] text-gray font-[400]">
+                        {option.label}
+                      </span>
+                      <input
+                        type="radio"
+                        name="price"
+                        className="w-3 h-3 accent-primary"
+                        checked={filters.price === option.value}
+                        onChange={() =>
+                          handleFilterChange("price", option.value)
+                        }
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
               {/* Bed/Baths Filter */}
               <div className="mb-4">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">
@@ -246,6 +282,34 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                 </ul>
               </div>
 
+              {/* house tpe */}
+              <div className="mb-4">
+                <h3 className="text-sm text-gray-600 font-[400] mb-2">
+                  House type
+                </h3>
+                <ul className="flex flex-col gap-1.5">
+                  {["Bungalow", "Duplex", "Penthouse"].map((option) => (
+                    <li
+                      key={option}
+                      className="flex justify-between items-center border-b border-gray-300 pb-1.5"
+                    >
+                      <span className="text-[12px] text-gray font-[400]">
+                        {option}
+                      </span>
+                      <input
+                        type="radio"
+                        name="house-type"
+                        className="w-3 h-3 accent-primary"
+                        checked={filters.houseType === option.toLowerCase()}
+                        onChange={() =>
+                          handleFilterChange("houseType", option.toLowerCase())
+                        }
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {/* add a price section radion butt */}
               <div className=" hidden ">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
                 <ul className="flex flex-col gap-1.5">
@@ -301,67 +365,69 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                 </button>
 
                 {showBedBathDropdown && (
-                  <div className="absolute z-10  lg:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 lg:mt-0 lg:w-64">
-                    <div className="flex justify-between mb-2">
-                      <span className="font-medium text-sm">Beds</span>
-                      <button
-                        onClick={() => {
-                          setBedValue("");
-                          handleFilterChange("bedrooms", "");
-                        }}
-                        className="text-xs text-primary"
-                      >
-                        Any
-                      </button>
-                    </div>
-                    <div className="flex gap-2 mb-4 flex-wrap">
-                      {["1", "2", "3", "4", "5+"].map((val) => (
+                  <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]">
+                    <div className="absolute z-10  lg:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 lg:mt-0 lg:w-64">
+                      <div className="flex justify-between mb-2">
+                        <span className="font-medium text-sm">Beds</span>
                         <button
-                          key={val}
                           onClick={() => {
-                            setBedValue(val);
-                            handleFilterChange("bedrooms", val);
+                            setBedValue("");
+                            handleFilterChange("bedrooms", "");
                           }}
-                          className={`px-2 py-1 text-sm rounded border ${
-                            bedValue === val
-                              ? "bg-teal-500 text-white"
-                              : "text-[#8F8F8F] border-[#8F8F8F]"
-                          }`}
+                          className="text-xs text-primary"
                         >
-                          {val}
+                          Any
                         </button>
-                      ))}
-                    </div>
+                      </div>
+                      <div className="flex gap-2 mb-4 flex-wrap">
+                        {["1", "2", "3", "4", "5+"].map((val) => (
+                          <button
+                            key={val}
+                            onClick={() => {
+                              setBedValue(val);
+                              handleFilterChange("bedrooms", val);
+                            }}
+                            className={`px-2 py-1 text-sm rounded border ${
+                              bedValue === val
+                                ? "bg-teal-500 text-white"
+                                : "text-[#8F8F8F] border-[#8F8F8F]"
+                            }`}
+                          >
+                            {val}
+                          </button>
+                        ))}
+                      </div>
 
-                    <div className="flex justify-between mb-2">
-                      <span className="font-medium text-sm">Baths</span>
-                      <button
-                        onClick={() => {
-                          setBathValue("");
-                          handleFilterChange("bathrooms", "");
-                        }}
-                        className="text-xs text-primary"
-                      >
-                        Any
-                      </button>
-                    </div>
-                    <div className="flex gap-2 flex-wrap">
-                      {["1", "2", "3", "4", "5+"].map((val) => (
+                      <div className="flex justify-between mb-2">
+                        <span className="font-medium text-sm">Baths</span>
                         <button
-                          key={val}
                           onClick={() => {
-                            setBathValue(val);
-                            handleFilterChange("bathrooms", val);
+                            setBathValue("");
+                            handleFilterChange("bathrooms", "");
                           }}
-                          className={`px-2 py-1 text-sm rounded border ${
-                            bathValue === val
-                              ? "bg-teal-500 text-white"
-                              : "text-[#8F8F8F] border-[#8F8F8F]"
-                          }`}
+                          className="text-xs text-primary"
                         >
-                          {val}
+                          Any
                         </button>
-                      ))}
+                      </div>
+                      <div className="flex gap-2 flex-wrap">
+                        {["1", "2", "3", "4", "5+"].map((val) => (
+                          <button
+                            key={val}
+                            onClick={() => {
+                              setBathValue(val);
+                              handleFilterChange("bathrooms", val);
+                            }}
+                            className={`px-2 py-1 text-sm rounded border ${
+                              bathValue === val
+                                ? "bg-teal-500 text-white"
+                                : "text-[#8F8F8F] border-[#8F8F8F]"
+                            }`}
+                          >
+                            {val}
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 )}
@@ -369,55 +435,84 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             );
           }
 
+          // Modal for "Price" and "Home type" (Buy)
+          const dropdownState =
+            option === "Price" ? showPriceDropdown : showHomeTypeDropdown;
+          const setDropdownState =
+            option === "Price" ? setShowPriceDropdown : setShowHomeTypeDropdown;
+
+          const options =
+            option === "Price"
+              ? [
+                  { label: "$0–200", value: "0-200" },
+                  { label: "$200–500", value: "200-500" },
+                  { label: "$500–800", value: "500-800" },
+                  { label: "$800+", value: "800-5000000" },
+                ]
+              : [
+                  { label: "Rent", value: "rent" },
+                  { label: "Sale", value: "sale" },
+                  { label: "Land", value: "land" },
+                ];
+
           return (
-            <div className="relative flex items-center" key={option}>
-              <select
-                className={`${
-                  option === "Price" ? "hidden lg:block" : "block"
-                } border outline-none focus:outline-none border-[#8F8F8F] bg-transparent text-[12.5px] w-[67px] font-light rounded-md text-[#8F8F8F] p-2 pr-[0.5rem] lg:pr-6 appearance-none`}
-                value={selectedValue}
-                onChange={(e) => handleFilterChange(paramKey, e.target.value)}
+            <div className="relative" key={option}>
+              <button
+                type="button"
+                className={`border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 lg:pr-2 flex items-center gap-2 ${
+                  option == "Price" ? "hidden lg:flex" : ""
+                }`}
+                onClick={() => setDropdownState(!dropdownState)}
               >
-                {/* Label Option */}
+                <span className="block lg:hidden">
+                  {option === "Home type"
+                    ? "Buy"
+                    : options.find((o) => o.value === selectedValue)?.label ||
+                      option}
+                </span>
+                <span className="hidden lg:block">
+                  {option === "Home type"
+                    ? "Home type"
+                    : options.find((o) => o.value === selectedValue)?.label ||
+                      option}
+                </span>
+                <img
+                  src="/arrow-down.png"
+                  alt="Dropdown"
+                  className="w-3 h-2 ml-2 pointer-events-none"
+                />
+              </button>
 
-                {option === "Home type" ? (
-                  <>
-                    <option className="block lg:hidden" value="">
-                      Buy
-                    </option>
-                    <option className="hidden lg:block" value="">
-                      Home type
-                    </option>
-                  </>
-                ) : (
-                  <option value="">{option}</option>
-                )}
-                {/* Price Options */}
-                {option === "Price" && (
-                  <>
-                    <option value="0-200">$0–200</option>
-                    <option value="200-500">$200–500</option>
-                    <option value="500-800">$500–800</option>
-                    <option value="800-5000000">$800+</option>
-                  </>
-                )}
-
-                {/* Home Type Options */}
-                {option === "Home type" && (
-                  <>
-                    <option value="rent">Rent</option>
-                    <option value="sale">Sale</option>
-                    <option value="land">Land</option>
-                  </>
-                )}
-              </select>
-
-              {/* Arrow icon */}
-              <img
-                src="/arrow-down.png"
-                alt="Dropdown"
-                className="w-3 h-2 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
-              />
+              {dropdownState && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]">
+                  <div className="absolute z-[111111] left-[23%] top-[14%] lg:top-[110%] lg:left-0 bg-white  border border-[#8F8F8F] rounded-md px-2  mt-2 lg:mt-0 lg:w-[140px]">
+                    <div className="flex justify-between mb-2"></div>
+                    <ul className="flex flex-col gap-2">
+                      {options.map((opt) => (
+                        <label
+                          key={opt.value}
+                          className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded `}
+                        >
+                          <input
+                            type="radio"
+                            name={paramKey}
+                            value={opt.value}
+                            checked={selectedValue === opt.value}
+                            onChange={() => {
+                              handleFilterChange(paramKey, opt.value);
+                              setDropdownState(false);
+                            }}
+                            className={`w-4 h-4 accent-primary`}
+                          />
+                          <span className="text-sm text-[#8F8F8F]">
+                            {opt.label}
+                          </span>
+                        </label>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}

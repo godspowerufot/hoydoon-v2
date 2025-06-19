@@ -1,18 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { removeTokens} from "@/utils/cookies";
+import { removeTokens } from "@/utils/cookies";
 import { setUser, logout } from "../authslice";
-import {
-  setTokens,
-  getAccessToken,
-  getRefreshToken,
-} from "@/utils/cookies";
+import { setTokens, getAccessToken, getRefreshToken } from "@/utils/cookies";
 import { log } from "@/utils/log";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   prepareHeaders: (headers) => {
     const token = getAccessToken();
-    log("",token)
+    log("", token);
     if (token) {
       headers.set("x-auth-token", `${token}`);
     }
@@ -90,16 +86,16 @@ export const authApi = createApi({
         return { data: null };
       },
     }),
- // In authapi.ts or wherever you define your endpoints
-getAgents: builder.query({
-  query: (params = {}) => {
-    const searchParams = new URLSearchParams(params).toString();
-    return {
-      url: `/v1/agents?${searchParams}`,
-      method: 'GET',
-    };
-  },
-}),
+    // In authapi.ts or wherever you define your endpoints
+    getAgents: builder.query({
+      query: (params = {}) => {
+        const searchParams = new URLSearchParams(params).toString();
+        return {
+          url: `/v1/agents?${searchParams}`,
+          method: "GET",
+        };
+      },
+    }),
 
     getAgentsInfo: builder.query({
       query: ({ userId }) => ({
@@ -134,7 +130,7 @@ getAgents: builder.query({
       }),
     }),
     getSpecificListings: builder.query({
-      query: ({listingId} ) => ({
+      query: ({ listingId }) => ({
         url: `/v1/listings/${listingId}`,
         method: "GET",
       }),
@@ -148,11 +144,9 @@ getAgents: builder.query({
     }),
     activateAccount: builder.mutation({
       query: (otp) => ({
-
         url: "v1/users/activate",
         method: "PUT",
         body: { ...otp },
-        
       }),
     }),
     resendOtp: builder.mutation({
@@ -162,7 +156,7 @@ getAgents: builder.query({
         body: { email },
       }),
     }),
-    
+
     googleAuth: builder.mutation({
       query: (credentials) => ({
         url: "/v1/auth/google",
@@ -175,13 +169,18 @@ getAgents: builder.query({
       },
     }),
     toggleFavorite: builder.mutation({
-      query: (listingId ) => ({
+      query: (listingId) => ({
         url: "/v1/favorites",
         method: "POST",
         body: { ...listingId },
       }),
     }),
-    
+    DeleteFavorite: builder.mutation({
+      query: (listingId) => ({
+        url: `/v1/favorites/${listingId}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -196,6 +195,7 @@ export const {
   useResendOtpMutation,
   useToggleFavoriteMutation,
   useGetUserQuery,
+  useDeleteFavoriteMutation,
   useSendMessageMutation,
   useGetAgentListingsQuery,
   useActivateAccountMutation,
@@ -204,10 +204,3 @@ export const {
   useGetAllLocationListingsQuery,
 } = authApi;
 export default authApi;
-
-
-
-
-
-
-

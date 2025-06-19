@@ -1,24 +1,26 @@
-'use client'
+"use client";
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import PropertyCard from "./components/common/property";
 import ArticlesSection from "./components/common/Article";
-import { useEffect ,useRef} from "react";
-import { useGetAllListingsQuery, useGetFavoritesQuery } from "@/store/slices/api/authapi";
+import { useEffect, useRef } from "react";
+import {
+  useGetAllListingsQuery,
+  useGetFavoritesQuery,
+} from "@/store/slices/api/authapi";
 import { useState } from "react";
 import SearchBar from "./components/common/searchcomponent";
-import {useIsMobile} from "@/hooks/usemobile"
+import { useIsMobile } from "@/hooks/usemobile";
 import Button from "./components/common/Button";
 import { flattenListings } from "@/utils";
-import clsx from 'clsx';
+import clsx from "clsx";
 import { log } from "@/utils/log";
 import { toast } from "react-toastify";
-import {truncateDescription} from "@/utils/index";
+import { truncateDescription } from "@/utils/index";
 import TestimonialCard from "./components/layouts/testimonials";
-import FagsSection  from "../app/components/layouts/FaqSection"
+import FagsSection from "../app/components/layouts/FaqSection";
 // carousel
-
 
 function Carousel({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -47,16 +49,16 @@ function Carousel({ images }) {
 
     startX.current = null;
   };
-    // Go to next slide
- // Go to next slide (with loop)
-const prev = () => {
-  goToSlide(currentIndex + 1);
-};
+  // Go to next slide
+  // Go to next slide (with loop)
+  const prev = () => {
+    goToSlide(currentIndex + 1);
+  };
 
-// Go to previous slide (with loop)
-const next = () => {
-  goToSlide(currentIndex - 1);
-};
+  // Go to previous slide (with loop)
+  const next = () => {
+    goToSlide(currentIndex - 1);
+  };
 
   return (
     <>
@@ -64,9 +66,9 @@ const next = () => {
         <div
           style={{
             backgroundImage: `url('${images[currentIndex]?.imageUrl}')`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
           }}
           className="lg:mt-[1rem] lg:hidden relative p-4 sm:p-6 lg:p-8 w-full max-w-full lg:w-[73rem] h-[26rem] 2xl:w-[88rem] 2xl:h-[47rem]"
           onTouchStart={handleTouchStart}
@@ -77,11 +79,10 @@ const next = () => {
           <div className="lg:-ml-[0.7rem] 2xl:ml-[2rem] z-111 absolute bg-primarytransparent p-2 sm:p-2 2xl:p-10 2xl:mt-[20rem] rounded-2xl top-[50%] right-0 h-fit w-full">
             <div className="bg-white px-3 pt-3 sm:p-6 lg:p-8 rounded-2xl h-fit w-full max-w-full lg:w-[56rem] 2xl:w-[65rem]">
               <h1 className="text-black text-[0.9rem] sm:text-base lg:text-2xl 2xl:text-[2rem] font-[600]">
-                {truncateDescription(images[currentIndex]?.title,15)}
+                {truncateDescription(images[currentIndex]?.title, 15)}
               </h1>
               <p className="text-gray text-[8px] sm:text-sm lg:text-[1rem] 2xl:text-[1.05rem] 2xl:w-[55rem] mt-2 2xl:mt-5">
-                                   {truncateDescription(images[currentIndex]?.description,55)}
-
+                {truncateDescription(images[currentIndex]?.description, 55)}
               </p>
 
               <div className="flex flex-wrap -mt-[10px] sm:flex-nowrap w-full sm:w-[60%] 2xl:w-[75%] font-bricolage items-center gap-3 sm:gap-0">
@@ -89,7 +90,9 @@ const next = () => {
                   <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">
                     1,200sqft
                   </span>
-                  <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Size</div>
+                  <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">
+                    Size
+                  </div>
                 </div>
 
                 <div className="h-3 sm:h-10 w-[1px] bg-black my-1 mx-1 sm:-mx-[15%]"></div>
@@ -98,7 +101,9 @@ const next = () => {
                   <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">
                     {images[currentIndex]?.location}
                   </span>
-                  <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Location</div>
+                  <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">
+                    Location
+                  </div>
                 </div>
 
                 <div className="h-3 sm:h-10 w-[1px] bg-black my-1 mx-1"></div>
@@ -119,7 +124,9 @@ const next = () => {
                       ({images[currentIndex]?.reviewCount} reviews)
                     </p>
                   </span>
-                  <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">Reviews</div>
+                  <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">
+                    Reviews
+                  </div>
                 </div>
               </div>
             </div>
@@ -127,170 +134,176 @@ const next = () => {
         </div>
 
         {/* Dots */}
-       
 
-
-
-
-
-         <div  
-                style={{
+        <div
+          style={{
             backgroundImage: `url('${images[currentIndex]?.imageUrl}')`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
           }}
-           onTouchStart={handleTouchStart}
+          onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-            className="lg:mt-[1rem] rounded-none  hidden lg:block relative p-8 2xl:w-[88rem] 2xl:h-[47rem]   lg:w-[73rem] h-[40rem] lg:rounded-2xl"
-          >
-            <div className="absolute rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  lg:rounded-2xl" />
-            <div className=" lg:-ml-[0.7rem] 2xl:ml-[2rem]  z-111 absolute    bg-primarytransparent p-5 2xl:p-10 rounded-2xl 2xl:mt-[20rem] lg:mt-[16rem] h-fit   w-fit">
-              <div className=" bg-white p-8 lg:rounded-2xl   h-[18rem]  2xl:w-[65rem] w-[56rem] ">
-                <h1 className="text-black text-base  lg:text-2xl 2xl:text-[2rem] font-[600]">
- {images[currentIndex]?.title}                </h1>
-                <p className="text-gray lg:text-[1rem] mb-[2rem] 2xl:text-[1.05rem] font-[400]  2xl:w-[55rem] 2xl:mt-5 mt-3 text-[10px] ">
-                                   {truncateDescription(images[currentIndex]?.description,50)}
-                </p>
+          className="lg:mt-[1rem] rounded-none  hidden lg:block relative p-8 2xl:w-[88rem] 2xl:h-[47rem]   lg:w-[73rem] h-[40rem] lg:rounded-2xl"
+        >
+          <div className="absolute rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  lg:rounded-2xl" />
+          <div className=" lg:-ml-[0.7rem] 2xl:ml-[2rem]  z-111 absolute    bg-primarytransparent p-5 2xl:p-10 rounded-2xl 2xl:mt-[20rem] lg:mt-[17rem] h-fit   w-fit">
+            <div className=" bg-white p-8 lg:rounded-2xl   h-[18rem]  2xl:w-[65rem] w-[56rem] ">
+              <h1 className="text-black text-base  lg:text-2xl 2xl:text-[2rem] font-[600]">
+                {images[currentIndex]?.title}{" "}
+              </h1>
+              <p className="text-gray lg:text-[1rem] mb-[2rem] 2xl:text-[1.05rem] font-[400]  2xl:w-[55rem] 2xl:mt-5 mt-3 text-[10px] ">
+                {truncateDescription(images[currentIndex]?.description, 50)}
+              </p>
 
-                <div className="flex  w-[60%]  2xl:w-[75%] font-bricolage items-center mt-5 ">
-                  {/* Property Details */}
-                  <div className="flex flex-col-reverse w-1/2 flex-1 px-1 py-3">
-                    <span className="text-base   mt-[3px] 2xl:text-[1.2rem] font-semibold text-black">
-                      1,200sqft
-                    </span>
-                    <div className="text-sm 2xl:text-[1rem] text-gray">
-                      Size
-                    </div>
-                  </div>
+              <div className="flex  w-[60%]  2xl:w-[75%] font-bricolage items-center mt-5 ">
+                {/* Property Details */}
+                <div className="flex flex-col-reverse w-1/2 flex-1 px-1 py-3">
+                  <span className="text-base   mt-[3px] 2xl:text-[1.2rem] font-semibold text-black">
+                    1,200sqft
+                  </span>
+                  <div className="text-sm 2xl:text-[1rem] text-gray">Size</div>
+                </div>
 
-                  {/* Vertical Divider */}
-                  <div className="h-10 w-[1px] - bg-black -mx-[15%] my-1"></div>
+                {/* Vertical Divider */}
+                <div className="h-10 w-[1px] - bg-black -mx-[15%] my-1"></div>
 
-                  <div className="flex ml-[20%] flex-col-reverse w-[40%] flex-1 px-2 py-3">
-                    <span className="text-base  mt-[3px]  2xl:text-[1.2rem]  font-semibold text-black">
+                <div className="flex ml-[20%] flex-col-reverse w-[40%] flex-1 px-2 py-3">
+                  <span className="text-base  mt-[3px]  2xl:text-[1.2rem]  font-semibold text-black">
                     {images[currentIndex]?.location}
-                    </span>
-                    <div className="text-sm 2xl:text-[1rem] text-gray">
-                      Location
-                    </div>
+                  </span>
+                  <div className="text-sm 2xl:text-[1rem] text-gray">
+                    Location
                   </div>
+                </div>
 
-                  {/* Vertical Divider */}
-                  <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
+                {/* Vertical Divider */}
+                <div className="h-10 w-[1px] bg-black mx-1 my-1"></div>
 
-                  <div className="flex w-max flex-col-reverse ml-[3%] flex-1 px-2 py-3">
-                    <span className="text-[0.9em]  2xl:text-[1.2rem] font-semibold text-black">
-                      <span className="flex  mt-[3px] lg:flex-row flex-col gap-[0.2em]  w-full  items-center -ml-[9%] justify-center">
-                        <Image
-                          alt="logo"
-                          width={20}
-                          loading="lazy"
-                          objectFit="cover"
-                          height={20} // Reduced size of logo
-                          src={"/star.png"}
-                          className="h-5 w-5 "
-                        />
-                        <p className="text-base">                      {images[currentIndex]?.rating.toFixed(1)}
-</p>
-                        <p className="text-gray  font-[500] lg:block  hidden">
-                      ({images[currentIndex]?.reviewCount} reviews)
-                        </p>
-                      </span>
+                <div className="flex w-max flex-col-reverse ml-[3%] flex-1 px-2 py-3">
+                  <span className="text-[0.9em]  2xl:text-[1.2rem] font-semibold text-black">
+                    <span className="flex  mt-[3px] lg:flex-row flex-col gap-[0.2em]  w-full  items-center -ml-[9%] justify-center">
+                      <Image
+                        alt="logo"
+                        width={20}
+                        loading="lazy"
+                        objectFit="cover"
+                        height={20} // Reduced size of logo
+                        src={"/star.png"}
+                        className="h-5 w-5 "
+                      />
+                      <p className="text-base">
+                        {" "}
+                        {images[currentIndex]?.rating.toFixed(1)}
+                      </p>
+                      <p className="text-gray  font-[500] lg:block  hidden">
+                        ({images[currentIndex]?.reviewCount} reviews)
+                      </p>
                     </span>
-                    <div className="text-sm 2xl:text-[1rem] text-gray">
-                      Reviews
-                    </div>
+                  </span>
+                  <div className="text-sm 2xl:text-[1rem] text-gray">
+                    Reviews
                   </div>
                 </div>
               </div>
             </div>
-            {/* Navigation Buttons at Bottom Right */}
-            <div className="absolute bottom-5 right-5 flex gap-3 ">
-              {/* Previous Button */}
-              <div  onClick={next}className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-3 w-12 h-12 shadow-md cursor-pointer hover:bg-gray-200">
-                <Image
-                  alt="logo"
-                  width={20}
-                  loading="lazy"
-                  height={20} // Reduced size of logo
-                  src={"/left.png"}
-                  className="text-gray w-[9px]  text-lg"
-                />
-              </div>
-              {/* Next Button */}
-              <div onClick={prev} className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-3 w-12 h-12 shadow-md cursor-pointer hover:bg-gray-200">
-                <Image
-                  alt="logo"
-                  width={20}
-                  loading="lazy"
-                  height={20} // Reduced size of logo
-                  src={"/right.png"}
-                  className="text-gray w-[9px]  text-lg"
-                />
-              </div>
+          </div>
+          {/* Navigation Buttons at Bottom Right */}
+          <div className="absolute bottom-5 right-5 flex gap-3 ">
+            {/* Previous Button */}
+            <div
+              onClick={next}
+              className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-3 w-12 h-12 shadow-md cursor-pointer hover:bg-gray-200"
+            >
+              <Image
+                alt="logo"
+                width={20}
+                loading="lazy"
+                height={20} // Reduced size of logo
+                src={"/left.png"}
+                className="text-gray w-[9px]  text-lg"
+              />
+            </div>
+            {/* Next Button */}
+            <div
+              onClick={prev}
+              className="flex items-center justify-center rounded-full bg-[#F9FAFB] p-3 w-12 h-12 shadow-md cursor-pointer hover:bg-gray-200"
+            >
+              <Image
+                alt="logo"
+                width={20}
+                loading="lazy"
+                height={20} // Reduced size of logo
+                src={"/right.png"}
+                className="text-gray w-[9px]  text-lg"
+              />
             </div>
           </div>
-           <div className="mt-4 flex gap-2 z-50">
+        </div>
+        <div className="mt-4 lg:hidden flex gap-2 z-50">
           {images.map((_, index) => (
             <div
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                currentIndex === index ? 'bg-primary scale-110' : 'bg-gray opacity-60'
+                currentIndex === index
+                  ? "bg-primary scale-110"
+                  : "bg-gray opacity-60"
               }`}
             />
           ))}
         </div>
       </main>
-
-
-      
     </>
   );
 }
 
-
-
 export default function Home() {
- const { data: allListings, isLoading: isAllLoading, refetch: refetchAll } = useGetAllListingsQuery({ category: 'Featured' });
-const { data: luxuryListings, isLoading: isLuxuryLoading, refetch: refetchLuxury } = useGetAllListingsQuery({ category: 'luxury' });
+  const {
+    data: allListings,
+    isLoading: isAllLoading,
+    refetch: refetchAll,
+  } = useGetAllListingsQuery({ category: "Featured" });
+  const {
+    data: luxuryListings,
+    isLoading: isLuxuryLoading,
+    refetch: refetchLuxury,
+  } = useGetAllListingsQuery({ category: "luxury" });
 
-const isMobile = useIsMobile();
+  const isMobile = useIsMobile();
 
-const [displayListings, setDisplayListings] = useState([]);
-const [luxuryDisplayListings, setLuxuryDisplayListings] = useState([]);
+  const [displayListings, setDisplayListings] = useState([]);
+  const [luxuryDisplayListings, setLuxuryDisplayListings] = useState([]);
 
-useEffect(() => {
-  refetchAll();     // Refetch all listings on mount
-  refetchLuxury();  // Refetch luxury listings on mount
-}, [refetchAll, refetchLuxury]);
+  useEffect(() => {
+    refetchAll(); // Refetch all listings on mount
+    refetchLuxury(); // Refetch luxury listings on mount
+  }, [refetchAll, refetchLuxury]);
 
-useEffect(() => {
-  if (!isAllLoading && allListings) {
-    const firstThreeListings = allListings.listings?.slice(0, 3);
-    setDisplayListings(firstThreeListings);
-  }
-}, [allListings, isAllLoading]);
+  useEffect(() => {
+    if (!isAllLoading && allListings) {
+      const firstThreeListings = allListings.listings?.slice(0, 3);
+      setDisplayListings(firstThreeListings);
+    }
+  }, [allListings, isAllLoading]);
 
+  useEffect(() => {
+    if (!isLuxuryLoading && luxuryListings?.listings) {
+      const flatListings = flattenListings(luxuryListings.listings);
 
-useEffect(() => {
-  if (!isLuxuryLoading && luxuryListings?.listings) {
-    const flatListings = flattenListings(luxuryListings.listings);
+      const slides = flatListings.map((listing) => ({
+        imageUrl: listing.imageUrls?.[0]?.url || "",
+        title: listing.title || "",
+        rating: listing.averageRating,
+        reviewCount: listing.reviewCount,
+        location: listing.region || "",
+        description: listing.item.description,
+      }));
 
-    const slides = flatListings.map((listing) => ({
-      imageUrl: listing.imageUrls?.[0]?.url || '',
-      title: listing.title || '',
-      rating: listing.averageRating ,
-      reviewCount: listing.reviewCount ,
-      location: listing.region || '',
-      description:listing.item.description
-    }));
-
-    setLuxuryDisplayListings(slides);
-  }
-}, [luxuryListings, isLuxuryLoading]);
-log("all Listings:", allListings);
+      setLuxuryDisplayListings(slides);
+    }
+  }, [luxuryListings, isLuxuryLoading]);
+  log("all Listings:", allListings);
 
   if (isAllLoading) {
     return (
@@ -299,7 +312,6 @@ log("all Listings:", allListings);
       </div>
     );
   }
-
 
   return (
     <>
@@ -323,15 +335,13 @@ log("all Listings:", allListings);
             to the home of your dreams with trust and ease.
           </h2>
           <h2 className="text-[#FFFFFFB2]  lg:hidden lg:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm lg:text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
-          Hoydoon connects you to your dream home — easily and reliably. </h2>
-
-
+            Hoydoon connects you to your dream home — easily and reliably.{" "}
+          </h2>
 
           {/* Search Bar (Large Screens) */}
-     <SearchBar/>
+          <SearchBar />
 
           {/* Mobile Search Bar */}
-
         </div>
 
         {/* Statistics Section */}
@@ -370,37 +380,36 @@ log("all Listings:", allListings);
         </div>
       </header>
 
-        <section className=" w-screen  p-5 lg:p-0 font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
-          <div className="flex  gap-[4%] flex-col-reverse 2xl:pl-[3.4em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
-            <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
-          <h1 className="text-black  text-[24px]  mt-4 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
-            Find your ideal property with simple tools and guidance.
-          </h1>
-          <p className="text-gray text-sm lg:text-xl  mt-2 lg:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
-            Enjoy fast and easy access to a variety of properties that suit
-            your needs. Use our smart filters to find the perfect places
-            within your budget and preferences. We’ve done the hard work for
-            you, so no need to stress about the search.
-          </p>
+      <section className=" w-screen  p-5 lg:p-0 font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
+        <div className="flex  gap-[4%] flex-col-reverse 2xl:pl-[3.4em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+          <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
+            <h1 className="text-black  text-[24px]  mt-4 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
+              Find your ideal property with simple tools and guidance.
+            </h1>
+            <p className="text-gray text-sm lg:text-xl  mt-2 lg:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
+              Enjoy fast and easy access to a variety of properties that suit
+              your needs. Use our smart filters to find the perfect places
+              within your budget and preferences. We’ve done the hard work for
+              you, so no need to stress about the search.
+            </p>
 
-        <Button
-          className="text-base font-light mt-4  !w-[115px] !p-[0.3rem]"
-          onClick={() => {     toast.success("Coming soon!");
-        
-    
-          }}
-        >
-          <span>Explore</span>
-        </Button>
-            </span>
+            <Button
+              className="text-base font-light mt-4  !w-[115px] !p-[0.3rem]"
+              onClick={() => {
+                toast.success("Coming soon!");
+              }}
+            >
+              <span>Explore</span>
+            </Button>
+          </span>
 
-            <span className="mt-4 lg:mt-0">
-          <Image
-            alt="image1"
-            width={500}
-            quality={100}
-            height={400} // Reduced size of logo
-              src={"/house-app.png"} 
+          <span className="mt-4 lg:mt-0">
+            <Image
+              alt="image1"
+              width={500}
+              quality={100}
+              height={400} // Reduced size of logo
+              src={"/house-app.png"}
             />
           </span>
         </div>
@@ -415,15 +424,13 @@ log("all Listings:", allListings);
               Download our highly-rated real estate app for iOS or Android to
               receive instant alerts when your dream home becomes available.
             </p>
-          <Link
-  href="
-https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk" 
-  target="_blank" 
-  rel="noopener noreferrer"
->
-            <Button className="text-base font-light mt-5 ">
-               Download
-            </Button>
+            <Link
+              href="
+https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="text-base font-light mt-5 ">Download</Button>
             </Link>
           </span>
 
@@ -432,66 +439,75 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               alt="image1"
               width={500} // Reduced size of logo
               height={500} // Reduced size of logo
-                src={"/app.svg"}
-                className="lg:w-[500px] w-[200px]https://hoydoon-backend.azurewebsites.net/api/v1/favorites"
-              />
-              </span>
-            </div>
-            </section>
-
-            <section className="   lg:mt-[4em] p-2 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-            <div className="flex flex-col   items-start justify-center">
-              <div className="flex lg:ml-[4rem] 2xl:ml-[2.2rem] flex-col md:flex-row lg:my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
-              <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full">
-                Featured Properties for Rent
-              </h1>
-              <p className="text-gray font-light mb-4 text-sm lg:-ml-[10rem] 2xl:mr-[4rem]  lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
-                Discover a home where every detail enhances your lifestyle crafted to fit your taste and needs.
-              </p>
-              </div>
-              <div className="flex flex-col mt-[0.5em] lg:mt-[1em] lg:ml-[2rem] 2xl:-ml-[2rem] h-fit min-w-[70%] items-start lg:flex-row justify-start mb-2">
-      {(isMobile ? displayListings.slice(0, 1) : displayListings).map((items, index) => (
-        <PropertyCard
-          _id={items?._id}
-          key={index}
-          imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-          altText={items?.imageUrls?.[0]?.altText || "Property image showcasing a beautiful home"}
-          price={items?.item.price || "Price not available"}
-          area={items?.item.squareFeet || ""}
-          bathrooms={items?.item?.bathrooms}
-          bedrooms={items?.item?.bedrooms}
-          description={items?.item.description || "No description available for this property."}
-          title={items?.item.title || "Untitled Property"}
-          rent={items?.item.rent || "Rent details not provided"}
-        />
-      ))}
-        <Link  href="/" className="text-[#09858D] lg:hidden  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] ">
-              see  housing for sale
-            </Link>
-    </div>
-            </div>
-            </section>
-
-            <section className="mt-5 w-screen     lg:my-[4em] lg:w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-            <div className="flex lg:max-w-[87rem] 2xl:max-w-[90rem]    flex-col items-center justify-center">
-            <div className="flex  p-5 lg:p-0 lg:ml-[5rem] xxl:ml-[7rem]  2xl:ml-[1rem] flex-col md:flex-row lg:my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
-              <h1 className="text-black text-[24px] lg:text-[2.5rem] font-[600] w-full">
-              Explore Luxurious Living Spaces 
-              </h1>
-              <p className="text-gray font-light lg:-ml-[10rem] 2xl:mr-[4rem] text-sm lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
-                Discover a home where every detail enhances your lifestyle crafted to fit your taste and needs.
-              </p>
-              </div>
-             
-             
-<Carousel images={luxuryDisplayListings} />
-
-
+              src={"/app.svg"}
+              className="lg:w-[500px] w-[200px]https://hoydoon-backend.azurewebsites.net/api/v1/favorites"
+            />
+          </span>
         </div>
       </section>
 
+      <section className="   lg:mt-[4em] p-2 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col   items-start justify-center">
+          <div className="flex lg:ml-[4rem] 2xl:ml-[2.2rem] flex-col md:flex-row lg:my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full">
+              Featured Properties for Rent
+            </h1>
+            <p className="text-gray font-light mb-4 text-sm lg:-ml-[10rem] 2xl:mr-[4rem]  lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
+              Discover a home where every detail enhances your lifestyle crafted
+              to fit your taste and needs.
+            </p>
+          </div>
+          <div className="flex flex-col mt-[0.5em] lg:mt-[1em] lg:ml-[2rem] 2xl:-ml-[2rem] h-fit min-w-[70%] items-start lg:flex-row justify-start mb-2">
+            {(isMobile ? displayListings.slice(0, 1) : displayListings).map(
+              (items, index) => (
+                <PropertyCard
+                  _id={items?._id}
+                  key={index}
+                  imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                  altText={
+                    items?.imageUrls?.[0]?.altText ||
+                    "Property image showcasing a beautiful home"
+                  }
+                  price={items?.item.price || "Price not available"}
+                  area={items?.item.squareFeet || ""}
+                  bathrooms={items?.item?.bathrooms}
+                  bedrooms={items?.item?.bedrooms}
+                  description={
+                    items?.item.description ||
+                    "No description available for this property."
+                  }
+                  title={items?.item.title || "Untitled Property"}
+                  rent={items?.item.rent || "Rent details not provided"}
+                />
+              )
+            )}
+            <Link
+              href="/"
+              className="text-[#09858D] lg:hidden  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+            >
+              see housing for sale
+            </Link>
+          </div>
+        </div>
+      </section>
 
-{/* <CarouselWithSlideEffect/> */}
+      <section className="mt-5 w-screen     lg:my-[4em] lg:w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex lg:max-w-[87rem] 2xl:max-w-[90rem]    flex-col items-center justify-center">
+          <div className="flex  p-5 lg:p-0 lg:ml-[5rem] xxl:ml-[7rem]  2xl:ml-[1rem] flex-col md:flex-row lg:my-[2rem] lg:flex-row md:gap-10 justify-end items-center md:items-start">
+            <h1 className="text-black text-[24px] lg:text-[2.5rem] font-[600] w-full">
+              Explore Luxurious Living Spaces
+            </h1>
+            <p className="text-gray font-light lg:-ml-[10rem] 2xl:mr-[4rem] text-sm lg:text-xl font-bricolage w-full lg:w-[50rem] 2xl:ml-0 2xl:w-[50rem]">
+              Discover a home where every detail enhances your lifestyle crafted
+              to fit your taste and needs.
+            </p>
+          </div>
+
+          <Carousel images={luxuryDisplayListings} />
+        </div>
+      </section>
+
+      {/* <CarouselWithSlideEffect/> */}
       {/* carousel */}
 
       {/* testimonials */}
@@ -506,7 +522,9 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               to fit your taste and needs.
             </p>
             <p className="text-gray font-light lg:hidden block text-sm lg:text-xl font-bricolage w-full lg:w-[30em]">
-            Discover what our clients have to say in our customer testimonials section. We take pride in the positive feedback and experiences shared by those we’ve had.
+              Discover what our clients have to say in our customer testimonials
+              section. We take pride in the positive feedback and experiences
+              shared by those we’ve had.
             </p>
           </span>
           <span className=" hidden lg:flex flex-col font-bricolage gap-3 ">
@@ -515,38 +533,31 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               to fit your taste and needs.
             </p>
             <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px] ">
-              <p className="text-gray" >
-                {" "}
-                Explore{" "}
-              </p>
+              <p className="text-gray"> Explore </p>
             </Button>
           </span>
         </div>
         <div className="mt-5 lg:mt-0 w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:w-[90%] auto-rows-auto">
-  <span className="mt-[10rem]    hidden lg:flex gap-y-5 flex-col ">
-  <TestimonialCard />
-  <TestimonialCard />
-  <TestimonialCard />
-    </span>
-    <span className="flex gap-y-5 flex-col" >
-    <TestimonialCard />
-  <TestimonialCard />
-  <TestimonialCard />
-    </span>
-    <span className="mt-[10rem] hidden lg:flex gap-y-5 flex-col ">
-  <TestimonialCard />
-  <TestimonialCard />
-  <TestimonialCard />
-    </span>
- 
-</div>
-
-
+          <span className="mt-[10rem]    hidden lg:flex gap-y-5 flex-col ">
+            <TestimonialCard />
+            <TestimonialCard />
+            <TestimonialCard />
+          </span>
+          <span className="flex gap-y-5 flex-col">
+            <TestimonialCard />
+            <TestimonialCard />
+            <TestimonialCard />
+          </span>
+          <span className="mt-[10rem] hidden lg:flex gap-y-5 flex-col ">
+            <TestimonialCard />
+            <TestimonialCard />
+            <TestimonialCard />
+          </span>
+        </div>
       </section>
 
       {/* testimonials */}
-     <FagsSection/>
-
+      <FagsSection />
 
       {/* New-articles */}
       <ArticlesSection />

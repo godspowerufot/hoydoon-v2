@@ -8,6 +8,7 @@ import {
   useToggleFavoriteMutation,
   useGetAllListingsQuery,
   useGetSpecificListingsQuery,
+  useDeleteFavoriteMutation,
 } from "@/store/slices/api/authapi";
 import { usePathname, useRouter } from "next/navigation";
 import Spinner from "@/app/components/common/Spinner";
@@ -136,13 +137,14 @@ const Breadcrumb = ({
   handleToggleListings,
   region,
   address,
+  isFavorite,
   listingId,
   handleFavoriteClick,
 }) => {
   return (
-    <div className=" hidden lg:flex    items-center justify-between gap-[0.2rem] pl-4 py-2 w-[99%]  mt-[5rem]  bg-gray-100">
+    <div className="hidden lg:flex items-center justify-between gap-[0.2rem] pl-4 py-2 w-[99%] mt-[5rem] bg-gray-100">
       {/* Left Section: Back Arrow and Breadcrumb */}
-      <div className="flex w-1/2 items-start justify-start  gap-1 text-[1.08rem] font-bricolage text-gray-600">
+      <div className="flex w-1/2 items-start justify-start gap-1 text-[1.08rem] font-bricolage text-gray-600">
         {/* Back Arrow */}
         <Image
           src="/arrow-right.png"
@@ -189,12 +191,14 @@ const Breadcrumb = ({
       </div>
 
       {/* Right Section: Icons */}
-      <div className="flex  items-center  w-1/2 justify-end gap-2">
+      <div className="flex items-center w-1/2 justify-end gap-2">
         <div
           onClick={handleFavoriteClick}
-          className="p-2 border border-[#8F8F8F] rounded-md"
+          className={`p-2 border cursor-pointer border-[#8F8F8F] rounded-md ${
+            isFavorite ? "bg-primary" : ""
+          }`}
         >
-          <img src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
+          <img src="/favorite.svg" alt="Favorite" className="w-4 h-4 " />
         </div>
         <div
           onClick={handleShareClick}
@@ -227,25 +231,34 @@ const page = () => {
   const { data: allListings, refetch } = useGetAllListingsQuery();
 
   const [displayListings, setDisplayListings] = useState([]);
-  const [toggleFavorite, { isLoading, isError, isSuccess }] =
-    useToggleFavoriteMutation();
+  const [toggleFavorite] = useToggleFavoriteMutation();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [removeFavorite] = useDeleteFavoriteMutation();
   const [showListings, setShowListings] = useState(true);
 
   // Function to toggle the listings section
   const handleToggleListings = () => {
     setShowListings((prev) => !prev);
   };
-  const handleFavoriteClick = async () => {
+
+  const handleFavoriteToggle = async () => {
     try {
-      await toggleFavorite({ listingId }).unwrap();
-      toast.success("Added to favorites!");
+      if (isFavorite) {
+        await removeFavorite(listingId).unwrap();
+        toast.success("Removed from favorites!");
+        setIsFavorite(false);
+      } else {
+        await toggleFavorite({ listingId }).unwrap();
+        toast.success("Added to favorites!");
+        setIsFavorite(true);
+      }
     } catch (error) {
-      console.error("Failed to favorite listing:", error);
+      toast.error(error?.error || error?.message);
     }
   };
 
   useEffect(() => {
-    refetch(); // Refetch data on every mount
+    refetch();
   }, [refetch]);
 
   useEffect(() => {
@@ -319,10 +332,11 @@ const page = () => {
     <div className="lg:mt-8  2xl:w-[98rem] lg:w-[87%]  lg:ml-[2%] ">
       <Breadcrumb
         handleToggleListings={handleToggleListings}
-        handleFavoriteClick={handleFavoriteClick}
+        handleFavoriteClick={handleFavoriteToggle}
         listingId={listingId}
         address={address}
         region={region}
+        isFavorite={isFavorite}
       />
       {showListings && (
         <div className="w-full">
@@ -394,7 +408,7 @@ const page = () => {
 
             <div className="flex items-center lg:hidden  lg:p-2 justify-end gap-2 mt-2 w-full md:w-auto">
               <div
-                onClick={handleFavoriteClick}
+                onClick={handleFavoriteToggle}
                 className="justify-center flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
               >
                 <img src="/favorite.svg" alt="Favorite" className="w-3 h-3" />
