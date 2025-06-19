@@ -365,8 +365,9 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                 </button>
 
                 {showBedBathDropdown && (
-                  <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]">
-                    <div className="absolute z-10  lg:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 lg:mt-0 lg:w-64">
+                  <>
+                    <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>
+                    <div className="absolute z-[11111111]  lg:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 lg:mt-0 lg:w-64">
                       <div className="flex justify-between mb-2">
                         <span className="font-medium text-sm">Beds</span>
                         <button
@@ -429,7 +430,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </>
                 )}
               </div>
             );
@@ -484,7 +485,8 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               </button>
 
               {dropdownState && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]">
+                <>
+                  <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>{" "}
                   <div className="absolute z-[111111] left-[23%] top-[14%] lg:top-[110%] lg:left-0 bg-white  border border-[#8F8F8F] rounded-md px-2  mt-2 lg:mt-0 lg:w-[140px]">
                     <div className="flex justify-between mb-2"></div>
                     <ul className="flex flex-col gap-2">
@@ -511,7 +513,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                       ))}
                     </ul>
                   </div>
-                </div>
+                </>
               )}
             </div>
           );
