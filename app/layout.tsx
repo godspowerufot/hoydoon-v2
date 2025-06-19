@@ -1,24 +1,59 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Appfooter from "./components/layouts/footer"
+import Appfooter from "./components/layouts/footer";
 import Navbar from "./components/layouts/navbar";
-import AnimationWrapper from "@/utils/lib/_app"
-import { Providers } from '@/store/provider';
+import AnimationWrapper from "@/utils/lib/_app";
+import { Providers } from "@/store/provider";
 import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "./components/common/Spinner";
 export const metadata: Metadata = {
-  title: "Hoydoon",
-  description: "Property Listing made simple",
+  title: "Hoydoon | Find Your Dream Property in Nigeria",
+  description:
+    "Hoydoon is  leading real estate platform. Discover, buy, rent, or sell homes, apartments, and land with ease. Trusted agents, verified listings, and the best property deals.",
+  keywords: [
+    "real estate",
+    "Somalia",
+    "property",
+    "buy home",
+    "rent apartment",
+    "sell house",
+    "land",
+    "agents",
+    "listings",
+    "hoydoon",
+  ],
+  authors: [{ name: "Hoydoon Team" }],
   icons: {
-    icon: "/Logo.ico" // Path to your favicon file
+    icon: "/Logo.ico",
+  },
+  openGraph: {
+    title: "Hoydoon | Find Your Dream Property in Nigeria",
+    description:
+      "Discover, buy, rent, or sell homes, apartments, and land in Nigeria. Trusted agents, verified listings, and the best property deals.",
+    url: "https://hoydoon.com",
+    siteName: "Hoydoon",
+    images: [
+      {
+        url: "/Logo.svg",
+        width: 800,
+        height: 600,
+        alt: "Hoydoon Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hoydoon | Find Your Dream Property in Nigeria",
+    description:
+      "Discover, buy, rent, or sell homes, apartments, and land in Nigeria. Trusted agents, verified listings, and the best property deals.",
+    images: ["/Logo.svg"],
   },
 };
-
-
-
 
 export default function RootLayout({
   children,
@@ -51,21 +86,18 @@ export default function RootLayout({
               >
                 <main className=" container flex-1 flex items-center justify-center flex-col ">
                   <Suspense fallback={<Spinner />}>
-                  <ToastContainer 
-                    position="top-center" autoClose={3000} /> 
+                    <ToastContainer position="top-center" autoClose={3000} />
 
-                  {children}</Suspense>
+                    {children}
+                  </Suspense>
                 </main>
               </GoogleOAuthProvider>
               {/* Footer */}
             </AnimationWrapper>
           </Providers>
-         
- 
-        <Appfooter />
-        
+
+          <Appfooter />
         </body>
-     
       </html>
     </>
   );
