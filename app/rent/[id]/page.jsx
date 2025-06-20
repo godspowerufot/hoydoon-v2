@@ -8,6 +8,7 @@ import {
   useToggleFavoriteMutation,
   useGetAllListingsQuery,
   useGetSpecificListingsQuery,
+  useGetFavoritesQuery,
   useDeleteFavoriteMutation,
 } from "@/store/slices/api/authapi";
 import { usePathname, useRouter } from "next/navigation";
@@ -20,7 +21,7 @@ import { handleShareClick, decodeId, truncateDescription } from "@/utils";
 import DynamicImageMobile from "@/app/components/layouts/mobiledynamic";
 import DynamicImageGrid from "@/app/components/layouts/dynamiclayout";
 import axios from "axios";
-
+import { log } from "@/utils/log";
 const PLACE_TYPES = [
   { type: "transit_station", icon: "/bus.png" },
   { type: "bank", icon: "/bank.png" },
@@ -194,11 +195,23 @@ const Breadcrumb = ({
       <div className="flex items-center w-1/2 justify-end gap-2">
         <div
           onClick={handleFavoriteClick}
-          className={`p-2 border cursor-pointer border-[#8F8F8F] rounded-md ${
-            isFavorite ? "bg-primary" : ""
-          }`}
+          className={`p-2 border cursor-pointer border-[#8F8F8F] rounded-md bg-primary`}
         >
-          <img src="/favorite.svg" alt="Favorite" className="w-4 h-4 " />
+          {/* Lucid heart icon SVG */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="#fff"
+            className="w-4 h-4"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M16.5 3.75a5.25 5.25 0 00-4.5 2.472A5.25 5.25 0 007.5 3.75 5.25 5.25 0 003 9c0 7.125 9 11.25 9 11.25s9-4.125 9-11.25a5.25 5.25 0 00-5.25-5.25z"
+            />
+          </svg>
         </div>
         <div
           onClick={handleShareClick}
@@ -232,11 +245,21 @@ const page = () => {
 
   const [displayListings, setDisplayListings] = useState([]);
   const [toggleFavorite] = useToggleFavoriteMutation();
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState();
   const [removeFavorite] = useDeleteFavoriteMutation();
   const [showListings, setShowListings] = useState(true);
 
-  // Function to toggle the listings section
+  const { data: favorites } = useGetFavoritesQuery();
+
+  useEffect(() => {
+    if (favorites && listingId) {
+      // favorites is an array of favorite listings
+      const found = favorites.some((fav) => fav.listingId === listingId);
+      setIsFavorite(found);
+    }
+  }, [favorites, listingId]);
+  log(isFavorite);
+  // Function to toggle the listings se ction
   const handleToggleListings = () => {
     setShowListings((prev) => !prev);
   };
@@ -343,12 +366,14 @@ const page = () => {
           <DynamicImageGrid
             listingId={_id}
             images={images}
+            handleFavoriteClick={handleFavoriteToggle}
             coordinates={coordinate}
           />
 
           <DynamicImageMobile
             listingId={_id}
             images={images}
+            handleFavoriteClick={handleFavoriteToggle}
             showListings={showListings}
             coordinates={coordinate}
           />

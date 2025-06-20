@@ -1,12 +1,19 @@
 import Image from "next/image";
 import { useState } from "react";
 import PropertyGalleryModal from "./modals/property";
-const DynamicImageGrid = ({ images,coordinates, statuses = [] ,listingId}) => {
+const DynamicImageGrid = ({
+  handleFavoriteClick,
+  images,
+  coordinates,
+  statuses = [],
+  listingId,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (!images || images.length === 0) return <div className="text-center lg:text-3xl">No images available </div>;  
+  if (!images || images.length === 0)
+    return <div className="text-center lg:text-3xl">No images available </div>;
 
-  const hasStatuses = statuses?.some(status => status); // Check if any status exists
+  const hasStatuses = statuses?.some((status) => status); // Check if any status exists
 
   const renderStatusBadge = (status) => {
     if (!status) return null;
@@ -48,52 +55,136 @@ const DynamicImageGrid = ({ images,coordinates, statuses = [] ,listingId}) => {
     const gridTemplate = {
       1: () => (
         <div className=" hidden lg:grid grid-cols-1 gap-4 p-4">
-          {renderImage(images[0], 0, "w-full h-[400px] 2xl:h-[500px] object-cover rounded-lg", 800, 500)}
+          {renderImage(
+            images[0],
+            0,
+            "w-full h-[400px] 2xl:h-[500px] object-cover rounded-lg",
+            800,
+            500
+          )}
         </div>
       ),
       2: () => (
         <div className="hidden lg:grid grid-cols-2 gap-4 p-4">
-          {images.map((img, i) => renderImage(img, i, "w-full h-[300px] object-cover rounded-lg", 500, 400))}
+          {images.map((img, i) =>
+            renderImage(
+              img,
+              i,
+              "w-full h-[300px] object-cover rounded-lg",
+              500,
+              400
+            )
+          )}
         </div>
       ),
       3: () => (
         <div className="hidden lg:grid grid-cols-3 grid-rows-2 gap-4 p-4">
           <div className="col-span-2 row-span-2">
-            {renderImage(images[0], 0, "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg", 500, 400)}
+            {renderImage(
+              images[0],
+              0,
+              "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg",
+              500,
+              400
+            )}
           </div>
-          {renderImage(images[1], 1, "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg", 250, 200)}
-          {renderImage(images[2], 2, "w-full h-[180px] object-cover rounded-lg", 300, 200)}
+          {renderImage(
+            images[1],
+            1,
+            "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg",
+            250,
+            200
+          )}
+          {renderImage(
+            images[2],
+            2,
+            "w-full h-[180px] object-cover rounded-lg",
+            300,
+            200
+          )}
         </div>
       ),
       4: () => (
         <div className="hidden lg:grid grid-cols-2 gap-4 p-4">
-          {images.slice(0, 4).map((img, i) =>
-            renderImage(img, i, "w-full h-[300px] object-cover rounded-lg", 500, 300)
-          )}
+          {images
+            .slice(0, 4)
+            .map((img, i) =>
+              renderImage(
+                img,
+                i,
+                "w-full h-[300px] object-cover rounded-lg",
+                500,
+                300
+              )
+            )}
         </div>
       ),
       5: () => (
         <div className="hidden lg:grid grid-cols-4 grid-rows-2 gap-4 p-4">
           <div className="col-span-2 row-span-2">
-            {renderImage(images[0], 0, "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg", 500, 400)}
+            {renderImage(
+              images[0],
+              0,
+              "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg",
+              500,
+              400
+            )}
           </div>
-          {renderImage(images[1], 1, "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg", 250, 200)}
-          {renderImage(images[2], 2, "w-full h-[180px] object-cover rounded-lg", 300, 200)}
-          {renderImage(images[3], 3, "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg", 250, 200)}
-          {renderImage(images[4], 4, "w-full h-[180px] object-cover rounded-lg", 300, 200)}
+          {renderImage(
+            images[1],
+            1,
+            "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg",
+            250,
+            200
+          )}
+          {renderImage(
+            images[2],
+            2,
+            "w-full h-[180px] object-cover rounded-lg",
+            300,
+            200
+          )}
+          {renderImage(
+            images[3],
+            3,
+            "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg",
+            250,
+            200
+          )}
+          {renderImage(
+            images[4],
+            4,
+            "w-full h-[180px] object-cover rounded-lg",
+            300,
+            200
+          )}
         </div>
       ),
-   
+
       default: () => (
         <div className="hidden lg:grid grid-cols-5 gap-4 p-4">
           <div className="col-span-2 row-span-2">
-            {renderImage(images[0], 0, "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg", 500, 400)}
+            {renderImage(
+              images[0],
+              0,
+              "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg",
+              500,
+              400
+            )}
           </div>
-          {images.slice(1, 7).map((img, i) =>
-            renderImage(img, i + 1, "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg", 250, 200)
-          )}
+          {images
+            .slice(1, 7)
+            .map((img, i) =>
+              renderImage(
+                img,
+                i + 1,
+                "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg",
+                250,
+                200
+              )
+            )}
         </div>
-      )
+      ),
     };
 
     return gridTemplate[count] ? gridTemplate[count]() : gridTemplate.default();
@@ -106,6 +197,7 @@ const DynamicImageGrid = ({ images,coordinates, statuses = [] ,listingId}) => {
         image={images}
         listingId={listingId}
         coordinates={coordinates}
+        handleFavoriteClick={handleFavoriteClick}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />

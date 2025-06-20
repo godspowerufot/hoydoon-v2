@@ -2,11 +2,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import MapComponent from "../listingmap"; // Assuming this is a map component you already have
-import StreetViewComponent from "../streetvie"
+import StreetViewComponent from "../streetvie";
 import { useToggleFavoriteMutation } from "@/store/slices/api/authapi";
 import { toast } from "react-toastify";
 import { log } from "@/utils/log";
-import { handleShareClick } from '@/utils';
+import { handleShareClick } from "@/utils";
 
 import { useRouter } from "next/navigation";
 type Coordinates = [number, number]; // Or a more specific object type if needed
@@ -18,42 +18,54 @@ type ImageType = {
 
 type PropertyModalProps = {
   isOpen: boolean;
-  listingId:string;
+  listingId: string;
+  handleFavoriteClick: any;
+
   coordinates: Coordinates;
   onClose: () => void;
   image: ImageType[];
 };
 
-
 // Full Screen Carousel Component
-const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any)=>{
+const FullScreenCarousel = ({
+  images,
+  currentIndex,
+  setCurrentIndex,
+  onClose,
+}: any) => {
   const [imageurl, setimageurl] = useState("");
   useEffect(() => {
     if (currentIndex >= 0 && currentIndex < images.length) {
       const indexImage = images[currentIndex]?.url;
       setimageurl(indexImage); // Set the image based on currentIndex
     } else {
-
     }
   }, [images, currentIndex]);
   if (!images || images.length === 0) return null;
-
-
-
 
   const handleNext = () => {
     setCurrentIndex((prev: number) => (prev + 1) % images.length);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev: number) => (prev - 1 + images.length) % images.length);
+    setCurrentIndex(
+      (prev: number) => (prev - 1 + images.length) % images.length
+    );
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-90 z-[999] flex items-center justify-center transition-all duration-300">
-      <button onClick={onClose} className="absolute top-5 right-5 text-white text-3xl">✕</button>
+      <button
+        onClick={onClose}
+        className="absolute top-5 right-5 text-white text-3xl"
+      >
+        ✕
+      </button>
 
-      <button onClick={handlePrev} className="absolute left-5 text-white text-4xl px-4 py-2 rounded hover:bg-white/10">
+      <button
+        onClick={handlePrev}
+        className="absolute left-5 text-white text-4xl px-4 py-2 rounded hover:bg-white/10"
+      >
         &lt;
       </button>
 
@@ -65,22 +77,33 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
         />
       </div>
 
-      <button onClick={handleNext} className="absolute right-5 text-white text-4xl px-4 py-2 rounded hover:bg-white/10">
+      <button
+        onClick={handleNext}
+        className="absolute right-5 text-white text-4xl px-4 py-2 rounded hover:bg-white/10"
+      >
         &gt;
       </button>
     </div>
   );
-}
+};
 
 // PropertyGalleryModal Component
- const PropertyGalleryModal=({ isOpen, coordinates, onClose, image,listingId }:PropertyModalProps ) =>{
+const PropertyGalleryModal = ({
+  isOpen,
+  coordinates,
+  onClose,
+  image,
+  listingId,
+  handleFavoriteClick,
+}: PropertyModalProps) => {
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0); // Default to first image
   const [activeTab, setActiveTab] = useState("photos");
-  const router=useRouter() // Tab state
+  const router = useRouter(); // Tab state
   const [showListings, setShowListings] = useState(true);
-  
-  const [toggleFavorite, { isLoading, isError, isSuccess }] = useToggleFavoriteMutation();
+
+  const [toggleFavorite, { isLoading, isError, isSuccess }] =
+    useToggleFavoriteMutation();
   if (!isOpen) return null;
 
   const images = image || [];
@@ -126,7 +149,10 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
         index += 2;
       } else {
         blocks.push(
-          <div key={index} className="grid  grid-col-1 lg:grid-cols-2 gap-3 grid-rows-2 -mb-[2pc]">
+          <div
+            key={index}
+            className="grid  grid-col-1 lg:grid-cols-2 gap-3 grid-rows-2 -mb-[2pc]"
+          >
             <div className="col-span-2">
               <img
                 src={images[index]?.url || "/house1.png"}
@@ -156,7 +182,9 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
   // Switch between tabs
   const renderTabContent = () => {
     if (activeTab === "photos") {
-      return <div className="space-y-6 mt-8 -mb-[2pc]">{generateGridLayout()}</div>;
+      return (
+        <div className="space-y-6 mt-8 -mb-[2pc]">{generateGridLayout()}</div>
+      );
     }
     if (activeTab === "map") {
       return <MapComponent coordinates={coordinates} />;
@@ -169,43 +197,38 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
     // }
   };
 
-  const handleFavoriteClick = async () => {
-    log("listingid",listingId)
-    try {
-      await toggleFavorite({ listingId }).unwrap();
-      toast.success("Added to favorites!");
-    } catch (error) {
-      console.error("Failed to favorite listing:", error);
-      router.push("/auth/sign-in")
-    }
+  // Function to toggle the listings section
+  const handleToggleListings = () => {
+    setShowListings((prev) => !prev);
   };
-  
-
-    // Function to toggle the listings section
-    const handleToggleListings = () => {
-      setShowListings((prev) => !prev);
-    };
-    // Handle the "See All" button click
+  // Handle the "See All" button click
 
   return (
     <>
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
         <div className="bg-white w-11/12 md:w-3/4 lg:w-5/6 pt-5 pb-[3.5rem] px-[2rem] shadow-lg relative max-h-[90vh] overflow-y-auto">
           {/* Close Button */}
-        
 
           {/* Tabs */}
           <div className="flex border-b mb-3">
             <div className="flex  space-x-6">
               <button
                 onClick={() => setActiveTab("photos")}
-                className={`pb-2 ${activeTab === "photos" ? "border-b-2 border-primary text-black" : "text-gray"}`}
+                className={`pb-2 ${
+                  activeTab === "photos"
+                    ? "border-b-2 border-primary text-black"
+                    : "text-gray"
+                }`}
               >
                 Photos
               </button>
               <button
                 onClick={() => setActiveTab("map")}
-                className={`pb-2 ${activeTab === "map" ? "border-b-2 border-primary text-black" : "text-gray"}`}
+                className={`pb-2 ${
+                  activeTab === "map"
+                    ? "border-b-2 border-primary text-black"
+                    : "text-gray"
+                }`}
               >
                 Map
               </button>
@@ -217,27 +240,35 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
               </button> */}
             </div>
             <div className="flex  justify-end pr-4 pb-2  flex-1 gap-2">
-          <div onClick={handleFavoriteClick} className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
-        </div>
-        <div  onClick={handleShareClick} className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/upload.svg" alt="Download" className="w-4 h-4" />
-        </div>
-        <div onClick={handleToggleListings} className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/image2.svg" alt="Share" className="w-4 h-4" />
-        </div>
-      
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 bg-gray-200 hover:bg-gray-300 rounded-full p-2"
-          >
-            ✕
-          </button>    </div>
+              <div
+                onClick={handleFavoriteClick}
+                className="p-2 border border-[#8F8F8F] rounded-md"
+              >
+                <img src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
+              </div>
+              <div
+                onClick={handleShareClick}
+                className="p-2 border border-[#8F8F8F] rounded-md"
+              >
+                <img src="/upload.svg" alt="Download" className="w-4 h-4" />
+              </div>
+              <div
+                onClick={handleToggleListings}
+                className="p-2 border border-[#8F8F8F] rounded-md"
+              >
+                <img src="/image2.svg" alt="Share" className="w-4 h-4" />
+              </div>
+              <button
+                onClick={onClose}
+                className="absolute top-3 right-3 bg-gray-200 hover:bg-gray-300 rounded-full p-2"
+              >
+                ✕
+              </button>{" "}
+            </div>
           </div>
 
           {/* Tab Content */}
-          {showListings && (renderTabContent())}
-
+          {showListings && renderTabContent()}
         </div>
       </div>
 
@@ -252,6 +283,6 @@ const FullScreenCarousel=({ images, currentIndex, setCurrentIndex, onClose }:any
       )}
     </>
   );
-}
+};
 
 export default PropertyGalleryModal;

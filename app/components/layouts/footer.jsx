@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { toast } from "react-toastify";
 const Appfooter = () => {
   const [email, setEmail] = useState("");
   const pathname = usePathname();
@@ -20,7 +21,7 @@ const Appfooter = () => {
       const data = await res.json();
       if (res.ok) {
         setStatus("success");
-        toast.success("success");
+        toast.success(data.message || "success");
         setEmail("");
       } else {
         setStatus("error");

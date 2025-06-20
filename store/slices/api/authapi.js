@@ -175,6 +175,13 @@ export const authApi = createApi({
         body: { ...listingId },
       }),
     }),
+    getFavorites: builder.query({
+      query: () => ({
+        url: "/v1/favorites",
+        method: "GET",
+      }),
+    }),
+
     DeleteFavorite: builder.mutation({
       query: (listingId) => ({
         url: `/v1/favorites/${listingId}`,
@@ -195,6 +202,7 @@ export const {
   useResendOtpMutation,
   useToggleFavoriteMutation,
   useGetUserQuery,
+  useGetFavoritesQuery,
   useDeleteFavoriteMutation,
   useSendMessageMutation,
   useGetAgentListingsQuery,
