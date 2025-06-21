@@ -18,10 +18,11 @@ const subscribeHandler = async (req, res) => {
   }
 
   // Retrieve Mailchimp credentials from environment variables
-  const API_KEY = "e2b937d6e0872e4c9a843a8026e1f6fd-us18";
-  const API_SERVER = "us-18";
-  const AUDIENCE_ID = "0bebf8d019";
+  const API_KEY = process.env.NEXT_MAILCHIMP_API_KEY;
+  const API_SERVER = process.env.NEXT_MAILCHIMP_API_SERVER;
+  const AUDIENCE_ID = process.env.NEXT_MAILCHIMP_AUDIENCE_ID;
 
+  console.log(API_KEY);
   // Construct Mailchimp API request URL
   const url = `https://${API_SERVER}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members`;
 

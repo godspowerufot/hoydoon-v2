@@ -380,8 +380,8 @@ export default function Home() {
         </div>
       </header>
 
-      <section className=" w-screen  p-5 lg:p-0 font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
-        <div className="flex  gap-[4%] flex-col-reverse 2xl:pl-[3.4em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+      <section className="w-screen p-5 lg:p-0 font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
+        <div className="flex gap-[4%] flex-col-reverse 2xl:pl-[3.4em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  text-[24px]  mt-4 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
               Find your ideal property with simple tools and guidance.
