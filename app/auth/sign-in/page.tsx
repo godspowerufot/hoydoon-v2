@@ -1,36 +1,31 @@
 /* eslint-disable */
 "use client";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Input from "@/app/components/common/inputs/input";
 import Button from "@/app/components/common/Button";
 import { useRouter } from "next/navigation";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   useLoginMutation,
   useSignupMutation,
 } from "@/store/slices/api/authapi";
 import { sendDeviceInfo } from "../../../utils/lib/devicinfo";
-import { log} from "@/utils/log";
+import { log } from "@/utils/log";
 import LoginButtons from "@/app/components/common/googlebutton";
 import { setUnverifiedEmail } from "@/store/slices/authslice";
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
 import { MobileSignIn } from "./mobile";
-
-
-
-
-
-
+import { FaLink } from "react-icons/fa";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, { isLoading }] = useLoginMutation();
   const [isPasswordValid, setIsPasswordValid] = useState(true);
-const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,32 +40,27 @@ const dispatch=useDispatch()
     try {
       const device = await sendDeviceInfo();
 
-// Destructure to exclude region
-const { region, ...deviceWithoutRegion } = device;
-log("Device info:",region);
-// Send login request with device info (without region)
- await login({ email, password, device: deviceWithoutRegion }).unwrap();
+      // Destructure to exclude region
+      const { region, ...deviceWithoutRegion } = device;
+      log("Device info:", region);
+      // Send login request with device info (without region)
+      await login({ email, password, device: deviceWithoutRegion }).unwrap();
 
- toast.success("Login successful!");
- router.push("/");
-
-    } catch (err:any) {
+      toast.success("Login successful!");
+      router.push("/");
+    } catch (err: any) {
       toast.error(err?.data?.error);
 
-   // inside handleSubmit
-if (err?.data?.error === "account is not active") {
-  toast.error("Your account is not active. Please verify your email address.");
-  dispatch(setUnverifiedEmail(email));
-  router.push("/auth/sign-up/verification");
-}
-
-
-
-     
+      // inside handleSubmit
+      if (err?.data?.error === "account is not active") {
+        toast.error(
+          "Your account is not active. Please verify your email address."
+        );
+        dispatch(setUnverifiedEmail(email));
+        router.push("/auth/sign-up/verification");
+      }
     }
   };
- 
-
 
   return (
     <>
@@ -157,10 +147,12 @@ if (err?.data?.error === "account is not active") {
                         Remember me
                       </label>
                     </div>
-                    <p className="text-primary font-meduim w-full  text-sm lg:text-base  2xl:text-xl font-bricolage">
-                      {" "}
-                      Forgot password{" "}
-                    </p>
+                    <Link
+                      href="/auth/forgot-password"
+                      className="text-primary font-meduim w-full  text-sm lg:text-base  2xl:text-xl font-bricolage"
+                    >
+                      Forgot password
+                    </Link>
                   </div>
 
                   <Button
@@ -169,19 +161,23 @@ if (err?.data?.error === "account is not active") {
                     className="!w-full lg:!w-full 2xl:mt-2 lg:mt-2 text-base 2xl:text-[1.3rem] h-[2.5rem] lg:h-[3rem] p-4"
                     disabled={isLoading}
                   >
-                   <p className="text-[18px] lg:text-xl">{isLoading ? "Logging in..." : "Log in"}
-                    </p> 
+                    <p className="text-[18px] lg:text-xl">
+                      {isLoading ? "Logging in..." : "Log in"}
+                    </p>
                   </Button>
 
                   <div className="w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] " />
                   <div className="w-full text-black text-right font-[500] font-bricolage">
                     Or Log in with:
                   </div>
-                
+
                   <div className="w-full flex flex-col lg:flex-row gap-3 mt-[2px] ">
-                  <LoginButtons />
-                     
-                    <span  onClick={() => signIn("apple")} className="lg:w-[9em] hidden  w-full gap-3 h-[2.5em]  2xl:text-[1.em] lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   lg:flex items-center text-black font-[500] text-[1em] justify-center ">
+                    <LoginButtons />
+
+                    <span
+                      onClick={() => signIn("apple")}
+                      className="lg:w-[9em] cursor-pointer hidden  w-full gap-3 h-[2.5em]  2xl:text-[1.em] lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   lg:flex items-center text-black font-[500] text-[1em] justify-center "
+                    >
                       {" "}
                       <Image
                         alt="logo"
@@ -193,7 +189,10 @@ if (err?.data?.error === "account is not active") {
                       />{" "}
                       Apple
                     </span>
-                    <span onClick={() => signIn("facebook")} className="lg:w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]    hidden lg:flex items-center text-black font-[500] text-[1em] justify-center ">
+                    <span
+                      onClick={() => signIn("facebook")}
+                      className="lg:w-[9em] cursor-pointer gap-3 h-[2.5em]  2xl:text-[1.em] lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]    hidden lg:flex items-center text-black font-[500] text-[1em] justify-center "
+                    >
                       {" "}
                       <Image
                         alt="logo"

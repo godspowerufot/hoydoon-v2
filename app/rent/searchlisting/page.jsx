@@ -145,7 +145,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   }, [showAllFiltersDropdown]);
 
   return (
-    <div className="lg:pt-[2.3rem]   px-4 lg:pl-[2rem] lg:pr-[4.5rem] 2xl:gap-[20rem] flex-col lg:flex-row lg:flex justify-between w-full">
+    <div className="lg:pt-[2.3rem]    lg:pl-[2rem] lg:pr-[4.5rem] 2xl:gap-[20rem] flex-col lg:flex-row lg:flex justify-between w-full">
       {/* Left Section: Filters */}
       <div className="flex items-center  2xl:-ml-[2.4rem] lg:ml-[2rem] gap-1 lg:gap-2">
         <button
@@ -236,51 +236,53 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                 </ul>
               </div>
               {/* Bed/Baths Filter */}
-              <div className="mb-4">
-                <h3 className="text-sm text-gray-600 font-[400] mb-2">
-                  Bed/Baths
-                </h3>
-                <ul className="flex flex-col gap-1.5">
-                  {["Any", "2–4", "5+"].map((option) => (
-                    <li
-                      key={option}
-                      className="flex justify-between items-center border-b border-gray-300 pb-1.5"
-                    >
-                      <span className="text-[12px] text-gray font-[400]">
-                        {option}
-                      </span>
-                      <input
-                        type="radio"
-                        name="bed-baths"
-                        className="w-3 h-3 accent-primary"
-                        checked={
-                          (option === "Any" &&
-                            filters.bedrooms === "" &&
-                            filters.bathrooms === "") ||
-                          (option === "2–4" &&
-                            filters.bedrooms === "2" &&
-                            filters.bathrooms === "2") ||
-                          (option === "5+" &&
-                            filters.bedrooms === "5+" &&
-                            filters.bathrooms === "5+")
-                        }
-                        onChange={() => {
-                          if (option === "Any") {
-                            handleFilterChange("bedrooms", "");
-                            handleFilterChange("bathrooms", "");
-                          } else if (option === "2–4") {
-                            handleFilterChange("bedrooms", "2");
-                            handleFilterChange("bathrooms", "2");
-                          } else {
-                            handleFilterChange("bedrooms", "5+");
-                            handleFilterChange("bathrooms", "5+");
+              {filters["home-type"] !== "land" && (
+                <div className="mb-4">
+                  <h3 className="text-sm text-gray-600 font-[400] mb-2">
+                    Bed/Baths
+                  </h3>
+                  <ul className="flex flex-col gap-1.5">
+                    {["Any", "2–4", "5+"].map((option) => (
+                      <li
+                        key={option}
+                        className="flex justify-between items-center border-b border-gray-300 pb-1.5"
+                      >
+                        <span className="text-[12px] text-gray font-[400]">
+                          {option}
+                        </span>
+                        <input
+                          type="radio"
+                          name="bed-baths"
+                          className="w-3 h-3 accent-primary"
+                          checked={
+                            (option === "Any" &&
+                              filters.bedrooms === "" &&
+                              filters.bathrooms === "") ||
+                            (option === "2–4" &&
+                              filters.bedrooms === "2" &&
+                              filters.bathrooms === "2") ||
+                            (option === "5+" &&
+                              filters.bedrooms === "5+" &&
+                              filters.bathrooms === "5+")
                           }
-                        }}
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                          onChange={() => {
+                            if (option === "Any") {
+                              handleFilterChange("bedrooms", "");
+                              handleFilterChange("bathrooms", "");
+                            } else if (option === "2–4") {
+                              handleFilterChange("bedrooms", "2");
+                              handleFilterChange("bathrooms", "2");
+                            } else {
+                              handleFilterChange("bedrooms", "5+");
+                              handleFilterChange("bathrooms", "5+");
+                            }
+                          }}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {/* house tpe */}
               <div className="mb-4">

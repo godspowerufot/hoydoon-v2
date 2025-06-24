@@ -75,22 +75,22 @@ const Appfooter = () => {
                   <p className="font-medium text-[#F9FAFB]">Explore</p>
                   <ul className="mt-[0.8em] lg:mt-[4px]  space-y-2  text-[#F4F4F4] text-[12px] lg:text-sm">
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
+                      <a href="" className="transition hover:opacity-75">
                         Home
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
+                      <a href="" className="transition hover:opacity-75">
                         Services
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
+                      <a href="" className="transition hover:opacity-75">
                         Project
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
+                      <a href="" className="transition hover:opacity-75">
                         About us
                       </a>
                     </li>
@@ -102,22 +102,31 @@ const Appfooter = () => {
                   <p className="font-medium text-[#F9FAFB]">Social</p>
                   <ul className="lg:mt-[4px]  mt-3 space-y-2   text-[#F4F4F4] text-[12px] lg:text-sm">
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
+                      <a
+                        href=" https://www.linkedin.com/company/hoydoon/about/?viewAsMember=true "
+                        className="transition hover:opacity-75"
+                      >
                         LinkedIn
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
+                      <a href="" className="transition hover:opacity-75">
                         Twitter X
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
+                      <a
+                        href="https://www.instagram.com/hoydoon/"
+                        className="transition hover:opacity-75"
+                      >
                         Instagram
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
+                      <a
+                        href="mailto:devteam@quorvixconsulting.com"
+                        className="transition hover:opacity-75"
+                      >
                         Email
                       </a>
                     </li>
@@ -133,7 +142,7 @@ const Appfooter = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
+                      <a href="" className="transition hover:opacity-75">
                         Contact
                       </a>
                     </li>
@@ -142,7 +151,7 @@ const Appfooter = () => {
                         href="/helpcenter/submit-request"
                         className="transition hover:opacity-75"
                       >
-                        help center
+                        Help Center
                       </Link>
                     </li>
                   </ul>
@@ -157,7 +166,7 @@ const Appfooter = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
+                      <a href="" className="transition hover:opacity-75">
                         Privacy policy
                       </a>
                     </li>

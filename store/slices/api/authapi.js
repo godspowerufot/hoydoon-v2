@@ -181,7 +181,13 @@ export const authApi = createApi({
         method: "GET",
       }),
     }),
-
+    changePassword: builder.mutation({
+      query: (credentials) => ({
+        url: "/v1/users/password",
+        method: "PATCH", // or "PUT" depending on backend
+        body: credentials,
+      }),
+    }),
     DeleteFavorite: builder.mutation({
       query: (listingId) => ({
         url: `/v1/favorites/${listingId}`,
@@ -210,5 +216,6 @@ export const {
   useLogoutMutation,
   useGetAllListingsAddressQuery,
   useGetAllLocationListingsQuery,
+  useChangePasswordMutation,
 } = authApi;
 export default authApi;

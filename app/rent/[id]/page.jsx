@@ -195,15 +195,14 @@ const Breadcrumb = ({
       <div className="flex items-center w-1/2 justify-end gap-2">
         <div
           onClick={handleFavoriteClick}
-          className={`p-2 border cursor-pointer border-[#8F8F8F] rounded-md bg-primary`}
+          className={`p-2 border cursor-pointer border-[#8F8F8F] rounded-md `}
         >
-          {/* Lucid heart icon SVG */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            fill={isFavorite ? "#09858D" : "none"} // fill if favorite
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke="#fff"
+            stroke="#8F8F8F"
             className="w-4 h-4"
           >
             <path
@@ -604,30 +603,29 @@ const page = () => {
               </p>
             </div>
             <div className="flex flex-col lg:-ml-[2em]  ">
-              <div className="flex mt-[1em] h-fit w-full  lg:flex-row mb-2">
-                {displayListings?.map((listing, index) => (
-                  <PropertyCard
-                    key={index}
-                    {...listing}
-                    _id={listing._id}
-                    imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
-                    altText={
-                      listing?.imageUrls?.[0]?.altText ||
-                      "Property image showcasing a beautiful home"
-                    }
-                    price={listing?.item?.price || "Price not available"}
-                    area={
-                      listing?.item?.squareFeet ||
-                      "190 - 245 m² (Approximate area)"
-                    }
-                    description={
-                      listing?.item?.description ||
-                      "No description available for this property."
-                    }
-                    title={listing?.item?.title || "Untitled Property"}
-                    rent={listing?.item?.rent || "Rent details not provided"}
-                  />
-                ))}
+              <div className="flex mt-[1em] h-fit w-full lg:flex-row mb-2">
+                {displayListings
+                  ?.filter((listing) => listing?._id !== listingId)
+                  .map((listing, index) => (
+                    <PropertyCard
+                      key={index}
+                      {...listing}
+                      _id={listing._id}
+                      imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        listing?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={listing?.item?.price || "Price not available"}
+                      area={listing?.item?.squareFeet}
+                      description={
+                        listing?.item?.description ||
+                        "No description available for this property."
+                      }
+                      title={listing?.item?.title || "Untitled Property"}
+                      rent={listing?.item?.rent || "Rent details not provided"}
+                    />
+                  ))}
               </div>
             </div>
           </div>

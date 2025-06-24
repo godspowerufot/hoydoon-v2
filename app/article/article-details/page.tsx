@@ -12,7 +12,7 @@ interface Property {
   imageUrls?: { url?: string; altText?: string }[];
   item?: {
     price?: string;
-    squareFeet?: number
+    squareFeet?: number;
     bathrooms?: number;
     bedrooms?: number;
     description?: string;
@@ -66,20 +66,18 @@ const Breadcrumb = () => {
 };
 
 const page = () => {
+  const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery(
+    {}
+  );
+  const displayListings = allListings?.listings;
 
- const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({})
-    const displayListings = allListings?.listings;
-     
-    
-       
-        
-         if (isAllLoading) {
-           return (
-             <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
-               <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
-             </div>
-           );
-         }
+  if (isAllLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
+        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
+      </div>
+    );
+  }
   return (
     <div className="mt-2  2xl:w-[1520px] ">
       {" "}
@@ -220,7 +218,6 @@ const page = () => {
           forward-thinking will remain key to success.
         </p>
       </div>
-     
       <section className="mt-10  hidden pl-[12rem] 2xl:mt-[4em] lg:mt-[3em] w-[65rem]  2xl:w-[88rem]  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex    2xl:-mb-[5rem]    flex-col items-center justify-center">
           <div className="flex   p-2  2xl:pl-[7rem] flex-col w-[75rem]  2xl:w-[100rem]  md:flex-row 2xl:gap-[30%] my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
@@ -234,11 +231,11 @@ const page = () => {
             </p>
           </div>
           <div className="flex flex-col  2xl:mb-[4rem] 2xl:ml-[6rem]  ">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
               {[...displayListings]
                 .slice(0, 3) // Create a shallow copy to avoid modifying the original array
                 .sort(() => Math.random() - 0.5)
-                .map((items:Property, index: number) => (
+                .map((items: Property, index: number) => (
                   <PropertyListCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -265,70 +262,81 @@ const page = () => {
       </section>
       {/* description */}
       <div className="2xl:w-full">
-
-    
         {/* New-articles */}
-    <section className="   flex justify-center items-center  w-full  flex-col mt-[4rem] p-5 lg:p-0 font-bricolage ">
-    <div className="flex w-full   flex-col lg:flex-row md:flex-row  2xl:w-[106rem]  lg:gap-8  justify-around items-center  ">
-    <span className="flex flex-col  font-bricolage 2xl:ml-0 lg:-ml-1 gap-2">
+        <section className="   flex justify-center items-center  w-full  flex-col mt-[4rem] p-5 lg:p-0 font-bricolage ">
+          <div className="flex w-full   flex-col lg:flex-row md:flex-row  2xl:w-[106rem]  lg:gap-8  justify-around items-center  ">
+            <span className="flex flex-col  font-bricolage 2xl:ml-0 lg:-ml-1 gap-2">
+              <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-2 ">
+                New Highlights & Articles
+              </h1>
+              <p className="text-gray  2xl:text-[20px] lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-[30em]">
+                Our top stories and features keeps you updated on industry
+                trends, current events
+              </p>
+            </span>
+            <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
+              <p className="text-gray 2xl:text-[20px]  lg:p-0 text-base lg:text-xl font-bricolage 2xl:w-[30em]  lg:w-[24em]">
+                Stay Informed with our latest news and Insights where you’ find
+                breaking stories
+              </p>
+              <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  text-gray">
+                <p className="text-gray" style={{ color: "#8F8F8F" }}>
+                  {" "}
+                  Explore{" "}
+                </p>
+              </Button>
+            </span>
+          </div>
+          <div className="flex justify-center w-full mt-[4%] lg:flex-1 lg:flex-row flex-col  items-center lg:gap-12 2xl:gap-16 ">
+            <Link href={"/article/article-details"}>
+              <div className="relative flex flex-col h-[650px]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
+                {/* Image Section */}
+                <Image
+                  alt="house image"
+                  width={400}
+                  height={300}
+                  loading="lazy"
+                  src={"/news-1.png"}
+                  className="rounded-2xl 2xl:h-[30rem]  w-full object-cover h-[400px]"
+                />
 
+                {/* Content Section */}
+                <div className="flex flex-col my-4  relative">
+                  {/* Title */}
+                  <div className="flex gap-3">
+                    <h1 className="text-4xl font-[600] text-primary absolute`">
+                      01
+                    </h1>
+                    <h1 className="text-black text-2xl w-[30rem] ml-3  2xl:text-[2rem] 2xl:w-[50rem] font-[500] pt-[15px]">
+                      Understanding the Real Estate Market Trends
+                    </h1>
+                  </div>
+                  {/* Price and Area */}
+                  <div className="flex flex-wrap flex-end gap-3 mt-4">
+                    <div className="flex ">
+                      <span className="flex  flex-col text-gray lg:text-[18px] text-sm  gap-2 font-meduim">
+                        <h4 className="text-gray  lg:text-[18px]  text-sm font-meduim">
+                          July{" "}
+                        </h4>
+                        <h4 className="text-[18px]">2024</h4>{" "}
+                      </span>
+                      <h2 className="ml-4 mt-[24px] text-gray font-[400] lg:text-[18px]">
+                        Perfect property
+                      </h2>
+                    </div>
+                  </div>
 
-      <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-2 ">New Highlights & Articles</h1>
-      <p className="text-gray  2xl:text-[20px] lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-[30em]">
-      Our top stories and features keeps you updated on industry trends, current events</p>
+                  {/* Description */}
+                  <p className="text-gray text-[1rem]  2xl:text-xl font-bricolage fomt-[300] w-full leading-5 mt-4">
+                    Staying ahead the real estate market requires a keen
+                    understanding of the latest trends and shifts. By analyzing
+                    current data and market indicators, you can make informed
+                    decisions whether you’re buyin, selling, or investing.
+                  </p>
+                </div>
 
-      
-      </span>
-      <span className=" hidden lg:flex flex-col font-bricolage gap-3 text-gray">
-      <p className="text-gray 2xl:text-[20px]  lg:p-0 text-base lg:text-xl font-bricolage 2xl:w-[30em]  lg:w-[24em]">
-      Stay Informed with our latest news and Insights where you’ find breaking stories</p>
-<Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px]  text-gray">
- <p className="text-gray" style={{color:"#8F8F8F"}}> Explore </p>
-</Button>
-</span>
-   
-</div>
-    <div className="flex justify-center w-full mt-[4%] lg:flex-1 lg:flex-row flex-col  items-center lg:gap-12 2xl:gap-16 ">
-  
-    <Link href={"/article/article-details"}> 
-      <div className="relative flex flex-col h-[650px]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
-  {/* Image Section */}
-  <Image
-    alt="house image"
-    width={400}
-    height={300}
-    loading="lazy"
-    src={'/news-1.png'}
-    className="rounded-2xl 2xl:h-[30rem]  w-full object-cover h-[400px]"
-  />
-
-  {/* Content Section */}
-  <div className="flex flex-col my-4  relative">
-    {/* Title */}
-    <div className="flex gap-3">
-    <h1 className="text-4xl font-[600] text-primary absolute`">01</h1>
-    <h1 className="text-black text-2xl w-[30rem] ml-3  2xl:text-[2rem] 2xl:w-[50rem] font-[500] pt-[15px]">
-    Understanding the Real Estate Market Trends</h1>
-    </div>
-    {/* Price and Area */}
-    <div className="flex flex-wrap flex-end gap-3 mt-4">
-      <div className="flex ">
-      <span className="flex  flex-col text-gray lg:text-[18px] text-sm  gap-2 font-meduim">
-   <h4 className="text-gray  lg:text-[18px]  text-sm font-meduim">July </h4><h4 className="text-[18px]">2024</h4>     </span>  
-   <h2 className="ml-4 mt-[24px] text-gray font-[400] lg:text-[18px]">
-   Perfect property</h2>
-      </div>
-   
-    </div>
-
-    {/* Description */}
-    <p className="text-gray text-[1rem]  2xl:text-xl font-bricolage fomt-[300] w-full leading-5 mt-4">
-    Staying ahead the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buyin, selling, or investing. 
-    </p>
-  </div>
-
-  {/* Footer Section */}
-  {/* <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
+                {/* Footer Section */}
+                {/* <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
     <div className="flex items-center justify-center px-4 py-2 text-sm font-light text-[#1E1E1E] bg-[#D8F0F1] rounded-full">
       Luxury Oasis
     </div>
@@ -340,45 +348,57 @@ const page = () => {
       className="rounded-full"
     />
   </div> */}
-</div></Link>
-<Link href={"/article/article-details"}> 
-<div className="relative flex flex-col h-[650px]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
-  {/* Image Section */}
-  <Image
-    alt="house image"
-    width={400}
-    height={300}
-    loading="lazy"
-    src={'/news-2.png'}
-    className="rounded-2xl 2xl:h-[30rem]  w-full object-cover h-[400px]"
-  />
+              </div>
+            </Link>
+            <Link href={"/article/article-details"}>
+              <div className="relative flex flex-col h-[650px]   lg:w-[36em] 2xl:w-[44em]  font-bricolage  rounded-lg shrink-0">
+                {/* Image Section */}
+                <Image
+                  alt="house image"
+                  width={400}
+                  height={300}
+                  loading="lazy"
+                  src={"/news-2.png"}
+                  className="rounded-2xl 2xl:h-[30rem]  w-full object-cover h-[400px]"
+                />
 
-  {/* Content Section */}
-  <div className="flex flex-col my-4  relative">
-    {/* Title */}
-    <div className="flex gap-3">
-    <h1 className="text-4xl font-[600] text-primary absolute`">01</h1>
-    <h1 className="text-black text-2xl w-[30rem] ml-3  2xl:text-[2rem] 2xl:w-[50rem] font-[500] pt-[15px]">
-    Analyzing Modern Real Estate Market Movement</h1>
-    </div>
-    {/* Price and Area */}
-    <div className="flex flex-wrap flex-end gap-3 mt-4">
-      <div className="flex ">
-      <span className="flex  flex-col text-gray lg:text-[18px] text-sm  gap-2 font-meduim">
-   <h4 className="text-gray  lg:text-[18px]  text-sm font-meduim">July </h4><h4 className="text-[18px]">2024</h4>     </span>  
-   <h2 className="ml-4 mt-[24px] text-gray font-[400] lg:text-[18px]">Perfect property</h2>
-      </div>
-   
-    </div>
+                {/* Content Section */}
+                <div className="flex flex-col my-4  relative">
+                  {/* Title */}
+                  <div className="flex gap-3">
+                    <h1 className="text-4xl font-[600] text-primary absolute`">
+                      01
+                    </h1>
+                    <h1 className="text-black text-2xl w-[30rem] ml-3  2xl:text-[2rem] 2xl:w-[50rem] font-[500] pt-[15px]">
+                      Analyzing Modern Real Estate Market Movement
+                    </h1>
+                  </div>
+                  {/* Price and Area */}
+                  <div className="flex flex-wrap flex-end gap-3 mt-4">
+                    <div className="flex ">
+                      <span className="flex  flex-col text-gray lg:text-[18px] text-sm  gap-2 font-meduim">
+                        <h4 className="text-gray  lg:text-[18px]  text-sm font-meduim">
+                          July{" "}
+                        </h4>
+                        <h4 className="text-[18px]">2024</h4>{" "}
+                      </span>
+                      <h2 className="ml-4 mt-[24px] text-gray font-[400] lg:text-[18px]">
+                        Perfect property
+                      </h2>
+                    </div>
+                  </div>
 
-    {/* Description */}
-    <p className="text-gray text-[1rem]  2xl:text-xl font-bricolage fomt-[300] w-full leading-5 mt-4">
-    Staying ahead the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buyin, selling, or investing. 
-    </p>
-  </div>
+                  {/* Description */}
+                  <p className="text-gray text-[1rem]  2xl:text-xl font-bricolage fomt-[300] w-full leading-5 mt-4">
+                    Staying ahead the real estate market requires a keen
+                    understanding of the latest trends and shifts. By analyzing
+                    current data and market indicators, you can make informed
+                    decisions whether you’re buyin, selling, or investing.
+                  </p>
+                </div>
 
-  {/* Footer Section */}
-  {/* <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
+                {/* Footer Section */}
+                {/* <div className="absolute flex items-center justify-between bottom-4 left-4 right-4">
     <div className="flex items-center justify-center px-4 py-2 text-sm font-light text-[#1E1E1E] bg-[#D8F0F1] rounded-full">
       Luxury Oasis
     </div>
@@ -390,14 +410,11 @@ const page = () => {
       className="rounded-full"
     />
   </div> */}
-</div>
-</Link>
-
-</div>
-
-
-
-    </section>    </div>
+              </div>
+            </Link>
+          </div>
+        </section>{" "}
+      </div>
     </div>
   );
 };

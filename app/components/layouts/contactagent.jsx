@@ -5,12 +5,17 @@ import { toast } from "react-toastify";
 import { log } from "@/utils/log";
 import { useRouter } from "next/navigation";
 
-export default function ContactAgent({ fullname, location, profileimage, listedBy }) {
+export default function ContactAgent({
+  fullname,
+  location,
+  profileimage,
+  listedBy,
+}) {
   const [message, setMessage] = useState("");
   const [isMessageLoading, setIsMessageLoading] = useState(false); // Loading state for "Ask a question"
-  const [isReviewLoading, setIsReviewLoading] = useState(false);   // Loading state for "Reviews"
+  const [isReviewLoading, setIsReviewLoading] = useState(false); // Loading state for "Reviews"
   const [sendMessage, { isSuccess, isError }] = useSendMessageMutation();
-const router=useRouter()
+  const router = useRouter();
   const handleSend = async (type) => {
     if (!message.trim()) return;
 
@@ -26,19 +31,19 @@ const router=useRouter()
       toast.success("Message sent successfully!");
     } catch (err) {
       if (err?.data?.error === "ACCESS DENIED: No token provided") {
-      toast.error("Kindly sign in or log in");
-     router("/auth/sign-in")
-    } else if (err?.status === 401) {
-      toast.error("Action not allowed (405)");
+        toast.error("Kindly sign in or log in");
+        router("/auth/sign-in");
+      } else if (err?.status === 401) {
+        toast.error("Action not allowed (405)");
       } else {
-      toast.error(err?.error);
+        toast.error(err?.error);
       }
-      log(err)
+      log(err);
     } finally {
       if (type === "message") {
-      setIsMessageLoading(false); // Reset message loading
+        setIsMessageLoading(false); // Reset message loading
       } else if (type === "review") {
-      setIsReviewLoading(false); // Reset review loading
+        setIsReviewLoading(false); // Reset review loading
       }
     }
   };
@@ -50,20 +55,20 @@ const router=useRouter()
       </h2>
 
       <div className="flex items-center gap-4">
-       
-      <div className="flex relative h-[5.5rem] w-[6rem] lg:w-[120px] lg:h-[120px] items-center gap-4">
-       <Image
-          src={profileimage}
-          alt={`Agent ${fullname}`}
-          fill
-          className="rounded-full object-cover"
-        />
+        <div className="flex relative h-[5.5rem] w-[6rem] lg:w-[120px] lg:h-[120px] items-center gap-4">
+          <Image
+            src={profileimage}
+            alt={`Agent ${fullname}`}
+            fill
+            className="rounded-full object-cover"
+          />
         </div>
         <div>
           <p className="font-semibold text-xl text-black">{fullname}</p>
           <p className="text-sm lg:text-base">{location}</p>
           <p className="text-sm lg:text-base">
-            {fullname} will respond in about <span className="text-primary font-medium">10 mins</span>
+            {fullname} will respond in about
+            <span className="text-primary font-medium">10 mins</span>
           </p>
         </div>
       </div>
@@ -78,9 +83,11 @@ const router=useRouter()
         />
         {/* Optional: Quick Replies */}
         <div className="hidden lg:grid grid-cols-2 md:grid-cols-4 gap-2 mt-4">
-          {["Can you share more details about the home?", 
-            "I want to buy the home. What’s next?", 
-            "Is this home still available for purchase?"].map((text, i) => (
+          {[
+            "Can you share more details about the home?",
+            "I want to buy the home. What’s next?",
+            "Is this home still available for purchase?",
+          ].map((text, i) => (
             <button
               key={i}
               onClick={() => setMessage(text)}
@@ -100,13 +107,6 @@ const router=useRouter()
           disabled={isMessageLoading}
         >
           {isMessageLoading ? "Sending..." : "Ask a question"}
-        </button>
-        <button
-          onClick={() => handleSend("review")} // Send the current message for reviews
-          className="border px-4 py-2 w-[9rem] 2xl:w-[15rem] rounded-md lg:rounded-full border-primary text-gray-600"
-          disabled={isReviewLoading}
-        >
-          {isReviewLoading ? "Sending..." : "Reviews"}
         </button>
       </div>
     </div>

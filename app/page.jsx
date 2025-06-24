@@ -315,13 +315,13 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative  h-[40vh] lg:h-[100vh] p-2 lg:p-0 w-screen overflow-hidden">
+      <header className="relative h-[40vh] lg:h-[100vh] p-2 lg:p-0 w-screen overflow-hidden">
+        {" "}
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-full h-full  bg-cover bg-center z-[-1]"
           style={{ backgroundImage: "url('/header.svg')" }}
         ></div>
-
         {/* Content Section */}
         <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] mt-[2rem] lg:mt-[4rem]  p-3 lg:p-0  lg:gap-4 h-full ">
           {/* Main Heading */}
@@ -343,7 +343,6 @@ export default function Home() {
 
           {/* Mobile Search Bar */}
         </div>
-
         {/* Statistics Section */}
         <div className="absolute hidden  bottom-7 lg:flex font-bricolage lg:mt-10 justify-center items-center w-full pt-10 px-4">
           <div className="flex items-center rounded-lg w-9/10 ml-15 justify-between md:w-4/5 lg:w-[50rem]">
