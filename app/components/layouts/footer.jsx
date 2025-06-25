@@ -142,7 +142,10 @@ const Appfooter = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="" className="transition hover:opacity-75">
+                      <a
+                        href="/contact"
+                        className="transition hover:opacity-75"
+                      >
                         Contact
                       </a>
                     </li>
