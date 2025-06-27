@@ -194,7 +194,7 @@ export const MobileSignIn = () => {
         </div>
         {tab === "login" && (
           <Link
-            href="/forgot-password"
+            href="/auth/forgot-password"
             className="text-sm text-primary text-center"
           >
             Forgot your password?

@@ -111,7 +111,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     setBedValue("");
     setBathValue("");
   };
-
+  useEffect(() => {
+    if (!filters.price) {
+      const defaultValue =
+        filters["home-type"] === "rent" ? "50-200" : "0-30000";
+      handleFilterChange("price", defaultValue);
+    }
+  }, [filters["home-type"]]);
   useEffect(() => {
     function handleClickOutside(event) {
       if (bedBathRef.current && !bedBathRef.current.contains(event.target)) {
@@ -209,12 +215,20 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               <div className="mb-4">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
                 <ul className="flex flex-col gap-1.5">
-                  {[
-                    { label: "$0k–$30k", value: "0-30000" },
-                    { label: "$30k–$60k", value: "30000-60000" },
-                    { label: "$60k–$100k", value: "60000-100000" },
-                    { label: "$100k+", value: "100000-10000000" },
-                  ].map((option) => (
+                  {(filters["home-type"] === "rent"
+                    ? [
+                        { label: "$50–$200", value: "0-200" },
+                        { label: "$200–$500", value: "200-500" },
+                        { label: "$500–$800", value: "500-800" },
+                        { label: "$800–$1000", value: "800-1000" },
+                      ]
+                    : [
+                        { label: "$0k–$30k", value: "0-30000" },
+                        { label: "$30k–$60k", value: "30000-60000" },
+                        { label: "$60k–$100k", value: "60000-100000" },
+                        { label: "$100k+", value: "100000-10000000" },
+                      ]
+                  ).map((option) => (
                     <li
                       key={option.value}
                       className="flex justify-between items-center border-b border-gray-300 pb-1.5"
@@ -596,6 +610,7 @@ const page = () => {
   const router = useRouter();
 
   const [coordinates, setCoordinates] = useState([]);
+  const [imageUrls, setImageUrls] = useState([]);
 
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -616,11 +631,15 @@ const page = () => {
         (item) =>
           item?.item?.coordinate?.latitude && item?.item?.coordinate?.longitude
       );
+      const images = flatListings.flatMap((item) => item.imageUrls || []);
+      setImageUrls(images);
+
       setCoordinates(listingsWithCoords.map((item) => item.item.coordinate)); // set all coordinates for the map
       setDisplayListings(listingsWithCoords); // only show listings with coordinates
       setTotalPages(allListings.totalPages || 1);
       setCurrentPage(Number(searchParams.get("page")) || 1);
     }
+    console.log("coordinae", allListings?.listings?.imageUrls);
   }, [allListings, isAllloading]);
 
   //  if (isAllloading) {
@@ -630,7 +649,6 @@ const page = () => {
   //      </div>
   //    );
   //  }
-  console.log("coordinae", coordinates);
   return (
     <div className="lg:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] 2xl:w-[94rem]  lg:w-[84rem]  flex-col flex justify-center items-center 2xl:items-stretch ">
       <Breadcrumb showMap={showMap} setShowMap={setShowMap} />'

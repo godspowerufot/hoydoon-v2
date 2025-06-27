@@ -19,7 +19,25 @@ interface CountryOffices {
   country: string;
   offices: Office[];
 }
+const socialLinks = [
+  {
+    href: "mailto:devteam@quorvixconsulting.com",
+    src: "/mail.svg",
+    alt: "Email",
+  },
+  { href: "https://instagram.com", src: "/instagram.svg", alt: "Instagram" },
+  {
+    href: "https://www.instagram.com/hoydoon/",
+    src: "/x.svg",
+    alt: "X (Twitter)",
+  },
 
+  {
+    href: "https://www.linkedin.com/company/hoydoon/about/?viewAsMember=true",
+    src: "/linkedin.svg",
+    alt: "LinkedIn",
+  },
+];
 function OfficeLocator() {
   const [expandedCountries, setExpandedCountries] = useState<string[]>([]);
 
@@ -78,9 +96,9 @@ function OfficeLocator() {
     <section className="bg-gray-50 py-16">
       <div className=" mx-auto px-2 ">
         <div className="rounded-3xl ">
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2  gap-[18rem] items-start">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-[#1E1E1E] mb-4">
+              <h1 className="text-4xl md:text-5xl font-semibold text-[#1E1E1E] mb-4">
                 Locate a Hoydoon office near you
               </h1>
             </div>
@@ -96,7 +114,7 @@ function OfficeLocator() {
             {officeData.map((countryData, index) => (
               <div
                 key={countryData.country}
-                className="border-b border-gray-200 last:border-b-0"
+                className="border-b border-[#8F8F8F]  last:border-b-1"
               >
                 <button
                   onClick={() => toggleCountry(countryData.country)}
@@ -122,7 +140,7 @@ function OfficeLocator() {
                   )}
                 </button>
 
-                {expandedCountries.includes(countryData.country) && (
+                {/* {expandedCountries.includes(countryData.country) && (
                   <div className="pb-6 px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       {countryData.offices.map((office, officeIndex) => (
@@ -163,7 +181,7 @@ function OfficeLocator() {
                       ))}
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
             ))}
           </div>
@@ -188,13 +206,6 @@ const contactMethods = [
     description:
       "Send our Customer Service Team questions about our site, app, or finding a Houdoon Agent.",
     action: "mailto:devteam@quorvixconsulting.com",
-  },
-  {
-    icon: "/share.svg",
-    title: "Connect With Us",
-    description:
-      "Talk to a Customer Service Representative for help with our site, app, or finding a Redfin Agent.",
-    action: "#",
   },
 ];
 
@@ -224,7 +235,7 @@ const Breadcrumb = () => {
 // Page Component
 const ContactPage = () => {
   return (
-    <div className="min-h-screen    mt-[5rem] w-screen bg-[#eeeeeec7]">
+    <div className="lg:-mb-[5rem]   mt-[5rem] w-screen bg-[#eeeeeec7]">
       <div className=" mx-auto  pt-2 max-w-[78rem]">
         <div className=" rounded-3xl p-3 md:pt-3 ">
           {/* Hero Image */}
@@ -240,13 +251,13 @@ const ContactPage = () => {
           </div>
 
           {/* Heading and Text */}
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-[18rem] items-start">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-[#1E1E1E] mb-4">
+              <h1 className="text-3xl md:text-5xl font-semibold text-[#1E1E1E] mb-4">
                 Contact Us
               </h1>
             </div>
-            <div className="lg:text-start max-w-3xl">
+            <div className="lg:text-start max-w-2xl">
               <p className="text-[#8F8F8F] font-light text-lg leading-relaxed">
                 We're here to help! Our National Customer Service Team is
                 available 8am - 5pm PST, seven days a week.
@@ -255,7 +266,7 @@ const ContactPage = () => {
           </div>
 
           {/* Contact Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-12">
             {contactMethods.map((method, index) => {
               const Icon = method.icon;
               return (
@@ -280,8 +291,41 @@ const ContactPage = () => {
                 </div>
               );
             })}
+            <div className="text-center">
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
+                  {/* <Icon className="h-8 w-8 text-gray-600" /> */}
+                  <Image
+                    src={"/share.svg"}
+                    alt="icon"
+                    width={500}
+                    height={500}
+                  />{" "}
+                </div>
+              </div>
+              <h3 className="text-3xl font-semibold text-teal-600 mb-4">
+                Connect With Us
+              </h3>
+              <div className="grid grid-cols-4 gap-2 max-w-[16rem] mx-auto">
+                {socialLinks.map(({ href, src, alt }: any) => (
+                  <Link
+                    key={alt}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      src={src}
+                      alt={alt}
+                      width={43}
+                      height={40}
+                      className="hover:scale-110 transition-transform"
+                    />
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
-
           <OfficeLocator />
         </div>
       </div>

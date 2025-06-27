@@ -20,11 +20,11 @@ const OtpVerify = () => {
   const [step, setStep] = useState(1); // Start from step 1
   const [ResendCode] = useResendOtpMutation();
   const dispatch = useDispatch();
-  dispatch(setUnverifiedEmail(email));
+  dispatch(setUnverifiedEmail(email.toLowerCase()));
   const resendOtp = async () => {
     if (!email) return;
     try {
-      await ResendCode(email).unwrap();
+      await ResendCode(email.toLowerCase()).unwrap();
       toast.success("OTP resent successfully!");
       setStep(2);
     } catch (err: unknown) {
@@ -39,7 +39,6 @@ const OtpVerify = () => {
   };
   const handleSubmit = () => {
     resendOtp();
-    setStep(2);
   };
 
   return (
@@ -55,11 +54,11 @@ const OtpVerify = () => {
                 height={400}
                 quality={100} // Ensures maximum quality
                 src={"/otp-1.png"}
-                className="hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[37rem] h-[39.5rem]  2xl:h-[48rem] 2xl:w-[50rem]"
+                className="hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[550px] h-[39.5rem]  2xl:h-[48rem] 2xl:w-[50rem]"
                 style={{ objectFit: "cover" }}
               />
 
-              <div className=" w-full px-4 lg:w-[60%] items-start mt-3 2xl:-mt-4  flex flex-col">
+              <div className=" w-full px-4 max-w-[450px] items-start mt-3 2xl:-mt-4  flex flex-col">
                 <Link
                   href="/"
                   className="flex lg:justify-start  lg:ml-[2rem]         "
@@ -94,7 +93,7 @@ const OtpVerify = () => {
                     type="text"
                     placeholder="Enter Email Address "
                     value={email}
-                    className="p-3"
+                    className="p-3 lowercase"
                     onChange={(e) => setEmail(e.target.value)}
                   />
 
