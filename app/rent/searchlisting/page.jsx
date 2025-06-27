@@ -299,32 +299,37 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               )}
 
               {/* house tpe */}
-              <div className="mb-4">
-                <h3 className="text-sm text-gray-600 font-[400] mb-2">
-                  House type
-                </h3>
-                <ul className="flex flex-col gap-1.5">
-                  {["Bungalow", "Duplex", "Penthouse"].map((option) => (
-                    <li
-                      key={option}
-                      className="flex justify-between items-center border-b border-gray-300 pb-1.5"
-                    >
-                      <span className="text-[12px] text-gray font-[400]">
-                        {option}
-                      </span>
-                      <input
-                        type="radio"
-                        name="house-type"
-                        className="w-3 h-3 accent-primary"
-                        checked={filters.houseType === option.toLowerCase()}
-                        onChange={() =>
-                          handleFilterChange("houseType", option.toLowerCase())
-                        }
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {filters["home-type"] !== "land" && (
+                <div className="mb-4">
+                  <h3 className="text-sm text-gray-600 font-[400] mb-2">
+                    House type
+                  </h3>
+                  <ul className="flex flex-col gap-1.5">
+                    {["Bungalow", "Duplex", "Penthouse"].map((option) => (
+                      <li
+                        key={option}
+                        className="flex justify-between items-center border-b border-gray-300 pb-1.5"
+                      >
+                        <span className="text-[12px] text-gray font-[400]">
+                          {option}
+                        </span>
+                        <input
+                          type="radio"
+                          name="house-type"
+                          className="w-3 h-3 accent-primary"
+                          checked={filters.houseType === option.toLowerCase()}
+                          onChange={() =>
+                            handleFilterChange(
+                              "houseType",
+                              option.toLowerCase()
+                            )
+                          }
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               {/* add a price section radion butt */}
               <div className=" hidden ">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
