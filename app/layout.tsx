@@ -10,7 +10,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "./components/common/Spinner";
 export const metadata: Metadata = {
-  title: "Hoydoon | Find Your Dream Property in Nigeria",
+  title: "Hoydoon | Find Your Dream Property in Hoydoon",
   description:
     "Hoydoon is  leading real estate platform. Discover, buy, rent, or sell homes, apartments, and land with ease. Trusted agents, verified listings, and the best property deals.",
   keywords: [
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     icon: "/Logo.ico",
   },
   openGraph: {
-    title: "Hoydoon | Find Your Dream Property in Nigeria",
+    title: "Hoydoon | Find Your Dream Property in Hoydoon",
     description:
-      "Discover, buy, rent, or sell homes, apartments, and land in Nigeria. Trusted agents, verified listings, and the best property deals.",
+      "Discover, buy, rent, or sell homes, apartments, and land . Trusted agents, verified listings, and the best property deals.",
     url: "https://hoydoon.com",
     siteName: "Hoydoon",
     images: [
@@ -48,10 +48,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hoydoon | Find Your Dream Property in Nigeria",
+    title: "Hoydoon | Find Your Dream Property in Hoydoon",
     description:
-      "Discover, buy, rent, or sell homes, apartments, and land in Nigeria. Trusted agents, verified listings, and the best property deals.",
-    images: ["/Logo.svg"],
+      "Discover, buy, rent, or sell homes, apartments, and land. Trusted agents, verified listings, and the best property deals.",
+    images: ["/afforable-1.png"],
   },
 };
 

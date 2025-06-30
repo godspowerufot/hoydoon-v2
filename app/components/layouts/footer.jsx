@@ -110,7 +110,10 @@ const Appfooter = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="" className="transition hover:opacity-75">
+                      <a
+                        href="https://x.com/hoydoon_?s=11&t=nIieHzDuZ8BAPHDnr6Ikcw"
+                        className="transition hover:opacity-75"
+                      >
                         Twitter X
                       </a>
                     </li>
