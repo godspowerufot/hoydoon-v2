@@ -1,25 +1,14 @@
-
- 
 {
-
   "applinks": {
-
     "apps": [],
-
     "details": [
-
       {
-
         "appID": "7D5YY6VL4P.com.hoydoon.app",
-
-        "paths": ["/listing/*"]
-
+        "paths": [
+          "/listing/*",
+          "/chat/*"
+        ]
       }
-
     ]
-
   }
-
 }
-
- 
