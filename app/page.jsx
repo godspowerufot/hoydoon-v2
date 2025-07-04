@@ -147,9 +147,9 @@ function Carousel({ images }) {
           onTouchEnd={handleTouchEnd}
           className="lg:mt-[1rem] rounded-none  hidden lg:block relative p-8  2xl:h-[47rem]  w-full h-[40rem] lg:rounded-2xl"
         >
-          <div className="absolute rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  lg:rounded-2xl" />
+          <div className="absolute  rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  lg:rounded-2xl" />
           <div className="    z-111 absolute    bg-primarytransparent p-5 rounded-2xl bottom-8 h-fit   w-fit">
-            <div className=" bg-white p-8 lg:rounded-2xl   h-[18rem]  2xl:w-[65rem] w-[56rem] ">
+            <div className=" bg-white lg:max-w-[1000px] p-8 lg:rounded-2xl   h-[18rem]  2xl:w-[65rem] w-[56rem] ">
               <h1 className="text-black text-base  lg:text-2xl 2xl:text-[2rem] font-[600]">
                 {images[currentIndex]?.title}{" "}
               </h1>
