@@ -112,10 +112,10 @@ export default function Home() {
   }
   return (
     <>
-      <header className="relative   h-[43vh]   p-2 lg:h-[80vh] w-screen overflow-hidden">
+      <header className="relative   h-[45vh]   p-2 lg:h-[85vh] w-screen overflow-hidden">
         {/* Background Image */}
         <div
-          className="absolute lg:block hidden  top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
+          className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
           style={{ backgroundImage: "url('/rent.png')" }}
         ></div>
         <div

@@ -1,17 +1,17 @@
-'use client'
+"use client";
 
 import PropertyListCard from "../components/common/PropertyListing";
 import SearchBar from "../components/common/searchcomponent";
 import Article from "../components/common/Article";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 interface Property {
   imageUrls?: { url?: string; altText?: string }[];
-  _id?:string;
+  _id?: string;
   item?: {
-  
     price?: string;
-    squareFeet?: number
+    squareFeet?: number;
     bathrooms?: number;
     bedrooms?: number;
     description?: string;
@@ -22,40 +22,52 @@ interface Property {
 }
 
 export default function Home() {
-    const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery({})
-    const { data: familyFriendlyListings } = useGetAllListingsQuery({ category: 'family-friendly' });
-    const { data: rentListings } = useGetAllListingsQuery({ listingType: 'rent' });
- const { data: regionListings } = useGetAllListingsQuery({ region: 'Nigeria' });
+  const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery(
+    {}
+  );
+  const { data: familyFriendlyListings } = useGetAllListingsQuery({
+    category: "family-friendly",
+  });
+  const { data: rentListings } = useGetAllListingsQuery({
+    listingType: "rent",
+  });
+  const { data: regionListings } = useGetAllListingsQuery({
+    region: "Nigeria",
+  });
 
-    
-    const displayListings = Array.isArray(allListings?.listings) ? allListings.listings : [];
+  const displayListings = Array.isArray(allListings?.listings)
+    ? allListings.listings
+    : [];
 
-    const [petFriendlyListings, setPetFriendlyListings] = useState([]);
+  const [petFriendlyListings, setPetFriendlyListings] = useState([]);
 
-    useEffect(() => {
-      if (Array.isArray(allListings?.listings)) {
+  useEffect(() => {
+    if (Array.isArray(allListings?.listings)) {
       const filtered = allListings.listings?.filter(
-        (item: Property) => item?.item?.petFriendly===true
+        (item: Property) => item?.item?.petFriendly === true
       );
       setPetFriendlyListings(filtered);
-      }
-    }, [allListings]);
+    }
+  }, [allListings]);
 
-        
-         if (isAllLoading) {
-           return (
-             <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
-               <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
-             </div>
-           );
-         }
+  if (isAllLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
+        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
+      </div>
+    );
+  }
   return (
     <>
-      <header className="relative   h-[40vh]   p-2 lg:h-[80vh] w-screen overflow-hidden">
+      <header className="relative   h-[40vh]   p-2 lg:h-[85vh] w-screen overflow-hidden">
         {/* Background Image */}
         <div
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
-          style={{ backgroundImage: "url('/rentHomePage.png')" }}
+          className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
+          style={{
+            backgroundImage: "url('/rentHomePage.png')",
+            minHeight: "100%",
+            minWidth: "100vw",
+          }}
         ></div>
 
         {/* Content Section */}
@@ -69,13 +81,12 @@ export default function Home() {
           <h2 className="text-[#FFFFFFB2]  hidden  lg:-mt-2 text-center  lg:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
             Find the perfect place for you and your loved ones, where comfort,
             community, and convenience come together.{" "}
-          </h2> 
-           <h2 className="text-[#FFFFFFB2]  lg:hidden lg:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm lg:text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
-          Hoydoon connects you to your dream home — easily and reliably. </h2>
+          </h2>
+          <h2 className="text-[#FFFFFFB2]  lg:hidden lg:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm lg:text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
+            Hoydoon connects you to your dream home — easily and reliably.{" "}
+          </h2>
 
-
-
-  <SearchBar/>
+          <SearchBar />
         </div>
 
         {/* Statistics Section */}
@@ -83,49 +94,48 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="mt-4  2xl:mt-5  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col md:flex-row  2xl:gap-[10rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
-            <h1 className="text-black lg:-pl-[1rem]   text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
-              Newest Listings
+      <section className="mt-4 lg:mt-6 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] ">
+          <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+              All Houses for Sale
             </h1>
-            <p className="text-gray  lg:pr-5 text-sm lg:text-xl font-bricolage w-full lg:w-[55rem] 2xl:w-[60rem] ">
+            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col ">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...displayListings]
-                .slice(0, 3) // Create a shallow copy to avoid modifying the original array
-                .sort(() => Math.random() - 0.5)
-                ?.map((items: Property, index: number) => (
-                    <PropertyListCard
-                      key={index}
-                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                      altText={
-                        items?.imageUrls?.[0]?.altText ||
-                        "Property image showcasing a beautiful home"
-                      }
-                      price={items?.item?.price || "Price not available"}
-                      area={items?.item?.squareFeet}
-                      bathrooms={items?.item?.bathrooms}
-                      bedrooms={items?.item?.bedrooms}
-                      description={
-                        items?.item?.description ||
-                        "No description available for this property."
-                      }
-                      _id={items?._id}
-
-                      title={items?.item?.title || "Untitled Property"}
-                      rent={items?.item?.rent || "Rent details not provided"}
-                      squareFeet={items?.item?.squareFeet}
-                    />
-                ))}
-            </div>
-            <p className="text-[#09858D]  text-sm  lg:ml-6 2xl:ml-8 2xl:my-5 lg:text-2xl font-[500] ">
-              see all new listings for rent
-            </p>
+          <div className="flex flex-col mt-[0.5em] lg:mt-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
+            {displayListings
+              .slice(0, 3)
+              .map((items: Property, index: number) => (
+                <PropertyListCard
+                  key={index}
+                  imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                  altText={
+                    items?.imageUrls?.[0]?.altText ||
+                    "Property image showcasing a beautiful home"
+                  }
+                  price={items?.item?.price || "Price not available"}
+                  area={items?.item?.squareFeet}
+                  bathrooms={items?.item?.bathrooms}
+                  bedrooms={items?.item?.bedrooms}
+                  description={
+                    items?.item?.description ||
+                    "No description available for this property."
+                  }
+                  _id={items?._id}
+                  title={items?.item?.title || "Untitled Property"}
+                  rent={items?.item?.rent || "Rent details not provided"}
+                  squareFeet={items?.item?.squareFeet}
+                />
+              ))}
+            <Link
+              href="/"
+              className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+            >
+              see housing for sale
+            </Link>
           </div>
         </div>
       </section>
@@ -135,41 +145,42 @@ export default function Home() {
       {/* afforable component */}
 
       <section className="mt-4 lg:-mt-[1em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col md:flex-row  2xl:gap-[10rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
-            <h1 className="text-black lg:pl-[4.5rem] xxl:pl-[6.5rem]    2xl:pl-0 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
-              Explore    Rentals in Somalia
+        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+              Explore Rentals in Somalia
             </h1>
-            <p className="text-gray  lg:pr-5 text-base lg:text-xl font-bricolage w-full lg:w-[55rem] 2xl:w-[60rem] ">
+            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
           </div>
           <div className="flex flex-col ">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...rentListings?.listings || []]
-                ?.slice(2, 5)?.sort(() => Math.random() - 0.5)
+              {[...(rentListings?.listings || [])]
+                ?.slice(2, 5)
+                ?.sort(() => Math.random() - 0.5)
                 ?.map((items: Property, index: number) => (
-                    <PropertyListCard
-                      key={index}
-                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                      altText={
-                        items?.imageUrls?.[0]?.altText ||
-                        "Property image showcasing a beautiful home"
-                      }
-                      price={items?.item?.price || "Price not available"}
-                      area={items?.item?.squareFeet}
-                      bathrooms={items?.item?.bathrooms}
-                      bedrooms={items?.item?.bedrooms}
-                      description={
-                        items?.item?.description ||
-                        "No description available for this property."
-                      }                      _id={items?._id}
-
-                      title={items?.item?.title || "Untitled Property"}
-                      rent={items?.item?.rent || "Rent details not provided"}
-                      squareFeet={items?.item?.squareFeet}
-                    />
+                  <PropertyListCard
+                    key={index}
+                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                    altText={
+                      items?.imageUrls?.[0]?.altText ||
+                      "Property image showcasing a beautiful home"
+                    }
+                    price={items?.item?.price || "Price not available"}
+                    area={items?.item?.squareFeet}
+                    bathrooms={items?.item?.bathrooms}
+                    bedrooms={items?.item?.bedrooms}
+                    description={
+                      items?.item?.description ||
+                      "No description available for this property."
+                    }
+                    _id={items?._id}
+                    title={items?.item?.title || "Untitled Property"}
+                    rent={items?.item?.rent || "Rent details not provided"}
+                    squareFeet={items?.item?.squareFeet}
+                  />
                 ))}
             </div>
             <p className="text-[#09858D]  text-base lg:ml-6 2xl:ml-8  my-5 lg:text-2xl font-[500] ">
@@ -181,22 +192,25 @@ export default function Home() {
       <div className="w-full  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9]" />
 
       <section className="mt-4 lg:-mt-[1em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col md:flex-row  2xl:gap-[10rem] lg:my-[2rem] lg:flex-row    justify-around items-center  md:items-start ">
-            <h1 className="text-black lg:pl-[4.5rem] xxl:pl-[6.5rem]    2xl:pl-0 text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
-              Explore    Rentals in Nigeria
+        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+              Explore Rentals in Nigeria
             </h1>
-            <p className="text-gray  lg:pr-5 text-base lg:text-xl font-bricolage w-full lg:w-[55rem] 2xl:w-[60rem] ">
+            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
           </div>
           <div className="flex flex-col ">
-            {(!regionListings?.listings || regionListings.listings.length === 0) ? (
-              <div className="text-center text-gray-500 py-8">No listings found.</div>
+            {!regionListings?.listings ||
+            regionListings.listings.length === 0 ? (
+              <div className="text-center text-gray-500 py-8">
+                No listings found.
+              </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-                {[...regionListings?.listings || []]
+                {[...(regionListings?.listings || [])]
                   ?.slice(2, 5)
                   ?.map((items: Property, index: number) => (
                     <PropertyListCard
@@ -228,22 +242,24 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/*  upcoming houdes*/}
+      <div className="w-full  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9]" />
+
       <section className="lg:mt-10   2xl:my-[2em] lg:my-[2em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex   lg:w-[92%]   2xl:w-[95rem] flex-col items-center justify-center">
-          <div className="flex    p-2 flex-col w-full  2xl:ml-0 md:flex-row 2xl:gap-[10%] lg:my-[2rem] lg:flex-row md:gap-10    justify-end items-center  md:items-start ">
-            <h1 className="text-black lg:ml-4  2xl:pl-[2rem] xxl:pl-[3rem] text-[26px] lg:text-[2.5rem] font-[600]   w-full ">
-              {" "}
+        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               pet-friendly Rental
             </h1>
-            <p className="text-gray  lg:p-0 text-sm lg:text-xl font-bricolage w-full lg:w-[50rem]">
+            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
           </div>
           <div className="flex flex-col ">
             {petFriendlyListings.length === 0 ? (
-              <div className="text-center text-gray-500 py-8">No listings found.</div>
+              <div className="text-center text-gray-500 py-8">
+                No listings found.
+              </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
                 {[...petFriendlyListings]
@@ -285,48 +301,46 @@ export default function Home() {
 
       {/* testimonials */}
       <section className="lg:mt-10  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex  lg:w-[100%]  xxl:w-[89%]    2xl:w-full flex-col items-center justify-center">
-          <div className="flex   p-2 flex-col w-full  2xl:ml-0 md:flex-row  lg:my-[2rem] lg:flex-row     justify-end items-center  md:items-start ">
-            <h1 className="text-black  text-[26px] xl:ml-[3.2rem] 2xl:ml-[0rem] lg:text-[2.5rem] font-[600]   w-full ">
-              {" "}
+        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Single Family Homes for Rent
             </h1>
-            <p className="text-gray  text-sm lg:p-0 lg:text-xl font-bricolage w-full lg:w-[50rem]">
+            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
           </div>
           <div className="flex flex-col ">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...familyFriendlyListings?.listings || []]
-                .slice(1, 4) // Create a shallow copy to avoid modifying the original array
+              {[...(familyFriendlyListings?.listings || [])]
+                .slice(1, 4)
                 ?.map((items: Property, index: number) => (
-                    <PropertyListCard
-                      key={index}
-                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                      altText={
-                        items?.imageUrls?.[0]?.altText ||
-                        "Property image showcasing a beautiful home"
-                      }
-                      price={items?.item?.price || "Price not available"}
-                      area={items?.item?.squareFeet}
-                      bathrooms={items?.item?.bathrooms}
-                      bedrooms={items?.item?.bedrooms}
-                      description={
-                        items?.item?.description ||
-                        "No description available for this property."
-                      }
-                      _id={items?._id}
-                      title={items?.item?.title || "Untitled Property"}
-                      rent={items?.item?.rent || "Rent details not provided"}
-                      squareFeet={items?.item?.squareFeet}
-                    />
+                  <PropertyListCard
+                    key={index}
+                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                    altText={
+                      items?.imageUrls?.[0]?.altText ||
+                      "Property image showcasing a beautiful home"
+                    }
+                    price={items?.item?.price || "Price not available"}
+                    area={items?.item?.squareFeet}
+                    bathrooms={items?.item?.bathrooms}
+                    bedrooms={items?.item?.bedrooms}
+                    description={
+                      items?.item?.description ||
+                      "No description available for this property."
+                    }
+                    _id={items?._id}
+                    title={items?.item?.title || "Untitled Property"}
+                    rent={items?.item?.rent || "Rent details not provided"}
+                    squareFeet={items?.item?.squareFeet}
+                  />
                 ))}
             </div>
 
             <p className="text-[#09858D]  text-sm  lg:ml-[2.3rem] 2xl:ml-[2.5rem]  mt-5 lg:text-2xl font-[500] ">
-              See all all single family House rents for
-              rent
+              See all all single family House rents for rent
             </p>
           </div>
         </div>
