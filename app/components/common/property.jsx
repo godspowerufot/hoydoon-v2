@@ -42,13 +42,7 @@ const PropertyCard = ({
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Image Container */}
-        <div
-          className={`overflow-hidden  rounded-b-[20px] lg:rounded-lg  h-full lg:h-[25rem] lg:rounded-b-[27px] w-full transition-all duration-[1500ms] ease-in-out ${
-            isHovered
-              ? "h-[500px] lg:h-[450px] 2xl:max-h-[350px]"
-              : "2xl:max-h-[500px]"
-          }`}
-        >
+        <div className="overflow-hidden  rounded-b-[20px] lg:rounded-lg  h-full lg:h-[25rem] lg:rounded-b-[27px] w-full transition-all duration-[1500ms] ease-in-out">
           <Image
             alt={altText}
             width={300}

@@ -75,13 +75,13 @@ export default function Navbar() {
     <>
       {!hideNavbar && !hideAuth && (
         <nav
-          className={`text-xl z-[999999] hidden font-bricolage  lg:flex fixed top-0 w-full transition-all duration-300 ${
+          className={`text-xl max-w-full z-[999999] hidden font-bricolage  lg:flex fixed top-0  transition-all duration-300 ${
             scrolled
               ? "bg-white text-black shadow-md"
               : "bg-transparent text-white mt-3"
           }`}
         >
-          <div className="flex-1  -mx-[5%] flex w-full items-center justify-around p-2">
+          <div className="flex-1  mx-9 flex w-screen items-center justify-around p-2">
             {/* Logo */}
             <div className="text-2xl font-bold">
               <Link href="/" className="flex justify-center items-center gap-2">
