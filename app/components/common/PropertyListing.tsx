@@ -52,7 +52,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
     <>
       <Link href={`/rent/${encodeId(_id)}`}>
         <div
-          className={`relative lg:flex  w-[380px] h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${
+          className={`relative lg:flex  lg:w-[380px] h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${
             isHovered && !isMobile
               ? "border-gray rounded-[20px]"
               : "lg:border-transparent border border-gray rounded-[20px] "

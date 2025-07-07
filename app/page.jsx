@@ -326,7 +326,7 @@ export default function Home() {
         {/* Content Section */}
         <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] mt-[2rem] lg:mt-[4rem]  p-3 lg:p-0  lg:gap-4 h-full ">
           {/* Main Heading */}
-          <h1 className="text-white text-center w-[20rem]   relative  font-bricolage font-semibold leading-tight  text-[2.1em] lg:text-[clamp(4em,4vw,4em)] lg:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
+          <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[2.1em] lg:text-[clamp(4em,4vw,4em)] lg:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
             Where Every House Feels Like Home
           </h1>
 
@@ -449,7 +449,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
       <section className="lg:mt-[4em] p-2 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Featured Properties for Rent
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
@@ -513,8 +513,8 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
 
       {/* testimonials */}
       <section className=" p-2 pt-[2.5rem] lg:pt-0  2xl:p-6 lg:p-0 font-bricolage  flex justify-center flex-col  items-center">
-        <div className="flex  flex-col lg:flex-row md:flex-row 2xl:mt-4  lg:gap-12  justify-around items-start w-full   ">
-          <span className="flex   lg:ml-[1rem] xxl:ml-[3rem] lg:pl-[1rem] 2xl:w-full  flex-col 2xl:-ml-[2rem]  font-bricolage gap-3">
+        <div className="flex  flex-col lg:flex-row md:flex-row 2xl:mt-4  lg:max-w-[1200px] lg:gap-12  justify-around items-start w-full   ">
+          <span className="flex    2xl:w-full  flex-col font-bricolage gap-3">
             <h1 className="text-black   text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">
               What People Are Saying
             </h1>

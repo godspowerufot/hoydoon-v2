@@ -35,13 +35,13 @@ const Appfooter = () => {
   return (
     <>
       {!hideNavbar && (
-        <footer className="bg-primary font-bricolage max-md:h-[42vh]  w-screen px-4 lg:p-0  text-white flex flex-col justify-center  items-center lg:mt-[5rem]">
-          <div className="lg:max-w-[1200px] 2xl:max-w-[1440px] space-y-8  mt-[2rem] lg:px-6   lg:py-16 sm:px-6 lg:space-y-16 ">
+        <footer className="bg-primary font-bricolage lg:max-md:h-[42vh]  w-screen px-4 lg:p-0  text-white flex flex-col justify-center  items-center lg:mt-[5rem]">
+          <div className="lg:max-w-[1200px] space-y-8  mt-[2rem] lg:px-6   lg:py-16 sm:px-6 lg:space-y-16 ">
             {/* Top Section */}
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               {/* Subscribe Section */}
               <div>
-                <div className="flex flex-col 2xl:ml-5 items-start  w-[50em] lg:w-0">
+                <div className="flex flex-col  items-start  w-[50em] lg:w-0">
                   <h1 className="text-white font-bricolage lg:ml-2 text-[24px] lg:text-3xl 2xl:text-4xl lg:font-[600] lg:w-[25rem]">
                     Subscribe to our Newsletter
                   </h1>
@@ -209,7 +209,7 @@ const Appfooter = () => {
             <div className=" w-full h-[1px] bg-white lg:mt-[2%]" />
 
             {/* Bottom Section */}
-            <div className="flex flex-col-reverse lg:flex-row  w-[100%] 2xl:max-w-[100vw]  justify-end lg:justify-between items-center gap-4 2xl:px-0 text-base">
+            <div className="flex flex-col-reverse lg:flex-row  w-[100%]  justify-end lg:justify-between items-center gap-4  text-base">
               <p className="text-center font-[300] hidden lg:block">
                 &copy; 2022. Company Name. All rights reserved.
               </p>

@@ -59,7 +59,7 @@ export default function Home() {
   }
   return (
     <>
-      <header className="relative   h-[40vh]   p-2 lg:h-[85vh] w-screen overflow-hidden">
+      <header className="relative    p-2 lg:h-[85vh] w-screen overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
@@ -73,7 +73,7 @@ export default function Home() {
         {/* Content Section */}
         <div className="flex flex-col items-center relative z-[1]  mt-[3rem] lg:mt-[6rem]   lg:gap-4 h-full ">
           {/* Main Heading */}
-          <h1 className="text-white text-center w-[20rem]   relative  font-bricolage font-semibold leading-tight  text-[38px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
+          <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[38px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Find Your Future, Feel at Home!{" "}
           </h1>
 
@@ -95,13 +95,13 @@ export default function Home() {
 
       {/* explore */}
       <section className="mt-4 lg:mt-6 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] ">
+        <div className="flex flex-col items-start  lg:max-w-[1200px] ">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               All Houses for Sale
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Discover a home where every detail enhances your lifestyle-crafted
+              Discover a home where every detail enhances your lifestyle crafted
               to fit your taste and needs.
             </p>
           </div>
@@ -131,7 +131,7 @@ export default function Home() {
                 />
               ))}
             <Link
-              href="/"
+              href="/rent/searchlisting"
               className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see housing for sale
@@ -145,9 +145,9 @@ export default function Home() {
       {/* afforable component */}
 
       <section className="mt-4 lg:-mt-[1em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Somalia
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
@@ -183,18 +183,21 @@ export default function Home() {
                   />
                 ))}
             </div>
-            <p className="text-[#09858D]  text-base lg:ml-6 2xl:ml-8  my-5 lg:text-2xl font-[500] ">
+            <Link
+              href={"/rent/searchlisting"}
+              className="text-[#09858D]  text-base  my-5 lg:text-2xl font-[500] "
+            >
               see all explore listings for rent
-            </p>
+            </Link>
           </div>
         </div>
       </section>
       <div className="w-full  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9]" />
 
       <section className="mt-4 lg:-mt-[1em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Nigeria
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
@@ -236,19 +239,22 @@ export default function Home() {
                   ))}
               </div>
             )}
-            <p className="text-[#09858D]  text-base lg:ml-6 2xl:ml-8  my-5 lg:text-2xl font-[500] ">
+            <Link
+              href={"/rent/searchlisting"}
+              className="text-[#09858D]  text-base  my-5 lg:text-2xl font-[500] "
+            >
               see all explore listings for rent
-            </p>
+            </Link>
           </div>
         </div>
       </section>
       <div className="w-full  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9]" />
 
       <section className="lg:mt-10   2xl:my-[2em] lg:my-[2em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
-              pet-friendly Rental
+        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
+          <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+              pet-friendly Rentals
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
               Discover a home where every detail enhances your lifestyle-crafted
@@ -290,9 +296,12 @@ export default function Home() {
               </div>
             )}
 
-            <p className="text-[#09858D] 2xl:ml-[2.5rem]  lg:ml-6  text-base mt-5 lg:text-2xl font-[500] ">
-              See all all pet-friendly houses for rent
-            </p>
+            <Link
+              href={"/rent/searchlisting"}
+              className="text-[#09858D]  text-base  my-5 lg:text-2xl font-[500] "
+            >
+              see all pet-friendly houses for rent
+            </Link>
           </div>
         </div>
       </section>
@@ -301,9 +310,9 @@ export default function Home() {
 
       {/* testimonials */}
       <section className="lg:mt-10  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
+          <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Single Family Homes for Rent
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
@@ -339,15 +348,20 @@ export default function Home() {
                 ))}
             </div>
 
-            <p className="text-[#09858D]  text-sm  lg:ml-[2.3rem] 2xl:ml-[2.5rem]  mt-5 lg:text-2xl font-[500] ">
-              See all all single family House rents for rent
-            </p>
+            <Link
+              href={"/rent/searchlisting"}
+              className="text-[#09858D]  text-base  my-5 lg:text-2xl font-[500] "
+            >
+              see all single family House rents for rent
+            </Link>
           </div>
         </div>
       </section>
 
       {/* New-articles */}
-      <Article />
+      <div className="lg:max-w-[1200px]">
+        <Article />
+      </div>
     </>
   );
 }

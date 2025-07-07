@@ -26,7 +26,7 @@ const articles = [
 
 const ArticleCard = ({ article }: any) => {
   return (
-    <div className="relative flex flex-col lg:h-[650px] w-[20em] lg:w-[36em] 2xl:w-[43em] font-bricolage rounded-lg  shrink-0">
+    <div className="relative flex flex-col lg:h-[650px] w-[20em] lg:w-[36em]  font-bricolage rounded-lg  shrink-0">
       <Link href={"/article/article-details"}>
         {" "}
         <Image
@@ -35,14 +35,14 @@ const ArticleCard = ({ article }: any) => {
           height={300}
           loading="lazy"
           src={article.image}
-          className="rounded-2xl 2xl:h-[30rem] w-full object-cover h-[300px] lg:h-[450px]"
+          className="rounded-2xl  w-full object-cover h-[300px] lg:h-[450px]"
         />
         <div className="flex flex-col my-4 relative">
           <div className="flex gap-3">
             <h1 className=" text-2xl lg:text-4xl font-[600] text-primary ">
               0{article.id}
             </h1>
-            <h1 className="text-black  text-[15px] lg:text-2xl w-[30rem] ml-3  2xl:text-[2rem] 2xl:w-[50rem] font-[500] pt-[15px]">
+            <h1 className="text-black  text-[15px] lg:text-2xl w-[30rem] ml-3   font-[500] pt-[15px]">
               {article.title}
             </h1>
           </div>
@@ -73,9 +73,9 @@ const ArticleCard = ({ article }: any) => {
 const ArticlesSection = () => {
   return (
     <section className="flex  mt-[2rem] text-start lg:justify-center items-center w-full flex-col lg:my-[3rem]  lg:max-w-[1200px] p-2 lg:p-0 font-bricolage">
-      <div className="flex  flex-col lg:flex-row md:flex-row lg:gap-[8rem] 2xl:gap-[14rem]  justify-around lg:items-center">
-        <span className="flex flex-col font-bricolage  lg:ml-8 2xl:ml-0 py-2 lg:py-0  gap-2">
-          <h1 className="text-black  text-[1.5rem] lg:text-[2.5rem] 2xl:text-5xl font-[600] ">
+      <div className="flex  flex-col lg:flex-row md:flex-row lg:gap-[8rem]   justify-around lg:items-center">
+        <span className="flex flex-col font-bricolage  lg:ml-8  py-2 lg:py-0  gap-2">
+          <h1 className="text-black  text-[1.5rem] lg:text-[2.5rem]  font-[600] ">
             New Highlights & Articles
           </h1>
           <p className="text-gray hidden lg:block  font-[400] 2xl:text-[20px] lg:p-0 text-base lg:text-xl w-full lg:w-[30em]">
@@ -84,11 +84,11 @@ const ArticlesSection = () => {
           </p>
         </span>
         <span className="  flex flex-col font-bricolage gap-3 text-gray">
-          <p className="text-gray hidden lg:block text-sm 2xl:text-[20px] lg:p-0  lg:text-xl 2xl:w-[30em] lg:w-[24em]">
+          <p className="text-gray hidden lg:block text-sm 2xl:text-[20px] lg:p-0  lg:text-xl  lg:w-[24em]">
             Stay informed with our latest news and insights where you’ll find
             breaking stories.
           </p>
-          <p className="text-gray font-light lg:hidden block text-sm 2xl:text-[20px] lg:p-0  lg:text-xl 2xl:w-[30em] lg:w-[24em]">
+          <p className="text-gray font-light lg:hidden block text-sm 2xl:text-[20px] lg:p-0  lg:text-xl  lg:w-[24em]">
             Stay Informed with our latest news and Insights where you’ find
             breaking stories. Our top stories and features keeps you updated on
             industry trends, current events.
@@ -102,14 +102,14 @@ const ArticlesSection = () => {
           </Link>
         </span>
       </div>
-      <div className="lg:flex  hidden justify-center w-full  mt-[1.3rem] lg:mt-[4%] lg:flex-1 lg:flex-row flex-col items-center lg:gap-6 2xl:gap-10">
+      <div className="lg:flex  hidden justify-center w-full  mt-[1.3rem] lg:mt-[4%] lg:flex-1 lg:flex-row flex-col items-center lg:gap-6 ">
         {articles.map((article) => (
           <ArticleCard key={article.id} article={article} />
         ))}
       </div>
 
       <div className="w-full lg:hidden block overflow-x-auto">
-        <div className="flex flex-nowrap gap-6  pt-5 lg:px-10 2xl:px-20 w-full overflow-x-auto scroll-smooth hide-scrollbar">
+        <div className="flex flex-nowrap gap-6  pt-5 lg:px-10 w-full overflow-x-auto scroll-smooth hide-scrollbar">
           {articles.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}

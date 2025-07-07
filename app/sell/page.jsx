@@ -27,7 +27,7 @@ export default function Home() {
   };
   return (
     <>
-      <header className="relative  h-[40vh] lg:h-[80vh] w-screen">
+      <header className="relative   lg:h-[88vh] w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
@@ -59,8 +59,8 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="mt-10   lg:my-[4em] w-full  font-bricolage flex justify-center  flex-col lg:flex-row gap-7 2xl:gap-[3rem] flex-1 items-center">
-        <div className="lg:w-[24rem]  w-[388px]lg:h-[32rem] 2xl:w-[28rem]    rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
+      <section className="mt-10   lg:my-[4em] w-full  font-bricolage flex justify-center  flex-col lg:flex-row gap-7 2xl:gap-[3rem] lg:max-w-[1200px] flex-1 items-center">
+        <div className="lg:w-[24rem]  lg:h-[32rem]    rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
@@ -93,7 +93,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="lg:w-[24rem] w-[388px] lg:h-[32rem] 2xl:w-[28rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
+        <div className="lg:w-[24rem]  lg:h-[32rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
@@ -131,7 +131,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="lg:w-[24rem]  w-[388px] lg:h-[32rem] 2xl:w-[28rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
+        <div className="lg:w-[24rem]  lg:h-[32rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
@@ -186,8 +186,8 @@ export default function Home() {
       </section>
 
       <section className="   font-bricolage flex  justify-center flex-col flex-1 items-center ">
-        <div className="flex  lg:w-9/10 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
-          <span className="flex flex-col 2xl:pl-[1rem] w-full lg:w-[45em] 2xl:w-[60em] ">
+        <div className="flex  lg:max-w-[1200px] 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+          <span className="flex flex-col  gap-5 w-full lg:w-[45em]  ">
             <h1 className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Ready to sell your home?.
             </h1>
@@ -197,19 +197,19 @@ export default function Home() {
               take the first step toward a successful sale
             </p>
 
-            <Button className="text-base py-2 w-[115px] font-light mt-5 ">
+            <Button className="text-base py-2 w-[205px] font-light mt-5 ">
               <Link href="/sell/sell-home"> Get Started</Link>
             </Button>
           </span>
 
-          <span className="mt-[3rem] 2xl:pr-[3rem]   lg:mt-0">
+          <span className=" mt-[3rem]  lg:mt-0">
             <Image
               alt="image1"
               width={500}
               quality={100}
+              className=" 2xl:w-[50rem] lg:w-[50rem]  object-contain  w-fit lg:h-[28rem] 2xl:h-[36rem]"
               height={400} // Reduced size of logo
               src={"/sell-1.png"}
-              className=" 2xl:w-[43rem] lg:w-[55rem]  w-[388px] lg:h-[28rem] 2xl:h-[35rem]"
             />
           </span>
         </div>

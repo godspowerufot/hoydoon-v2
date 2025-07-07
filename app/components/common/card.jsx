@@ -20,7 +20,7 @@ const HoverCard = ({
     <>
       <Link href={`/rent/${encodeId(_id)}`}>
         <div
-          className={`relative lg:flex hidden w-[380px] h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${
+          className={`relative lg:flex hidden lg:w-[380px] h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${
             isHovered ? "border-gray rounded-[20px]" : "border-transparent"
           }`}
           onMouseEnter={() => setIsHovered(true)}

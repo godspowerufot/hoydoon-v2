@@ -46,6 +46,7 @@ html,
 body {
   margin: auto;
   height: 100vh;
+  user-select: none;
 }
 
 @media (prefers-color-scheme: dark) {

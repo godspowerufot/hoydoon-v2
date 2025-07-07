@@ -7,9 +7,9 @@ import FAQComponent from "../layouts/faq";
 export default function FagsSection() {
   return (
     <section className=" mt-[20px]  w-full  lg:mt-[7%]   flex flex-1 justify-center items-center  flex-col   p-2 lg:p-0 font-bricolage ">
-      <div className="lg:flex  hidden flex-col lg:flex-row md:flex-row   2xl:gap-[14rem] lg:gap-[6rem]  justify-around  items-start lg:items-center  ">
-        <span className="flex flex-col  font-bricolage lg:ml-[1rem] 2xl:ml-[1rem]  gap-2">
-          <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] mr-3 ">
+      <div className="lg:flex  hidden flex-col lg:flex-row md:flex-row  lg:gap-[6rem]  justify-around  items-start lg:items-center  ">
+        <span className="flex flex-col  font-bricolage lg:ml-[1rem]  gap-2">
+          <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] ">
             Your Questions, Our Answers
           </h1>
           <p className="text-gray   lg:p-0 text-base  lg:text-xl font-bricolage w-full lg:w-[30em]">
