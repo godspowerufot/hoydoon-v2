@@ -10,7 +10,7 @@ const DynamicImageGrid = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (!images || images.length === 0)
+  if (images.length === 0)
     return <div className="text-center lg:text-3xl">No images available </div>;
 
   const hasStatuses = statuses?.some((status) => status); // Check if any status exists
@@ -56,7 +56,6 @@ const DynamicImageGrid = ({
       1: () => (
         <div className=" hidden lg:grid grid-cols-1 gap-4 p-4">
           {renderImage(
-            images[0],
             0,
             "w-full h-[400px] 2xl:h-[500px] object-cover rounded-lg",
             800,
@@ -65,7 +64,7 @@ const DynamicImageGrid = ({
         </div>
       ),
       2: () => (
-        <div className="hidden lg:grid grid-cols-2 gap-4 p-4">
+        <div className="hidden lg:grid grid-cols-2 gap-4 p-4   lg:py-4 lg:px-0 ">
           {images.map((img, i) =>
             renderImage(
               img,
@@ -78,7 +77,7 @@ const DynamicImageGrid = ({
         </div>
       ),
       3: () => (
-        <div className="hidden lg:grid grid-cols-3 grid-rows-2 gap-4 p-4">
+        <div className="hidden lg:grid grid-cols-3 grid-rows-2 gap-4 p-4  lg:py-4 lg:px-0 ">
           <div className="col-span-2 row-span-2">
             {renderImage(
               images[0],
@@ -105,7 +104,7 @@ const DynamicImageGrid = ({
         </div>
       ),
       4: () => (
-        <div className="hidden lg:grid grid-cols-2 gap-4 p-4">
+        <div className="hidden lg:grid grid-cols-2 gap-4 p-4 lg:py-4 lg:px-0">
           {images
             .slice(0, 4)
             .map((img, i) =>
@@ -120,7 +119,7 @@ const DynamicImageGrid = ({
         </div>
       ),
       5: () => (
-        <div className="hidden lg:grid grid-cols-4 grid-rows-2 gap-4 p-4">
+        <div className="hidden lg:grid grid-cols-4 grid-rows-2 gap-4 p-4 lg:py-4 lg:px-0">
           <div className="col-span-2 row-span-2">
             {renderImage(
               images[0],
@@ -162,7 +161,7 @@ const DynamicImageGrid = ({
       ),
 
       default: () => (
-        <div className="hidden lg:grid grid-cols-5 gap-4 p-4">
+        <div className="hidden lg:grid grid-cols-5 gap-4 lg:pb-2 p-4 lg:p-0">
           <div className="col-span-2 row-span-2">
             {renderImage(
               images[0],

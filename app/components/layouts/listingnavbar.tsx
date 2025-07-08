@@ -49,8 +49,8 @@ export default function ListingNavbar() {
 
   return (
     <>
-      <nav className="hidden lg:block relative z-[9999] w-full  ">
-        <div className="2xl:max-w-[1520px] max-w-[1230px] mx-auto flex items-center justify-between py-3 px-5 lg:px-0">
+      <nav className="hidden lg:flex justify-between  items-center  relative z-[9999] w-full  ">
+        <div className=" lg:max-w-[1230px] mx-auto flex gap-[20rem] justify-between py-3 px-5 lg:px-0">
           {/* Left: Logo & Search Bar */}
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center">
@@ -90,7 +90,7 @@ export default function ListingNavbar() {
           </div>
 
           {/* Center: Navigation Links + Auth Buttons */}
-          <div className="hidden lg:flex items-center gap-x-6">
+          <div className="hidden lg:flex items-center gap-x-4">
             {/* Navigation Links */}
             <ul className="flex space-x-6 text-[#8F8F8F] text-[1rem]">
               <li>

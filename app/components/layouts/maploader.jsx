@@ -84,13 +84,13 @@ const LocationSearchBar = () => {
                 ? "Enter your property address"
                 : "Find an Agent in your area"
             }
-            className="flex-1 bg-transparent placeholder:text-[1.3rem] text-[1.3rem] text-black placeholder-gray-500 border-none outline-none pl-4 w-[36.3rem]"
+            className="flex-1 bg-transparent placeholder:text-xl text-xl text-black placeholder-gray-500 border-none outline-none pl-4 w-[36.3rem]"
           />
           <div
             onClick={handleSearch}
             className="relative mr-2 p-1 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90"
           >
-            <div className="relative bg-primary ml-[1em] p-3 w-[47px] h-[47px] rounded-full flex items-center justify-center">
+            <div className="relative bg-primary ml-[1em] p-3 w-[40px] h-[40px] rounded-full flex items-center justify-center">
               <Image
                 alt="logo"
                 width={30}

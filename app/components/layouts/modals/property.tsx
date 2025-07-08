@@ -1,6 +1,6 @@
 /* eslint-disable */
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MapComponent from "../listingmap"; // Assuming this is a map component you already have
 import StreetViewComponent from "../streetvie";
 import { useToggleFavoriteMutation } from "@/store/slices/api/authapi";
@@ -9,6 +9,8 @@ import { log } from "@/utils/log";
 import { handleShareClick } from "@/utils";
 
 import { useRouter } from "next/navigation";
+
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 type Coordinates = [number, number]; // Or a more specific object type if needed
 
 type ImageType = {
@@ -66,10 +68,10 @@ const FullScreenCarousel = ({
         onClick={handlePrev}
         className="absolute left-5 text-white text-4xl px-4 py-2 rounded hover:bg-white/10"
       >
-        &lt;
+        <FaChevronLeft />
       </button>
 
-      <div className="transition-all duration-300 ease-in-out max-w-[90%] max-h-[80%]">
+      <div className="transition-all duration-300 ease-in-out max-w-full max-h-[80%]">
         <img
           src={imageurl}
           alt="carousel"
@@ -81,7 +83,7 @@ const FullScreenCarousel = ({
         onClick={handleNext}
         className="absolute right-5 text-white text-4xl px-4 py-2 rounded hover:bg-white/10"
       >
-        &gt;
+        <FaChevronRight />
       </button>
     </div>
   );
@@ -101,7 +103,14 @@ const PropertyGalleryModal = ({
   const [activeTab, setActiveTab] = useState("photos");
   const router = useRouter(); // Tab state
   const [showListings, setShowListings] = useState(true);
-
+  const modalRef = useRef<HTMLDivElement>(null); // ✅ Ref for modal content
+  const handleOverlayClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+      onClose(); // ✅ Close when clicking outside
+    }
+  };
   const [toggleFavorite, { isLoading, isError, isSuccess }] =
     useToggleFavoriteMutation();
   if (!isOpen) return null;
@@ -205,8 +214,15 @@ const PropertyGalleryModal = ({
 
   return (
     <>
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div className="bg-white w-11/12 md:w-3/4 lg:w-5/6 pt-5 pb-[3.5rem] px-[2rem] shadow-lg relative max-h-[90vh] overflow-y-auto">
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+        onClick={handleOverlayClick} // ✅ Detect clicks on overlay
+      >
+        {" "}
+        <div
+          ref={modalRef}
+          className="bg-white w-11/12 md:w-3/4 lg:w-5/6 pt-5 pb-[3.5rem] px-[2rem] shadow-lg relative max-h-[90vh] overflow-y-auto"
+        >
           {/* Close Button */}
 
           {/* Tabs */}

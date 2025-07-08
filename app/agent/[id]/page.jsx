@@ -29,16 +29,22 @@ const Breadcrumb = ({
   handleFavoriteClick,
 }) => {
   return (
-    <div className=" hidden lg:flex  ml-[2rem] items-center justify-between gap-[0.2rem] px-4 py-2  mt-[5rem] w-full  bg-gray-100">
+    <div className="hidden lg:flex items-center justify-between  py-4 lg:w-full mt-[5rem] bg-gray-100">
       {/* Left Section: Back Arrow and Breadcrumb */}
-      <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage text-gray-600">
+      <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage w-full text-gray-600">
         {/* Back Arrow */}
 
         {/* Breadcrumb Links */}
-        <div className="flex  w-[30rem] items-center gap-3 text-base text-gray-500">
+        <div className="flex  w-full items-center gap-3 text-base text-gray-500">
           {/* Initial Back Arrow + Static Text */}
           <div className="flex font-light items-center gap-1">
-            <img src="/arrow-right.png" alt="Back" className="w-3 h-5" />
+            <Image
+              src="/arrow-right.png"
+              alt="arrow"
+              height={12}
+              width={12}
+              className=" w-4 h-4 object-contain"
+            />{" "}
             <Link href={"/search"}>
               <span>Search |</span>
             </Link>
@@ -73,7 +79,7 @@ const Breadcrumb = ({
       </div>
 
       {/* Right Section: Icons */}
-      <div className="flex ml-[33rem] 2xl:ml-[50rem] items-center gap-2">
+      <div className="flex items-center lg:-ml-[4rem] gap-2">
         <div className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md">
           <img
             onClick={handleFavoriteClick}
@@ -218,7 +224,7 @@ const page = ({ params }) => {
   // State to control visibility of the listings section
 
   return (
-    <div className="mt-2 lg:w-[90%] 2xl:w-[1520px] ">
+    <div className="lg:max-w-[1200px] flex pt-8 flex-col items-center justify-center ">
       {" "}
       <Breadcrumb
         handleToggleListings={handleToggleListings}
@@ -227,7 +233,7 @@ const page = ({ params }) => {
         agentDetails={agentInfo?.region}
       />
       {showListings && (
-        <div className="grid  lg:-mt-1  gap-2 p-3">
+        <div className="grid  lg:-mt-1  gap-2 p-3 lg:p-0 ">
           <DynamicImageGrid
             statuses={statuses}
             coordinates={coordinates}
@@ -238,29 +244,17 @@ const page = ({ params }) => {
             coordinates={coordinates}
             images={imageUrls}
           />
-          {/* <div className="flex gap-2 font-[500] items-center justify-center absolute bottom-2 right-2 bg-white px-2 py-1 text-base 2xl:text-xl rounded shadow">
-          <Image
-            alt="logo"
-            width={30}
-            priority
-            quality={100}
-            height={30}
-            className="h-6 w-7 2xl:w-7 2xl:h-7"
-            src="/sold.png"
-          />
-          <p>{statuses[0] || "Unknown"}</p>
-        </div> */}
         </div>
       )}
       {/* second div layout  */}
       <div
-        className={`bg-gray-100 mt-2 lg:mt-5 ${
+        className={`bg-gray-100 mt-2  w-full lg:mt-5 ${
           !showListings ? "mt-[2rem] lg:mt-0" : ""
-        } lg:p-4 rounded-lg`}
+        } lg:p-0  lg:py-4 rounded-lg`}
       >
-        <div className="flex flex-row mx-[1.2rem] lg:p-0 justify-between items-start md:items-center">
+        <div className="flex flex-row  lg:p-0 justify-between items-start md:items-center">
           {/* Profile Image */}
-          <div className="flex mt-4 lg:-mt-3 gap-3">
+          <div className="flex mt-4  items-center justify-center lg:-mt-3 gap-3">
             <div className="w-[4rem] h-[4rem] lg:w-[6rem] lg:h-[6rem] relative">
               <Image
                 src={agentInfo?.pictureUrl || "/Avatar.svg"} // Replace with actual image path
@@ -271,7 +265,7 @@ const page = ({ params }) => {
             </div>
 
             {/* Text Section */}
-            <div className="flex flex-col lg:mt-3">
+            <div className="flex flex-col items-start  lg:mt-3">
               <h2 className="text-xl lg:text-[1.7rem] font-bricolage font-semibold">
                 {agentInfo?.fullname}
               </h2>
@@ -348,7 +342,7 @@ const page = ({ params }) => {
         </div>
       </div>
       {/* second layout */}
-      <div className=" w-full px-[1.5rem] lg:px-4 py-7">
+      <div className=" w-full px-[1.5rem] lg:px-0 py-7">
         <h1 className=" text-xl lg:text-[2rem] font-semibold ">
           {" "}
           About {agentInfo?.fullname}
@@ -359,12 +353,12 @@ const page = ({ params }) => {
       </div>
       {/* description */}
       {/* map */}
-      <div className="bg-gray-100 lg:p-6 rounded-lg mb-3">
+      <div className="bg-gray-100  w-full lg:p-0 rounded-lg mb-3">
         <h1 className="text-xl lg:text-[2rem] lg:py-2 ml-[1.7rem] lg:ml-0 font-semibold ">
           {" "}
           {agentInfo?.fullname} Listings & Deals
         </h1>
-        <div className="border-b  px-[1.75rem] lg:px-0  my-4 lg:my-0  border-gray ">
+        <div className="border-b  mt-4  px-[1.75rem] lg:px-0  my-4 lg:my-3  border-gray ">
           <div className="flex space-x-6">
             {tabs.map((tab) => (
               <button
@@ -389,7 +383,7 @@ const page = ({ params }) => {
         </div>
         {/* Map Container */}
         <div className=" mt-3 relative rounded-lg  flex items-center overflow-hidden">
-          <div className="relative h-[500px] w-full">
+          <div className="relative  w-full">
             {coordinates.length === 0 && (
               <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-70 z-10">
                 <div className="text-center text-gray-400 py-4 text-lg">
@@ -411,11 +405,11 @@ const page = ({ params }) => {
         {/* Distance Information */}
       </div>
       <div className="w-full lg:mt-4  px-7 lg:px-0 py-6">
-        <h1 className="text-xl lg:text-[2rem] lg:ml-5   mb-7  font-semibold ">
+        <h1 className="text-xl lg:text-[2rem]   mb-7  font-semibold ">
           {" "}
           {agentInfo?.fullname} Active Listings
         </h1>
-        <div className="grid 2xl:mr-[4rem] px-1 lg:px-0 lg:-ml-5 grid-cols-1 md:grid-cols-3 gap-1 gap-y-[2rem] place-items-center">
+        <div className="grid  px-1 lg:px-0 grid-cols-1 md:grid-cols-3 gap-1 gap-y-[2rem] place-items-center">
           {/* Display only 3 listings initially, or all listings if showAll is true */}
           {(showAll ? ActiveListings : ActiveListings.slice(0, 3)).map(
             (items, index) => (
@@ -435,12 +429,12 @@ const page = ({ params }) => {
 
           {/* Show "See All" link if we haven't displayed all listings yet */}
           {!showAll && ActiveListings.length > 3 && (
-            <div className="w-full md:col-span-2 flex ml-[5rem] -mt-[2rem] justify-start">
+            <div className="w-full md:col-span-2 flex ml-[5rem] -mt-[2rem] justify-start lg:ml-0">
               <button
                 onClick={handleSeeAllClick}
                 className="text-[#09858D] mt-5 text-2xl font-medium"
               >
-                See all listings
+                See all active listings
               </button>
             </div>
           )}
