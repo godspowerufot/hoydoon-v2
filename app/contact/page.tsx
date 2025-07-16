@@ -132,7 +132,7 @@ function OfficeLocator() {
                     />
                   ) : (
                     <Image
-                      src="/chevrondown.svg"
+                      src="/chevron-down.svg"
                       alt="icon"
                       width={40}
                       height={40}

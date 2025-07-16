@@ -50,6 +50,37 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   });
   const modalRef = useRef(null);
   const bedBathRef = useRef(null);
+  const priceDropdownRef = useRef(null);
+  const homeTypeDropdownRef = useRef(null);
+
+  const priceOptions = {
+    Buy: [
+      { label: "Any", value: "" },
+      { label: "$0k - $30k", value: "0-30000" },
+      { label: "$30k - $60k", value: "30000-60000" },
+      { label: "$60k - $100k", value: "60000-100000" },
+      { label: "$100k - Above", value: "100000-10000000" },
+    ],
+    Rent: [
+      { label: "Any", value: "" },
+      { label: "$50 - $200", value: "0-200" },
+      { label: "$200 - $500", value: "200-500" },
+      { label: "$500 - $800", value: "500-800" },
+      { label: "$800 - $1000", value: "800-1000" },
+    ],
+    Land: [
+      { label: "Any", value: "" },
+      { label: "$0k - $30k", value: "0-30000" },
+      { label: "$30k - $60k", value: "30000-60000" },
+      { label: "$60k - $100k", value: "60000-100000" },
+      { label: "$100k - Above", value: "100000-10000000" },
+    ],
+  };
+
+  const typeOptions = ["Buy", "Rent", "Land"];
+  const selectedType =
+    typeOptions.find((type) => filters["home-type"] === type.toLowerCase()) ||
+    "Rent";
 
   const handleFilterChange = (filterName, value) => {
     setFilters((prevFilters) => ({
@@ -83,8 +114,22 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       }
     }
 
+    // Always map listingType for API
+    const typeToApiValue = {
+      buy: "sale",
+      rent: "rent",
+      land: "land",
+    };
+    if (filters["home-type"]) {
+      newParams.set(
+        "listingType",
+        typeToApiValue[filters["home-type"]] || filters["home-type"]
+      );
+    }
+
     // Handle Other Filters
     Object.entries(filters).forEach(([key, value]) => {
+      if (key === "home-type") return; // already handled above
       if (value !== "") {
         const paramKey = filterMapping[key] || key;
         newParams.set(paramKey, value);
@@ -149,6 +194,40 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showAllFiltersDropdown]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        priceDropdownRef.current &&
+        !priceDropdownRef.current.contains(event.target)
+      ) {
+        setShowPriceDropdown(false);
+      }
+    }
+    if (showPriceDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showPriceDropdown]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        homeTypeDropdownRef.current &&
+        !homeTypeDropdownRef.current.contains(event.target)
+      ) {
+        setShowHomeTypeDropdown(false);
+      }
+    }
+    if (showHomeTypeDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showHomeTypeDropdown]);
 
   return (
     <div className="lg:pt-[2.3rem]    lg:pl-[2rem] lg:pr-[4.5rem] 2xl:gap-[20rem] flex-col lg:flex-row lg:flex justify-between w-full">
@@ -215,20 +294,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               <div className="mb-4">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
                 <ul className="flex flex-col gap-1.5">
-                  {(filters["home-type"] === "rent"
-                    ? [
-                        { label: "$50–$200", value: "0-200" },
-                        { label: "$200–$500", value: "200-500" },
-                        { label: "$500–$800", value: "500-800" },
-                        { label: "$800–$1000", value: "800-1000" },
-                      ]
-                    : [
-                        { label: "$0k–$30k", value: "0-30000" },
-                        { label: "$30k–$60k", value: "30000-60000" },
-                        { label: "$60k–$100k", value: "60000-100000" },
-                        { label: "$100k+", value: "100000-10000000" },
-                      ]
-                  ).map((option) => (
+                  {priceOptions[selectedType].map((option) => (
                     <li
                       key={option.value}
                       className="flex justify-between items-center border-b border-gray-300 pb-1.5"
@@ -384,11 +450,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                     className="w-3 h-2 ml-2 pointer-events-none"
                   />
                 </button>
-
                 {showBedBathDropdown && (
                   <>
                     <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>
-                    <div className="absolute z-[11111111]  lg:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 lg:mt-0 lg:w-64">
+                    <div
+                      className="absolute z-[11111111]  lg:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 lg:mt-0 lg:w-64"
+                      ref={bedBathRef}
+                    >
                       <div className="flex justify-between mb-2">
                         <span className="font-medium text-sm">Beds</span>
                         <button
@@ -473,7 +541,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                 ]
               : [
                   { label: "Rent", value: "rent" },
-                  { label: "Sale", value: "sale" },
+                  { label: "Buy", value: "buy" },
                   { label: "Land", value: "land" },
                 ];
 
@@ -504,34 +572,71 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                   className="w-3 h-2 ml-2 pointer-events-none"
                 />
               </button>
-
               {dropdownState && (
                 <>
                   <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>{" "}
-                  <div className="absolute z-[111111] left-[23%] top-[14%] lg:top-[110%] lg:left-0 bg-white  border border-[#8F8F8F] rounded-md px-2  mt-2 lg:mt-0 lg:w-[140px]">
+                  <div
+                    className="absolute z-[111111] left-[23%] top-[14%] lg:top-[110%] lg:left-0 bg-white  border border-[#8F8F8F] rounded-md px-2  mt-2 lg:mt-0 lg:w-[200px]"
+                    ref={
+                      option === "Price"
+                        ? priceDropdownRef
+                        : homeTypeDropdownRef
+                    }
+                  >
                     <div className="flex justify-between mb-2"></div>
                     <ul className="flex flex-col gap-2">
-                      {options.map((opt) => (
-                        <label
-                          key={opt.value}
-                          className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded `}
-                        >
-                          <input
-                            type="radio"
-                            name={paramKey}
-                            value={opt.value}
-                            checked={selectedValue === opt.value}
-                            onChange={() => {
-                              handleFilterChange(paramKey, opt.value);
-                              setDropdownState(false);
-                            }}
-                            className={`w-4 h-4 accent-primary`}
-                          />
-                          <span className="text-sm text-[#8F8F8F]">
-                            {opt.label}
-                          </span>
-                        </label>
-                      ))}
+                      {option === "Price" &&
+                        priceOptions[selectedType].map((opt) => (
+                          <label
+                            key={opt.value}
+                            className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded ${
+                              selectedValue === opt.value
+                                ? "bg-primary text-white"
+                                : ""
+                            } group`}
+                          >
+                            <input
+                              type="radio"
+                              name={paramKey}
+                              value={opt.value}
+                              checked={selectedValue === opt.value}
+                              onChange={() => {
+                                handleFilterChange(paramKey, opt.value);
+                                setDropdownState(false);
+                              }}
+                              className={`w-4 h-4 accent-primary group-hover:accent-primary`}
+                            />
+                            <span className="text-sm">{opt.label}</span>
+                          </label>
+                        ))}
+                      {option === "Home type" &&
+                        [
+                          { label: "Rent", value: "rent" },
+                          { label: "Buy", value: "buy" },
+                          { label: "Land", value: "land" },
+                        ].map((opt) => (
+                          <label
+                            key={opt.value}
+                            className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded ${
+                              selectedValue === opt.value
+                                ? "bg-primary text-white"
+                                : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name={paramKey}
+                              value={opt.value}
+                              checked={selectedValue === opt.value}
+                              onChange={() => {
+                                handleFilterChange(paramKey, opt.value);
+                                setDropdownState(false);
+                              }}
+                              className={`w-4 h-4 accent-primary`}
+                            />
+                            <span className="text-sm">{opt.label}</span>
+                          </label>
+                        ))}
                     </ul>
                   </div>
                 </>
@@ -712,7 +817,7 @@ const page = () => {
                   bedrooms={items?.item?.bedrooms}
                   description={
                     items?.item?.description ||
-                    "No description available for this property."
+                    "No description available for   ... click outside,click on any should  this property."
                   }
                   _id={items?._id}
                   title={items?.item?.title || "Untitled Property"}

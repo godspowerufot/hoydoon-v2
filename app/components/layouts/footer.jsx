@@ -141,7 +141,7 @@ const Appfooter = () => {
                   <ul className="mt-1 lg:mt-[4px] space-y-2   text-[#F4F4F4] text-[12px] lg:text-sm">
                     <li>
                       <a href="#" className="transition hover:opacity-75">
-                        123, Yorkshire Lane, New York, USA
+                        NO 5, ELSHADAI STREET,ERUNWEN
                       </a>
                     </li>
                     <li>
