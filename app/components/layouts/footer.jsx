@@ -79,18 +79,18 @@ const Appfooter = () => {
                         Home
                       </a>
                     </li>
-                    <li>
+                    {/* <li>
                       <a href="" className="transition hover:opacity-75">
                         Services
                       </a>
-                    </li>
+                    </li> */}
+                    {/* <li>
+                        <a href="" className="transition hover:opacity-75">
+                          Project
+                        </a>
+                      </li> */}
                     <li>
-                      <a href="" className="transition hover:opacity-75">
-                        Project
-                      </a>
-                    </li>
-                    <li>
-                      <a href="" className="transition hover:opacity-75">
+                      <a href="/about" className="transition hover:opacity-75">
                         About us
                       </a>
                     </li>

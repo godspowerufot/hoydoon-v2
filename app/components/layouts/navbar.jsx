@@ -49,6 +49,7 @@ export default function Navbar() {
       "/agent/all-agent",
       "/agent/agent-description",
       "/sell/sell-home",
+      "/about",
     ].some((route) => pathname.includes(route)) ||
     /^\/agent\/[^/]+$/.test(pathname) ||
     /^\/rent\/[^/]+$/.test(pathname); // Matches /agent/{id}
