@@ -131,7 +131,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="lg:w-[24rem]  lg:h-[32rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
+        <div className="lg:w-[24rem] w-full lg:h-[32rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image

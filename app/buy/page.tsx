@@ -192,54 +192,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="w-screen  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
 
       {/* afforable component */}
-      <section className="lg:mt-[4em] p-2 lg:p-0 w-full  lg:max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
-              Afforable Houses for Sale
-            </h1>
-            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Discover a home where every detail enhances your lifestyle-crafted
-              to fit your taste and needs.
-            </p>
-          </div>
-          <div className="flex flex-col mt-[0.5em] lg:mt-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
-            {(isMobile
-              ? (affordableListings?.listings || []).slice(0, 1)
-              : affordableListings?.listings || []
-            ).map((items: Property, index: number) => (
-              <HoverCard
-                _id={items?._id}
-                key={index}
-                imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                altText={
-                  items?.imageUrls?.[0]?.altText ||
-                  "Property image showcasing a beautiful home"
-                }
-                price={items?.item?.price || "Price not available"}
-                area={items?.item?.squareFeet || ""}
-                bathrooms={items?.item?.bathrooms}
-                bedrooms={items?.item?.bedrooms}
-                description={
-                  items?.item?.description ||
-                  "No description available for this property."
-                }
-                title={items?.item?.title || "Untitled Property"}
-                rent={items?.item?.rent || "Rent details not provided"}
-              />
-            ))}
-            <Link
-              href="/"
-              className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
-            >
-              see all Afforable houses for sale
-            </Link>
-          </div>
-        </div>
-      </section>
+
       <div className="w-screen  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
 
       <section className="lg:mt-[4em] p-2 lg:p-0 w-full max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">

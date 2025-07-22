@@ -224,7 +224,7 @@ const page = ({ params }) => {
   // State to control visibility of the listings section
 
   return (
-    <div className="lg:max-w-[1200px] flex pt-8 flex-col items-center justify-center ">
+    <div className="lg:max-w-[1200px] flex pt-2 flex-col items-center justify-center ">
       {" "}
       <Breadcrumb
         handleToggleListings={handleToggleListings}
@@ -233,7 +233,7 @@ const page = ({ params }) => {
         agentDetails={agentInfo?.region}
       />
       {showListings && (
-        <div className="grid  lg:-mt-1  gap-2 p-3 lg:p-0 ">
+        <div className="grid  w-full lg:-mt-1  gap-2 p-3 lg:p-0 ">
           <DynamicImageGrid
             statuses={statuses}
             coordinates={coordinates}
