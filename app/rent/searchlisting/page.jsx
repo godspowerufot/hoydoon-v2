@@ -430,7 +430,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
           </>
         )}
 
-        {["Price", "Home type", "Bed/Baths"].map((option) => {
+        {["Price", "Type", "Bed/Baths"].map((option) => {
           const paramKey = option.toLowerCase().replace(/\s+/g, "-");
           const selectedValue = searchParams.get(paramKey) || "";
 
@@ -609,7 +609,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                             <span className="text-sm">{opt.label}</span>
                           </label>
                         ))}
-                      {option === "Home type" &&
+                      {option === "Type" &&
                         [
                           { label: "Rent", value: "rent" },
                           { label: "Buy", value: "buy" },

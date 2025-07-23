@@ -36,7 +36,7 @@ export default function Page() {
   }
   return (
     <>
-      <header className="relative lg:h-[85vh] w-screen">
+      <header className="relative h-[25rem] lg:h-[85vh] w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-cover bg-center z-[-1]"

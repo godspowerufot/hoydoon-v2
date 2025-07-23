@@ -112,7 +112,7 @@ export default function Home() {
   }
   return (
     <>
-      <header className="relative     p-2 lg:h-[85vh] w-screen overflow-hidden">
+      <header className="relative  h-[25rem]     p-2 lg:h-[85vh] w-screen overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
@@ -159,7 +159,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] lg:mt-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="flex flex-wrap mt-[0.5em] lg:mt-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
             {displayListings
               .slice(0, 3)
               .map((items: Property, index: number) => (
