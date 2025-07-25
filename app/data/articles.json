@@ -373,5 +373,224 @@
         ]
       }
     ]
+  },
+  {
+    "id": "3",
+    "slug": "listing-agent-display",
+    "title": "Do I Need a Real Estate Agent to Buy a Home ",
+    "layoutType": "listing",
+    "heroImage": "/details/art3.png",
+    "introSection": [
+      {
+        "heading": "Do I Need a Real Estate Agent to Buy a Home?",
+        "paragraph": [
+          "Buying a home is one of the biggest financial decisions most people will make. It's not just a transaction—it’s a complex process that involves legal paperwork, market analysis, negotiations, inspections, and plenty of emotions. So, it’s no surprise that one of the most common questions homebuyers ask is: Do I really need a real estate agent to buy a home?",
+          "The short answer is no—you’re not legally required to use a real estate agent. However, whether or not you should use one is a more nuanced question that depends on your experience, time, confidence, and comfort with the buying process. Let’s explore the role of a real estate agent, the pros and cons of hiring one, and when it might make sense to go solo."
+        ],
+        "images": "/details/art3.png"
+      }
+    ],
+
+    "sections": [
+      {
+        "heading": "What Does a Real Estate Agent Actually Do?",
+        "paragraphs": [
+          "A buyer’s agent represents your interests throughout the home-buying process, taking on far more than just showing properties. They provide insight into current market conditions, helping you understand pricing trends and determine fair value for homes. With access to the Multiple Listing Service (MLS), they can quickly identify listings that fit your needs and preferences. Once you've selected homes to see, they handle the coordination with sellers and listing agents to schedule convenient tours.",
+          "When it’s time to make an offer, the agent works closely with you to develop a strong proposal, negotiate effectively, and manage any counteroffers. They take care of the contract process, ensuring all documents are accurate, complete, and submitted within required deadlines. They also guide you through inspections and appraisals, helping coordinate appointments, explain results, and connect you with reliable professionals. If any unexpected issues arise—such as title complications, appraisal discrepancies, or delays—they step in to help resolve them quickly and keep your purchase on track."
+        ],
+        "image": "/details/art3s1.png"
+      },
+      {
+        "heading": "Why You Might Want a Real Estate Agent ",
+        "paragraphs": [
+          "Even though it's entirely possible to buy a home without an agent, most buyers still prefer to work with one—and for good reason. Navigating the home-buying process can be overwhelming without someone experienced to guide you, especially when it comes to understanding market conditions, evaluating properties, and making informed decisions. Agents also have access to the Multiple Listing Service (MLS), which gives them a broader range of homes to show you, including ones that may not yet be widely advertised.",
+          "When it’s time to make an offer, an agent brings valuable negotiation skills to the table, helping you craft offers that are competitive and well-positioned to succeed. They also manage the paperwork, making sure all legal and contractual requirements are met on time, which reduces the risk of costly mistakes. And perhaps one of the biggest advantages is that, in most cases, the buyer doesn’t pay the agent’s commission—the seller does—so you benefit from expert support without incurring extra costs."
+        ]
+      },
+      {
+        "heading": "When It Might Make Sense to Buy Without an Agent ",
+        "paragraphs": [
+          "There are situations where buying a home without an agent can be a reasonable choice. This is often the case for experienced buyers who already understand the legal and market dynamics involved. It can also work when the purchase is happening between people who know each other, such as family members or close friends, or when a real estate attorney is involved to help manage contracts and ensure due diligence is properly handled. Some buyers feel comfortable handling negotiations themselves, especially when purchasing a property listed as For Sale By Owner (FSBO). However, going this route requires extra caution. You'll need to research comparable home prices, understand the details of contracts, and possibly bring in professionals like a lawyer or inspector to cover areas that an agent would typically manage."
+        ],
+        "image": "/details/art3s2.png"
+      },
+      {
+        "heading": "Risks of Going Solo ",
+        "paragraphs": [
+          "While it’s entirely possible to buy a home without an agent, doing so can expose you to several risks that may not be immediately obvious. Without expert insight into the local market, there’s a greater chance of overpaying for a property simply because it’s difficult to accurately assess its true value. You might also miss important issues during inspections—things a trained eye would typically catch or flag for deeper evaluation. Navigating the legal aspects of a real estate transaction without professional guidance can lead to mistakes in contracts or overlooked contingencies, which could create complications down the line. Negotiating directly with a seller or their agent can also put you at a disadvantage if you’re not experienced in structuring competitive offers. And beyond the technical aspects, managing the entire process on your own—from research and paperwork to timelines and communication—can quickly become stressful and overwhelming."
+        ]
+      },
+      {
+        "heading": "Final Thoughts ",
+        "paragraphs": [
+          "If you’re buying a home for the first time or don’t have much experience with the real estate process, working with a knowledgeable agent can make a big difference. An agent not only understands how everything works, but also helps you avoid common mistakes, handles complex paperwork, and looks out for your best interests every step of the way. Their guidance can ease the pressure and make the entire experience less overwhelming.",
+          "However, if you’re already familiar with the process, confident in your ability to handle negotiations, and have access to reliable tools and information, buying a home without an agent is possible. It just means you’ll need to take on more responsibility—spending time researching the market, understanding legal documents, and possibly consulting a lawyer or other professionals to ensure nothing important is missed.",
+          "In the end, the choice really depends on how much support you feel you need, how much time you can commit, and how comfortable you are managing the details of what is likely to be one of the biggest financial decisions of your life."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "slug": "listing-agent-display",
+    "title": "How Do I Search for Homes in a Specific Neighborhood on Hoydoon? ",
+    "layoutType": "listing",
+    "heroImage": "/details/art4.png",
+    "introSection": [
+      {
+        "heading": "What Do I Do If a Listing Has Incorrect Information? ",
+        "paragraph": [
+          "If you find a listing on Hoydoon that includes incorrect or outdated information—such as the wrong price, mismatched photos, or inaccurate property details—it’s easy to report it. Just go to the listing page, either on our website or in the Hoydoon mobile app, and look for the “Report Listing” option. Tap or click it, choose the issue you noticed, and add a short comment if needed. Our team will review the report and take action to correct or remove the listing if necessary. This helps us keep Hoydoon accurate and useful for everyone."
+        ]
+      }
+    ],
+
+    "sections": [
+      {
+        "heading": "Why Should I Report Incorrect Information? ",
+        "listItems": [
+          {
+            "title": "On the Hoydoon Website:  "
+          },
+          {
+            "title": "Go to the Listing: ",
+            "description": "Open the listing that has the wrong information. "
+          },
+          {
+            "title": "Scroll Down to Help Center: ",
+            "description": "At the bottom of the page, click on Help Center. "
+          },
+          {
+            "title": "Submit a Request: ",
+            "description": "Click Submit a request at the top right of the Help Center page. "
+          },
+          {
+            "title": "Select the Most Relevant Option: ",
+            "description": "In the dropdown, select the option that fits your issue (for example, “Assistance” or “General Inquiry”).  "
+          },
+          {
+            "title": "Describe the Problem: ",
+            "description": "Clearly explain what is incorrect (e.g., “The location is wrong,” “Photos don’t match the description,” etc.). Include a link to the listing if possible. "
+          },
+          {
+            "title": "Submit: ",
+            "description": " Click Submit to send your report to our support team. We’ll review and get back to you, usually within 24–48 hours. ."
+          }
+        ],
+        "image": "/details/art4s1.png"
+      },
+      {
+        "heading": "On the Mobile App:  ",
+        "listItems": [
+          {
+            "title": "Go to Your Profile:  ",
+            "description": "Tap Profile at the bottom right of the app. "
+          },
+          {
+            "title": "Find Support in Resources: ",
+            "description": "Under Resources, tap Support. "
+          },
+          {
+            "title": "Submit a Request or Contact Support: ",
+            "description": " Use the options provided to send a message about incorrect information. Be sure to include the listing details and describe exactly what is wrong. "
+          },
+          {
+            "title": "Follow Up If Needed: ",
+            "description": "Our team will review your report and reach out if more info is needed.  "
+          }
+        ]
+      },
+
+      {
+        "heading": "For Fast Support: Use Live Chat  ",
+        "paragraphs": [
+          "To get in touch with our support team on the website, simply tap the chat bubble located at the bottom right corner of your screen. This will open a live chat window where you can start a conversation and get assistance in real time. If you're using the Hoydoon mobile app, head to the Support section in the menu. There, you'll find easy-to-follow prompts that will guide you to the help you need, whether it's through automated suggestions or connecting you with a team member for more specific issues"
+        ]
+      },
+      {
+        "heading": "What Happens Next?   ",
+        "paragraphs": [
+          "To get in touch with our support team on the website, simply tap the chat bubble located at the bottom right corner of your screen. This will open a live chat window where you can start a conversation and get assistance in real time. If you're using the Hoydoon mobile app, head to the Support section in the menu. There, you'll find easy-to-follow prompts that will guide you to the help you need, whether it's through automated suggestions or connecting you with a team member for more specific issues."
+        ]
+      },
+      {
+        "heading": "What Happens Next?  ",
+        "paragraphs": [
+          "Once you submit a report, our team carefully reviews the details to understand the issue. In some cases, we may reach out to the listing owner to verify the information or request clarification. Based on our findings, the listing will be updated with the correct details or removed entirely if it doesn't meet our guidelines. You can typically expect to hear back from us within 24 to 48 hours, as we work to resolve reports as quickly and efficiently as possible."
+        ]
+      },
+      {
+        "heading": "Need More Help? ",
+        "paragraphs": [
+          "If your issue hasn’t been fully resolved, feel free to reach out to us again through the Support section or Live Chat. Our team is always available to assist you and make sure your concerns are addressed. Your feedback plays an important role in helping us maintain a platform that’s accurate, reliable, and helpful for everyone using Hoydoon. We truly appreciate your support!"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "slug": "listing-agent-display",
+    "title": "How Do I Get Alerts for New Listings on Hoydoon?",
+    "layoutType": "listing",
+    "heroImage": "/details/art5.png",
+    "introSection": [
+      {
+        "heading": "How Do I Get Alerts for New Listings on Hoydoon?",
+        "paragraph": [
+          "Want to be the first to know when new properties that match your criteria are listed? Hoydoon makes it easy to stay one step ahead with smart, location-based alerts—right from the mobile app. Whether you're searching for a forever home, your next investment, or just keeping an eye on the market, you can customize alerts based on your preferences—like price range, property type, and neighborhood. As soon as a matching property hits the market, you’ll get an instant notification, giving you the edge to act quickly and confidently. Stay informed, stay ahead—only with Hoydoon.Here how you can easily set up alerts for new listings using the Hoydoon app:"
+        ]
+      }
+    ],
+
+    "sections": [
+      {
+        "heading": "Why Use Alerts?",
+        "paragraphs": [
+          "Get instant updates the moment new listings hit the market in your preferred area, so you’re always in the loop without having to constantly refresh or search. Hoydoon keeps you organized by sending listings that match your criteria directly to your phone, eliminating the need for daily manual checks. And when the right opportunity shows up, you’ll be ready to act fast—saving time and increasing your chances of securing the perfect home or investment before someone else does."
+        ],
+        "listItems": [
+          {
+            "title": "Open the Hoydoon App & Log In:",
+            "description": " Download and open the Hoydoon app on your phone, then log into your account to access personalized features and alerts. If you don’t have an account yet, you can quickly create one."
+          },
+          {
+            "title": "Search for Your Desired Location & Criteria",
+            "description": "Tap the Discover tab at the bottom of the app, enter your preferred location, and use filters like Buy, Rent, and property type to refine your search."
+          },
+          {
+            "title": "Look for “Get alerts for this location”",
+            "description": "Once your results appear, you’ll see a bar at the bottom of the screen labeled “Get alerts for this location” with a toggle switch (as shown in your screenshot)."
+          },
+          {
+            "title": "Enable Alerts",
+            "description": "Tap the toggle switch to enable alerts for your search. If prompted, allow notifications to receive updates on new listings.."
+          },
+          {
+            "title": "Receive Notifications Instantly",
+            "description": "When a new listing matches your criteria, you’ll get a push notification right on your phone—so you’re always in the loop. Just tap the notification to open the app and view the property instantly, without missing a beat."
+          }
+        ],
+        "image": "/details/art5s1.png"
+      },
+      {
+        "heading": "Tips for Using Alerts Effectively ",
+        "paragraphs": [
+          "If you’re exploring multiple areas, you can easily set up alerts for each one by repeating the search and notification setup process. This way, you won’t miss opportunities in any of your preferred locations. To make your alerts even more useful, fine-tune your search by adjusting filters such as price range, number of bedrooms, property type, and key features like parking or outdoor space. The more specific your filters, the more relevant your results will be. Also, make sure push notifications are enabled in your phone’s settings—this allows the Hoydoon app to instantly notify you the moment a matching property is listed, so you can stay ahead of the competition."
+        ]
+      },
+      {
+        "heading": "Managing Your Alerts",
+        "paragraphs": [
+          "To update or disable alerts for a specific location, simply go back to the search results within the Hoydoon app and switch off the alert toggle for that search. It’s quick and easy to make changes anytime your preferences shift. Additionally, if you want to control how and when you receive notifications, you can manage those settings directly from your phone’s app settings. There, you can customize things like sound, banner style, or completely turn off push notifications if needed. This gives you full control over how you stay informed."
+        ]
+      },
+      {
+        "heading": "Need More Help?  ",
+        "paragraphs": [
+          "If you run into any issues while setting up or receiving alerts, help is always within reach. Just go to the Support section under the Profile tab in the Hoydoon app, where you can find guidance or contact our team directly. You can also visit the Help Center on our website for more detailed assistance, FAQs, and live chat options.",
+          "With Hoydoon’s mobile alerts, your property search becomes faster, smarter, and more convenient. Stay informed in real time and never miss out on the right home or investment—give it a try and stay ahead of the market."
+        ]
+      }
+    ]
   }
 ]
