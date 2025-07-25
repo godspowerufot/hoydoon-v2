@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { properties } from "@/constants";
+import { articles } from "@/constants";
 import ArticleCard from "../components/common/articleLayout";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -30,33 +30,32 @@ function SupportCategories() {
 
 export default function Home() {
   const [formData, setFormData] = useState({
-        location: "",
-      
-      });
-        const router=useRouter()
-        interface FormData {
-          location: string;
-        }
+    location: "",
+  });
+  const router = useRouter();
+  interface FormData {
+    location: string;
+  }
 
-        interface ChangeEvent {
-          target: {
-            name: string;
-            value: string;
-          };
-        }
+  interface ChangeEvent {
+    target: {
+      name: string;
+      value: string;
+    };
+  }
 
-        const handleChange = (e: ChangeEvent) => {
-          const { name, value } = e.target;
-          setFormData((prev: FormData) => ({ ...prev, [name]: value }));
-        };
-        const handleSearch = () => {
-          const queryParams = new URLSearchParams({
-            ...(formData.location && { location: formData.location }),
-        }).toString();
-      
-          router.push(`/rent/searchlisting?${queryParams}`);
-        };
-  
+  const handleChange = (e: ChangeEvent) => {
+    const { name, value } = e.target;
+    setFormData((prev: FormData) => ({ ...prev, [name]: value }));
+  };
+  const handleSearch = () => {
+    const queryParams = new URLSearchParams({
+      ...(formData.location && { location: formData.location }),
+    }).toString();
+
+    router.push(`/rent/searchlisting?${queryParams}`);
+  };
+
   return (
     <>
       <header className=" relative h-[25vh] lg:h-[32em] items-center justify-center w-screen">
@@ -102,24 +101,24 @@ export default function Home() {
           </div>
 
           {/* Small Screen Search Bar */}
-         <div className="flex  lg:hidden justify-center items-center w-full px-1 py-1">
-          <div className="flex  items-center w-full bg-white rounded-full h-[2.4em] px-2 py-1">
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              placeholder="search"
-              className="flex-1 text-sm text-gray-700 outline-none bg-transparent placeholder:text-gray-400"
-            />
-            <button
-              onClick={handleSearch}
-              className="ml-2 bg-primary p-2 rounded-full flex items-center justify-center hover:bg-opacity-90"
-            >
-              <Image alt="Search" width={15} height={15} src="/search.png" />
-            </button>
+          <div className="flex  lg:hidden justify-center items-center w-full px-1 py-1">
+            <div className="flex  items-center w-full bg-white rounded-full h-[2.4em] px-2 py-1">
+              <input
+                type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                placeholder="search"
+                className="flex-1 text-sm text-gray-700 outline-none bg-transparent placeholder:text-gray-400"
+              />
+              <button
+                onClick={handleSearch}
+                className="ml-2 bg-primary p-2 rounded-full flex items-center justify-center hover:bg-opacity-90"
+              >
+                <Image alt="Search" width={15} height={15} src="/search.png" />
+              </button>
+            </div>
           </div>
-        </div>
         </div>
       </header>
 
@@ -128,11 +127,16 @@ export default function Home() {
       {/* explore */}
       <section className="  2xl:-mb-[8rem]  flex-col mt-[2rem]   lg:mt-[3em] w-full  font-bricolage lg:flex justify-center   gap-4 2xl:gap-[1.5rem] flex-1 items-center">
         <div className=" p-2 grid  grid-row  grid-cols-1 md:grid-cols-3 gap-7 place-items-center gap-y-6">
-          {properties.map((property, index) => (
+          {articles.map((article, index) => (
             <ArticleCard
               key={index}
-              imageSrc={property.imageSrc}
-              altText={property.altText}
+              imageSrc={article.imageSrc}
+              altText={article.altText}
+              title={article.title}
+              articleType={article.articleType}
+              readTime={article.readTime}
+              date={article.date}
+              id={article.id} // Ensure to pass the id prop
             />
           ))}
         </div>
