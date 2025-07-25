@@ -76,15 +76,7 @@ export const articles = [
     readTime: "2 min read",
     date: "January 05, 2025",
   },
-  {
-    id: "23",
-    imageSrc: "/article-image/23.png",
-    altText: "What Are Common Mistakes to Avoid When Buying a Home?",
-    articleType: "General",
-    title: "What Are Common Mistakes to Avoid When Buying a Home?",
-    readTime: "3 min read",
-    date: "March 13, 2025",
-  },
+
   {
     id: "24",
     imageSrc: "/article-image/24.png",

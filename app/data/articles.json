@@ -246,5 +246,132 @@
         ]
       }
     ]
+  },
+  {
+    "id": "24",
+    "slug": "listing-agent-display",
+    "title": "How do I Set the Right Price for My Home",
+    "layoutType": "listing",
+    "heroImage": "/details/art24.png",
+
+    "sections": [
+      {
+        "heading": "How do I Set the Right Price for My Home",
+        "paragraph": "Setting the right price for your home is a critical step in attracting buyers and ensuring a smooth and successful sale. Pricing too high may discourage potential buyers, while pricing too low could mean leaving money on the table. To find the right balance, consider these key factors:",
+        "listItems": [
+          {
+            "title": "Evaluate Market Conditions:  ",
+            "description": "Understanding the real estate market is essential when setting a price. If it’s a seller’s market, where demand is high and inventory is low, you may have the flexibility to price your home at the higher end of the range. However, in a buyer’s market, where there are more homes available than buyers, you may need to be more competitive with pricing to attract interest. Monitoring trends in your local area will help you determine where your home stands in the current market."
+          },
+          {
+            "title": "Analyze Comparable Sales (\"Comps\"):",
+            "description": "  Looking at recently sold homes in your neighborhood, known as comparables (comps), can give you a clear idea of what buyers are willing to pay for properties similar to yours. Consider factors such as location, square footage, condition, number of bedrooms and bathrooms, and any unique features. Homes that have recently sold provide the best pricing reference, as market conditions can shift quickly."
+          },
+          {
+            "title": "Assess Your Home’s Condition: ",
+            "description": "The overall condition of your home plays a significant role in determining its price. A well-maintained home with modern updates can often command a higher price, whereas a property in need of repairs or upgrades may require pricing adjustments. Buyers tend to factor in the cost of necessary repairs, so if your home needs significant work, a lower asking price may help attract interest."
+          }
+        ],
+        "image": "/details/art24s1.png"
+      },
+
+      {
+        "listItems": [
+          {
+            "title": "Consider the Impact of Home Improvements: ",
+            "description": " Upgrades and renovations can increase your home’s value, but not all improvements offer the same return on investment. Kitchens, bathrooms, and energy-efficient enhancements tend to be the most appealing to buyers. If you've recently made substantial improvements, factor those into your pricing strategy, but be realistic about how much value they add compared to other homes in the area."
+          },
+          {
+            "title": " Use Online Valuation Tools as a Reference:",
+            "description": "  Online valuation tools, such as Zillow’s Zestimate or Redfin’s home value estimator, provide quick estimates based on public data and recent sales. While these tools offer a helpful starting point, they should not be relied upon exclusively, as they may not account for unique aspects of your property or recent local market trends. Consider using these estimates as a rough guide rather than a definitive valuation."
+          },
+          {
+            "title": "Seek Professional Guidance from a Real Estate Agent:",
+            "description": " A professional real estate agent can provide a Comparative Market Analysis (CMA), which offers an in-depth look at comparable home sales and market trends. Real estate agents have access to up-to-date market data and can offer pricing strategies that balance competitiveness with maximizing your return. Their expertise can help you determine a price that attracts buyers while ensuring you get the best possible deal."
+          }
+        ]
+      },
+      {
+        "heading": "Final Thoughts: The Importance of Setting the Right Price",
+        "paragraphs": [
+          "Pricing your home correctly is one of the most important factors in ensuring a smooth and successful sale. A well-priced home attracts serious buyers, reduces the time spent on the market, and increases the chances of receiving competitive offers. On the other hand, an overpriced home can discourage potential buyers, leading to extended listing times and possible price reductions later, which may make the property seem less desirable.",
+          "Finding the right price requires a balanced approach—one that considers both market trends and the unique characteristics of your home. By carefully analyzing local market conditions, studying comparable sales, evaluating your home’s condition, and factoring in any improvements, you can develop a pricing strategy that positions your home competitively.",
+          "It’s also important to remain flexible. The real estate market is dynamic, and if your home isn’t receiving interest after being listed, it may be necessary to adjust the price or marketing approach. Regularly reviewing feedback from showings and consulting with a real estate professional can help refine your strategy to achieve the best possible outcome.Ultimately, the right price is one that not only attracts buyers but also ensures you receive fair market value for your property. By taking a strategic and well-informed approach, you can increase your chances of a successful and timely sale while maximizing your return."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1",
+    "slug": "listing-agent-display",
+    "title": "How Do I Search for Homes in a Specific Neighborhood on Hoydoon? ",
+    "layoutType": "listing",
+    "heroImage": "/details/art255.png",
+    "introSection": [
+      {
+        "heading": "How Do I Search for Homes in a Specific Neighborhood on Hoydoon? ",
+        "paragraph": [
+          "Dreaming of a home in that one neighborhood you love? Hoydoon makes it easier than ever to focus your search on specific areas that matter most to you. Whether you're using the mobile app or website, our intuitive tools allow you to search by city, neighborhood name, or even draw a custom area on the map to narrow things down.",
+          "With advanced filters, you can refine your results by price, property type, number of bedrooms, features, and more—so you only see listings that truly fit your lifestyle, budget, and goals. You can also view nearby neighborhoods to compare options and stay open to hidden gems in surrounding areas.",
+          "Whether you're after a quiet street, a vibrant city block, or a neighborhood near top schools and amenities, Hoydoon helps you zero in on exactly what you're looking for. Start exploring now and take the first step toward finding a place that feels like home—right in the location you’ve been dreaming about."
+        ]
+      }
+    ],
+
+    "sections": [
+      {
+        "heading": "Searching in a Specific Neighborhood on the Hoydoon App ",
+        "listItems": [
+          {
+            "title": "   Open the Hoydoon App & Log In ",
+            "description": "  Open the Hoydoon app and sign in with your email and password to access your saved searches, alerts, and personalized features."
+          },
+          {
+            "title": "Tap on the Discover Tab",
+            "description": "Tap Discover from the bottom menu to open the search page and start exploring properties tailored to your preferences."
+          },
+          {
+            "title": "Enter the Neighborhood Name or Browse the Map ",
+            "description": " Enter the neighborhood name in the search bar or use the map to zoom in on your desired area and explore listings nearby."
+          },
+          {
+            "title": " Apply Filters to Refine Your Search ",
+            "description": " Apply filters like Buy or Rent, property type, and price to narrow your search. Combine them with a neighborhood to get the most relevant listings."
+          },
+          {
+            "title": "View Listings in Your Chosen Area ",
+            "description": "  All properties that match your search will appear on the map and in the results list below. You can scroll through the options and tap any listing to see full details, high-quality photos, and key features."
+          },
+          {
+            "title": " Set Alerts for That Neighborhood ",
+            "description": "  Turn on Get alerts for this location at the bottom of your search results to get notified when new listings appear in that area."
+          }
+        ],
+        "image": "/details/art25s1.png"
+      },
+
+      {
+        "heading": "Searching by Neighborhood on the Hoydoon Website ",
+        "paragraphs": [
+          "Start by visiting hoydoon.com and logging into your account, or feel free to explore as a guest. At the top of the homepage, use the search bar to enter the name of the neighborhood, city, or street you’re interested in. Once your search results appear, take advantage of the filter options to narrow things down—adjust criteria like property type, price range, number of bedrooms, and other features that matter to you.",
+          "For a more visual approach, you can switch to the map view, which lets you zoom in and explore specific neighborhoods and nearby areas. This helps you see exactly where each listing is located, giving you a clearer picture of the surroundings.",
+          "As you scroll through your tailored results, click on any property that catches your eye to view full details, high-quality photos, and additional information. Whether you're just browsing or ready to make a move, Hoydoon makes it easy to explore, compare, and discover the right home in the neighborhood that fits you best."
+        ]
+      },
+      {
+        "heading": "Tips for Successful Neighborhood Searches  ",
+        "paragraphs": [
+          "To get the most accurate results on Hoydoon, it helps to be as specific as possible when searching. Instead of entering just a city name, type the full neighborhood name—for example, Hodan, Mogadishu rather than simply Mogadishu to focus your search on exactly where you want to be. Both the mobile app and website feature an interactive map that lets you zoom in, pan around, and visually explore properties in your chosen area, giving you a clearer view of what's available.",
+          "If you frequently search in the same neighborhood, take advantage of the option to save your search or set up alerts, so you’re instantly notified when new listings appear. And if you’re open to other possibilities, the map view also makes it easy to check nearby neighborhoods, helping you expand your options without losing focus. With these tools, Hoydoon gives you full control over your property search—right down to the street."
+        ]
+      },
+      {
+        "heading": "Need Help?   ",
+        "paragraphs": [
+          "If you're having trouble locating a specific neighborhood or have questions about how to search effectively, Hoydoon Support is here to help. You can reach out directly through the Support option in the app by going to Profile > Resources > Support, or visit the Help Center on our website for guidance.",
+          "With neighborhood search on Hoydoon, finding your next home in the exact area you want has never been easier. Start exploring local listings today and discover just how simple and personalized your property search can be."
+        ]
+      }
+    ]
   }
 ]

@@ -20,7 +20,7 @@ export default async function ArticlePage({
     switch (layoutType) {
       case "general":
         return <GridLayout pageData={article} />;
-      case "help-center":
+      case "listing":
         return <HelpCenterLayout PageData={article} />;
       case "long-form":
         return <LongFormLayout pageData={article} />;

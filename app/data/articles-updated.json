@@ -1,43 +1,73 @@
 [
   {
-    "id": "19",
-    "slug": "real-estate-market-trends",
-    "title": "Real Estate Market Trends",
-    "layoutType": "general",
-    "heroImage": "/details/art19.png",
+    "id": "1",
+    "slug": "listing-agent-display",
+    "title": "How Do I Search for Homes in a Specific Neighborhood on Hoydoon? ",
+    "layoutType": "listing",
+    "heroImage": "/details/art255.png",
+    "introSection": [
+      {
+        "heading": "How Do I Search for Homes in a Specific Neighborhood on Hoydoon? ",
+        "paragraph": [
+          "Dreaming of a home in that one neighborhood you love? Hoydoon makes it easier than ever to focus your search on specific areas that matter most to you. Whether you're using the mobile app or website, our intuitive tools allow you to search by city, neighborhood name, or even draw a custom area on the map to narrow things down.",
+          "With advanced filters, you can refine your results by price, property type, number of bedrooms, features, and more—so you only see listings that truly fit your lifestyle, budget, and goals. You can also view nearby neighborhoods to compare options and stay open to hidden gems in surrounding areas.",
+          "Whether you're after a quiet street, a vibrant city block, or a neighborhood near top schools and amenities, Hoydoon helps you zero in on exactly what you're looking for. Start exploring now and take the first step toward finding a place that feels like home—right in the location you’ve been dreaming about."
+        ],
+        "images": "/details/art25s1.png"
+      }
+    ],
+
     "sections": [
       {
-        "heading": "Rental Scams Uncovered: How to Spot and Avoid Fraudulent Listings",
+        "heading": "Searching in a Specific Neighborhood on the Hoydoon App ",
+        "listItems": [
+          {
+            "title": "   Open the Hoydoon App & Log In ",
+            "description": "  Open the Hoydoon app and sign in with your email and password to access your saved searches, alerts, and personalized features."
+          },
+          {
+            "title": "Tap on the Discover Tab",
+            "description": "Tap Discover from the bottom menu to open the search page and start exploring properties tailored to your preferences."
+          },
+          {
+            "title": "Enter the Neighborhood Name or Browse the Map ",
+            "description": " Enter the neighborhood name in the search bar or use the map to zoom in on your desired area and explore listings nearby."
+          },
+          {
+            "title": " Apply Filters to Refine Your Search ",
+            "description": " Apply filters like Buy or Rent, property type, and price to narrow your search. Combine them with a neighborhood to get the most relevant listings."
+          },
+          {
+            "title": "View Listings in Your Chosen Area ",
+            "description": "  All properties that match your search will appear on the map and in the results list below. You can scroll through the options and tap any listing to see full details, high-quality photos, and key features."
+          },
+          {
+            "title": " Set Alerts for That Neighborhood ",
+            "description": "  Turn on Get alerts for this location at the bottom of your search results to get notified when new listings appear in that area."
+          }
+        ]
+      },
+
+      {
+        "heading": "Searching by Neighborhood on the Hoydoon Website ",
         "paragraphs": [
-          "In today's digital-first world, searching for a rental property has never been easier—or riskier. While online listings offer convenience and a wide range of options, they've also opened the door to a growing number of rental scams. These fraudulent schemes often appear polished and convincing, making it challenging for even the most cautious renters to detect them at first glance.",
-          "Whether you're moving to a new city or simply looking for a better place, it's important to stay informed and vigilant. Here's what you need to know about how rental scams work, common red flags to watch for, and how to protect yourself from falling victim."
+          "Start by visiting hoydoon.com and logging into your account, or feel free to explore as a guest. At the top of the homepage, use the search bar to enter the name of the neighborhood, city, or street you’re interested in. Once your search results appear, take advantage of the filter options to narrow things down—adjust criteria like property type, price range, number of bedrooms, and other features that matter to you.",
+          "For a more visual approach, you can switch to the map view, which lets you zoom in and explore specific neighborhoods and nearby areas. This helps you see exactly where each listing is located, giving you a clearer picture of the surroundings.",
+          "As you scroll through your tailored results, click on any property that catches your eye to view full details, high-quality photos, and additional information. Whether you're just browsing or ready to make a move, Hoydoon makes it easy to explore, compare, and discover the right home in the neighborhood that fits you best."
         ]
       },
       {
-        "heading": "How Rental Scams Typically Work",
+        "heading": "Tips for Successful Neighborhood Searches  ",
         "paragraphs": [
-          "Rental scams come in many forms, but they all share a common objective: to deceive individuals into handing over money or sensitive personal information in exchange for a rental property that either doesn't exist or isn't actually available. These scams exploit the urgency and emotional stress that often come with house hunting, especially in competitive rental markets.",
-          "Scammers usually pretend to be landlords, property managers, or real estate agents. They craft listings that appear genuine by using professional-looking photos, appealing descriptions, and especially low rental prices designed to catch attention quickly. These listings are often made to look time-sensitive, pressuring potential renters to act fast before someone else takes the deal.",
-          "In some cases, fraudsters hijack real listings from trusted rental sites. They copy the images and descriptions, then repost them elsewhere with their own contact details—making it seem like they're the ones managing the property. This tactic is particularly effective because the listing originally came from a credible source, giving it an air of legitimacy.",
-          "Other times, scammers create completely fake listings using stock images or photos stolen from unrelated websites, such as vacation rentals or real estate ads from other countries. The properties shown may not even exist in the advertised location.",
-          "A common tactic involves the scammer claiming to be out of town or abroad, making it impossible for them to show the property in person. They often offer excuses like being a missionary, a military officer on deployment, or someone who recently moved and is renting the property remotely. To make the deal seem secure, they might even mention that keys will be sent by courier after payment or that a third-party service will handle the transaction—none of which ever happens.",
-          "Their ultimate goal is to convince you to send a deposit or rental fee before you've had the chance to verify the legitimacy of the property or meet the person behind the listing. Once payment is made—usually through untraceable methods like wire transfers, prepaid gift cards, or cryptocurrency—the scammer disappears, leaving you without your money and without a place to live.",
-          "Being aware of these tactics is the first step in protecting yourself and others from rental fraud."
-        ],
-        "image": "/details/art19s1.png"
-      },
-      {
-        "heading": "Red Flags to Watch For",
-        "paragraphs": [
-          "As rental scams become increasingly sophisticated, recognizing the warning signs is more important than ever. One of the most telling indicators is an unusually low price—if a listing seems too good to be true compared to similar properties in the area, it probably is. Scammers often rely on attractive prices to draw in large numbers of inquiries quickly. Another red flag is being asked to send money upfront, whether for a deposit or application fee, before you've had a chance to see the property or sign a legitimate lease. In many cases, the so-called landlord will avoid showing the property, claiming they are out of town or overseas, and will ask for payment to hold the place. This is a common tactic used to avoid in-person verification. These scammers also tend to create a false sense of urgency, pressuring you to act quickly by saying the unit is in high demand or that other renters are ready to pay. Communication with them is often a giveaway too—look out for poorly written messages, vague responses, or someone who avoids phone or video calls. All of these signs point to a potentially fraudulent listing, and recognizing them early can save you from costly mistakes."
+          "To get the most accurate results on Hoydoon, it helps to be as specific as possible when searching. Instead of entering just a city name, type the full neighborhood name—for example, Hodan, Mogadishu rather than simply Mogadishu to focus your search on exactly where you want to be. Both the mobile app and website feature an interactive map that lets you zoom in, pan around, and visually explore properties in your chosen area, giving you a clearer view of what's available.",
+          "If you frequently search in the same neighborhood, take advantage of the option to save your search or set up alerts, so you’re instantly notified when new listings appear. And if you’re open to other possibilities, the map view also makes it easy to check nearby neighborhoods, helping you expand your options without losing focus. With these tools, Hoydoon gives you full control over your property search—right down to the street."
         ]
       },
       {
-        "heading": "What to Do If You've Been Scammed",
+        "heading": "Need Help?   ",
         "paragraphs": [
-          "If you believe you've been targeted by a rental scam—or worse, if you've already sent money—it's important to act quickly and take immediate steps to minimize the damage. Start by reporting the incident to the rental platform where the listing appeared, so they can investigate and remove the fraudulent post before others fall for it. It's also crucial to inform your local authorities, as well as national consumer protection agencies such as the Federal Trade Commission (FTC) or the equivalent in your country. These organizations can track patterns, launch investigations, and sometimes even assist in recovering lost funds.",
-          "If you made a payment, contact your bank or financial institution right away to report the fraud. Depending on how you sent the money and how quickly you act, they may be able to stop the transaction or help you recover the funds. Time is of the essence here, as delays can reduce the chances of reversing the payment.",
-          "Finally, don't keep your experience to yourself. Sharing what happened—whether on social media, in tenant forums, or with local community groups—can raise awareness and potentially save others from falling into the same trap. Your story might be the reason someone else avoids a costly mistake. Taking swift, proactive steps not only helps you protect your own interests but also strengthens the broader fight against rental fraud."
+          "If you're having trouble locating a specific neighborhood or have questions about how to search effectively, Hoydoon Support is here to help. You can reach out directly through the Support option in the app by going to Profile > Resources > Support, or visit the Help Center on our website for guidance.",
+          "With neighborhood search on Hoydoon, finding your next home in the exact area you want has never been easier. Start exploring local listings today and discover just how simple and personalized your property search can be."
         ]
       }
     ]
