@@ -106,12 +106,12 @@ const HelpCenterLayout = ({ PageData }) => {
           <h1 className="lg:text-[2rem] lg:max-w-[42rem] text-xl leading-9  font-semibold ">
             {intro?.heading || PageData?.title}
           </h1>
-          <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
-            {intro?.paragraph}
-          </p>
+          <p
+            className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4"
+            dangerouslySetInnerHTML={{ __html: intro?.paragraph }}
+          />
         </div>
       ))}
-      {/* Dynamic Sections */}
       {PageData?.sections?.map((section, index) => (
         <div key={index}>
           <div className=" mt-[3rem] p-2 lg:p-0">
@@ -122,26 +122,49 @@ const HelpCenterLayout = ({ PageData }) => {
               <p
                 key={pIndex}
                 className="text-gray font-light text-[12px] lg:text-xl font-bricolage w-full leading-5 mt-4"
-              >
-                {para}
-              </p>
+                dangerouslySetInnerHTML={{ __html: para }}
+              />
             ))}
 
             {section.listItems && (
-              <ul className="text-gray font-light text-[18px] ml-5 list-disc">
+              <ul
+                className={`text-gray font-light text-[18px] ml-5 ${
+                  !Array.isArray(section.listItems[0]?.description)
+                    ? "list-disc"
+                    : ""
+                }`}
+              >
                 {section.listItems.map((item, itemIndex) => (
                   <li key={itemIndex} className="mt-8">
-                    <strong className="font-medium">{item.title}</strong>{" "}
-                    {item.description}
+                    <div>
+                      <strong className="font-medium">{item.title}</strong>{" "}
+                    </div>
+                    {Array.isArray(item.description) ? (
+                      <ul className="mt-2 ml-4">
+                        {item.description.map((desc, descIndex) => (
+                          <li
+                            key={descIndex}
+                            className="mt-2 list-disc"
+                            dangerouslySetInnerHTML={{ __html: desc }}
+                          />
+                        ))}
+                      </ul>
+                    ) : (
+                      <span
+                        className="mt-2"
+                        dangerouslySetInnerHTML={{ __html: item.description }}
+                      />
+                    )}
                   </li>
                 ))}
               </ul>
             )}
 
             {section.paragraph2 && (
-              <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
-                {section.paragraph2}
-              </p>
+              <p
+                className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4"
+                dangerouslySetInnerHTML={{ __html: section.paragraph2 }}
+              />
             )}
           </div>
 
@@ -173,7 +196,20 @@ const HelpCenterLayout = ({ PageData }) => {
               <li key={faqIndex} className="mt-5">
                 <strong className="font-medium">Q: {faq.question}</strong>
                 <br />
-                <span className="font-normal">A: {faq.answer}</span>
+                <span className="font-normal">
+                  A:{" "}
+                  {Array.isArray(faq.answer) ? (
+                    <ul className="mt-2 ml-4 list-disc">
+                      {faq.answer.map((ans, ansIndex) => (
+                        <li key={ansIndex} className="mt-2">
+                          {ans}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    faq.answer
+                  )}
+                </span>
               </li>
             ))}
           </ul>

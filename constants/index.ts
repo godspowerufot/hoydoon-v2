@@ -152,10 +152,10 @@ export const articles = [
   },
   {
     id: "8",
-    imageSrc: "/article-image/8.png",
-    altText: "How to Invite Friends to Join Hoydoon.",
+    imageSrc: "/details/art8.jpg",
+    altText: "How to Set the Right Price for Your Rental or Sale Property ",
     articleType: "Listing Inquiries",
-    title: "How to Invite Friends to Join Hoydoon.",
+    title: "How to Set the Right Price for Your Rental or Sale Property ",
     readTime: "2 min read",
     date: "March 08, 2025",
   },

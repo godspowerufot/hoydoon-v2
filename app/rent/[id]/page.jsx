@@ -475,16 +475,11 @@ const page = () => {
             <span className="text-gray-400">|</span>
 
             <div className="flex items-center gap-1">
-              <span className="font-bold text-black">_</span>
+              <span className="font-bold text-black">{"-" || squareFeet}</span>
               <span>sq ft</span>
             </div>
 
             <span className="text-gray-400">|</span>
-
-            <div className="flex items-center gap-1">
-              <span className="font-bold text-black">_</span>
-              <span>Price per sq ft</span>
-            </div>
           </div>
         </div>
 
