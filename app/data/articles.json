@@ -598,7 +598,7 @@
     "slug": "listing-agent-display",
     "title": "How Do I Report a Problem with Listing?",
     "layoutType": "listing",
-    "heroImage": "/details/art6.png",
+    "heroImage": "/details/art6s1.png",
     "introSection": [
       {
         "heading": "How Do I Report a Problem with Listing?",
@@ -1743,6 +1743,64 @@
         "paragraphs": [
           "If you have any questions about your listings or run into issues while updating their status, Hoydoon Support is here to help. You can reach out directly through the app or via the website for quick assistance and guidance.",
           "Managing your property portfolio is easy with Hoydoon. By keeping your listing statuses accurate and up to date, you ensure a smooth experience for yourself and for those searching—helping you stay organized and ready to take advantage of every opportunity that comes your way."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "slug": "listing-agent-display",
+    "title": "Common Home-Buying Mistakes to Avoid ",
+    "layoutType": "listing",
+    "heroImage": "/details/art18.jpg",
+    "introSection": [
+      {
+        "heading": "Common Home-Buying Mistakes to Avoid  ",
+        "paragraph": [
+          "Buying a home is a significant life event that represents financial stability, personal achievement, and a long-term commitment. It is often an exciting journey filled with anticipation, but it also comes with a series of challenges that require careful planning and strategic decision-making. The process involves multiple steps, from budgeting and securing financing to evaluating properties and closing the deal. For first-time buyers, the excitement of homeownership can sometimes overshadow important considerations, leading to costly mistakes. Many underestimate the full financial burden of owning a home, focusing solely on the purchase price while overlooking hidden costs such as property taxes, maintenance, and insurance. Others rush into decisions based on emotions rather than facts, failing to conduct thorough research on the neighborhood or skipping essential steps like home inspections. These missteps can result in financial strain, unexpected repairs, or even buyer’s remorse. To navigate the home-buying process successfully, buyers should take a well-informed approach. Understanding the market, securing mortgage pre-approval, setting a realistic budget, and evaluating the long-term value of a property are essential steps. A well-planned purchase ensures not only financial stability but also long-term satisfaction with the home. By avoiding common pitfalls and making informed choices, buyers can turn their dream of homeownership into a rewarding and stress-free reality."
+        ],
+        "image": "/details/art18s1.jpg"
+      }
+    ],
+
+    "sections": [
+      {
+        "heading": "Financial Readiness  ",
+        "paragraphs": [
+          "Many homebuyers focus solely on the mortgage without considering the full financial commitment of homeownership. Expenses such as property taxes, homeowners insurance, maintenance, and HOA fees can significantly impact affordability. Additionally, skipping mortgage pre-approval can lead to disappointment if financing is not secured in time. Buyers should also account for closing costs, which typically range from 2% to 5% of the home's price, as well as moving expenses and potential immediate repairs. Taking a comprehensive approach to budgeting ensures financial stability and prevents unexpected financial strain after purchasing a home."
+        ]
+      },
+      {
+        "heading": "Smart Buying Decisions",
+        "paragraphs": [
+          "Many homebuyers focus solely on the mortgage without considering the full financial commitment of homeownership. Expenses such as property taxes, homeowners insurance, maintenance, and HOA fees can significantly impact affordability. Additionally, skipping mortgage pre-approval can lead to disappointment if financing is not secured in time. Buyers should also account for closing costs, which typically range from 2% to 5% of the home's price, as well as moving expenses and potential immediate repairs. Taking a comprehensive approach to budgeting ensures financial stability and prevents unexpected financial strain after purchasing a home."
+        ]
+      },
+
+      {
+        "heading": "Future Resale Value",
+        "paragraphs": [
+          "Even if a buyer plans to stay in a home for many years, considering its future resale value is crucial. Factors such as location, proximity to schools, neighborhood trends, and overall market conditions significantly impact a property's long-term worth. Homes with desirable layouts, modern amenities, and good curb appeal tend to hold or increase their value over time. Additionally, understanding the area's market trends and potential for growth can help buyers make smarter investments. Choosing a home with strong resale potential ensures that, if the need to sell arises, the property will attract buyers and offer a good return on investment."
+        ],
+        "image": "/details/art18s2.jpg"
+      },
+      {
+        "heading": "Emotional Decisions and Lack of Research  ",
+        "paragraphs": [
+          "Letting emotions take over during a home purchase can lead to expensive mistakes. Many buyers fall in love with a property without fully considering crucial factors such as affordability, long-term financial stability, and potential structural issues. In competitive markets, some even engage in bidding wars and end up overpaying, only to face regret later. Additionally, failing to research the neighborhood can impact both daily life and future resale value. Factors such as school quality, crime rates, nearby amenities, and upcoming developments can significantly influence a home's desirability. Buyers should take the time to visit the neighborhood at different hours, talk to residents, and assess whether the location aligns with their lifestyle and long-term goals. A well-researched decision helps avoid buyer’s remorse and ensures a sound investment.."
+        ]
+      },
+
+      {
+        "heading": "Skipping Inspection and Ignoring Resale Value",
+        "paragraphs": [
+          "Waiving a home inspection might seem like a way to speed up the buying process or make an offer more competitive, but it can lead to unexpected and costly repairs. Structural issues, outdated electrical systems, plumbing problems, or hidden safety concerns may not be immediately visible but can create major financial burdens down the line. A professional inspection provides a comprehensive evaluation of the home’s condition, allowing buyers to negotiate repairs or reconsider their purchase if significant problems arise. Additionally, considering resale value is essential, even if you plan to stay in the home for many years. Market trends, school districts, neighborhood appeal, and future development projects all affect a home's future worth. Choosing a property with broad appeal ensures a better return on investment and an easier resale process when the time comes.    "
+        ]
+      },
+      {
+        "heading": "Final Thoughts ",
+        "paragraphs": [
+          "The home-buying journey is exciting, but it requires careful planning to avoid costly mistakes. Taking the time to assess your financial situation, secure pre-approval, and thoroughly research both the property and the neighborhood can make all the difference. A well-informed decision ensures not only a smooth transaction but also long-term satisfaction and financial security. By staying objective, considering future resale value, and prioritizing a home inspection, buyers can confidently invest in a property that truly meets their needs. With the right approach, homeownership can be a rewarding and fulfilling experience."
         ]
       }
     ]

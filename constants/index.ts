@@ -242,10 +242,10 @@ export const articles = [
   },
   {
     id: "18",
-    imageSrc: "/article-image/18.png",
-    altText: "How Do I Report a Problem With a Listing?",
+    imageSrc: "/details/art18.jpg",
+    altText: "Common Home-Buying Mistakes to Avoid",
     articleType: "General",
-    title: "How Do I Report a Problem With a Listing?",
+    title: "Common Home-Buying Mistakes to Avoid",
     readTime: "3 min read",
     date: "March 13, 2025",
   },

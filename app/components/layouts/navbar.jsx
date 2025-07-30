@@ -83,7 +83,7 @@ export default function Navbar() {
               : "bg-transparent text-white mt-3"
           }`}
         >
-          <div className="flex-1  mx-9 flex w-screen items-center justify-around p-2">
+          <div className="flex-1  mx-9 lg:mx-0 flex w-screen items-center justify-around p-2">
             {/* Logo */}
             <div className="text-2xl font-bold">
               <Link href="/" className="flex justify-center items-center gap-2">

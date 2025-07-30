@@ -36,7 +36,7 @@ const Appfooter = () => {
     <>
       {!hideNavbar && (
         <footer className="bg-primary font-bricolage lg:max-md:h-[42vh]  w-screen px-4 lg:p-0  text-white flex flex-col justify-center  items-center lg:mt-[5rem]">
-          <div className="lg:max-w-[1200px] space-y-8  mt-[2rem] lg:px-6   lg:py-16 sm:px-6 lg:space-y-16 ">
+          <div className="lg:max-w-[1240px] space-y-8  mt-[2rem] lg:px-0   lg:py-16 sm:px-6 lg:space-y-16 ">
             {/* Top Section */}
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               {/* Subscribe Section */}
