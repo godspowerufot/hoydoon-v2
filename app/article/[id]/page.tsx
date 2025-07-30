@@ -22,8 +22,7 @@ export default async function ArticlePage({
         return <GridLayout pageData={article} />;
       case "listing":
         return <HelpCenterLayout PageData={article} />;
-      case "long-form":
-        return <LongFormLayout pageData={article} />;
+
       default:
         return <div>No layout defined</div>;
     }

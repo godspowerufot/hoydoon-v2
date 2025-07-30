@@ -10,13 +10,13 @@ const Breadcrumb = ({ id }) => {
     <div className="hidden lg:flex items-center justify-around py-2 lg:w-full my-[1rem] bg-gray-100">
       {/* Left Section: Back Arrow and Breadcrumb */}
       <div className="flex w-full gap-1 text-[1.08rem]  items-center font-bricolage text-gray-600">
-        {/* Back Arrow */}
         <Image
           src="/arrow-right.png"
           alt="arrow"
           height={12}
           width={12}
-          className=" w-4 h-4 object-contain"
+          className=" w-4 h-4 object-contain cursor-pointer"
+          onClick={() => window.history.back()}
         />
 
         {/* Breadcrumb Links */}
