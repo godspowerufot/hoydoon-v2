@@ -1586,5 +1586,93 @@
         ]
       }
     ]
+  },
+  {
+    "id": "16",
+    "slug": "listing-agent-display",
+    "title": "How to Update or Edit Your Listing on Hoydoon ",
+    "layoutType": "listing",
+    "heroImage": "/details/art12.jpg",
+    "introSection": [
+      {
+        "heading": "How to Update or Edit Your Listing on Hoydoon     ",
+        "paragraph": [
+          "Looking to update your property listing? Whether you're changing photos, adjusting the price, or adding new details to better showcase your space, Hoydoon makes the process simple and straightforward. With our latest mobile app interface, you can easily manage and edit your listings anytime, right from your device—ensuring your property stays accurate, appealing, and up to date for potential buyers or renters. To help you get started, we’ve put together a step-by-step guide based on the current version of the Hoydoon app."
+        ]
+      }
+    ],
+
+    "sections": [
+      {
+        "heading": "Step 1: Go to Your Profile  ",
+        "paragraphs": [
+          "Start by opening the Hoydoon app on your device. Once it’s loaded, navigate to your account by tapping the Profile icon located in the bottom right corner of the screen. This will take you to your personal dashboard, where you can manage your listings and account settings."
+        ]
+      },
+      {
+        "heading": "Step 2: Enter Seller Mode  ",
+        "paragraphs": [
+          "At the top of your profile page, you’ll see the option to enable Seller Mode. If it’s not already turned on, simply toggle it to activate. This feature gives you access to your property listings and seller tools, allowing you to manage, update, and track your listings directly from your account."
+        ]
+      },
+
+      {
+        "heading": "Step 3: Manage Your Listings   ",
+        "paragraphs": [
+          "Once you’ve enabled Seller Mode, scroll to the My Home section and tap on Manage Listings. This will open your personalized dashboard, where you can view and organize all of your property listings. Each listing is clearly categorized by status—Active, Inactive, or Sold—so you can easily keep track of what’s currently live, what’s been paused, and what has already been successfully completed. This section gives you full control to update, edit, or relist properties as needed."
+        ]
+      },
+      {
+        "heading": "Step 4: Select the Listing to Edit   ",
+        "paragraphs": [
+          "From the Active tab, locate the specific listing you’d like to update and tap to open it. Once inside, select the Edit Now option to begin making your changes. Whether you’re updating photos, adjusting the price, or adding new details, this section gives you the flexibility to refine your listing and keep it current for potential buyers or renters."
+        ],
+        "image": "/details/art16s1.png"
+      },
+
+      {
+        "heading": "Step 5: Note Your Edit Count ",
+        "paragraphs": [
+          "Before you proceed, a notification will appear on the screen letting you know how many edits you have remaining—for example, it may say, “You have 3 editing counts left.” This is simply a helpful reminder that the number of times you can update your listing is limited, so it’s best to plan your changes thoughtfully. Once you’re ready, tap Edit Now to continue making updates to your listing. This ensures that every edit you make is intentional and contributes to a stronger, more appealing property profile."
+        ]
+      },
+      {
+        "heading": "Step 6: Update Listing Details  ",
+        "paragraphs": [
+          "You’ll now have the ability to update all the key details of your listing. Make changes to your photos, listing title, property type, number of bedrooms and bathrooms, pricing, address, and overall description to ensure everything is accurate and appealing. For a more complete profile, scroll down to the Advanced Details section—here, you can refine specifics like square footage, lease duration, available amenities, and other important features that help potential buyers or renters better understand what your property offers. Keeping these details up to date ensures your listing stands out and attracts the right audience."
+        ]
+      },
+      {
+        "heading": "Step 7: Update Amenities and Advanced Details ",
+        "paragraphs": [
+          "Take a moment to highlight your property’s best features by selecting relevant amenities such as a balcony, basement, bike parking, solar system, garage parking, and more. These details not only help set your listing apart but also give potential buyers or renters a clear sense of what makes your space unique and desirable. Be sure to include any additional information that enhances the appeal of your property—thoughtful, well-rounded listings tend to attract more attention and serious inquiries."
+        ]
+      },
+      {
+        "heading": "Step 8: Review Listing Policies ",
+        "paragraphs": [
+          "Before you publish your listing, make sure to check the confirmation box indicating that your property is ready to go live and that it complies with Hoydoon’s commerce guidelines and anti-discrimination policies. This step is essential to ensure that all listings on our platform are respectful, inclusive, and aligned with fair housing standards. Taking a moment to review and confirm this not only protects you as a seller but also helps maintain the integrity and trust of the Hoydoon community."
+        ],
+        "image": "/details/art16s3.png"
+      },
+      {
+        "heading": "Step 9: Publish Changes ",
+        "paragraphs": [
+          "After reviewing and finalizing all your updates, simply tap Publish to save your changes and refresh your listing. This ensures that your updated information is immediately visible to potential buyers or renters, keeping your property profile accurate, attractive, and competitive on the Hoydoon platform."
+        ]
+      },
+      {
+        "heading": "Pro Tips: ",
+        "paragraphs": [
+          "To keep your property listing performing at its best, regularly update your photos and descriptions to reflect any changes or improvements. Since edit counts are limited, it’s a good idea to plan ahead and make multiple updates at once when possible. Before publishing, take a moment to ensure your listing fully aligns with Hoydoon’s guidelines—doing so not only protects your post from being flagged, but also helps maintain a trusted experience for everyone on the platform."
+        ]
+      },
+      {
+        "heading": "That’s it!",
+        "paragraphs": [
+          "Your listing is now successfully updated and ready to capture the attention of buyers or renters. Keeping it current ensures you’re putting your best foot forward. If you have any questions or find that you need additional edit counts, feel free to reach out to Hoydoon Support directly through the app—we’re here to help you every step of the way."
+        ]
+      }
+    ]
   }
 ]
