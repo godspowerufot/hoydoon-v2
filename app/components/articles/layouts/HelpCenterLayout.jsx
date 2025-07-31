@@ -7,7 +7,7 @@ import HoverCard from "../../common/card";
 
 const Breadcrumb = ({ id }) => {
   return (
-    <div className="hidden lg:flex items-center justify-around py-2 lg:w-full my-[1rem] bg-gray-100">
+    <div className=" flex ml-[1rem] lg:ml-0 items-center justify-around py-2 lg:w-full my-[1rem] bg-gray-100">
       {/* Left Section: Back Arrow and Breadcrumb */}
       <div className="flex w-full gap-1 text-[1.08rem]  items-center font-bricolage text-gray-600">
         <Image
@@ -20,7 +20,7 @@ const Breadcrumb = ({ id }) => {
         />
 
         {/* Breadcrumb Links */}
-        <span className="text-gray-500">Home page |</span>
+        <span className="text-gray-500 hidden lg:block">Home page |</span>
         {/* Breadcrumb item: Homes for Sale */}
         <div className="flex font-light items-center gap-1">
           <a href="#" className="text-primary">
@@ -37,12 +37,12 @@ const Breadcrumb = ({ id }) => {
             width={12}
           />
           <a href="#" className="text-primary">
-            Article
+            Articles
           </a>
         </div>
 
         {/* Breadcrumb item: Magodo Estate */}
-        <div className="flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
           <Image
             src="/arrow-right-top.png"
             alt="arrow"
@@ -56,7 +56,7 @@ const Breadcrumb = ({ id }) => {
       </div>
 
       {/* Right Section: Icons */}
-      <div className="flex items-center lg:-ml-[4rem] gap-2">
+      <div className="hidden lg:flex items-center lg:-ml-[4rem] gap-2">
         <div
           className={`p-2 border cursor-pointer border-[#8F8F8F] rounded-md `}
         >
@@ -90,7 +90,7 @@ const Breadcrumb = ({ id }) => {
 
 const HelpCenterLayout = ({ PageData }) => {
   return (
-    <div className="max-w-[1200px] mt-[4rem]">
+    <div className="max-w-[1200px] mt-[3rem] lg:mt-[4rem]">
       <Breadcrumb id={PageData?.id} />
       <div className="relative w-screen lg:w-full h-[400px] md:h-[500px] lg:rounded-md overflow-hidden">
         <Image
@@ -102,7 +102,7 @@ const HelpCenterLayout = ({ PageData }) => {
         />
       </div>{" "}
       {PageData?.introSection?.map((intro, index) => (
-        <div key={index} className=" mt-[3rem] p-2 lg:p-0">
+        <div key={index} className=" mt-[1.5rem] lg:mt-[3rem] p-2 lg:p-0">
           <h1 className="lg:text-[2rem] lg:max-w-[42rem] text-xl leading-9  font-semibold ">
             {intro?.heading || PageData?.title}
           </h1>
@@ -114,7 +114,7 @@ const HelpCenterLayout = ({ PageData }) => {
       ))}
       {PageData?.sections?.map((section, index) => (
         <div key={index}>
-          <div className=" mt-[3rem] p-2 lg:p-0">
+          <div className=" mt-[1.5rem] lg:mt-[3rem] p-2 lg:p-0">
             <h1 className="lg:text-[2rem] lg:max-w-[42rem] text-xl leading-9  font-semibold ">
               {section.heading}
             </h1>
@@ -169,7 +169,7 @@ const HelpCenterLayout = ({ PageData }) => {
           </div>
 
           {section.image && (
-            <div className="relative mt-[3rem] w-full h-[400px] md:h-[500px] rounded-md overflow-hidden">
+            <div className="relative mt-[1.5rem] lg:mt-[3rem] w-full h-[400px] md:h-[500px]   lg:rounded-md overflow-hidden">
               <Image
                 src={section.image}
                 alt="Section image"
@@ -183,7 +183,7 @@ const HelpCenterLayout = ({ PageData }) => {
       ))}
       {/* FAQ Section */}
       {PageData?.faqSection && (
-        <div className=" mt-[3rem] p-2 lg:p-0">
+        <div className=" mt-[1.5rem] lg:mt-[3rem] p-2 lg:p-0">
           <h1 className="lg:text-[2rem] lg:max-w-[42rem] text-xl leading-9  font-semibold ">
             {PageData.faqSection.heading}
           </h1>
