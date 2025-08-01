@@ -9,7 +9,7 @@ const HoverCard = ({
   _id,
   bathrooms,
   bedrooms,
-  area = "_",
+  area ,
   description = "No description available",
   title = "Untitled Property",
   rent = "",

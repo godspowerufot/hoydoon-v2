@@ -90,7 +90,7 @@ const Breadcrumb = ({ id }) => {
 
 const HelpCenterLayout = ({ PageData }) => {
   return (
-    <div className="max-w-[1200px] mt-[3rem] lg:mt-[4rem]">
+    <div className="max-w-[1200px] mt-[3rem] lg:mt-[4rem] lg:p-0  p-[1.5rem]">
       <Breadcrumb id={PageData?.id} />
       <div className="relative w-screen lg:w-full h-[400px] md:h-[500px] lg:rounded-md overflow-hidden">
         <Image

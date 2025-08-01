@@ -3,6 +3,7 @@ import Image from "next/image";
 import { articles } from "@/constants";
 import ArticleCard from "../components/common/articleLayout";
 import { useState } from "react";
+import Pagination from "../components/common/pagination";
 import { useRouter } from "next/navigation";
 function SupportCategories() {
   const categories = [
@@ -32,6 +33,8 @@ export default function Home() {
   const [formData, setFormData] = useState({
     location: "",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const articlesPerPage = 13;
   const router = useRouter();
   interface FormData {
     location: string;
@@ -54,6 +57,18 @@ export default function Home() {
     }).toString();
 
     router.push(`/rent/searchlisting?${queryParams}`);
+  };
+
+  // Calculate pagination
+  const totalPages = Math.ceil(articles.length / articlesPerPage);
+  const startIndex = (currentPage - 1) * articlesPerPage;
+  const endIndex = startIndex + articlesPerPage;
+  const currentArticles = articles.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top when page changes
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -127,9 +142,9 @@ export default function Home() {
       {/* explore */}
       <section className="  2xl:-mb-[8rem]  flex-col mt-[2rem]   lg:mt-[3em] w-full  font-bricolage lg:flex justify-center   gap-4 2xl:gap-[1.5rem] flex-1 items-center">
         <div className=" p-2 grid  grid-row  grid-cols-1 md:grid-cols-3 gap-7 place-items-center gap-y-6">
-          {articles.map((article, index) => (
+          {currentArticles.map((article, index) => (
             <ArticleCard
-              key={index}
+              key={article.id}
               imageSrc={article.imageSrc}
               altText={article.altText}
               title={article.title}
@@ -140,7 +155,13 @@ export default function Home() {
             />
           ))}
         </div>
-        {/* <Pagination totalPages={} /> */}
+
+        <Pagination
+          totalPages={totalPages}
+          display={currentArticles.map((article) => article.id)}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
 
         <div className="w-full hidden lg:block  mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] " />
 

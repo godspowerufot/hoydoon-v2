@@ -16,7 +16,9 @@ interface PropertyCardProps {
   squareFeet?: number;
   houseType?: string;
   rent?: string;
+  listingType?: string;
   _id?: string;
+  landSize?: number | string;
 }
 
 const PropertyListCard: React.FC<PropertyCardProps> = ({
@@ -30,6 +32,8 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
   bedrooms = "_",
   _id,
   squareFeet = "_",
+  listingType ,
+  landSize = "_",
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -168,7 +172,8 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
                 </span>
                 <span className="flex items-center gap-2">
                   <Image src="/home.png" alt="Icon" width={18} height={18} />
-                  <p>{squareFeet}sq.</p>
+                  <p>                  {listingType === 'land' ? landSize : listingType === 'sale' ? squareFeet : area}sq.</p>
+
                 </span>
               </div>
             </div>

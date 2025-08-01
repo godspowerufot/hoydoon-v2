@@ -12,19 +12,7 @@ import { log } from "@/utils/log";
 import MapComponent from "../components/layouts/listingmap";
 import SearchBar from "../components/common/searchcomponent";
 import HoverCard from "../components/common/card";
-interface Property {
-  _id?: string;
-  imageUrls?: { url?: string; altText?: string }[];
-  item?: {
-    price?: string;
-    squareFeet?: string;
-    description?: string;
-    title?: string;
-    rent?: string;
-    bedrooms?: string;
-    bathrooms?: string;
-  };
-}
+import { Property } from "@/types";
 
 // Add mobile detection
 function useIsMobile() {

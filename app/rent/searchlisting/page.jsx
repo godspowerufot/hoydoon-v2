@@ -819,6 +819,8 @@ const page = () => {
                   title={items?.item?.title || "Untitled Property"}
                   rent={items?.item?.rent || "Rent details not provided"}
                   squareFeet={items?.item?.squareFeet}
+                  landSize={items?.item?.landSize}
+                  listingType={items?.listingType || "N/A"}
                 />
               ))}
             </div>

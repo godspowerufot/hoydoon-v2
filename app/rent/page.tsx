@@ -6,21 +6,7 @@ import Article from "../components/common/Article";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-interface Property {
-  imageUrls?: { url?: string; altText?: string }[];
-  _id?: string;
-  item?: {
-    price?: string;
-    squareFeet?: number;
-    bathrooms?: number;
-    bedrooms?: number;
-    description?: string;
-    title?: string;
-    rent?: string;
-    petFriendly: boolean;
-  };
-}
-
+import { Property } from "@/types";
 export default function Home() {
   const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery(
     {}
@@ -128,6 +114,8 @@ export default function Home() {
                   title={items?.item?.title || "Untitled Property"}
                   rent={items?.item?.rent || "Rent details not provided"}
                   squareFeet={items?.item?.squareFeet}
+                  landSize={items?.item?.landSize}
+                  listingType={items?.listingType || "N/A"}
                 />
               ))}
             <Link
@@ -180,6 +168,8 @@ export default function Home() {
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                     squareFeet={items?.item?.squareFeet}
+                    landSize={items?.item?.landSize}
+                    listingType={items?.listingType || "N/A"}
                   />
                 ))}
             </div>
@@ -195,9 +185,9 @@ export default function Home() {
       <div className="w-full  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9]" />
 
       <section className="mt-4 lg:-mt-[1em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
-          <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+        <div className="flex flex-col items-start gap-6  lg:max-w-[1200px]w-full">
+          <div className="flex flex-col lg:gap-[12rem] lg:flex-row justify-between items-start w-full  mx-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Nigeria
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
@@ -235,6 +225,8 @@ export default function Home() {
                       title={items?.item?.title || "Untitled Property"}
                       rent={items?.item?.rent || "Rent details not provided"}
                       squareFeet={items?.item?.squareFeet}
+                      landSize={items?.item?.landSize}
+                      listingType={items?.listingType || "N/A"}
                     />
                   ))}
               </div>
@@ -252,7 +244,7 @@ export default function Home() {
 
       <section className="lg:mt-10   2xl:my-[2em] lg:my-[2em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
-          <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
+          <div className="flex flex-col lg:gap-[21rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               pet-friendly Rentals
             </h1>
@@ -291,6 +283,8 @@ export default function Home() {
                       title={items?.item?.title || "Untitled Property"}
                       rent={items?.item?.rent || "Rent details not provided"}
                       squareFeet={items?.item?.squareFeet}
+                      landSize={items?.item?.landSize}
+                      listingType={items?.listingType || "N/A"}
                     />
                   ))}
               </div>
@@ -344,6 +338,8 @@ export default function Home() {
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                     squareFeet={items?.item?.squareFeet}
+                    landSize={items?.item?.landSize}
+                    listingType={items?.listingType || "N/A"}
                   />
                 ))}
             </div>
