@@ -1,5 +1,5 @@
 import GridLayout from "../../components/articles/layouts/GridLayout";
-import HelpCenterLayout from "../../components/articles/layouts/HelpCenterLayout";";
+import HelpCenterLayout from "../../components/articles/layouts/HelpCenterLayout";
 
 import articles from "../../data/articles.json"; // or fetch from API
 
