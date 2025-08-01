@@ -157,13 +157,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     setBathValue("");
   };
   useEffect(() => {
-    if (!filters.price) {
-      const defaultValue =
-        filters["home-type"] === "rent" ? "50-200" : "0-30000";
-      handleFilterChange("price", defaultValue);
-    }
-  }, [filters["home-type"]]);
-  useEffect(() => {
     function handleClickOutside(event) {
       if (bedBathRef.current && !bedBathRef.current.contains(event.target)) {
         setShowBedBathDropdown(false);
