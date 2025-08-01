@@ -431,7 +431,10 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
         )}
 
         {["Price", "Type", "Bed/Baths"].map((option) => {
-          const paramKey = option.toLowerCase().replace(/\s+/g, "-");
+          const paramKey =
+            option === "Type"
+              ? "home-type"
+              : option.toLowerCase().replace(/\s+/g, "-");
           const selectedValue = searchParams.get(paramKey) || "";
 
           if (option === "Bed/Baths") {

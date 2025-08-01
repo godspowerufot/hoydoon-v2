@@ -56,6 +56,7 @@ const DynamicImageGrid = ({
       1: () => (
         <div className=" hidden lg:grid grid-cols-1 gap-4 p-4">
           {renderImage(
+            images[0],
             0,
             "w-full h-[400px] 2xl:h-[500px] object-cover rounded-lg",
             800,

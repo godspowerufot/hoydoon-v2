@@ -312,7 +312,6 @@ const page = () => {
     item, // This contains nested properties
     itemModel,
     listedBy,
-    squareFeet,
     listingType,
     region,
 
@@ -337,10 +336,13 @@ const page = () => {
     address: address,
     bedrooms: bedrooms,
     type,
+    squareFeet,
     coordinate: coordinate,
     description: description,
     private: isPrivate,
     price,
+
+    landSize,
   } = item || {};
 
   // Destructuring `listedBy` if needed
@@ -404,7 +406,6 @@ const page = () => {
                 <p>{region}</p>
               </div>
 
-              {/* Views */}
               <div className="flex items-center gap-2 text-gray-700  mt-[0.5rem] lg:mt-2">
                 <img
                   src="/eye.svg"
@@ -417,7 +418,6 @@ const page = () => {
               </div>
             </div>
 
-            {/* Right Section */}
             <div className="text-right flex-1 lg:-mt-[2.5rem]  flex flex-col  gap-1 lg:flex md:text-right w-full md:w-auto">
               <p className="text-[1.5rem] text-black font-[600] lg:font-bold">
                 ${price}
@@ -475,11 +475,31 @@ const page = () => {
             <span className="text-gray-400">|</span>
 
             <div className="flex items-center gap-1">
-              <span className="font-bold text-black">{"-" || squareFeet}</span>
+              <span className="font-bold text-black">
+                {listingType === "land"
+                  ? landSize
+                  : listingType === "sale"
+                  ? squareFeet
+                  : "-"}
+              </span>
               <span>sq ft</span>
             </div>
 
             <span className="text-gray-400">|</span>
+            <div className="flex items-center gap-1">
+              <span className="font-bold text-black">
+                {listingType === "rent"
+                  ? "-"
+                  : listingType === "land"
+                  ? landSize
+                    ? `$${(price / landSize).toFixed(2)}`
+                    : "-"
+                  : squareFeet
+                  ? `$${(price / squareFeet).toFixed(2)}`
+                  : "-"}
+              </span>
+              <span>price per sq ft</span>
+            </div>
           </div>
         </div>
 
