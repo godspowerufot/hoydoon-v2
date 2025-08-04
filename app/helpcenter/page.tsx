@@ -142,7 +142,7 @@ export default function Home() {
       {/* explore */}
       <section className="  2xl:-mb-[8rem]  flex-col mt-[2rem]   lg:mt-[3em] w-full  font-bricolage lg:flex justify-center   gap-4 2xl:gap-[1.5rem] flex-1 items-center">
         <div className=" p-2 grid  grid-row  grid-cols-1 md:grid-cols-3 gap-7 place-items-center gap-y-6">
-          {currentArticles.map((article, index) => (
+          {currentArticles.map((article) => (
             <ArticleCard
               key={article.id}
               imageSrc={article.imageSrc}
