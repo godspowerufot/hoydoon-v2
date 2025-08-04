@@ -107,7 +107,7 @@ const HelpCenterLayout = ({ PageData }) => {
             {intro?.heading || PageData?.title}
           </h1>
           <p
-            className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4"
+            className="text-gray  font-light text-base lg:text-xl font-bricolage  w-full leading-5 mt-4"
             dangerouslySetInnerHTML={{ __html: intro?.paragraph }}
           />
         </div>
@@ -121,7 +121,7 @@ const HelpCenterLayout = ({ PageData }) => {
             {section.paragraphs?.map((para, pIndex) => (
               <p
                 key={pIndex}
-                className="text-gray font-light text-[12px] lg:text-xl font-bricolage w-full leading-5 mt-4"
+                className="text-gray font-light text-base lg:text-xl font-bricolage w-full leading-5 mt-4"
                 dangerouslySetInnerHTML={{ __html: para }}
               />
             ))}
@@ -144,7 +144,7 @@ const HelpCenterLayout = ({ PageData }) => {
                         {item.description.map((desc, descIndex) => (
                           <li
                             key={descIndex}
-                            className="mt-2 list-disc"
+                            className="mt-2 list-disc text-base"
                             dangerouslySetInnerHTML={{ __html: desc }}
                           />
                         ))}
@@ -162,7 +162,7 @@ const HelpCenterLayout = ({ PageData }) => {
 
             {section.paragraph2 && (
               <p
-                className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4"
+                className="text-gray  font-light text-base lg:text-xl font-bricolage  w-full leading-5 mt-4"
                 dangerouslySetInnerHTML={{ __html: section.paragraph2 }}
               />
             )}
@@ -187,7 +187,7 @@ const HelpCenterLayout = ({ PageData }) => {
           <h1 className="lg:text-[2rem] lg:max-w-[42rem] text-xl leading-9  font-semibold ">
             {PageData.faqSection.heading}
           </h1>
-          <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
+          <p className="text-gray  font-light text-base lg:text-xl font-bricolage  w-full leading-5 mt-4">
             {PageData.faqSection.paragraph}
           </p>
 
@@ -199,7 +199,7 @@ const HelpCenterLayout = ({ PageData }) => {
                 <span className="font-normal">
                   A:{" "}
                   {Array.isArray(faq.answer) ? (
-                    <ul className="mt-2 ml-4 list-disc">
+                    <ul className="mt-2 ml-4  text-base list-disc">
                       {faq.answer.map((ans, ansIndex) => (
                         <li key={ansIndex} className="mt-2">
                           {ans}
