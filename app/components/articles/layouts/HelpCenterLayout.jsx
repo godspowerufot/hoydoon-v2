@@ -90,7 +90,7 @@ const Breadcrumb = ({ id }) => {
 
 const HelpCenterLayout = ({ PageData }) => {
   return (
-    <div className="max-w-[1200px] mt-[3rem] lg:mt-[4rem] lg:p-0  p-[1.5rem]">
+    <div className="max-w-[1200px] mt-[3rem] lg:mt-[4rem] lg:p-0  lg:px-0  p-[1.5rem]">
       <Breadcrumb id={PageData?.id} />
       <div className="relative w-screen lg:w-full h-[400px] md:h-[500px] lg:rounded-md overflow-hidden">
         <Image
@@ -102,26 +102,29 @@ const HelpCenterLayout = ({ PageData }) => {
         />
       </div>{" "}
       {PageData?.introSection?.map((intro, index) => (
-        <div key={index} className=" mt-[1.5rem] lg:mt-[3rem] p-2 lg:p-0">
-          <h1 className="lg:text-[2rem] lg:max-w-[42rem] text-xl leading-9  font-semibold ">
+        <div
+          key={index}
+          className="pl-[1.5rem] lg:pl-0 mt-[1.5rem] lg:mt-[3rem] p-2 lg:p-0"
+        >
+          <h1 className="lg:text-[2rem] lg:max-w-[42rem] text-[20px] leading-0 lg:leading-9  font-semibold ">
             {intro?.heading || PageData?.title}
           </h1>
           <p
-            className="text-gray  font-light text-base lg:text-xl font-bricolage  w-full leading-5 mt-4"
+            className="text-gray  font-light text-base lg:text-[20px] font-bricolage  w-full leading-5 mt-4"
             dangerouslySetInnerHTML={{ __html: intro?.paragraph }}
           />
         </div>
       ))}
       {PageData?.sections?.map((section, index) => (
         <div key={index}>
-          <div className=" mt-[1.5rem] lg:mt-[3rem] p-2 lg:p-0">
-            <h1 className="lg:text-[2rem] lg:max-w-[42rem] text-xl leading-9  font-semibold ">
+          <div className=" pl-[1.5rem] lg:pl-0 mt-[1.5rem] lg:mt-[3rem] p-2 lg:p-0">
+            <h1 className="lg:text-[2rem] lg:max-w-[42rem] text-[20px] leading-0 lg:leading-9  font-semibold ">
               {section.heading}
             </h1>
             {section.paragraphs?.map((para, pIndex) => (
               <p
                 key={pIndex}
-                className="text-gray font-light text-base lg:text-xl font-bricolage w-full leading-5 mt-4"
+                className="text-gray font-light text-base lg:text-[20px] font-bricolage w-full leading-5 mt-4"
                 dangerouslySetInnerHTML={{ __html: para }}
               />
             ))}
@@ -162,7 +165,7 @@ const HelpCenterLayout = ({ PageData }) => {
 
             {section.paragraph2 && (
               <p
-                className="text-gray  font-light text-base lg:text-xl font-bricolage  w-full leading-5 mt-4"
+                className="text-gray  font-light text-base lg:text-[20px] font-bricolage  w-full leading-5 mt-4"
                 dangerouslySetInnerHTML={{ __html: section.paragraph2 }}
               />
             )}
@@ -183,11 +186,11 @@ const HelpCenterLayout = ({ PageData }) => {
       ))}
       {/* FAQ Section */}
       {PageData?.faqSection && (
-        <div className=" mt-[1.5rem] lg:mt-[3rem] p-2 lg:p-0">
-          <h1 className="lg:text-[2rem] lg:max-w-[42rem] text-xl leading-9  font-semibold ">
+        <div className="pl-[1.5rem] lg:pl-0 mt-[1.5rem] lg:mt-[3rem] p-2 lg:p-0">
+          <h1 className="lg:text-[2rem] lg:max-w-[42rem] text-[20px] leading-0 lg:leading-9  font-semibold ">
             {PageData.faqSection.heading}
           </h1>
-          <p className="text-gray  font-light text-base lg:text-xl font-bricolage  w-full leading-5 mt-4">
+          <p className="text-gray  font-light text-base lg:text-[20px] font-bricolage  w-full leading-5 mt-4">
             {PageData.faqSection.paragraph}
           </p>
 
