@@ -4,7 +4,6 @@ import { articles } from "@/constants";
 import ArticleCard from "../components/common/articleLayout";
 import { useState, useMemo } from "react";
 import Pagination from "../components/common/pagination";
-import { useRouter } from "next/navigation";
 
 // Skeleton component for loading states
 // Time Complexity: O(1) - renders fixed number of skeleton cards
@@ -105,7 +104,6 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
   const articlesPerPage = 13;
-  const router = useRouter();
 
   interface FormData {
     location: string;
