@@ -89,6 +89,8 @@ const Breadcrumb = ({ id }) => {
 };
 
 const HelpCenterLayout = ({ PageData }) => {
+  const { data: allListings, isLoading } = useGetAllListingsQuery({});
+
   return (
     <div className="max-w-[1200px] mt-[3rem] lg:mt-[4rem] lg:p-0  lg:px-0  p-[1.5rem]">
       <Breadcrumb id={PageData?.id} />
@@ -110,7 +112,7 @@ const HelpCenterLayout = ({ PageData }) => {
             {intro?.heading || PageData?.title}
           </h1>
           <p
-            className="text-gray  font-light text-base lg:text-[20px] font-bricolage  w-full leading-5 mt-4"
+            className="text-gray  font-light text-base lg:text-[20px] font-bricolage  w-full  mt-4"
             dangerouslySetInnerHTML={{ __html: intro?.paragraph }}
           />
         </div>
@@ -124,7 +126,7 @@ const HelpCenterLayout = ({ PageData }) => {
             {section.paragraphs?.map((para, pIndex) => (
               <p
                 key={pIndex}
-                className="text-gray font-light text-base lg:text-[20px] font-bricolage w-full leading-5 mt-4"
+                className="text-gray font-light text-base lg:text-[20px] font-bricolage w-full  mt-4"
                 dangerouslySetInnerHTML={{ __html: para }}
               />
             ))}
@@ -165,7 +167,7 @@ const HelpCenterLayout = ({ PageData }) => {
 
             {section.paragraph2 && (
               <p
-                className="text-gray  font-light text-base lg:text-[20px] font-bricolage  w-full leading-5 mt-4"
+                className="text-gray  font-light text-base lg:text-[20px] font-bricolage  w-full mt-4"
                 dangerouslySetInnerHTML={{ __html: section.paragraph2 }}
               />
             )}
@@ -218,6 +220,48 @@ const HelpCenterLayout = ({ PageData }) => {
           </ul>
         </div>
       )}
+      {/* Suggested Listings */}
+      <div className="mt-[4rem] p-4">
+        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col lg:flex-row justify-between lg:items-center w-full mx-auto">
+            <h1 className="text-black text-[24px] mt-[32px]  text-start lg:mt-0 lg:text-[2.5rem] font-[600]">
+              Hoydoon Houses for Sale
+            </h1>
+            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage text-start lg:text-right">
+              Discover a home where every detail enhances your lifestyle—crafted
+              to fit your taste and needs.
+            </p>
+          </div>
+
+          {/* Property Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4 gap-5">
+            {(allListings?.listings || []).slice(0, 6).map((item, idx) => (
+              <HoverCard
+                key={idx}
+                _id={item._id}
+                imageSrc={item?.imageUrls?.[0]?.url || "/house1.png"}
+                altText={item?.imageUrls?.[0]?.altText || "Property image"}
+                price={item?.item?.price || "Price not available"}
+                area={item?.item?.squareFeet || ""}
+                bathrooms={item?.item?.bathrooms}
+                bedrooms={item?.item?.bedrooms}
+                description={
+                  item?.item?.description || "No description available."
+                }
+                title={item?.item?.title || "Untitled Property"}
+                rent={item?.item?.rent || "Rent details not provided"}
+              />
+            ))}
+          </div>
+
+          <Link
+            href="/"
+            className="text-[#09858D] lg:hidden mt-2 text-sm lg:text-2xl font-[500]"
+          >
+            See all luxury houses for sale
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
