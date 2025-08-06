@@ -32,7 +32,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
   bedrooms = "_",
   _id,
   squareFeet = "_",
-  listingType ,
+  listingType,
   landSize = "_",
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -105,9 +105,11 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
                   <h2 className="font-bold text-[23px]">
                     ${price?.toLocaleString()}.00
                   </h2>
-                  <p className="text-gray mt-[2px] font-[400] text-[14px]">
-                    /mth
-                  </p>
+                  {listingType === "rent" && (
+                    <p className="text-gray mt-[2px] font-[400] text-[14px]">
+                      /mth
+                    </p>
+                  )}
                 </span>
                 <h4 className="lg:ml-[5rem] 2xl:ml-[10rem] text-label text-gray font-light">
                   Area from {area}
@@ -172,8 +174,15 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
                 </span>
                 <span className="flex items-center gap-2">
                   <Image src="/home.png" alt="Icon" width={18} height={18} />
-                  <p>                  {listingType === 'land' ? landSize : listingType === 'sale' ? squareFeet : area}sq.</p>
-
+                  <p>
+                    {" "}
+                    {listingType === "land"
+                      ? landSize
+                      : listingType === "sale"
+                      ? squareFeet
+                      : area}
+                    sq.
+                  </p>
                 </span>
               </div>
             </div>
