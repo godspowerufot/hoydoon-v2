@@ -428,9 +428,9 @@ const page = () => {
                 <span className="ml-1 font-medium">{averageRating}</span>
               </div>
 
-              <p className=" lg:text-gray  font-light text-sm lg:text-base">
+              {/* <p className=" lg:text-gray  font-light text-sm lg:text-base">
                 Est. ${price}/month
-              </p>
+              </p> */}
 
               <div className="flex items-center lg:hidden  lg:p-2 justify-end gap-2 mt-2 w-full md:w-auto">
                 <div
