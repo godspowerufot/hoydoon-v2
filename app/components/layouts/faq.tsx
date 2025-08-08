@@ -40,7 +40,7 @@ const FAQComponent: React.FC = () => {
   return (
     <>
       <section
-        className={`bg-[#eeeeee]  lg:mt-[60px] hidden lg:block w-full lg:w-[440px] 2xl:w-[34rem] rounded-[20px]  p-6 2xl:p-9 mx-auto transition-all duration-500 ease-in-out ${
+        className={`bg-[#eeeeee]  lg:mt-[60px] 2xl:mt-[28px] hidden lg:block w-full lg:w-[440px] 2xl:w-[34rem] rounded-[20px]  p-6 2xl:p-9 mx-auto transition-all duration-500 ease-in-out ${
           openIndex === 0 ? "h-auto min-h-fit" : "h-fit"
         }`}
       >
