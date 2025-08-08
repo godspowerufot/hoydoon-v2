@@ -149,7 +149,7 @@ function Carousel({ images }) {
         >
           <div className="absolute  rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  lg:rounded-2xl" />
           <div className="    z-111 absolute    bg-primarytransparent p-5 rounded-2xl bottom-8 h-fit   w-fit">
-            <div className=" bg-white lg:max-w-[1000px] p-8 lg:rounded-2xl   h-[18rem]  2xl:w-[65rem] w-[56rem] ">
+            <div className=" bg-white lg:max-w-[1000px] p-8 lg:rounded-2xl   h-[18rem]   w-[58rem] ">
               <h1 className="text-black text-base  lg:text-2xl 2xl:text-[2rem] font-[600]">
                 {images[currentIndex]?.title}{" "}
               </h1>
@@ -381,7 +381,7 @@ export default function Home() {
       </header>
       <div></div>
       <section className="w-screen p-5 lg:p-0 font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
-        <div className="flex  flex-col-reverse 2xl:pl-[3.4em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-between ">
+        <div className="flex  flex-col-reverse  lg:pr-6 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-between ">
           <span className="flex  gap-4 flex-col w-full lg:max-w-[45.3em] 2xl:max-w-[48em]  ">
             <h1 className="text-black  text-[24px]  mt-4 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
               Find your ideal property with simple tools and guidance.
@@ -403,12 +403,12 @@ export default function Home() {
             </Button>
           </span>
 
-          <span className="mt-4 lg:mt-0">
+          <span className="mt-4 lg:-ml-5 lg:mt-0">
             <Image
               alt="image1"
-              width={500}
+              width={480}
               quality={100}
-              height={400} // Reduced size of logo
+              height={300} // Reduced size of logo
               src={"/house-app.png"}
             />
           </span>

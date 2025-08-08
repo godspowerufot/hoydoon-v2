@@ -140,8 +140,11 @@ const Appfooter = () => {
                   <p className="font-medium text-[#F9FAFB]">Location</p>
                   <ul className="mt-1 lg:mt-[4px] space-y-2   text-[#F4F4F4] text-[12px] lg:text-sm">
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
-                        NO 5, ELSHADAI STREET,ERUNWEN
+                      <a
+                        href="#"
+                        className="transition lowercase hover:opacity-75"
+                      >
+                        No 5, elshadai street,erunwen
                       </a>
                     </li>
                     <li>

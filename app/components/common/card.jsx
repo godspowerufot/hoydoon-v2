@@ -9,7 +9,7 @@ const HoverCard = ({
   _id,
   bathrooms,
   bedrooms,
-  area ,
+  area,
   description = "No description available",
   title = "Untitled Property",
   rent = "",
@@ -37,7 +37,7 @@ const HoverCard = ({
               alt={altText}
               fill
               style={{ objectFit: "cover", borderRadius: 20 }}
-              className="transition-all duration-[1500ms] ease-in-out rounded-[20px]"
+              className="transition-all -mt-[2px] duration-[1500ms] ease-in-out rounded-[20px]"
             />
           </div>
 

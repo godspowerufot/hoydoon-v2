@@ -30,7 +30,7 @@ export default function FagsSection() {
         </Button> */}
         </span>
       </div>
-      <div className="-mt-[3rem]  lg:ml-[8rem] 2xl:ml-[4rem]  justify-center items-center max-md:w-full w-full gap-6 flex flex-col-reverse max-md:justify-center max-md:items-center lg:flex-row ">
+      <div className="-mt-[3rem] lg:-mt-[6rem]  lg:ml-[8rem] 2xl:ml-[4rem]  justify-center items-center max-md:w-full w-full gap-6 flex flex-col-reverse max-md:justify-center max-md:items-center lg:flex-row ">
         <div className="z-[4] lg:block relative max-md:w-full  lg:h-[50em]  lg:left-[30px] 2xl:left-[10px] lg:top-[11em]">
           <div className="lg:hidden flex  flex-col lg:flex-row md:flex-row   2xl:gap-[14rem] lg:gap-[6rem]  justify-around items-start lg:items-center  ">
             <span className="flex flex-col  font-bricolage lg:ml-[1rem] 2xl:ml-[1rem]  gap-2">
@@ -47,14 +47,14 @@ export default function FagsSection() {
           </div>
           <FAQComponent />
         </div>
-        <div className="relative mt-[4rem] lg:0 ml-10 lg:-ml-[7em] justify-center items-center  flex w-3/5 lg:w-auto">
+        <div className="relative mt-[4rem] lg:mt-[3rem] lg:0 ml-10 lg:-ml-[7em] justify-center items-center  flex w-3/5 lg:w-auto">
           <Image
             alt="image1"
             width={420}
             loading="lazy"
             height={500}
             src={"/q1.png"}
-            className="z-[3]  w-[16rem] h-[21rem] lg:w-[27rem] 2xl:w-[600px] rounded-[20px] relative  left-[0.5rem] 2xl:left-[2rem] lg:h-[34rem]  object-cover "
+            className="z-[3]  w-[16rem] h-[21rem] lg:w-[27rem] 2xl:w-[600px] rounded-[20px] relative  left-[0.5rem] 2xl:left-[2rem] lg:h-[37rem]  object-cover "
           />{" "}
           <Image
             alt="image1"
