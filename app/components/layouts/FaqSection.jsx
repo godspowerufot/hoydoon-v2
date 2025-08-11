@@ -6,7 +6,7 @@ import Button from "../common/Button";
 import FAQComponent from "../layouts/faq";
 export default function FagsSection() {
   return (
-    <section className=" mt-[20px]  w-full  lg:mt-[7%]   flex flex-1 justify-center items-center  flex-col   p-2 lg:p-0 font-bricolage ">
+    <section className=" mt-[20px]  w-full  lg:mt-[7rem]   flex flex-1 justify-center items-center  flex-col   p-2 lg:p-0 font-bricolage ">
       <div className="lg:flex  hidden flex-col lg:flex-row md:flex-row  lg:gap-[6rem]  justify-around  items-start lg:items-center  ">
         <span className="flex flex-col  font-bricolage lg:ml-[1rem]  gap-2">
           <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] ">
@@ -30,7 +30,7 @@ export default function FagsSection() {
         </Button> */}
         </span>
       </div>
-      <div className="-mt-[3rem] lg:-mt-[6rem]  lg:ml-[8rem] 2xl:ml-[4rem]  justify-center items-center max-md:w-full w-full gap-6 flex flex-col-reverse max-md:justify-center max-md:items-center lg:flex-row ">
+      <div className="-mt-[3rem] lg:-mt-[6rem]  lg:ml-[5rem] 2xl:ml-[4rem]  justify-center items-center max-md:w-full w-full gap-6 flex flex-col-reverse max-md:justify-center max-md:items-center lg:flex-row ">
         <div className="z-[4] lg:block relative max-md:w-full  lg:h-[50em]  lg:left-[30px] 2xl:left-[10px] lg:top-[11em]">
           <div className="lg:hidden flex  flex-col lg:flex-row md:flex-row   2xl:gap-[14rem] lg:gap-[6rem]  justify-around items-start lg:items-center  ">
             <span className="flex flex-col  font-bricolage lg:ml-[1rem] 2xl:ml-[1rem]  gap-2">

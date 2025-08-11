@@ -71,13 +71,13 @@ function Carousel({ images }) {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
           }}
-          className="lg:mt-[1rem] lg:hidden relative p-4 sm:p-6 lg:p-8 w-full lg:max-w-[1200px]  h-[26rem] 2xl:w-[88rem] 2xl:h-[47rem]"
+          className="lg:mt-[1rem] lg:hidden relative p-5 sm:p-6 lg:p-8 w-full lg:max-w-[1200px]  h-[26rem] 2xl:w-[88rem] 2xl:h-[47rem]"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
           <div className="absolute inset-0 bg-black opacity-15 transition-opacity duration-500" />
 
-          <div className="z-111 absolute bg-primarytransparent p-2 sm:p-2  2xl:mt-[20rem] rounded-2xl top-[50%] right-0 h-fit w-full">
+          <div className="z-111 absolute bg-primarytransparent p-2 sm:p-2  2xl:mt-[20rem] rounded-2xl top-[55%] right-0 h-fit w-full">
             <div className="bg-white px-3 pt-3 sm:p-6 lg:p-8 rounded-2xl h-fit w-full max-w-full lg:w-[56rem] 2xl:w-[65rem]">
               <h1 className="text-black text-[0.9rem] sm:text-base lg:text-2xl 2xl:text-[2rem] font-[600]">
                 {truncateDescription(images[currentIndex]?.title, 15)}
@@ -145,10 +145,10 @@ function Carousel({ images }) {
           }}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          className="lg:mt-[1rem] rounded-none  hidden lg:block relative p-8  2xl:h-[47rem]  w-full h-[40rem] lg:rounded-2xl"
+          className="lg:mt-[1rem] rounded-none  hidden lg:block relative p-8  w-full h-[35rem] lg:rounded-2xl"
         >
           <div className="absolute  rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  lg:rounded-2xl" />
-          <div className="    z-111 absolute    bg-primarytransparent p-5 rounded-2xl bottom-8 h-fit   w-fit">
+          <div className="    z-111 absolute    bg-primarytransparent p-5 rounded-2xl bottom-[1.25rem] left-[1.25rem] h-fit   w-fit">
             <div className=" bg-white lg:max-w-[1000px] p-8 lg:rounded-2xl   h-[18rem]   w-[58rem] ">
               <h1 className="text-black text-base  lg:text-2xl 2xl:text-[2rem] font-[600]">
                 {images[currentIndex]?.title}{" "}
@@ -381,7 +381,7 @@ export default function Home() {
       </header>
       <div></div>
       <section className="w-screen p-5 lg:p-0 font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
-        <div className="flex  flex-col-reverse  lg:pr-6 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-between ">
+        <div className="flex  flex-col-reverse   lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-between ">
           <span className="flex  gap-4 flex-col w-full lg:max-w-[45.3em] 2xl:max-w-[48em]  ">
             <h1 className="text-black  text-[24px]  mt-4 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
               Find your ideal property with simple tools and guidance.
@@ -403,7 +403,7 @@ export default function Home() {
             </Button>
           </span>
 
-          <span className="mt-4 lg:-ml-5 lg:mt-0">
+          <span className="mt-4  lg:mt-0">
             <Image
               alt="image1"
               width={480}

@@ -40,7 +40,9 @@ const FAQComponent: React.FC = () => {
   return (
     <>
       <section
-        className={`bg-[#eeeeee]  lg:mt-[60px] 2xl:mt-[28px] hidden lg:block w-full lg:w-[440px] 2xl:w-[34rem] rounded-[20px]  p-6 2xl:p-9 mx-auto transition-all duration-500 ease-in-out ${
+        className={`bg-[#eeeeee] ${
+          openIndex !== null ? "lg:mt-[35px]" : "lg:mt-[55px]"
+        } hidden lg:block w-full lg:w-[440px] 2xl:w-[34rem] rounded-[20px]  p-6 2xl:p-9 mx-auto transition-all duration-500 ease-in-out ${
           openIndex === 0 ? "h-auto min-h-fit" : "h-fit"
         }`}
       >
@@ -105,7 +107,7 @@ const FAQComponent: React.FC = () => {
         </div>
       </section>
       <section
-        className={`bg-[#eeeeee] lg:hidden block w-full lg:w-[440px] 2xl:w-[34rem] rounded-[20px] p-6 2xl:p-9 mx-auto min-h-[450px] transition-all duration-500 ease-in-out`}
+        className={`bg-[#eeeeee] lg:hidden block w-full lg:w-[440px] 2xl:w-[34rem] 2xl:ml-[10rem] rounded-[20px] p-6 2xl:p-9 mx-auto min-h-[450px] transition-all duration-500 ease-in-out`}
       >
         <h2 className="text-[25px] font-[500] text-[#1E1E1E] mt-2">
           Find Your Answers Here
