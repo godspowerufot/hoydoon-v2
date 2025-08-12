@@ -6,8 +6,8 @@ import Button from "../common/Button";
 import FAQComponent from "../layouts/faq";
 export default function FagsSection() {
   return (
-    <section className=" mt-[20px]  w-full  lg:mt-[100px]   flex flex-1 justify-center items-center  flex-col   p-2 lg:p-0 font-bricolage ">
-      <div className="lg:flex  hidden flex-col lg:flex-row md:flex-row  lg:gap-[6rem]  justify-around  items-start lg:items-center  ">
+    <section className=" mt-[20px]  w-full     flex flex-1 justify-center items-center  flex-col   p-2 lg:p-0 font-bricolage ">
+      <div className="lg:flex  hidden flex-col  lg:flex-row md:flex-row  lg:gap-[6rem]  justify-around  items-start lg:items-center  ">
         <span className="flex flex-col  font-bricolage lg:ml-[3rem]  gap-2">
           <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] ">
             Your Questions, Our Answers

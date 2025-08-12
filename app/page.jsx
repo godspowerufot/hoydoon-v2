@@ -414,8 +414,8 @@ export default function Home() {
           </span>
         </div>
       </section>
-      <section className=" hidden p-2 lg:p-0  lg:mt-[100px]  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex  gap-[4rem]   flex-col lg:flex-row  items-center justify-center">
+      <section className=" hidden p-2 lg:p-0   font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex  gap-[4rem]  lg:my-[5em]   flex-col lg:flex-row  items-center justify-center">
           <span className="flex   lg:pl-1  2xl:pl-[0rem] flex-col w-full lg:w-6/10 ">
             <h1 className="text-black  text-[26px] lg:text-5xl font-[600]">
               Get the Hoydoon App
@@ -446,8 +446,8 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
         </div>
       </section>
 
-      <section className="lg:mt-[100px] p-2 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+      <section className=" p-2 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col lg:my-[4em]  items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Featured Properties for Rent
@@ -492,7 +492,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
         </div>
       </section>
 
-      <section className="mt-5 w-screen lg:mt-[100px] lg:w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="mt-5 w-screen lg:my-[4rem]   lg:w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row  p-3 lg:p-0 lg:gap-10 justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -512,8 +512,8 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
       {/* carousel */}
 
       {/* testimonials */}
-      <section className=" p-2 pt-[2.5rem] lg:mt-[100px]  2xl:p-6 lg:p-0 font-bricolage  flex justify-center flex-col  items-center">
-        <div className="flex  flex-col lg:flex-row md:flex-row   lg:max-w-[1200px] lg:gap-12  justify-around items-start w-full   ">
+      <section className=" p-2 lg:my-[4rem]   pt-[2.5rem] 2xl:p-6 lg:p-0 font-bricolage  flex justify-center flex-col  items-center">
+        <div className="flex  flex-col lg:flex-row md:flex-row 2xl:mt-4  lg:max-w-[1200px] lg:gap-12  justify-around items-start w-full   ">
           <span className="flex    2xl:w-full  flex-col font-bricolage gap-3">
             <h1 className="text-black   text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">
               What People Are Saying
