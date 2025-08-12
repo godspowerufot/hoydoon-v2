@@ -446,7 +446,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
         </div>
       </section>
 
-      <section className="lg:mt-[4em] p-2 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="lg:mt-[4rem] p-2 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -512,7 +512,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
       {/* carousel */}
 
       {/* testimonials */}
-      <section className=" p-2 pt-[2.5rem] lg:pt-0  2xl:p-6 lg:p-0 font-bricolage  flex justify-center flex-col  items-center">
+      <section className=" p-2 pt-[2.5rem] lg:pt-[2rem]  2xl:p-6 lg:p-0 font-bricolage  flex justify-center flex-col  items-center">
         <div className="flex  flex-col lg:flex-row md:flex-row 2xl:mt-4  lg:max-w-[1200px] lg:gap-12  justify-around items-start w-full   ">
           <span className="flex    2xl:w-full  flex-col font-bricolage gap-3">
             <h1 className="text-black   text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">

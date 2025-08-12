@@ -6,9 +6,9 @@ import Button from "../common/Button";
 import FAQComponent from "../layouts/faq";
 export default function FagsSection() {
   return (
-    <section className=" mt-[20px]  w-full  lg:mt-[7rem]   flex flex-1 justify-center items-center  flex-col   p-2 lg:p-0 font-bricolage ">
+    <section className=" mt-[20px]  w-full  lg:mt-[4.5rem]   flex flex-1 justify-center items-center  flex-col   p-2 lg:p-0 font-bricolage ">
       <div className="lg:flex  hidden flex-col lg:flex-row md:flex-row  lg:gap-[6rem]  justify-around  items-start lg:items-center  ">
-        <span className="flex flex-col  font-bricolage lg:ml-[1rem]  gap-2">
+        <span className="flex flex-col  font-bricolage lg:ml-[3rem]  gap-2">
           <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] ">
             Your Questions, Our Answers
           </h1>
@@ -30,8 +30,8 @@ export default function FagsSection() {
         </Button> */}
         </span>
       </div>
-      <div className="-mt-[3rem] lg:-mt-[6rem]  lg:ml-[5rem] 2xl:ml-[4rem]  justify-center items-center max-md:w-full w-full gap-6 flex flex-col-reverse max-md:justify-center max-md:items-center lg:flex-row ">
-        <div className="z-[4] lg:block relative max-md:w-full  lg:h-[50em]  lg:left-[30px] 2xl:left-[10px] lg:top-[11em]">
+      <div className="-mt-[3rem] lg:-mt-[2rem]  lg:ml-[5rem]   justify-center items-center max-md:w-full w-full gap-6 flex flex-col-reverse max-md:justify-center max-md:items-center lg:flex-row ">
+        <div className="z-[4] lg:block relative max-md:w-full  lg:h-[50em]  lg:left-[35px] 2xl:left-[10px] lg:top-[11em]">
           <div className="lg:hidden flex  flex-col lg:flex-row md:flex-row   2xl:gap-[14rem] lg:gap-[6rem]  justify-around items-start lg:items-center  ">
             <span className="flex flex-col  font-bricolage lg:ml-[1rem] 2xl:ml-[1rem]  gap-2">
               <h1 className="text-black  text-[1.5rem] 2xl:text-5xl font-[600] mr-3 ">
@@ -54,7 +54,7 @@ export default function FagsSection() {
             loading="lazy"
             height={500}
             src={"/q1.png"}
-            className="z-[3]  w-[16rem] h-[21rem] lg:w-[27rem] 2xl:w-[600px] rounded-[20px] relative  left-[0.5rem] 2xl:left-[2rem] lg:h-[37rem]  object-cover "
+            className="z-[3]  w-[16rem] h-[21rem] lg:w-[450px] rounded-[20px] relative  left-[0.5rem] 2xl:left-[2rem] lg:h-[650px]  object-cover "
           />{" "}
           <Image
             alt="image1"
@@ -62,7 +62,7 @@ export default function FagsSection() {
             loading="lazy"
             height={300}
             src={"/q2.png"}
-            className=" z-2  top-[0.5rem]  w-[12rem] h-[18rem]  bottom-[2em] lg:h-[30rem]   lg:w-[35rem]    lg:-left-[11em] -left-[2.8em]  2xl:-left-[9rem] lg:mt-[9px]  relative rounded-[20px]   object-cover "
+            className=" z-2  top-[0.5rem]  w-[12rem] h-[18rem]  bottom-[2em] lg:h-[500px]   lg:w-[25rem]    lg:-left-[11em] -left-[2.8em]  2xl:-left-[9rem] lg:mt-[9px]  relative rounded-[20px]   object-cover "
           />
         </div>
       </div>
