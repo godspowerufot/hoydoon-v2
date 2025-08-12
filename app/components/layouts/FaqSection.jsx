@@ -6,7 +6,7 @@ import Button from "../common/Button";
 import FAQComponent from "../layouts/faq";
 export default function FagsSection() {
   return (
-    <section className=" mt-[20px]  w-full  lg:mt-[4.5rem]   flex flex-1 justify-center items-center  flex-col   p-2 lg:p-0 font-bricolage ">
+    <section className=" mt-[20px]  w-full  lg:mt-[100px]   flex flex-1 justify-center items-center  flex-col   p-2 lg:p-0 font-bricolage ">
       <div className="lg:flex  hidden flex-col lg:flex-row md:flex-row  lg:gap-[6rem]  justify-around  items-start lg:items-center  ">
         <span className="flex flex-col  font-bricolage lg:ml-[3rem]  gap-2">
           <h1 className="text-black  lg:text-[2.5rem] 2xl:text-5xl font-[600] ">
@@ -62,7 +62,7 @@ export default function FagsSection() {
             loading="lazy"
             height={300}
             src={"/q2.png"}
-            className=" z-2  top-[0.5rem]  w-[12rem] h-[18rem]  bottom-[2em] lg:h-[500px]   lg:w-[25rem]    lg:-left-[11em] -left-[2.8em]  2xl:-left-[9rem] lg:mt-[9px]  relative rounded-[20px]   object-cover "
+            className=" z-2  top-[0.5rem]  w-[12rem] h-[18rem]  bottom-[2em] lg:h-[500px]   lg:w-[25rem]    lg:-left-[8em] -left-[2.8em]     relative rounded-[20px]   object-cover "
           />
         </div>
       </div>

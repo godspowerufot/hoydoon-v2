@@ -41,7 +41,7 @@ const FAQComponent: React.FC = () => {
     <>
       <section
         className={`bg-[#eeeeee] ${
-          openIndex !== null ? "lg:mt-[2rem] 2xl:mt-0 " : "lg:mt-[50px] "
+          openIndex !== null ? "lg:-mt-[6px] " : "mt-[30px]"
         } hidden lg:block w-full lg:w-[440px] 2xl:w-[490px] rounded-[20px]  p-6 2xl:p-9 mx-auto transition-all duration-500 ease-in-out ${
           openIndex === 0 ? "h-auto " : "h-auto"
         }`}
