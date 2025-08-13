@@ -70,9 +70,9 @@ const ArticleCard = ({ article }: any) => {
 
 const ArticlesSection = () => {
   return (
-    <section className="flex  mt-[2rem] lg:mt-[2rem] lg:mb-[4rem] text-start lg:justify-center items-center w-full flex-col   lg:max-w-[1200px] p-2 lg:p-0 font-bricolage">
+    <section className="flex  mt-[2rem] lg:-mt-[3.5em] text-start lg:justify-center items-center w-full flex-col   lg:max-w-[1200px] p-2 lg:p-0 font-bricolage">
       <div className="flex  flex-col lg:flex-row md:flex-row lg:gap-[8rem]   justify-around lg:items-center">
-        <span className="flex flex-col lg:mb-[2rem] font-bricolage  lg:ml-8  py-2 lg:py-0  gap-2">
+        <span className="flex flex-col  font-bricolage  lg:ml-8  py-2 lg:py-0  gap-2">
           <h1 className="text-black  text-[1.5rem] lg:text-[2.5rem]  font-[600] ">
             New Highlights & Articles
           </h1>
@@ -100,7 +100,7 @@ const ArticlesSection = () => {
           </Link>
         </span>
       </div>
-      <div className="lg:flex  hidden justify-center w-full  mt-[1.3rem] lg:mt-[4%] lg:flex-1 lg:flex-row flex-col items-center lg:gap-6 ">
+      <div className="lg:flex  hidden justify-center w-full  lg:my-[4em] lg:flex-1 lg:flex-row flex-col items-center lg:gap-6 ">
         {articles.map((article) => (
           <ArticleCard key={article.id} article={article} />
         ))}

@@ -447,8 +447,8 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
       </section>
 
       <section className=" p-2 lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col lg:mb-[2rem]  items-start gap-6 lg:gap-[2.5rem] justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col lg:py-[2rem] lg:flex-row justify-between items-center w-full  mx-auto">
+        <div className="flex flex-col   items-start gap-6 lg:gap-0 justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col  lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Featured Properties for Rent
             </h1>
@@ -457,7 +457,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] lg:mt-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="flex flex-col mt-[0.5em] lg:my-[5em] gap-5 items-start lg:flex-row justify-start mb-2">
             {(isMobile ? displayListings.slice(0, 1) : displayListings).map(
               (items, index) => (
                 <HoverCard
@@ -492,9 +492,9 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
         </div>
       </section>
 
-      <section className="mt-5 w-screen    lg:w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 lg:gap-[2.5rem] justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col lg:py-[2rem] lg:flex-row  p-3 lg:p-0 lg:gap-10 justify-between items-center w-full  mx-auto">
+      <section className="mt-5 w-screen lg:mt-0   lg:w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col items-start gap-6 lg:gap-0 justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col lg:py-0 lg:flex-row  p-3 lg:p-0 lg:gap-10 justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Luxurious Living Spaces
             </h1>
@@ -503,8 +503,9 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               to fit your taste and needs.
             </p>
           </div>
-
-          <Carousel images={luxuryDisplayListings} />
+          <div className="lg:my-[5em] w-full">
+            <Carousel images={luxuryDisplayListings} />
+          </div>{" "}
         </div>
       </section>
 
@@ -512,8 +513,8 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
       {/* carousel */}
 
       {/* testimonials */}
-      <section className=" p-2   pt-[2.5rem]  2xl:p-6 lg:p-0 font-bricolage  flex justify-center flex-col  items-center">
-        <div className="flex  flex-col   lg:mt-[5rem]  lg:flex-row md:flex-row 2xl:mt-4  lg:max-w-[1200px] lg:gap-12  justify-around items-start w-full   ">
+      <section className=" p-2   pt-[2.5rem]   lg:p-0 font-bricolage  flex justify-center flex-col  items-center">
+        <div className="flex  flex-col    lg:flex-row md:flex-row  lg:max-w-[1200px] lg:gap-0  justify-around items-start w-full   ">
           <span className="flex    2xl:w-full  flex-col font-bricolage gap-3">
             <h1 className="text-black   text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">
               What People Are Saying
@@ -538,8 +539,8 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
             </Button>
           </span>
         </div>
-        <div className="mt-5 lg:mt-0  lg:max-w-[1300px] w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:w-[90%] auto-rows-auto">
-          <span className="mt-[10rem]    hidden lg:flex gap-y-5 flex-col ">
+        <div className="mt-5 lg:mb-[5em] lg:mt-0  lg:max-w-[1300px] w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:w-[90%] auto-rows-auto">
+          <span className="pt-[10rem]    hidden lg:flex gap-y-5 flex-col ">
             <TestimonialCard />
             <TestimonialCard />
             <TestimonialCard />
@@ -549,7 +550,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
             <TestimonialCard />
             <TestimonialCard />
           </span>
-          <span className="mt-[10rem] hidden lg:flex gap-y-5 flex-col ">
+          <span className="pt-[10rem] hidden lg:flex gap-y-5 flex-col ">
             <TestimonialCard />
             <TestimonialCard />
             <TestimonialCard />
