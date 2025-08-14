@@ -415,7 +415,7 @@ export default function Home() {
         </div>
       </section>
       <section className=" hidden p-2 lg:p-0   font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex  gap-[4rem]  lg:my-[5em]   flex-col lg:flex-row  items-center justify-center">
+        <div className="flex  gap-[4rem]  lg:my-[4.5em]   flex-col lg:flex-row  items-center justify-center">
           <span className="flex   lg:pl-1  2xl:pl-[0rem] flex-col w-full lg:w-6/10 ">
             <h1 className="text-black  text-[26px] lg:text-5xl font-[600]">
               Get the Hoydoon App
@@ -457,7 +457,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] lg:my-[5.5em] gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="flex flex-col mt-[0.5em] lg:my-[4.5em] gap-5 items-start lg:flex-row justify-start mb-2">
             {(isMobile ? displayListings.slice(0, 1) : displayListings).map(
               (items, index) => (
                 <HoverCard
@@ -503,7 +503,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               to fit your taste and needs.
             </p>
           </div>
-          <div className="lg:my-[5.5em] w-full">
+          <div className="lg:my-[4em] w-full">
             <Carousel images={luxuryDisplayListings} />
           </div>{" "}
         </div>
@@ -514,7 +514,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
 
       {/* testimonials */}
       <section className=" p-2   pt-[2.5rem]   lg:p-0 font-bricolage  flex justify-center flex-col  items-center">
-        <div className="flex  flex-col    lg:flex-row md:flex-row  lg:max-w-[1200px] lg:gap-0  justify-around items-start w-full   ">
+        <div className="flex  flex-col lg:mt-[2.5rem]   lg:flex-row md:flex-row  lg:max-w-[1200px] lg:gap-0  justify-around items-start w-full   ">
           <span className="flex    2xl:w-full  flex-col font-bricolage gap-3">
             <h1 className="text-black   text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">
               What People Are Saying
@@ -539,8 +539,8 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
             </Button>
           </span>
         </div>
-        <div className="mt-5 lg:mb-[5.5em] lg:mt-0  lg:max-w-[1300px] w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:w-[90%] auto-rows-auto">
-          <span className="pt-[10rem]    hidden lg:flex gap-y-5 flex-col ">
+        <div className="mt-5 lg:my-[5em] lg:mt-0  lg:max-w-[1300px] w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:w-[90%] auto-rows-auto">
+          <span className="pt-[9rem]    hidden lg:flex gap-y-5 flex-col ">
             <TestimonialCard />
             <TestimonialCard />
             <TestimonialCard />
@@ -550,7 +550,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
             <TestimonialCard />
             <TestimonialCard />
           </span>
-          <span className="pt-[10rem] hidden lg:flex gap-y-5 flex-col ">
+          <span className="pt-[9rem] hidden lg:flex gap-y-5 flex-col ">
             <TestimonialCard />
             <TestimonialCard />
             <TestimonialCard />

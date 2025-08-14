@@ -137,8 +137,8 @@ export default function Home() {
 
       {/* explore */}
       <section className=" p-2 lg:max-w-[1200px] lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col lg:flex-row lg:mt-[4em] justify-between  items-center w-full  mx-auto">
+        <div className="flex flex-col lg:my-[5em] items-start gap-6 justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col lg:flex-row  justify-between  items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               All Houses for Sale
             </h1>
@@ -147,7 +147,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-wrap mt-[0.5em] lg:my-[4em]  gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="flex flex-wrap mt-[0.5em] lg:my-[1em]  gap-5 items-start lg:flex-row justify-start mb-2">
             {displayListings
               .slice(0, 3)
               .map((items: Property, index: number) => (
@@ -185,7 +185,7 @@ export default function Home() {
 
       <div className="w-screen  mt-[3rem] lg:my-0 h-[2px] bg-[#D9D9D9] " />
 
-      <section className="lg:mt-[4em] p-2 lg:p-0 w-full max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="lg:my-[5em] p-2 lg:p-0 w-full max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -196,7 +196,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] lg:mt-[4em] gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="flex flex-col mt-[0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
             {(openHouseListings?.listings || [])
               .slice(0, 3)
               .map((items: Property, index: number) => (
@@ -229,9 +229,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="w-screen  hidden lg:block mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  hidden lg:block  h-[2px] bg-[#D9D9D9] " />
 
-      <section className="lg:mt-[4em] p-2 lg:p-0 w-full lg:max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="lg:my-[5em] p-2 lg:p-0 w-full lg:max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -242,7 +242,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] lg:mt-[4em] gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="flex flex-col mt- [0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
             {(luxuryListings?.listings || [])
               .slice(0, 3)
               .map((items: Property, index: number) => (
@@ -275,12 +275,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="w-screen  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  mt-[3rem] lg:mt-0 h-[2px] bg-[#D9D9D9] " />
       {/* testimonials */}
 
-      <section className="   font-bricolage lg:flex  justify-center max-w-[1200px] flex-col flex-1 items-center ">
-        <div className="flex  gap-[4%]  lg:my-[4em] lg:gap-0  flex-col-reverse  w-full   lg:pl-5  lg:flex-row  items-center   lg:justify-around ">
-          <span className="flex  p-4 flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
+      <section className=" font-bricolage lg:flex  justify-center flex-col flex-1 items-center ">
+        <div className="flex  gap-[4%]  lg:mt-[5em] flex-col-reverse  w-full  2xl:pl-[2.5em] lg:pl-5  lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+          <span className="flex  p-4 flex-col  2xl:-mt-[5rem] w-full lg:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  mt-4 lg:mt-0 text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Get the Local Information
             </h1>
@@ -317,14 +317,13 @@ export default function Home() {
             </div>
           </span>
 
-          <span className="mt-8  w-screen lg:w-[40rem] h-[25rem] 2xl:h-[35rem] rounded-2xl lg:mt-0">
+          <span className="mt-8  w-screen lg:w-[40rem] h-[25rem] 2xl:w-[50rem] 2xl:h-[35rem] rounded-2xl lg:mt-0">
             <MapComponent coordinates={coordinates} />
           </span>
         </div>
       </section>
-      <div className="w-full justify-center items-center flex flex-col lg:mt-[4rem]">
-        <Article />
-      </div>
+
+      <Article />
     </>
   );
 }
