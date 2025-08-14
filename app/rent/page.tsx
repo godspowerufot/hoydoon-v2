@@ -80,7 +80,7 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="mt-4 lg:mt-6 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="mt-4 lg:mt-[5.5rem] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start  lg:max-w-[1200px] ">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -91,7 +91,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] lg:mt-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="flex flex-col mt-[0.5em] lg:my-[5.5em] gap-5 items-start lg:flex-row justify-start mb-2">
             {displayListings
               .slice(0, 3)
               .map((items: Property, index: number) => (

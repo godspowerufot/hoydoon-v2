@@ -100,7 +100,7 @@ const ArticlesSection = () => {
           </Link>
         </span>
       </div>
-      <div className="lg:flex  hidden justify-center w-full  lg:my-[4em] lg:flex-1 lg:flex-row flex-col items-center lg:gap-6 ">
+      <div className="lg:flex  hidden justify-center w-full  lg:my-[4.5em] lg:flex-1 lg:flex-row flex-col items-center lg:gap-6 ">
         {articles.map((article) => (
           <ArticleCard key={article.id} article={article} />
         ))}

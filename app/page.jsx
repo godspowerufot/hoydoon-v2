@@ -457,7 +457,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] lg:my-[5em] gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="flex flex-col mt-[0.5em] lg:my-[5.5em] gap-5 items-start lg:flex-row justify-start mb-2">
             {(isMobile ? displayListings.slice(0, 1) : displayListings).map(
               (items, index) => (
                 <HoverCard
@@ -503,7 +503,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               to fit your taste and needs.
             </p>
           </div>
-          <div className="lg:my-[5em] w-full">
+          <div className="lg:my-[5.5em] w-full">
             <Carousel images={luxuryDisplayListings} />
           </div>{" "}
         </div>
@@ -539,7 +539,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
             </Button>
           </span>
         </div>
-        <div className="mt-5 lg:mb-[5em] lg:mt-0  lg:max-w-[1300px] w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:w-[90%] auto-rows-auto">
+        <div className="mt-5 lg:mb-[5.5em] lg:mt-0  lg:max-w-[1300px] w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:w-[90%] auto-rows-auto">
           <span className="pt-[10rem]    hidden lg:flex gap-y-5 flex-col ">
             <TestimonialCard />
             <TestimonialCard />
