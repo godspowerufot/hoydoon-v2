@@ -415,7 +415,7 @@ export default function Home() {
         </div>
       </section>
       <section className=" hidden p-2 lg:p-0   font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex  gap-[4rem]  lg:my-[4.5em]   flex-col lg:flex-row  items-center justify-center">
+        <div className="flex  gap-[4rem]  lg:my-[5em]   flex-col lg:flex-row  items-center justify-center">
           <span className="flex   lg:pl-1  2xl:pl-[0rem] flex-col w-full lg:w-6/10 ">
             <h1 className="text-black  text-[26px] lg:text-5xl font-[600]">
               Get the Hoydoon App
@@ -446,7 +446,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
         </div>
       </section>
 
-      <section className=" p-2 lg:p-0 lg:mb-[4.5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className=" p-2 lg:p-0 lg:mb-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col   items-start gap-6 lg:gap-0 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col  lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
