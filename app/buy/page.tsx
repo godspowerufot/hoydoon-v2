@@ -278,13 +278,13 @@ export default function Home() {
       <div className="w-screen  mt-[3rem] lg:mt-0 h-[2px] bg-[#D9D9D9] " />
       {/* testimonials */}
 
-      <section className=" font-bricolage lg:flex  justify-center flex-col flex-1 items-center ">
-        <div className="flex  gap-[4%]  lg:mt-[5em] flex-col-reverse  w-full  2xl:pl-[2.5em] lg:pl-5  lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+      <section className="lg:max-w-[1200px] font-bricolage lg:flex  justify-center flex-col flex-1 items-center ">
+        <div className="flex  gap-[4%]  lg:my-[5em] flex-col-reverse  w-full  2xl:pl-[2.5em] lg:pl-5  lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex  p-4 flex-col  2xl:-mt-[5rem] w-full lg:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  mt-4 lg:mt-0 text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Get the Local Information
             </h1>
-            <p className="text-gray text-sm lg:text-xl mt-3 2xl:mt-[1em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
+            <p className="text-gray text-sm lg:text-xl mt-3 2xl:mt-[1em] font-bricolage  w-full lg:w-9/10 ">
               Curious about local schools? Wondering if there are pet-friendly
               rentals? Find all the key information you need about the area that
               catches your interest.

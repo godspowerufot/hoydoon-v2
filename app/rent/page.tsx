@@ -18,7 +18,7 @@ export default function Home() {
     listingType: "rent",
   });
   const { data: regionListings } = useGetAllListingsQuery({
-    region: "Nigeria",
+    location: "Nigeria",
   });
 
   const displayListings = Array.isArray(allListings?.listings)
@@ -80,10 +80,10 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="mt-4 lg:mt-[5.5rem] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start  lg:max-w-[1200px] ">
+      <section className="mt-1 p-5 lg:p-0  lg:my-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col  items-start  lg:max-w-[1200px] ">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h1 className="text-black text-[24px]  mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               All Houses for Sale
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
@@ -91,7 +91,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] lg:my-[5.5em] gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="flex flex-col mt-[3em] lg:my-[2em] gap-[2em] lg:gap-5 items-start lg:flex-row justify-start mb-2">
             {displayListings
               .slice(0, 3)
               .map((items: Property, index: number) => (
@@ -128,11 +128,11 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="w-full  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  mt-[3rem] lg:my-0 h-[2px] bg-[#D9D9D9] " />
 
       {/* afforable component */}
 
-      <section className="mt-4 lg:-mt-[1em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="mt-4  p-5 lg:p-0  lg:my-[5em]  w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -175,16 +175,16 @@ export default function Home() {
             </div>
             <Link
               href={"/rent/searchlisting"}
-              className="text-[#09858D]  text-base  my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]  text-base  my-5 lg:mt-3 lg:text-2xl font-[500] "
             >
               see all explore listings for rent
             </Link>
           </div>
         </div>
       </section>
-      <div className="w-full  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9]" />
+      <div className="w-screen mt-[3rem] lg:mt-0  h-[2px] bg-[#D9D9D9]" />
 
-      <section className="mt-4 lg:-mt-[1em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="mt-4 p-5 lg:p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6  lg:max-w-[1200px]w-full">
           <div className="flex flex-col lg:gap-[12rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -240,9 +240,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="w-full  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9]" />
+      <div className="w-screen h-[2px] bg-[#D9D9D9] " />
 
-      <section className="lg:mt-10   2xl:my-[2em] lg:my-[2em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className=" p-5 lg:p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
           <div className="flex flex-col lg:gap-[21rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -303,7 +303,7 @@ export default function Home() {
       {/* luxury */}
 
       {/* testimonials */}
-      <section className="lg:mt-10  2xl:my-[4em] lg:my-[3em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className=" p-5 lg:p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
           <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -355,7 +355,7 @@ export default function Home() {
       </section>
 
       {/* New-articles */}
-      <div className="lg:max-w-[1200px]">
+      <div className=" w-full lg:max-w-[1200px]">
         <Article />
       </div>
     </>

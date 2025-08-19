@@ -72,7 +72,7 @@ export default function Home() {
           </div>
 
           {/* Text Content */}
-          <div className="p-6  2xl:px-7">
+          <div className="p-6  relative">
             <h4 className="text-gray-800 font-[500] text-base">
               Hoydoon’s Selling
             </h4>
@@ -85,12 +85,15 @@ export default function Home() {
               that fits your needs perfectly.
             </p>
 
-            <Link href={"/agent/all-agent"}>
-              <Button className="!w-full 2xl:mt-[3rem] mt-6 text-base 2xl:text-xl lg:h-[3rem]  h-[3rem] lg:!p-2">
+          
+          </div>
+            <div className="m-4">
+              <Link href={"/agent/all-agent"}>
+              <Button className="!w-full mt-6 lg:-mt-4 text-base   h-[3rem] lg:!p-2">
                 Get Started
               </Button>
             </Link>
-          </div>
+            </div>
         </div>
 
         <div className="lg:w-[24rem]  lg:h-[32rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
@@ -105,7 +108,7 @@ export default function Home() {
           </div>
 
           {/* Text Content */}
-          <div className="p-6">
+          <div className="p-6 relative">
             <h4 className="text-gray-800 font-[500] text-base">
               Hoydoon’s Marketplace
             </h4>
@@ -118,20 +121,22 @@ export default function Home() {
               brokerages typically charge—helping you save more while receiving
               exceptional service.{" "}
             </p>
-            <Link className=" hidden lg:block " href={"/agent/all-agent"}>
-              <button className="w-full   rounded-full items-center justify-center flex bg-transparent border-[#1E1E1E]  border-solid border-[1px] text-black  mt-3 text-base 2xl:text-xl h-[3rem]  2xl:h-[4rem] p-3">
-                Visit Seller marketplace
-              </button>
-            </Link>
+           
             <Link className="lg:hidden block " href={"/agent/all-agent"}>
               <Button className="w-full 2xl:mt-[3rem] mt-8 text-base 2xl:text-xl  text-gray lg:h-[4rem]  h-[3rem] lg:p-3">
                 Visit Seller marketplace
               </Button>
             </Link>
           </div>
+         <div className="m-4">
+           <Link className=" hidden lg:block " href={"/agent/all-agent"}>
+              <button className="w-full    relative bottom-2  rounded-full items-center justify-center flex bg-transparent border-[#1E1E1E]  border-solid border-[1px] text-black  mt-3 text-base h-[3rem] p-3">
+                Visit Seller marketplace
+              </button>
+            </Link> </div>
         </div>
 
-        <div className="lg:w-[24rem] w-full lg:h-[32rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
+        <div className="lg:w-[24rem] w-full   lg:h-[32rem]       rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
@@ -143,7 +148,7 @@ export default function Home() {
           </div>
 
           {/* Text Content */}
-          <div className="p-6">
+          <div className="p-6 ">
             <h4 className="text-gray-800 font-[500] text-base">
               Hoydoon’s Value
             </h4>
@@ -155,20 +160,23 @@ export default function Home() {
               other homes in your area.{" "}
             </p>
 
-            <div className="  rounded-full relative w-[21rem] mt-[1.5rem] 2xl:w-[25rem]">
+           
+          </div>
+           <div className="m-4"> 
+            <div className=" relative -mt-11 rounded-full     w-[21rem]  ">
               <Input
                 label=""
                 type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="2xl:h-[4rem]  p-5 !rounded-[24px] mt-[3rem]"
+                className="  p-5 !rounded-[24px] mt-[3rem]"
                 placeholder="Enter your home address"
               />
 
               <div
                 onClick={handleSearch}
-                className="absolute right-2 top-[12%]  2xl:top-[12%] bg-primary ml-[6em] p-3  h-[35px] w-[35px] 2xl:w-[50px] 2xl:h-[50px] rounded-full flex items-center justify-center"
+                className="absolute right-2 top-[12%]  bg-primary ml-[6em] p-3  h-[35px] w-[35px]  rounded-full flex items-center justify-center"
               >
                 <Image
                   alt="logo"
@@ -181,12 +189,12 @@ export default function Home() {
                 />
               </div>
             </div>
-          </div>
+           </div>
         </div>
       </section>
 
       <section className="   font-bricolage flex  justify-center flex-col flex-1 items-center ">
-        <div className="flex  lg:max-w-[1200px] 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+        <div className="flex  lg:max-w-[1200px] 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[2em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col  gap-5 w-full lg:w-[45em]  ">
             <h1 className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Ready to sell your home?.
