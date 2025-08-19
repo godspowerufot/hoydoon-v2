@@ -188,7 +188,7 @@ export default function Home() {
       <section className="lg:my-[5em] p-2 lg:p-0 w-full max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 2xl:-ml-[1em] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Upcoming Open Houses for Sale
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
@@ -279,8 +279,8 @@ export default function Home() {
       {/* testimonials */}
 
       <section className="lg:max-w-[1200px] font-bricolage lg:flex  justify-center flex-col flex-1 items-center ">
-        <div className="flex  gap-[4%]  lg:my-[5em] flex-col-reverse  w-full  2xl:pl-[2.5em] lg:pl-5  lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
-          <span className="flex  p-4 flex-col  2xl:-mt-[5rem] w-full lg:w-[45em] 2xl:w-[60em] ">
+        <div className="flex  gap-[4%]  lg:my-[5em] flex-col-reverse  w-full   lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+          <span className="flex  p-4 flex-col   w-full lg:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  mt-4 lg:mt-0 text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Get the Local Information
             </h1>
@@ -290,23 +290,23 @@ export default function Home() {
               catches your interest.
             </p>
 
-            <div className="  relative w-full  lg:w-[87%] mt-[1.5rem] 2xl:w-[75%]">
+            <div className="  relative w-full  lg:w-[87%] mt-[1.5rem] ">
               <Input
                 label=""
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                className="2xl:h-[4rem] rounded-[24px]"
+                className="!rounded-full"
                 placeholder="Address, Neighborhood, Zip code..."
               />
 
               <div
                 onClick={handleSearch}
-                className="absolute right-2 top-[8%] 2xl:top-[13%] bg-primary ml-[6em] p-3  h-[40px] w-[40px] 2xl:w-[50px] 2xl:h-[50px] rounded-full flex items-center justify-center"
+                className="absolute right-2 top-[8%] 2xl:top-[13%] bg-primary ml-[6em] p-3  h-[40px] w-[50px]  rounded-full flex items-center justify-center"
               >
                 <Image
                   alt="logo"
-                  width={30}
+                  width={50}
                   loading="lazy"
                   height={30}
                   quality={100} // Ensures maximum quality
@@ -317,13 +317,17 @@ export default function Home() {
             </div>
           </span>
 
-          <span className="mt-8  w-screen lg:w-[40rem] h-[25rem] 2xl:w-[50rem] 2xl:h-[35rem] rounded-2xl lg:mt-0">
+          <span className="mt-8  w-screen lg:w-[40rem] h-[25rem] 2xl:w-[50rem] 2xl:h-fit rounded-2xl lg:mt-0">
             <MapComponent coordinates={coordinates} />
           </span>
         </div>
       </section>
 
+<div className="w-full  justify-center flex items-center  lg:mt-5">
+
       <Article />
+      </div>
+
     </>
   );
 }

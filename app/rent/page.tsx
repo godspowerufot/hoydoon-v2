@@ -18,7 +18,7 @@ export default function Home() {
     listingType: "rent",
   });
   const { data: regionListings } = useGetAllListingsQuery({
-    location: "Nigeria",
+    location: "somalia",
   });
 
   const displayListings = Array.isArray(allListings?.listings)
@@ -30,7 +30,7 @@ export default function Home() {
   useEffect(() => {
     if (Array.isArray(allListings?.listings)) {
       const filtered = allListings.listings?.filter(
-        (item: Property) => item?.item?.petFriendly === true
+        (item: Property) => item?.item?.petFriendly ===false
       );
       setPetFriendlyListings(filtered);
     }
@@ -301,6 +301,7 @@ export default function Home() {
       </section>
 
       {/* luxury */}
+      <div className="w-screen h-[2px] bg-[#D9D9D9] " />
 
       {/* testimonials */}
       <section className=" p-5 lg:p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
@@ -355,7 +356,7 @@ export default function Home() {
       </section>
 
       {/* New-articles */}
-      <div className=" w-full lg:max-w-[1200px]">
+      <div className=" w-full lg:max-w-[1200px] lg:mt-[2em]">
         <Article />
       </div>
     </>
