@@ -59,7 +59,7 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="mt-10   lg:my-[5em] w-full  font-bricolage flex justify-center  flex-col lg:flex-row gap-7  lg:max-w-[1200px] flex-1 items-center">
+      <section className="mt-10   lg:mt-[5em] w-full  font-bricolage flex justify-center  flex-col lg:flex-row gap-7  lg:max-w-[1200px] flex-1 items-center">
         <div className="lg:w-[24rem]  lg:h-[32rem]    rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
@@ -84,16 +84,14 @@ export default function Home() {
               area. Review their pricing, services, and ratings to find the one
               that fits your needs perfectly.
             </p>
-
-          
           </div>
-            <div className="m-4">
-              <Link href={"/agent/all-agent"}>
+          <div className="m-4">
+            <Link href={"/agent/all-agent"}>
               <Button className="!w-full mt-6 lg:-mt-4 text-base   h-[3rem] lg:!p-2">
                 Get Started
               </Button>
             </Link>
-            </div>
+          </div>
         </div>
 
         <div className="lg:w-[24rem]  lg:h-[32rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
@@ -121,19 +119,20 @@ export default function Home() {
               brokerages typically charge—helping you save more while receiving
               exceptional service.{" "}
             </p>
-           
+
             <Link className="lg:hidden block " href={"/agent/all-agent"}>
               <Button className="w-full 2xl:mt-[3rem] mt-8 text-base 2xl:text-xl  text-gray lg:h-[4rem]  h-[3rem] lg:p-3">
                 Visit Seller marketplace
               </Button>
             </Link>
           </div>
-         <div className="m-4">
-           <Link className=" hidden lg:block " href={"/agent/all-agent"}>
+          <div className="m-4">
+            <Link className=" hidden lg:block " href={"/agent/all-agent"}>
               <button className="w-full    relative bottom-2  rounded-full items-center justify-center flex bg-transparent border-[#1E1E1E]  border-solid border-[1px] text-black  mt-3 text-base h-[3rem] p-3">
                 Visit Seller marketplace
               </button>
-            </Link> </div>
+            </Link>{" "}
+          </div>
         </div>
 
         <div className="lg:w-[24rem] w-full   lg:h-[32rem]       rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
@@ -159,10 +158,8 @@ export default function Home() {
               Track your Hoydoon valuation over time and see how it compares to
               other homes in your area.{" "}
             </p>
-
-           
           </div>
-           <div className="m-4"> 
+          <div className="m-4">
             <div className=" relative -mt-11 rounded-full     w-[21rem]  ">
               <Input
                 label=""
@@ -189,11 +186,11 @@ export default function Home() {
                 />
               </div>
             </div>
-           </div>
+          </div>
         </div>
       </section>
 
-      <section className="   font-bricolage flex  lg:-mt-[5em] justify-center flex-col flex-1 items-center ">
+      <section className="   font-bricolage flex  lg:mt-[3em]  justify-center flex-col flex-1 items-center ">
         <div className="flex  lg:max-w-[1200px] 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] lg:pl-5 lg:my-[2em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col  gap-5 w-full lg:w-[45em]  ">
             <h1 className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
@@ -225,9 +222,8 @@ export default function Home() {
       {/* afforable component */}
 
       {/* New-articles */}
-      <div className="w-full flex justify-center items-center lg:mt-[1em]"> 
-      <Article />
-
+      <div className="w-full flex justify-center items-center lg:mt-[3em]">
+        <Article />
       </div>
     </>
   );
