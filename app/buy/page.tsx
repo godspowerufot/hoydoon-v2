@@ -323,11 +323,9 @@ export default function Home() {
         </div>
       </section>
 
-<div className="w-full  justify-center flex items-center  lg:mt-5">
-
-      <Article />
+      <div className="w-full  justify-center flex items-center  lg:mt-[3em]">
+        <Article />
       </div>
-
     </>
   );
 }

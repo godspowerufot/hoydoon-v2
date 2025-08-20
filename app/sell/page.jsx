@@ -59,7 +59,7 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="mt-10   lg:my-[4em] w-full  font-bricolage flex justify-center  flex-col lg:flex-row gap-7  lg:max-w-[1200px] flex-1 items-center">
+      <section className="mt-10   lg:my-[5em] w-full  font-bricolage flex justify-center  flex-col lg:flex-row gap-7  lg:max-w-[1200px] flex-1 items-center">
         <div className="lg:w-[24rem]  lg:h-[32rem]    rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
@@ -193,7 +193,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="   font-bricolage flex  justify-center flex-col flex-1 items-center ">
+      <section className="   font-bricolage flex  lg:-mt-[5em] justify-center flex-col flex-1 items-center ">
         <div className="flex  lg:max-w-[1200px] 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] lg:pl-5 lg:my-[2em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex flex-col  gap-5 w-full lg:w-[45em]  ">
             <h1 className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
@@ -225,7 +225,10 @@ export default function Home() {
       {/* afforable component */}
 
       {/* New-articles */}
+      <div className="w-full flex justify-center items-center lg:mt-[1em]"> 
       <Article />
+
+      </div>
     </>
   );
 }
