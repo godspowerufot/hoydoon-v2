@@ -71,7 +71,7 @@ export default function Page() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="   bg-white  w-screen lg:bg-[#eeeeeec7]  lg:py-[2em] font-bricolage lg:flex justify-center flex-col lg:gap-7 flex-1 items-center">
+      <section className="   bg-white  w-screen lg:bg-[#eeeeeec7]  lg:py-[5em] font-bricolage lg:flex justify-center flex-col lg:gap-7 flex-1 items-center">
         <div className="w-full">
           <div className="flex flex-col  lg:flex-col justify-between  gap-10  w-full lg:max-w-[1200px]  mx-auto">
             <div className="flex flex-col lg:flex-row gap-8 justify-between items-center w-full  mx-auto">
@@ -125,7 +125,7 @@ export default function Page() {
       </section>
 
       <section className="  bg-white  lg:bg-[#eeeeeec7]  w-full   lg:w-screen font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
-        <div className="flex  lg:gap-[4%] flex-col-reverse lg:max-w-[1200px] lg:my-[5em] lg:flex-row  items-center   lg:justify-around ">
+        <div className="flex  lg:gap-[4%] flex-col-reverse lg:max-w-[1200px] lg:my-[1em] lg:flex-row  items-center   lg:justify-around ">
           <span className="flex flex-col gap-y-1 lg:gap-y-0 w-full lg:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  text-2xl mt-4  lg:mt-0  lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Connect with local agent
@@ -153,8 +153,8 @@ export default function Page() {
         </div>
       </section>
 
-      <section className=" bg-[#eeeeeec7] w-screen  mb-[2em] lg:mb-0 font-bricolage lg:flex  flex-col j flex-1 items-center ">
-        <div className="flex flex-col   w-full lg:max-w-[1200px]   gap-[8rem]    lg:pl-5 lg:my-[5em] lg:flex-row  items-center lg:justify-between ">
+      <section className=" bg-[#eeeeeec7] w-screen  lg:py-[4em] mb-[2em] font-bricolage lg:flex  flex-col j flex-1 items-center ">
+        <div className="flex flex-col   w-full lg:max-w-[1200px]   gap-[5rem]    lg:pl-5 lg:my-[2em] lg:flex-row  items-center lg:justify-between ">
           <span className="mt-[3.5rem] lg:mt-0">
             <Image
               alt="image1"
@@ -165,11 +165,11 @@ export default function Page() {
               src={"/agent4.png"}
             />
           </span>
-          <span className="flex flex-col w-full  lg:gap-y-5     lg:w-[55em]  ">
+          <span className="flex flex-col w-full  lg:gap-y-5     lg:w-[55em] lg:ml-[2rem] ">
             <h1 className="text-black my-4 lg:my-0  text-xl lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Rapid Finds, Ready to View
             </h1>
-            <p className="text-gray  lg:text-xl text-xs  2xl:mt-[1em] font-bricolage lg:w-[90%] 2xl:text-[20px] 2xl:w-[70%]">
+            <p className="text-gray  lg:text-xl text-xs  2xl:mt-[1em] font-bricolage lg:w-[90%] 2xl:text-[20px] 2xl:w-full">
               Never miss out. We refresh listings every minute, ensuring you see
               new homes instantly. Book on-demand tours to view them fast
             </p>
@@ -182,7 +182,7 @@ export default function Page() {
       </section>
       {/* afforable component */}
 
-      <div>
+      <div className="lg:-mb-[7rem] lg:-mt-[1rem] ">
         <FagsSection />
       </div>
 
