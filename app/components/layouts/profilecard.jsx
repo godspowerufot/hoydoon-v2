@@ -27,7 +27,7 @@ export const ProfileCard = ({
             src={pictureUrl || "/Avatar.svg"}
             width={150}
             height={150}
-            className="w-[150px] h-full rounded-tl-[8px] rounded-bl-[8px]   lg:w-[140px] lg:h-[140px]  lg:rounded-full brightness-75 aspect-square object-cover"
+            className="w-[150px] h-full rounded-tl-[8px] rounded-bl-[8px]   lg:w-[140px] lg:h-[140px]  lg:rounded-full  aspect-square object-cover"
             onError={handleImgError}
           />
 
