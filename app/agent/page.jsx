@@ -74,7 +74,7 @@ export default function Page() {
       <section className="   bg-white  w-screen lg:bg-[#eeeeeec7]  lg:py-[5em] font-bricolage lg:flex justify-center flex-col lg:gap-7 flex-1 items-center">
         <div className="w-full">
           <div className="flex flex-col  lg:flex-col justify-between  gap-10  w-full lg:max-w-[1200px]  mx-auto">
-            <div className="flex flex-col lg:flex-row gap-8 justify-between items-center w-full  mx-auto">
+            <div className="flex flex-col p-3 lg:p-0 lg:flex-row lg:gap-8 justify-between  items-start lg:items-center w-full  mx-auto">
               <h1 className="text-black  font-semibold text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[60 lg:w-auto">
                 Real Estate Agents In Hoydoon
               </h1>
@@ -84,7 +84,7 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="grid mt-4  gap-y-3  w-full  grid-col-1 lg:grid-cols-2    gap-2 lg:gap-10 ">
+            <div className="grid  mt-2. lg:mt-4  gap-y-3  w-full  grid-col-1 lg:grid-cols-2    gap-2  p-4 lg:p-0 lg:gap-10 ">
               {displayListings
                 .slice(
                   0,
@@ -113,10 +113,10 @@ export default function Page() {
               )}
             </div>
             {/* "See All" link aligned to the start */}
-            <div className="w-full  lg:col-span-2  lg:flex justify-start">
+            <div className="w-full  lg:col-span-2 p-4 lg:p-0  lg:flex justify-start">
               <Link href="/agent/all-agent">
-                <p className="text-[#09858D] mt-5   w-full text-sm lg:text-2xl font-medium">
-                  See all real estate agents on Hoydoon
+                <p className="text-[#09858D] -mt-[4em] lg:mt-5   w-full text-sm lg:text-2xl font-medium">
+                  See all agents on Hoydoon
                 </p>
               </Link>
             </div>
@@ -124,7 +124,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="  bg-white  lg:bg-[#eeeeeec7]  w-full   lg:w-screen font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
+      <section className="  bg-white  lg:-mt-[2em] lg:bg-[#eeeeeec7]  w-full   lg:w-screen font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  lg:gap-[4%] flex-col-reverse lg:max-w-[1200px] lg:my-[1em] lg:flex-row  items-center   lg:justify-around ">
           <span className="flex flex-col gap-y-1 lg:gap-y-0 w-full lg:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  text-2xl mt-4  lg:mt-0  lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
@@ -153,8 +153,8 @@ export default function Page() {
         </div>
       </section>
 
-      <section className=" bg-[#eeeeeec7] w-screen  lg:py-[4em] mb-[2em] font-bricolage lg:flex  flex-col j flex-1 items-center ">
-        <div className="flex flex-col   w-full lg:max-w-[1200px]   gap-[5rem]    lg:pl-5 lg:my-[2em] lg:flex-row  items-center lg:justify-between ">
+      <section className=" bg-[#eeeeeec7] w-screen  lg:py-[3em] mb-[2em] font-bricolage lg:flex  flex-col j flex-1 items-center ">
+        <div className="flex flex-col   p-5 lg:p-0 w-full lg:max-w-[1200px]  gap-5  lg:gap-[5rem]    lg:pl-5 lg:my-[2em] lg:flex-row  items-center lg:justify-between ">
           <span className="mt-[3.5rem] lg:mt-0">
             <Image
               alt="image1"
@@ -166,7 +166,7 @@ export default function Page() {
             />
           </span>
           <span className="flex flex-col w-full  lg:gap-y-5     lg:w-[55em] lg:ml-[2rem] ">
-            <h1 className="text-black my-4 lg:my-0  text-xl lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
+            <h1 className="text-black  lg:my-0  text-xl lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Rapid Finds, Ready to View
             </h1>
             <p className="text-gray  lg:text-xl text-xs  2xl:mt-[1em] font-bricolage lg:w-[90%] 2xl:text-[20px] 2xl:w-full">

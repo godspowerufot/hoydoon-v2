@@ -30,7 +30,7 @@ export default function Home() {
   useEffect(() => {
     if (Array.isArray(allListings?.listings)) {
       const filtered = allListings.listings?.filter(
-        (item: Property) => item?.item?.petFriendly ===false
+        (item: Property) => item?.item?.petFriendly === false
       );
       setPetFriendlyListings(filtered);
     }
@@ -120,7 +120,7 @@ export default function Home() {
               ))}
             <Link
               href="/rent/searchlisting"
-              className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-xl font-[500] "
             >
               see housing for sale
             </Link>
@@ -175,7 +175,7 @@ export default function Home() {
             </div>
             <Link
               href={"/rent/searchlisting"}
-              className="text-[#09858D]  text-base  my-5 lg:mt-3 lg:text-2xl font-[500] "
+              className="text-[#09858D]  text-base  my-5 lg:mt-3 lg:text-xl font-[500] "
             >
               see all explore listings for rent
             </Link>
@@ -233,7 +233,7 @@ export default function Home() {
             )}
             <Link
               href={"/rent/searchlisting"}
-              className="text-[#09858D]  text-base  my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
             >
               see all explore listings for rent
             </Link>
@@ -292,7 +292,7 @@ export default function Home() {
 
             <Link
               href={"/rent/searchlisting"}
-              className="text-[#09858D]  text-base  my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
             >
               see all pet-friendly houses for rent
             </Link>
@@ -347,9 +347,9 @@ export default function Home() {
 
             <Link
               href={"/rent/searchlisting"}
-              className="text-[#09858D]  text-base  my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
             >
-              see all single family House rents for rent
+              see all family House for rent
             </Link>
           </div>
         </div>
