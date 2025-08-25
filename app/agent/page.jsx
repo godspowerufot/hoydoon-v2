@@ -124,7 +124,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="  bg-white  lg:-mt-[2.5em] lg:bg-[#eeeeeec7]  w-full   lg:w-screen font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
+      <section className="  bg-white  lg:-mt-[3.5em] lg:bg-[#eeeeeec7]  w-full   lg:w-screen font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  lg:gap-[4%] flex-col-reverse lg:max-w-[1200px] lg:my-[1em] lg:flex-row  items-center   lg:justify-around ">
           <span className="flex flex-col gap-y-1 lg:gap-y-0 w-full lg:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  text-2xl mt-4  lg:mt-0  lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
@@ -153,7 +153,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className=" bg-[#eeeeeec7] w-screen  lg:py-[3em] mb-[2em] lg:-pt-[2.5em] font-bricolage lg:flex  flex-col j flex-1 items-center ">
+      <section className=" bg-white lg:bg-[#eeeeeec7]  w-screen  lg:mb-0 mb-[2em] lg:-pt-[2.5em] font-bricolage lg:flex  flex-col j flex-1 items-center ">
         <div className="flex flex-col   p-5 lg:p-0 w-full lg:max-w-[1200px]  gap-5  lg:gap-[5rem]    lg:pl-5 lg:my-[2em] lg:flex-row  items-center lg:justify-between ">
           <span className="mt-[3.5rem] lg:mt-0">
             <Image
@@ -182,7 +182,7 @@ export default function Page() {
       </section>
       {/* afforable component */}
 
-      <div className="lg:-mb-[7rem] lg:-mt-[1rem] ">
+      <div className="lg:-mb-[8rem] lg:-mt-[2em] ">
         <FagsSection />
       </div>
 
