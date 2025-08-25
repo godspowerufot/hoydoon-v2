@@ -153,8 +153,8 @@ export default function Page() {
         </div>
       </section>
 
-      <section className=" bg-white lg:bg-[#eeeeeec7]  w-screen  lg:mb-0 mb-[2em] lg:-pt-[2.5em] font-bricolage lg:flex  flex-col j flex-1 items-center ">
-        <div className="flex flex-col   p-5 lg:p-0 w-full lg:max-w-[1200px]  gap-5  lg:gap-[5rem]    lg:pl-5 lg:my-[2em] lg:flex-row  items-center lg:justify-between ">
+      <section className="  w-screen   lg:bg-[#eeeeeec7] lg:pt-10 lg:mb-0 mb-[2em] 2xl:-mt-[5.25em] lg:-pt-[2.5em] font-bricolage lg:flex  flex-col j flex-1 items-center ">
+        <div className="flex flex-col   p-5 lg:p-0 w-full lg:max-w-[1200px]  gap-5  lg:gap-[4.5rem]    lg:pl-5 lg:my-[2em] lg:flex-row  items-center lg:justify-between ">
           <span className="mt-[3.5rem] lg:mt-0">
             <Image
               alt="image1"
@@ -165,9 +165,9 @@ export default function Page() {
               src={"/agent4.png"}
             />
           </span>
-          <span className="flex flex-col w-full  lg:gap-y-5     lg:w-[55em] lg:ml-[2rem] ">
+          <span className="flex flex-col w-full  lg:gap-y-5     lg:w-[55em]  ">
             <h1 className="text-black  lg:my-0  text-xl lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
-              Rapid Finds, Ready to View
+              Rapid Finds. Ready to View
             </h1>
             <p className="text-gray  lg:text-xl text-xs  2xl:mt-[1em] font-bricolage lg:w-[90%] 2xl:text-[20px] 2xl:w-full">
               Never miss out. We refresh listings every minute, ensuring you see
@@ -182,7 +182,7 @@ export default function Page() {
       </section>
       {/* afforable component */}
 
-      <div className="lg:-mb-[8rem] lg:-mt-[2em] ">
+      <div className="lg:-mb-[5rem] lg:mt-[2rem] ">
         <FagsSection />
       </div>
 
