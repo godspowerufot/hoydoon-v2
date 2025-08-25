@@ -153,7 +153,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className=" bg-[#eeeeeec7] w-screen  lg:py-[3em] mb-[2em] lg:-mt-[4.5em] font-bricolage lg:flex  flex-col j flex-1 items-center ">
+      <section className=" bg-[#eeeeeec7] w-screen  lg:py-[3em] mb-[2em] lg:-pt-[2.5em] font-bricolage lg:flex  flex-col j flex-1 items-center ">
         <div className="flex flex-col   p-5 lg:p-0 w-full lg:max-w-[1200px]  gap-5  lg:gap-[5rem]    lg:pl-5 lg:my-[2em] lg:flex-row  items-center lg:justify-between ">
           <span className="mt-[3.5rem] lg:mt-0">
             <Image
@@ -182,7 +182,7 @@ export default function Page() {
       </section>
       {/* afforable component */}
 
-      <div className="lg:-mb-[4rem] lg:mt-[3rem] ">
+      <div className="lg:-mb-[7rem] lg:-mt-[1rem] ">
         <FagsSection />
       </div>
 
