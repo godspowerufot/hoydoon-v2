@@ -12,7 +12,7 @@ const Input: React.FC<InputProps> = ({ label, className, ...rest }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const inputClasses = clsx(
-    "block font-light bg-transparent w-full placeholder:font-bricolage placeholder:font-light placeholder:text-[1rem] h-[3rem] 2xl:h-[3.5rem] lg:rounded-2xl border border-[#d6d5d5] p-4 text-gray-700 rounded-md placeholder:text-gray-500",
+    "block font-light bg-transparent w-full placeholder:font-bricolage placeholder:font-light placeholder:text-[1rem] h-[3rem] 2xl:h-[3.5rem] lg:rounded-2xl border border-gray p-4 text-gray-700 rounded-md placeholder:text-gray-500",
     className
   );
 

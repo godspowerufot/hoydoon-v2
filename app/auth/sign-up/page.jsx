@@ -80,11 +80,11 @@ const Signup = () => {
               height={400}
               quality={100} // Ensures maximum quality
               src={"/signup.jpg"}
-              className="  hidden lg:block  brightness-75  2xl:mt-[1rem] mt-[5px] rounded-2xl  w-full max-w-[600px] max-h-[42.8rem]  2xl:max-h-[52.1rem] 2xl:max-w-2xl"
+              className="  hidden lg:block  brightness-75 lg:mt-6 2xl:mt-[1rem] mt-[5px] rounded-2xl  w-full max-w-[600px] max-h-[42.8rem]  2xl:max-h-[52.1rem] 2xl:max-w-2xl"
               style={{ objectFit: "cover" }}
             />
 
-            <div className=" w-full  lg:w-[54rem] items-start mt-1 2xl:mt-3  flex flex-col">
+            <div className=" w-full  lg:w-[35rem] 2xl:w-[40rem] items-start mt-1 2xl:mt-3  flex flex-col">
               <Link href="/" className="flex justify-start ml-[2rem]         ">
                 <Image
                   alt="logo"
@@ -174,9 +174,9 @@ const Signup = () => {
                     Or sign up with:
                   </div>
 
-                  <div className="w-full flex justify-between gap-3 mt-[2px] ">
+                  <div className="w-full flex justify-between  mt-[2px] ">
                     <LoginButtons />
-                    <span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
+                    <span className=" w-[10rem] 2xl:w-[11rem] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
                       {" "}
                       <Image
                         alt="logo"
@@ -188,7 +188,7 @@ const Signup = () => {
                       />{" "}
                       Apple
                     </span>
-                    <span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
+                    <span className="gap-3 h-[2.5em] 2xl:w-[11rem]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
                       {" "}
                       <Image
                         alt="logo"
