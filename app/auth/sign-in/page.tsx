@@ -64,7 +64,7 @@ const Signup = () => {
 
   return (
     <>
-      <div className=" hidden lg:flex items-center w-full justify-center">
+      <div className=" hidden lg:flex items-center w-full justify-center my-7">
         <div className="h-full lg:h-screen justify-center items-center  flex  py-[1rem] 2xl:mt-[0.6rem]">
           <div className=" gap-[4rem]   flex flex-1 flex-col lg:flex-row">
             <Image
@@ -74,11 +74,11 @@ const Signup = () => {
               height={400}
               quality={100} // Ensures maximum quality
               src={"/authBanner.png"}
-              className="hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[37rem] h-[39.5rem]  2xl:h-[48rem] 2xl:w-[50rem]"
+              className="hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[30rem] h-[38.5rem]  2xl:h-[45rem] 2xl:w-[35rem]"
               style={{ objectFit: "cover" }}
             />
 
-            <div className=" w-full lg:w-[50%] items-start mt-[3rem] lg:mt-3 2xl:-mt-4  flex flex-col">
+            <div className=" w-full lg:w-[35rem] 2xl:w-[40rem] items-start mt-[3rem] lg:mt-3 2xl:-mt-4  flex flex-col">
               <Link href="/" className="flex justify-start ml-[2rem]         ">
                 <Image
                   alt="logo"
@@ -171,12 +171,12 @@ const Signup = () => {
                     Or Log in with:
                   </div>
 
-                  <div className="w-full flex flex-col lg:flex-row gap-3 mt-[2px] ">
+                  <div className="w-full flex flex-col lg:flex-row gap-3 justify-between mt-[2px] ">
                     <LoginButtons />
 
                     <span
                       onClick={() => signIn("apple")}
-                      className="lg:w-[9em] cursor-pointer hidden  w-full gap-3 h-[2.5em]  2xl:text-[1.em] lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   lg:flex items-center text-black font-[500] text-[1em] justify-center "
+                      className="lg:w-[10em] cursor-pointer hidden  w-full gap-3 h-[2.5em]  2xl:text-[1.em] lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   lg:flex items-center text-black font-[500] text-[1em] justify-center "
                     >
                       {" "}
                       <Image
@@ -191,7 +191,7 @@ const Signup = () => {
                     </span>
                     <span
                       onClick={() => signIn("facebook")}
-                      className="lg:w-[9em] cursor-pointer gap-3 h-[2.5em]  2xl:text-[1.em] lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]    hidden lg:flex items-center text-black font-[500] text-[1em] justify-center "
+                      className="lg:w-[10em] cursor-pointer gap-3 h-[2.5em]  2xl:text-[1.em] lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]    hidden lg:flex items-center text-black font-[500] text-[1em] justify-center "
                     >
                       {" "}
                       <Image
@@ -205,7 +205,7 @@ const Signup = () => {
                       Facebook
                     </span>
                   </div>
-                  <div className="w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] " />
+                  <div className="w-full lg:mt-3 h-[1px] bg-[#D9D9D9] " />
 
                   <p className="text-black w-full text-end block  font-[500] -mt-[5px] text-base 2xl:text-base">
                     No account yet?{" "}
@@ -222,7 +222,7 @@ const Signup = () => {
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
       <MobileSignIn />
     </>
   );

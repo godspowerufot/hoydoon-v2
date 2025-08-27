@@ -80,11 +80,11 @@ const Signup = () => {
               height={400}
               quality={100} // Ensures maximum quality
               src={"/signup.jpg"}
-              className="  hidden lg:block  brightness-75  2xl:mt-[1rem] mt-[5px] rounded-2xl  w-full max-w-[600px] max-h-[42.8rem]  2xl:max-h-[52.1rem] 2xl:max-w-[45rem]"
+              className="  hidden lg:block  brightness-75  2xl:mt-[1rem] mt-[5px] rounded-2xl  w-full max-w-[600px] max-h-[42.8rem]  2xl:max-h-[52.1rem] 2xl:max-w-2xl"
               style={{ objectFit: "cover" }}
             />
 
-            <div className=" w-full lg:max-w-[60%] items-start mt-1 2xl:mt-3  flex flex-col">
+            <div className=" w-full  lg:w-[54rem] items-start mt-1 2xl:mt-3  flex flex-col">
               <Link href="/" className="flex justify-start ml-[2rem]         ">
                 <Image
                   alt="logo"
@@ -98,7 +98,7 @@ const Signup = () => {
                 />
               </Link>
 
-              <span className=" 2xl:mt-[1rem] flex justify-center flex-col font-bricolage items-center w-full ">
+              <span className=" 2xl:mt-[1rem]  flex justify-center flex-col font-bricolage items-center w-full ">
                 <div className="w-[80%] 2xl:mt-2 h-[1px] bg-[#D9D9D9] " />
 
                 <h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1rem]  2xl:text-4xl font-bricolage font-[600]">
@@ -174,7 +174,7 @@ const Signup = () => {
                     Or sign up with:
                   </div>
 
-                  <div className="w-full flex gap-3 mt-[2px] ">
+                  <div className="w-full flex justify-between gap-3 mt-[2px] ">
                     <LoginButtons />
                     <span className="w-[9em] gap-3 h-[2.5em]  2xl:text-[1.em] rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   flex items-center text-black font-[500] text-[1em] justify-center ">
                       {" "}
