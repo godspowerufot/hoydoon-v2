@@ -80,7 +80,7 @@ const Signup = () => {
               height={400}
               quality={100} // Ensures maximum quality
               src={"/signup.jpg"}
-              className="  hidden lg:block  brightness-75 lg:mt-6 2xl:mt-[1rem] mt-[5px] rounded-2xl  w-full max-w-[600px] max-h-[42.8rem]  2xl:max-h-[52.1rem] 2xl:max-w-2xl"
+              className="  hidden lg:block  brightness-75 lg:mt-6 2xl:mt-[1rem] mt-[5px] rounded-2xl  w-full max-w-[500px] max-h-[42.8rem]  2xl:max-h-[52.1rem] 2xl:max-w-2xl"
               style={{ objectFit: "cover" }}
             />
 
