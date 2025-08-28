@@ -27,6 +27,7 @@ const Signup = () => {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const dispatch = useDispatch();
   const router = useRouter();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Password validation
@@ -64,165 +65,185 @@ const Signup = () => {
 
   return (
     <>
-      <div className=" hidden lg:flex items-center w-full justify-center my-7">
-        <div className="h-full lg:h-screen justify-center items-center  flex  py-[1rem] 2xl:mt-[0.6rem]">
-          <div className=" gap-[4rem]   flex flex-1 flex-col lg:flex-row">
+      {/* Desktop Layout */}
+      <div className="hidden lg:flex min-h-screen ">
+        {/* Left Side - Image */}
+        <div className="flex-1 flex items-center justify-end pr-12 xl:pr-16 2xl:pr-20">
+          <div className="relative">
             <Image
               alt="authBanner"
-              width={400}
+              width={600}
+              height={750}
               loading="lazy"
-              height={400}
-              quality={100} // Ensures maximum quality
+              quality={100}
               src={"/authBanner.png"}
-              className="hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[30rem] h-[38.5rem]  2xl:h-[45rem] 2xl:w-[35rem]"
-              style={{ objectFit: "cover" }}
+              className="rounded-[24px] w-[480px] h-[600px] lg:w-[520px] lg:h-[650px] xl:w-[580px] xl:h-[720px] 2xl:w-[620px] 2xl:h-[770px] object-cover "
             />
+          </div>
+        </div>
 
-            <div className=" w-full lg:w-[35rem] 2xl:w-[40rem] items-start mt-[3rem] lg:mt-3 2xl:-mt-4  flex flex-col">
-              <Link href="/" className="flex justify-start ml-[2rem]         ">
+        {/* Right Side - Form */}
+        <div className="flex-1 flex items-center justify-start pl-12 xl:pl-16 2xl:pl-20">
+          <div className="w-full max-w-[420px] xl:max-w-[460px] 2xl:max-w-[500px]">
+            {/* Logo */}
+            <div className="mb-5">
+              <Link href="/" className="inline-block">
                 <Image
                   alt="logo"
-                  width={30}
+                  width={180}
+                  height={60}
                   priority
                   quality={100}
-                  objectFit="cover"
-                  height={30}
-                  className="w-[10rem] h-[4rem] 2xl:w-[12rem]" // Reduced size of logo
                   src={"/logo2.svg"}
+                  className="h-12 w-auto object-contain"
                 />
               </Link>
+              <div className="w-full  my-2 h-[1px] bg-[#D9D9D9] " />
+            </div>
 
-              <span className=" 2xl:mt-[1rem] flex justify-center flex-col font-bricolage items-center w-full ">
-                <div className="w-[80%] 2xl:mt-1 h-[1px] bg-[#D9D9D9] " />
+            {/* Welcome Section */}
+            <div className="mb-8 flex justify-center flex-col items-center">
+              <h1 className="text-[32px] xl:text-[36px] 2xl:text-[40px] font-medium text-gray-900 mb-2 leading-tight">
+                Welcome Back
+              </h1>
+              <p className="font-light text-gray xl:text-lg ">
+                Please log in to continue
+              </p>
+            </div>
 
-                <h1 className="text-black  text-[26px] lg:text-3xl  pt-3   2xl:mt-[1rem]  2xl:text-4xl font-bricolage font-[600]">
-                  Welcome Back
-                </h1>
-                <p className="font-light text-gray pt-1  2xl:mt-[0.8rem]  text-xs 2xl:text-base">
-                  Please log in to continue
-                </p>
+            {/* Form Fields */}
+            <div className="space-y-5 mb-6">
+              {/* Email Field */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email Address
+                </label>
+                <Input
+                  type="email"
+                  placeholder="Email address*"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg   outline-none text-base placeholder-gray-400"
+                />
+              </div>
 
-                <div className="2xl:mt-[2rem] mt-[1rem] flex flex-col gap-[1.5rem] lg:gap-[1em] lg:w-[80%] ">
+              {/* Password Field */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Password
+                </label>
+                <div className="relative">
                   <Input
-                    label="Email Address"
-                    type="text"
-                    placeholder="Enter Email Address"
-                    value={email} // ✅ Binding state
-                    onChange={(e) => setEmail(e.target.value)} // ✅ Updating state
-                  />
-
-                  <Input
-                    label="Password"
                     type="password"
-                    className="mt-1"
-                    placeholder="Enter Password"
-                    value={password} // ✅ Binding state
+                    placeholder="Password*"
+                    value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
-                      // Check password validity while typing
                       const passwordRegex =
                         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
                       setIsPasswordValid(passwordRegex.test(e.target.value));
-                    }} // ✅ Updating state
+                    }}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2  outline-none text-base placeholder-gray-400 pr-12"
                   />
-
-                  {!isPasswordValid && (
-                    <p className="text-[0.7em] text-gray -mt-1  2xl:text-[0.8em] font-[300] ">
-                      It must be a combination of 8 words, letters, numbers,
-                      symbols
-                    </p>
-                  )}
-
-                  <div className="flex items-center  justify-end w-full gap-[7rem]">
-                    <div className="flex items-center w-full 2xl:mt-2">
-                      <label
-                        id="rememberme"
-                        className="flex text-sm lg:text-base  w-[10em] lg:w-full items-center text-grey-700 font-[300]   cursor-pointer"
-                      >
-                        <input
-                          name="rememberme"
-                          type="checkbox"
-                          className="mr-2  rounded-lg h-[20px] w-[25px]  cursor-pointer"
-                        />
-                        Remember me
-                      </label>
-                    </div>
-                    <Link
-                      href="/auth/forgot-password"
-                      className="text-primary font-meduim w-full  text-sm lg:text-base  2xl:text-xl font-bricolage"
-                    >
-                      Forgot password
-                    </Link>
-                  </div>
-
-                  <Button
-                    type="submit"
-                    onClick={handleSubmit} // ✅ Correct way
-                    className="!w-full lg:!w-full 2xl:mt-2 lg:mt-2 text-base 2xl:text-[1.3rem] h-[2.5rem] lg:h-[3rem] p-4"
-                    disabled={isLoading}
-                  >
-                    <p className="text-[18px] lg:text-xl">
-                      {isLoading ? "Logging in..." : "Log in"}
-                    </p>
-                  </Button>
-
-                  <div className="w-full 2xl:mt-3 h-[1px] bg-[#D9D9D9] " />
-                  <div className="w-full text-black text-right font-[500] font-bricolage">
-                    Or Log in with:
-                  </div>
-
-                  <div className="w-full flex flex-col lg:flex-row gap-3 justify-between mt-[2px] ">
-                    <LoginButtons />
-
-                    <span
-                      onClick={() => signIn("apple")}
-                      className="lg:w-[10em] cursor-pointer hidden  w-full gap-3 h-[2.5em]  2xl:text-[1.em] lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]   lg:flex items-center text-black font-[500] text-[1em] justify-center "
-                    >
-                      {" "}
-                      <Image
-                        alt="logo"
-                        width={20}
-                        loading="lazy"
-                        objectFit="cover"
-                        height={20} // Reduced size of logo
-                        src={"/apple.png"}
-                      />{" "}
-                      Apple
-                    </span>
-                    <span
-                      onClick={() => signIn("facebook")}
-                      className="lg:w-[10em] cursor-pointer gap-3 h-[2.5em]  2xl:text-[1.em] lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]    hidden lg:flex items-center text-black font-[500] text-[1em] justify-center "
-                    >
-                      {" "}
-                      <Image
-                        alt="logo"
-                        width={20}
-                        loading="lazy"
-                        objectFit="cover"
-                        height={20} // Reduced size of logo
-                        src={"/facebook.png"}
-                      />{" "}
-                      Facebook
-                    </span>
-                  </div>
-                  <div className="w-full lg:mt-3 h-[1px] bg-[#D9D9D9] " />
-
-                  <p className="text-black w-full text-end block  font-[500] -mt-[5px] text-base 2xl:text-base">
-                    No account yet?{" "}
-                    <Link
-                      href="/auth/sign-up"
-                      className="text-primary text-[1em]  2xl:text-xl font-bricolage"
-                    >
-                      {" "}
-                      Sign Up{" "}
-                    </Link>{" "}
-                  </p>
                 </div>
-              </span>
+
+                {!isPasswordValid && (
+                  <p className="text-xs text-gray mt-1 font-light">
+                    It must be a combination of 8 words, letters, numbers,
+                    symbols
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Remember me and Forgot password */}
+            <div className="flex items-center justify-between mb-6">
+              <label className="flex items-center text-sm xl:text-base text-gray-700 font-light cursor-pointer">
+                <input
+                  name="rememberme"
+                  type="checkbox"
+                  className="mr-2 h-4 w-4 rounded cursor-pointer"
+                />
+                Remember me
+              </label>
+
+              <Link
+                href="/auth/forgot-password"
+                className="text-lg text-primary  font-medium"
+              >
+                Forgot password?
+              </Link>
+            </div>
+
+            {/* Login Button */}
+            <button
+              onClick={handleSubmit}
+              disabled={isLoading}
+              className="w-full bg-primary rounded-full text-white font-semibold py-3 px-4 text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-5"
+            >
+              {isLoading ? "Logging in..." : "Log in"}
+            </button>
+
+            <div className="w-full  my-2 h-[1px] bg-[#D9D9D9] " />
+
+            {/* Or Log in with */}
+            <div className="text-right my-4">
+              <p className="text-gray-700 text-sm font-normal">
+                Or Log in with:
+              </p>
+            </div>
+
+            {/* Social Login Buttons */}
+            <div className="flex gap-3 mb-8">
+              <LoginButtons />
+
+              <button
+                onClick={() => signIn("apple")}
+                className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700"
+              >
+                <Image
+                  alt="Apple"
+                  width={18}
+                  height={18}
+                  src="/apple.png"
+                  className="object-contain"
+                />
+                Apple
+              </button>
+
+              <button
+                onClick={() => signIn("facebook")}
+                className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700"
+              >
+                <Image
+                  alt="Facebook"
+                  width={18}
+                  height={18}
+                  src="/facebook.png"
+                  className="object-contain"
+                />
+                Facebook
+              </button>
+            </div>
+            <div className="w-full  my-2 h-[1px] bg-[#D9D9D9] " />
+
+            {/* Sign Up Link */}
+            <div className="text-right mt-4">
+              <p className="text-gray-700 text-sm">
+                No account yet?{" "}
+                <Link
+                  href="/auth/sign-up"
+                  className="text-primary text-lg font-normal"
+                >
+                  Sign Up
+                </Link>
+              </p>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Mobile Component */}
       <MobileSignIn />
     </>
   );

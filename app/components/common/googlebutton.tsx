@@ -77,7 +77,7 @@ const LoginButtons = () => {
     <>
       <span
         onClick={() => loginWithCode()}
-        className="lg:w-[9em] cursor-pointer hidden gap-3 h-[2.5em]  2xl:text-[1.em] w-full lg:rounded-full p-3  2xl:h-[3em] 2x:p-4 border-gray border-solid border-[1px]  lg:flex items-center text-black font-[500] text-[1em] justify-center "
+        className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700"
       >
         {" "}
         <Image

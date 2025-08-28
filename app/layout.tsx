@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import Appfooter from "./components/layouts/footer";
 import Navbar from "./components/layouts/navbar";
 import AnimationWrapper from "@/utils/lib/_app";
@@ -81,17 +80,14 @@ export default function RootLayout({
             </div>
             <AnimationWrapper>
               {/* wrap the client id */}
-              <GoogleOAuthProvider
-                clientId={`438580118502-j5qth0chlkikrpreur0gjl9q1vm8a162.apps.googleusercontent.com`}
-              >
-                <main className=" container flex-1 flex items-center justify-center flex-col ">
-                  <Suspense fallback={<Spinner />}>
-                    <ToastContainer position="top-center" autoClose={3000} />
 
-                    {children}
-                  </Suspense>
-                </main>
-              </GoogleOAuthProvider>
+              <main className=" container flex-1 flex items-center justify-center flex-col ">
+                <Suspense fallback={<Spinner />}>
+                  <ToastContainer position="top-center" autoClose={3000} />
+
+                  {children}
+                </Suspense>
+              </main>
               {/* Footer */}
             </AnimationWrapper>
           </Providers>
