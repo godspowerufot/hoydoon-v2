@@ -30,7 +30,7 @@ const Input: React.FC<InputProps> = ({ label, className, ...rest }) => {
         {rest.type === "password" && (
           <button
             type="button"
-            className="absolute  right-4 top-4 text-gray-500"
+            className="absolute  right-4 top-5 text-gray-500"
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ? (
