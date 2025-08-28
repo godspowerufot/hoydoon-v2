@@ -68,7 +68,7 @@ const Signup = () => {
       {/* Desktop Layout */}
       <div className="hidden lg:flex min-h-screen ">
         {/* Left Side - Image */}
-        <div className="flex-1 flex items-center justify-end pr-12 xl:pr-16 2xl:pr-20">
+        <div className="flex-1 flex items-center lg:ml-[7.5rem] justify-end pr-12 xl:pr-10 2xl:pr-20">
           <div className="relative">
             <Image
               alt="authBanner"
