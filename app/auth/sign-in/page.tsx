@@ -68,7 +68,7 @@ const Signup = () => {
       {/* Desktop Layout */}
       <div className="hidden lg:flex min-h-screen ">
         {/* Left Side - Image */}
-        <div className="flex-1 flex items-center lg:ml-[7.5rem] justify-end pr-12 xl:pr-10 2xl:pr-20">
+        <div className="flex-1 flex items-center lg:ml-[4rem] justify-end lg:pr-12 2xl:pr-20  ">
           <div className="relative">
             <Image
               alt="authBanner"
@@ -77,13 +77,13 @@ const Signup = () => {
               loading="lazy"
               quality={100}
               src={"/authBanner.png"}
-              className="rounded-[24px] w-[480px] h-[600px] lg:w-[800px] lg:h-[650px] xl:w-[800px] xl:h-[720px] 2xl:w-[900px] 2xl:h-[770px] object-cover "
+              className="rounded-[24px] w-[480px] h-[600px] lg:w-[800px] lg:h-[650px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[700px] object-cover "
             />
           </div>
         </div>
 
         {/* Right Side - Form */}
-        <div className="flex-1 flex items-center justify-start pl-12 xl:pl-16 2xl:pl-20">
+        <div className="flex-1 flex items-center justify-start pl-12 xl:pl-5 2xl:pl-0">
           <div className="w-full max-w-[420px] xl:max-w-[460px] 2xl:max-w-[500px]">
             {/* Logo */}
             <div className="mb-5">
