@@ -115,12 +115,12 @@ const Signup = () => {
             <div className="space-y-5 mb-6">
               {/* Email Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-lg font-light text-gray-700 mb-2">
                   Email Address
                 </label>
                 <Input
                   type="email"
-                  placeholder="Email address*"
+                  placeholder="Enter Email Address "
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg   outline-none text-base placeholder-gray-400"
@@ -129,13 +129,13 @@ const Signup = () => {
 
               {/* Password Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-lg font-light text-gray-700 mb-2">
                   Password
                 </label>
                 <div className="relative">
                   <Input
                     type="password"
-                    placeholder="Password*"
+                    placeholder="Enter Password "
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
@@ -169,7 +169,7 @@ const Signup = () => {
 
               <Link
                 href="/auth/forgot-password"
-                className="text-lg text-primary  font-medium"
+                className="text-lg text-primary  font-normal"
               >
                 Forgot password?
               </Link>
