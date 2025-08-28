@@ -77,7 +77,7 @@ const Signup = () => {
               loading="lazy"
               quality={100}
               src={"/authBanner.png"}
-              className="rounded-[24px] w-[480px] h-[600px] lg:w-[750px] lg:h-[650px] xl:w-[580px] xl:h-[720px] 2xl:w-[750px] 2xl:h-[770px] object-cover "
+              className="rounded-[24px] w-[480px] h-[600px] lg:w-[800px] lg:h-[650px] xl:w-[800px] xl:h-[720px] 2xl:w-[900px] 2xl:h-[770px] object-cover "
             />
           </div>
         </div>
