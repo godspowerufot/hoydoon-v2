@@ -54,11 +54,11 @@ const OtpVerify = () => {
                 height={400}
                 quality={100} // Ensures maximum quality
                 src={"/otp-1.png"}
-                className="hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[550px] h-[39.5rem]  2xl:h-[48rem] 2xl:w-[50rem]"
+                className="rounded-[24px] w-[480px] h-[600px] lg:w-[500px] lg:h-[650px] xl:w-[700px] xl:h-[700px] 2xl:w-[600px] 2xl:h-[700px] object-cover "
                 style={{ objectFit: "cover" }}
               />
 
-              <div className=" w-full px-4 max-w-[450px] items-start mt-3 2xl:-mt-4  flex flex-col">
+              <div className=" w-full px-4 max-w-[500px] items-start mt-3 2xl:-mt-4  flex flex-col">
                 <Link
                   href="/"
                   className="flex lg:justify-start  lg:ml-[2rem]         "

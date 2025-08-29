@@ -76,8 +76,8 @@ const ForgetOtpVerify = ({ setStep }) => {
   return (
     <>
       <div className="flex lg:items-center max-w-full lg:justify-center max-h-screen lg:h-full ">
-        <div className=" max-h-screen  lg:py-1 justify-center lg:items-center  flex   2xl:mt-[0.6rem] ">
-          <div className=" gap-[4rem]   flex flex-1 flex-col lg:flex-row">
+        <div className=" max-h-screen  lg:ml-[3rem] lg:py-1 justify-center lg:items-center  flex   2xl:mt-[0.6rem] ">
+          <div className=" gap-[5rem]   flex flex-1 flex-col lg:flex-row">
             <Image
               alt="authBanner"
               width={400}
@@ -85,11 +85,11 @@ const ForgetOtpVerify = ({ setStep }) => {
               height={400}
               quality={100} // Ensures maximum quality
               src={"/otp-1.png"}
-              className="hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl  w-[550px] h-[39.5rem]  2xl:h-[48rem] 2xl:w-[50rem]"
+              className="rounded-[24px] w-[480px] h-[600px] lg:w-[500px] lg:h-[650px] xl:w-[700px] xl:h-[700px] 2xl:w-[600px] 2xl:h-[700px] object-cover "
               style={{ objectFit: "cover" }}
             />
 
-            <div className=" w-full px-4 max-w-[480px] items-start mt-3 2xl:-mt-4  flex flex-col">
+            <div className=" w-full px-4 max-w-[550px] items-start mt-3 2xl:-mt-4  flex flex-col">
               <Link
                 href="/"
                 className="flex lg:justify-start  lg:ml-[2rem]         "

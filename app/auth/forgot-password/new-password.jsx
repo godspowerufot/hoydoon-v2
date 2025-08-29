@@ -62,11 +62,11 @@ const PasswordConfirm = () => {
             height={400}
             quality={100}
             src={"/newpassword.png"}
-            className="hidden lg:block 2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[37rem] h-[39.5rem] 2xl:h-[48rem] 2xl:w-[50rem]"
+            className="rounded-[24px] w-[480px] h-[600px] lg:w-[800px] lg:h-[650px] xl:w-[700px] xl:h-[700px] 2xl:w-[700px] 2xl:h-[700px] object-cover "
             style={{ objectFit: "cover" }}
           />
 
-          <div className="w-full px-4 lg:w-[60%] items-start mt-3 2xl:-mt-4 flex flex-col">
+          <div className=" w-full px-4 max-w-[550px] items-start  flex flex-col">
             <Link href="/" className="flex lg:justify-start lg:ml-[2rem]">
               <Image
                 alt="logo"
@@ -91,7 +91,7 @@ const PasswordConfirm = () => {
               </p>
             </div>
 
-            <div className="lg:mt-[32px] font-bold mt-2 lg:p-0 flex flex-col gap-[1.3em] w-full">
+            <div className="lg:mt-[32px] font-bold mt-2 lg:p-0 flex flex-col gap-[2em] w-full">
               <Input
                 label="Enter new password"
                 type="password"
@@ -135,7 +135,7 @@ const PasswordConfirm = () => {
               <Button
                 type="submit"
                 onClick={handleSubmit}
-                className="!w-full font-medium 2xl:mt-2 mt-2 text-base 2xl:text-xl rounded-sm lg:rounded-full h-[3rem] lg:h-[2.8rem] p-4"
+                className="!w-full font-medium 2xl:mt-2 mt-2 text-base 2xl:text-xl rounded-sm lg:rounded-full h-[3rem] lg:h-[3rem] p-5"
               >
                 {isLoading ? "Submitting..." : "Submit"}
               </Button>
