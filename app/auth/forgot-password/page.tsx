@@ -8,7 +8,6 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 
 import Input from "@/app/components/common/inputs/input";
-import Button from "@/app/components/common/Button";
 import ForgetOtpVerify from "./otp/otp";
 import { useResendOtpMutation } from "@/store/slices/api/authapi";
 import { useDispatch } from "react-redux";
@@ -78,10 +77,10 @@ const OtpVerify = () => {
                 <div className=" 2xl:mt-[1rem]  mt-[1rem] flex lg:justify-center flex-col font-bricolage items-start lg:items-center w-full ">
                   <div className=" w-full  2xl:mt-1 h-[1px] bg-[#D9D9D9] " />
 
-                  <h1 className="text-black  text-[2rem] lg:text-[2rem]  pt-3 lg:pt-[1rem]   2xl:pt-[1rem]  2xl:text-4xl font-bricolage font-[600]">
+                  <h1 className="text-[32px] lg:mt-[32px]  xl:text-[36px] 2xl:text-[40px] font-medium text-gray-900 mb-2 leading-tight">
                     Forgot Password
                   </h1>
-                  <p className="font-light text-gray   lg:pt-[0.6rem] text-start     lg:text-center lg:max-w-[25rem] text-[13.5px]">
+                  <p className="font-light text-gray text-center  xl:text-lg ">
                     Enter your email address and we ’II send you confirmation
                     code to reset your password{" "}
                   </p>
@@ -97,13 +96,13 @@ const OtpVerify = () => {
                     onChange={(e) => setEmail(e.target.value)}
                   />
 
-                  <Button
+                  <button
                     type="submit"
                     onClick={handleSubmit}
-                    className="!w-full lg:!w-full  font-medium 2xl:mt-2 mt-2 text-base 2xl:text-xl rounded-sm lg:rounded-full h-[2.5rem] lg:h-[2.8rem] p-4"
+                    className="w-full lg:mt-[32px] bg-primary mt-5 rounded-full text-white font-semibold py-3 px-4 text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-5"
                   >
                     Reset
-                  </Button>
+                  </button>
                 </div>
               </div>
             </div>

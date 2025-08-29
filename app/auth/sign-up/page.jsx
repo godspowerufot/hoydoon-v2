@@ -61,9 +61,9 @@ const Signup = () => {
   return (
     <>
       {/* Desktop Layout */}
-      <div className="hidden lg:flex min-h-screen ">
+      <div className="hidden lg:flex min-h-screen lg:-mt-[3em] 2xl:mt-0 ">
         {/* Left Side - Image */}
-        <div className="flex-1 flex items-center justify-end pr-12 xl:pr-16 2xl:pr-20">
+        <div className="flex-1 flex items-center justify-end pr-[0.3em] 2xl:pr-[2em]">
           <div className="relative">
             <Image
               alt="authBanner"
@@ -78,7 +78,7 @@ const Signup = () => {
         </div>
 
         {/* Right Side - Form */}
-        <div className="flex-1 flex items-center justify-start pt-[5em] pl-12 xl:pl-16 2xl:pl-20">
+        <div className="flex-1 flex items-center justify-start pt-[5em] pl-12 xl:pl-16 2xl:pl-10">
           <div className="w-full max-w-[420px] xl:max-w-[460px] 2xl:max-w-[500px]">
             {/* Logo */}
             <div className="mb-3">
