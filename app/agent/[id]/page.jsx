@@ -342,7 +342,7 @@ const page = ({ params }) => {
         </div>
       </div>
       {/* second layout */}
-      <div className=" w-full px-[1.5rem] lg:px-0 py-7">
+      <div className=" w-full mt-[3rem] px-[1.5rem] lg:px-0 py-7">
         <h1 className=" text-xl lg:text-[2rem] font-semibold ">
           {" "}
           About {agentInfo?.fullname}
@@ -353,7 +353,7 @@ const page = ({ params }) => {
       </div>
       {/* description */}
       {/* map */}
-      <div className="bg-gray-100  w-full lg:p-0 rounded-lg mb-3">
+      <div className="bg-gray-100 mt-[3rem]  w-full lg:p-0 rounded-lg mb-3">
         <h1 className="text-xl lg:text-[2rem] lg:py-2 ml-[1.7rem] lg:ml-0 font-semibold ">
           {" "}
           {agentInfo?.fullname} Listings & Deals
@@ -404,7 +404,7 @@ const page = ({ params }) => {
 
         {/* Distance Information */}
       </div>
-      <div className="w-full lg:mt-4  px-7 lg:px-0 py-6">
+      <div className="w-full lg:mt-[3rem]  px-7 lg:px-0 py-6">
         <h1 className="text-xl lg:text-[2rem]   mb-7  font-semibold ">
           {" "}
           {agentInfo?.fullname} Active Listings

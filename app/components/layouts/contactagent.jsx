@@ -100,7 +100,7 @@ export default function ContactAgent({
       </div>
 
       {/* Buttons */}
-      <div className="mt-6  lg:-ml-[15px] flex gap-4">
+      <div className="mt-6  lg:ml-[15px] flex gap-4">
         <button
           onClick={() => handleSend("message")}
           className="bg-primary w-[9rem] 2xl:w-[15rem]  rounded-md lg:rounded-full text-white text-base px-4 py-2 2xl:py-4"
