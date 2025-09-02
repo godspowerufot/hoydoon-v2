@@ -49,7 +49,7 @@ export default function ContactAgent({
   };
 
   return (
-    <div className="lg:bg-[#ffffffec] mt-[2rem] text-[#8F8F8F] rounded-lg p-5 *:lg:px-10 w-fit lg:py-10  mx-auto lg:border border-[#8F8F8F]">
+    <div className="lg:bg-[#ffffffec] mt-[3rem] text-[#8F8F8F] rounded-lg p-5 lg:px-10 w-fit lg:py-10  mx-auto lg:border border-[#8F8F8F]">
       <h2 className="text-xl lg:text-3xl font-bold text-black font-bricolage mb-4">
         Contact Hoydoon Agent {fullname}
       </h2>
@@ -74,7 +74,7 @@ export default function ContactAgent({
       </div>
 
       {/* Message Box */}
-      <div className="lg:m-6 my-4 border   border-[#8F8F8F] rounded-md lg:rounded-[24px] p-5">
+      <div className="lg:m-6 my-4 border *:lg:p-5  border-[#8F8F8F] rounded-md lg:rounded-[24px] p-5">
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -100,7 +100,7 @@ export default function ContactAgent({
       </div>
 
       {/* Buttons */}
-      <div className="mt-6 flex gap-4">
+      <div className="mt-6  lg:-ml-[15px] flex gap-4">
         <button
           onClick={() => handleSend("message")}
           className="bg-primary w-[9rem] 2xl:w-[15rem]  rounded-md lg:rounded-full text-white text-base px-4 py-2 2xl:py-4"
