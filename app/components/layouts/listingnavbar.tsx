@@ -92,7 +92,7 @@ export default function ListingNavbar() {
           {/* Center: Navigation Links + Auth Buttons */}
           <div className="hidden lg:flex items-center gap-x-4">
             {/* Navigation Links */}
-            <ul className="flex space-x-6 text-[#8F8F8F] text-[1rem]">
+            <ul className="flex  gap-[1rem] lg:mr-[2rem] text-[#8F8F8F] text-[1rem]">
               <li>
                 <Link href="/buy" className="hover:text-primary">
                   Buy
