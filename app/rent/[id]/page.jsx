@@ -547,19 +547,19 @@ const page = () => {
           <h2 className="text-xl font-bold text-black  font-bricolage">
             Listed by Agent
           </h2>
-          <div className="lg:mt-[3rem]">
+          <div className="pt-4">
             <ListedCard name={fullname} picture={pictureUrl} />
           </div>
         </div>
 
         {/* map */}
         <div className="bg-gray-100   w-full rounded-lg">
-          <h2 className="text-xl font-semibold mb-4 pl-4 lg:pl-0 mt-4 lg:ml-2 ">
+          <h2 className="text-xl font-semibold mb-4 pl-4 lg:pl-0 lg:mt-[3rem]  lg:ml-2 ">
             Map
           </h2>
 
           {/* Map Container */}
-          <div className="w-screen  lg:mt-[3rem] lg:w-full relative rounded-lg  flex items-center overflow-hidden ">
+          <div className="w-screen  pt-4 lg:w-full relative rounded-lg  flex items-center overflow-hidden ">
             <MapComponent coordinates={coordinate} />
             <div className="py-4 px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
               <span className="font-medium">
@@ -608,7 +608,7 @@ const page = () => {
           fullname={fullname}
           listedBy={listedBy?._id}
         />
-        <div className="hidden lg:block w-full">
+        <div className="hiddenlg:mt-[4rem]  lg:block w-full">
           <section className="mt-[3rem]  hidden   font-bricolage lg:flex  flex-col flex-1 ">
             <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
               <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">

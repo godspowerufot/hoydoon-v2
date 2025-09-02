@@ -70,7 +70,7 @@ const DynamicImageGrid = ({
             renderImage(
               img,
               i,
-              "w-full h-[300px] object-cover rounded-lg",
+              "w-full h-[560px] 2xl:h-[600px] object-cover rounded-lg",
               500,
               400
             )
@@ -83,7 +83,7 @@ const DynamicImageGrid = ({
             {renderImage(
               images[0],
               0,
-              "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg",
+              "w-full h-[560px] 2xl:h-[600px] object-cover rounded-lg",
               500,
               400
             )}
@@ -91,14 +91,14 @@ const DynamicImageGrid = ({
           {renderImage(
             images[1],
             1,
-            "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg",
+            "w-full h-[275px] object-cover rounded-lg",
             250,
             200
           )}
           {renderImage(
             images[2],
             2,
-            "w-full h-[180px] object-cover rounded-lg",
+            "w-full h-[275px] object-cover rounded-lg",
             300,
             200
           )}
@@ -125,7 +125,7 @@ const DynamicImageGrid = ({
             {renderImage(
               images[0],
               0,
-              "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg",
+              "w-full h-[560px] 2xl:h-[600px] object-cover rounded-lg",
               500,
               400
             )}
@@ -133,28 +133,28 @@ const DynamicImageGrid = ({
           {renderImage(
             images[1],
             1,
-            "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg",
+            "w-full h-[275px] object-cover rounded-lg",
             250,
             200
           )}
           {renderImage(
             images[2],
             2,
-            "w-full h-[180px] object-cover rounded-lg",
+            "w-full h-[275px] object-cover rounded-lg",
             300,
             200
           )}
           {renderImage(
             images[3],
             3,
-            "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg",
+            "w-full h-full object-cover rounded-lg",
             250,
             200
           )}
           {renderImage(
             images[4],
             4,
-            "w-full h-[180px] object-cover rounded-lg",
+            "w-full h-full object-cover rounded-lg",
             300,
             200
           )}
@@ -167,7 +167,7 @@ const DynamicImageGrid = ({
             {renderImage(
               images[0],
               0,
-              "w-full h-[380px] 2xl:h-[450px] object-cover rounded-lg",
+              "w-full h-[560px] 2xl:h-[600px] object-cover rounded-lg",
               500,
               400
             )}
@@ -178,7 +178,7 @@ const DynamicImageGrid = ({
               renderImage(
                 img,
                 i + 1,
-                "w-full h-[185px] 2xl:h-[217px] object-cover rounded-lg",
+                "w-full h-[275px] object-cover rounded-lg",
                 250,
                 200
               )

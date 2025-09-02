@@ -347,7 +347,7 @@ const page = ({ params }) => {
           {" "}
           About {agentInfo?.fullname}
         </h1>
-        <p className=" text-[#8F8F8F] font-bricolage text-sm lg:text-[18px] lg:w-[73rem] 2xl:w-full 2xl:text-xl py-2">
+        <p className=" text-[#8F8F8F] font-bricolage text-sm lg:text-[18px] lg:w-[73rem] 2xl:w-full 2xl:text-xl mt-4">
           {agentInfo?.profileDescription || "no description found"}
         </p>
       </div>
