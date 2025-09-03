@@ -554,7 +554,7 @@ const page = () => {
 
         {/* map */}
         <div className="bg-gray-100   w-full rounded-lg">
-          <h2 className="text-xl font-semibold mb-4 pl-4 lg:pl-0 lg:mt-[3rem]  lg:ml-2 ">
+          <h2 className="text-xl font-semibold mb-4 pl-4 lg:pl-0 lg:mt-[2rem]  lg:ml-2 ">
             Map
           </h2>
 
@@ -608,7 +608,7 @@ const page = () => {
           fullname={fullname}
           listedBy={listedBy?._id}
         />
-        <div className="hiddenlg:mt-[4rem]  lg:block w-full">
+        <div className="hidden lg:mt-[1.5rem] lg:-mb-[2rem]  lg:block w-full">
           <section className="mt-[3rem]  hidden   font-bricolage lg:flex  flex-col flex-1 ">
             <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
               <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
