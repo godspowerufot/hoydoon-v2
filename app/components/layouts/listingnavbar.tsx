@@ -69,6 +69,12 @@ export default function ListingNavbar() {
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault(); // prevents form submission if inside a form
+                    handleSearch();
+                  }
+                }}
                 placeholder="City, Address, State, Zip..."
                 className="bg-transparent  placeholder:fonr-[300] placeholder:font-[1em] lg:pl-2 placeholder:text-[#8F8F8F]  focus:outline-none text-black text-sm w-full"
               />

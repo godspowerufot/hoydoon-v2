@@ -247,7 +247,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-sm text-gray-600 font-[400]">Filters</h2>
                 <button
-                  className="text-sm text-teal-600 font-[400]"
+                  className="text-sm text-primary font-[400]"
                   onClick={() => {
                     handleSearchClick();
                     setShowAllFiltersDropdown(false);
@@ -647,7 +647,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             handleSearchClick();
             setIsSearching(false);
           }}
-          className="px-4 py-[6px] bg-teal-600 text-base text-white font-light rounded-md flex items-center justify-center"
+          className="px-4 py-[6px] bg-primary text-base text-white font-light rounded-md flex items-center justify-center"
           disabled={isSearching}
         >
           {isSearching ? (
@@ -677,11 +677,11 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       </div>
 
       {/* Right Section: List / Map Toggle */}
-      <div className=" hidden lg:flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-4  border-[#8F8F8F]   justify-between border-solid border-[1px] items-center font-base rounded-[10px] 2xl:p-[4px] lg:p-[2px] h-auto relative">
+      <div className=" hidden lg:flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-3   border-[#8F8F8F]   justify-between border-solid border-[0.5px] items-center font-base rounded-[5px] lg:p-[3px]  relative">
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
-              className={`px-4 py-2 gap-3 flex 2xl:w-[5.5rem] w-[4.5rem] text-[16px] rounded-md transition-all duration-300 ${
+              className={`px-4 py-1 gap-3 flex  items-center justify-center w-[4.5rem] text-[16px] rounded-md transition-all duration-300 ${
                 (showMap ? "Map" : "List") === option
                   ? "bg-primary gap-[10px] flex text-white"
                   : "text-[#8F8F8F]"
@@ -758,7 +758,7 @@ const page = () => {
   return (
     <div className="lg:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1200px]">
       <Breadcrumb showMap={showMap} setShowMap={setShowMap} />'
-      <div className="flex items-start p-4 lg:p-0  w-full lg:justify-between flex-col  gap-3 lg:gap-0 lg:flex-row   ">
+      <div className="flex items-start p-4 lg:p-0  lg:mt-[1rem] w-full lg:justify-between flex-col  gap-3 lg:gap-0 lg:flex-row   ">
         <h1 className="text-black  hidden lg:block font-semibold text-2xl lg:text-4xl">
           All Real-estate & Homes for Sale
         </h1>
@@ -781,7 +781,7 @@ const page = () => {
           </span>
         </div>
       </div>
-      <div className="w-screen  lg:my-[2rem] 2xl:my-[2  rem]  h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  lg:my-[1rem]   h-[2px] bg-[#D9D9D9] " />
       {showMap ? (
         <MapComponent coordinates={coordinates} />
       ) : (
@@ -798,7 +798,7 @@ const page = () => {
               No listings found for your search.
             </p>
           ) : (
-            <div className=" grid     grid-cols-1 md:grid-cols-3 gap-4 lg:gap-[1rem] mt-[1.5rem]  p-5 lg:p-0 place-items-center">
+            <div className=" grid     grid-cols-1 md:grid-cols-3 gap-4 lg:gap-[1rem] mt-[1.5rem] lg:mt-[1rem]  p-5 lg:p-0 place-items-center">
               {[...displayListings].map((items, index) => (
                 <PropertyListCard
                   key={index}
