@@ -60,9 +60,9 @@ export default function ListingNavbar() {
                 width={40}
                 height={40}
                 priority
-              />
+              />{" "}
+              <h3 className="ml-0 text-lg font-semibold text-black">Hoydoon</h3>
             </Link>{" "}
-            <h3 className="ml-1 text-lg font-semibold text-black">Hoydoon</h3>
             <div className="relative  w-[20rem]  h-[3rem] hidden border-[#8F8F8F] border-solid border-[1px]  lg:flex items-center bg-gray-100 rounded-[14px] px-2 py-2">
               <input
                 type="text"
@@ -90,7 +90,7 @@ export default function ListingNavbar() {
           </div>
 
           {/* Center: Navigation Links + Auth Buttons */}
-          <div className="hidden lg:flex items-center gap-x-4">
+          <div className="hidden lg:flex items-center gap-x-2">
             {/* Navigation Links */}
             <ul className="flex  gap-[1rem] lg:mr-[2rem] text-[#8F8F8F] text-[1rem]">
               <li>
@@ -195,7 +195,7 @@ export default function ListingNavbar() {
                 </Link>
                 <Link
                   href="/auth/sign-up"
-                  className="block bg-primary text-white py-2 px-5 rounded-md"
+                  className="block bg-primary  text-white py-2 px-5 rounded-md"
                 >
                   Register
                 </Link>

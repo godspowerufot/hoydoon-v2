@@ -223,9 +223,9 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   }, [showHomeTypeDropdown]);
 
   return (
-    <div className="lg:pt-[2.3rem]    lg:pl-[2rem] lg:pr-[4.5rem] 2xl:gap-[20rem] flex-col lg:flex-row lg:flex justify-between w-full">
+    <div className="lg:pt-[2.3rem]  -mb-[2.5rem] lg:mb-0    flex-col lg:flex-row lg:flex justify-between w-full">
       {/* Left Section: Filters */}
-      <div className="flex items-center  2xl:-ml-[2.4rem] lg:ml-[2rem] gap-1 lg:gap-2">
+      <div className="flex items-center   p-[1rem] lg:p-0   gap-1 lg:gap-2">
         <button
           onClick={() => setShowAllFiltersDropdown(true)}
           className="px-2 lg:px-4 h-[37px] text-xs  lg:h-fit lg:text-sm lg:py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F] flex items-center gap-2"
@@ -677,7 +677,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       </div>
 
       {/* Right Section: List / Map Toggle */}
-      <div className=" hidden lg:flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-4  border-[#8F8F8F]  2xl:-mr-[2rem] justify-between border-solid border-[1px] items-center font-base rounded-[10px] 2xl:p-[4px] lg:p-[2px] h-auto relative">
+      <div className=" hidden lg:flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-4  border-[#8F8F8F]   justify-between border-solid border-[1px] items-center font-base rounded-[10px] 2xl:p-[4px] lg:p-[2px] h-auto relative">
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
@@ -756,9 +756,9 @@ const page = () => {
   //    );
   //  }
   return (
-    <div className="lg:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] 2xl:w-[94rem]  lg:w-[84rem]  flex-col flex justify-center items-center 2xl:items-stretch ">
+    <div className="lg:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1200px]">
       <Breadcrumb showMap={showMap} setShowMap={setShowMap} />'
-      <div className="flex items-start p-4 lg:p-0  w-full lg:justify-between flex-col  gap-3 lg:gap-0 lg:flex-row lg:w-[76rem]  2xl:w-[90rem]  ">
+      <div className="flex items-start p-4 lg:p-0  w-full lg:justify-between flex-col  gap-3 lg:gap-0 lg:flex-row   ">
         <h1 className="text-black  hidden lg:block font-semibold text-2xl lg:text-4xl">
           All Real-estate & Homes for Sale
         </h1>
@@ -787,7 +787,7 @@ const page = () => {
       ) : (
         <>
           {isAllloading && (
-            <div className="grid grid-cols-1 w-[90%] sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 w-full sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(6)].map((_, index) => (
                 <PropertySkeleton key={index} />
               ))}
@@ -798,7 +798,7 @@ const page = () => {
               No listings found for your search.
             </p>
           ) : (
-            <div className=" grid    lg:-ml-[2.8rem] 2xl:mr-[0]   lg:mr-2  grid-cols-1 md:grid-cols-3 gap-4 lg:gap-y-[2rem]  p-5 lg:p-0 place-items-center">
+            <div className=" grid     grid-cols-1 md:grid-cols-3 gap-4 lg:gap-[1rem] mt-[1.5rem]  p-5 lg:p-0 place-items-center">
               {[...displayListings].map((items, index) => (
                 <PropertyListCard
                   key={index}

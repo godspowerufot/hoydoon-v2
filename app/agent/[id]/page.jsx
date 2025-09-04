@@ -37,7 +37,9 @@ const Breadcrumb = ({
         {/* Breadcrumb Links */}
         <div className="flex  w-full items-center gap-3 text-base text-gray-500">
           {/* Initial Back Arrow + Static Text */}
-          <div className="flex font-light items-center gap-1">
+          <div
+            className="flex font-light items-center gap-1"
+          >
             <Image
               src="/arrow-right.png"
               alt="arrow"
@@ -45,9 +47,7 @@ const Breadcrumb = ({
               width={12}
               className=" w-4 h-4 object-contain"
             />{" "}
-            <Link href={"/search"}>
-              <span>Search |</span>
-            </Link>
+            <span>Search |</span>
           </div>
 
           {/* Breadcrumb item: Homes for Sale */}
@@ -255,7 +255,7 @@ const page = ({ params }) => {
         <div className="flex flex-row  lg:p-0 justify-between items-start md:items-center">
           {/* Profile Image */}
           <div className="flex mt-4  items-center justify-center lg:-mt-3 gap-3">
-            <div className="w-[4rem] h-[4rem] lg:w-[6rem] lg:h-[6rem] relative">
+            <div className="w-[4rem] h-[4rem] relative">
               <Image
                 src={agentInfo?.pictureUrl || "/Avatar.svg"} // Replace with actual image path
                 alt="Profile Picture"
