@@ -6,7 +6,7 @@ import MobileNavbar from "./mobile";
 export default function HelpCenterNavbar() {
   return (
     <>
-      <nav className=" hidden lg:block w-full border-b border-gray-300 bg-[#f1f1f1] py-2">
+      <nav className=" hidden lg:block w-full border-b-2 border-[#d6d5d5]  bg-[#f1f1f1] py-2">
         <div className="max-w-[1200px]  mx-auto flex items-center justify-between px-4">
           {/* Left: Logo and Title */}
           <Link href={"/"}>
@@ -25,7 +25,7 @@ export default function HelpCenterNavbar() {
           </Link>
 
           {/* Right: Links */}
-          <div className="flex items-center  2xl:ml-[4rem] space-x-4">
+          <div className="flex items-center   space-x-4">
             <Link
               href="/helpcenter/submit-request"
               className="text-gray hover:text-gray text-base"

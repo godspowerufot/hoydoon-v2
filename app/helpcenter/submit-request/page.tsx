@@ -128,7 +128,7 @@ const SubmitRequest = () => {
 
   return (
     <div className="mt-10 md:w-[1200px] p-4 md:p-6 bg-white min-h-screen lg:min-h-0">
-      <div className="flex flex-col md:flex-row items-start justify-between gap-4 py-2 w-full bg-gray-100">
+      <div className="flex flex-col md:flex-row items-start justify-between gap-4 py-2 mt-[2em] w-full bg-gray-100">
         <div className="flex items-center gap-2 text-sm lg:text-lg text-gray-600">
           <Image
             src="/arrow-right.png"
@@ -143,8 +143,8 @@ const SubmitRequest = () => {
           </a>
         </div>
 
-        <div className="hidden lg:block relative w-full md:w-[20rem] 2xl:w-[25rem]">
-          <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+        <div className="hidden lg:block relative  w-full md:w-[20rem] 2xl:w-[25rem]">
+          <div className="absolute left-4 top-[45%] transform -translate-y-1/2">
             <Image
               alt="Search"
               src={"/Search2.png"}
@@ -156,7 +156,7 @@ const SubmitRequest = () => {
           <Input
             label=""
             type="text"
-            className="w-full 2xl:placeholder:text-xl 2xl:h-[4rem] p-5 pl-10 rounded-[15px]"
+            className="w-full  2xl:placeholder:text-xl lg:h-[3rem]  text-xl  p-2 pl-10 placeholder:pl-2 rounded-[15px]"
             placeholder="Search..."
           />
         </div>
@@ -168,7 +168,7 @@ const SubmitRequest = () => {
             Submit a request
           </h1>
 
-          <div className="mb-4 relative">
+          <div className={`mb-4 relative ${dropdownOpen ? "mb-[20rem]" : ""}`}>
             <label className="block text-[#1E1E1E99] text-sm lg:text-base mb-2 2xl:text-[1.2em]">
               Please choose your issue below
             </label>
@@ -185,7 +185,6 @@ const SubmitRequest = () => {
                 className="w-4 h-5"
               />
             </div>
-
             {dropdownOpen && (
               <>
                 <div
@@ -348,7 +347,7 @@ const SubmitRequest = () => {
         </div>
 
         {category && category !== "Select" && (
-          <div className="hidden md:block md:max-w-[25rem] 2xl:ml-[24rem] lg:ml-[12rem]">
+          <div className="hidden md:block md:max-w-[25rem]  lg:ml-[12rem]">
             <h2 className="text-xl font-semibold mb-4">
               Articles in this section
             </h2>

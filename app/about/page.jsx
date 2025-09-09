@@ -236,7 +236,7 @@ const Agent = () => {
         {displayListings.length > 0 && displayListings.length < 6 && (
           <div className="w-full  flex justify-start">
             <Link href="/agent/all-agent">
-              <p className="text-[#09858D] mt-2  w-full text-sm lg:text-2xl font-medium">
+              <p className="text-[#09858D] mt-2 lg:mt-[2em]  w-full text-sm lg:text-2xl font-medium">
                 See all {displayListings.length} rent estate agents in Lagos
               </p>
             </Link>
@@ -246,7 +246,7 @@ const Agent = () => {
       {/* "See All" link aligned to the start */}
       <div className="w-full  lg:col-span-2  lg:flex justify-start">
         <Link href="/agent/all-agent">
-          <p className="text-[#09858D] mt-5   w-full text-sm lg:text-2xl font-medium">
+          <p className="text-[#09858D] mt-5  lg:mt-[2.5em]  w-full text-sm lg:text-2xl font-medium">
             See all real estate agents on Hoydoon
           </p>
         </Link>
@@ -448,7 +448,7 @@ const Sell = () => {
           </div>
         </div>
       </section>
-      <div className="flex  lg:max-w-[1200px] 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+      <div className="flex  lg:max-w-[1200px] 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] 2xl:pl-[2.5em] lg:pl-5 lg:mt-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
         <span className="flex flex-col  gap-5 w-full lg:w-[45em]  ">
           <h1 className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
             Ready to sell your home?.
@@ -746,7 +746,7 @@ const TalkToAgent = () => {
             {submitting ? "Submitting..." : "Submit"}
           </Button>
         </div>
-        <p className="text-gray  font-light text-[12px]  font-bricolage  w-full leading-5 mt-4">
+        <p className="text-gray  font-light text-base  font-bricolage  w-full leading-5 mt-4">
           By submitting this form, you agree that Hoydoon, its affiliates, or
           associated third parties may contact you, including through calls or
           texts using automated systems. You also agree to our Terms of Service
@@ -781,7 +781,7 @@ const TalkToAgent = () => {
           />
         </span>
       </div>{" "}
-      <div className="flex  lg:max-w-[1200px] 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+      <div className="flex  lg:max-w-[1200px] 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] 2xl:pl-[2.5em] lg:pl-5 lg:mt-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
         <span className="flex flex-col  gap-5 w-full lg:w-[45em]  ">
           <h1 className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
             Ready to sell your home?.
@@ -861,7 +861,7 @@ const Page = () => {
 
         {/* ✅ Floating Button on the Border Line */}
         <button
-          className="absolute right-0 translate-y-1/2 bg-primary text-white px-6 py-3 lg:w-[300px] lg:h-[50px] text-sm lg:text-[18px] hover:opacity-90 transition "
+          className="absolute right-0 translate-y-1/2 bg-primary text-white px-3 py-3 lg:w-[250px] lg:h-[50px] text-sm lg:text-[18px] hover:opacity-90 transition "
           style={{ bottom: "24px" }} // align exactly with the border line
           onClick={() => {
             setActiveTab("Talk");
@@ -872,31 +872,31 @@ const Page = () => {
       </div>
 
       {/* Tab Content */}
-      <div className="mt-5">
+      <div className="mt-5 ">
         {activeTab === "about" && (
-          <div>
+          <div className="">
             <Content />
           </div>
         )}
 
         {activeTab === "agents" && (
-          <div>
+          <div className="">
             <Agent />
           </div>
         )}
         {activeTab === "buy" && (
-          <div>
+          <div className="">
             <Buy />
           </div>
         )}
 
         {activeTab === "sell" && (
-          <div>
+          <div className="">
             <Sell />
           </div>
         )}
         {activeTab === "Talk" && (
-          <div>
+          <div className="">
             <TalkToAgent />
           </div>
         )}

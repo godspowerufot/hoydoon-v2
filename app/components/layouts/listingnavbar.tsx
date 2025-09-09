@@ -61,7 +61,7 @@ export default function ListingNavbar() {
                 height={40}
                 priority
               />{" "}
-              <h3 className="ml-0 text-lg font-semibold text-black">Hoydoon</h3>
+              <h3 className="ml-2 text-lg font-semibold text-black">Hoydoon</h3>
             </Link>{" "}
             <div className="relative  w-[20rem]  h-[3rem] hidden border-[#8F8F8F] border-solid border-[1px]  lg:flex items-center bg-gray-100 rounded-[14px] px-2 py-2">
               <input
