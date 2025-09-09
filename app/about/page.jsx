@@ -26,7 +26,7 @@ const Content = () => {
         />
       </div>
 
-      <div className=" mt-[3rem]">
+      <div className=" mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
           Welcome to Hoydoon!{" "}
@@ -52,7 +52,7 @@ const Content = () => {
           can move forward with confidence, clarity, and control.{" "}
         </p>
       </div>
-      <div className=" mt-[3rem]">
+      <div className=" mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold "> Who We Are </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           At Hoydoon, we believe that navigating the property market—whether
@@ -76,7 +76,7 @@ const Content = () => {
           clarity and peace of mind.
         </p>
       </div>
-      <div className=" mt-[3rem]">
+      <div className=" mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
           Our Leadership 
@@ -120,7 +120,7 @@ const Content = () => {
         />
       </div>
 
-      <div className=" mt-[3rem]">
+      <div className=" mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">Our Values </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           At Hoydoon, our foundation is built on trust, innovation, and a deep
@@ -147,7 +147,7 @@ const Content = () => {
         </p>
       </div>
 
-      <div className=" mt-[3rem]">
+      <div className=" mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold "> Join Us! </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           whether you're ready to buy, sell, rent, or simply explore your
@@ -203,7 +203,7 @@ const Agent = () => {
           priority
         />
       </div>{" "}
-      <div className=" mt-[3rem]">
+      <div className=" mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
           A Top Agent Matters!
@@ -219,7 +219,7 @@ const Agent = () => {
           today’s competitive real estate market.
         </p>
       </div>
-      <div className="grid mt-[3rem]  gap-y-3  w-full  grid-col-1 lg:grid-cols-2    gap-2 lg:gap-10 ">
+      <div className="grid mt-[4.5rem]  gap-y-3  w-full  grid-col-1 lg:grid-cols-2    gap-2 lg:gap-10 ">
         {displayListings
           .slice(
             0,
@@ -308,7 +308,7 @@ const Sell = () => {
           priority
         />
       </div>{" "}
-      <div className=" mt-[3rem]">
+      <div className=" mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
           Get Personalized Proposals — No Cost!
@@ -350,7 +350,7 @@ const Sell = () => {
             </p>
 
             <Link href={"/agent/all-agent"}>
-              <Button className="!w-full 2xl:mt-[3rem] mt-6 text-base 2xl:text-xl lg:h-[3rem]  h-[3rem] lg:!p-2">
+              <Button className="!w-full 2xl:mt-[4.5rem] mt-6 text-base 2xl:text-xl lg:h-[3rem]  h-[3rem] lg:!p-2">
                 Get Started
               </Button>
             </Link>
@@ -388,7 +388,7 @@ const Sell = () => {
               </button>
             </Link>
             <Link className="lg:hidden block " href={"/agent/all-agent"}>
-              <Button className="w-full 2xl:mt-[3rem] mt-8 text-base 2xl:text-xl  text-gray lg:h-[4rem]  h-[3rem] lg:p-3">
+              <Button className="w-full 2xl:mt-[4.5rem] mt-8 text-base 2xl:text-xl  text-gray lg:h-[4rem]  h-[3rem] lg:p-3">
                 Visit Seller marketplace
               </Button>
             </Link>
@@ -426,7 +426,7 @@ const Sell = () => {
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="2xl:h-[4rem]  p-5 !rounded-[24px] mt-[3rem]"
+                className="2xl:h-[4rem]  p-5 !rounded-[24px] mt-[4.5rem]"
                 placeholder="Enter your home address"
               />
 
@@ -464,7 +464,7 @@ const Sell = () => {
           </Button>
         </span>
 
-        <span className=" mt-[3rem]  lg:mt-0">
+        <span className=" mt-[4.5rem]  lg:mt-0">
           <Image
             alt="image1"
             width={500}
@@ -523,7 +523,7 @@ const Buy = () => {
           priority
         />
       </div>{" "}
-      <div className=" mt-[3rem]">
+      <div className=" mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
           Find Your Perfect Dream Home Today!
@@ -539,7 +539,7 @@ const Buy = () => {
           your search and make your move today!
         </p>
       </div>
-      <div className="mt-[3rem]">
+      <div className="mt-[4.5rem]">
         <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -581,7 +581,7 @@ const Buy = () => {
           </div>
         </div>
       </div>
-      <div className="w-screen  mt-[3rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  mt-[4.5rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
       {/* testimonials */}
       <div className="flex  gap-[4%]  flex-col-reverse  w-full  lg:flex-row  items-center   lg:justify-around ">
         <span className="flex  p-4 flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
@@ -683,7 +683,7 @@ const TalkToAgent = () => {
           priority
         />
       </div>{" "}
-      <div className=" mt-[3rem]">
+      <div className=" mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           Choose the Perfect Agent for your Needs
         </h1>
@@ -700,7 +700,7 @@ const TalkToAgent = () => {
           fits your needs perfectly
         </p>
       </div>
-      <div className="mt-[3rem]">
+      <div className="mt-[4.5rem]">
         <div className="flex justify-center flex-col w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:p-4">
             <Input
@@ -770,7 +770,7 @@ const TalkToAgent = () => {
           </Button>
         </span>
 
-        <span className=" mt-[3rem]  lg:mt-0">
+        <span className=" mt-[4.5rem]  lg:mt-0">
           <Image
             alt="image1"
             width={500}
@@ -797,7 +797,7 @@ const TalkToAgent = () => {
           </Button>
         </span>
 
-        <span className=" mt-[3rem]  lg:mt-0">
+        <span className=" mt-[4.5rem]  lg:mt-0">
           <Image
             alt="image1"
             width={500}
