@@ -126,6 +126,13 @@ const SubmitRequest = () => {
     }
   };
 
+  // Helper function to determine margin bottom
+  const getMarginBottom = () => {
+    if (dropdownOpen) return "mb-[20rem]";
+    if (category && category !== "Select") return "mb-0";
+    return "mb-[20rem]";
+  };
+
   return (
     <div className="mt-10 md:w-[1200px] p-4 md:p-6 bg-white min-h-screen lg:min-h-0">
       <div className="flex flex-col md:flex-row items-start justify-between gap-4 py-2 mt-[2em] w-full bg-gray-100">
@@ -162,13 +169,15 @@ const SubmitRequest = () => {
         </div>
       </div>
 
-      <div className="mt-6 flex flex-col md:flex-row gap-6">
+      <div
+        className={`mt-6 flex flex-col md:flex-row gap-6 ${getMarginBottom()}`}
+      >
         <div className="w-full md:flex-1 2xl:max-w-[45rem] lg:max-w-[40rem] max-w-full">
           <h1 className="text-2xl md:text-3xl font-medium lg:font-semibold mb-6">
             Submit a request
           </h1>
 
-          <div className={`mb-4 relative ${dropdownOpen ? "mb-[20rem]" : ""}`}>
+          <div className={`mb-4 relative `}>
             <label className="block text-[#1E1E1E99] text-sm lg:text-base mb-2 2xl:text-[1.2em]">
               Please choose your issue below
             </label>
@@ -347,7 +356,7 @@ const SubmitRequest = () => {
         </div>
 
         {category && category !== "Select" && (
-          <div className="hidden md:block md:max-w-[25rem]  lg:ml-[12rem]">
+          <div className="hidden md:block md:max-w-[25rem]  lg:ml-[6rem]">
             <h2 className="text-xl font-semibold mb-4">
               Articles in this section
             </h2>
