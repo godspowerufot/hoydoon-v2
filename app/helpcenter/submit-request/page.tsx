@@ -182,7 +182,7 @@ const SubmitRequest = () => {
               Please choose your issue below
             </label>
             <div
-              className="border p-3 border-[#d6d5d5] flex justify-between items-center cursor-pointer bg-white text-base 2xl:text-xl"
+              className="border 2xl:w-[40rem] p-3 border-[#d6d5d5] flex justify-between items-center cursor-pointer bg-white text-base 2xl:text-xl"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               {category || "Select an option"}
@@ -200,7 +200,7 @@ const SubmitRequest = () => {
                   className="fixed inset-0 bg-black opacity-50 z-10"
                   onClick={() => setDropdownOpen(false)}
                 />
-                <div className="absolute left-0 w-full border-transparent text-base 2xl:text-xl border mt-1 z-20 bg-white">
+                <div className="absolute left-0 w-full 2xl:w-[40rem] border-transparent text-base 2xl:text-xl border mt-1 z-20 bg-white">
                   {categories.map((item, index) => (
                     <div
                       key={index}

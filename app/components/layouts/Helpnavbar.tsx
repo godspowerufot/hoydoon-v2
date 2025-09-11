@@ -10,7 +10,7 @@ export default function HelpCenterNavbar() {
         <div className="max-w-[1200px]  mx-auto flex items-center justify-between px-4">
           {/* Left: Logo and Title */}
           <Link href={"/"}>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1">
               <Image
                 src="/Logo.svg"
                 alt="Hoydoon Logo"
