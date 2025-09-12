@@ -27,23 +27,23 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
   return (
     <>
       <Link href={`/article/${id}`}>
-        <div className="w-full lg:w-[23rem] max-w-[500px] mx-auto bg-white rounded-xl overflow-hidden border border-thin border-solid border-[#8F8F8F] ">
+        <div className="w-full lg:w-[23rem] max-w-[500px] mx-auto bg-white rounded-xl overflow-hidden  ">
           {/* Image */}
-          <div className="w-full h-fit">
+          <div className="w-full h-[400px]">
             <Image
               alt={altText}
               width={500}
               height={250}
               quality={100}
               src={imageSrc || "/placeholder.svg"}
-              className="w-full h-[350px] object-cover rounded-xl"
+              className="w-full h-full object-cover rounded-xl"
             />
           </div>
 
           {/* Content */}
-          <div className="p-4">
+          <div className="p-0 py-4">
             {/* Category */}
-            <div className="flex items-center gap-1.5 mb-2">
+            <div className="flex items-center gap-2 mb-2">
               <Image alt="tag" width={18} height={18} src="/mage_file.png" />
               <span className="text-xs text-black">{articleType}</span>
             </div>
