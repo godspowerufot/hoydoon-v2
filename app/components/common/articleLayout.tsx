@@ -29,14 +29,14 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
       <Link href={`/article/${id}`}>
         <div className="w-full lg:w-[23rem] max-w-[500px] mx-auto bg-white rounded-xl overflow-hidden  ">
           {/* Image */}
-          <div className="w-full h-[400px]">
+          <div className="w-full h-full">
             <Image
               alt={altText}
               width={500}
-              height={250}
+              height={300}
               quality={100}
               src={imageSrc || "/placeholder.svg"}
-              className="w-full h-full object-cover rounded-xl"
+              className="w-full h-[500px] object-cover rounded-xl mb-3"
             />
           </div>
 
@@ -49,7 +49,9 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
             </div>
 
             {/* Title */}
-            <h3 className="font-meduim text-xl  text-black mb-2">{title}</h3>
+            <h3 className="font-meduim text-base lg:text-[1.4em]  text-black mb-2">
+              {title}
+            </h3>
 
             {/* Description */}
 

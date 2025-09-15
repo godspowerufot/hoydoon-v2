@@ -63,7 +63,7 @@ export const articles = [
     imageSrc: "/article-image/21.png",
     altText: 'What Does "Sold" Mean in Real Estate?',
     articleType: "General",
-    title: 'What Does "Sold" Mean in Real Estate?',
+    title: 'What Does "Sold" Mean in Real Estate?  ',
     readTime: "1 min read",
     date: "March 28, 2025",
   },
