@@ -429,7 +429,7 @@ export default function Home() {
           </div>
         ) : (
           /* Articles Grid */
-          <div className="p-2 grid grid-row grid-cols-1 md:grid-cols-3 gap-7 place-items-center gap-y-6">
+          <div className="p-2 grid grid-row grid-cols-1 md:grid-cols-3 gap-7 place-items-center gap-y-[3rem]">
             {currentArticles.map((article) => (
               <ArticleCard
                 key={article.id}
@@ -437,6 +437,7 @@ export default function Home() {
                 altText={article.altText}
                 title={article.title}
                 articleType={article.articleType}
+                description={article?.description}
                 readTime={article.readTime}
                 date={article.date}
                 id={article.id}
