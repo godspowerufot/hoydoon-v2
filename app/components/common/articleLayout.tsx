@@ -1,6 +1,7 @@
 /* eslint-disable */
 "use client";
 
+import { truncateDescription } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -77,7 +78,7 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
 
           {/* Content - Always visible on mobile */}
           <div
-            className={` hidden lg:block p-4 lg:p-0 py-5 flex-1  ${
+            className={` hidden lg:block p-4 lg:p-2 py-5 flex-1  ${
               isHovered ? "p-4 lg:p-4 lg:hidden " : "lg:py-5  p-0"
             }`}
           >
@@ -163,7 +164,7 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
           </div>
           {/* second div */}
           <div
-            className={`p-3 lg:p-0${
+            className={`p-3 lg:p-3 ${
               isMobile
                 ? "opacity-100 max-h-full"
                 : `transition-all ease-in-out ${
@@ -184,7 +185,7 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
             </h3>
             {/* Description - Hidden by default on desktop, shown on hover */}
             <p className="text-gray text-sm mb-4 leading-relaxed">
-              {description}
+              {truncateDescription(description, 40)}
             </p>
             {/* Footer - Always visible */}
             <div className="flex items-center gap-3 text-xs text-gray-500 mt-auto">

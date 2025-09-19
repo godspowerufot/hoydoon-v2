@@ -163,7 +163,7 @@ export const articles = [
   },
   {
     id: "8",
-    imageSrc: "/details/art8.jpg",
+    imageSrc: "/webp/art8.webp",
     altText: "How to Set the Right Price for Your Rental or Sale Property",
     articleType: "Listing Inquiries",
     title: "How to Set the Right Price for Your Rental or Sale Property",
@@ -273,7 +273,7 @@ export const articles = [
   },
   {
     id: "18",
-    imageSrc: "/details/art18.jpg",
+    imageSrc: "/webp/art18.webp",
     altText: "Common Home-Buying Mistakes to Avoid",
     articleType: "General",
     title: "Common Home-Buying Mistakes to Avoid",
