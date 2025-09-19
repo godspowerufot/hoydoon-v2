@@ -40,7 +40,7 @@ export const properties = [
 export const articles = [
   {
     id: "19",
-    imageSrc: "/article-image/19.png",
+    imageSrc: "/webp/19.webp",
     altText:
       "Rental Scams Uncovered: How to Spot and Avoid Fraudulent Listings",
     articleType: "General",
@@ -52,7 +52,7 @@ export const articles = [
   },
   {
     id: "20",
-    imageSrc: "/article-image/20.png",
+    imageSrc: "/webp/20.webp",
     altText: "Will I Be Displayed as the Listing Agent for My Properties?",
     articleType: "Listing inquiries",
     title: "Will I Be Displayed as the Listing Agent for My Properties?",
@@ -63,7 +63,7 @@ export const articles = [
   },
   {
     id: "21",
-    imageSrc: "/article-image/21.png",
+    imageSrc: "/webp/21.webp",
     altText: 'What Does "Sold" Mean in Real Estate?',
     articleType: "General",
     title: 'What Does "Sold" Mean in Real Estate?',
@@ -74,7 +74,7 @@ export const articles = [
   },
   {
     id: "22",
-    imageSrc: "/article-image/22.png",
+    imageSrc: "/webp/22.webp",
     altText: "Viewing Photos of a Property Listing",
     articleType: "Listing Features",
     title: "Viewing Photos of a Property Listing",
@@ -85,7 +85,7 @@ export const articles = [
   },
   {
     id: "24",
-    imageSrc: "/article-image/24.png",
+    imageSrc: "/webp/24.webp",
     altText: "How Do I Set the Right Price for My Home?",
     articleType: "General",
     title: "How Do I Set the Right Price for My Home?",
@@ -96,7 +96,7 @@ export const articles = [
   },
   {
     id: "1",
-    imageSrc: "/article-image/1.png",
+    imageSrc: "/webp/1.webp",
     altText: "How Do I Search for Homes in a Specific Neighborhood?",
     articleType: "General",
     title: "How Do I Search for Homes in a Specific Neighborhood?",
@@ -107,7 +107,7 @@ export const articles = [
   },
   {
     id: "3",
-    imageSrc: "/article-image/3.png",
+    imageSrc: "/webp/3.webp",
     altText: "Do I Need a Real Estate Agent to Buy a Home?",
     articleType: "General",
     title: "Do I Need a Real Estate Agent to Buy a Home?",
@@ -118,7 +118,7 @@ export const articles = [
   },
   {
     id: "4",
-    imageSrc: "/article-image/4.png",
+    imageSrc: "/webp/4.webp",
     altText: "What Do I Do If a Listing Has Incorrect Information?",
     articleType: "General",
     title: "What Do I Do If a Listing Has Incorrect Information?",
@@ -129,7 +129,7 @@ export const articles = [
   },
   {
     id: "5",
-    imageSrc: "/article-image/5.png",
+    imageSrc: "/webp/5.webp",
     altText: "How Do I Get Alerts for New Listings?",
     articleType: "General",
     title: "How Do I Get Alerts for New Listings?",
@@ -140,7 +140,7 @@ export const articles = [
   },
   {
     id: "6",
-    imageSrc: "/article-image/6.png",
+    imageSrc: "/webp/6.webp",
     altText: "How Do I Report a Problem With a Listing?",
     articleType: "General",
     title: "How Do I Report a Problem With a Listing?",
@@ -151,7 +151,7 @@ export const articles = [
   },
   {
     id: "7",
-    imageSrc: "/article-image/7.png",
+    imageSrc: "/webp/7.webp",
     altText:
       "Essential Tips for Writing an Irresistible Property Description...",
     articleType: "General",
@@ -174,7 +174,7 @@ export const articles = [
   },
   {
     id: "9",
-    imageSrc: "/article-image/9.png",
+    imageSrc: "/webp/9.webp",
     altText: "What Safety Precautions Should I Take When Visiting a Property?",
     articleType: "Listing features",
     title: "What Safety Precautions Should I Take When Visiting a Property?",
@@ -185,7 +185,7 @@ export const articles = [
   },
   {
     id: "10",
-    imageSrc: "/article-image/10.png",
+    imageSrc: "/webp/10.webp",
     altText: "What to Do If You Forget Your Login Details",
     articleType: "Listing features",
     title: "What to Do If You Forget Your Login Details",
@@ -196,7 +196,7 @@ export const articles = [
   },
   {
     id: "11",
-    imageSrc: "/article-image/11.png",
+    imageSrc: "/webp/11.webp",
     altText: "Exploring the Features of the Hoydoon App: A Beginner's Guide",
     articleType: "General",
     title: "Exploring the Features of the Hoydoon App: A Beginner's Guide",
@@ -207,7 +207,7 @@ export const articles = [
   },
   {
     id: "12",
-    imageSrc: "/article-image/12.png",
+    imageSrc: "/webp/12.webp",
     altText: "Understanding Hoydoon's Community Guidelines",
     articleType: "General",
     title: "Understanding Hoydoon's Community Guidelines",
@@ -218,7 +218,7 @@ export const articles = [
   },
   {
     id: "13",
-    imageSrc: "/article-image/13.png",
+    imageSrc: "/webp/13.webp",
     altText: "Six Small Changes That Increase Your Home's Value by Thousands",
     articleType: "General",
     title: "Six Small Changes That Increase Your Home's Value by Thousands",
@@ -229,7 +229,7 @@ export const articles = [
   },
   {
     id: "14",
-    imageSrc: "/article-image/14.png",
+    imageSrc: "/webp/14.webp",
     altText: "Guide to Property Types: Apartments, Houses, Bungalows...",
     articleType: "General",
     title: "Guide to Property Types: Apartments, Houses, Bungalows...",
@@ -240,7 +240,7 @@ export const articles = [
   },
   {
     id: "15",
-    imageSrc: "/article-image/15.png",
+    imageSrc: "/webp/15.webp",
     altText: "How to Report Inappropriate Messages or User Behavior",
     articleType: "General",
     title: "How to Report Inappropriate Messages or User Behavior",
@@ -251,7 +251,7 @@ export const articles = [
   },
   {
     id: "16",
-    imageSrc: "/article-image/16.png",
+    imageSrc: "/webp/16.webp",
     altText: "How to Update or Edit Your Listing on Hoydoon",
     articleType: "General",
     title: "How to Update or Edit Your Listing on Hoydoon",
@@ -262,7 +262,7 @@ export const articles = [
   },
   {
     id: "17",
-    imageSrc: "/article-image/17.png",
+    imageSrc: "/webp/17.webp",
     altText: "Understanding the Difference Between Active, Inactive, and Sold",
     articleType: "General",
     title: "Understanding the Difference Between Active, Inactive, and Sold",

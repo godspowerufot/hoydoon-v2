@@ -108,20 +108,20 @@ const page = () => {
   }
 
   return (
-    <div className="mt-2 flex flex-col justify-center items-center  w-full lg:w-[90%] px-4  2xl:w-[1520px] ">
+    <div className="mt-2 flex flex-col justify-center items-center  w-full lg:max-w-[1230px] ">
       {" "}
       <Breadcrumb />
       <div className=" mt-3 relative rounded-lg  flex items-center overflow-hidden">
         <Image
-          src="/sell.png" // Replace with actual map image
+          src="/webp/sell.webp" // Replace with actual map image
           alt="Map"
           width={700}
           height={300}
-          className="lg:w-[78rem] 2xl:w-full 2xl:h-auto rounded-[20px] lg:h-[38rem]"
+          className=" 2xl:h-auto w-full rounded-[15px] lg:h-[38rem]"
         />
       </div>
       {/* second layout */}
-      <div className="  max-md:w-full lg:px-4 py-7">
+      <div className="  max-md:w-full  mt-[3rem] lg:px-4 py-7">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
           Sell your Home with Hoydoon
@@ -160,7 +160,7 @@ const page = () => {
               label=""
               type="text"
               placeholder="Enter your full name"
-              className="border  h-[3.5rem] placeholder:font-[400] border-gray-300 rounded-none"
+              className="border  h-[3.5rem] placeholder:font-[400] border-gray-300 !rounded-none"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
             />
@@ -168,7 +168,7 @@ const page = () => {
               label=""
               type="text"
               placeholder="Please enter Email Address"
-              className="border h-[3.5rem]  placeholder:font-[400]  border-gray-300 rounded-none"
+              className="border h-[3.5rem]  placeholder:font-[400]  border-gray-300 !rounded-none"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -188,19 +188,20 @@ const page = () => {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
-
-            <textarea
-              className="border border-[#d6d5d5] bg-transparent !rounded-none mt-4 p-2 min-h-[100px]"
-              placeholder="Describe your needs or any additional information..."
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
           </div>
+
+          <textarea
+            className="border border-[#d6d5d5] bg-transparent !w-full !rounded-none mt-4 p-2 min-h-[100px]"
+            placeholder="Describe your needs or any additional information..."
+            value={description}
+            rows={8}
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </div>
-        <div className="w-full flex items-center lg:justify-center justify-start">
+        <div className="w-full mt-[2rem] flex items-center lg:justify-center justify-start">
           <Button
             onClick={handleSubmit}
-            className="text-base rounded-none !w-full font-light mt-5"
+            className="text-base rounded-none !w-full lg:!w-1/4 font-light mt-5"
             disabled={submitting}
           >
             {submitting ? "Submitting..." : "Submit"}
@@ -214,7 +215,7 @@ const page = () => {
           consent is not a condition for accessing real estate services.{" "}
         </p>
       </div>
-      <div className="grid grid-cols-1 mt-[3rem] md:grid-cols-2 gap-8 place-items-center">
+      <div className="grid grid-cols-1 mt-[3rem] md:grid-cols-2 gap-8 place-items-center !w-full">
         {displayListings.map((agent: any) => (
           <ProfileCard
             key={agent._id}
@@ -222,15 +223,11 @@ const page = () => {
             sales={Number(agent.numberOfListings)}
           />
         ))}
-
-        <Link href={"/agent/all-agent"}>
-          <p className="text-[#09858D] 2xl:-ml-[16rem]   lg:-ml-[6rem] text-start   mt-5  text-sm lg:text-2xl font-[500] ">
-            See all rents estate agent on Hoydoon
-          </p>
-        </Link>
       </div>{" "}
       {/* description */}
-      <Article />
+      <div className=" lg:mt-[4rem] w-full">
+        <Article />
+      </div>
     </div>
   );
 };

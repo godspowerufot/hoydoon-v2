@@ -4,7 +4,7 @@
     "slug": "real-estate-market-trends",
     "title": "Real Estate Market Trends",
     "layoutType": "listing",
-    "heroImage": "/details/art19.png",
+    "heroImage": "/webp/art19.webp",
     "sections": [
       {
         "heading": "Rental Scams Uncovered: How to Spot and Avoid Fraudulent Listings",
@@ -24,7 +24,7 @@
           "Their ultimate goal is to convince you to send a deposit or rental fee before you've had the chance to verify the legitimacy of the property or meet the person behind the listing. Once payment is made—usually through untraceable methods like wire transfers, prepaid gift cards, or cryptocurrency—the scammer disappears, leaving you without your money and without a place to live.",
           "Being aware of these tactics is the first step in protecting yourself and others from rental fraud."
         ],
-        "image": "/details/art19s1.png"
+        "image": "/webp/art19s1.webp"
       },
       {
         "heading": "Red Flags to Watch For",
@@ -47,7 +47,7 @@
     "slug": "listing-agent-display",
     "title": "Will I Be Displayed as the Listing Agent for My Properties",
     "layoutType": "listing",
-    "heroImage": "/details/art19.png",
+    "heroImage": "/webp/art19.webp",
     "introSection": [
       {
         "heading": "Will I Be Displayed as the Listing Agent for My Properties",
@@ -72,7 +72,7 @@
             "description": "To reinforce your role as the official listing agent, your name and contact information will be displayed alongside the property details. This ensures that buyers and renters know exactly who to reach out to for questions regarding pricing, features, availability, or scheduling a property viewing. By making your association with the listing clear, you enhance professionalism and eliminate confusion for potential clients."
           }
         ],
-        "image": "/details/art20s1.png"
+        "image": "/webp/art20s1.webp"
       },
       {
         "heading": "Benefits of Being Displayed as the Listing Agent",
@@ -92,7 +92,7 @@
           }
         ],
         "paragraph2": "By leveraging these features, you can maximize your reach, attract serious buyers or renters, and streamline your real estate transactions. Our platform ensures that your listings work for you, giving you the exposure and credibility needed to succeed in a competitive market.",
-        "image": "/details/arts20s2.png"
+        "image": "/webp/arts20s2.webp"
       }
     ],
     "faqSection": {
@@ -118,7 +118,7 @@
     "slug": "listing-agent-display",
     "title": "What does “Sold” means in Real Estate",
     "layoutType": "listing",
-    "heroImage": "/details/arts21.png",
+    "heroImage": "/webp/arts21.webp",
     "introSection": [
       {
         "heading": "What does “Sold” means in Real Estate",
@@ -126,7 +126,7 @@
           "In real estate, the term sold signifies that a property has been successfully purchased by a buyer and is no longer available on the market. This status indicates that all necessary steps in the transaction process have been completed, including price negotiations, property inspections, mortgage approvals (if applicable), and the signing of all required legal documents.",
           "Once these steps are finalized, the transfer of ownership is legally recorded, officially marking the transition of the property from the seller to the buyer. At this point, the seller receives the agreed-upon payment, and the buyer assumes full ownership rights and responsibilities. The \"sold\" designation serves as a confirmation that the deal has been fully executed, distinguishing it from terms like pending or under contract, which indicate that the sale is still in progress."
         ],
-        "image": "/details/arts21s1.png"
+        "image": "/webp/arts21s1.webp"
       }
     ],
     "sections": [
@@ -156,7 +156,7 @@
           }
         ],
         "paragraph2": "A sold property is the result of a complex but structured process, ensuring both buyer and seller fulfill all necessary obligations before the final transfer of ownership.",
-        "image": "/details/arts21s2.png"
+        "image": "/webp/arts21s2.webp"
       },
 
       {
@@ -176,7 +176,7 @@
     "slug": "listing-agent-display",
     "title": "Viewing Photos of a Property Listing on Hoydoon ",
     "layoutType": "listing",
-    "heroImage": "/details/art22.png",
+    "heroImage": "/webp/art22.webp",
     "introSection": [
       {
         "heading": "Viewing Photos of a Property Listing on Hoydoon ",
@@ -222,7 +222,7 @@
             "description": "At the top of the listing page, you’ll find the main property photo along with a row of image thumbnails. Click any thumbnail to bring that specific photo into focus. You can use the arrow buttons—or swipe if you’re on a touchscreen device—to navigate through the entire gallery. For a more immersive view, click on the main image to open a full-screen slideshow and explore each photo in greater detail."
           }
         ],
-        "image": "/details/arts22s1.png"
+        "image": "/webp/arts22s1.webp"
       },
 
       {
@@ -252,7 +252,7 @@
     "slug": "listing-agent-display",
     "title": "How do I Set the Right Price for My Home",
     "layoutType": "listing",
-    "heroImage": "/details/art24.png",
+    "heroImage": "/webp/art24.webp",
 
     "sections": [
       {
@@ -272,7 +272,7 @@
             "description": "The overall condition of your home plays a significant role in determining its price. A well-maintained home with modern updates can often command a higher price, whereas a property in need of repairs or upgrades may require pricing adjustments. Buyers tend to factor in the cost of necessary repairs, so if your home needs significant work, a lower asking price may help attract interest."
           }
         ],
-        "image": "/details/art24s1.png"
+        "image": "/webp/art24s1.webp"
       },
 
       {
@@ -306,7 +306,7 @@
     "slug": "listing-agent-display",
     "title": "How Do I Search for Homes in a Specific Neighborhood on Hoydoon? ",
     "layoutType": "listing",
-    "heroImage": "/details/art255.png",
+    "heroImage": "/webp/art255.webp",
     "introSection": [
       {
         "heading": "How Do I Search for Homes in a Specific Neighborhood on Hoydoon? ",
@@ -347,7 +347,7 @@
             "description": "  Turn on Get alerts for this location at the bottom of your search results to get notified when new listings appear in that area."
           }
         ],
-        "image": "/details/art25s1.png"
+        "image": "/webp/art25s1.webp"
       },
 
       {
@@ -379,7 +379,7 @@
     "slug": "listing-agent-display",
     "title": "Do I Need a Real Estate Agent to Buy a Home ",
     "layoutType": "listing",
-    "heroImage": "/details/art3.png",
+    "heroImage": "/webp/art3.webp",
     "introSection": [
       {
         "heading": "Do I Need a Real Estate Agent to Buy a Home?",
@@ -387,7 +387,7 @@
           "Buying a home is one of the biggest financial decisions most people will make. It's not just a transaction—it’s a complex process that involves legal paperwork, market analysis, negotiations, inspections, and plenty of emotions. So, it’s no surprise that one of the most common questions homebuyers ask is: Do I really need a real estate agent to buy a home?",
           "The short answer is no—you’re not legally required to use a real estate agent. However, whether or not you should use one is a more nuanced question that depends on your experience, time, confidence, and comfort with the buying process. Let’s explore the role of a real estate agent, the pros and cons of hiring one, and when it might make sense to go solo."
         ],
-        "images": "/details/art3.png"
+        "images": "/webp/art3.webp"
       }
     ],
 
@@ -398,7 +398,7 @@
           "A buyer’s agent represents your interests throughout the home-buying process, taking on far more than just showing properties. They provide insight into current market conditions, helping you understand pricing trends and determine fair value for homes. With access to the Multiple Listing Service (MLS), they can quickly identify listings that fit your needs and preferences. Once you've selected homes to see, they handle the coordination with sellers and listing agents to schedule convenient tours.",
           "When it’s time to make an offer, the agent works closely with you to develop a strong proposal, negotiate effectively, and manage any counteroffers. They take care of the contract process, ensuring all documents are accurate, complete, and submitted within required deadlines. They also guide you through inspections and appraisals, helping coordinate appointments, explain results, and connect you with reliable professionals. If any unexpected issues arise—such as title complications, appraisal discrepancies, or delays—they step in to help resolve them quickly and keep your purchase on track."
         ],
-        "image": "/details/art3s1.png"
+        "image": "/webp/art3s1.webp"
       },
       {
         "heading": "Why You Might Want a Real Estate Agent ",
@@ -412,7 +412,7 @@
         "paragraphs": [
           "There are situations where buying a home without an agent can be a reasonable choice. This is often the case for experienced buyers who already understand the legal and market dynamics involved. It can also work when the purchase is happening between people who know each other, such as family members or close friends, or when a real estate attorney is involved to help manage contracts and ensure due diligence is properly handled. Some buyers feel comfortable handling negotiations themselves, especially when purchasing a property listed as For Sale By Owner (FSBO). However, going this route requires extra caution. You'll need to research comparable home prices, understand the details of contracts, and possibly bring in professionals like a lawyer or inspector to cover areas that an agent would typically manage."
         ],
-        "image": "/details/art3s2.png"
+        "image": "/webp/art3s2.webp"
       },
       {
         "heading": "Risks of Going Solo ",
@@ -435,7 +435,7 @@
     "slug": "listing-agent-display",
     "title": "How Do I Search for Homes in a Specific Neighborhood on Hoydoon? ",
     "layoutType": "listing",
-    "heroImage": "/details/art4.png",
+    "heroImage": "/webp/art4.webp",
     "introSection": [
       {
         "heading": "What Do I Do If a Listing Has Incorrect Information? ",
@@ -477,7 +477,7 @@
             "description": " Click Submit to send your report to our support team. We’ll review and get back to you, usually within 24–48 hours. ."
           }
         ],
-        "image": "/details/art4s1.png"
+        "image": "/webp/art4s1.webp"
       },
       {
         "heading": "On the Mobile App:  ",
@@ -532,7 +532,7 @@
     "slug": "listing-agent-display",
     "title": "How Do I Get Alerts for New Listings on Hoydoon?",
     "layoutType": "listing",
-    "heroImage": "/details/art5.png",
+    "heroImage": "/webp/art5.webp",
     "introSection": [
       {
         "heading": "How Do I Get Alerts for New Listings on Hoydoon?",
@@ -570,7 +570,7 @@
             "description": "When a new listing matches your criteria, you’ll get a push notification right on your phone—so you’re always in the loop. Just tap the notification to open the app and view the property instantly, without missing a beat."
           }
         ],
-        "image": "/details/art5s1.png"
+        "image": "/webp/art5s1.webp"
       },
       {
         "heading": "Tips for Using Alerts Effectively ",
@@ -598,7 +598,7 @@
     "slug": "listing-agent-display",
     "title": "How Do I Report a Problem with Listing?",
     "layoutType": "listing",
-    "heroImage": "/details/art6s1.png",
+    "heroImage": "/webp/art6s1.webp",
     "introSection": [
       {
         "heading": "How Do I Report a Problem with Listing?",
@@ -658,7 +658,7 @@
         "paragraphs": [
           "<b>Tip:</b> If you're reporting a problem with a specific listing, choose the option that most closely matches your issue (such as \"Assistance\" or \"My listing was flagged for review\"). Add detailed information about the listing in the description field."
         ],
-        "image": "/details/art6s1.png"
+        "image": "/webp/art6s1.webp"
       },
       {
         "heading": "Step 4: Describe Your Problem",
@@ -691,7 +691,7 @@
             ]
           }
         ],
-        "image": "/details/art6s2.png"
+        "image": "/webp/art6s2.webp"
       },
       {
         "heading": "What Happens Next?",
@@ -714,7 +714,7 @@
     "slug": "listing-agent-display",
     "title": "How Do I Search for Homes in a Specific Neighborhood on Hoydoon? Essential Tips for Writing an Irresistible Property Description ",
     "layoutType": "listing",
-    "heroImage": "/details/art7.jpg",
+    "heroImage": "/webp/art7.jpg",
     "introSection": [
       {
         "heading": "Essential Tips for Writing an Irresistible Property Description ",
@@ -750,7 +750,7 @@
         "paragraphs": [
           "Use clear, descriptive language that helps potential buyers or renters picture themselves in the home. Vague phrases like “nice kitchen” or “big yard” don’t tell the full story. Instead, bring the features to life—say “modern kitchen with granite countertops and stainless-steel appliances,” or “expansive backyard perfect for weekend barbecues and gardening.” The more vivid and specific your wording, the more inviting and memorable your listing becomes."
         ],
-        "image": "/details/art7s1.jpg"
+        "image": "/webp/art7s1.jpg"
       },
       {
         "heading": " Mention Upgrades and Recent Improvements   ",
@@ -775,7 +775,7 @@
         "paragraphs": [
           "Write as if you’re speaking to someone directly—warm, clear, and self-assured. Avoid industry jargon, technical terms, or abbreviations that might confuse or turn people off. Instead of saying “3BR/2BA with HVAC,” go for “a comfortable three-bedroom, two-bath home with central air conditioning.” Keeping the language simple and approachable makes your listing more relatable and welcoming to a wider audience."
         ],
-        "image": "/details/art7s2.png"
+        "image": "/webp/art7s2.webp"
       },
       {
         "heading": "Keep It Concise, But Complete ",
@@ -809,7 +809,7 @@
     "slug": "listing-agent-display",
     "title": "How to Set the Right Price for Your Rental or Sale Property  ",
     "layoutType": "listing",
-    "heroImage": "/details/art8.jpg",
+    "heroImage": "/webp/art8.jpg",
     "introSection": [
       {
         "heading": "How to Set the Right Price for Your Rental or Sale Property  ",
@@ -846,7 +846,7 @@
         "paragraphs": [
           "If the property has been updated or improved, make sure to include those details—they show care, value, and added comfort. Small upgrades can make a big impression. For example, instead of just saying “updated,” try “freshly painted walls in modern, neutral tones” or “brand new energy-efficient windows that help reduce utility costs.” Highlighting improvements shows the property is well-maintained and move-in ready, which can be a major selling point."
         ],
-        "image": "/details/art8s1.jpg"
+        "image": "/webp/art8s1.jpg"
       },
       {
         "heading": "Tips for Viewing Property Photos   ",
@@ -887,7 +887,7 @@
     "slug": "listing-agent-display",
     "title": "What Safety Precautions Should I Take When Visiting a Property? ",
     "layoutType": "listing",
-    "heroImage": "/details/art9.jpg",
+    "heroImage": "/webp/art9.jpg",
     "introSection": [
       {
         "heading": "What Safety Precautions Should I Take When Visiting a Property? ",
@@ -921,7 +921,7 @@
           "Whenever possible, attend property viewings with a trusted friend or family member. Not only does having someone with you enhance your safety, but it also gives you a second perspective on the property.",
           "An extra set of eyes can help you spot details you might miss—whether it's something about the condition of the home, the neighborhood, or the overall feel of the place. Plus, having someone there adds an extra layer of security and peace of mind during the visit."
         ],
-        "image": "/details/art9s1.jpg"
+        "image": "/webp/art9s1.jpg"
       },
       {
         "heading": " Arrive During Daylight  ",
@@ -949,7 +949,7 @@
           "Avoid making any cash payments—especially during your first visit. Whether it’s a deposit, rent, or any other transaction, always use secure and traceable payment methods recommended by Hoydoon. This protects you from potential fraud and creates a clear record of your payment.",
           "Also, never feel rushed to sign a lease or contract. Take the time to carefully review all the terms and conditions. If anything is unclear, ask questions or seek advice before agreeing. Your comfort and understanding are essential before committing to any deal."
         ],
-        "image": "/details/art9s2.jpg"
+        "image": "/webp/art9s2.jpg"
       },
       {
         "heading": "Check for Safety Features",
@@ -978,7 +978,7 @@
     "slug": "listing-agent-display",
     "title": "What to Do If You Forget Your Login Details ",
     "layoutType": "listing",
-    "heroImage": "/details/art10.jpg",
+    "heroImage": "/webp/art10.jpg",
     "introSection": [
       {
         "heading": "What to Do If You Forget Your Login Details ",
@@ -1017,7 +1017,7 @@
             "title": "Success!"
           }
         ],
-        "image": "/details/art10s1.jpg"
+        "image": "/webp/art10s1.jpg"
       },
       {
         "heading": "Resetting Your Password on the Website  ",
@@ -1071,7 +1071,7 @@
     "slug": "listing-agent-display",
     "title": "Exploring the Features of the Hoydoon App: A Beginner’s Guide ",
     "layoutType": "listing",
-    "heroImage": "/details/art11.jpg",
+    "heroImage": "/webp/art11.jpg",
     "introSection": [
       {
         "heading": "Exploring the Features of the Hoydoon App: A Beginner’s Guide ",
@@ -1102,7 +1102,7 @@
         "paragraphs": [
           "In the Discover tab, you can easily start your property search by entering a location that interests you. From there, you’ll have access to a range of filters that help you narrow down your results based on criteria like property type, price range, and more—ensuring you see only the listings that match your needs. As you browse, results are displayed both in a list and on an interactive map, giving you a visual sense of where each property is located. When something catches your eye, simply tap on the listing to view detailed information, high-quality photos, and key specifications to help you decide if it’s the right fit."
         ],
-        "image": "/details/art11s1.jpg"
+        "image": "/webp/art11s1.jpg"
       },
       {
         "heading": "Save and Organize Your Favorite Listings  ",
@@ -1128,7 +1128,7 @@
         "paragraphs": [
           "In your Profile, navigate to Preferences to customize the app to suit your needs. Here, you can manage how you receive updates by enabling or adjusting push and email notifications for messages, alerts, and listing activity. You’ll also find options to update your security settings, helping you keep your account safe and secure. Additionally, you can set your preferred country and currency, ensuring that property listings and pricing are displayed in a way that matches your location and buying preferences. It’s a simple way to make Hoydoon work better for you."
         ],
-        "image": "/details/art11s2.jpg"
+        "image": "/webp/art11s2.jpg"
       },
       {
         "heading": "Enable Push Notifications",
@@ -1164,7 +1164,7 @@
     "slug": "listing-agent-display",
     "title": "Understanding Hoydoon’s Community Guidelines ",
     "layoutType": "listing",
-    "heroImage": "/details/art12.jpg",
+    "heroImage": "/webp/art12.jpg",
     "introSection": [
       {
         "heading": "Understanding Hoydoon’s Community Guidelines    ",
@@ -1217,7 +1217,7 @@
             "title": "Stay Safe in All Interactions"
           }
         ],
-        "image": "/details/art12s1.jpg"
+        "image": "/webp/art12s1.jpg"
       },
 
       {
@@ -1253,7 +1253,7 @@
         "paragraphs": [
           "In your Profile, navigate to Preferences to customize the app to suit your needs. Here, you can manage how you receive updates by enabling or adjusting push and email notifications for messages, alerts, and listing activity. You’ll also find options to update your security settings, helping you keep your account safe and secure. Additionally, you can set your preferred country and currency, ensuring that property listings and pricing are displayed in a way that matches your location and buying preferences. It’s a simple way to make Hoydoon work better for you."
         ],
-        "image": "/details/art11s2.jpg"
+        "image": "/webp/art11s2.jpg"
       },
       {
         "heading": "Enable Push Notifications",
@@ -1289,7 +1289,7 @@
     "slug": "listing-agent-display",
     "title": "Understanding Hoydoon’s Community Guidelines ",
     "layoutType": "listing",
-    "heroImage": "/details/art13.jpg",
+    "heroImage": "/webp/art13.jpg",
     "introSection": [
       {
         "heading": "Six Small Changes That Increase Your Home’s Value by Thousands   ",
@@ -1319,7 +1319,7 @@
         "paragraphs": [
           "First impressions count, and your home’s exterior sets the tone for what’s inside. Enhancing curb appeal doesn’t require a full makeover—simple updates can go a long way. Start by tidying up the front yard, trimming overgrown plants, and adding a few fresh flowers or potted plants for a welcoming touch. Repainting the front door, cleaning walkways, and replacing worn elements like the doormat or house numbers can instantly refresh your home’s look. These small, thoughtful improvements boost perceived value and help your property stand out before potential buyers even walk through the door."
         ],
-        "image": "/details/art13s1.jpg"
+        "image": "/webp/art13s1.jpg"
       },
       {
         "heading": "Modernize Kitchen Hardware ",
@@ -1338,7 +1338,7 @@
         "paragraphs": [
           "Sometimes, the most impactful improvements are the simplest—and cost nothing at all. Giving your home a deep clean, removing personal items, and decluttering each room can instantly make the space feel larger, brighter, and more welcoming. A clean, neutral environment allows potential buyers to picture themselves living there. For an added touch, consider professional cleaning for carpets, tiles, or upholstery to elevate the overall feel and create a fresh, move-in-ready impression."
         ],
-        "image": "/details/art13s2.jpg"
+        "image": "/webp/art13s2.jpg"
       },
       {
         "heading": "Bonus Tip: Smart Home Upgrades  ",
@@ -1360,7 +1360,7 @@
     "slug": "listing-agent-display",
     "title": "Guide to Property Types: Apartments, Houses, Bungalows, and More  ",
     "layoutType": "listing",
-    "heroImage": "/details/art14.jpg",
+    "heroImage": "/webp/art14.jpg",
     "introSection": [
       {
         "heading": "Guide to Property Types: Apartments, Houses, Bungalows, and More  ",
@@ -1405,7 +1405,7 @@
             "title": "Pros"
           }
         ],
-        "image": "/details/art11s1.jpg"
+        "image": "/webp/art11s1.jpg"
       },
 
       {
@@ -1458,7 +1458,7 @@
             "title": "Pros"
           }
         ],
-        "image": "/details/art14s2.jpg"
+        "image": "/webp/art14s2.jpg"
       },
       {
         "heading": "Studios and Bedsits",
@@ -1514,7 +1514,7 @@
     "slug": "listing-agent-display",
     "title": "How to Report Inappropriate Messages or User Behavior  ",
     "layoutType": "listing",
-    "heroImage": "/details/art15.jpg",
+    "heroImage": "/webp/art15.jpg",
     "introSection": [
       {
         "heading": "How to Report Inappropriate Messages or User Behavior   ",
@@ -1556,7 +1556,7 @@
             "title": "3. Submit a Request or Message Support"
           }
         ],
-        "image": "/details/art15s1.jpg"
+        "image": "/webp/art15s1.jpg"
       },
       {
         "heading": "On the Hoydoon Website: ",
@@ -1592,7 +1592,7 @@
     "slug": "listing-agent-display",
     "title": "How to Update or Edit Your Listing on Hoydoon ",
     "layoutType": "listing",
-    "heroImage": "/details/art16.jpg",
+    "heroImage": "/webp/art16.jpg",
     "introSection": [
       {
         "heading": "How to Update or Edit Your Listing on Hoydoon     ",
@@ -1627,7 +1627,7 @@
         "paragraphs": [
           "From the Active tab, locate the specific listing you’d like to update and tap to open it. Once inside, select the Edit Now option to begin making your changes. Whether you’re updating photos, adjusting the price, or adding new details, this section gives you the flexibility to refine your listing and keep it current for potential buyers or renters."
         ],
-        "image": "/details/art16s1.png"
+        "image": "/webp/art16s1.webp"
       },
 
       {
@@ -1653,7 +1653,7 @@
         "paragraphs": [
           "Before you publish your listing, make sure to check the confirmation box indicating that your property is ready to go live and that it complies with Hoydoon’s commerce guidelines and anti-discrimination policies. This step is essential to ensure that all listings on our platform are respectful, inclusive, and aligned with fair housing standards. Taking a moment to review and confirm this not only protects you as a seller but also helps maintain the integrity and trust of the Hoydoon community."
         ],
-        "image": "/details/art16s3.png"
+        "image": "/webp/art16s3.webp"
       },
       {
         "heading": "Step 9: Publish Changes ",
@@ -1680,7 +1680,7 @@
     "slug": "listing-agent-display",
     "title": "Understanding the Difference Between Active, Inactive, and Sold Listings on Hoydoon  ",
     "layoutType": "listing",
-    "heroImage": "/details/art17.jpg",
+    "heroImage": "/webp/art17.jpg",
     "introSection": [
       {
         "heading": "Understanding the Difference Between Active, Inactive, and Sold Listings on Hoydoon    ",
@@ -1717,7 +1717,7 @@
         "paragraphs": [
           "Even when a listing is marked as Inactive, it remains securely stored in your account and fully accessible from your dashboard. You can view, edit, and update the listing at any time without starting from scratch. Whether you're revising photos, updating pricing, or preparing new details, everything stays saved and ready. When your property becomes available again, simply switch the status back to Active to make it visible to potential buyers or renters instantly. This flexibility makes it easy to manage your listings at your own pace while keeping your information organized and up to date."
         ],
-        "image": "/details/art17s1.jpg"
+        "image": "/webp/art17s1.jpg"
       },
       {
         "heading": "What Sold Listings Means:  ",
@@ -1752,14 +1752,14 @@
     "slug": "listing-agent-display",
     "title": "Common Home-Buying Mistakes to Avoid ",
     "layoutType": "listing",
-    "heroImage": "/details/art18.jpg",
+    "heroImage": "/webp/art18.jpg",
     "introSection": [
       {
         "heading": "Common Home-Buying Mistakes to Avoid  ",
         "paragraph": [
           "Buying a home is a significant life event that represents financial stability, personal achievement, and a long-term commitment. It is often an exciting journey filled with anticipation, but it also comes with a series of challenges that require careful planning and strategic decision-making. The process involves multiple steps, from budgeting and securing financing to evaluating properties and closing the deal. For first-time buyers, the excitement of homeownership can sometimes overshadow important considerations, leading to costly mistakes. Many underestimate the full financial burden of owning a home, focusing solely on the purchase price while overlooking hidden costs such as property taxes, maintenance, and insurance. Others rush into decisions based on emotions rather than facts, failing to conduct thorough research on the neighborhood or skipping essential steps like home inspections. These missteps can result in financial strain, unexpected repairs, or even buyer’s remorse. To navigate the home-buying process successfully, buyers should take a well-informed approach. Understanding the market, securing mortgage pre-approval, setting a realistic budget, and evaluating the long-term value of a property are essential steps. A well-planned purchase ensures not only financial stability but also long-term satisfaction with the home. By avoiding common pitfalls and making informed choices, buyers can turn their dream of homeownership into a rewarding and stress-free reality."
         ],
-        "image": "/details/art18s1.jpg"
+        "image": "/webp/art18s1.jpg"
       }
     ],
 
@@ -1782,7 +1782,7 @@
         "paragraphs": [
           "Even if a buyer plans to stay in a home for many years, considering its future resale value is crucial. Factors such as location, proximity to schools, neighborhood trends, and overall market conditions significantly impact a property's long-term worth. Homes with desirable layouts, modern amenities, and good curb appeal tend to hold or increase their value over time. Additionally, understanding the area's market trends and potential for growth can help buyers make smarter investments. Choosing a home with strong resale potential ensures that, if the need to sell arises, the property will attract buyers and offer a good return on investment."
         ],
-        "image": "/details/art18s2.jpg"
+        "image": "/webp/art18s2.jpg"
       },
       {
         "heading": "Emotional Decisions and Lack of Research  ",
