@@ -320,7 +320,7 @@ export default function Home() {
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full  bg-cover bg-center z-[-1]"
-          style={{ backgroundImage: "url('/header.svg')" }}
+          style={{ backgroundImage: "url('/headertwo.webp')" }}
         ></div>
         {/* Content Section */}
         <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] mt-[2rem] lg:mt-[4rem]  p-3 lg:p-0  lg:gap-4 h-full ">

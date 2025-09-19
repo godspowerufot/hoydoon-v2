@@ -76,7 +76,7 @@ const Signup = () => {
               height={750}
               loading="lazy"
               quality={100}
-              src={"/authBanner.png"}
+              src={"/authBanner.webp"}
               className="rounded-[24px] w-[480px] h-[600px] lg:w-[800px] lg:h-[650px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[700px] object-cover "
             />
           </div>

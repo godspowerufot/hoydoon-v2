@@ -2,13 +2,17 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useActivateAccountMutation, useResendOtpMutation } from "@/store/slices/api/authapi";
+import {
+  useActivateAccountMutation,
+  useResendOtpMutation,
+} from "@/store/slices/api/authapi";
 import { useSelector } from "react-redux";
 import { log } from "@/utils/log";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 const OtpVerify = () => {
-  const [activateOtp, { isLoading, isSuccess, error }] = useActivateAccountMutation();
+  const [activateOtp, { isLoading, isSuccess, error }] =
+    useActivateAccountMutation();
   const [ResendCode] = useResendOtpMutation();
   const [otp, setOtp] = useState(Array(6).fill(""));
   const [activeInput, setActiveInput] = useState(0);
@@ -55,8 +59,8 @@ const OtpVerify = () => {
     if (!isOtpComplete) return;
     const code = otp.join("");
     try {
-       await activateOtp({ email, otp: code }).unwrap();
-    toast.success("account successfully activated");
+      await activateOtp({ email, otp: code }).unwrap();
+      toast.success("account successfully activated");
       router.push("/auth/sign-in"); // Mark as resent after successful resend
     } catch (err) {
       console.error("Error resending OTP:", err);
@@ -77,7 +81,7 @@ const OtpVerify = () => {
               loading="lazy"
               height={400}
               quality={100} // Ensures maximum quality
-              src={"/verification.png"}
+              src={"/verification.webp"}
               className="hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[37rem] h-[39.5rem]  2xl:h-[48rem] 2xl:w-[50rem]"
               style={{ objectFit: "cover" }}
             />
