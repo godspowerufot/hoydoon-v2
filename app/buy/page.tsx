@@ -13,6 +13,7 @@ import MapComponent from "../components/layouts/listingmap";
 import SearchBar from "../components/common/searchcomponent";
 import HoverCard from "../components/common/card";
 import { Property } from "@/types";
+import { SkeletonCard } from "../components/Loader";
 
 // Add mobile detection
 function useIsMobile() {
@@ -91,13 +92,6 @@ export default function Home() {
     }
   }, [allListings, isAllLoading]);
 
-  if (isAllLoading) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
-        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
-      </div>
-    );
-  }
   return (
     <>
       <header className="relative  h-[25rem]     p-2 lg:h-[85vh] w-screen overflow-hidden">
@@ -148,29 +142,34 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-wrap mt-[0.5em] lg:my-[1em]  gap-5 items-start lg:flex-row justify-start mb-2">
-            {displayListings
-              .slice(0, 3)
-              .map((items: Property, index: number) => (
-                <HoverCard
-                  _id={items?._id}
-                  key={index}
-                  imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                  altText={
-                    items?.imageUrls?.[0]?.altText ||
-                    "Property image showcasing a beautiful home"
-                  }
-                  price={items?.item?.price || "Price not available"}
-                  area={items?.item?.squareFeet || ""}
-                  bathrooms={items?.item?.bathrooms}
-                  bedrooms={items?.item?.bedrooms}
-                  description={
-                    items?.item?.description ||
-                    "No description available for this property."
-                  }
-                  title={items?.item?.title || "Untitled Property"}
-                  rent={items?.item?.rent || "Rent details not provided"}
-                />
-              ))}
+            {isAllLoading
+              ? // Show skeleton loaders
+                Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))
+              : displayListings
+                  .slice(0, 3)
+                  .map((items: Property, index: number) => (
+                    <HoverCard
+                      _id={items?._id}
+                      key={index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet || ""}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      title={items?.item?.title || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                    />
+                  ))}
             <Link
               href="/"
               className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
@@ -197,35 +196,42 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col mt-[0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
-            {(openHouseListings?.listings || [])
-              .slice(0, 3)
-              .map((items: Property, index: number) => (
-                <HoverCard
-                  _id={items?._id}
-                  key={index}
-                  imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                  altText={
-                    items?.imageUrls?.[0]?.altText ||
-                    "Property image showcasing a beautiful home"
-                  }
-                  price={items?.item?.price || "Price not available"}
-                  area={items?.item?.squareFeet || ""}
-                  bathrooms={items?.item?.bathrooms}
-                  bedrooms={items?.item?.bedrooms}
-                  description={
-                    items?.item?.description ||
-                    "No description available for this property."
-                  }
-                  title={items?.item?.title || "Untitled Property"}
-                  rent={items?.item?.rent || "Rent details not provided"}
-                />
-              ))}
-            <Link
-              href="/"
-              className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
-            >
-              see all open houses for sale
-            </Link>
+            {isAllLoading
+              ? // Show skeleton loaders
+                Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))
+              : (openHouseListings?.listings || [])
+                  .slice(0, 3)
+                  .map((items: Property, index: number) => (
+                    <HoverCard
+                      _id={items?._id}
+                      key={index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet || ""}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      title={items?.item?.title || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                    />
+                  ))}
+            {!isAllLoading && (
+              <Link
+                href="/"
+                className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+              >
+                see all open houses for sale
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -243,29 +249,34 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col mt- [0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
-            {(luxuryListings?.listings || [])
-              .slice(0, 3)
-              .map((items: Property, index: number) => (
-                <HoverCard
-                  _id={items?._id}
-                  key={index}
-                  imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                  altText={
-                    items?.imageUrls?.[0]?.altText ||
-                    "Property image showcasing a beautiful home"
-                  }
-                  price={items?.item?.price || "Price not available"}
-                  area={items?.item?.squareFeet || ""}
-                  bathrooms={items?.item?.bathrooms}
-                  bedrooms={items?.item?.bedrooms}
-                  description={
-                    items?.item?.description ||
-                    "No description available for this property."
-                  }
-                  title={items?.item?.title || "Untitled Property"}
-                  rent={items?.item?.rent || "Rent details not provided"}
-                />
-              ))}
+            {isAllLoading
+              ? // Show skeleton loaders
+                Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))
+              : (luxuryListings?.listings || [])
+                  .slice(0, 3)
+                  .map((items: Property, index: number) => (
+                    <HoverCard
+                      _id={items?._id}
+                      key={index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet || ""}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      title={items?.item?.title || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                    />
+                  ))}
             <Link
               href="/"
               className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "

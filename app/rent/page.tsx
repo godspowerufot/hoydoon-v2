@@ -7,6 +7,7 @@ import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Property } from "@/types";
+import { SkeletonCard } from "../components/Loader";
 export default function Home() {
   const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery(
     {}
@@ -36,13 +37,6 @@ export default function Home() {
     }
   }, [allListings]);
 
-  if (isAllLoading) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
-        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
-      </div>
-    );
-  }
   return (
     <>
       <header className="relative h-[25rem]   p-2 lg:h-[85vh] w-screen overflow-hidden">
@@ -92,38 +86,45 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col mt-[3em] lg:my-[2em] gap-[2em] lg:gap-5 items-start lg:flex-row justify-start mb-2">
-            {displayListings
-              .slice(0, 3)
-              .map((items: Property, index: number) => (
-                <PropertyListCard
-                  key={index}
-                  imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                  altText={
-                    items?.imageUrls?.[0]?.altText ||
-                    "Property image showcasing a beautiful home"
-                  }
-                  price={items?.item?.price || "Price not available"}
-                  area={items?.item?.squareFeet}
-                  bathrooms={items?.item?.bathrooms}
-                  bedrooms={items?.item?.bedrooms}
-                  description={
-                    items?.item?.description ||
-                    "No description available for this property."
-                  }
-                  _id={items?._id}
-                  title={items?.item?.title || "Untitled Property"}
-                  rent={items?.item?.rent || "Rent details not provided"}
-                  squareFeet={items?.item?.squareFeet}
-                  landSize={items?.item?.landSize}
-                  listingType={items?.listingType || "N/A"}
-                />
-              ))}
-            <Link
-              href="/rent/searchlisting"
-              className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-xl font-[500] "
-            >
-              see housing for sale
-            </Link>
+            {isAllLoading
+              ? // Show skeleton loaders
+                Array.from({ length: 3 }, (_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))
+              : displayListings
+                  .slice(0, 3)
+                  .map((items: Property, index: number) => (
+                    <PropertyListCard
+                      key={index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      _id={items?._id}
+                      title={items?.item?.title || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                      squareFeet={items?.item?.squareFeet}
+                      landSize={items?.item?.landSize}
+                      listingType={items?.listingType || "N/A"}
+                    />
+                  ))}
+            {!isAllLoading && (
+              <Link
+                href="/rent/searchlisting"
+                className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-xl font-[500] "
+              >
+                see housing for sale
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -145,40 +146,48 @@ export default function Home() {
           </div>
           <div className="flex flex-col ">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...(rentListings?.listings || [])]
-                ?.slice(2, 5)
-                ?.sort(() => Math.random() - 0.5)
-                ?.map((items: Property, index: number) => (
-                  <PropertyListCard
-                    key={index}
-                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                    altText={
-                      items?.imageUrls?.[0]?.altText ||
-                      "Property image showcasing a beautiful home"
-                    }
-                    price={items?.item?.price || "Price not available"}
-                    area={items?.item?.squareFeet}
-                    bathrooms={items?.item?.bathrooms}
-                    bedrooms={items?.item?.bedrooms}
-                    description={
-                      items?.item?.description ||
-                      "No description available for this property."
-                    }
-                    _id={items?._id}
-                    title={items?.item?.title || "Untitled Property"}
-                    rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item?.squareFeet}
-                    landSize={items?.item?.landSize}
-                    listingType={items?.listingType || "N/A"}
-                  />
-                ))}
+              {isAllLoading
+                ? // Show skeleton loaders
+                  Array.from({ length: 3 }, (_, index) => (
+                    <SkeletonCard key={`skeleton-${index}`} />
+                  ))
+                : [...(rentListings?.listings || [])]
+                    ?.slice(2, 5)
+                    ?.sort(() => Math.random() - 0.5)
+                    ?.map((items: Property, index: number) => (
+                      <PropertyListCard
+                        key={index}
+                        imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                        altText={
+                          items?.imageUrls?.[0]?.altText ||
+                          "Property image showcasing a beautiful home"
+                        }
+                        price={items?.item?.price || "Price not available"}
+                        area={items?.item?.squareFeet}
+                        bathrooms={items?.item?.bathrooms}
+                        bedrooms={items?.item?.bedrooms}
+                        description={
+                          items?.item?.description ||
+                          "No description available for this property."
+                        }
+                        _id={items?._id}
+                        title={items?.item?.title || "Untitled Property"}
+                        rent={items?.item?.rent || "Rent details not provided"}
+                        squareFeet={items?.item?.squareFeet}
+                        landSize={items?.item?.landSize}
+                        listingType={items?.listingType || "N/A"}
+                      />
+                    ))}
             </div>
-            <Link
-              href={"/rent/searchlisting"}
-              className="text-[#09858D]  text-base  my-5 lg:mt-3 lg:text-xl font-[500] "
-            >
-              see all explore listings for rent
-            </Link>
+
+            {!isAllLoading && (
+              <Link
+                href={"/rent/searchlisting"}
+                className="text-[#09858D]  text-base  my-5 lg:mt-3 lg:text-xl font-[500] "
+              >
+                see all explore listings for rent
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -196,8 +205,15 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col ">
-            {!regionListings?.listings ||
-            regionListings.listings.length === 0 ? (
+            {isAllLoading ? (
+              // Show skeleton loaders
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+                {Array.from({ length: 3 }, (_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))}
+              </div>
+            ) : !regionListings?.listings ||
+              regionListings.listings.length === 0 ? (
               <div className="text-center text-gray-500 py-8">
                 No listings found.
               </div>
@@ -231,12 +247,15 @@ export default function Home() {
                   ))}
               </div>
             )}
-            <Link
-              href={"/rent/searchlisting"}
-              className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
-            >
-              see all explore listings for rent
-            </Link>
+
+            {!isAllLoading && (
+              <Link
+                href={"/rent/searchlisting"}
+                className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
+              >
+                see all explore listings for rent
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -253,8 +272,15 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col ">
-            {petFriendlyListings.length === 0 ? (
+          <div className="flex flex-col">
+            {isAllLoading ? (
+              // Show skeleton loaders
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+                {Array.from({ length: 3 }, (_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))}
+              </div>
+            ) : petFriendlyListings.length === 0 ? (
               <div className="text-center text-gray-500 py-8">
                 No listings found.
               </div>
@@ -292,7 +318,7 @@ export default function Home() {
 
             <Link
               href={"/rent/searchlisting"}
-              className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
+              className="text-[#09858D] text-base my-5 lg:text-xl font-[500]"
             >
               see all pet-friendly houses for rent
             </Link>
@@ -317,32 +343,37 @@ export default function Home() {
           </div>
           <div className="flex flex-col ">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...(familyFriendlyListings?.listings || [])]
-                .slice(1, 4)
-                ?.map((items: Property, index: number) => (
-                  <PropertyListCard
-                    key={index}
-                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                    altText={
-                      items?.imageUrls?.[0]?.altText ||
-                      "Property image showcasing a beautiful home"
-                    }
-                    price={items?.item?.price || "Price not available"}
-                    area={items?.item?.squareFeet}
-                    bathrooms={items?.item?.bathrooms}
-                    bedrooms={items?.item?.bedrooms}
-                    description={
-                      items?.item?.description ||
-                      "No description available for this property."
-                    }
-                    _id={items?._id}
-                    title={items?.item?.title || "Untitled Property"}
-                    rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item?.squareFeet}
-                    landSize={items?.item?.landSize}
-                    listingType={items?.listingType || "N/A"}
-                  />
-                ))}
+              {isAllLoading
+                ? // Show skeleton loaders
+                  Array.from({ length: 3 }, (_, index) => (
+                    <SkeletonCard key={`skeleton-${index}`} />
+                  ))
+                : [...(familyFriendlyListings?.listings || [])]
+                    .slice(1, 4)
+                    ?.map((items: Property, index: number) => (
+                      <PropertyListCard
+                        key={index}
+                        imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                        altText={
+                          items?.imageUrls?.[0]?.altText ||
+                          "Property image showcasing a beautiful home"
+                        }
+                        price={items?.item?.price || "Price not available"}
+                        area={items?.item?.squareFeet}
+                        bathrooms={items?.item?.bathrooms}
+                        bedrooms={items?.item?.bedrooms}
+                        description={
+                          items?.item?.description ||
+                          "No description available for this property."
+                        }
+                        _id={items?._id}
+                        title={items?.item?.title || "Untitled Property"}
+                        rent={items?.item?.rent || "Rent details not provided"}
+                        squareFeet={items?.item?.squareFeet}
+                        landSize={items?.item?.landSize}
+                        listingType={items?.listingType || "N/A"}
+                      />
+                    ))}
             </div>
 
             <Link

@@ -471,12 +471,14 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
                   )
                 )}
 
-            <Link
-              href="/"
-              className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
-            >
-              see housing for sale
-            </Link>
+            {!isAllLoading && (
+              <Link
+                href="/"
+                className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+              >
+                see housing for sale
+              </Link>
+            )}
           </div>
         </div>
       </section>
