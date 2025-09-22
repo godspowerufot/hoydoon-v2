@@ -7,7 +7,6 @@ import Button from "../common/Button";
 import { log } from "@/utils/log";
 import { useRouter } from "next/navigation";
 import { getAccessToken } from "@/utils/cookies";
-import { logout } from "@/store/slices/authslice";
 import { useLogoutMutation } from "@/store/slices/api/authapi";
 const MobileNavbar = () => {
   const router = useRouter();
@@ -151,7 +150,13 @@ const MobileNavbar = () => {
           pathname.startsWith("/helpcenter/submit-request") ? (
             <div className="flex items-center space-x-2">
               {/* Globe Icon */}
-              <img src="/mobilelog.png" alt="globe" className="w-8 h-8" />
+              <Image
+                width={500}
+                height={300}
+                src="/mobilelog.png"
+                alt="globe"
+                className="w-8 h-8"
+              />
 
               {/* Input Field with Search Button */}
               <div className="flex items-center  border-[0.6px] border-[#8F8F8F] rounded-full   px-2 py-1">

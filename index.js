@@ -401,7 +401,7 @@ module.exports = nextConfig;`,
         });
       }
     } catch (error) {
-      console.log("   Could not analyze bundle size");
+      console.log("   Could not analyze bundle size", error);
     }
   }
 

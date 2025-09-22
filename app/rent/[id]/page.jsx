@@ -216,13 +216,25 @@ const Breadcrumb = ({
           onClick={handleShareClick}
           className="p-2 border border-[#8F8F8F] rounded-md"
         >
-          <img src="/upload.svg" alt="Download" className="w-4 h-4" />
+          <Image
+            width={500}
+            height={300}
+            src="/upload.svg"
+            alt="Download"
+            className="w-4 h-4"
+          />
         </div>
         <div
           onClick={handleToggleListings}
           className="p-2 border border-[#8F8F8F] rounded-md"
         >
-          <img src="/image2.svg" alt="Share" className="w-4 h-4" />
+          <Image
+            width={500}
+            height={300}
+            src="/image2.svg"
+            alt="Share"
+            className="w-4 h-4"
+          />
         </div>
       </div>
 
@@ -407,7 +419,9 @@ const page = () => {
               </div>
 
               <div className="flex items-center gap-2 text-gray-700  mt-[0.5rem] lg:mt-2">
-                <img
+                <Image
+                  width={500}
+                  height={300}
                   src="/eye.svg"
                   alt="Share"
                   className="w-3 h-3 lg:w-5 lg:h-5"
@@ -424,7 +438,13 @@ const page = () => {
               </p>
 
               <div className="flex items-center justify-end mt-1 text-gray-700">
-                <img src="/stargreen.png" alt="Star" className="w-4 h-4" />
+                <Image
+                  width={500}
+                  height={300}
+                  src="/stargreen.png"
+                  alt="Star"
+                  className="w-4 h-4"
+                />
                 <span className="ml-1 font-medium">{averageRating}</span>
               </div>
 
@@ -437,19 +457,37 @@ const page = () => {
                   onClick={handleFavoriteToggle}
                   className="justify-center flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
                 >
-                  <img src="/favorite.svg" alt="Favorite" className="w-3 h-3" />
+                  <Image
+                    width={500}
+                    height={300}
+                    src="/favorite.svg"
+                    alt="Favorite"
+                    className="w-3 h-3"
+                  />
                 </div>
                 <div
                   onClick={handleShareClick}
                   className=" justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
                 >
-                  <img src="/upload.svg" alt="Download" className="w-3 h-3" />
+                  <Image
+                    width={500}
+                    height={300}
+                    src="/upload.svg"
+                    alt="Download"
+                    className="w-3 h-3"
+                  />
                 </div>
                 <div
                   onClick={handleToggleListings}
                   className="justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
                 >
-                  <img src="/image2.svg" alt="Share" className="w-3 h-3" />
+                  <Image
+                    width={500}
+                    height={300}
+                    src="/image2.svg"
+                    alt="Share"
+                    className="w-3 h-3"
+                  />
                 </div>
               </div>
             </div>

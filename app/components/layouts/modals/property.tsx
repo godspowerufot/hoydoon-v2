@@ -2,12 +2,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import MapComponent from "../listingmap"; // Assuming this is a map component you already have
-import StreetViewComponent from "../streetvie";
 import { useToggleFavoriteMutation } from "@/store/slices/api/authapi";
-import { toast } from "react-toastify";
-import { log } from "@/utils/log";
 import { handleShareClick } from "@/utils";
-
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
@@ -72,7 +69,9 @@ const FullScreenCarousel = ({
       </button>
 
       <div className="transition-all duration-300 ease-in-out max-w-full max-h-[80%]">
-        <img
+        <Image
+          width={500}
+          height={300}
           src={imageurl}
           alt="carousel"
           className="object-contain max-h-[80vh] w-full rounded-md"
@@ -95,7 +94,6 @@ const PropertyGalleryModal = ({
   coordinates,
   onClose,
   image,
-  listingId,
   handleFavoriteClick,
 }: PropertyModalProps) => {
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
@@ -111,8 +109,7 @@ const PropertyGalleryModal = ({
       onClose(); // ✅ Close when clicking outside
     }
   };
-  const [toggleFavorite, { isLoading, isError, isSuccess }] =
-    useToggleFavoriteMutation();
+
   if (!isOpen) return null;
 
   const images = image || [];
@@ -132,7 +129,7 @@ const PropertyGalleryModal = ({
       if (remaining === 1) {
         blocks.push(
           <div key={index} className="grid grid-cols-1 gap-3">
-            <img
+            <Image
               src={images[index]?.url || "/house1.png"}
               onClick={() => handleImageClick(index)} // Use handleImageClickAlwaysFirst if needed
               alt={`Image ${index}`}
@@ -145,7 +142,9 @@ const PropertyGalleryModal = ({
         blocks.push(
           <div key={index} className="grid grid-col-1 lg:grid-cols-2 gap-3">
             {images.slice(index, index + 2).map((img: any, i: number) => (
-              <img
+              <Image
+                width={500}
+                height={300}
                 key={i}
                 src={img?.url || "/house1.png"}
                 onClick={() => handleImageClick(index)} // Use handleImageClickAlwaysFirst if needed
@@ -163,7 +162,9 @@ const PropertyGalleryModal = ({
             className="grid  grid-col-1 lg:grid-cols-2 gap-3 grid-rows-2 -mb-[2pc]"
           >
             <div className="col-span-2">
-              <img
+              <Image
+                width={500}
+                height={300}
                 src={images[index]?.url || "/house1.png"}
                 onClick={() => handleImageClick(index)} // Use handleImageClickAlwaysFirst if needed
                 alt={`Image ${index}`}
@@ -171,7 +172,9 @@ const PropertyGalleryModal = ({
               />
             </div>
             {images.slice(index + 1, index + 3).map((img: any, i: number) => (
-              <img
+              <Image
+                width={500}
+                height={300}
                 key={i}
                 src={img?.url || "/house1.png"}
                 onClick={() => handleImageClick(index)} // Use handleImageClickAlwaysFirst if needed
@@ -260,19 +263,37 @@ const PropertyGalleryModal = ({
                 onClick={handleFavoriteClick}
                 className="p-2 border border-[#8F8F8F] rounded-md"
               >
-                <img src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
+                <Image
+                  width={500}
+                  height={500}
+                  src="/favorite.svg"
+                  alt="Favorite"
+                  className="w-4 h-4"
+                />
               </div>
               <div
                 onClick={handleShareClick}
                 className="p-2 border border-[#8F8F8F] rounded-md"
               >
-                <img src="/upload.svg" alt="Download" className="w-4 h-4" />
+                <Image
+                  width={500}
+                  height={500}
+                  src="/upload.svg"
+                  alt="Download"
+                  className="w-4 h-4"
+                />
               </div>
               <div
                 onClick={handleToggleListings}
                 className="p-2 border border-[#8F8F8F] rounded-md"
               >
-                <img src="/image2.svg" alt="Share" className="w-4 h-4" />
+                <Image
+                  width={500}
+                  height={300}
+                  src="/image2.svg"
+                  alt="Share"
+                  className="w-4 h-4"
+                />
               </div>
               <button
                 onClick={onClose}

@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "./components/common/Spinner";
+import Script from "next/script";
 export const metadata: Metadata = {
   title: "Hoydoon | Find Your Dream Property in Hoydoon",
   description:
@@ -62,7 +63,7 @@ export default function RootLayout({
   return (
     <>
       <html lang="en">
-        <script src="https://apis.google.com/js/platform.js" defer></script>
+        <Script src="https://apis.google.com/js/platform.js" />
         <meta
           name="google-signin-client_id"
           content="438580118502-j5qth0chlkikrpreur0gjl9q1vm8a162.apps.googleusercontent.com"

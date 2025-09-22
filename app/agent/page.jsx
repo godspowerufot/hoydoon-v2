@@ -10,7 +10,11 @@ import FagsSection from "../components/layouts/FaqSection";
 import { useGetAgentsQuery } from "@/store/slices/api/authapi";
 import { useEffect, useRef, useState } from "react";
 import Spinner from "@/app/components/common/Spinner";
-import LocationSearchBar from "../components/layouts/maploader";
+import dynamic from "next/dynamic";
+
+const LocationSearchBar = dynamic(() =>
+  import("../components/layouts/maploader")
+);
 
 export default function Page() {
   const {
@@ -40,7 +44,7 @@ export default function Page() {
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-cover bg-center z-[-1]"
-          style={{ backgroundImage: "url('/agentheader.png')" }}
+          style={{ backgroundImage: "url('/webp/agentheader.webp')" }}
         >
           {/* Overlay Div */}
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-[0.3] z-[-1]"></div>

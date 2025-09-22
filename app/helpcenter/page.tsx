@@ -278,7 +278,7 @@ export default function Home() {
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
-          style={{ backgroundImage: "url('/article.jpeg')" }}
+          style={{ backgroundImage: "url('/article.webp')" }}
         >
           {/* Overlay Div */}
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z[-1]"></div>

@@ -4,7 +4,6 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import MapComponent from "@/app/components/layouts/listingmap";
 import ContactAgent from "@/app/components/layouts/contactagent";
 import { usePathname } from "next/navigation";
 import { decodeId, truncateDescription } from "@/utils";
@@ -17,12 +16,22 @@ import Spinner from "@/app/components/common/Spinner";
 import { log } from "@/utils/log";
 import { useRouter } from "next/navigation";
 import { handleShareClick } from "@/utils";
-import DynamicImageGrid from "@/app/components/layouts/dynamiclayout";
 import PropertyListCard from "@/app/components/common/PropertyListing";
-import Link from "next/link";
-import DynamicImageMobile from "@/app/components/layouts/mobiledynamic";
 import { flattenListings, formatNumber } from "@/utils";
 import { toast } from "react-toastify";
+import dynamic from "next/dynamic";
+
+const DynamicImageGrid = dynamic(() =>
+  import("../../components/layouts/dynamiclayout")
+);
+const DynamicImageMobile = dynamic(() =>
+  import("../../components/layouts/mobiledynamic")
+);
+
+const MapComponent = dynamic(() =>
+  import("../../components/layouts/maploader").then((mod) => mod.MapLoader)
+);
+
 const Breadcrumb = ({
   handleToggleListings,
   agentDetails,
@@ -37,9 +46,7 @@ const Breadcrumb = ({
         {/* Breadcrumb Links */}
         <div className="flex  w-full items-center gap-3 text-base text-gray-500">
           {/* Initial Back Arrow + Static Text */}
-          <div
-            className="flex font-light items-center gap-1"
-          >
+          <div className="flex font-light items-center gap-1">
             <Image
               src="/arrow-right.png"
               alt="arrow"
@@ -81,7 +88,9 @@ const Breadcrumb = ({
       {/* Right Section: Icons */}
       <div className="flex items-center lg:-ml-[4rem] gap-2">
         <div className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md">
-          <img
+          <Image
+            width={500}
+            height={300}
             onClick={handleFavoriteClick}
             src="/favorite.svg"
             alt="Favorite"
@@ -93,13 +102,25 @@ const Breadcrumb = ({
           onClick={handleShareClick}
           className="p-2 border border-[#8F8F8F] rounded-md"
         >
-          <img src="/upload.svg" alt="Download" className="w-4 h-4" />
+          <Image
+            width={500}
+            height={300}
+            src="/upload.svg"
+            alt="Download"
+            className="w-4 h-4"
+          />
         </div>
         <div
           onClick={handleToggleListings}
           className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md"
         >
-          <img src="/image2.svg" alt="Share" className="w-4 h-4" />
+          <Image
+            width={500}
+            height={300}
+            src="/image2.svg"
+            alt="Share"
+            className="w-4 h-4"
+          />
         </div>
       </div>
 
@@ -275,7 +296,13 @@ const page = ({ params }) => {
           {/* Right Section */}
           <div className="text-right font-bricolage  text-[#1E1E1E] mt-4 md:-mt-[2.5rem]">
             <div className="flex pr-3 lg:pr-0 items-center justify-end  my-3 gap-2 lg:gap-0 text-gray-700 mt-1">
-              <img src="/stargreen.png" alt="Favorite" className="w-4 h-4" />
+              <Image
+                width={500}
+                height={300}
+                src="/stargreen.png"
+                alt="Favorite"
+                className="w-4 h-4"
+              />
               <span className="ml-1 font-medium ">{ListedBy}</span>
             </div>
             <p className="text-gray-600 lg:mt-1 my-3 text-sm">
@@ -286,19 +313,33 @@ const page = ({ params }) => {
                 onClick={handleFavoriteClick}
                 className="p-2 border border-[#8F8F8F] rounded-md"
               >
-                <img src="/favorite.svg" alt="Favorite" className="w-4 h-4" />
+                <Image
+                  width={500}
+                  height={300}
+                  src="/favorite.svg"
+                  alt="Favorite"
+                  className="w-4 h-4"
+                />
               </div>
               <div
                 onClick={handleShareClick}
                 className="p-2 border border-[#8F8F8F] rounded-md"
               >
-                <img src="/upload.svg" alt="Download" className="w-4 h-4" />
+                <Image
+                  width={500}
+                  height={300}
+                  src="/upload.svg"
+                  alt="Download"
+                  className="w-4 h-4"
+                />
               </div>
               <div
                 onClick={handleToggleListings}
                 className="p-2 border border-[#8F8F8F] rounded-md"
               >
-                <img
+                <Image
+                  width={500}
+                  height={300}
                   src="/image2.svg"
                   alt="Share"
                   className="w-4 h-4 object-cover"

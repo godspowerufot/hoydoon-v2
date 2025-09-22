@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
-import HoverCard from "../../common/card";
 
 const Breadcrumb = ({ id, slug, title }) => {
   return (
@@ -70,10 +68,22 @@ const Breadcrumb = ({ id, slug, title }) => {
           </svg>
         </div>
         <div className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/upload.svg" alt="Download" className="w-4 h-4" />
+          <Image
+            width={500}
+            height={300}
+            src="/upload.svg"
+            alt="Download"
+            className="w-4 h-4"
+          />
         </div>
         <div className="p-2 border border-[#8F8F8F] rounded-md">
-          <img src="/image2.svg" alt="Share" className="w-4 h-4" />
+          <Image
+            width={500}
+            height={300}
+            src="/image2.svg"
+            alt="Share"
+            className="w-4 h-4"
+          />
         </div>
       </div>
     </div>
@@ -143,7 +153,6 @@ const GridLayout = ({ pageData }) => {
           )}
         </div>
       ))}
-
     </div>
   );
 };

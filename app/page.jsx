@@ -1,27 +1,20 @@
 "use client";
 import Image from "next/image";
-import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
-import PropertyCard from "./components/common/property";
 import ArticlesSection from "./components/common/Article";
 import { useEffect, useRef } from "react";
-import {
-  useGetAllListingsQuery,
-  useGetFavoritesQuery,
-} from "@/store/slices/api/authapi";
+import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useState } from "react";
 import SearchBar from "./components/common/searchcomponent";
 import { useIsMobile } from "@/hooks/usemobile";
 import Button from "./components/common/Button";
 import { flattenListings } from "@/utils";
-import clsx from "clsx";
-import { log } from "@/utils/log";
 import { toast } from "react-toastify";
 import { truncateDescription } from "@/utils/index";
 import HoverCard from "@/app/components/common/card";
 import TestimonialCard from "./components/layouts/testimonials";
 import FagsSection from "../app/components/layouts/FaqSection";
-// carousel
+import { SkeletonCard } from "./components/Loader";
 
 function Carousel({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -304,15 +297,6 @@ export default function Home() {
       setLuxuryDisplayListings(slides);
     }
   }, [luxuryListings, isLuxuryLoading]);
-  log("all Listings:", allListings);
-
-  if (isAllLoading) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
-        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
-      </div>
-    );
-  }
 
   return (
     <>
@@ -457,29 +441,35 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
             </p>
           </div>
           <div className="flex flex-col mt-[0.5em] lg:mt-[2.5em]  gap-5 items-start lg:flex-row justify-start mb-2">
-            {(isMobile ? displayListings.slice(0, 1) : displayListings).map(
-              (items, index) => (
-                <HoverCard
-                  _id={items?._id}
-                  key={index}
-                  imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                  altText={
-                    items?.imageUrls?.[0]?.altText ||
-                    "Property image showcasing a beautiful home"
-                  }
-                  price={items?.item.price || "Price not available"}
-                  area={items?.item.squareFeet || ""}
-                  bathrooms={items?.item?.bathrooms}
-                  bedrooms={items?.item?.bedrooms}
-                  description={
-                    items?.item.description ||
-                    "No description available for this property."
-                  }
-                  title={items?.item.title || "Untitled Property"}
-                  rent={items?.item.rent || "Rent details not provided"}
-                />
-              )
-            )}
+            {isAllLoading
+              ? // Show skeleton loaders
+                Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))
+              : // Show actual cards
+                (isMobile ? displayListings.slice(0, 1) : displayListings).map(
+                  (items, index) => (
+                    <HoverCard
+                      _id={items?._id}
+                      key={items?._id || index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item.price || "Price not available"}
+                      area={items?.item.squareFeet || ""}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item.description ||
+                        "No description available for this property."
+                      }
+                      title={items?.item.title || "Untitled Property"}
+                      rent={items?.item.rent || "Rent details not provided"}
+                    />
+                  )
+                )}
 
             <Link
               href="/"

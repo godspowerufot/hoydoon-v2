@@ -10,23 +10,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import PropertyListCard from "@/app/components/common/PropertyListing";
 import { flattenListings, log } from "@/utils";
 import MapComponent from "@/app/components/layouts/listingmap";
-
-const PropertySkeleton = () => {
-  return (
-    <div className="space-y-4 w-full  mt-[3rem] lg:mt-0 max-w-sm rounded-xl border border-gray p-4 shadow-sm bg-white">
-      <div className="h-48 rounded-md shimmer" />
-      <div className="h-4 rounded shimmer w-3/4" />
-      <div className="h-4 rounded shimmer w-1/2" />
-      <div className="h-3 rounded shimmer w-5/6" />
-      <div className="flex space-x-2 mt-2">
-        <div className="h-3 w-1/4 rounded shimmer" />
-        <div className="h-3 w-1/4 rounded shimmer" />
-        <div className="h-3 w-1/4 rounded shimmer" />
-      </div>
-    </div>
-  );
-};
-
+import { PropertySkeleton } from "@/app/components/Loader";
 const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -440,7 +424,9 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                   {bedValue || bathValue
                     ? `${bedValue} Beds, ${bathValue} Baths`
                     : "Bed/Baths"}
-                  <img
+                  <Image
+                    width={500}
+                    height={500}
                     src="/arrow-down.png"
                     alt="Dropdown"
                     className="w-3 h-2 ml-2 pointer-events-none"
@@ -562,7 +548,9 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                     : options.find((o) => o.value === selectedValue)?.label ||
                       option}
                 </span>
-                <img
+                <Image
+                  width={500}
+                  height={300}
                   src="/arrow-down.png"
                   alt="Dropdown"
                   className="w-3 h-2 ml-2 pointer-events-none"
@@ -773,7 +761,9 @@ const page = () => {
           </span>
           <span className="text-black font-[400] flex gap-2  justify-center items-center cursor-pointer">
             Sort: <p className="text-primary"> New listings </p>{" "}
-            <img
+            <Image
+              width={500}
+              height={300}
               src="/arrow-down.png"
               alt="Dropdown"
               className="w-3 h-2   pointer-events-none"

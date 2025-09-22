@@ -19,7 +19,13 @@ const Breadcrumb = () => {
       {/* Left Section: Back Arrow and Breadcrumb */}
       <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage text-gray-600">
         {/* Back Arrow */}
-        <img src="/arrow-right.png" alt="Back" className="w-3 h-4 mt-1" />
+        <Image
+          width={500}
+          height={300}
+          src="/arrow-right.png"
+          alt="Back"
+          className="w-3 h-4 mt-1"
+        />
 
         {/* Breadcrumb Links */}
         <span className="text-gray-400">Search |</span>
