@@ -1,17 +1,16 @@
-
-'use client';
-import React, { useState,useEffect,useMemo } from 'react'
-import Image from 'next/image';
-import { ProfileCard } from '@/app/components/layouts/profilecard';
-import Link from 'next/link';
-import FagsSection from "@/app/components/layouts/FaqSection"
-import Button from '@/app/components/common/Button';
-import FAQComponent from '@/app/components/layouts/faq';
-import { useGetAgentsQuery } from '@/store/slices/api/authapi';
-import Spinner from '@/app/components/common/Spinner';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Pagination from '@/app/components/common/pagination';
-import {HiChevronDown} from "react-icons/hi";
+"use client";
+import React, { useState, useEffect, useMemo } from "react";
+import Image from "next/image";
+import { ProfileCard } from "@/app/components/layouts/profilecard";
+import Link from "next/link";
+import FagsSection from "@/app/components/layouts/FaqSection";
+import Button from "@/app/components/common/Button";
+import FAQComponent from "@/app/components/layouts/faq";
+import { useGetAgentsQuery } from "@/store/slices/api/authapi";
+import Spinner from "@/app/components/common/Spinner";
+import { useRouter, useSearchParams } from "next/navigation";
+import Pagination from "@/app/components/common/pagination";
+import { HiChevronDown } from "react-icons/hi";
 const Dropdown = ({ selectedOption, setSelectedOption }) => {
   const [isOpen, setIsOpen] = useState(false);
   const options = ["Rent", "Buy", "Sell"];
@@ -36,7 +35,9 @@ const Dropdown = ({ selectedOption, setSelectedOption }) => {
                 setIsOpen(false);
               }}
               className={`w-full  text-sm text-left px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300 ${
-                selectedOption === option ? "bg-primary text-white" : "text-[#8F8F8F]"
+                selectedOption === option
+                  ? "bg-primary text-white"
+                  : "text-[#8F8F8F]"
               }`}
             >
               {option}
@@ -48,10 +49,6 @@ const Dropdown = ({ selectedOption, setSelectedOption }) => {
   );
 };
 
-
-
-
-
 const Breadcrumb = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("Language");
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -61,18 +58,17 @@ const Breadcrumb = () => {
   const [isOpen, setIsOpen] = useState(false);
   const searchParams = useSearchParams();
   const [region, setRegion] = useState("");
-const router = useRouter();
+  const router = useRouter();
 
   const options = ["Rent", "Buy", "Sell"];
   const languages = ["English", "Somalia", "Arabic"];
 
- const updateQueryParam = (key, value) => {
-  const newParams = new URLSearchParams(searchParams.toString());
-  newParams.set(key, value);
-  newParams.set('page', '1'); // ✅ Reset page on filter change
-  router.push(`/agent/all-agent?${newParams.toString()}`);
-};
-
+  const updateQueryParam = (key, value) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set(key, value);
+    newParams.set("page", "1"); // ✅ Reset page on filter change
+    router.push(`/agent/all-agent?${newParams.toString()}`);
+  };
 
   return (
     <div className=" py-2 lg:py-6 px-1 lg:px-[6rem] 2xl:px-3 items-start lg:flex-col lg:items-center justify-between">
@@ -81,11 +77,12 @@ const router = useRouter();
           Real Estate Agents In Lagos
         </h1>
         <p className="text-gray font-[400] lg:p-0 lg:my-3 my-1 text-sm lg:text-xl font-bricolage w-full lg:w-full">
-          Leverage a local agent's expertise with access to millions of listings, guiding you through every step.
+          Leverage a local agent's expertise with access to millions of
+          listings, guiding you through every step.
         </p>
       </div>
 
-    <div className="hidden lg:flex flex-col lg:flex-row items-center gap-3 lg:gap-4 2xl:gap-6 w-full mt-4">
+      <div className="hidden lg:flex flex-col lg:flex-row items-center gap-3 lg:gap-4 2xl:gap-6 w-full mt-4">
         {/* Location Search */}
         <div className="relative w-full lg:w-[300px] 2xl:min-w-[350px]">
           <input
@@ -96,12 +93,17 @@ const router = useRouter();
             className="w-full h-[54px] bg-[#F9FAFB] border border-[#8F8F8F] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-none"
           />
           <button
-            onClick={() => updateQueryParam('region', region.toLowerCase())}
+            onClick={() => updateQueryParam("region", region.toLowerCase())}
             disabled={!region}
             className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white p-3 rounded-lg"
             aria-label="Search agent by location"
           >
-            <Image alt="search arrow" width={14} height={14} src="/arrow-left.png" />
+            <Image
+              alt="search arrow"
+              width={14}
+              height={14}
+              src="/arrow-left.png"
+            />
           </button>
         </div>
 
@@ -111,11 +113,13 @@ const router = useRouter();
             <button
               key={option}
               className={`px-6 py-2.5 rounded-lg transition-all duration-300 ${
-                selectedOption === option ? "bg-primary text-white" : "text-[#8F8F8F] hover:bg-gray-100"
+                selectedOption === option
+                  ? "bg-primary text-white"
+                  : "text-[#8F8F8F] hover:bg-gray-100"
               }`}
               onClick={() => {
                 setSelectedOption(option);
-                updateQueryParam('listingType', option.toLowerCase());
+                updateQueryParam("listingType", option.toLowerCase());
               }}
             >
               {option}
@@ -129,7 +133,7 @@ const router = useRouter();
             value={selectedLanguage}
             onChange={(e) => {
               setSelectedLanguage(e.target.value);
-              updateQueryParam('spokenLanguage', e.target.value.toLowerCase());
+              updateQueryParam("spokenLanguage", e.target.value.toLowerCase());
             }}
             className="w-full h-[54px] appearance-none bg-[#F9FAFB] border border-[#8F8F8F] rounded-xl px-4 py-3 text-[#8F8F8F] focus:outline-none focus:ring-1 focus:ring-none"
           >
@@ -141,25 +145,30 @@ const router = useRouter();
             ))}
           </select>
           <span className="pointer-events-none absolute right-4 top-1/2 transform -translate-y-1/2">
-            <Image src="/arrow-downed.svg" alt="dropdown arrow" width={14} height={14} />
+            <Image
+              src="/arrow-downed.svg"
+              alt="dropdown arrow"
+              width={14}
+              height={14}
+            />
           </span>
         </div>
-
-     
       </div>
 
       <div className="flex lg:hidden flex-row lg:flex-wrap items-center gap-2 w-full">
         <div className="relative flex items-center border border-[#8F8F8F] bg-[#F9FAFB] rounded-md px-2 py-1 flex-1 min-w-[128px] max-w-[122px]">
           <input
             type="text"
-              value={region}
-  onChange={(e) => setRegion(e.target.value)}
+            value={region}
+            onChange={(e) => setRegion(e.target.value)}
             placeholder="Agege, Lagos..."
             className="bg-[#F9FAFB] placeholder:text-[#8F8F8F] focus:outline-none text-black text-sm w-full"
           />
-          <button  onClick={() => updateQueryParam('region', region.toLowerCase())}
-          disabled={!region}
- className="ml-2 cursor-pointer bg-primary text-white p-2 rounded-md">
+          <button
+            onClick={() => updateQueryParam("region", region.toLowerCase())}
+            disabled={!region}
+            className="ml-2 cursor-pointer bg-primary text-white p-2 rounded-md"
+          >
             <Image alt="arrow" width={14} height={14} src="/arrow-left.png" />
           </button>
         </div>
@@ -181,10 +190,12 @@ const router = useRouter();
                   onClick={() => {
                     setSelectedOption(option);
                     setIsOpen(false);
-updateQueryParam('listingType', option.toLowerCase())
+                    updateQueryParam("listingType", option.toLowerCase());
                   }}
                   className={`w-full text-sm text-left px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300 ${
-                    selectedOption === option ? "bg-primary text-white" : "text-[#8F8F8F]"
+                    selectedOption === option
+                      ? "bg-primary text-white"
+                      : "text-[#8F8F8F]"
                   }`}
                 >
                   {option}
@@ -210,10 +221,12 @@ updateQueryParam('listingType', option.toLowerCase())
                   onClick={() => {
                     setSelectedLanguage(lang);
                     setIsLangOpen(false);
-updateQueryParam('spokenLanguage', lang.toLowerCase())
+                    updateQueryParam("spokenLanguage", lang.toLowerCase());
                   }}
                   className={`w-full text-left px-4 py-2 text-xs hover:bg-primary hover:text-white transition-all duration-300 ${
-                    selectedLanguage === lang ? "bg-primary text-white" : "text-[#8F8F8F]"
+                    selectedLanguage === lang
+                      ? "bg-primary text-white"
+                      : "text-[#8F8F8F]"
                   }`}
                 >
                   {lang}
@@ -222,25 +235,25 @@ updateQueryParam('spokenLanguage', lang.toLowerCase())
             </div>
           )}
         </div>
-
-       
       </div>
     </div>
   );
 };
 
-
-  
 const page = () => {
   const searchParams = useSearchParams();
-   const query = useMemo(() => {
+  const query = useMemo(() => {
     return Object.fromEntries(searchParams?.entries() ?? []);
   }, [searchParams]);
-  const { data: allAgent, isLoading: isAllLoading, refetch } = useGetAgentsQuery(query);
+  const {
+    data: allAgent,
+    isLoading: isAllLoading,
+    refetch,
+  } = useGetAgentsQuery(query);
   const [displayListings, setDisplayListings] = useState([]);
-    const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-    const handlePageChange = (page) => {
+  const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       const newParams = new URLSearchParams(searchParams.toString());
       newParams.set("page", page.toString());
@@ -248,94 +261,96 @@ const page = () => {
     }
   };
 
-useEffect(() => {
-  refetch(); // Refetch data on every mount
-}, [refetch]);
+  useEffect(() => {
+    refetch(); // Refetch data on every mount
+  }, [refetch]);
 
-useEffect(() => {
-  if (!isAllLoading && allAgent) {
-    const firstThreeListings = allAgent;
-    setDisplayListings(firstThreeListings); // Store in state
- setTotalPages(allAgent.totalPages || 1);
-        setCurrentPage(Number(searchParams.get("page")) || 1); // Store in state
-       }
-}, [allAgent, isAllLoading]);
+  useEffect(() => {
+    if (!isAllLoading && allAgent) {
+      const firstThreeListings = allAgent;
+      setDisplayListings(firstThreeListings); // Store in state
+      setTotalPages(allAgent.totalPages || 1);
+      setCurrentPage(Number(searchParams.get("page")) || 1); // Store in state
+    }
+  }, [allAgent, isAllLoading]);
 
-  
-  
-if (isAllLoading) {
-  return (
-  <Spinner/>
-  );
-}
+  if (isAllLoading) {
+    return <Spinner />;
+  }
 
   return (
-    <div className='mt-8  2xl:w-[1520px]  '> <Breadcrumb/>
-  <div className="lg:ml-[5rem] my-3  2xl:ml-[2rem] gap-y-3  grid lg:w-[88%] 2xl:w-[95%]  grid-cols-1 lg:grid-cols-2 sm:gap-4 lg:gap-8 place-items-center">
-  {displayListings.map((agent) => (
-          <ProfileCard  key={agent._id} {...agent} sales={Number(agent.numberOfListings)} />
-        ))}
-    </div>
-    {displayListings.length === 0 ? (
-      <div className="w-full col-span-2 flex justify-center items-center py-10">
-        <p className="text-[#8F8F8F] lg:text-2xl text-sm font-light">No agents have been created.</p>
+    <div className="mt-8  2xl:w-[1520px]  ">
+      {" "}
+      <Breadcrumb />
+      <div className="lg:ml-[5rem] my-3  2xl:ml-[2rem] gap-y-3  grid lg:w-[88%] 2xl:w-[95%]  grid-cols-1 lg:grid-cols-2 sm:gap-4 lg:gap-8 place-items-center">
+        {isAllLoading
+          ? // Show skeleton loaders
+            Array.from({ length: 6 }, (_, index) => <ProfileCardSkeleton />)
+          : displayListings.map((agent) => (
+              <ProfileCard
+                key={agent._id}
+                {...agent}
+                sales={Number(agent.numberOfListings)}
+              />
+            ))}
       </div>
-    ) : (
-      <>
-        {displayListings.length > 0 && displayListings.length < 6 && (
-          <div className="w-full md:col-span-2 lg:hidden justify-start">
-            <Link href="/agent/all-agent">
-              <p className="text-[#09858D] mt-5 text-xs lg:text-2xl font-medium">
-                See all 2500 rent estate agents in Lagos
-              </p>
-            </Link>
-          </div>
-        )}
-        <Pagination
-          totalPages={totalPages}
-          display={allAgent}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-      </>
-    )}
-
-    <section className="  bg-[#eeeeeec7] 2xl:bg-white  w-full   lg:w-full font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
-      <div className="flex  lg:gap-[4%] flex-col-reverse lg:w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
-        <span className="flex flex-col gap-y-1 lg:gap-y-0 w-full lg:w-[45em] 2xl:w-[60em] ">
-          <h1 className="text-black  text-2xl mt-4  lg:mt-0  lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">Connect with local agent</h1>
-          <p className="text-gray text-xs lg:text-xl mt-2 2xl:mt-[1em] font-bricolage lg:w-[38rem] 2xl:text-[22px] ">
-            Benefit from local expertise. We'll connect you with a Hoydoon Premier Agent who understands your market and can guide you through the process.
+      {displayListings.length === 0 ? (
+        <div className="w-full col-span-2 flex justify-center items-center py-10">
+          <p className="text-[#8F8F8F] lg:text-2xl text-sm font-light">
+            No agents have been created.
           </p>
-          <Button className="text-base  !w-[115px] font-light mt-4 ">
-            <Link href="/explore">
-              Connect
-            </Link>
-          </Button>
-        </span>
+        </div>
+      ) : (
+        <>
+          {displayListings.length > 0 && displayListings.length < 6 && (
+            <div className="w-full md:col-span-2 lg:hidden justify-start">
+              <Link href="/agent/all-agent">
+                <p className="text-[#09858D] mt-5 text-xs lg:text-2xl font-medium">
+                  See all 2500 rent estate agents in Lagos
+                </p>
+              </Link>
+            </div>
+          )}
+          <Pagination
+            totalPages={totalPages}
+            display={allAgent}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </>
+      )}
+      <section className="  bg-[#eeeeeec7] 2xl:bg-white  w-full   lg:w-full font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
+        <div className="flex  lg:gap-[4%] flex-col-reverse lg:w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
+          <span className="flex flex-col gap-y-1 lg:gap-y-0 w-full lg:w-[45em] 2xl:w-[60em] ">
+            <h1 className="text-black  text-2xl mt-4  lg:mt-0  lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
+              Connect with local agent
+            </h1>
+            <p className="text-gray text-xs lg:text-xl mt-2 2xl:mt-[1em] font-bricolage lg:w-[38rem] 2xl:text-[22px] ">
+              Benefit from local expertise. We'll connect you with a Hoydoon
+              Premier Agent who understands your market and can guide you
+              through the process.
+            </p>
+            <Button className="text-base  !w-[115px] font-light mt-4 ">
+              <Link href="/explore">Connect</Link>
+            </Button>
+          </span>
 
-        <span className=" mt-[3rem]  lg:mt-0">
-          <Image
-            alt="image1"
-            width={500}
-            quality={100}
-              className="2xl:w-[48rem] w-[45rem] 2xl:h-[30rem]"// Reduced size of logo
-            height={400} // Reduced size of logo
-              src={'/agent3.png'}
+          <span className=" mt-[3rem]  lg:mt-0">
+            <Image
+              alt="image1"
+              width={500}
+              quality={100}
+              className="2xl:w-[48rem] w-[45rem] 2xl:h-[30rem]" // Reduced size of logo
+              height={400} // Reduced size of logo
+              src={"/agent3.png"}
             />
-</span>
+          </span>
         </div>
       </section>
+      <FagsSection />
+      {/* second div layout  */}
+    </div>
+  );
+};
 
-
- <FagsSection/>
-
-{/* second div layout  */}
-  
-
-
-</div>
-  )
-}
-
-export default page
+export default page;

@@ -8,10 +8,9 @@ import { ProfileCard } from "@/app/components/layouts/profilecard";
 import Link from "next/link";
 import FagsSection from "../components/layouts/FaqSection";
 import { useGetAgentsQuery } from "@/store/slices/api/authapi";
-import { useEffect, useRef, useState } from "react";
-import Spinner from "@/app/components/common/Spinner";
+import { useEffect, useState } from "react";
+import { ProfileCardSkeleton } from "../components/Loader";
 import dynamic from "next/dynamic";
-
 const LocationSearchBar = dynamic(() =>
   import("../components/layouts/maploader")
 );
@@ -35,9 +34,6 @@ export default function Page() {
     }
   }, [allAgent, isAllLoading]);
 
-  if (isAllLoading) {
-    return <Spinner />;
-  }
   return (
     <>
       <header className="relative h-[25rem] lg:h-[85vh] w-screen">
@@ -89,21 +85,26 @@ export default function Page() {
             </div>
 
             <div className="grid  mt-2. lg:mt-4  gap-y-3  w-full  grid-col-1 lg:grid-cols-2    gap-2  p-4 lg:p-0 lg:gap-10 ">
-              {displayListings
-                .slice(
-                  0,
-                  Math.min(
-                    displayListings.length < 4 ? 2 : 6,
-                    displayListings.length
-                  )
-                )
-                .map((agent) => (
-                  <ProfileCard
-                    key={agent._id}
-                    {...agent}
-                    sales={Number(agent.numberOfListings)}
-                  />
-                ))}
+              {isAllLoading
+                ? // Show skeleton loaders
+                  Array.from({ length: 6 }, (_, index) => (
+                    <ProfileCardSkeleton />
+                  ))
+                : displayListings
+                    .slice(
+                      0,
+                      Math.min(
+                        displayListings.length < 4 ? 2 : 6,
+                        displayListings.length
+                      )
+                    )
+                    .map((agent) => (
+                      <ProfileCard
+                        key={agent._id}
+                        {...agent}
+                        sales={Number(agent.numberOfListings)}
+                      />
+                    ))}
 
               {displayListings.length > 0 && displayListings.length < 6 && (
                 <div className="w-full  flex justify-start">

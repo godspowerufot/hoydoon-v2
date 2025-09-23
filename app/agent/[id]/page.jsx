@@ -29,7 +29,7 @@ const DynamicImageMobile = dynamic(() =>
 );
 
 const MapComponent = dynamic(() =>
-  import("../../components/layouts/maploader").then((mod) => mod.MapLoader)
+  import("../../components/layouts/listingmap")
 );
 
 const Breadcrumb = ({
@@ -269,11 +269,11 @@ const page = ({ params }) => {
       )}
       {/* second div layout  */}
       <div
-        className={`bg-gray-100 mt-2  w-full lg:mt-5 ${
+        className={`bg-gray-100 mt-2   w-full lg:mt-5 ${
           !showListings ? "mt-[2rem] lg:mt-0" : ""
         } lg:p-0  lg:py-4 rounded-lg`}
       >
-        <div className="flex flex-row  lg:p-0 justify-between items-start md:items-center">
+        <div className="flex flex-row px-4  lg:p-0 justify-between items-start md:items-center">
           {/* Profile Image */}
           <div className="flex mt-4  items-center justify-center lg:-mt-3 gap-3">
             <div className="w-[4rem] h-[4rem] relative">

@@ -12,10 +12,9 @@ import { flattenListings } from "@/utils";
 import { toast } from "react-toastify";
 import { truncateDescription } from "@/utils/index";
 import HoverCard from "@/app/components/common/card";
-import TestimonialCard from "./components/layouts/testimonials";
 import FagsSection from "../app/components/layouts/FaqSection";
 import { SkeletonCard } from "./components/Loader";
-
+import TestimonialGrid from "@/app/components/layouts/testimonialsgrid";
 function Carousel({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const startX = useRef(null);
@@ -530,23 +529,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
             </Button>
           </span>
         </div>
-        <div className="mt-5  lg:-mt-[1em]  lg:max-w-[1300px] w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:w-[90%] auto-rows-auto">
-          <span className="pt-[9rem]    hidden lg:flex gap-y-5 flex-col ">
-            <TestimonialCard />
-            <TestimonialCard />
-            <TestimonialCard />
-          </span>
-          <span className="flex gap-y-5 flex-col">
-            <TestimonialCard />
-            <TestimonialCard />
-            <TestimonialCard />
-          </span>
-          <span className="pt-[9rem] hidden lg:flex gap-y-5 flex-col ">
-            <TestimonialCard />
-            <TestimonialCard />
-            <TestimonialCard />
-          </span>
-        </div>
+        <TestimonialGrid />
       </section>
 
       {/* testimonials */}

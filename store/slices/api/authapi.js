@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { removeTokens } from "@/utils/cookies";
-import { setUser, logout } from "../authslice";
+import { logout } from "../authslice";
 import { setTokens, getAccessToken, getRefreshToken } from "@/utils/cookies";
 import { log } from "@/utils/log";
 
@@ -116,6 +116,14 @@ export const authApi = createApi({
         method: "GET",
       }),
     }),
+
+    // getallreviews
+    getAllReviews: builder.query({
+      query: () => ({
+        url: `v1/reviews`,
+        method: "GET",
+      }),
+    }),
     getAllLocationListings: builder.query({
       query: (params) => ({
         url: `/v1/listings?${new URLSearchParams(params).toString()}`,
@@ -217,5 +225,6 @@ export const {
   useGetAllListingsAddressQuery,
   useGetAllLocationListingsQuery,
   useChangePasswordMutation,
+  useGetAllReviewsQuery,
 } = authApi;
 export default authApi;
