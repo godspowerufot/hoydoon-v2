@@ -48,7 +48,7 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
     <>
       <Link href={`/article/${id}`}>
         <div
-          className={`relative w-full  lg:w-[23rem] max-w-[500px] mx-auto h-[570px] bg-white overflow-hidden flex-col transition-all duration-[1500ms] ${
+          className={`relative w-full h-fit  lg:w-[23rem] max-w-[500px] mx-auto h-[570px] bg-white overflow-hidden flex-col transition-all duration-[1500ms] ${
             isHovered && !isMobile
               ? "border border-gray rounded-xl "
               : "border border-gray lg:border-0   rounded-xl"
