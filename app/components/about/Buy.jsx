@@ -52,7 +52,7 @@ const Buy = () => {
           priority
         />
       </div>{" "}
-      <div className=" mt-[4.5rem]">
+      <div className=" mt-5 lg:mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
           Find Your Perfect Dream Home Today!
@@ -68,7 +68,7 @@ const Buy = () => {
           your search and make your move today!
         </p>
       </div>
-      <div className="mt-[4.5rem]">
+      <div className="mt-5 lg:mt-[4.5rem]">
         <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -110,7 +110,7 @@ const Buy = () => {
           </div>
         </div>
       </div>
-      <div className="w-screen  mt-[4.5rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  mt-5 lg:mt-[4.5rem] lg:mb-[2rem] h-[2px] bg-[#D9D9D9] " />
       {/* testimonials */}
       <div className="flex  gap-[4%]  flex-col-reverse  w-full  lg:flex-row  items-center   lg:justify-around ">
         <span className="flex  p-4 flex-col w-full lg:w-[45em] 2xl:w-[60em] ">

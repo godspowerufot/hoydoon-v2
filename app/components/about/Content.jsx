@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
- const Content = () => {
+const Content = () => {
   return (
     <div>
       <div className="relative w-full h-[400px] md:h-[500px] rounded-md overflow-hidden">
@@ -13,7 +13,7 @@ import Image from "next/image";
         />
       </div>
 
-      <div className=" mt-[4.5rem]">
+      <div className=" mt-5 lg:mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
           Welcome to Hoydoon!{" "}
@@ -39,7 +39,7 @@ import Image from "next/image";
           can move forward with confidence, clarity, and control.{" "}
         </p>
       </div>
-      <div className=" mt-[4.5rem]">
+      <div className=" mt-5 lg:mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold "> Who We Are </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           At Hoydoon, we believe that navigating the property market—whether
@@ -63,7 +63,7 @@ import Image from "next/image";
           clarity and peace of mind.
         </p>
       </div>
-      <div className=" mt-[4.5rem]">
+      <div className=" mt-5 lg:mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
           Our Leadership 
@@ -107,7 +107,7 @@ import Image from "next/image";
         />
       </div>
 
-      <div className=" mt-[4.5rem]">
+      <div className=" mt-5 lg:mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">Our Values </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           At Hoydoon, our foundation is built on trust, innovation, and a deep
@@ -134,7 +134,7 @@ import Image from "next/image";
         </p>
       </div>
 
-      <div className=" mt-[4.5rem]">
+      <div className=" mt-5 lg:mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold "> Join Us! </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           whether you&apos;re ready to buy, sell, rent, or simply explore your

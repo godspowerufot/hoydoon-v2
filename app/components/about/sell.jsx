@@ -34,7 +34,7 @@ const Sell = () => {
           priority
         />
       </div>{" "}
-      <div className=" mt-[4.5rem]">
+      <div className=" mt-5 lg:mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
           Get Personalized Proposals — No Cost!
@@ -76,7 +76,7 @@ const Sell = () => {
             </p>
 
             <Link href={"/agent/all-agent"}>
-              <Button className="!w-full 2xl:mt-[4.5rem] mt-6 text-base 2xl:text-xl lg:h-[3rem]  h-[3rem] lg:!p-2">
+              <Button className="!w-full 2xl:mt-5 lg:mt-[4.5rem] mt-6 text-base 2xl:text-xl lg:h-[3rem]  h-[3rem] lg:!p-2">
                 Get Started
               </Button>
             </Link>
@@ -114,7 +114,7 @@ const Sell = () => {
               </button>
             </Link>
             <Link className="lg:hidden block " href={"/agent/all-agent"}>
-              <Button className="w-full 2xl:mt-[4.5rem] mt-8 text-base 2xl:text-xl  text-gray lg:h-[4rem]  h-[3rem] lg:p-3">
+              <Button className="w-full 2xl:mt-5 lg:mt-[4.5rem] mt-8 text-base 2xl:text-xl  text-gray lg:h-[4rem]  h-[3rem] lg:p-3">
                 Visit Seller marketplace
               </Button>
             </Link>
@@ -152,7 +152,7 @@ const Sell = () => {
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="2xl:h-[4rem]  p-5 !rounded-[24px] mt-[4.5rem]"
+                className="2xl:h-[4rem]  p-5 !rounded-[24px] mt-5 lg:mt-[4.5rem]"
                 placeholder="Enter your home address"
               />
 
@@ -190,7 +190,7 @@ const Sell = () => {
           </Button>
         </span>
 
-        <span className=" mt-[4.5rem]  lg:mt-0">
+        <span className=" mt-5 lg:mt-[4.5rem]  lg:mt-0">
           <Image
             alt="image1"
             width={500}

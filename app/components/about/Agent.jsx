@@ -37,7 +37,7 @@ const Agent = () => {
           priority
         />
       </div>{" "}
-      <div className=" mt-[4.5rem]">
+      <div className=" mt-5 lg:mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
           A Top Agent Matters!
@@ -53,7 +53,7 @@ const Agent = () => {
           today’s competitive real estate market.
         </p>
       </div>
-      <div className="grid mt-[4.5rem]  gap-y-3  w-full  grid-col-1 lg:grid-cols-2    gap-2 lg:gap-10 ">
+      <div className="grid mt-5 lg:mt-[4.5rem]  gap-y-3  w-full  grid-col-1 lg:grid-cols-2    gap-2 lg:gap-10 ">
         {displayListings
           .slice(
             0,
