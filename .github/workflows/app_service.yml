@@ -26,6 +26,32 @@ jobs:
               run: |
                   npm ci
                   npm run build
+              env:
+                  # Facebook Authentication
+                  NEXT_FACEBOOK_ID: ${{ secrets.NEXT_FACEBOOK_ID }}
+                  NEXT_FACEBOOK_SECRET: ${{ secrets.NEXT_FACEBOOK_SECRET }}
+                  # Google Maps & Services
+                  NEXT_GOOGLES_MAP_ID: ${{ secrets.NEXT_GOOGLES_MAP_ID }}
+                  NEXT_GOOGLE_CLIENT_SECRET: ${{ secrets.NEXT_GOOGLE_CLIENT_SECRET }}
+                  NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}
+                  NEXT_PUBLIC_GOOGLE_DISTANCE_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_DISTANCE_API_KEY }}
+                  NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
+                  NEXT_PUBLIC_GOOGLE_REDIRECT_URI: ${{ secrets.NEXT_PUBLIC_GOOGLE_REDIRECT_URI }}
+                  # Mailchimp Configuration
+                  NEXT_MAILCHIMP_API_KEY: ${{ secrets.NEXT_MAILCHIMP_API_KEY }}
+                  NEXT_MAILCHIMP_API_SERVER: ${{ secrets.NEXT_MAILCHIMP_API_SERVER }}
+                  NEXT_MAILCHIMP_AUDIENCE_ID: ${{ secrets.NEXT_MAILCHIMP_AUDIENCE_ID }}
+                  # Base URL
+                  NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+                  EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+                  EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+                  # Apple Authentication
+                  NEXT_APPLE_KEY_ID: ${{ secrets.NEXT_APPLE_KEY_ID }}
+                  NEXT_APPLE_TEAM_ID: ${{ secrets.NEXT_APPLE_TEAM_ID }}
+                  NEXT_APPLE_ID: ${{ secrets.NEXT_APPLE_ID }}
+                  NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+                  NEXT_APPLE_PRIVATE_KEY: ${{ secrets.NEXT_APPLE_PRIVATE_KEY }}
+                  NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
 
             - name: Copy static files
               run: |
