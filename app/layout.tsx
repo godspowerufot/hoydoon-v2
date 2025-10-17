@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Hoydoon Team" }],
   icons: {
-    icon: "/Logo.ico",
+    icon: "/Logos.ico",
   },
   openGraph: {
     title: "Hoydoon | Find Your Dream Property in Hoydoon",
