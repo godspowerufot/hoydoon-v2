@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Hoydoon",
     images: [
       {
-        url: "/Logo.svg",
+        url: "/Logos.svg",
         width: 800,
         height: 600,
         alt: "Hoydoon Logo",
