@@ -89,13 +89,13 @@ export default function Navbar() {
               <Link href="/" className="flex justify-center items-center gap-2">
                 <Image
                   alt="logo"
-                  width={30}
+                  width={100}
                   priority
                   quality={100}
-                  height={30}
-                  src={"/Logo.svg"}
+                  height={100}
+                  className="object-contain w-[150px] h-[50px]"
+                  src={"/newlogo.svg"}
                 />
-                <h3 className="lg:font-[600] lg:text-[1em] text-lg">Hoydoon</h3>
               </Link>
             </div>
 

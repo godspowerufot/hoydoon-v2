@@ -89,7 +89,7 @@ const Signup = () => {
                   height={60}
                   priority
                   quality={100}
-                  src={"/logo2.svg"}
+                  src={"/newlogo.svg"}
                   className="h-12 w-auto object-contain"
                 />
               </Link>
