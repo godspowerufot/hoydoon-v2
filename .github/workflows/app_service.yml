@@ -1,0 +1,155 @@
+name: App Service Code
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+env:
+    AZURE_WEBAPP_NAME: hoydoon-web-app
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: "npm"
+
+            - name: npm install and build
+              run: |
+                  npm ci
+                  npm run build
+              env:
+                  # Facebook Authentication
+                  NEXT_FACEBOOK_ID: ${{ secrets.NEXT_FACEBOOK_ID }}
+                  NEXT_FACEBOOK_SECRET: ${{ secrets.NEXT_FACEBOOK_SECRET }}
+                  # Google Maps & Services
+                  NEXT_GOOGLES_MAP_ID: ${{ secrets.NEXT_GOOGLES_MAP_ID }}
+                  NEXT_GOOGLE_CLIENT_SECRET: ${{ secrets.NEXT_GOOGLE_CLIENT_SECRET }}
+                  NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}
+                  NEXT_PUBLIC_GOOGLE_DISTANCE_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_DISTANCE_API_KEY }}
+                  NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
+                  NEXT_PUBLIC_GOOGLE_REDIRECT_URI: ${{ secrets.NEXT_PUBLIC_GOOGLE_REDIRECT_URI }}
+                  # Mailchimp Configuration
+                  NEXT_MAILCHIMP_API_KEY: ${{ secrets.NEXT_MAILCHIMP_API_KEY }}
+                  NEXT_MAILCHIMP_API_SERVER: ${{ secrets.NEXT_MAILCHIMP_API_SERVER }}
+                  NEXT_MAILCHIMP_AUDIENCE_ID: ${{ secrets.NEXT_MAILCHIMP_AUDIENCE_ID }}
+                  # Base URL
+                  NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+                  EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+                  EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+                  # Apple Authentication
+                  NEXT_APPLE_KEY_ID: ${{ secrets.NEXT_APPLE_KEY_ID }}
+                  NEXT_APPLE_TEAM_ID: ${{ secrets.NEXT_APPLE_TEAM_ID }}
+                  NEXT_APPLE_ID: ${{ secrets.NEXT_APPLE_ID }}
+                  NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+                  NEXT_APPLE_PRIVATE_KEY: ${{ secrets.NEXT_APPLE_PRIVATE_KEY }}
+                  NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+
+            - name: Copy static files
+              run: |
+                  cp -R ./public ./.next/standalone/public
+                  cp -R ./.next/static ./.next/standalone/.next/static
+
+            - name: Create package.json for standalone
+              run: |
+                  echo '{"scripts":{"start":"node server.js"}}' > ./.next/standalone/package.json
+
+            - name: Create web.config for Azure
+              run: |
+                  cat > ./.next/standalone/web.config << 'EOF'
+                  <?xml version="1.0" encoding="utf-8"?>
+                  <configuration>
+                    <system.webServer>
+                      <handlers>
+                        <add name="iisnode" path="server.js" verb="*" modules="iisnode"/>
+                      </handlers>
+                      <rewrite>
+                        <rules>
+                          <rule name="NodeInspector" patternSyntax="ECMAScript" stopProcessing="true">
+                            <match url="^server.js\/debug[\/]?" />
+                          </rule>
+                          <rule name="StaticFiles" stopProcessing="true">
+                            <match url="^(.+\.(jpg|jpeg|gif|png|webp|svg|ico|css|js|json|xml|txt|woff|woff2|ttf|eot))$" />
+                            <conditions>
+                              <add input="{REQUEST_FILENAME}" matchType="IsFile" />
+                            </conditions>
+                            <action type="None" />
+                          </rule>
+                          <rule name="NextStatic" stopProcessing="true">
+                            <match url="^_next/static/(.*)$" />
+                            <action type="Rewrite" url=".next/static/{R:1}" />
+                          </rule>
+                          <rule name="PublicFiles" stopProcessing="true">
+                            <match url="^(.+\.(jpg|jpeg|gif|png|webp|svg|ico|xml|txt))$" />
+                            <action type="Rewrite" url="public/{R:0}" />
+                          </rule>
+                          <rule name="DynamicContent">
+                            <conditions>
+                              <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="True"/>
+                            </conditions>
+                            <action type="Rewrite" url="server.js"/>
+                          </rule>
+                        </rules>
+                      </rewrite>
+                      <staticContent>
+                        <mimeMap fileExtension=".webp" mimeType="image/webp" />
+                        <mimeMap fileExtension=".json" mimeType="application/json" />
+                      </staticContent>
+                      <security>
+                        <requestFiltering>
+                          <hiddenSegments>
+                            <remove segment="bin"/>
+                          </hiddenSegments>
+                        </requestFiltering>
+                      </security>
+                      <httpErrors existingResponse="PassThrough" />
+                      <iisnode node_env="production" nodeProcessCountPerApplication="1" maxConcurrentRequestsPerProcess="1024" maxNamedPipeConnectionRetry="100" namedPipeConnectionRetryDelay="250" maxNamedPipeConnectionPoolSize="512" maxNamedPipePooledConnectionAge="30000" asyncCompletionThreadCount="0" initialRequestBufferSize="4096" maxRequestBufferSize="65536" watchedFiles="*.js;iisnode.yml" uncFileChangesPollingInterval="5000" gracefulShutdownTimeout="60000" loggingEnabled="true" logDirectory="iisnode" debuggingEnabled="false" debugHeaderEnabled="false" debuggerPortRange="5058-6058" debuggerPathSegment="debug" maxLogFileSizeInKB="128" maxTotalLogFileSizeInKB="1024" maxLogFiles="20" devErrorsEnabled="false" flushResponse="false" enableXFF="false" promoteServerVars="" configOverrides="iisnode.yml" />
+                    </system.webServer>
+                  </configuration>
+                  EOF
+
+            - name: Zip standalone build
+              run: |
+                  cd ./.next/standalone
+                  zip -r ../../deploy.zip .
+                  cd ../..
+
+            - name: Upload artifact for deployment job
+              uses: actions/upload-artifact@v4
+              with:
+                  name: app
+                  path: deploy.zip
+
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build
+
+        environment:
+            name: production
+            url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+        steps:
+            - name: Download artifact from build job
+              uses: actions/download-artifact@v4
+              with:
+                  name: app
+
+            - name: Unzip artifact for deployment
+              run: unzip deploy.zip
+
+            - name: "Deploy to Azure Web App"
+              id: deploy-to-webapp
+              uses: azure/webapps-deploy@v3
+              with:
+                  app-name: ${{ env.AZURE_WEBAPP_NAME }}
+                  slot-name: "Production"
+                  publish-profile: ${{ secrets.APP_SERVICE_PUBLISH_PROFILE }}
+                  package: .

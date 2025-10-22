@@ -116,28 +116,10 @@ function OfficeLocator() {
                 key={countryData.country}
                 className="border-b border-[#8F8F8F]  last:border-b-1"
               >
-                <button
-                  onClick={() => toggleCountry(countryData.country)}
-                  className="w-full flex items-center justify-between py-6 text-left hover:bg-gray-50 transition-colors duration-200 rounded-lg px-4"
-                >
+                <button className="w-full flex items-center justify-between py-6 text-left hover:bg-gray-50 transition-colors duration-200 rounded-lg px-4">
                   <h3 className="text-2xl font-light text-[#1E1E1E]">
                     {countryData.country}
                   </h3>
-                  {expandedCountries.includes(countryData.country) ? (
-                    <Image
-                      src="/chevron-up.svg"
-                      alt="icon"
-                      width={50}
-                      height={50}
-                    />
-                  ) : (
-                    <Image
-                      src="/chevron-down.svg"
-                      alt="icon"
-                      width={40}
-                      height={40}
-                    />
-                  )}
                 </button>
 
                 {/* {expandedCountries.includes(countryData.country) && (

@@ -139,11 +139,7 @@ const Appfooter = () => {
                 <div>
                   <p className="font-medium text-[#F9FAFB]">Location</p>
                   <ul className="mt-1 lg:mt-[4px] space-y-2   text-[#F4F4F4] text-[12px] lg:text-sm">
-                    <li>
-                      <a href="#" className="transition  hover:opacity-75">
-                        5, Elshadai Street,Erunwen
-                      </a>
-                    </li>
+                    <li>5, Elshadai Street, Erunwen</li>
                     <li>
                       <a
                         href="/contact"
@@ -211,7 +207,7 @@ const Appfooter = () => {
             {/* Bottom Section */}
             <div className="flex flex-col-reverse lg:flex-row  w-[100%]  justify-end lg:justify-between items-center gap-4  text-base">
               <p className="text-center font-[300] hidden lg:block">
-                &copy; 2022. Company Name. All rights reserved.
+                &copy; 2025. Company Name. All rights reserved.
               </p>
               <div className="flex flex-row gap-4 lg:mr-[1em]  ml-[3rem]  mt-[-1rem] lg:mt-0 lg:ml-0 text-sm lg:text-base mb-4 lg:mb-0">
                 <p className="cursor-pointer hover:underline">

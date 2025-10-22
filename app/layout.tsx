@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Hoydoon Team" }],
   icons: {
-    icon: "/Logo.ico",
+    icon: "/Logos.ico",
   },
   openGraph: {
     title: "Hoydoon | Find Your Dream Property in Hoydoon",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Hoydoon",
     images: [
       {
-        url: "/Logo.svg",
+        url: "/Logos.svg",
         width: 800,
         height: 600,
         alt: "Hoydoon Logo",
