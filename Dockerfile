@@ -79,10 +79,11 @@ COPY --chown=nextjs:nodejs process-manager.js ./
 
 USER nextjs
 
-EXPOSE 3000
+EXPOSE 8080
 
-ENV PORT=3000
+ENV PORT=8080
 ENV HOSTNAME="0.0.0.0"
+ENV NODE_ENV=production
 
 # Run Next.js directly for better Azure App Service compatibility
 CMD ["node", "server.js"]
