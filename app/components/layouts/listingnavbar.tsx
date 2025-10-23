@@ -50,7 +50,7 @@ export default function ListingNavbar() {
   return (
     <>
       <nav className="hidden lg:flex justify-between  items-center  relative z-[9999] w-full  ">
-        <div className=" lg:max-w-[1230px] mx-auto flex gap-[20rem] justify-between py-3 px-5 lg:px-0">
+        <div className="  mx-auto flex gap-[29rem] justify-between py-3 px-5 lg:px-0">
           {/* Left: Logo & Search Bar */}
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center">

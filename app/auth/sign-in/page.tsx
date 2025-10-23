@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import {
   useLoginMutation,
-  useSignupMutation,
+  useGoogleAuthMutation, // Add this import
 } from "@/store/slices/api/authapi";
 import { sendDeviceInfo } from "../../../utils/lib/devicinfo";
 import { log } from "@/utils/log";
@@ -18,12 +18,12 @@ import { setUnverifiedEmail } from "@/store/slices/authslice";
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
 import { MobileSignIn } from "./mobile";
-import { FaLink } from "react-icons/fa";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, { isLoading }] = useLoginMutation();
+  const [googleAuth, { isLoading: isGoogleLoading }] = useGoogleAuthMutation(); // Add this
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -40,11 +40,9 @@ const Signup = () => {
 
     try {
       const device = await sendDeviceInfo();
-
-      // Destructure to exclude region
       const { region, ...deviceWithoutRegion } = device;
       log("Device info:", region);
-      // Send login request with device info (without region)
+
       await login({ email, password, device: deviceWithoutRegion }).unwrap();
 
       toast.success("Login successful!");
@@ -52,11 +50,8 @@ const Signup = () => {
     } catch (err: any) {
       toast.error(err?.data?.error);
 
-      // inside handleSubmit
-      if (err?.data?.error === "account is not active") {
-        toast.error(
-          "Your account is not active. Please verify your email address."
-        );
+      if (err?.status === 409) {
+        toast.error("This email has already been taken");
         dispatch(setUnverifiedEmail(email));
         router.push("/auth/sign-up/verification");
       }
@@ -178,7 +173,7 @@ const Signup = () => {
             {/* Login Button */}
             <button
               onClick={handleSubmit}
-              disabled={isLoading}
+              disabled={isLoading || isGoogleLoading}
               className="w-full bg-primary rounded-full text-white font-semibold py-3 px-4 text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-5"
             >
               {isLoading ? "Logging in..." : "Log in"}
@@ -193,13 +188,17 @@ const Signup = () => {
               </p>
             </div>
 
-            {/* Social Login Buttons */}
+            {/* Social Login Buttons - Pass props */}
             <div className="flex gap-3 mb-8">
-              <LoginButtons />
+              <LoginButtons
+                googleAuth={googleAuth}
+                isGoogleLoading={isGoogleLoading}
+              />
 
               <button
                 onClick={() => signIn("apple")}
-                className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700"
+                disabled={isLoading || isGoogleLoading}
+                className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Image
                   alt="Apple"
@@ -213,7 +212,8 @@ const Signup = () => {
 
               <button
                 onClick={() => signIn("facebook")}
-                className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700"
+                disabled={isLoading || isGoogleLoading}
+                className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Image
                   alt="Facebook"

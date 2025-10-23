@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import {
   useLoginMutation,
   useSignupMutation,
+  useGoogleAuthMutation,
 } from "@/store/slices/api/authapi";
 import { sendDeviceInfo } from "../../../utils/lib/devicinfo";
 import { log } from "@/utils/log";
@@ -25,10 +26,12 @@ export const MobileSignIn = () => {
   const [fullname, setfullname] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [login, { isLoading }] = useLoginMutation();
-  const [signup] = useSignupMutation();
+  const [signup, { isLoading: isSignupLoading }] = useSignupMutation();
+  const [googleAuth, { isLoading: isGoogleLoading }] = useGoogleAuthMutation();
 
   const dispatch = useDispatch();
   const router = useRouter();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Password validation
@@ -78,7 +81,6 @@ export const MobileSignIn = () => {
 
     try {
       const { region, ...device } = await sendDeviceInfo();
-      // Send login request with device info
 
       const res = await signup({
         fullname,
@@ -96,6 +98,9 @@ export const MobileSignIn = () => {
       console.error("Login failed:", err);
     }
   };
+
+  // Check if any auth is in progress
+  const isAnyLoading = isLoading || isSignupLoading || isGoogleLoading;
 
   return (
     <div className="flex flex-col  lg:hidden items-center  justify-start w-full min-h-screen px-5 py-2 font-bricolage">
@@ -180,16 +185,16 @@ export const MobileSignIn = () => {
           <Button
             type="submit"
             onClick={tab === "login" ? handleSubmit : handleSignup}
-            disabled={isLoading}
+            disabled={isAnyLoading}
             className="w-full rounded-md"
           >
-            {isLoading
-              ? tab === "signup"
-                ? "Signing up..."
-                : "Logging in..."
-              : tab === "signup"
-              ? "Sign Up"
-              : "Log In"}
+            {tab === "login"
+              ? isLoading
+                ? "Logging in..."
+                : "Log In"
+              : isSignupLoading
+              ? "Signing up..."
+              : "Sign Up"}
           </Button>
         </div>
         {tab === "login" && (
@@ -202,7 +207,7 @@ export const MobileSignIn = () => {
         )}
         {tab === "signup" && (
           <span className="text-sm text-[#1E1E1E99] text-center">
-            By submitting, I accept Hoydoon’s{" "}
+            By submitting, I accept Hoydoon's{" "}
             <span className="text-primary">terms of use.</span>
           </span>
         )}
@@ -214,11 +219,15 @@ export const MobileSignIn = () => {
       {/* Social Logins */}
       <div className="w-full flex flex-col gap-5">
         <p className="text-center text-black font-light">Or Log In with:</p>
-        <LoginButtons />
+        <LoginButtons
+          googleAuth={googleAuth}
+          isGoogleLoading={isGoogleLoading}
+        />
         <div className="flex  flex-col gap-5">
-          <span
+          <button
             onClick={() => signIn("apple")}
-            className="lg:w-[9em]  cursor-pointer lg:hidden gap-3 h-[2.5em] 2xl:text-[1.em] w-full lg:rounded-full p-3 2xl:h-[3em] 2x:p-4 border-[#8F8F8F] border-solid border-[0.8px] flex items-center text-black text-[1em] justify-center lg:justify-center sm:justify-start"
+            disabled={isAnyLoading}
+            className="lg:w-[9em] lg:hidden gap-3 h-[2.5em] 2xl:text-[1.em] w-full lg:rounded-full p-3 2xl:h-[3em] 2x:p-4 border-[#8F8F8F] border-solid border-[0.8px] flex items-center text-black text-[1em] justify-center lg:justify-center sm:justify-start disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Image
               alt="logo"
@@ -232,10 +241,11 @@ export const MobileSignIn = () => {
             <span className="text-center w-full sm:w-auto">
               Continue with Apple
             </span>
-          </span>
-          <span
+          </button>
+          <button
             onClick={() => signIn("facebook")}
-            className="lg:w-[9em] cursor-pointer lg:hidden gap-3 h-[2.5em] 2xl:text-[1.em] w-full lg:rounded-full p-3 2xl:h-[3em] 2x:p-4 border-[#8F8F8F] border-solid border-[0.8px] flex items-center text-black text-[1em] justify-center lg:justify-center sm:justify-start"
+            disabled={isAnyLoading}
+            className="lg:w-[9em] lg:hidden gap-3 h-[2.5em] 2xl:text-[1.em] w-full lg:rounded-full p-3 2xl:h-[3em] 2x:p-4 border-[#8F8F8F] border-solid border-[0.8px] flex items-center text-black text-[1em] justify-center lg:justify-center sm:justify-start disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Image
               alt="logo"
@@ -249,7 +259,7 @@ export const MobileSignIn = () => {
             <span className="text-center w-full sm:w-auto">
               Continue with Facebook
             </span>
-          </span>
+          </button>
         </div>
       </div>
 

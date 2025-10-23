@@ -524,9 +524,15 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               Discover a home where every detail enhances your lifestyle—crafted
               to fit your taste and needs.
             </p>
-            <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px] ">
-              <p className="text-gray"> Explore </p>
-            </Button>
+            <a
+              href="/helpcenter
+          "
+            >
+              {" "}
+              <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px] ">
+                <p className="text-gray"> Explore </p>
+              </Button>
+            </a>
           </span>
         </div>
         <TestimonialGrid />
