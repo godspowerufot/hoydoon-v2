@@ -87,3 +87,5 @@ ENV NODE_ENV=production
 
 # Run Next.js directly for better Azure App Service compatibility
 CMD ["node", "server.js"]
+
+
