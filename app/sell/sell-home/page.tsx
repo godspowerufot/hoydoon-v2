@@ -117,7 +117,7 @@ const page = () => {
     <div className="mt-2 flex flex-col justify-center items-center  w-full lg:max-w-[1230px] ">
       {" "}
       <Breadcrumb />
-      <div className=" mt-3 relative rounded-lg  flex items-center overflow-hidden">
+      <div className=" mt-3 w-full relative rounded-lg  flex items-center overflow-hidden">
         <Image
           src="/webp/sell.webp" // Replace with actual map image
           alt="Map"

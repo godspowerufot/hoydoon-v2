@@ -1,10 +1,17 @@
+// ============================================
+// Updated Signup component with Google Auth Loading
+// ============================================
+
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Input from "@/app/components/common/inputs/input";
 import Button from "@/app/components/common/Button";
-import { useSignupMutation } from "@/store/slices/api/authapi";
+import {
+  useSignupMutation,
+  useGoogleAuthMutation,
+} from "@/store/slices/api/authapi";
 import { useRouter } from "next/navigation";
 import LoginButtons from "@/app/components/common/googlebutton";
 import { sendDeviceInfo } from "@/utils/lib/devicinfo";
@@ -13,19 +20,21 @@ import { setUnverifiedEmail } from "@/store/slices/authslice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { MobileSignIn } from "../sign-in/mobile";
+import { signIn } from "next-auth/react";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [fullname, setfullname] = useState("");
   const [password, setPassword] = useState("");
   const [signup, { isLoading }] = useSignupMutation();
+  const [googleAuth, { isLoading: isGoogleLoading }] = useGoogleAuthMutation();
   const [errormessage, seterror] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const dispatch = useDispatch();
   const role = "buyer";
 
   const router = useRouter();
-
+  let errorMessage;
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Password validation
@@ -49,12 +58,22 @@ const Signup = () => {
         region,
       }).unwrap();
       dispatch(setUnverifiedEmail(email));
+
+      console.log("Signup successful:", res);
       toast.success("check your email for OTP code");
       router.push("/auth/sign-up/verification");
     } catch (err) {
-      toast.error("Sign up failed");
+      // Check for 409 status code (conflict - email already exists)
+      if (err?.status === 409) {
+        errorMessage = "This email has already been taken";
+      } else {
+        // Otherwise use the error message from response
+        errorMessage =
+          err?.error || err?.data?.error || err?.message || "Sign up failed";
+      }
+      toast.error(errorMessage || "Sign up failed");
       seterror(err?.error);
-      console.error("Login failed:", err?.error);
+      console.error("Login failed:", errorMessage);
     }
   };
 
@@ -182,7 +201,7 @@ const Signup = () => {
             {/* Sign Up Button */}
             <button
               onClick={handleSubmit}
-              disabled={isLoading}
+              disabled={isLoading || isGoogleLoading}
               className="w-full bg-primary rounded-full text-white font-semibold py-3 px-4 text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-5"
             >
               {isLoading ? "Signing Up..." : "Sign Up"}
@@ -197,13 +216,17 @@ const Signup = () => {
               </p>
             </div>
 
-            {/* Social Login Buttons */}
+            {/* Social Login Buttons - Pass props */}
             <div className="flex gap-3 mb-8">
-              <LoginButtons />
+              <LoginButtons
+                googleAuth={googleAuth}
+                isGoogleLoading={isGoogleLoading}
+              />
 
               <button
                 onClick={() => signIn("apple")}
-                className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700"
+                disabled={isLoading || isGoogleLoading}
+                className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Image
                   alt="Apple"
@@ -217,7 +240,8 @@ const Signup = () => {
 
               <button
                 onClick={() => signIn("facebook")}
-                className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700"
+                disabled={isLoading || isGoogleLoading}
+                className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Image
                   alt="Facebook"

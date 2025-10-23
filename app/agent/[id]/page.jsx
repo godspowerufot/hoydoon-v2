@@ -463,6 +463,8 @@ const page = ({ params }) => {
                 description={items?.item?.description}
                 title={items?.item?.title}
                 rent={items?.item?.rent}
+                bathrooms={items?.item?.bathrooms}
+                bedrooms={items?.item?.bedrooms}
                 {...items}
               />
             )

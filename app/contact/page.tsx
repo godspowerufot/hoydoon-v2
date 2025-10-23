@@ -25,9 +25,13 @@ const socialLinks = [
     src: "/mail.svg",
     alt: "Email",
   },
-  { href: "https://instagram.com", src: "/instagram.svg", alt: "Instagram" },
   {
     href: "https://www.instagram.com/hoydoon/",
+    src: "/instagram.svg",
+    alt: "Instagram",
+  },
+  {
+    href: "https://x.com/hoydoon_?s=11&t=nIieHzDuZ8BAPHDnr6Ikcw",
     src: "/x.svg",
     alt: "X (Twitter)",
   },

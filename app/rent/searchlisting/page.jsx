@@ -406,7 +406,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             </div>
           </>
         )}
-
         {["Price", "Type", "Bed/Baths"].map((option) => {
           const paramKey =
             option === "Type"
@@ -507,7 +506,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             );
           }
 
-          // Modal for "Price" and "Home type" (Buy)
+          // Modal for "Price" and "Type"
           const dropdownState =
             option === "Price" ? showPriceDropdown : showHomeTypeDropdown;
           const setDropdownState =
@@ -537,14 +536,14 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                 onClick={() => setDropdownState(!dropdownState)}
               >
                 <span className="block lg:hidden">
-                  {option === "Home type"
+                  {option === "Type"
                     ? "Buy"
                     : options.find((o) => o.value === selectedValue)?.label ||
                       option}
                 </span>
                 <span className="hidden lg:block">
-                  {option === "Home type"
-                    ? "Home type"
+                  {option === "Type"
+                    ? "Type"
                     : options.find((o) => o.value === selectedValue)?.label ||
                       option}
                 </span>
@@ -558,37 +557,44 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               </button>
               {dropdownState && (
                 <>
-                  <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>{" "}
                   <div
-                    className="absolute z-[111111] left-[23%] top-[14%] lg:top-[110%] lg:left-0 bg-white  border border-[#8F8F8F] rounded-md px-2  mt-2 lg:mt-0 lg:w-[200px]"
+                    className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+                    onClick={() => setDropdownState(false)}
+                  ></div>
+                  <div
+                    className="absolute z-[111111] left-[23%] top-[14%] lg:top-[110%] lg:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 lg:mt-0 lg:w-[200px]"
                     ref={
                       option === "Price"
                         ? priceDropdownRef
                         : homeTypeDropdownRef
                     }
                   >
-                    <div className="flex justify-between mb-2"></div>
                     <ul className="flex flex-col gap-2">
                       {option === "Price" &&
                         priceOptions[selectedType].map((opt) => (
                           <label
                             key={opt.value}
-                            className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded ${
-                              selectedValue === opt.value
+                            className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded transition-colors ${
+                              filters.price === opt.value
                                 ? "bg-primary text-white"
-                                : ""
-                            } group`}
+                                : "hover:bg-gray-100"
+                            }`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleFilterChange("price", opt.value);
+                            }}
                           >
                             <input
                               type="radio"
                               name={paramKey}
                               value={opt.value}
-                              checked={selectedValue === opt.value}
-                              onChange={() => {
-                                handleFilterChange(paramKey, opt.value);
-                                setDropdownState(false);
-                              }}
-                              className={`w-4 h-4 accent-primary group-hover:accent-primary`}
+                              checked={filters.price === opt.value}
+                              onChange={() => {}}
+                              className={`w-4 h-4 ${
+                                filters.price === opt.value
+                                  ? "accent-white"
+                                  : "accent-green-500"
+                              }`}
                             />
                             <span className="text-sm">{opt.label}</span>
                           </label>
@@ -601,22 +607,27 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                         ].map((opt) => (
                           <label
                             key={opt.value}
-                            className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded ${
-                              selectedValue === opt.value
+                            className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded transition-colors ${
+                              filters["home-type"] === opt.value
                                 ? "bg-primary text-white"
-                                : ""
+                                : "hover:bg-gray-100"
                             }`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleFilterChange("home-type", opt.value);
+                            }}
                           >
                             <input
                               type="radio"
                               name={paramKey}
                               value={opt.value}
-                              checked={selectedValue === opt.value}
-                              onChange={() => {
-                                handleFilterChange(paramKey, opt.value);
-                                setDropdownState(false);
-                              }}
-                              className={`w-4 h-4 accent-primary`}
+                              checked={filters["home-type"] === opt.value}
+                              onChange={() => {}}
+                              className={`w-4 h-4 ${
+                                filters["home-type"] === opt.value
+                                  ? "accent-white"
+                                  : "accent-green-500"
+                              }`}
                             />
                             <span className="text-sm">{opt.label}</span>
                           </label>
@@ -628,7 +639,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             </div>
           );
         })}
-
         <button
           onClick={async () => {
             setIsSearching(true);
@@ -702,7 +712,10 @@ const page = () => {
 
   const [displayListings, setDisplayListings] = useState([]);
   const router = useRouter();
-
+  // Add these state variables at the top of your page component (around line 600)
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [sortBy, setSortBy] = useState("newest"); // default to newest
+  const sortDropdownRef = useRef(null);
   const [coordinates, setCoordinates] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
@@ -716,25 +729,62 @@ const page = () => {
     }
   };
 
+  // Update the useEffect that sets displayListings (around line 650)
   useEffect(() => {
     if (!isAllloading && allListings) {
       const firstThreeListings = allListings.listings;
       const flatListings = flattenListings(firstThreeListings);
+
       // Filter listings with valid coordinates
       const listingsWithCoords = flatListings.filter(
         (item) =>
           item?.item?.coordinate?.latitude && item?.item?.coordinate?.longitude
       );
+
+      // Sort listings based on sortBy state
+      const sortedListings = [...listingsWithCoords].sort((a, b) => {
+        const dateA = new Date(a.createdAt || a.item?.createdAt);
+        const dateB = new Date(b.createdAt || b.item?.createdAt);
+
+        switch (sortBy) {
+          case "newest":
+            return dateB - dateA; // newest first
+          case "oldest":
+            return dateA - dateB; // oldest first
+          case "price-low":
+            return (a.item?.price || 0) - (b.item?.price || 0);
+          case "price-high":
+            return (b.item?.price || 0) - (a.item?.price || 0);
+          default:
+            return dateB - dateA;
+        }
+      });
+
       const images = flatListings.flatMap((item) => item.imageUrls || []);
       setImageUrls(images);
 
-      setCoordinates(listingsWithCoords.map((item) => item.item.coordinate)); // set all coordinates for the map
-      setDisplayListings(listingsWithCoords); // only show listings with coordinates
+      setCoordinates(sortedListings.map((item) => item.item.coordinate));
+      setDisplayListings(sortedListings);
       setTotalPages(allListings.totalPages || 1);
       setCurrentPage(Number(searchParams.get("page")) || 1);
     }
-    console.log("coordinae", allListings?.listings?.imageUrls);
-  }, [allListings, isAllloading]);
+  }, [allListings, isAllloading, sortBy]);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        sortDropdownRef.current &&
+        !sortDropdownRef.current.contains(event.target)
+      ) {
+        setShowSortDropdown(false);
+      }
+    }
+    if (showSortDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSortDropdown]);
 
   //  if (isAllloading) {
   //    return (
@@ -759,16 +809,72 @@ const page = () => {
             <p className="font-[300] text-gray"> of</p>
             {displayListings.length} Homes
           </span>
-          <span className="text-black font-[400] flex gap-2  justify-center items-center cursor-pointer">
-            Sort: <p className="text-primary"> New listings </p>{" "}
-            <Image
-              width={500}
-              height={300}
-              src="/arrow-down.png"
-              alt="Dropdown"
-              className="w-3 h-2   pointer-events-none"
-            />
-          </span>
+          <div className="text-gray-600  fex-end lg:-ml-[2rem] 2xl:ml-0 text-sm flex items-center space-x-4">
+            <span className="flex gap-2">
+              {displayListings.slice(0, 7).length}{" "}
+              <p className="font-[300] text-gray"> of</p>
+              {displayListings.length} Homes
+            </span>
+            <div className="relative">
+              <span
+                className="text-black font-[400] flex gap-2 justify-center items-center cursor-pointer"
+                onClick={() => setShowSortDropdown(!showSortDropdown)}
+              >
+                Sort:
+                <p className="text-primary">
+                  {sortBy === "newest" && "New listings"}
+                  {sortBy === "oldest" && "Oldest first"}
+                  {sortBy === "price-low" && "Price: Low to High"}
+                  {sortBy === "price-high" && "Price: High to Low"}
+                </p>
+                <Image
+                  width={500}
+                  height={300}
+                  src="/arrow-down.png"
+                  alt="Dropdown"
+                  className="w-3 h-2 pointer-events-none"
+                />
+              </span>
+
+              {showSortDropdown && (
+                <>
+                  <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+                    onClick={() => setShowSortDropdown(false)}
+                  ></div>
+                  <div
+                    ref={sortDropdownRef}
+                    className="absolute z-[111111] right-0 top-[110%] bg-white border border-[#8F8F8F] rounded-md py-2 mt-2 w-[200px] shadow-lg"
+                  >
+                    <ul className="flex flex-col">
+                      {[
+                        { label: "New listings", value: "newest" },
+                        { label: "Oldest first", value: "oldest" },
+                        { label: "Price: Low to High", value: "price-low" },
+                        { label: "Price: High to Low", value: "price-high" },
+                      ].map((option) => (
+                        <li
+                          key={option.value}
+                          className={`px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors ${
+                            sortBy === option.value
+                              ? "bg-primary text-white hover:bg-primary"
+                              : ""
+                          }`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSortBy(option.value);
+                            setShowSortDropdown(false);
+                          }}
+                        >
+                          <span className="text-sm">{option.label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
       <div className="w-screen  lg:my-[1rem]   h-[2px] bg-[#D9D9D9] " />
