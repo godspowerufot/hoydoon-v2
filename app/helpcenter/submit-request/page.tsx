@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Input from "@/app/components/common/inputs/input";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 const SubmitRequest = () => {
   const [category, setCategory] = useState("");
@@ -356,25 +357,43 @@ const SubmitRequest = () => {
         </div>
 
         {category && category !== "Select" && (
-          <div className="hidden md:block md:max-w-[25rem]  lg:ml-[6rem]">
+          <div className="hidden md:block md:max-w-[25rem] lg:ml-[6rem]">
             <h2 className="text-xl font-semibold mb-4">
               Articles in this section
             </h2>
             <div className="space-y-2 text-base">
               {[
-                "Rental Scams Uncovered: How to Spot and Avoid Fraudulent Listings",
-                "Do I Need a Real Estate Agent to Buy a Home?",
-                "What Are Common Mistakes to Avoid When Buying a Home?",
-                "What Do I Do If a Listing Has Incorrect Information?",
-                "How Do I Search for Homes in a Specific Neighborhood?",
-                "What Are Common Mistakes to Avoid When Buying a Home?",
-              ].map((article, index) => (
-                <button
-                  key={index}
+                {
+                  title:
+                    "Rental Scams Uncovered: How to Spot and Avoid Fraudulent Listings",
+                  id: 19,
+                },
+                {
+                  title: "Do I Need a Real Estate Agent to Buy a Home?",
+                  id: 3,
+                },
+                {
+                  title: "What Do I Do If a Listing Has Incorrect Information?",
+                  id: 4,
+                },
+                {
+                  title:
+                    "How Do I Search for Homes in a Specific Neighborhood?",
+                  id: 1,
+                },
+                {
+                  title:
+                    "What Are Common Mistakes to Avoid When Buying a Home?",
+                  id: 15,
+                },
+              ].map((article) => (
+                <Link
+                  key={article.id}
+                  href={`/article/${article.id}`}
                   className="block w-full text-left h-[4.5rem] p-3 border rounded-md border-gray text-gray hover:bg-gray-200"
                 >
-                  {article}
-                </button>
+                  {article.title}
+                </Link>
               ))}
             </div>
           </div>
