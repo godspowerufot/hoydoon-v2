@@ -223,6 +223,7 @@ export const MobileSignIn = () => {
           googleAuth={googleAuth}
           isGoogleLoading={isGoogleLoading}
         />
+
         <div className="flex  flex-col gap-5">
           <button
             onClick={() => signIn("apple")}
