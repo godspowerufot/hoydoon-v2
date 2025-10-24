@@ -74,7 +74,7 @@ const LoginButtons = ({ googleAuth, isGoogleLoading }: any) => {
       <button
         onClick={() => loginWithCode()}
         disabled={isGoogleLoading}
-        className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex-1 hidden lg:flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isGoogleLoading ? (
           <svg
