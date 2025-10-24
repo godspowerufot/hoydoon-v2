@@ -15,9 +15,7 @@ export default function Home() {
   const { data: familyFriendlyListings } = useGetAllListingsQuery({
     category: "family-friendly",
   });
-  const { data: rentListings } = useGetAllListingsQuery({
-    listingType: "rent",
-  });
+
   const { data: regionListings } = useGetAllListingsQuery({
     location: "somalia",
   });

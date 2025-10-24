@@ -172,14 +172,6 @@ const Appfooter = () => {
                         Privacy policy
                       </a>
                     </li>
-                    <li>
-                      <Link
-                        href="/helpcenter/submit-request"
-                        className="text-white text-sm"
-                      >
-                        Submit a request
-                      </Link>
-                    </li>
                   </ul>
                 </div>
 
