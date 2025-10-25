@@ -24,7 +24,7 @@ const Signup = () => {
   const [fullname, setfullname] = useState("");
   const [password, setPassword] = useState("");
   const [signup, { isLoading }] = useSignupMutation();
-  const [googleAuth, { isLoading: isGoogleLoading }] = useGoogleAuthMutation();
+  // const [googleAuth, { isLoading: isGoogleLoading }] = useGoogleAuthMutation();
   const [errormessage, seterror] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const dispatch = useDispatch();
@@ -197,7 +197,7 @@ const Signup = () => {
             {/* Sign Up Button */}
             <button
               onClick={handleSubmit}
-              disabled={isLoading || isGoogleLoading}
+              disabled={isLoading}
               className="w-full bg-primary rounded-full text-white font-semibold py-3 px-4 text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-5"
             >
               {isLoading ? "Signing Up..." : "Sign Up"}
@@ -215,13 +215,13 @@ const Signup = () => {
             {/* Social Login Buttons - Pass props */}
             <div className="flex gap-3 mb-8">
               <LoginButtons
-                googleAuth={googleAuth}
-                isGoogleLoading={isGoogleLoading}
+              // googleAuth={googleAuth}
+              // isGoogleLoading={isGoogleLoading}
               />
 
               <button
                 onClick={() => signIn("apple")}
-                disabled={isLoading || isGoogleLoading}
+                disabled={isLoading}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Image
@@ -236,7 +236,7 @@ const Signup = () => {
 
               <button
                 onClick={() => signIn("facebook")}
-                disabled={isLoading || isGoogleLoading}
+                disabled={isLoading}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Image
