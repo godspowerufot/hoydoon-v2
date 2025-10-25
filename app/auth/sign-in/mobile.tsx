@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import {
   useLoginMutation,
   useSignupMutation,
+  useGoogleAuthMutation,
 } from "@/store/slices/api/authapi";
 import { sendDeviceInfo } from "../../../utils/lib/devicinfo";
 import { log } from "@/utils/log";
@@ -26,7 +27,7 @@ export const MobileSignIn = () => {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [login, { isLoading }] = useLoginMutation();
   const [signup, { isLoading: isSignupLoading }] = useSignupMutation();
-  // const [googleAuth, { isLoading: isGoogleLoading }] = useGoogleAuthMutation();
+  const [googleAuth, { isLoading: isGoogleLoading }] = useGoogleAuthMutation();
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -99,7 +100,7 @@ export const MobileSignIn = () => {
   };
 
   // Check if any auth is in progress
-  const isAnyLoading = isLoading || isSignupLoading;
+  const isAnyLoading = isLoading || isSignupLoading || isGoogleLoading;
 
   return (
     <div className="flex flex-col  lg:hidden items-center  justify-start w-full min-h-screen px-5 py-2 font-bricolage">
@@ -219,8 +220,8 @@ export const MobileSignIn = () => {
       <div className="w-full flex flex-col gap-5">
         <p className="text-center text-black font-light">Or Log In with:</p>
         <LoginButtons
-        // googleAuth={googleAuth}
-        // isGoogleLoading={isGoogleLoading}
+          googleAuth={googleAuth}
+          isGoogleLoading={isGoogleLoading}
         />
 
         <div className="flex  flex-col gap-5">
