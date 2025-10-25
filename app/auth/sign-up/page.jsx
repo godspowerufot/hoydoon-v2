@@ -8,10 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Input from "@/app/components/common/inputs/input";
 import Button from "@/app/components/common/Button";
-import {
-  useSignupMutation,
-  useGoogleAuthMutation,
-} from "@/store/slices/api/authapi";
+import { useSignupMutation } from "@/store/slices/api/authapi";
 import { useRouter } from "next/navigation";
 import LoginButtons from "@/app/components/common/googlebutton";
 import { sendDeviceInfo } from "@/utils/lib/devicinfo";
@@ -162,9 +159,8 @@ const Signup = () => {
                 </div>
 
                 {!isPasswordValid && (
-                  <p className="text-xs text-gray mt-1 font-light">
-                    It must be a combination of 8 words, letters, numbers,
-                    symbols
+                  <p className="text-xs text-red mt-1 font-light">
+                    It must be a combination of 8 ,letters, numbers, symbols
                   </p>
                 )}
               </div>

@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import {
   useLoginMutation,
-  useGoogleAuthMutation, // Add this import
+  // Add this import
 } from "@/store/slices/api/authapi";
 import { sendDeviceInfo } from "../../../utils/lib/devicinfo";
 import { log } from "@/utils/log";
@@ -23,20 +23,13 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, { isLoading }] = useLoginMutation();
-  const [googleAuth, { isLoading: isGoogleLoading }] = useGoogleAuthMutation(); // Add this
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  // const [googleAuth, { isLoading: isGoogleLoading }] = useGoogleAuthMutation(); // Add this
   const dispatch = useDispatch();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Password validation
-    const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(password)) {
-      setIsPasswordValid(false);
-      return;
-    }
 
     try {
       const device = await sendDeviceInfo();
@@ -134,20 +127,10 @@ const Signup = () => {
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
-                      const passwordRegex =
-                        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-                      setIsPasswordValid(passwordRegex.test(e.target.value));
                     }}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2  outline-none text-base placeholder-gray-400 pr-12"
                   />
                 </div>
-
-                {!isPasswordValid && (
-                  <p className="text-xs text-gray mt-1 font-light">
-                    It must be a combination of 8 words, letters, numbers,
-                    symbols
-                  </p>
-                )}
               </div>
             </div>
 
@@ -173,7 +156,7 @@ const Signup = () => {
             {/* Login Button */}
             <button
               onClick={handleSubmit}
-              disabled={isLoading || isGoogleLoading}
+              disabled={isLoading}
               className="w-full bg-primary rounded-full text-white font-semibold py-3 px-4 text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-5"
             >
               {isLoading ? "Logging in..." : "Log in"}
@@ -191,13 +174,13 @@ const Signup = () => {
             {/* Social Login Buttons - Pass props */}
             <div className="flex gap-3 mb-8">
               <LoginButtons
-                googleAuth={googleAuth}
-                isGoogleLoading={isGoogleLoading}
+              // googleAuth={googleAuth}
+              // isGoogleLoading={isGoogleLoading}
               />
 
               <button
                 onClick={() => signIn("apple")}
-                disabled={isLoading || isGoogleLoading}
+                disabled={isLoading}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Image
@@ -212,7 +195,7 @@ const Signup = () => {
 
               <button
                 onClick={() => signIn("facebook")}
-                disabled={isLoading || isGoogleLoading}
+                disabled={isLoading}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Image
