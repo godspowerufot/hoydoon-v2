@@ -64,7 +64,10 @@ function SupportCategories({
   ];
 
   return (
-    <div className="hidden lg:grid w-[1230px] 2xl:w-[1580px] grid-cols-3 gap-4 p-4">
+    <div
+      className="hidden md:grid  grid-cols-3 w-full flex. items-center justify-center
+     gap-4 p-4"
+    >
       {/* All Articles button - resets category filter */}
       <button
         onClick={() => onCategorySelect(null)}
@@ -362,7 +365,7 @@ export default function Home() {
       </header>
 
       {/* Main Content Section */}
-      <section className="2xl:-mb-[8rem] flex-col mt-[2rem] lg:mt-[3em] w-full font-bricolage lg:flex justify-center gap-4 2xl:gap-[1.5rem] flex-1 items-center">
+      <section className=" max-w-[1200px] flex-col mt-[2rem] lg:mt-[3em] w-full font-bricolage lg:flex justify-center gap-4 2xl:gap-[1.5rem] flex-1 items-center">
         {/* Search Results Summary */}
 
         {/* Articles Grid or Loading State */}
@@ -456,7 +459,7 @@ export default function Home() {
           />
         )}
 
-        <div className="w-full hidden lg:block mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9]" />
+        <div className="w-full hidden mt-[3rem] mb-[2rem] h-[2px] bg-[#D9D9D9] md:flex justify-center items-center" />
 
         {/* Support Categories */}
         <SupportCategories

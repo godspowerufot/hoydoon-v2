@@ -38,7 +38,7 @@ const Breadcrumb = ({
   handleFavoriteClick,
 }) => {
   return (
-    <div className="hidden lg:flex items-center justify-between  py-4 lg:w-full mt-[5rem] bg-gray-100">
+    <div className="hidden md:flex items-center justify-between  py-4 md:w-full mt-[5rem] bg-gray-100">
       {/* Left Section: Back Arrow and Breadcrumb */}
       <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage w-full text-gray-600">
         {/* Back Arrow */}
@@ -86,7 +86,7 @@ const Breadcrumb = ({
       </div>
 
       {/* Right Section: Icons */}
-      <div className="flex items-center lg:-ml-[4rem] gap-2">
+      <div className="flex items-center md:-ml-[4rem] gap-2">
         <div className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md">
           <Image
             width={500}
@@ -245,7 +245,7 @@ const page = ({ params }) => {
   // State to control visibility of the listings section
 
   return (
-    <div className="lg:max-w-[1200px] flex pt-2 flex-col items-center justify-center ">
+    <div className="md:max-w-[1240px] flex pt-2 flex-col items-center justify-center ">
       {" "}
       <Breadcrumb
         handleToggleListings={handleToggleListings}
@@ -254,7 +254,7 @@ const page = ({ params }) => {
         agentDetails={agentInfo?.region}
       />
       {showListings && (
-        <div className="grid  w-full lg:-mt-1  gap-2 p-3 lg:p-0 ">
+        <div className="grid  w-full md:-mt-1  gap-2 p-3 md:p-0 ">
           <DynamicImageGrid
             statuses={statuses}
             coordinates={coordinates}
@@ -269,13 +269,13 @@ const page = ({ params }) => {
       )}
       {/* second div layout  */}
       <div
-        className={`bg-gray-100 mt-2   w-full lg:mt-5 ${
-          !showListings ? "mt-[2rem] lg:mt-0" : ""
-        } lg:p-0  lg:py-4 rounded-lg`}
+        className={`bg-gray-100 mt-2   w-full md:mt-5 ${
+          !showListings ? "mt-[2rem] md:mt-0" : ""
+        } md:p-0  md:py-4 rounded-lg`}
       >
-        <div className="flex flex-row px-4  lg:p-0 justify-between items-start md:items-center">
+        <div className="flex flex-row px-4  md:p-0 justify-between items-start md:items-center">
           {/* Profile Image */}
-          <div className="flex mt-4  items-center justify-center lg:-mt-3 gap-3">
+          <div className="flex mt-4  items-center justify-center md:-mt-3 gap-3">
             <div className="w-[4rem] h-[4rem] relative">
               <Image
                 src={agentInfo?.pictureUrl || "/Avatar.svg"} // Replace with actual image path
@@ -286,8 +286,8 @@ const page = ({ params }) => {
             </div>
 
             {/* Text Section */}
-            <div className="flex flex-col items-start  lg:mt-3">
-              <h2 className="text-xl lg:text-[1.7rem] font-bricolage font-semibold">
+            <div className="flex flex-col items-start  md:mt-3">
+              <h2 className="text-xl md:text-[1.7rem] font-bricolage font-semibold">
                 {agentInfo?.fullname}
               </h2>
               <p className="text-[#1E1E1E] font-light">{agentInfo?.region}</p>
@@ -295,7 +295,7 @@ const page = ({ params }) => {
           </div>
           {/* Right Section */}
           <div className="text-right font-bricolage  text-[#1E1E1E] mt-4 md:-mt-[2.5rem]">
-            <div className="flex pr-3 lg:pr-0 items-center justify-end  my-3 gap-2 lg:gap-0 text-gray-700 mt-1">
+            <div className="flex pr-3 md:pr-0 items-center justify-end  my-3 gap-2 md:gap-0 text-gray-700 mt-1">
               <Image
                 width={500}
                 height={300}
@@ -305,10 +305,10 @@ const page = ({ params }) => {
               />
               <span className="ml-1 font-medium ">{ListedBy}</span>
             </div>
-            <p className="text-gray-600 lg:mt-1 my-3 text-sm">
+            <p className="text-gray-600 md:mt-1 my-3 text-sm">
               Avg listing ${averagelisting}{" "}
             </p>
-            <div className="flex lg:hidden items-center justify-end gap-2 mt-3 w-full md:w-auto">
+            <div className="flex md:hidden items-center justify-end gap-2 mt-3 w-full md:w-auto">
               <div
                 onClick={handleFavoriteClick}
                 className="p-2 border border-[#8F8F8F] rounded-md"
@@ -351,9 +351,9 @@ const page = ({ params }) => {
       </div>
       {/* new layout
        */}
-      <div className="w-full border-t border-b border-[#8F8F8F] mt-3 lg:mt-0  py-3">
-        <div className="flex items-center justify-center gap-2  lg:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl lg:text-base">
-          <div className="flex items-center  font-light  test-sm lg:text-[18px] gap-3  lg:gap-[8rem]">
+      <div className="w-full border-t border-b border-[#8F8F8F] mt-3 md:mt-0  py-3">
+        <div className="flex items-center justify-center gap-2  md:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl md:text-base">
+          <div className="flex items-center  font-light  test-sm md:text-[18px] gap-3  md:gap-[8rem]">
             <span>
               <span className="font-bold text-black">
                 {agentInfo?.numberOfListings}
@@ -364,7 +364,7 @@ const page = ({ params }) => {
 
           <span className="text-gray-400">|</span>
 
-          <div className="flex items-center text-sm lg:text-[18px] gap-1">
+          <div className="flex items-center text-sm md:text-[18px] gap-1">
             <span className="font-bold text-black">
               ${formatNumber(prices)}{" "}
             </span>
@@ -373,7 +373,7 @@ const page = ({ params }) => {
 
           <span className="text-gray-400">|</span>
 
-          <div className="flex items-center  text-sm lg:text-[18px] gap-1">
+          <div className="flex items-center  text-sm md:text-[18px] gap-1">
             <span className="font-bold text-black">
               ${formatNumber(agentInfo?.priceRange?.min)} - $
               {formatNumber(agentInfo?.priceRange?.max)}
@@ -383,23 +383,23 @@ const page = ({ params }) => {
         </div>
       </div>
       {/* second layout */}
-      <div className=" w-full mt-[3rem] px-[1.5rem] lg:px-0 py-7">
-        <h1 className=" text-xl lg:text-[2rem] font-semibold ">
+      <div className=" w-full mt-[3rem] px-[1.5rem] md:px-0 py-7">
+        <h1 className=" text-xl md:text-[2rem] font-semibold ">
           {" "}
           About {agentInfo?.fullname}
         </h1>
-        <p className=" text-[#8F8F8F] font-bricolage text-sm lg:text-[18px] lg:w-[73rem] 2xl:w-full 2xl:text-xl mt-4">
+        <p className=" text-[#8F8F8F] font-bricolage text-sm md:text-[18px] md:w-[73rem] 2xl:w-full 2xl:text-xl mt-4">
           {agentInfo?.profileDescription || "no description found"}
         </p>
       </div>
       {/* description */}
       {/* map */}
-      <div className="bg-gray-100 mt-[3rem]  w-full lg:p-0 rounded-lg mb-3">
-        <h1 className="text-xl lg:text-[2rem] lg:py-2 ml-[1.7rem] lg:ml-0 font-semibold ">
+      <div className="bg-gray-100 mt-[3rem]  w-full md:p-0 rounded-lg mb-3">
+        <h1 className="text-xl md:text-[2rem] md:py-2 ml-[1.7rem] md:ml-0 font-semibold ">
           {" "}
           {agentInfo?.fullname} Listings & Deals
         </h1>
-        <div className="border-b  mt-4  px-[1.75rem] lg:px-0  my-4 lg:my-3  border-gray ">
+        <div className="border-b  mt-4  px-[1.75rem] md:px-0  my-4 md:my-3  border-gray ">
           <div className="flex space-x-6">
             {tabs.map((tab) => (
               <button
@@ -408,7 +408,7 @@ const page = ({ params }) => {
                   setActiveTab(tab.id);
                   setCoordinates(allCoordinates[tab.id] || []); // Update map based on tab
                 }}
-                className={`relative py-2 text-sm lg:text-base transition-colors duration-300 ${
+                className={`relative py-2 text-sm md:text-base transition-colors duration-300 ${
                   activeTab === tab.id
                     ? "text-black font-semibold"
                     : "text-[#8F8F8F]"
@@ -445,12 +445,12 @@ const page = ({ params }) => {
 
         {/* Distance Information */}
       </div>
-      <div className="w-full lg:mt-[3rem]  px-7 lg:px-0 py-6">
-        <h1 className="text-xl lg:text-[2rem]   mb-7  font-semibold ">
+      <div className="w-full md:mt-[3rem]  px-7 md:px-0 py-6">
+        <h1 className="text-xl md:text-[2rem]   mb-7  font-semibold ">
           {" "}
           {agentInfo?.fullname} Active Listings
         </h1>
-        <div className="grid  px-1 lg:px-0 grid-cols-1 md:grid-cols-3 gap-1 gap-y-[2rem] place-items-center">
+        <div className="grid  px-1 md:px-0 grid-cols-1 md:grid-cols-3 gap-1 gap-y-[2rem] place-items-center">
           {/* Display only 3 listings initially, or all listings if showAll is true */}
           {(showAll ? ActiveListings : ActiveListings.slice(0, 3)).map(
             (items, index) => (
@@ -472,7 +472,7 @@ const page = ({ params }) => {
 
           {/* Show "See All" link if we haven't displayed all listings yet */}
           {!showAll && ActiveListings.length > 3 && (
-            <div className="w-full md:col-span-2 flex ml-[5rem] -mt-[2rem] justify-start lg:ml-0">
+            <div className="w-full md:col-span-2 flex ml-[5rem] -mt-[2rem] justify-start md:ml-0">
               <button
                 onClick={handleSeeAllClick}
                 className="text-[#09858D] mt-5 text-2xl font-medium"
@@ -495,7 +495,7 @@ const page = ({ params }) => {
         )}
       </div>
       {/*contat agency  */}
-      <div className="w-full px-6 lg:px-0">
+      <div className="w-full px-6 md:px-0">
         <ContactAgent
           listedBy={agentInfo?._id}
           location={agentInfo?.region}

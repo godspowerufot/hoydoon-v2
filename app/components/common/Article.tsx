@@ -5,22 +5,26 @@ import Button from "./Button";
 import Link from "next/link";
 const articles = [
   {
-    id: 1,
-    image: "/news-1.png",
-    title: "Understanding the Real Estate Market Trends",
-    date: "July 2024",
-    category: "Perfect property",
+    id: "6",
+    imageSrc: "/webp/6.webp",
+    altText: "How Do I Report a Problem With a Listing?",
+    articleType: "General",
+    title: "How Do I Report a Problem With a Listing?",
+    readTime: "3 min read",
+    date: "March 2025",
     description:
-      "Staying ahead in the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buying, selling, or investing.",
+      "If you come across a problem with a listing on Hoydoon, we're here to support you every step of the way. Whether the issue involves inaccurate information, technical glitches, or something that goes against our policies, our team is ready to step in and assist.",
   },
   {
-    id: 2,
-    image: "/news-2.png",
-    title: "Analyzing Modern Real Estate Market Movement",
-    date: "July 2024",
-    category: "Perfect property",
+    id: "3",
+    imageSrc: "/webp/3.webp",
+    altText: "Do I Need a Real Estate Agent to Buy a Home?",
+    articleType: "General",
+    title: "Do I Need a Real Estate Agent to Buy a Home?",
+    readTime: "3 min read",
+    date: "March 2025",
     description:
-      "Staying ahead in the real estate market requires a keen understanding of the latest trends and shifts. By analyzing current data and market indicators, you can make informed decisions whether you’re buying, selling, or investing.",
+      "Buying a home is one of the biggest financial decisions most people will make. It's not just a transaction—it's a complex process that involves legal paperwork, market analysis, negotiations, inspections, and plenty of emotions.",
   },
 ];
 
@@ -34,7 +38,7 @@ const ArticleCard = ({ article }: any) => {
           width={400}
           height={300}
           loading="lazy"
-          src={article.image}
+          src={article.imageSrc}
           className="rounded-2xl  w-full object-cover h-[300px] lg:h-[450px]"
         />
         <div className="flex flex-col my-4 relative">
@@ -57,7 +61,7 @@ const ArticleCard = ({ article }: any) => {
                 </h4>
               </span>
               <h2 className="ml-4  text-[12px] mt-[24px] text-gray font-[400] lg:text-[18px]">
-                {article.category}
+                {article.articleType}
               </h2>
             </div>
           </div>

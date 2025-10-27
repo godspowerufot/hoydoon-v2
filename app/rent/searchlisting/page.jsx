@@ -207,19 +207,19 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   }, [showHomeTypeDropdown]);
 
   return (
-    <div className="lg:pt-[2.3rem]  -mb-[2.5rem] lg:mb-0    flex-col lg:flex-row lg:flex justify-between w-full">
+    <div className="md:pt-[2.3rem]  -mb-[2.5rem] md:mb-0    flex-col md:flex-row md:flex justify-between w-full">
       {/* Left Section: Filters */}
-      <div className="flex items-center   p-[1rem] lg:p-0   gap-1 lg:gap-2">
+      <div className="flex items-center   p-[1rem] md:p-0   gap-1 md:gap-2">
         <button
           onClick={() => setShowAllFiltersDropdown(true)}
-          className="px-2 lg:px-4 h-[37px] text-xs  lg:h-fit lg:text-sm lg:py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F] flex items-center gap-2"
+          className="px-2 md:px-4 h-[37px] text-xs  md:h-fit md:text-sm md:py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F] flex items-center gap-2"
         >
           <Image
             src="/allfilter.png"
             alt="Filter"
             width={16}
             height={15}
-            className="w-4 h-4 lg:w-[16px] lg:h-[16px]"
+            className="w-4 h-4 md:w-[16px] md:h-[16px]"
           />{" "}
           All Filters
         </button>
@@ -418,7 +418,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               <div className="relative" key={option}>
                 <button
                   onClick={() => setShowBedBathDropdown(!showBedBathDropdown)}
-                  className="border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 lg:pr-6 appearance-none flex items-center gap-2"
+                  className="border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 md:pr-6 appearance-none flex items-center gap-2"
                 >
                   {bedValue || bathValue
                     ? `${bedValue} Beds, ${bathValue} Baths`
@@ -435,7 +435,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                   <>
                     <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>
                     <div
-                      className="absolute z-[11111111]  lg:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 lg:mt-0 lg:w-64"
+                      className="absolute z-[11111111]  md:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 md:mt-0 md:w-64"
                       ref={bedBathRef}
                     >
                       <div className="flex justify-between mb-2">
@@ -530,20 +530,35 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             <div className="relative" key={option}>
               <button
                 type="button"
-                className={`border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 lg:pr-2 flex items-center gap-2 ${
-                  option == "Price" ? "hidden lg:flex" : ""
+                className={`border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 md:pr-2 flex items-center gap-2 ${
+                  option == "Price" ? "hidden md:flex" : ""
                 }`}
                 onClick={() => setDropdownState(!dropdownState)}
               >
-                <span className="block lg:hidden">
+                <span className="block md:hidden">
                   {option === "Type"
                     ? "Buy"
+                    : option === "Price"
+                    ? filters.price
+                      ? priceOptions[selectedType].find(
+                          (o) => o.value === filters.price
+                        )?.label || "Price"
+                      : "Price"
                     : options.find((o) => o.value === selectedValue)?.label ||
                       option}
                 </span>
-                <span className="hidden lg:block">
+                <span className="hidden md:block">
                   {option === "Type"
-                    ? "Type"
+                    ? filters["home-type"]
+                      ? filters["home-type"].charAt(0).toUpperCase() +
+                        filters["home-type"].slice(1)
+                      : "Type"
+                    : option === "Price"
+                    ? filters.price
+                      ? priceOptions[selectedType].find(
+                          (o) => o.value === filters.price
+                        )?.label || "Price"
+                      : "Price"
                     : options.find((o) => o.value === selectedValue)?.label ||
                       option}
                 </span>
@@ -562,7 +577,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                     onClick={() => setDropdownState(false)}
                   ></div>
                   <div
-                    className="absolute z-[111111] left-[23%] top-[14%] lg:top-[110%] lg:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 lg:mt-0 lg:w-[200px]"
+                    className="absolute z-[111111] left-[23%] top-[14%] md:top-[110%] md:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 md:mt-0 md:w-[200px]"
                     ref={
                       option === "Price"
                         ? priceDropdownRef
@@ -675,7 +690,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       </div>
 
       {/* Right Section: List / Map Toggle */}
-      <div className=" hidden lg:flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-3   border-[#8F8F8F]   justify-between border-solid border-[0.5px] items-center font-base rounded-[5px] lg:p-[3px]  relative">
+      <div className=" hidden md:flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-3   border-[#8F8F8F]   justify-between border-solid border-[0.5px] items-center font-base rounded-[5px] md:p-[3px]  relative">
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
@@ -794,22 +809,22 @@ const page = () => {
   //    );
   //  }
   return (
-    <div className="lg:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1200px]">
+    <div className="md:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1240px]">
       <Breadcrumb showMap={showMap} setShowMap={setShowMap} />'
-      <div className="flex items-start p-4 lg:p-0  lg:mt-[1rem] w-full lg:justify-between flex-col  gap-3 lg:gap-0 lg:flex-row   ">
-        <h1 className="text-black  hidden lg:block font-semibold text-2xl lg:text-4xl">
+      <div className="flex items-start p-4 md:p-0  md:mt-[1rem] w-full md:justify-between flex-col  gap-3 md:gap-0 md:flex-row   ">
+        <h1 className="text-black  hidden md:block font-semibold text-2xl md:text-4xl">
           All Real-estate & Homes for Sale
         </h1>
-        <h1 className="text-black lg:hidden font-semibold text-2xl lg:text-4xl">
+        <h1 className="text-black md:hidden font-semibold text-2xl md:text-4xl">
           All Homes for Sale
         </h1>
-        <div className="text-gray-600  fex-end lg:-ml-[2rem] 2xl:ml-0 text-sm flex items-center space-x-4">
+        <div className="text-gray-600  fex-end md:ml-[0rem] 2xl:ml-0 text-sm flex items-center space-x-4">
           <span className="flex gap-2">
             {displayListings.slice(0, 7).length}{" "}
             <p className="font-[300] text-gray"> of</p>
             {displayListings.length} Homes
           </span>
-          <div className="text-gray-600  fex-end lg:-ml-[2rem] 2xl:ml-0 text-sm flex items-center space-x-4">
+          <div className="text-gray-600  fex-end md:-ml-[2rem] 2xl:ml-0 text-sm flex items-center space-x-4">
             <span className="flex gap-2">
               {displayListings.slice(0, 7).length}{" "}
               <p className="font-[300] text-gray"> of</p>
@@ -877,13 +892,13 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="w-screen  lg:my-[1rem]   h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  md:my-[1rem]   h-[2px] bg-[#D9D9D9] " />
       {showMap ? (
         <MapComponent coordinates={coordinates} />
       ) : (
         <>
           {isAllloading && (
-            <div className="grid grid-cols-1 w-full sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 gap-6">
               {[...Array(6)].map((_, index) => (
                 <PropertySkeleton key={index} />
               ))}
@@ -894,7 +909,7 @@ const page = () => {
               No listings found for your search.
             </p>
           ) : (
-            <div className=" grid     grid-cols-1 md:grid-cols-3 gap-4 lg:gap-[1rem] mt-[1.5rem] lg:mt-[1rem]  p-5 lg:p-0 place-items-center">
+            <div className=" grid     grid-cols-1 md:grid-cols-3 gap-4 md:gap-[1rem] mt-[1.5rem] md:mt-[1rem] w-full  p-5 md:p-0 place-items-center">
               {[...displayListings].map((items, index) => (
                 <PropertyListCard
                   key={index}

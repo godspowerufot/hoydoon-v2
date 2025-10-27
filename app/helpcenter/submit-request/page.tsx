@@ -5,11 +5,11 @@ import Input from "@/app/components/common/inputs/input";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 const SubmitRequest = () => {
   const [category, setCategory] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
@@ -135,9 +135,12 @@ const SubmitRequest = () => {
   };
 
   return (
-    <div className="mt-10 md:w-[1200px] p-4 md:p-6 bg-white min-h-screen lg:min-h-0">
+    <div className="mt-10 w-full md:w-[1200px] p-2 md:p-6 bg-white min-h-screen lg:min-h-0">
       <div className="flex flex-col md:flex-row items-start justify-between gap-4 py-2 mt-[2em] w-full bg-gray-100">
-        <div className="flex items-center gap-2 text-sm lg:text-lg text-gray-600">
+        <div
+          onClick={() => router.back()}
+          className="flex items-center gap-2 text-sm lg:text-lg text-gray-600"
+        >
           <Image
             src="/arrow-right.png"
             alt="Back"

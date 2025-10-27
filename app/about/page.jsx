@@ -21,7 +21,7 @@ const Page = () => {
   };
 
   return (
-    <div className="lg:max-w-[1200px] container mx-auto lg:mt-[4rem] px-4 lg:px-0">
+    <div className="lg:max-w-[1240px] container mx-auto lg:mt-[4rem] px-4 lg:px-0">
       {/* ✅ Wrap this part in a relative container */}
       <div className="relative border-b mt-4 border-gray">
         <div className="flex justify-between">

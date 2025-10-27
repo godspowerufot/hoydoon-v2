@@ -113,12 +113,12 @@ const DistanceComponent = ({ coordinates }) => {
   }, [coordinates]);
   console.log("placedata", placesData);
   return (
-    <div className="grid p-4 lg:my-[3rem] lg:p-0 text-xs grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6 2xl:text-base text-gray-700 lg:text-sm">
+    <div className="grid p-4 md:my-[3rem] md:p-0 text-xs grid-cols-2 md:grid-cols-3 md:grid-cols-3 gap-4 mt-6 2xl:text-base text-gray-700 md:text-sm">
       {placesData.map(({ type, icon, name, label, distance }) => (
         <div
           key={type}
           className={`flex items-start gap-2 ${
-            type === "pharmacy" ? "hidden lg:flex" : ""
+            type === "pharmacy" ? "hidden md:flex" : ""
           }`}
         >
           <Image src={icon} alt={label} width={20} height={20} />
@@ -143,7 +143,7 @@ const Breadcrumb = ({
   handleFavoriteClick,
 }) => {
   return (
-    <div className="hidden lg:flex items-center justify-around py-2 lg:w-full mt-[5rem] bg-gray-100">
+    <div className="hidden md:flex items-center justify-around py-2 md:w-full mt-[5rem] bg-gray-100">
       {/* Left Section: Back Arrow and Breadcrumb */}
       <div className="flex w-full gap-1 text-[1.08rem]  items-center font-bricolage text-gray-600">
         {/* Back Arrow */}
@@ -192,7 +192,7 @@ const Breadcrumb = ({
       </div>
 
       {/* Right Section: Icons */}
-      <div className="flex items-center lg:-ml-[4rem] gap-2">
+      <div className="flex items-center md:-ml-[4rem] gap-2">
         <div
           onClick={handleFavoriteClick}
           className={`p-2 border cursor-pointer border-[#8F8F8F] rounded-md `}
@@ -367,7 +367,7 @@ const page = () => {
   }
   return (
     <div className=" w-screen   flex justify-center flex-col items-center ">
-      <div className="lg:max-w-[1200px] flex pt-8 flex-col items-center justify-center ">
+      <div className="md:max-w-[1240px] flex pt-8 flex-col items-center justify-center ">
         <Breadcrumb
           handleToggleListings={handleToggleListings}
           handleFavoriteClick={handleFavoriteToggle}
@@ -399,41 +399,41 @@ const page = () => {
 
         <div
           className={`bg-gray-100 p-4 w-full rounded-lg ${
-            !showListings ? "mt-[2rem] lg:mt-0" : ""
+            !showListings ? "mt-[2rem] md:mt-0" : ""
           }`}
         >
-          <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 lg:gap-4">
+          <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 md:gap-4">
             {/* Left Section */}
-            <div className="flex-1 flex flex-col  gap-1  lg:flex">
-              <h2 className="text-xl lg:text-[2rem] hidden  lg:block font-bricolage font-semibold">
+            <div className="flex-1 flex flex-col  gap-1  md:flex">
+              <h2 className="text-xl md:text-[2rem] hidden  md:block font-bricolage font-semibold">
                 {title}
               </h2>
-              <h2 className="text-xl lg:text-[2rem] lg:hidden font-bricolage font-semibold">
+              <h2 className="text-xl md:text-[2rem] md:hidden font-bricolage font-semibold">
                 {truncateDescription(title, 3)}
               </h2>
 
               {/* Address */}
-              <div className=" text-black text-sm  font-light lg:text-gray block lg:text-base">
+              <div className=" text-black text-sm  font-light md:text-gray block md:text-base">
                 <p>{truncateDescription(address, 10)}</p>
                 <p>{region}</p>
               </div>
 
-              <div className="flex items-center gap-2 text-gray-700  mt-[0.5rem] lg:mt-2">
+              <div className="flex items-center gap-2 text-gray-700  mt-[0.5rem] md:mt-2">
                 <Image
                   width={500}
                   height={300}
                   src="/eye.svg"
                   alt="Share"
-                  className="w-3 h-3 lg:w-5 lg:h-5"
+                  className="w-3 h-3 md:w-5 md:h-5"
                 />
-                <span className="lg:font-medium   lg:mt-0 text-base font-light text-black lg:text-black">
+                <span className="md:font-medium   md:mt-0 text-base font-light text-black md:text-black">
                   Total views {editingCount?.toLocaleString()}
                 </span>
               </div>
             </div>
 
-            <div className="text-right flex-1 lg:-mt-[2.5rem]  flex flex-col  gap-1 lg:flex md:text-right w-full md:w-auto">
-              <p className="text-[1.5rem] text-black font-[600] lg:font-bold">
+            <div className="text-right flex-1 md:-mt-[2.5rem]  flex flex-col  gap-1 md:flex md:text-right w-full md:w-auto">
+              <p className="text-[1.5rem] text-black font-[600] md:font-bold">
                 ${price}
               </p>
 
@@ -448,11 +448,11 @@ const page = () => {
                 <span className="ml-1 font-medium">{averageRating}</span>
               </div>
 
-              {/* <p className=" lg:text-gray  font-light text-sm lg:text-base">
+              {/* <p className=" md:text-gray  font-light text-sm md:text-base">
                 Est. ${price}/month
               </p> */}
 
-              <div className="flex items-center lg:hidden  lg:p-2 justify-end gap-2 mt-2 w-full md:w-auto">
+              <div className="flex items-center md:hidden  md:p-2 justify-end gap-2 mt-2 w-full md:w-auto">
                 <div
                   onClick={handleFavoriteToggle}
                   className="justify-center flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
@@ -467,7 +467,7 @@ const page = () => {
                 </div>
                 <div
                   onClick={handleShareClick}
-                  className=" justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
+                  className=" justify-center md:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
                 >
                   <Image
                     width={500}
@@ -479,7 +479,7 @@ const page = () => {
                 </div>
                 <div
                   onClick={handleToggleListings}
-                  className="justify-center lg:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
+                  className="justify-center md:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
                 >
                   <Image
                     width={500}
@@ -494,9 +494,9 @@ const page = () => {
           </div>
         </div>
 
-        <div className="w-full my-3 lg:mt-0 border-t border-b border-[#8F8F8F] py-3">
-          <div className="flex items-center justify-center gap-[1.1rem] flex-wrap lg:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl lg:text-base">
-            <div className="flex items-center gap-4  lg:gap-[8rem]">
+        <div className="w-full my-3 md:mt-0 border-t border-b border-[#8F8F8F] py-3">
+          <div className="flex items-center justify-center gap-[1.1rem] flex-wrap md:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl md:text-base">
+            <div className="flex items-center gap-4  md:gap-[8rem]">
               <span className="flex items-center gap-1">
                 <span className="font-bold text-black">{bedrooms}</span>
                 <span>Beds</span>
@@ -574,7 +574,7 @@ const page = () => {
             Description
           </h2>
           <div>
-            <p className=" text-[#8F8F8F] font-bricolage text-sm lg:text-[18px] font-[300]  lg:w-[73rem] 2xl:w-full 2xl:text-xl pt-4">
+            <p className=" text-[#8F8F8F] font-bricolage text-sm md:text-[18px] font-[300]  md:w-[73rem] 2xl:w-full 2xl:text-xl pt-4">
               {description}
             </p>
           </div>
@@ -592,12 +592,12 @@ const page = () => {
 
         {/* map */}
         <div className="bg-gray-100   w-full rounded-lg">
-          <h2 className="text-xl font-semibold mb-4 pl-4 lg:pl-0 lg:mt-[2rem]  lg:ml-2 ">
+          <h2 className="text-xl font-semibold mb-4 pl-4 md:pl-0 md:mt-[2rem]  md:ml-2 ">
             Map
           </h2>
 
           {/* Map Container */}
-          <div className="w-screen  pt-4 lg:w-full relative rounded-lg  flex items-center overflow-hidden ">
+          <div className="w-screen  pt-4 md:w-full relative rounded-lg  flex items-center overflow-hidden ">
             <MapComponent coordinates={coordinate} />
             <div className="py-4 px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
               <span className="font-medium">
@@ -610,7 +610,7 @@ const page = () => {
           {/* Distance Information*/}
           <DistanceComponent coordinates={coordinate} />
 
-          {/* <div className="grid p-4 lg:p-0 text-xs grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6  2xl:text-base text-gray-700 lg:text-sm">
+          {/* <div className="grid p-4 md:p-0 text-xs grid-cols-2 md:grid-cols-3 md:grid-cols-3 gap-4 mt-6  2xl:text-base text-gray-700 md:text-sm">
           <div className="flex items-center gap-2">
             <Image src="/bus.png" alt="Bus" width={20} height={20} />
             <span className="text-primary  font-medium">.... 5 mins</span> to
@@ -631,7 +631,7 @@ const page = () => {
             <span className="text-primary font-medium">.... 10 mins</span> to
             School
           </div>
-          <div className=" hidden lg:flex items-center gap-2">
+          <div className=" hidden md:flex items-center gap-2">
             <Image src="/pharmacy.png" alt="Pharmacy" width={20} height={20} />
             <span className="text-primary font-medium ">.... 15 mins</span> to
             Pharmacy
@@ -646,20 +646,20 @@ const page = () => {
           fullname={fullname}
           listedBy={listedBy?._id}
         />
-        <div className="hidden lg:mt-[1.5rem] lg:-mb-[2rem]  lg:block w-full">
-          <section className="mt-[3rem]  hidden   font-bricolage lg:flex  flex-col flex-1 ">
-            <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
-              <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
-                <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+        <div className="hidden md:mt-[1.5rem] md:-mb-[2rem]  md:block w-full">
+          <section className="mt-[3rem]  hidden   font-bricolage md:flex  flex-col flex-1 ">
+            <div className="flex flex-col items-start gap-6 justify-center md:max-w-[1200px]w-full">
+              <div className="flex flex-col md:flex-row justify-between items-start w-full  mx-auto">
+                <h1 className="text-black text-[24px] mt-[32px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
                   Single Family Homes for Rent
                 </h1>
-                <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
+                <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
                   Discover a home where every detail enhances your
                   lifestyle-crafted to fit your taste and needs.
                 </p>
               </div>
               <div className="flex flex-col ">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
                   {displayListings
                     ?.filter((listing) => listing?._id !== listingId)
                     .map((listing, index) => (

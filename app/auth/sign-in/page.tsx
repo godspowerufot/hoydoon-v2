@@ -31,12 +31,6 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Password validation
-    const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(password)) {
-      setIsPasswordValid(false);
-      return;
-    }
 
     try {
       const device = await sendDeviceInfo();
@@ -134,20 +128,10 @@ const Signup = () => {
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
-                      const passwordRegex =
-                        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-                      setIsPasswordValid(passwordRegex.test(e.target.value));
                     }}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2  outline-none text-base placeholder-gray-400 pr-12"
                   />
                 </div>
-
-                {!isPasswordValid && (
-                  <p className="text-xs text-gray mt-1 font-light">
-                    It must be a combination of 8 words, letters, numbers,
-                    symbols
-                  </p>
-                )}
               </div>
             </div>
 
@@ -196,7 +180,10 @@ const Signup = () => {
               />
 
               <button
-                onClick={() => signIn("apple")}
+                // onClick={() => signIn("apple")}
+                onClick={() =>
+                  toast.info("Facebook login is not supported at the moment")
+                }
                 disabled={isLoading || isGoogleLoading}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
@@ -211,7 +198,10 @@ const Signup = () => {
               </button>
 
               <button
-                onClick={() => signIn("facebook")}
+                // onClick={() => signIn("facebook")}
+                onClick={() =>
+                  toast.info("Facebook login is not supported at the moment")
+                }
                 disabled={isLoading || isGoogleLoading}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >

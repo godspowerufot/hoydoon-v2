@@ -55,11 +55,12 @@ export default function ListingNavbar() {
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center">
               <Image
-                src="/newlogo.svg"
+                src="/logo-3-transparent.svg"
                 alt="logo"
                 width={100}
-                height={150}
+                height={200}
                 priority
+                className="object-contain w-[141px]"
               />{" "}
             </Link>{" "}
             <div className="relative  w-[20rem]  h-[3rem] hidden border-[#8F8F8F] border-solid border-[1px]  lg:flex items-center bg-gray-100 rounded-[14px] px-2 py-2">
@@ -130,10 +131,10 @@ export default function ListingNavbar() {
               </button>
             ) : (
               <>
-                <button className="bg-black text-white hover:bg-primary px-4 py-1 rounded-full text-base font-bricolage">
+                <Button className="!bg-black text-white hover:bg-primary px-4 !py-2 rounded-full  text-base font-bricolage">
                   <Link href="/auth/sign-in">Login</Link>
-                </button>
-                <Button className="px-4 py-1 h-[32px] rounded-full">
+                </Button>
+                <Button className="px-4 !py-2  w-[92px] rounded-full">
                   <Link href="/auth/sign-up" className="font-light text-base">
                     Register
                   </Link>

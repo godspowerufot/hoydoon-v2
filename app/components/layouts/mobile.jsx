@@ -131,7 +131,7 @@ const MobileNavbar = () => {
                   <div className="flex items-center space-x-2">
                     {/* vertical line */}
                     {/* <div className="w-[2px] h-5 bg-black" /> */}
-                    <span className="font-light border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 text-[16px] whitespace-nowrap">
+                    <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-sm cursor-pointer  transition-colors whitespace-nowrap">
                       Help center
                     </span>
                   </div>
@@ -183,18 +183,28 @@ const MobileNavbar = () => {
             </div>
           ) : (
             <>
-              <div className="w-full mr-[7px]  text-[12px] flex justify-end">
-                <Link
-                  href="
-                https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="bg-[#008D8D] text-white text-[12px] px-2 !w-[111px] py-[6px] rounded-full font-medium">
-                    Download App
-                  </Button>
-                </Link>
-              </div>
+              {pathname === "/helpcenter" ? (
+                <div className="flex items-center gap-2 ml-[3.5rem]">
+                  <span
+                    onClick={() => router.push("/helpcenter/submit-request")}
+                    className="text-gray-800 text-sm cursor-pointer  transition-colors"
+                  >
+                    Submit Request
+                  </span>
+                </div>
+              ) : (
+                <div className="w-full mr-[7px] flex justify-end">
+                  <Link
+                    href="https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="bg-[#008D8D] text-white text-[12px] px-2 !w-[111px] py-[6px] rounded-full font-medium">
+                      Download App
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </>
           )}
         </div>

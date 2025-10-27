@@ -226,7 +226,10 @@ export const MobileSignIn = () => {
 
         <div className="flex  flex-col gap-5">
           <button
-            onClick={() => signIn("apple")}
+            // onClick={() => signIn("apple")}
+            onClick={() =>
+              toast.info("Apple login is not supported at the moment")
+            }
             disabled={isAnyLoading}
             className="lg:w-[9em] lg:hidden gap-3 h-[2.5em] 2xl:text-[1.em] w-full lg:rounded-full p-3 2xl:h-[3em] 2x:p-4 border-[#8F8F8F] border-solid border-[0.8px] flex items-center text-black text-[1em] justify-center lg:justify-center sm:justify-start disabled:opacity-50 disabled:cursor-not-allowed"
           >
@@ -244,7 +247,10 @@ export const MobileSignIn = () => {
             </span>
           </button>
           <button
-            onClick={() => signIn("facebook")}
+            // onClick={() => signIn("facebook")}
+            onClick={() =>
+              toast.info("Facebook login is not supported at the moment")
+            }
             disabled={isAnyLoading}
             className="lg:w-[9em] lg:hidden gap-3 h-[2.5em] 2xl:text-[1.em] w-full lg:rounded-full p-3 2xl:h-[3em] 2x:p-4 border-[#8F8F8F] border-solid border-[0.8px] flex items-center text-black text-[1em] justify-center lg:justify-center sm:justify-start disabled:opacity-50 disabled:cursor-not-allowed"
           >

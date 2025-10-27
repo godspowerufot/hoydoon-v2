@@ -87,15 +87,27 @@ export default function Navbar() {
             {/* Logo */}
             <div className="text-2xl font-bold">
               <Link href="/" className="flex justify-center items-center gap-2">
-                <Image
-                  alt="logo"
-                  width={100}
-                  priority
-                  quality={100}
-                  height={100}
-                  className="object-contain w-[150px] h-[50px]"
-                  src={"/newlogo.svg"}
-                />
+                {scrolled ? (
+                  <Image
+                    alt="logo"
+                    width={100}
+                    priority
+                    quality={100}
+                    height={100}
+                    className="object-contain w-[150px] h-[50px]"
+                    src={"/newlogo.svg"}
+                  />
+                ) : (
+                  <Image
+                    alt="logo"
+                    width={100}
+                    priority
+                    quality={100}
+                    height={100}
+                    className="object-contain w-[150px] h-[50px]"
+                    src={"/logo-2-white.svg"}
+                  />
+                )}
               </Link>
             </div>
 

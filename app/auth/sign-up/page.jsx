@@ -80,7 +80,7 @@ const Signup = () => {
   return (
     <>
       {/* Desktop Layout */}
-      <div className="hidden lg:flex min-h-screen lg:-mt-[3em] 2xl:mt-0 ">
+      <div className="hidden md:flex min-h-screen md:-mt-[3em] 2xl:mt-0 ">
         {/* Left Side - Image */}
         <div className="flex-1 flex items-center justify-end pr-[0.3em] 2xl:pr-[2em]">
           <div className="relative">
@@ -91,7 +91,7 @@ const Signup = () => {
               loading="lazy"
               quality={100}
               src={"/signup.jpg"}
-              className="rounded-[24px] w-[480px] h-[600px] lg:w-[800px] lg:h-[650px] xl:w-[580px] xl:h-[720px] 2xl:w-[800px] 2xl:h-[770px] object-cover  brightness-75"
+              className="rounded-[24px] w-[480px] h-[600px] md:w-[800px] md:h-[650px] xl:w-[580px] xl:h-[720px] 2xl:w-[800px] 2xl:h-[770px] object-cover  brightness-75"
             />
           </div>
         </div>
@@ -162,7 +162,7 @@ const Signup = () => {
                 </div>
 
                 {!isPasswordValid && (
-                  <p className="text-xs text-gray mt-1 font-light">
+                  <p className="text-xs text-red mt-1 font-light">
                     It must be a combination of 8 letters, numbers, symbols
                   </p>
                 )}
@@ -223,7 +223,10 @@ const Signup = () => {
               />
 
               <button
-                onClick={() => signIn("apple")}
+                // onClick={() => signIn("apple")}
+                onClick={() =>
+                  toast.info("Apple login is not supported at the moment")
+                }
                 disabled={isLoading || isGoogleLoading}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
@@ -238,7 +241,10 @@ const Signup = () => {
               </button>
 
               <button
-                onClick={() => signIn("facebook")}
+                // onClick={() => signIn("facebook")}
+                onClick={() =>
+                  toast.info("Facebook login is not supported at the moment")
+                }
                 disabled={isLoading || isGoogleLoading}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >

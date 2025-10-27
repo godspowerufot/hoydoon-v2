@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
 import Input from "../components/common/inputs/input";
 import Link from "next/link";
+import { toast } from "react-toastify";
 import SearchBar from "../components/common/searchcomponent";
 import Article from "../components/common/Article";
 import { useRouter } from "next/navigation";
@@ -19,11 +20,7 @@ export default function Home() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
   const handleSearch = () => {
-    const queryParams = new URLSearchParams({
-      ...(formData.location && { location: formData.location }),
-    }).toString();
-
-    router.push(`/agent/all-agent?${queryParams}`);
+    toast.info("coming soon!!");
   };
   return (
     <>
