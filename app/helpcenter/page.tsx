@@ -9,15 +9,15 @@ import Pagination from "../components/common/pagination";
 // Time Complexity: O(1) - renders fixed number of skeleton cards
 const ArticleSkeleton = () => {
   return (
-    <div className="space-y-4 w-full max-w-sm rounded-xl border border-gray-200 p-4 shadow-sm bg-white animate-pulse">
-      <div className="h-48 rounded-md bg-gray-200" />
-      <div className="h-4 rounded bg-gray-200 w-3/4" />
-      <div className="h-4 rounded bg-gray-200 w-1/2" />
-      <div className="h-3 rounded bg-gray-200 w-5/6" />
+    <div className="space-y-4 w-full max-w-full rounded-xl border border-gray p-4 shadow-sm bg-white animate-pulse">
+      <div className="h-48 rounded-md bg-gray" />
+      <div className="h-4 rounded bg-gray w-3/4" />
+      <div className="h-4 rounded bg-gray w-1/2" />
+      <div className="h-3 rounded bg-gray w-5/6" />
       <div className="flex space-x-2 mt-2">
-        <div className="h-3 w-1/4 rounded bg-gray-200" />
-        <div className="h-3 w-1/4 rounded bg-gray-200" />
-        <div className="h-3 w-1/4 rounded bg-gray-200" />
+        <div className="h-3 w-1/4 rounded bg-gray" />
+        <div className="h-3 w-1/4 rounded bg-gray" />
+        <div className="h-3 w-1/4 rounded bg-gray" />
       </div>
     </div>
   );
@@ -72,7 +72,7 @@ function SupportCategories({
       <button
         onClick={() => onCategorySelect(null)}
         disabled={isSearching}
-        className={`border text-xl font-[500] px-6 py-3 rounded-md transition-all duration-200 ${
+        className={`border text-xl font-[500] px-6 py-3 rounded-md transition-all duration ${
           selectedCategory === null
             ? "bg-primary text-white border-primary"
             : "border-primary text-primary hover:bg-primary hover:text-white"
@@ -86,7 +86,7 @@ function SupportCategories({
           key={category}
           onClick={() => onCategorySelect(category)}
           disabled={isSearching}
-          className={`border text-xl font-[500] px-6 py-3 rounded-md transition-all duration-200 ${
+          className={`border text-xl font-[500] px-6 py-3 rounded-md transition-all duration ${
             selectedCategory === category
               ? "bg-primary text-white border-primary"
               : "border-primary text-primary hover:bg-primary hover:text-white"
@@ -106,7 +106,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
-  const articlesPerPage = 13;
+  const articlesPerPage = 12;
 
   interface FormData {
     location: string;
@@ -371,7 +371,7 @@ export default function Home() {
         {/* Articles Grid or Loading State */}
         {isSearching ? (
           /* Loading Skeleton Grid */
-          <div className="p-2 grid grid-row grid-cols-1 md:grid-cols-3 gap-7 place-items-center gap-y-6">
+          <div className="p-2 grid grid-row grid-cols-1 md:grid-cols-3 gap-7  w-full place-items-center gap-y-6">
             {[...Array(6)].map((_, index) => (
               <ArticleSkeleton key={index} />
             ))}

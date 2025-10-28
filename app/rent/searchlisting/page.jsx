@@ -225,22 +225,31 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
         </button>
         {showAllFiltersDropdown && (
           <>
-            <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+              onClick={() => setShowAllFiltersDropdown(false)}
+            ></div>
 
-            <div className="absolute bg-white top-[20%] z-[1111] rounded-xl p-4 w-full max-w-[14rem] overflow-y-auto h-[400px] no-scrollbar">
+            <div
+              ref={modalRef}
+              className="absolute bg-white top-[20%] z-[1111] rounded-xl p-4 w-full max-w-[14rem] overflow-y-auto h-[400px] no-scrollbar"
+            >
+              {" "}
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-sm text-gray-600 font-[400]">Filters</h2>
                 <button
                   className="text-sm text-primary font-[400]"
-                  onClick={() => {
+                  onClick={async () => {
+                    await new Promise((resolve) => setTimeout(resolve, 500));
                     handleSearchClick();
+                    await new Promise((resolve) => setTimeout(resolve, 300));
+                    setIsSearching(false);
                     setShowAllFiltersDropdown(false);
                   }}
                 >
                   Done
                 </button>
               </div>
-
               {/* Type Filter */}
               <div className="mb-4">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">Type</h3>
@@ -266,7 +275,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                   ))}
                 </ul>
               </div>
-
               {/* price secction */}
               <div className="mb-4">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
@@ -340,7 +348,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                   </ul>
                 </div>
               )}
-
               {/* house tpe */}
               {filters["home-type"] !== "land" && (
                 <div className="mb-4">
@@ -657,7 +664,11 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
         <button
           onClick={async () => {
             setIsSearching(true);
+            // Add a small delay to ensure the loading state is visible
+            await new Promise((resolve) => setTimeout(resolve, 500));
             handleSearchClick();
+            // Keep the loading state for a bit longer to show feedback
+            await new Promise((resolve) => setTimeout(resolve, 300));
             setIsSearching(false);
           }}
           className="px-4 py-[6px] bg-primary text-base text-white font-light rounded-md flex items-center justify-center"
@@ -897,22 +908,26 @@ const page = () => {
         <MapComponent coordinates={coordinates} />
       ) : (
         <>
-          {isAllloading && (
-            <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {isAllloading ? (
+            <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 gap-6 p-5 md:p-0">
               {[...Array(6)].map((_, index) => (
                 <PropertySkeleton key={index} />
               ))}
             </div>
-          )}
-          {displayListings.length === 0 ? (
-            <p className="text-gray-600 text-center mt-6">
-              No listings found for your search.
-            </p>
+          ) : displayListings.length === 0 ? (
+            <div className="flex flex-col items-center justify-center mt-12 p-8">
+              <p className="text-gray-600 text-center text-lg">
+                No listings found for your search.
+              </p>
+              <p className="text-gray-400 text-center text-sm mt-2">
+                Try adjusting your filters or search criteria.
+              </p>
+            </div>
           ) : (
-            <div className=" grid     grid-cols-1 md:grid-cols-3 gap-4 md:gap-[1rem] mt-[1.5rem] md:mt-[1rem] w-full  p-5 md:p-0 place-items-center">
-              {[...displayListings].map((items, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-[1rem] mt-[1.5rem] md:mt-[1rem] w-full p-5 md:p-0 place-items-center">
+              {displayListings.map((items, index) => (
                 <PropertyListCard
-                  key={index}
+                  key={items?._id || index}
                   imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                   altText={
                     items?.imageUrls?.[0]?.altText ||
@@ -924,7 +939,7 @@ const page = () => {
                   bedrooms={items?.item?.bedrooms}
                   description={
                     items?.item?.description ||
-                    "No description available for   ... click outside,click on any should  this property."
+                    "No description available for this property."
                   }
                   _id={items?._id}
                   title={items?.item?.title || "Untitled Property"}
@@ -936,12 +951,14 @@ const page = () => {
               ))}
             </div>
           )}
-          <Pagination
-            totalPages={totalPages}
-            display={displayListings}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
+          {!isAllloading && displayListings.length > 0 && (
+            <Pagination
+              totalPages={totalPages}
+              display={displayListings}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          )}
         </>
       )}
       {/* second div layout  */}

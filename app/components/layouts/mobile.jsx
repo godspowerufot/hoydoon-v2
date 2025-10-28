@@ -184,7 +184,7 @@ const MobileNavbar = () => {
           ) : (
             <>
               {pathname === "/helpcenter" ? (
-                <div className="flex items-center gap-2 ml-[3.5rem]">
+                <div className="flex items-center gap-2  w-full justify-end mr-5 flex-end">
                   <span
                     onClick={() => router.push("/helpcenter/submit-request")}
                     className="text-gray-800 text-sm cursor-pointer  transition-colors"

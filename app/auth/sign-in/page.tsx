@@ -55,9 +55,9 @@ const Signup = () => {
   return (
     <>
       {/* Desktop Layout */}
-      <div className="hidden lg:flex min-h-screen ">
+      <div className="hidden md:flex min-h-screen ">
         {/* Left Side - Image */}
-        <div className="flex-1 flex items-center lg:ml-[4rem] justify-end lg:pr-12 2xl:pr-20  ">
+        <div className="flex-1 flex items-center md:ml-[4rem] justify-end md:pr-12 2xl:pr-20  ">
           <div className="relative">
             <Image
               alt="authBanner"
@@ -66,7 +66,7 @@ const Signup = () => {
               loading="lazy"
               quality={100}
               src={"/authBanner.webp"}
-              className="rounded-[24px] w-[480px] h-[600px] lg:w-[800px] lg:h-[650px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[700px] object-cover "
+              className="rounded-[24px] w-[480px] h-[600px] md:w-[800px] md:h-[650px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[700px] object-cover "
             />
           </div>
         </div>
@@ -182,7 +182,7 @@ const Signup = () => {
               <button
                 // onClick={() => signIn("apple")}
                 onClick={() =>
-                  toast.info("Facebook login is not supported at the moment")
+                  toast.info("Apple login is not supported at the moment")
                 }
                 disabled={isLoading || isGoogleLoading}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray rounded-full hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"

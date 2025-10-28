@@ -144,17 +144,17 @@ export default function Navbar() {
             <div className="flex gap-2">
               {isAuthenticated ? (
                 // Logout button when user is logged in
-                <button
+                <Button
                   onClick={handlelogout}
                   disabled={isLoggingOut}
                   className={`px-4 py-1 rounded-full border-[1px] font-[300] text-base transition-all duration-200 ${
                     scrolled
-                      ? "border-primary border-solid text-primary bg-white"
-                      : "bg-primary border-none text-white"
+                      ? "!border-primary border-solid !text-primary !bg-white"
+                      : "!bg-primary !border-none !text-white"
                   } ${isLoggingOut ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   {isLoggingOut ? "Logging out..." : "Logout"}
-                </button>
+                </Button>
               ) : (
                 // Login & Register buttons when user is not logged in
                 <>

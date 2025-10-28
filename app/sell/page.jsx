@@ -157,7 +157,7 @@ export default function Home() {
             </p>
           </div>
           <div className="m-4">
-            <div className=" relative -mt-4 rounded-full     w-[21rem]  ">
+            <div className=" relative -mt-4 2xl:-mt-[3rem] rounded-full     w-[21rem]  ">
               <Input
                 label=""
                 type="text"
