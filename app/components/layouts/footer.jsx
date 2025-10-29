@@ -163,12 +163,12 @@ const Appfooter = () => {
                   <p className="font-medium text-[#F9FAFB]">Legal</p>
                   <ul className=" mt-1 lg:mt-[4px] space-y-2 text-sm">
                     <li>
-                      <a href="#" className="transition hover:opacity-75">
+                      <a href="/terms" className="transition hover:opacity-75">
                         Terms of use
                       </a>
                     </li>
                     <li>
-                      <a href="" className="transition hover:opacity-75">
+                      <a href="/policy" className="transition hover:opacity-75">
                         Privacy policy
                       </a>
                     </li>
