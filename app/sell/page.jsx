@@ -83,7 +83,7 @@ export default function Home() {
             </p>
           </div>
           <div className="m-4">
-            <Link href={"/agent/all-agent"}>
+            <Link href={"/rent/searchlisting"}>
               <Button className="!w-full mt-6 lg:-mt-4 text-base   h-[3rem] lg:!p-2">
                 Get Started
               </Button>
@@ -157,14 +157,14 @@ export default function Home() {
             </p>
           </div>
           <div className="m-4">
-            <div className=" relative -mt-4 2xl:-mt-[3rem] rounded-full     w-[21rem]  ">
+            <div className=" relative -mt-4 2xl:-mt-[2.7rem] rounded-full     w-[21rem]  ">
               <Input
                 label=""
                 type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="  p-5 !rounded-[24px] mt-[3rem]"
+                className="  p-5  !h-[2.8rem] !rounded-[24px] mt-[3rem]"
                 placeholder="Enter your home address"
               />
 

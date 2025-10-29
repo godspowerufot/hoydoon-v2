@@ -1,17 +1,18 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import ArticlesSection from "../components/common/Article";
 import Agent from "../components/about/Agent";
+import Content from "../components/about/Content";
 
 const Sell = dynamic(() => import("../components/about/sell"));
 const Buy = dynamic(() => import("../components/about/Buy"));
 // ✅ Fixed: Added import() wrapper
 const TalkToAgent = dynamic(() => import("../components/about/Talktoagent"));
 
-const Content = () => {
+const DefaultContent = () => {
   return (
     <div>
       {/* image */}
@@ -327,26 +328,42 @@ const Content = () => {
 };
 
 const Page = () => {
-  const [activeTab, setActiveTab] = useState("about");
+  const [activeTab, setActiveTab] = useState("Default");
+
+  // 🧭 Listen for browser back/forward events
+  useEffect(() => {
+    const handlePopState = () => {
+      const currentTab = window.location.hash.replace("#", "") || "Default";
+      setActiveTab(currentTab);
+    };
+
+    // Initialize tab from URL hash
+    handlePopState();
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  // 🧩 When changing tab, push it to browser history
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+    window.history.pushState({}, "", `#${tabId}`);
+  };
 
   return (
     <div className="md:max-w-[1240px] container mx-auto md:mt-[4rem] px-4 md:px-0">
-      {/* ✅ Wrap this part in a relative container */}
       <div className="relative border-b mt-4 border-gray">
         <div className="flex justify-between">
-          {/* Left Tabs */}
           <div className="flex flex-wrap gap-6">
             {[
               { id: "about", label: "About Us" },
               { id: "agents", label: "Our Agents" },
-              { id: "buy", label: "Buy with  Hoydoon" },
-              { id: "sell", label: "Sell with  Hoydoon" },
+              { id: "buy", label: "Buy with Hoydoon" },
+              { id: "sell", label: "Sell with Hoydoon" },
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => {
-                  setActiveTab(tab.id);
-                }}
+                onClick={() => handleTabChange(tab.id)}
                 className={`relative py-5 text-sm md:text-[18px] transition-colors duration-300 ${
                   activeTab === tab.id
                     ? "text-black font-bold"
@@ -362,47 +379,22 @@ const Page = () => {
           </div>
         </div>
 
-        {/* ✅ Floating Button on the Border Line */}
         <button
-          className="absolute right-0 translate-y-1/2 bg-primary text-white px-3 py-3 md:w-[250px] md:h-[50px] text-sm md:text-[18px] hover:opacity-90 transition "
-          style={{ bottom: "24px" }} // align exactly with the border line
-          onClick={() => {
-            setActiveTab("Talk");
-          }}
+          className="absolute right-0 translate-y-1/2 bg-primary text-white px-3 py-3 md:w-[250px] md:h-[50px] text-sm md:text-[18px] hover:opacity-90 transition"
+          style={{ bottom: "24px" }}
+          onClick={() => handleTabChange("Talk")}
         >
           Talk to a Hoydoon Agent
         </button>
       </div>
 
-      {/* Tab Content */}
-      <div className="mt-5 ">
-        {activeTab === "about" && (
-          <div className="">
-            <Content />
-          </div>
-        )}
-
-        {activeTab === "agents" && (
-          <div className="">
-            <Agent />
-          </div>
-        )}
-        {activeTab === "buy" && (
-          <div className="">
-            <Buy />
-          </div>
-        )}
-
-        {activeTab === "sell" && (
-          <div className="">
-            <Sell />
-          </div>
-        )}
-        {activeTab === "Talk" && (
-          <div className="">
-            <TalkToAgent />
-          </div>
-        )}
+      <div className="mt-5">
+        {activeTab === "Default" && <DefaultContent />}
+        {activeTab === "about" && <Content />}
+        {activeTab === "agents" && <Agent />}
+        {activeTab === "buy" && <Buy />}
+        {activeTab === "sell" && <Sell />}
+        {activeTab === "Talk" && <TalkToAgent />}
       </div>
     </div>
   );

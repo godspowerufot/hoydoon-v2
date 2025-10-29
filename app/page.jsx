@@ -512,8 +512,9 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               What People Are Saying
             </h1>
             <p className="text-gray  md:block hidden text-sm md:text-xl font-bricolage w-full md:w-[30em]">
-              Discover a home where every detail enhances your lifestyle—crafted
-              to fit your taste and needs.
+              Hear directly from our users about their experiences. Whether
+              they’re finding trusted agents or securing great deals, our
+              community speaks for itself..
             </p>
             <p className="text-gray font-light md:hidden block text-sm md:text-xl font-bricolage w-full md:w-[30em]">
               Discover what our clients have to say in our customer testimonials

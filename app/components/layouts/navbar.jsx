@@ -149,7 +149,7 @@ export default function Navbar() {
                 <Button
                   onClick={handlelogout}
                   disabled={isLoggingOut}
-                  className={`px-4 py-1 rounded-full border-[1px] font-[300] text-base transition-all duration-200 ${
+                  className={`p-1 w-[92px] rounded-full border-[1px] font-[300] text-base transition-all duration-200 ${
                     scrolled
                       ? "!border-primary border-solid !text-primary !bg-white"
                       : "!bg-primary !border-none !text-white"
