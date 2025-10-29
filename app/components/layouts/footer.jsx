@@ -211,9 +211,15 @@ const Appfooter = () => {
               </p>
               <div className="flex flex-row gap-4 lg:mr-[1em]  ml-[3rem]  mt-[-1rem] lg:mt-0 lg:ml-0 text-sm lg:text-base mb-4 lg:mb-0">
                 <p className="cursor-pointer hover:underline">
-                  Terms and conditions
+                  <a href="/terms" className="text-white">
+                    Terms and conditions
+                  </a>
                 </p>
-                <p className="cursor-pointer hover:underline">Privacy policy</p>
+                <p className="cursor-pointer hover:underline">
+                  <a href="/policy" className="text-white">
+                    Privacy policy
+                  </a>
+                </p>
               </div>
             </div>
           </div>
