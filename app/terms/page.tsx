@@ -18,7 +18,7 @@ const DefaultContent = () => {
       {/* image */}
       <div className="relative w-full h-[400px] md:h-[500px] rounded-md overflow-hidden">
         <Image
-          src="/terms.png"
+          src="https://hoydoonstorage.blob.core.windows.net/web-images/terms.png"
           alt="Customer service representative on phone"
           fill
           className="object-cover"
