@@ -97,17 +97,17 @@ function OfficeLocator() {
   };
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-gray-50 md:py-16">
       <div className=" mx-auto px-2 ">
         <div className="rounded-3xl ">
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2  gap-[18rem] items-start">
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2  md:gap-[18rem] items-start">
             <div>
-              <h1 className="text-4xl md:text-5xl font-semibold text-[#1E1E1E] mb-4">
+              <h1 className=" txt-2xl md:text-3xl md:text-5xl font-semibold text-[#1E1E1E] mb-4">
                 Locate a Hoydoon office near you
               </h1>
             </div>
             <div className="lg:text-start flex flex-end">
-              <p className="text-[#8F8F8F] font-light text-lg leading-relaxed ">
+              <p className="text-[#8F8F8F] font-light text-base md:text-lg leading-relaxed ">
                 Our offices are listed below. No location nearby? Reach out,
                 we’ve got agents nationwide.{" "}
               </p>
@@ -237,9 +237,9 @@ const ContactPage = () => {
           </div>
 
           {/* Heading and Text */}
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-[18rem] items-start">
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 md:gap-[18rem] items-start">
             <div>
-              <h1 className="text-3xl md:text-5xl font-semibold text-[#1E1E1E] mb-4">
+              <h1 className=" txt-2xl md:text-3xl md:text-5xl font-semibold text-[#1E1E1E] mb-4">
                 Contact Us
               </h1>
             </div>
@@ -268,7 +268,7 @@ const ContactPage = () => {
                       />{" "}
                     </div>
                   </div>
-                  <h3 className="text-3xl font-semibold text-teal-600 mb-4">
+                  <h3 className=" txt-2xl md:text-3xl font-semibold text-teal-600 mb-4">
                     {method.title}
                   </h3>
                   <p className="text-[#1E1E1E] text-sm leading-relaxed max-w-xs mx-auto">
@@ -289,7 +289,7 @@ const ContactPage = () => {
                   />{" "}
                 </div>
               </div>
-              <h3 className="text-3xl font-semibold text-teal-600 mb-4">
+              <h3 className=" txt-2xl md:text-3xl font-semibold text-teal-600 mb-4">
                 Connect With Us
               </h3>
               <div className="grid grid-cols-4 gap-2 max-w-[16rem] mx-auto">

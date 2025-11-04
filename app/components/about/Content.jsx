@@ -5,7 +5,7 @@ const Content = () => {
     <div>
       <div className="relative w-full h-[400px] md:h-[500px] rounded-md overflow-hidden">
         <Image
-          src="/about-us.png"
+          src="https://hoydoonstorage.blob.core.windows.net/web-images/about-us.webp"
           alt="Customer service representative on phone"
           fill
           className="object-cover"
@@ -99,7 +99,7 @@ const Content = () => {
       {/* section2 */}
       <div className="relative my-[3rem] w-full h-[400px] md:h-[500px] rounded-md overflow-hidden">
         <Image
-          src="/value-us.png"
+          src="https://hoydoonstorage.blob.core.windows.net/web-images/value-us.webp"
           alt="Customer service representative on phone"
           fill
           className="object-cover"

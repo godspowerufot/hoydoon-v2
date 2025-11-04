@@ -39,7 +39,7 @@ const DefaultContent = () => {
           you agree to the terms of this Privacy Policy. 
         </p>
 
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h1 className="md:text-[2rem] text-xl  mt-5 md:mt-[3rem] font-semibold ">
           {" "}
           Information We Collect 
         </h1>
@@ -118,7 +118,7 @@ const DefaultContent = () => {
           third parties.{" "}
         </p>
       </div>
-      <div className="relative w-full md:mt-[3rem] h-[400px] md:h-[500px] rounded-md overflow-hidden">
+      <div className="relative w-full mt-5 md:mt-[3rem] h-[400px] md:h-[500px] rounded-md overflow-hidden">
         <Image
           src="/policy2.jpg"
           alt="Customer service representative on phone"
@@ -205,7 +205,7 @@ const DefaultContent = () => {
           off.
         </p>
       </div>
-      <div className="relative w-full md:mt-[3rem] h-[400px] md:h-[500px] rounded-md overflow-hidden">
+      <div className=" mt-5 relative w-full md:mt-[3rem] h-[400px] md:h-[500px] rounded-md overflow-hidden">
         <Image
           src="/policy3.png"
           alt="Customer service representative on phone"

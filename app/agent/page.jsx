@@ -40,7 +40,10 @@ export default function Page() {
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-cover bg-center z-[-1]"
-          style={{ backgroundImage: "url('/webp/agentheader.webp')" }}
+          style={{
+            backgroundImage:
+              "url('https://hoydoonstorage.blob.core.windows.net/web-images/agentheader.webp')",
+          }}
         >
           {/* Overlay Div */}
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-[0.3] z-[-1]"></div>

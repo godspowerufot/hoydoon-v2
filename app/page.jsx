@@ -305,7 +305,10 @@ export default function Home() {
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full  bg-cover bg-center z-[-1]"
-          style={{ backgroundImage: "url('/headertwo.webp')" }}
+          style={{
+            backgroundImage:
+              "url('https://hoydoonstorage.blob.core.windows.net/web-images/headertwo.webp')",
+          }}
         ></div>
         {/* Content Section */}
         <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] mt-[2rem] md:mt-[4rem]  p-3 md:p-0  md:gap-4 h-full ">
@@ -393,7 +396,9 @@ export default function Home() {
               width={480}
               quality={100}
               height={300} // Reduced size of logo
-              src={"/house-app.png"}
+              src={
+                "https://hoydoonstorage.blob.core.windows.net/web-images/house-app.webp"
+              }
             />
           </span>
         </div>

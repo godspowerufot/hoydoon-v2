@@ -34,7 +34,7 @@ const DefaultContent = () => {
           do not use this website. 
         </p>
 
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h1 className="md:text-[2rem] text-xl mt-5 md:mt-[3rem] font-semibold ">
           {" "}
           About Hoydoon 
         </h1>
@@ -111,7 +111,7 @@ const DefaultContent = () => {
           violate these Terms or our Community Guidelines. 
         </p>
       </div>
-      <div className="relative w-full md:mt-[3rem] h-[400px] md:h-[500px] rounded-md overflow-hidden">
+      <div className="relative w-full mt-5 md:mt-[3rem] h-[400px] md:h-[500px] rounded-md overflow-hidden">
         <Image
           src="/terms3.png"
           alt="Customer service representative on phone"
@@ -225,7 +225,7 @@ const DefaultContent = () => {
           property-related decisions or transactions.
         </p>
       </div>
-      <div className="relative w-full md:mt-[3rem] h-[400px] md:h-[500px] rounded-md overflow-hidden">
+      <div className="relative w-full mt-5  md:mt-[3rem] h-[400px] md:h-[500px] rounded-md overflow-hidden">
         <Image
           src="/terms2.png"
           alt="Customer service representative on phone"

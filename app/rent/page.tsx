@@ -42,7 +42,8 @@ export default function Home() {
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
           style={{
-            backgroundImage: "url('/rentHomePage.webp')",
+            backgroundImage:
+              "url('https://hoydoonstorage.blob.core.windows.net/web-images/rentHomePage.webp')",
             minHeight: "100%",
             minWidth: "100vw",
           }}

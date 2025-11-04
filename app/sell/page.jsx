@@ -28,7 +28,10 @@ export default function Home() {
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
-          style={{ backgroundImage: "url('/seller.png')" }}
+          style={{
+            backgroundImage:
+              "url('https://hoydoonstorage.blob.core.windows.net/web-images/seller.webp')",
+          }}
         >
           {/* Overlay Div */}
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-[0.1] z-[-1]"></div>
@@ -61,7 +64,7 @@ export default function Home() {
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
-              src="/sell1.png" // Replace with actual image path
+              src="https://hoydoonstorage.blob.core.windows.net/web-images/sell1.webp" // Replace with actual image path
               alt="Agents talking"
               layout="fill"
               objectFit="cover"
@@ -95,7 +98,7 @@ export default function Home() {
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
-              src="/sell2.png" // Replace with actual image path
+              src="https://hoydoonstorage.blob.core.windows.net/web-images/sell2.webp" // Replace with actual image path
               alt="Agents talking"
               layout="fill"
               objectFit="cover"
@@ -136,7 +139,7 @@ export default function Home() {
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
-              src="/sell3.png" // Replace with actual image path
+              src="https://hoydoonstorage.blob.core.windows.net/web-images/sell3.webp" // Replace with actual image path
               alt="Agents talking"
               layout="fill"
               objectFit="cover"
