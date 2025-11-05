@@ -42,3 +42,8 @@ next-env.d.ts
 public.zip
 public/png 2.zip
 *.zip
+public/png 2.zip
+public.zip
+*.zip # Optionally ignore all zip files
+public/png 2.zip
+public.zip
