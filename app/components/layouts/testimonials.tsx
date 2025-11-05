@@ -2,37 +2,24 @@ import Image from "next/image";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function TestimonialCard({ testimonial }: any) {
-  // If no testimonial data, return null or a fallback
-  if (!testimonial) {
-    return null;
-  }
+  if (!testimonial) return null;
 
   const { comment, rating, user } = testimonial;
 
-  // Function to render stars with conditional coloring
+  // Function to render stars with half-star logic
   const renderStars = () => {
-    return Array(5)
-      .fill(0)
-      .map((_, i) => {
-        // If rating is 5, color all stars. Otherwise, color based on rating and make the last one gray
-        let starColor;
-        if (rating === 5) {
-          starColor = "#09858D"; // All stars colored if rating is 5
-        } else {
-          if (i < rating) {
-            starColor = "#09858D"; // Colored stars based on rating
-          } else if (i === 4) {
-            starColor = "#D1D5DB"; // Last star gray
-          } else {
-            starColor = "#D1D5DB"; // Unfilled stars gray
-          }
-        }
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
 
-        return (
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        // Full star
+        stars.push(
           <svg
             key={i}
             xmlns="http://www.w3.org/2000/svg"
-            fill={starColor}
+            fill="#09858D"
             viewBox="0 0 24 24"
             stroke="none"
             className="w-5 h-5"
@@ -40,7 +27,48 @@ export default function TestimonialCard({ testimonial }: any) {
             <path d="M12 .587l3.668 7.568L24 9.75l-6 5.84L19.336 24 12 19.897 4.664 24 6 15.59 0 9.75l8.332-1.595L12 .587z" />
           </svg>
         );
-      });
+      } else if (i === fullStars && hasHalfStar) {
+        // Half star
+        stars.push(
+          <div key={i} className="relative w-5 h-5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#D1D5DB"
+              viewBox="0 0 24 24"
+              stroke="none"
+              className="absolute inset-0 w-5 h-5"
+            >
+              <path d="M12 .587l3.668 7.568L24 9.75l-6 5.84L19.336 24 12 19.897 4.664 24 6 15.59 0 9.75l8.332-1.595L12 .587z" />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#09858D"
+              viewBox="0 0 24 24"
+              stroke="none"
+              className="absolute inset-0 w-5 h-5 overflow-hidden"
+              style={{ clipPath: "inset(0 50% 0 0)" }} // fill half
+            >
+              <path d="M12 .587l3.668 7.568L24 9.75l-6 5.84L19.336 24 12 19.897 4.664 24 6 15.59 0 9.75l8.332-1.595L12 .587z" />
+            </svg>
+          </div>
+        );
+      } else {
+        // Empty star
+        stars.push(
+          <svg
+            key={i}
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#D1D5DB"
+            viewBox="0 0 24 24"
+            stroke="none"
+            className="w-5 h-5"
+          >
+            <path d="M12 .587l3.668 7.568L24 9.75l-6 5.84L19.336 24 12 19.897 4.664 24 6 15.59 0 9.75l8.332-1.595L12 .587z" />
+          </svg>
+        );
+      }
+    }
+    return stars;
   };
 
   return (
@@ -53,7 +81,7 @@ export default function TestimonialCard({ testimonial }: any) {
         &ldquo;
         {comment ||
           "Amazing service! Highly recommend this platform for anyone looking for quality accommodations."}
-        &ldquo;
+        &rdquo;
       </p>
 
       {/* User Info */}

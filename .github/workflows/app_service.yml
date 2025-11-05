@@ -1,0 +1,73 @@
+name: App Service with ACR
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+env:
+    AZURE_WEBAPP_NAME: hoydoon-web-app
+    ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
+    ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
+    ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        environment:
+            name: production
+            url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Log in to Azure Container Registry
+              uses: docker/login-action@v3
+              with:
+                  registry: ${{ env.ACR_LOGIN_SERVER }}
+                  username: ${{ env.ACR_USERNAME }}
+                  password: ${{ env.ACR_PASSWORD }}
+
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v3
+
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v5
+              with:
+                  context: .
+                  push: true
+                  tags: ${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:${{ github.sha }},${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:latest
+                  cache-from: type=registry,ref=${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:buildcache
+                  cache-to: type=registry,ref=${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:buildcache,mode=max
+                  build-args: |
+                      NEXT_FACEBOOK_ID=${{ secrets.NEXT_FACEBOOK_ID }}
+                      NEXT_FACEBOOK_SECRET=${{ secrets.NEXT_FACEBOOK_SECRET }}
+                      NEXT_GOOGLES_MAP_ID=${{ secrets.NEXT_GOOGLES_MAP_ID }}
+                      NEXT_GOOGLE_CLIENT_SECRET=${{ secrets.NEXT_GOOGLE_CLIENT_SECRET }}
+                      NEXT_PUBLIC_GOOGLE_CLIENT_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}
+                      NEXT_PUBLIC_GOOGLE_DISTANCE_API_KEY=${{ secrets.NEXT_PUBLIC_GOOGLE_DISTANCE_API_KEY }}
+                      NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
+                      NEXT_PUBLIC_GOOGLE_REDIRECT_URI=${{ secrets.NEXT_PUBLIC_GOOGLE_REDIRECT_URI }}
+                      NEXT_MAILCHIMP_API_KEY=${{ secrets.NEXT_MAILCHIMP_API_KEY }}
+                      NEXT_MAILCHIMP_API_SERVER=${{ secrets.NEXT_MAILCHIMP_API_SERVER }}
+                      NEXT_MAILCHIMP_AUDIENCE_ID=${{ secrets.NEXT_MAILCHIMP_AUDIENCE_ID }}
+                      NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}
+                      EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}
+                      EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+                      NEXT_APPLE_KEY_ID=${{ secrets.NEXT_APPLE_KEY_ID }}
+                      NEXT_APPLE_TEAM_ID=${{ secrets.NEXT_APPLE_TEAM_ID }}
+                      NEXT_APPLE_ID=${{ secrets.NEXT_APPLE_ID }}
+                      NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
+                      NEXT_APPLE_PRIVATE_KEY=${{ secrets.NEXT_APPLE_PRIVATE_KEY }}
+                      NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}
+
+            - name: Deploy to Azure Web App
+              id: deploy-to-webapp
+              uses: azure/webapps-deploy@v3
+              with:
+                  app-name: ${{ env.AZURE_WEBAPP_NAME }}
+                  slot-name: "Production"
+                  publish-profile: ${{ secrets.APP_SERVICE_PUBLISH_PROFILE }}
+                  images: ${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:${{ github.sha }}

@@ -15,9 +15,9 @@ import { toast } from "react-toastify";
 
 const Breadcrumb = () => {
   return (
-    <div className="flex  items-center justify-between gap-[0.2rem] lg:px-4 py-2  mt-[3rem] lg:mt-[5rem] w-full  bg-gray-100">
+    <div className="flex  items-center justify-between gap-[0.2rem] md:px-0 py-2  mt-[3rem] md:mt-[5rem] w-full  bg-gray-100">
       {/* Left Section: Back Arrow and Breadcrumb */}
-      <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage text-gray-600">
+      <div className="flex items-start justify-center  gap-2 text-[1.08rem] font-bricolage text-gray">
         {/* Back Arrow */}
         <Image
           width={500}
@@ -114,25 +114,25 @@ const page = () => {
   }
 
   return (
-    <div className="mt-2 flex flex-col justify-center items-center  w-full lg:max-w-[1230px] ">
+    <div className="mt-2 flex flex-col justify-center items-center  w-full md:max-w-[1230px] ">
       {" "}
       <Breadcrumb />
-      <div className=" mt-3 relative rounded-lg  flex items-center overflow-hidden">
+      <div className=" mt-3 w-full relative rounded-lg  flex items-center overflow-hidden">
         <Image
           src="/webp/sell.webp" // Replace with actual map image
           alt="Map"
           width={700}
           height={300}
-          className=" 2xl:h-auto w-full rounded-[15px] lg:h-[38rem]"
+          className=" 2xl:h-auto w-full rounded-[15px] md:h-[38rem]"
         />
       </div>
       {/* second layout */}
-      <div className="  max-md:w-full  mt-[3rem] lg:px-4 py-7">
-        <h1 className="lg:text-[2rem] text-xl  font-semibold ">
+      <div className="  max-md:w-full  mt-[3rem] md:px-0 py-7">
+        <h1 className="md:text-[2rem] text-xl  font-semibold ">
           {" "}
           Sell your Home with Hoydoon
         </h1>
-        <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
+        <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Are you thinking about selling your home? We’re here to help you every
           step of the way! Our team will work closely with you to highlight your
           home’s best features, attract the right buyers, and maximize its
@@ -142,26 +142,26 @@ const page = () => {
           start planning for a successful and rewarding home-selling experience!{" "}
         </p>
       </div>
-      <div className=" w-full lg:px-4 py-4">
-        <h1 className="lg:text-[2rem] text-xl  font-semibold ">
+      <div className=" w-full md:px-0 py-4">
+        <h1 className="md:text-[2rem] text-xl  font-semibold ">
           {" "}
           Choose the perfect agent for your needs.
         </h1>
-        <p className=" text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
+        <p className=" text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Hoydoon makes finding the right real estate agent simple and
           stress-free. Whether you're buying, selling, or renting, we connect
           you with trusted professionals tailored to your needs. Browse detailed
           profiles, compare expertise, and read reviews to make an informed
           choice. Start your real estate journey with the perfect agent today!
         </p>
-        <p className=" text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
+        <p className=" text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Complete a quick questionnaire to discover the best agents in your
           area. Review their pricing, services, and ratings to find the one that
           fits your needs perfectly
         </p>
 
-        <div className="flex justify-center flex-col w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:p-4">
+        <div className="flex  my-5 justify-center flex-col w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:p-0">
             <Input
               label=""
               type="text"
@@ -197,23 +197,23 @@ const page = () => {
           </div>
 
           <textarea
-            className="border border-[#d6d5d5] bg-transparent !w-full !rounded-none mt-4 p-2 min-h-[100px]"
+            className="border border-gray bg-transparent !w-full !rounded-none mt-4 p-2 min-h-[100px]"
             placeholder="Describe your needs or any additional information..."
             value={description}
             rows={8}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <div className="w-full mt-[2rem] flex items-center lg:justify-center justify-start">
+        <div className="w-full my-[1rem] flex items-center md:justify-center justify-start">
           <Button
             onClick={handleSubmit}
-            className="text-base rounded-none !w-full lg:!w-1/4 font-light mt-5"
+            className="text-base rounded-none !w-full md:!w-1/4 font-light mt-5"
             disabled={submitting}
           >
             {submitting ? "Submitting..." : "Submit"}
           </Button>
         </div>
-        <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
+        <p className="text-gray  mt-[2rem] font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 ">
           By submitting this form, you agree that Hoydoon, its affiliates, or
           associated third parties may contact you, including through calls or
           texts using automated systems. You also agree to our Terms of Service
@@ -231,7 +231,7 @@ const page = () => {
         ))}
       </div>{" "}
       {/* description */}
-      <div className=" lg:mt-[4rem] w-full">
+      <div className=" md:mt-[4rem] w-full">
         <Article />
       </div>
     </div>

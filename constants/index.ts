@@ -40,7 +40,7 @@ export const properties = [
 export const articles = [
   {
     id: "19",
-    imageSrc: "/webp/19.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/19.webp",
     altText:
       "Rental Scams Uncovered: How to Spot and Avoid Fraudulent Listings",
     articleType: "General",
@@ -52,7 +52,7 @@ export const articles = [
   },
   {
     id: "20",
-    imageSrc: "/webp/20.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/20.webp",
     altText: "Will I Be Displayed as the Listing Agent for My Properties?",
     articleType: "Listing inquiries",
     title: "Will I Be Displayed as the Listing Agent for My Properties?",
@@ -63,7 +63,7 @@ export const articles = [
   },
   {
     id: "21",
-    imageSrc: "/webp/21.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/21.webp",
     altText: 'What Does "Sold" Mean in Real Estate?',
     articleType: "General",
     title: 'What Does "Sold" Mean in Real Estate?',
@@ -74,7 +74,7 @@ export const articles = [
   },
   {
     id: "22",
-    imageSrc: "/webp/22.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/22.webp",
     altText: "Viewing Photos of a Property Listing",
     articleType: "Listing Features",
     title: "Viewing Photos of a Property Listing",
@@ -85,7 +85,7 @@ export const articles = [
   },
   {
     id: "24",
-    imageSrc: "/webp/24.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/24.webp",
     altText: "How Do I Set the Right Price for My Home?",
     articleType: "General",
     title: "How Do I Set the Right Price for My Home?",
@@ -96,7 +96,7 @@ export const articles = [
   },
   {
     id: "1",
-    imageSrc: "/webp/1.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/1.webp",
     altText: "How Do I Search for Homes in a Specific Neighborhood?",
     articleType: "General",
     title: "How Do I Search for Homes in a Specific Neighborhood?",
@@ -107,7 +107,7 @@ export const articles = [
   },
   {
     id: "3",
-    imageSrc: "/webp/3.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/3.webp",
     altText: "Do I Need a Real Estate Agent to Buy a Home?",
     articleType: "General",
     title: "Do I Need a Real Estate Agent to Buy a Home?",
@@ -118,7 +118,7 @@ export const articles = [
   },
   {
     id: "4",
-    imageSrc: "/webp/4.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/4.webp",
     altText: "What Do I Do If a Listing Has Incorrect Information?",
     articleType: "General",
     title: "What Do I Do If a Listing Has Incorrect Information?",
@@ -129,7 +129,7 @@ export const articles = [
   },
   {
     id: "5",
-    imageSrc: "/webp/5.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/5.webp",
     altText: "How Do I Get Alerts for New Listings?",
     articleType: "General",
     title: "How Do I Get Alerts for New Listings?",
@@ -140,7 +140,7 @@ export const articles = [
   },
   {
     id: "6",
-    imageSrc: "/webp/6.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/6.webp",
     altText: "How Do I Report a Problem With a Listing?",
     articleType: "General",
     title: "How Do I Report a Problem With a Listing?",
@@ -151,7 +151,7 @@ export const articles = [
   },
   {
     id: "7",
-    imageSrc: "/webp/7.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/7.webp",
     altText:
       "Essential Tips for Writing an Irresistible Property Description...",
     articleType: "General",
@@ -163,7 +163,8 @@ export const articles = [
   },
   {
     id: "8",
-    imageSrc: "/webp/art8.webp",
+    imageSrc:
+      "https://hoydoonstorage.blob.core.windows.net/web-images/art8.webp",
     altText: "How to Set the Right Price for Your Rental or Sale Property",
     articleType: "Listing Inquiries",
     title: "How to Set the Right Price for Your Rental or Sale Property",
@@ -174,7 +175,7 @@ export const articles = [
   },
   {
     id: "9",
-    imageSrc: "/webp/9.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/9.webp",
     altText: "What Safety Precautions Should I Take When Visiting a Property?",
     articleType: "Listing features",
     title: "What Safety Precautions Should I Take When Visiting a Property?",
@@ -185,7 +186,7 @@ export const articles = [
   },
   {
     id: "10",
-    imageSrc: "/webp/10.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/10.webp",
     altText: "What to Do If You Forget Your Login Details",
     articleType: "Listing features",
     title: "What to Do If You Forget Your Login Details",
@@ -196,7 +197,7 @@ export const articles = [
   },
   {
     id: "11",
-    imageSrc: "/webp/11.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/11.webp",
     altText: "Exploring the Features of the Hoydoon App: A Beginner's Guide",
     articleType: "General",
     title: "Exploring the Features of the Hoydoon App: A Beginner's Guide",
@@ -207,7 +208,7 @@ export const articles = [
   },
   {
     id: "12",
-    imageSrc: "/webp/12.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/12.webp",
     altText: "Understanding Hoydoon's Community Guidelines",
     articleType: "General",
     title: "Understanding Hoydoon's Community Guidelines",
@@ -218,7 +219,7 @@ export const articles = [
   },
   {
     id: "13",
-    imageSrc: "/webp/13.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/13.webp",
     altText: "Six Small Changes That Increase Your Home's Value by Thousands",
     articleType: "General",
     title: "Six Small Changes That Increase Your Home's Value by Thousands",
@@ -229,7 +230,7 @@ export const articles = [
   },
   {
     id: "14",
-    imageSrc: "/webp/14.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/14.webp",
     altText: "Guide to Property Types: Apartments, Houses, Bungalows...",
     articleType: "General",
     title: "Guide to Property Types: Apartments, Houses, Bungalows...",
@@ -240,7 +241,7 @@ export const articles = [
   },
   {
     id: "15",
-    imageSrc: "/webp/15.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/15.webp",
     altText: "How to Report Inappropriate Messages or User Behavior",
     articleType: "General",
     title: "How to Report Inappropriate Messages or User Behavior",
@@ -251,7 +252,7 @@ export const articles = [
   },
   {
     id: "16",
-    imageSrc: "/webp/16.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/16.webp",
     altText: "How to Update or Edit Your Listing on Hoydoon",
     articleType: "General",
     title: "How to Update or Edit Your Listing on Hoydoon",
@@ -262,7 +263,7 @@ export const articles = [
   },
   {
     id: "17",
-    imageSrc: "/webp/17.webp",
+    imageSrc: "https://hoydoonstorage.blob.core.windows.net/web-images/17.webp",
     altText: "Understanding the Difference Between Active, Inactive, and Sold",
     articleType: "General",
     title: "Understanding the Difference Between Active, Inactive, and Sold",
@@ -273,7 +274,8 @@ export const articles = [
   },
   {
     id: "18",
-    imageSrc: "/webp/art18.webp",
+    imageSrc:
+      "https://hoydoonstorage.blob.core.windows.net/web-images/art18.webp",
     altText: "Common Home-Buying Mistakes to Avoid",
     articleType: "General",
     title: "Common Home-Buying Mistakes to Avoid",

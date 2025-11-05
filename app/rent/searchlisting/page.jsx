@@ -15,15 +15,15 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isSearching, setIsSearching] = useState(false);
-  // Add this state
 
   const [showPriceDropdown, setShowPriceDropdown] = useState(false);
   const [showHomeTypeDropdown, setShowHomeTypeDropdown] = useState(false);
-
   const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
   const [showBedBathDropdown, setShowBedBathDropdown] = useState(false);
+
   const [bedValue, setBedValue] = useState("");
   const [bathValue, setBathValue] = useState("");
+
   const [filters, setFilters] = useState({
     price: "",
     "home-type": "",
@@ -32,6 +32,43 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     bathrooms: "",
     houseType: "",
   });
+
+  // Sync filters with URL params on mount and when searchParams change
+  useEffect(() => {
+    const minPrice = searchParams.get("minPrice");
+    const maxPrice = searchParams.get("maxPrice");
+    const listingType = searchParams.get("listingType");
+    const bedrooms = searchParams.get("bedrooms");
+    const bathrooms = searchParams.get("bathrooms");
+    const houseType = searchParams.get("houseType");
+
+    // Reconstruct price range from minPrice and maxPrice
+    const priceValue = minPrice && maxPrice ? `${minPrice}-${maxPrice}` : "";
+
+    // Map API listing type back to filter value
+    const typeMapping = {
+      sale: "buy",
+      rent: "rent",
+      land: "land",
+    };
+    const homeTypeValue = listingType
+      ? typeMapping[listingType] || listingType
+      : "";
+
+    setFilters({
+      price: priceValue,
+      "home-type": homeTypeValue,
+      location: searchParams.get("location") || "",
+      bedrooms: bedrooms || "",
+      bathrooms: bathrooms || "",
+      houseType: houseType || "",
+    });
+
+    // Update bed/bath display values
+    setBedValue(bedrooms || "");
+    setBathValue(bathrooms || "");
+  }, [searchParams]);
+
   const modalRef = useRef(null);
   const bedBathRef = useRef(null);
   const priceDropdownRef = useRef(null);
@@ -72,12 +109,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       [filterName]: value,
     }));
   };
+
   const handleSearchClick = () => {
     const newParams = new URLSearchParams(searchParams.toString());
 
     // Map keys for URL params
     const filterMapping = {
-      price: "price", // this will now be split below
+      price: "price",
       "home-type": "listingType",
       location: "location",
       bedrooms: "bedrooms",
@@ -109,11 +147,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
         "listingType",
         typeToApiValue[filters["home-type"]] || filters["home-type"]
       );
+    } else {
+      newParams.delete("listingType");
     }
 
     // Handle Other Filters
     Object.entries(filters).forEach(([key, value]) => {
-      if (key === "home-type") return; // already handled above
+      if (key === "home-type" || key === "price") return; // already handled above
       if (value !== "") {
         const paramKey = filterMapping[key] || key;
         newParams.set(paramKey, value);
@@ -122,51 +162,42 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
         newParams.delete(paramKey);
       }
     });
+
     if (filters.houseType) {
       newParams.set("houseType", filters.houseType);
     } else {
       newParams.delete("houseType");
     }
+
     router.push(`/rent/searchlisting?${newParams.toString()}`);
 
-    setFilters({
-      price: "",
-      "home-type": "",
-      location: "",
-      bedrooms: "",
-      bathrooms: "",
-      houseType: "",
-    });
-    setBedValue("");
-    setBathValue("");
+    // DON'T reset filters here - they will be synced from URL params via useEffect
   };
+
+  // Close dropdowns on outside click
   useEffect(() => {
     function handleClickOutside(event) {
       if (bedBathRef.current && !bedBathRef.current.contains(event.target)) {
         setShowBedBathDropdown(false);
       }
     }
-
     if (showBedBathDropdown) {
       document.addEventListener("mousedown", handleClickOutside);
     }
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showBedBathDropdown]);
-  // Close on outside click
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         setShowAllFiltersDropdown(false);
       }
     }
-
     if (showAllFiltersDropdown) {
       document.addEventListener("mousedown", handleClickOutside);
     }
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -206,34 +237,54 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     };
   }, [showHomeTypeDropdown]);
 
+  // Helper function to get the display label for price based on current filters
+  const getPriceLabel = () => {
+    if (!filters.price) return "Price";
+    const option = priceOptions[selectedType].find(
+      (o) => o.value === filters.price
+    );
+    return option ? option.label : "Price";
+  };
+
   return (
-    <div className="lg:pt-[2.3rem]  -mb-[2.5rem] lg:mb-0    flex-col lg:flex-row lg:flex justify-between w-full">
+    <div className="md:pt-[2.3rem] -mb-[2.5rem] md:mb-0 flex-col md:flex-row md:flex justify-between w-full">
       {/* Left Section: Filters */}
-      <div className="flex items-center   p-[1rem] lg:p-0   gap-1 lg:gap-2">
+      <div className="flex items-center p-[1rem] md:p-0 gap-1 md:gap-2">
         <button
           onClick={() => setShowAllFiltersDropdown(true)}
-          className="px-2 lg:px-4 h-[37px] text-xs  lg:h-fit lg:text-sm lg:py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F] flex items-center gap-2"
+          className="px-2 md:px-4 h-[37px] text-xs md:h-fit md:text-sm md:py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F] flex items-center gap-2"
         >
           <Image
             src="/allfilter.png"
             alt="Filter"
             width={16}
             height={15}
-            className="w-4 h-4 lg:w-[16px] lg:h-[16px]"
-          />{" "}
+            className="w-4 h-4 md:w-[16px] md:h-[16px]"
+          />
           All Filters
         </button>
+
         {showAllFiltersDropdown && (
           <>
-            <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+              onClick={() => setShowAllFiltersDropdown(false)}
+            ></div>
 
-            <div className="absolute bg-white top-[20%] z-[1111] rounded-xl p-4 w-full max-w-[14rem] overflow-y-auto h-[400px] no-scrollbar">
+            <div
+              ref={modalRef}
+              className="absolute bg-white top-[20%] z-[1111] rounded-xl p-4 w-full max-w-[14rem] overflow-y-auto h-[400px] no-scrollbar"
+            >
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-sm text-gray-600 font-[400]">Filters</h2>
                 <button
                   className="text-sm text-primary font-[400]"
-                  onClick={() => {
+                  onClick={async () => {
+                    setIsSearching(true);
+                    await new Promise((resolve) => setTimeout(resolve, 500));
                     handleSearchClick();
+                    await new Promise((resolve) => setTimeout(resolve, 300));
+                    setIsSearching(false);
                     setShowAllFiltersDropdown(false);
                   }}
                 >
@@ -267,7 +318,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                 </ul>
               </div>
 
-              {/* price secction */}
+              {/* Price Section */}
               <div className="mb-4">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
                 <ul className="flex flex-col gap-1.5">
@@ -292,6 +343,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                   ))}
                 </ul>
               </div>
+
               {/* Bed/Baths Filter */}
               {filters["home-type"] !== "land" && (
                 <div className="mb-4">
@@ -326,12 +378,18 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                             if (option === "Any") {
                               handleFilterChange("bedrooms", "");
                               handleFilterChange("bathrooms", "");
+                              setBedValue("");
+                              setBathValue("");
                             } else if (option === "2–4") {
                               handleFilterChange("bedrooms", "2");
                               handleFilterChange("bathrooms", "2");
+                              setBedValue("2");
+                              setBathValue("2");
                             } else {
                               handleFilterChange("bedrooms", "5+");
                               handleFilterChange("bathrooms", "5+");
+                              setBedValue("5+");
+                              setBathValue("5+");
                             }
                           }}
                         />
@@ -341,7 +399,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                 </div>
               )}
 
-              {/* house tpe */}
+              {/* House Type */}
               {filters["home-type"] !== "land" && (
                 <div className="mb-4">
                   <h3 className="text-sm text-gray-600 font-[400] mb-2">
@@ -373,53 +431,18 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                   </ul>
                 </div>
               )}
-              {/* add a price section radion butt */}
-              <div className=" hidden ">
-                <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
-                <ul className="flex flex-col gap-1.5">
-                  {["Any", "50-200"].map((option) => (
-                    <li
-                      key={option}
-                      className="flex justify-between items-center border-b border-gray-300 pb-1.5"
-                    >
-                      <span className="text-[12px] text-gray font-[400]">
-                        {option === "Any" ? "Any" : "$50 – $200"}
-                      </span>
-                      <input
-                        type="radio"
-                        name="price"
-                        className="w-3 h-3 accent-primary"
-                        checked={
-                          filters.price === (option === "Any" ? "" : option)
-                        }
-                        onChange={() =>
-                          handleFilterChange(
-                            "price",
-                            option === "Any" ? "" : option
-                          )
-                        }
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
           </>
         )}
 
+        {/* Individual Filter Buttons */}
         {["Price", "Type", "Bed/Baths"].map((option) => {
-          const paramKey =
-            option === "Type"
-              ? "home-type"
-              : option.toLowerCase().replace(/\s+/g, "-");
-          const selectedValue = searchParams.get(paramKey) || "";
-
           if (option === "Bed/Baths") {
             return (
               <div className="relative" key={option}>
                 <button
                   onClick={() => setShowBedBathDropdown(!showBedBathDropdown)}
-                  className="border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 lg:pr-6 appearance-none flex items-center gap-2"
+                  className="border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 md:pr-6 appearance-none flex items-center gap-2"
                 >
                   {bedValue || bathValue
                     ? `${bedValue} Beds, ${bathValue} Baths`
@@ -436,7 +459,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                   <>
                     <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>
                     <div
-                      className="absolute z-[11111111]  lg:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 lg:mt-0 lg:w-64"
+                      className="absolute z-[11111111] md:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 md:mt-0 md:w-64"
                       ref={bedBathRef}
                     >
                       <div className="flex justify-between mb-2">
@@ -507,7 +530,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             );
           }
 
-          // Modal for "Price" and "Home type" (Buy)
+          // Price and Type dropdowns
           const dropdownState =
             option === "Price" ? showPriceDropdown : showHomeTypeDropdown;
           const setDropdownState =
@@ -515,12 +538,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
 
           const options =
             option === "Price"
-              ? [
-                  { label: "$0–200", value: "0-200" },
-                  { label: "$200–500", value: "200-500" },
-                  { label: "$500–800", value: "500-800" },
-                  { label: "$800+", value: "800-5000000" },
-                ]
+              ? priceOptions[selectedType]
               : [
                   { label: "Rent", value: "rent" },
                   { label: "Buy", value: "buy" },
@@ -531,22 +549,20 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             <div className="relative" key={option}>
               <button
                 type="button"
-                className={`border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 lg:pr-2 flex items-center gap-2 ${
-                  option == "Price" ? "hidden lg:flex" : ""
+                className={`border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 md:pr-2 flex items-center gap-2 ${
+                  option === "Price" ? "hidden md:flex" : ""
                 }`}
                 onClick={() => setDropdownState(!dropdownState)}
               >
-                <span className="block lg:hidden">
-                  {option === "Home type"
-                    ? "Buy"
-                    : options.find((o) => o.value === selectedValue)?.label ||
-                      option}
-                </span>
-                <span className="hidden lg:block">
-                  {option === "Home type"
-                    ? "Home type"
-                    : options.find((o) => o.value === selectedValue)?.label ||
-                      option}
+                <span>
+                  {option === "Type"
+                    ? filters["home-type"]
+                      ? filters["home-type"].charAt(0).toUpperCase() +
+                        filters["home-type"].slice(1)
+                      : "Type"
+                    : option === "Price"
+                    ? getPriceLabel()
+                    : option}
                 </span>
                 <Image
                   width={500}
@@ -558,69 +574,56 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               </button>
               {dropdownState && (
                 <>
-                  <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>{" "}
                   <div
-                    className="absolute z-[111111] left-[23%] top-[14%] lg:top-[110%] lg:left-0 bg-white  border border-[#8F8F8F] rounded-md px-2  mt-2 lg:mt-0 lg:w-[200px]"
+                    className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+                    onClick={() => setDropdownState(false)}
+                  ></div>
+                  <div
+                    className="absolute z-[111111] left-[23%] top-[14%] md:top-[110%] md:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 md:mt-0 md:w-[200px]"
                     ref={
                       option === "Price"
                         ? priceDropdownRef
                         : homeTypeDropdownRef
                     }
                   >
-                    <div className="flex justify-between mb-2"></div>
                     <ul className="flex flex-col gap-2">
-                      {option === "Price" &&
-                        priceOptions[selectedType].map((opt) => (
+                      {options.map((opt) => {
+                        const isSelected =
+                          option === "Price"
+                            ? filters.price === opt.value
+                            : filters["home-type"] === opt.value;
+
+                        return (
                           <label
                             key={opt.value}
-                            className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded ${
-                              selectedValue === opt.value
+                            className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded transition-colors ${
+                              isSelected
                                 ? "bg-primary text-white"
-                                : ""
-                            } group`}
-                          >
-                            <input
-                              type="radio"
-                              name={paramKey}
-                              value={opt.value}
-                              checked={selectedValue === opt.value}
-                              onChange={() => {
-                                handleFilterChange(paramKey, opt.value);
-                                setDropdownState(false);
-                              }}
-                              className={`w-4 h-4 accent-primary group-hover:accent-primary`}
-                            />
-                            <span className="text-sm">{opt.label}</span>
-                          </label>
-                        ))}
-                      {option === "Type" &&
-                        [
-                          { label: "Rent", value: "rent" },
-                          { label: "Buy", value: "buy" },
-                          { label: "Land", value: "land" },
-                        ].map((opt) => (
-                          <label
-                            key={opt.value}
-                            className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded ${
-                              selectedValue === opt.value
-                                ? "bg-primary text-white"
-                                : ""
+                                : "hover:bg-gray-100"
                             }`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (option === "Price") {
+                                handleFilterChange("price", opt.value);
+                              } else {
+                                handleFilterChange("home-type", opt.value);
+                              }
+                            }}
                           >
                             <input
                               type="radio"
-                              name={paramKey}
+                              name={option}
                               value={opt.value}
-                              checked={selectedValue === opt.value}
-                              onChange={() => {
-                                handleFilterChange(paramKey, opt.value);
-                                setDropdownState(false);
-                              }}
-                              className={`w-4 h-4 accent-primary`}
+                              checked={isSelected}
+                              onChange={() => {}}
+                              className={`w-4 h-4 ${
+                                isSelected ? "accent-white" : "accent-green-500"
+                              }`}
                             />
                             <span className="text-sm">{opt.label}</span>
                           </label>
-                        ))}
+                        );
+                      })}
                     </ul>
                   </div>
                 </>
@@ -632,7 +635,9 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
         <button
           onClick={async () => {
             setIsSearching(true);
+            await new Promise((resolve) => setTimeout(resolve, 500));
             handleSearchClick();
+            await new Promise((resolve) => setTimeout(resolve, 300));
             setIsSearching(false);
           }}
           className="px-4 py-[6px] bg-primary text-base text-white font-light rounded-md flex items-center justify-center"
@@ -665,11 +670,11 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       </div>
 
       {/* Right Section: List / Map Toggle */}
-      <div className=" hidden lg:flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-3   border-[#8F8F8F]   justify-between border-solid border-[0.5px] items-center font-base rounded-[5px] lg:p-[3px]  relative">
+      <div className="hidden md:flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-3 border-[#8F8F8F] justify-between border-solid border-[0.5px] items-center font-base rounded-[5px] md:p-[3px] relative">
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
-              className={`px-4 py-1 gap-3 flex  items-center justify-center w-[4.5rem] text-[16px] rounded-md transition-all duration-300 ${
+              className={`px-4 py-1 gap-3 flex items-center justify-center w-[4.5rem] text-[16px] rounded-md transition-all duration-300 ${
                 (showMap ? "Map" : "List") === option
                   ? "bg-primary gap-[10px] flex text-white"
                   : "text-[#8F8F8F]"
@@ -702,7 +707,10 @@ const page = () => {
 
   const [displayListings, setDisplayListings] = useState([]);
   const router = useRouter();
-
+  // Add these state variables at the top of your page component (around line 600)
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [sortBy, setSortBy] = useState("newest"); // default to newest
+  const sortDropdownRef = useRef(null);
   const [coordinates, setCoordinates] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
@@ -716,25 +724,62 @@ const page = () => {
     }
   };
 
+  // Update the useEffect that sets displayListings (around line 650)
   useEffect(() => {
     if (!isAllloading && allListings) {
       const firstThreeListings = allListings.listings;
       const flatListings = flattenListings(firstThreeListings);
+
       // Filter listings with valid coordinates
       const listingsWithCoords = flatListings.filter(
         (item) =>
           item?.item?.coordinate?.latitude && item?.item?.coordinate?.longitude
       );
+
+      // Sort listings based on sortBy state
+      const sortedListings = [...listingsWithCoords].sort((a, b) => {
+        const dateA = new Date(a.createdAt || a.item?.createdAt);
+        const dateB = new Date(b.createdAt || b.item?.createdAt);
+
+        switch (sortBy) {
+          case "newest":
+            return dateB - dateA; // newest first
+          case "oldest":
+            return dateA - dateB; // oldest first
+          case "price-low":
+            return (a.item?.price || 0) - (b.item?.price || 0);
+          case "price-high":
+            return (b.item?.price || 0) - (a.item?.price || 0);
+          default:
+            return dateB - dateA;
+        }
+      });
+
       const images = flatListings.flatMap((item) => item.imageUrls || []);
       setImageUrls(images);
 
-      setCoordinates(listingsWithCoords.map((item) => item.item.coordinate)); // set all coordinates for the map
-      setDisplayListings(listingsWithCoords); // only show listings with coordinates
+      setCoordinates(sortedListings.map((item) => item.item.coordinate));
+      setDisplayListings(sortedListings);
       setTotalPages(allListings.totalPages || 1);
       setCurrentPage(Number(searchParams.get("page")) || 1);
     }
-    console.log("coordinae", allListings?.listings?.imageUrls);
-  }, [allListings, isAllloading]);
+  }, [allListings, isAllloading, sortBy]);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        sortDropdownRef.current &&
+        !sortDropdownRef.current.contains(event.target)
+      ) {
+        setShowSortDropdown(false);
+      }
+    }
+    if (showSortDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSortDropdown]);
 
   //  if (isAllloading) {
   //    return (
@@ -744,54 +789,114 @@ const page = () => {
   //    );
   //  }
   return (
-    <div className="lg:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1200px]">
+    <div className="md:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1240px]">
       <Breadcrumb showMap={showMap} setShowMap={setShowMap} />'
-      <div className="flex items-start p-4 lg:p-0  lg:mt-[1rem] w-full lg:justify-between flex-col  gap-3 lg:gap-0 lg:flex-row   ">
-        <h1 className="text-black  hidden lg:block font-semibold text-2xl lg:text-4xl">
+      <div className="flex items-start p-4 md:p-0  md:mt-[1rem] w-full md:justify-between flex-col  gap-3 md:gap-0 md:flex-row   ">
+        <h1 className="text-black  hidden md:block font-semibold text-2xl md:text-4xl">
           All Real-estate & Homes for Sale
         </h1>
-        <h1 className="text-black lg:hidden font-semibold text-2xl lg:text-4xl">
+        <h1 className="text-black md:hidden font-semibold text-2xl md:text-4xl">
           All Homes for Sale
         </h1>
-        <div className="text-gray-600  fex-end lg:-ml-[2rem] 2xl:ml-0 text-sm flex items-center space-x-4">
+        <div className="text-gray-600  fex-end md:ml-[0rem] 2xl:ml-0 text-sm flex items-center space-x-4">
           <span className="flex gap-2">
             {displayListings.slice(0, 7).length}{" "}
             <p className="font-[300] text-gray"> of</p>
             {displayListings.length} Homes
           </span>
-          <span className="text-black font-[400] flex gap-2  justify-center items-center cursor-pointer">
-            Sort: <p className="text-primary"> New listings </p>{" "}
-            <Image
-              width={500}
-              height={300}
-              src="/arrow-down.png"
-              alt="Dropdown"
-              className="w-3 h-2   pointer-events-none"
-            />
-          </span>
+          <div className="text-gray-600  fex-end md:-ml-[2rem] 2xl:ml-0 text-sm flex items-center space-x-4">
+            <span className="flex gap-2">
+              {displayListings.slice(0, 7).length}{" "}
+              <p className="font-[300] text-gray"> of</p>
+              {displayListings.length} Homes
+            </span>
+            <div className="relative">
+              <span
+                className="text-black font-[400] flex gap-2 justify-center items-center cursor-pointer"
+                onClick={() => setShowSortDropdown(!showSortDropdown)}
+              >
+                Sort:
+                <p className="text-primary">
+                  {sortBy === "newest" && "New listings"}
+                  {sortBy === "oldest" && "Oldest first"}
+                  {sortBy === "price-low" && "Price: Low to High"}
+                  {sortBy === "price-high" && "Price: High to Low"}
+                </p>
+                <Image
+                  width={500}
+                  height={300}
+                  src="/arrow-down.png"
+                  alt="Dropdown"
+                  className="w-3 h-2 pointer-events-none"
+                />
+              </span>
+
+              {showSortDropdown && (
+                <>
+                  <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+                    onClick={() => setShowSortDropdown(false)}
+                  ></div>
+                  <div
+                    ref={sortDropdownRef}
+                    className="absolute z-[111111] right-0 top-[110%] bg-white border border-[#8F8F8F] rounded-md py-2 mt-2 w-[200px] shadow-lg"
+                  >
+                    <ul className="flex flex-col">
+                      {[
+                        { label: "New listings", value: "newest" },
+                        { label: "Oldest first", value: "oldest" },
+                        { label: "Price: Low to High", value: "price-low" },
+                        { label: "Price: High to Low", value: "price-high" },
+                      ].map((option) => (
+                        <li
+                          key={option.value}
+                          className={`px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors ${
+                            sortBy === option.value
+                              ? "bg-primary text-white hover:bg-primary"
+                              : ""
+                          }`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSortBy(option.value);
+                            setShowSortDropdown(false);
+                          }}
+                        >
+                          <span className="text-sm">{option.label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-      <div className="w-screen  lg:my-[1rem]   h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  md:my-[1rem]   h-[2px] bg-[#D9D9D9] " />
       {showMap ? (
         <MapComponent coordinates={coordinates} />
       ) : (
         <>
-          {isAllloading && (
-            <div className="grid grid-cols-1 w-full sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {isAllloading ? (
+            <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 gap-6 p-5 md:p-0">
               {[...Array(6)].map((_, index) => (
                 <PropertySkeleton key={index} />
               ))}
             </div>
-          )}
-          {displayListings.length === 0 ? (
-            <p className="text-gray-600 text-center mt-6">
-              No listings found for your search.
-            </p>
+          ) : displayListings.length === 0 ? (
+            <div className="flex flex-col items-center justify-center mt-12 p-8">
+              <p className="text-gray-600 text-center text-lg">
+                No listings found for your search.
+              </p>
+              <p className="text-gray-400 text-center text-sm mt-2">
+                Try adjusting your filters or search criteria.
+              </p>
+            </div>
           ) : (
-            <div className=" grid     grid-cols-1 md:grid-cols-3 gap-4 lg:gap-[1rem] mt-[1.5rem] lg:mt-[1rem]  p-5 lg:p-0 place-items-center">
-              {[...displayListings].map((items, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-[1rem] mt-[1.5rem] md:mt-[1rem] w-full p-5 md:p-0 place-items-center">
+              {displayListings.map((items, index) => (
                 <PropertyListCard
-                  key={index}
+                  key={items?._id || index}
                   imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                   altText={
                     items?.imageUrls?.[0]?.altText ||
@@ -803,7 +908,7 @@ const page = () => {
                   bedrooms={items?.item?.bedrooms}
                   description={
                     items?.item?.description ||
-                    "No description available for   ... click outside,click on any should  this property."
+                    "No description available for this property."
                   }
                   _id={items?._id}
                   title={items?.item?.title || "Untitled Property"}
@@ -815,12 +920,14 @@ const page = () => {
               ))}
             </div>
           )}
-          <Pagination
-            totalPages={totalPages}
-            display={displayListings}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
+          {!isAllloading && displayListings.length > 0 && (
+            <Pagination
+              totalPages={totalPages}
+              display={displayListings}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          )}
         </>
       )}
       {/* second div layout  */}

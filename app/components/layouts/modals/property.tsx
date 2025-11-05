@@ -133,6 +133,8 @@ const PropertyGalleryModal = ({
               src={images[index]?.url || "/house1.png"}
               onClick={() => handleImageClick(index)} // Use handleImageClickAlwaysFirst if needed
               alt={`Image ${index}`}
+              width={500}
+              height={500}
               className="w-full h-[400px] object-cover rounded-md cursor-pointer"
             />
           </div>
@@ -261,7 +263,7 @@ const PropertyGalleryModal = ({
             <div className="flex  justify-end pr-4 pb-2  flex-1 gap-2">
               <div
                 onClick={handleFavoriteClick}
-                className="p-2 border border-[#8F8F8F] rounded-md"
+                className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md"
               >
                 <Image
                   width={500}
@@ -273,7 +275,7 @@ const PropertyGalleryModal = ({
               </div>
               <div
                 onClick={handleShareClick}
-                className="p-2 border border-[#8F8F8F] rounded-md"
+                className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md"
               >
                 <Image
                   width={500}
@@ -285,7 +287,7 @@ const PropertyGalleryModal = ({
               </div>
               <div
                 onClick={handleToggleListings}
-                className="p-2 border border-[#8F8F8F] rounded-md"
+                className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md"
               >
                 <Image
                   width={500}

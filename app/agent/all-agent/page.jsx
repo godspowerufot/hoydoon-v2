@@ -71,20 +71,23 @@ const Breadcrumb = () => {
   };
 
   return (
-    <div className=" py-2 lg:py-6 px-1 lg:px-[6rem] 2xl:px-3 items-start lg:flex-col lg:items-center justify-between">
-      <div className="flex p-2 flex-col w-full 2xl:ml-0 md:flex-row 2xl:gap-[20%] mt-[1rem] lg:flex-row md:gap-10 justify-end items-center md:items-start ">
-        <h1 className="text-black lg:ml-1 text-[24px] lg:text-[2rem] font-[600] w-full">
-          Real Estate Agents In Lagos
+    <div className=" py-2 md:pt-[3rem] px-1 md:px-[5rem] 2xl:px-[0rem]  items-start md:flex-col md:items-center justify-between">
+      <div className="flex flex-col  md:flex-row justify-between items-start md:items-center w-full mt-4 p-2 gap-2 md:gap-6 mb-[2rem]">
+        {/* Left Section - Heading */}
+        <h1 className="text-black text-[22px] sm:text-[24px] md:text-[2rem] font-semibold w-full md:w-auto">
+          Real Estate Agents in Lagos
         </h1>
-        <p className="text-gray font-[400] lg:p-0 lg:my-3 my-1 text-sm lg:text-xl font-bricolage w-full lg:w-full">
+
+        {/* Right Section - Description */}
+        <p className="text-gray font-normal font-bricolage text-sm sm:text-base md:text-lg leading-snug md:leading-normal md:text-left w-full md:w-[460px]">
           Leverage a local agent's expertise with access to millions of
           listings, guiding you through every step.
         </p>
       </div>
 
-      <div className="hidden lg:flex flex-col lg:flex-row items-center gap-3 lg:gap-4 2xl:gap-6 w-full mt-4">
+      <div className="hidden md:flex flex-col md:flex-row items-center gap-3 md:gap-4 2xl:gap-6 w-full mt-4">
         {/* Location Search */}
-        <div className="relative w-full lg:w-[300px] 2xl:min-w-[350px]">
+        <div className="relative w-full md:w-[300px] 2xl:min-w-[350px]">
           <input
             type="text"
             value={region}
@@ -108,7 +111,7 @@ const Breadcrumb = () => {
         </div>
 
         {/* Buy/Sell Toggle */}
-        <div className="w-full lg:w-auto bg-[#F9FAFB] border border-[#8F8F8F] rounded-xl p-1.5 flex items-center justify-between">
+        <div className="w-full md:w-auto bg-[#F9FAFB] border border-[#8F8F8F] rounded-xl p-1.5 flex items-center justify-between">
           {options.map((option) => (
             <button
               key={option}
@@ -128,7 +131,7 @@ const Breadcrumb = () => {
         </div>
 
         {/* Language Dropdown */}
-        <div className="relative w-full lg:w-auto lg:min-w-[220px] 2xl:min-w-[250px]">
+        <div className="relative w-full md:w-auto md:min-w-[220px] 2xl:min-w-[250px]">
           <select
             value={selectedLanguage}
             onChange={(e) => {
@@ -155,7 +158,7 @@ const Breadcrumb = () => {
         </div>
       </div>
 
-      <div className="flex lg:hidden flex-row lg:flex-wrap items-center gap-2 w-full">
+      <div className="flex md:hidden flex-row md:flex-wrap items-center gap-2 w-full">
         <div className="relative flex items-center border border-[#8F8F8F] bg-[#F9FAFB] rounded-md px-2 py-1 flex-1 min-w-[128px] max-w-[122px]">
           <input
             type="text"
@@ -279,10 +282,10 @@ const page = () => {
   }
 
   return (
-    <div className="mt-8  2xl:w-[1520px]  ">
+    <div className="mt-8  max-w-[1240px]   ">
       {" "}
       <Breadcrumb />
-      <div className="lg:ml-[5rem] my-3  2xl:ml-[2rem] gap-y-3  grid lg:w-[88%] 2xl:w-[95%]  grid-cols-1 lg:grid-cols-2 sm:gap-4 lg:gap-8 place-items-center">
+      <div className="md:ml-[5rem] my-3 mt-[45px] 2xl:px-[0rem]  2xl:ml-[2rem] gap-y-3  grid md:w-[88%] 2xl:w-[95%]  grid-cols-1 md:grid-cols-2 sm:gap-4 md:gap-8 place-items-center">
         {isAllLoading
           ? // Show skeleton loaders
             Array.from({ length: 6 }, (_, index) => <ProfileCardSkeleton />)
@@ -296,16 +299,16 @@ const page = () => {
       </div>
       {displayListings.length === 0 ? (
         <div className="w-full col-span-2 flex justify-center items-center py-10">
-          <p className="text-[#8F8F8F] lg:text-2xl text-sm font-light">
+          <p className="text-[#8F8F8F] md:text-2xl text-sm font-light">
             No agents have been created.
           </p>
         </div>
       ) : (
         <>
           {displayListings.length > 0 && displayListings.length < 6 && (
-            <div className="w-full md:col-span-2 lg:hidden justify-start">
+            <div className="w-full md:col-span-2 md:hidden justify-start">
               <Link href="/agent/all-agent">
-                <p className="text-[#09858D] mt-5 text-xs lg:text-2xl font-medium">
+                <p className="text-[#09858D] mt-5 text-xs md:text-2xl font-medium">
                   See all 2500 rent estate agents in Lagos
                 </p>
               </Link>
@@ -319,13 +322,13 @@ const page = () => {
           />
         </>
       )}
-      <section className="  bg-[#eeeeeec7] 2xl:bg-white  w-full   lg:w-full font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
-        <div className="flex  lg:gap-[4%] flex-col-reverse lg:w-[90%]  2xl:w-[94rem] 2xl:pl-[2.5em] lg:pl-5 lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
-          <span className="flex flex-col gap-y-1 lg:gap-y-0 w-full lg:w-[45em] 2xl:w-[60em] ">
-            <h1 className="text-black  text-2xl mt-4  lg:mt-0  lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
+      <section className="  bg-[#eeeeeec7] 2xl:bg-white  w-full   md:w-full font-bricolage md:flex  flex-col justify-center flex-1 items-center ">
+        <div className="flex  md:gap-[4%] flex-col-reverse md:w-[90%]  2xl:w-[80rem] 2xl:pl-[2.5em] md:pl-5 md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-around ">
+          <span className="flex flex-col gap-y-1 md:gap-y-0 w-full md:w-[45em] 2xl:w-[60em] ">
+            <h1 className="text-black  text-2xl mt-4  md:mt-0  md:text-[2.6rem]  md:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Connect with local agent
             </h1>
-            <p className="text-gray text-xs lg:text-xl mt-2 2xl:mt-[1em] font-bricolage lg:w-[38rem] 2xl:text-[22px] ">
+            <p className="text-gray text-xs md:text-xl mt-2 2xl:mt-[1em] font-bricolage md:w-[38rem] 2xl:text-[22px] ">
               Benefit from local expertise. We'll connect you with a Hoydoon
               Premier Agent who understands your market and can guide you
               through the process.
@@ -335,7 +338,7 @@ const page = () => {
             </Button>
           </span>
 
-          <span className=" mt-[3rem]  lg:mt-0">
+          <span className=" mt-[3rem]  md:mt-0">
             <Image
               alt="image1"
               width={500}

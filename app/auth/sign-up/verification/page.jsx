@@ -65,9 +65,6 @@ const OtpVerify = () => {
     } catch (err) {
       console.error("Error resending OTP:", err);
     }
-    // Call the API here to verify the OTP
-
-    // Example using fetch or RTK mutation can go here
   };
 
   return (
@@ -81,7 +78,9 @@ const OtpVerify = () => {
               loading="lazy"
               height={400}
               quality={100} // Ensures maximum quality
-              src={"/verification.webp"}
+              src={
+                "https://hoydoonstorage.blob.core.windows.net/web-images/verification.webp"
+              }
               className="hidden lg:block   2xl:-mt-[0.9rem] mt-[5px] rounded-3xl w-[37rem] h-[39.5rem]  2xl:h-[48rem] 2xl:w-[50rem]"
               style={{ objectFit: "cover" }}
             />

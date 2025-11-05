@@ -53,9 +53,10 @@ function Carousel({ images }) {
     goToSlide(currentIndex - 1);
   };
 
+  console.log(images, "dataa stricture");
   return (
     <>
-      <main className="relative w-full lg:max-w-[1200px] flex-col flex justify-center items-center">
+      <main className="relative w-full md:max-w-[1200px] flex-col flex justify-center items-center">
         <div
           style={{
             backgroundImage: `url('${images[currentIndex]?.imageUrl}')`,
@@ -63,25 +64,25 @@ function Carousel({ images }) {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
           }}
-          className="lg:mt-[1rem] lg:hidden relative p-5 sm:p-6 lg:p-8 w-full lg:max-w-[1200px]  h-[26rem] 2xl:w-[88rem] 2xl:h-[47rem]"
+          className="md:mt-[1rem] md:hidden relative p-5 sm:p-6 md:p-8 w-full md:max-w-[1200px]  h-[26rem] 2xl:w-[88rem] 2xl:h-[47rem]"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
           <div className="absolute inset-0 bg-black opacity-15 transition-opacity duration-500" />
 
           <div className="z-111 absolute bg-primarytransparent p-2 sm:p-2  2xl:mt-[20rem] rounded-2xl top-[55%] right-0 h-fit w-full">
-            <div className="bg-white px-3 pt-3 sm:p-6 lg:p-8 rounded-2xl h-fit w-full max-w-full lg:w-[56rem] 2xl:w-[65rem]">
-              <h1 className="text-black text-[0.9rem] sm:text-base lg:text-2xl 2xl:text-[2rem] font-[600]">
+            <div className="bg-white px-3 pt-3 sm:p-6 md:p-8 rounded-2xl h-fit w-full max-w-full md:w-[56rem] 2xl:w-[65rem]">
+              <h1 className="text-black text-[0.9rem] sm:text-base md:text-2xl 2xl:text-[2rem] font-[600]">
                 {truncateDescription(images[currentIndex]?.title, 15)}
               </h1>
-              <p className="text-gray text-[8px] sm:text-sm lg:text-[1rem] 2xl:text-[1.05rem] 2xl:w-[55rem] mt-2 2xl:mt-5">
+              <p className="text-gray text-[8px] sm:text-sm md:text-[1rem] 2xl:text-[1.05rem] 2xl:w-[55rem] mt-2 2xl:mt-5">
                 {truncateDescription(images[currentIndex]?.description, 55)}
               </p>
 
               <div className="flex flex-wrap -mt-[10px] sm:flex-nowrap w-full sm:w-[60%] 2xl:w-[75%] font-bricolage items-center gap-3 sm:gap-0">
                 <div className="flex flex-col-reverse flex-1 px-2 py-3">
                   <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">
-                    1,200sqft
+                    {images[currentIndex]?.squareFeet || "_"}
                   </span>
                   <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">
                     Size
@@ -92,7 +93,7 @@ function Carousel({ images }) {
 
                 <div className="flex flex-col-reverse flex-1 px-2 py-3">
                   <span className="text-[8px] sm:text-base 2xl:text-[1.2rem] font-semibold text-black mt-[3px]">
-                    {images[currentIndex]?.location}
+                    {images[currentIndex]?.region || "_"}
                   </span>
                   <div className="text-[0.5rem] sm:text-sm 2xl:text-[1rem] text-gray">
                     Location
@@ -113,7 +114,7 @@ function Carousel({ images }) {
                     <p className="text-[8px] sm:text-sm">
                       {images[currentIndex]?.rating.toFixed(1)}
                     </p>
-                    <p className="text-gray font-[500] text-[0.5rem] sm:text-xs hidden lg:block">
+                    <p className="text-gray font-[500] text-[0.5rem] sm:text-xs hidden md:block">
                       ({images[currentIndex]?.reviewCount} reviews)
                     </p>
                   </span>
@@ -137,15 +138,15 @@ function Carousel({ images }) {
           }}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          className="lg:mt-[1rem] rounded-none  hidden lg:block relative p-8  w-full h-[35rem] lg:rounded-2xl"
+          className="md:mt-[1rem] rounded-none  hidden md:block relative p-8  w-full h-[35rem] md:rounded-2xl"
         >
-          <div className="absolute  rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  lg:rounded-2xl" />
+          <div className="absolute  rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  md:rounded-2xl" />
           <div className="    z-111 absolute    bg-primarytransparent p-5 rounded-2xl bottom-[1.25rem] left-[1.25rem] h-fit   w-fit">
-            <div className=" bg-white lg:max-w-[1000px] p-8 lg:rounded-2xl   h-[18rem]   w-[58rem] ">
-              <h1 className="text-black text-base  lg:text-2xl 2xl:text-[2rem] font-[600]">
+            <div className=" bg-white md:max-w-[1000px] p-8 md:rounded-2xl   h-[18rem]   w-[58rem] ">
+              <h1 className="text-black text-base  md:text-2xl 2xl:text-[2rem] font-[600]">
                 {images[currentIndex]?.title}{" "}
               </h1>
-              <p className="text-gray lg:text-[1rem] mb-[2rem] 2xl:text-[1.05rem] font-[400]  2xl:w-[55rem] 2xl:mt-5 mt-3 text-[10px] ">
+              <p className="text-gray md:text-[1rem] mb-[2rem] 2xl:text-[1.05rem] font-[400]  2xl:w-[55rem] 2xl:mt-5 mt-3 text-[10px] ">
                 {truncateDescription(images[currentIndex]?.description, 50)}
               </p>
 
@@ -153,7 +154,7 @@ function Carousel({ images }) {
                 {/* Property Details */}
                 <div className="flex flex-col-reverse w-1/2 flex-1 px-1 py-3">
                   <span className="text-base   mt-[3px] 2xl:text-[1.2rem] font-semibold text-black">
-                    1,200sqft
+                    {images[currentIndex]?.squareFeet || "_"}
                   </span>
                   <div className="text-sm 2xl:text-[1rem] text-gray">Size</div>
                 </div>
@@ -163,7 +164,7 @@ function Carousel({ images }) {
 
                 <div className="flex ml-[20%] flex-col-reverse w-[40%] flex-1 px-2 py-3">
                   <span className="text-base  mt-[3px]  2xl:text-[1.2rem]  font-semibold text-black">
-                    {images[currentIndex]?.location}
+                    {images[currentIndex]?.region || "_"}
                   </span>
                   <div className="text-sm 2xl:text-[1rem] text-gray">
                     Location
@@ -175,7 +176,7 @@ function Carousel({ images }) {
 
                 <div className="flex w-max flex-col-reverse ml-[3%] flex-1 px-2 py-3">
                   <span className="text-[0.9em]  2xl:text-[1.2rem] font-semibold text-black">
-                    <span className="flex  mt-[3px] lg:flex-row flex-col gap-[0.2em]  w-full  items-center -ml-[9%] justify-center">
+                    <span className="flex  mt-[3px] md:flex-row flex-col gap-[0.2em]  w-full  items-center -ml-[15%] justify-center">
                       <Image
                         alt="logo"
                         width={20}
@@ -189,7 +190,7 @@ function Carousel({ images }) {
                         {" "}
                         {images[currentIndex]?.rating.toFixed(1)}
                       </p>
-                      <p className="text-gray  font-[500] lg:block  hidden">
+                      <p className="text-gray  font-[500] md:block  hidden">
                         ({images[currentIndex]?.reviewCount} reviews)
                       </p>
                     </span>
@@ -233,7 +234,7 @@ function Carousel({ images }) {
             </div>
           </div>
         </div>
-        <div className="mt-4 lg:hidden flex gap-2 z-50">
+        <div className="mt-4 md:hidden flex gap-2 z-50">
           {images.map((_, index) => (
             <div
               key={index}
@@ -287,10 +288,11 @@ export default function Home() {
       const slides = flatListings.map((listing) => ({
         imageUrl: listing.imageUrls?.[0]?.url || "",
         title: listing.title || "",
-        rating: listing.averageRating,
-        reviewCount: listing.reviewCount,
-        location: listing.region || "",
-        description: listing.item.description,
+        rating: listing.averageRating || 0,
+        reviewCount: listing.reviewCount || 0,
+        region: listing.region || "_",
+        squareFeet: listing.item?.squareFeet ?? "_",
+        description: listing.item?.description || "",
       }));
 
       setLuxuryDisplayListings(slides);
@@ -299,25 +301,28 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative h-[40vh] lg:h-[100vh] p-2 lg:p-0 w-screen overflow-hidden">
+      <header className="relative h-[40vh] md:h-[100vh] p-2 md:p-0 w-screen overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full  bg-cover bg-center z-[-1]"
-          style={{ backgroundImage: "url('/headertwo.webp')" }}
+          style={{
+            backgroundImage:
+              "url('https://hoydoonstorage.blob.core.windows.net/web-images/headertwo.webp')",
+          }}
         ></div>
         {/* Content Section */}
-        <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] mt-[2rem] lg:mt-[4rem]  p-3 lg:p-0  lg:gap-4 h-full ">
+        <div className="flex flex-col items-center relative z-[1]  2xl:mt-[8rem] mt-[2rem] md:mt-[4rem]  p-3 md:p-0  md:gap-4 h-full ">
           {/* Main Heading */}
-          <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[2.1em] lg:text-[clamp(4em,4vw,4em)] lg:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
+          <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[2.1em] md:text-[clamp(4em,4vw,4em)] md:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
             Where Every House Feels Like Home
           </h1>
 
           {/* Subheading */}
-          <h2 className="text-[#FFFFFFB2]  hidden  lg:-mt-2 text-center  lg:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
+          <h2 className="text-[#FFFFFFB2]  hidden  md:-mt-2 text-center  md:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
             From urban flats to rural getaways, Hoydoon effortlessly links you
             to the home of your dreams with trust and ease.
           </h2>
-          <h2 className="text-[#FFFFFFB2]  lg:hidden lg:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm lg:text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
+          <h2 className="text-[#FFFFFFB2]  md:hidden md:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm md:text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
             Hoydoon connects you to your dream home — easily and reliably.{" "}
           </h2>
 
@@ -327,8 +332,8 @@ export default function Home() {
           {/* Mobile Search Bar */}
         </div>
         {/* Statistics Section */}
-        <div className="absolute hidden  bottom-7 lg:flex font-bricolage lg:mt-10 justify-center items-center w-full pt-10 px-4">
-          <div className="flex items-center rounded-lg ml-15 justify-between md:w-4/5 lg:max-w-[50rem]">
+        <div className="absolute hidden  bottom-7 md:flex font-bricolage md:mt-10 justify-center items-center w-full pt-10 px-4">
+          <div className="flex items-center rounded-lg ml-15 justify-between md:w-4/5 md:max-w-[50rem]">
             {/* Hosts Section */}
             <div className="flex items-center text-start gap-2 px-4">
               <span className="text-2xl font-medium text-white">10M+</span>
@@ -362,13 +367,13 @@ export default function Home() {
         </div>
       </header>
       <div></div>
-      <section className="w-screen p-5 lg:p-0 font-bricolage lg:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
-        <div className="flex  flex-col-reverse   lg:my-[5em] lg:flex-row  items-center  2xl:justify-center lg:justify-between ">
-          <span className="flex  gap-4 flex-col w-full lg:max-w-[45.3em] 2xl:max-w-[48em]  ">
-            <h1 className="text-black  text-[24px]  mt-4 lg:mt-0 lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
+      <section className="w-screen p-5 md:p-0 font-bricolage md:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
+        <div className="flex  flex-col-reverse   md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-between ">
+          <span className="flex  gap-4 flex-col w-full md:max-w-[45.3em] 2xl:max-w-[48em]  ">
+            <h1 className="text-black  text-[24px]  mt-4 md:mt-0 md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
               Find your ideal property with simple tools and guidance.
             </h1>
-            <p className="text-gray text-sm lg:text-xl  mt-2 lg:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
+            <p className="text-gray text-sm md:text-xl  mt-2 md:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full md:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
               Enjoy fast and easy access to a variety of properties that suit
               your needs. Use our smart filters to find the perfect places
               within your budget and preferences. We’ve done the hard work for
@@ -378,31 +383,33 @@ export default function Home() {
             <Button
               className="text-base font-light  !w-[130px] !p-[0.6rem]"
               onClick={() => {
-                toast.success("Coming soon!");
+                toast.info("Coming soon!");
               }}
             >
               <span>Explore</span>
             </Button>
           </span>
 
-          <span className="mt-4  lg:mt-0">
+          <span className="mt-4  md:mt-0">
             <Image
               alt="image1"
               width={480}
               quality={100}
               height={300} // Reduced size of logo
-              src={"/house-app.png"}
+              src={
+                "https://hoydoonstorage.blob.core.windows.net/web-images/house-app.webp"
+              }
             />
           </span>
         </div>
       </section>
-      <section className=" hidden p-2 lg:p-0   font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex  gap-[4rem]  lg:my-[5em]   flex-col lg:flex-row  items-center justify-center">
-          <span className="flex   lg:pl-1  2xl:pl-[0rem] flex-col w-full lg:w-6/10 ">
-            <h1 className="text-black  text-[26px] lg:text-5xl font-[600]">
+      <section className=" hidden p-2 md:p-0   font-bricolage md:flex justify-center flex-col flex-1 items-center">
+        <div className="flex  gap-[4rem]  md:my-[5em]   flex-col md:flex-row  items-center justify-center">
+          <span className="flex   md:pl-1  2xl:pl-[0rem] flex-col w-full md:w-6/10 ">
+            <h1 className="text-black  text-[26px] md:text-5xl font-[600]">
               Get the Hoydoon App
             </h1>
-            <p className="text-gray  text-base lg:text-xl mt-4 font-[300]  font-bricolage  w-fit lg:w-[40rem]">
+            <p className="text-gray  text-base md:text-xl mt-4 font-[300]  font-bricolage  w-fit md:w-[40rem]">
               Download our highly-rated real estate app for iOS or Android to
               receive instant alerts when your dream home becomes available.
             </p>
@@ -416,30 +423,30 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
             </Link>
           </span>
 
-          <span className="mt-4 lg:mt-0">
+          <span className="mt-4 md:mt-0">
             <Image
               alt="image1"
               width={500} // Reduced size of logo
               height={500} // Reduced size of logo
               src={"/app.svg"}
-              className="lg:w-[500px] w-[200px]"
+              className="md:w-[500px] w-[200px]"
             />
           </span>
         </div>
       </section>
 
-      <section className=" p-2 lg:p-0  lg:mt-[2.5em] lg:mb-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col   items-start gap-6 lg:gap-0 justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col  lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+      <section className=" p-2 md:p-0  md:mt-[2.5em] md:mb-[5em] w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col   items-start gap-6 md:gap-0 justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col  md:flex-row justify-between items-center w-full  mx-auto">
+            <h1 className="text-black text-[24px] mt-[32px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
               Featured Properties for Rent
             </h1>
-            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
+            <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
               Discover a home where every detail enhances your lifestyle crafted
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] lg:mt-[2.5em]  gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="flex flex-col mt-[0.5em] md:mt-[2.5em]  gap-5 items-start md:flex-row justify-start mb-2">
             {isAllLoading
               ? // Show skeleton loaders
                 Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
@@ -473,7 +480,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
             {!isAllLoading && (
               <Link
                 href="/"
-                className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+                className="text-[#09858D] md:hidden mt-2 text-sm md:my-5 md:text-2xl font-[500] "
               >
                 see housing for sale
               </Link>
@@ -482,18 +489,18 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
         </div>
       </section>
 
-      <section className="mt-5 w-screen lg:mb-[5em]   lg:w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 lg:gap-0 justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col lg:py-0 lg:flex-row  p-3 lg:p-0 lg:gap-10 justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+      <section className="mt-5 w-screen md:mb-[5em]   md:w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col items-start gap-6 md:gap-0 justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col md:py-0 md:flex-row  p-3 md:p-0 md:gap-10 justify-between items-center w-full  mx-auto">
+            <h1 className="text-black text-[24px] md:text-[2.5rem] font-[600] w-full md:w-auto">
               Explore Luxurious Living Spaces
             </h1>
-            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
+            <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
               Discover a home where every detail enhances your lifestyle crafted
               to fit your taste and needs.
             </p>
           </div>
-          <div className=" lg:mt-[2em] w-full">
+          <div className=" md:mt-[2em] w-full">
             <Carousel images={luxuryDisplayListings} />
           </div>{" "}
         </div>
@@ -503,30 +510,37 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
       {/* carousel */}
 
       {/* testimonials */}
-      <section className=" p-2   pt-[2.5rem] lg:mt-[4em] lg:mb-[5em]  lg:p-0 font-bricolage  flex justify-center flex-col  items-center">
-        <div className="flex  flex-col    lg:flex-row md:flex-row  lg:max-w-[1200px] lg:gap-0  justify-around items-start w-full   ">
+      <section className=" p-2   pt-[2.5rem] md:mt-[4em] md:mb-[5em]  md:p-0 font-bricolage  flex justify-center flex-col  items-center">
+        <div className="flex  flex-col    md:flex-row  md:max-w-[1200px] md:gap-0  justify-around items-start w-full   ">
           <span className="flex    2xl:w-full  flex-col font-bricolage gap-3">
-            <h1 className="text-black   text-[26px] lg:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">
+            <h1 className="text-black   text-[26px] md:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">
               What People Are Saying
             </h1>
-            <p className="text-gray  lg:block hidden text-sm lg:text-xl font-bricolage w-full lg:w-[30em]">
-              Discover a home where every detail enhances your lifestyle—crafted
-              to fit your taste and needs.
+            <p className="text-gray  md:block hidden text-sm md:text-xl font-bricolage w-full md:w-[30em]">
+              Hear directly from our users about their experiences. Whether
+              they’re finding trusted agents or securing great deals, our
+              community speaks for itself..
             </p>
-            <p className="text-gray font-light lg:hidden block text-sm lg:text-xl font-bricolage w-full lg:w-[30em]">
+            <p className="text-gray font-light md:hidden block text-sm md:text-xl font-bricolage w-full md:w-[30em]">
               Discover what our clients have to say in our customer testimonials
               section. We take pride in the positive feedback and experiences
               shared by those we’ve had.
             </p>
           </span>
-          <span className=" hidden lg:flex flex-col font-bricolage gap-3 ">
-            <p className="text-gray  lg:p-0 text-sm 2xl:text-[20px] lg:text-xl font-bricolage w-full lg:w-[24em]">
+          <span className=" hidden md:flex flex-col font-bricolage gap-3 ">
+            <p className="text-gray  md:p-0 text-sm 2xl:text-[20px] md:text-xl font-bricolage w-full md:w-[24em]">
               Discover a home where every detail enhances your lifestyle—crafted
               to fit your taste and needs.
             </p>
-            <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px] ">
-              <p className="text-gray"> Explore </p>
-            </Button>
+            <a
+              href="/helpcenter
+          "
+            >
+              {" "}
+              <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px] ">
+                <p className="text-gray"> Explore </p>
+              </Button>
+            </a>
           </span>
         </div>
         <TestimonialGrid />

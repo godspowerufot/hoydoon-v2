@@ -43,9 +43,9 @@ const OtpVerify = () => {
   return (
     <>
       <div className="flex lg:items-center w-full justify-center h-screen lg:h-full ">
-        <div className=" h-screen  lg:py-1 justify-center lg:items-center  flex   2xl:mt-[0.6rem] ">
+        <div className=" h-screen  lg:py-1 justify-center md:items-center  flex   2xl:mt-[0.6rem] ">
           {step === 1 && (
-            <div className=" gap-[4rem]   flex flex-1 flex-col lg:flex-row">
+            <div className=" gap-[4rem]   md:flex flex-1 flex-col md:flex-row">
               <Image
                 alt="authBanner"
                 width={400}
@@ -53,7 +53,7 @@ const OtpVerify = () => {
                 height={400}
                 quality={100} // Ensures maximum quality
                 src={"/otp-1.png"}
-                className="rounded-[24px] w-[480px] h-[600px] lg:w-[500px] lg:h-[650px] xl:w-[700px] xl:h-[700px] 2xl:w-[600px] 2xl:h-[700px] object-cover "
+                className="rounded-[24px] hidden  md:block w-[480px] h-[600px] lg:w-[500px] lg:h-[650px] xl:w-[700px] xl:h-[700px] 2xl:w-[600px] 2xl:h-[700px] object-cover "
                 style={{ objectFit: "cover" }}
               />
 

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Button from "../common/Button";
 import Input from "../common/inputs/input";
+import { toast } from "react-toastify";
 
 const Sell = () => {
   const [formData, setFormData] = useState({
@@ -17,11 +18,7 @@ const Sell = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
   const handleSearch = () => {
-    const queryParams = new URLSearchParams({
-      ...(formData.location && { location: formData.location }),
-    }).toString();
-
-    router.push(`/agent/all-agent?${queryParams}`);
+    toast.info("coming soon!!");
   };
   return (
     <div>
@@ -49,7 +46,7 @@ const Sell = () => {
           choose the right agent with confidence.{" "}
         </p>
       </div>
-      <section className="mt-10   lg:my-[4em] w-full  font-bricolage flex justify-center  flex-col lg:flex-row gap-7 2xl:gap-[3rem] lg:max-w-[1200px] flex-1 items-center">
+      <section className="mt-10   lg:mt-[5em] w-full  font-bricolage flex justify-center  flex-col lg:flex-row gap-7  lg:max-w-[1200px] flex-1 items-center">
         <div className="lg:w-[24rem]  lg:h-[32rem]    rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
@@ -62,7 +59,7 @@ const Sell = () => {
           </div>
 
           {/* Text Content */}
-          <div className="p-6  2xl:px-7">
+          <div className="p-6  relative">
             <h4 className="text-gray-800 font-[500] text-base">
               Hoydoon’s Selling
             </h4>
@@ -74,9 +71,10 @@ const Sell = () => {
               area. Review their pricing, services, and ratings to find the one
               that fits your needs perfectly.
             </p>
-
+          </div>
+          <div className="m-4">
             <Link href={"/agent/all-agent"}>
-              <Button className="!w-full 2xl:mt-5 lg:mt-[4.5rem] mt-6 text-base 2xl:text-xl lg:h-[3rem]  h-[3rem] lg:!p-2">
+              <Button className="!w-full mt-6 lg:-mt-4 text-base   h-[3rem] lg:!p-2">
                 Get Started
               </Button>
             </Link>
@@ -95,7 +93,7 @@ const Sell = () => {
           </div>
 
           {/* Text Content */}
-          <div className="p-6">
+          <div className="p-6 relative">
             <h4 className="text-gray-800 font-[500] text-base">
               Hoydoon’s Marketplace
             </h4>
@@ -108,20 +106,23 @@ const Sell = () => {
               brokerages typically charge—helping you save more while receiving
               exceptional service.{" "}
             </p>
-            <Link className=" hidden lg:block " href={"/agent/all-agent"}>
-              <button className="w-full   rounded-full items-center justify-center flex bg-transparent border-[#1E1E1E]  border-solid border-[1px] text-black  mt-3 text-base 2xl:text-xl h-[3rem]  2xl:h-[4rem] p-3">
-                Visit Seller marketplace
-              </button>
-            </Link>
+
             <Link className="lg:hidden block " href={"/agent/all-agent"}>
-              <Button className="w-full 2xl:mt-5 lg:mt-[4.5rem] mt-8 text-base 2xl:text-xl  text-gray lg:h-[4rem]  h-[3rem] lg:p-3">
+              <Button className="w-full 2xl:mt-[3rem] mt-8 text-base 2xl:text-xl  text-gray lg:h-[4rem]  h-[3rem] lg:p-3">
                 Visit Seller marketplace
               </Button>
             </Link>
           </div>
+          <div className="m-4">
+            <Link className=" hidden lg:block " href={"/agent/all-agent"}>
+              <button className="w-full    relative bottom-2  rounded-full items-center justify-center flex bg-transparent border-[#1E1E1E]  border-solid border-[1px] text-black  mt-3 text-base h-[3rem] p-3">
+                Visit Seller marketplace
+              </button>
+            </Link>{" "}
+          </div>
         </div>
 
-        <div className="lg:w-[24rem] w-full lg:h-[32rem]   rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
+        <div className="lg:w-[24rem] w-full   lg:h-[32rem]       rounded-[20px] bg-[#F9FAFB] overflow-hidden border border-none">
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
@@ -133,7 +134,7 @@ const Sell = () => {
           </div>
 
           {/* Text Content */}
-          <div className="p-6">
+          <div className="p-6 ">
             <h4 className="text-gray-800 font-[500] text-base">
               Hoydoon’s Value
             </h4>
@@ -144,21 +145,22 @@ const Sell = () => {
               Track your Hoydoon valuation over time and see how it compares to
               other homes in your area.{" "}
             </p>
-
-            <div className="  rounded-full relative  w-full lg:w-[21rem] mt-[1.5rem] 2xl:w-[25rem]">
+          </div>
+          <div className="m-4">
+            <div className=" relative -mt-4 rounded-full     w-[21rem]  ">
               <Input
                 label=""
                 type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="2xl:h-[4rem]  p-5 !rounded-[24px] mt-5 lg:mt-[4.5rem]"
+                className="  p-5 !rounded-[24px] mt-[3rem]"
                 placeholder="Enter your home address"
               />
 
               <div
                 onClick={handleSearch}
-                className="absolute right-2 top-[12%]  2xl:top-[12%] bg-primary ml-[6em] p-3  h-[35px] w-[35px] 2xl:w-[50px] 2xl:h-[50px] rounded-full flex items-center justify-center"
+                className="absolute right-2 top-[12%]  bg-primary ml-[6em] p-3  h-[35px] w-[35px]  rounded-full flex items-center justify-center"
               >
                 <Image
                   alt="logo"
@@ -190,7 +192,7 @@ const Sell = () => {
           </Button>
         </span>
 
-        <span className=" mt-5 lg:mt-[4.5rem]  lg:mt-0">
+        <span className=" mt-5  lg:mt-0">
           <Image
             alt="image1"
             width={500}

@@ -4,11 +4,12 @@ import React, { useState, useEffect } from "react";
 import Input from "@/app/components/common/inputs/input";
 import Image from "next/image";
 import { toast } from "react-toastify";
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 const SubmitRequest = () => {
   const [category, setCategory] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
@@ -134,9 +135,12 @@ const SubmitRequest = () => {
   };
 
   return (
-    <div className="mt-10 md:w-[1200px] p-4 md:p-6 bg-white min-h-screen lg:min-h-0">
+    <div className="mt-10 w-full md:w-[1200px] p-2 md:p-6 bg-white min-h-screen lg:min-h-0">
       <div className="flex flex-col md:flex-row items-start justify-between gap-4 py-2 mt-[2em] w-full bg-gray-100">
-        <div className="flex items-center gap-2 text-sm lg:text-lg text-gray-600">
+        <div
+          onClick={() => router.back()}
+          className="flex items-center gap-2 text-sm lg:text-lg text-gray-600"
+        >
           <Image
             src="/arrow-right.png"
             alt="Back"
@@ -356,25 +360,43 @@ const SubmitRequest = () => {
         </div>
 
         {category && category !== "Select" && (
-          <div className="hidden md:block md:max-w-[25rem]  lg:ml-[6rem]">
+          <div className="hidden md:block md:max-w-[25rem] lg:ml-[6rem]">
             <h2 className="text-xl font-semibold mb-4">
               Articles in this section
             </h2>
             <div className="space-y-2 text-base">
               {[
-                "Rental Scams Uncovered: How to Spot and Avoid Fraudulent Listings",
-                "Do I Need a Real Estate Agent to Buy a Home?",
-                "What Are Common Mistakes to Avoid When Buying a Home?",
-                "What Do I Do If a Listing Has Incorrect Information?",
-                "How Do I Search for Homes in a Specific Neighborhood?",
-                "What Are Common Mistakes to Avoid When Buying a Home?",
-              ].map((article, index) => (
-                <button
-                  key={index}
+                {
+                  title:
+                    "Rental Scams Uncovered: How to Spot and Avoid Fraudulent Listings",
+                  id: 19,
+                },
+                {
+                  title: "Do I Need a Real Estate Agent to Buy a Home?",
+                  id: 3,
+                },
+                {
+                  title: "What Do I Do If a Listing Has Incorrect Information?",
+                  id: 4,
+                },
+                {
+                  title:
+                    "How Do I Search for Homes in a Specific Neighborhood?",
+                  id: 1,
+                },
+                {
+                  title:
+                    "What Are Common Mistakes to Avoid When Buying a Home?",
+                  id: 15,
+                },
+              ].map((article) => (
+                <Link
+                  key={article.id}
+                  href={`/article/${article.id}`}
                   className="block w-full text-left h-[4.5rem] p-3 border rounded-md border-gray text-gray hover:bg-gray-200"
                 >
-                  {article}
-                </button>
+                  {article.title}
+                </Link>
               ))}
             </div>
           </div>

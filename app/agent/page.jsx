@@ -36,25 +36,28 @@ export default function Page() {
 
   return (
     <>
-      <header className="relative h-[25rem] lg:h-[85vh] w-screen">
+      <header className="relative h-[25rem] md:h-[85vh] w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-cover bg-center z-[-1]"
-          style={{ backgroundImage: "url('/webp/agentheader.webp')" }}
+          style={{
+            backgroundImage:
+              "url('https://hoydoonstorage.blob.core.windows.net/web-images/agentheader.webp')",
+          }}
         >
           {/* Overlay Div */}
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-[0.3] z-[-1]"></div>
         </div>
 
         {/* Content Section */}
-        <div className="flex z-[1] p-4 lg:p-0 relative  gap-1 lg:gap-6 justify-center items-center flex-col">
+        <div className="flex z-[1] p-4 md:p-0 relative  gap-1 md:gap-6 justify-center items-center flex-col">
           {/* Main Heading */}
-          <h1 className="w-[10em]  capitalize  mt-[1em] 2xl:mt-[9rem] lg:mt-[1.4em] text-white text-[2em] lg:w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
+          <h1 className="w-[10em]  capitalize  mt-[1em] 2xl:mt-[9rem] md:mt-[1.4em] text-white text-[2em] md:w-full leading-[1em] text-center md:text-[5em] font-bricolage font-[600]">
             A top agent matters!{" "}
           </h1>
 
           {/* Subheading */}
-          <h2 className="lg:text-[1.5em] 2xl:text-[1.6em]  font-[400] text-center text-[#FFFFFFB2] lg:w-[33em]">
+          <h2 className="md:text-[1.5em] 2xl:text-[1.6em]  font-[400] text-center text-[#FFFFFFB2] md:w-[33em]">
             Hoydoon’s agents are highly experienced, ready to guide you to
             success in today’s market.{" "}
           </h2>
@@ -71,20 +74,20 @@ export default function Page() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="   bg-white  w-screen lg:bg-[#eeeeeec7]  lg:py-[5em] font-bricolage lg:flex justify-center flex-col lg:gap-7 flex-1 items-center">
+      <section className="   bg-white  w-screen md:bg-[#eeeeeec7]  md:py-[5em] font-bricolage md:flex justify-center flex-col md:gap-7 flex-1 items-center">
         <div className="w-full">
-          <div className="flex flex-col  lg:flex-col justify-between  gap-10  w-full lg:max-w-[1200px]  mx-auto">
-            <div className="flex flex-col p-3 lg:p-0 lg:flex-row lg:gap-8 justify-between  items-start lg:items-center w-full  mx-auto">
-              <h1 className="text-black  font-semibold text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[60 lg:w-auto">
+          <div className="flex flex-col  md:flex-col justify-between  gap-10  w-full md:max-w-[1200px]  mx-auto">
+            <div className="flex flex-col p-3 md:p-0 md:flex-row md:gap-8 justify-between  items-start md:items-center w-full  flex-wrap mx-auto">
+              <h1 className="text-black  font-semibold text-[24px] mt-[32px] md:mt-0  md:text-[2.5rem] font-[60 md:w-auto">
                 Real Estate Agents In Hoydoon
               </h1>
-              <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
+              <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
                 Leverage a local agent's expertise with access to millions of
                 listings, guiding you through every step.
               </p>
             </div>
 
-            <div className="grid  mt-2. lg:mt-4  gap-y-3  w-full  grid-col-1 lg:grid-cols-2    gap-2  p-4 lg:p-0 lg:gap-10 ">
+            <div className="grid  mt-2. md:mt-4  gap-y-3  w-full  grid-col-1 md:grid-cols-2    gap-2  p-4 md:p-0 md:gap-10 ">
               {isAllLoading
                 ? // Show skeleton loaders
                   Array.from({ length: 6 }, (_, index) => (
@@ -109,7 +112,7 @@ export default function Page() {
               {displayListings.length > 0 && displayListings.length < 6 && (
                 <div className="w-full  flex justify-start">
                   <Link href="/agent/all-agent">
-                    <p className="text-[#09858D] mt-2  w-full text-sm lg:text-2xl font-medium">
+                    <p className="text-[#09858D] mt-2  w-full text-sm md:text-2xl font-medium">
                       See all {displayListings.length} rent estate agents in
                       Lagos
                     </p>
@@ -118,9 +121,9 @@ export default function Page() {
               )}
             </div>
             {/* "See All" link aligned to the start */}
-            <div className="w-full  lg:col-span-2 p-4 lg:p-0  lg:flex justify-start">
+            <div className="w-full  md:col-span-2 p-4 md:p-0  md:flex justify-start">
               <Link href="/agent/all-agent">
-                <p className="text-[#09858D] -mt-[4em] lg:mt-5   w-full text-sm lg:text-2xl font-medium">
+                <p className="text-[#09858D] -mt-[4em] md:mt-5   w-full text-sm md:text-2xl font-medium">
                   See all agents on Hoydoon
                 </p>
               </Link>
@@ -129,13 +132,13 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="  bg-white  lg:-mt-[3.5em] lg:bg-[#eeeeeec7]  w-full   lg:w-screen font-bricolage lg:flex  flex-col justify-center flex-1 items-center ">
-        <div className="flex  lg:gap-[4%] flex-col-reverse lg:max-w-[1200px] lg:my-[1em] lg:flex-row  items-center   lg:justify-around ">
-          <span className="flex flex-col gap-y-1 lg:gap-y-0 w-full lg:w-[45em] 2xl:w-[60em] ">
-            <h1 className="text-black  text-2xl mt-4  lg:mt-0  lg:text-[2.6rem]  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
+      <section className="  bg-white  md:-mt-[3.5em] md:bg-[#eeeeeec7]  w-full   md:w-screen font-bricolage md:flex  flex-col justify-center flex-1 items-center ">
+        <div className="flex  md:gap-[4%] flex-col-reverse md:max-w-[1200px] md:my-[1em] md:flex-row  items-center   md:justify-around ">
+          <span className="flex flex-col gap-y-1 md:gap-y-0 w-full md:w-[45em] 2xl:w-[60em] ">
+            <h1 className="text-black  text-2xl mt-4  md:mt-0  md:text-[2.6rem]  md:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Connect with local agent
             </h1>
-            <p className="text-gray text-xs lg:text-xl mt-2 2xl:mt-[1em] font-bricolage lg:w-[38rem] 2xl:text-[22px] ">
+            <p className="text-gray text-xs md:text-xl mt-2 2xl:mt-[1em] font-bricolage md:w-[38rem] 2xl:text-[22px] ">
               Benefit from local expertise. We'll connect you with a Hoydoon
               Premier Agent who understands your market and can guide you
               through the process.
@@ -145,12 +148,12 @@ export default function Page() {
             </Button>
           </span>
 
-          <span className=" mt-[2rem]  lg:mt-0">
+          <span className=" mt-[2rem]  md:mt-0">
             <Image
               alt="image1"
               width={500}
               quality={100}
-              className=" 2xl:w-[50rem] lg:w-[50rem]  object-contain  w-fit lg:h-[28rem] 2xl:h-[36rem]"
+              className=" 2xl:w-[50rem] md:w-[50rem]  object-contain  w-fit md:h-[28rem] 2xl:h-[36rem]"
               height={400} // Reduced size of logo
               src={"/agent3.png"}
             />
@@ -158,23 +161,23 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="  w-screen   lg:bg-[#eeeeeec7] lg:pt-10 lg:mb-0 mb-[2em] 2xl:-mt-[5.25em] lg:-pt-[2.5em] font-bricolage lg:flex  flex-col j flex-1 items-center ">
-        <div className="flex flex-col   p-5 lg:p-0 w-full lg:max-w-[1200px]  gap-5  lg:gap-[4.5rem]    lg:pl-5 lg:my-[2em] lg:flex-row  items-center lg:justify-between ">
-          <span className="mt-[3.5rem] lg:mt-0">
+      <section className="  w-screen   md:bg-[#eeeeeec7] md:pt-10 md:mb-0 mb-[2em] 2xl:-mt-[5.25em] md:-pt-[2.5em] font-bricolage md:flex  flex-col j flex-1 items-center ">
+        <div className="flex flex-col   p-5 md:p-0 w-full md:max-w-[1200px]  gap-5  md:gap-[4.5rem]    md:pl-5 md:my-[2em] md:flex-row  items-center md:justify-between ">
+          <span className="mt-[3.5rem] md:mt-0">
             <Image
               alt="image1"
               width={500}
               quality={100}
               height={400}
-              className=" 2xl:w-[59rem] lg:w-[50rem] object-contain w-fit   lg:h-[28rem] 2xl:h-[36rem]"
+              className=" 2xl:w-[59rem] md:w-[50rem] object-contain w-fit   md:h-[28rem] 2xl:h-[36rem]"
               src={"/agent4.png"}
             />
           </span>
-          <span className="flex flex-col w-full  lg:gap-y-5     lg:w-[55em]  ">
-            <h1 className="text-black  lg:my-0  text-xl lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
+          <span className="flex flex-col w-full  md:gap-y-5     md:w-[55em]  ">
+            <h1 className="text-black  md:my-0  text-xl md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Rapid Finds. Ready to View
             </h1>
-            <p className="text-gray  lg:text-xl text-xs  2xl:mt-[1em] font-bricolage lg:w-[90%] 2xl:text-[20px] 2xl:w-full">
+            <p className="text-gray  md:text-xl text-xs  2xl:mt-[1em] font-bricolage md:w-[90%] 2xl:text-[20px] 2xl:w-full">
               Never miss out. We refresh listings every minute, ensuring you see
               new homes instantly. Book on-demand tours to view them fast
             </p>
@@ -187,7 +190,7 @@ export default function Page() {
       </section>
       {/* afforable component */}
 
-      <div className="lg:-mb-[5rem] lg:mt-[2rem] ">
+      <div className="md:-mb-[5rem] md:mt-[2rem] ">
         <FagsSection />
       </div>
 

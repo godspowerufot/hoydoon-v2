@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import Button from "../components/common/Button";
 import Input from "../components/common/inputs/input";
 import Link from "next/link";
+import { toast } from "react-toastify";
 import SearchBar from "../components/common/searchcomponent";
 import Article from "../components/common/Article";
 import { useRouter } from "next/navigation";
@@ -19,11 +20,7 @@ export default function Home() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
   const handleSearch = () => {
-    const queryParams = new URLSearchParams({
-      ...(formData.location && { location: formData.location }),
-    }).toString();
-
-    router.push(`/agent/all-agent?${queryParams}`);
+    toast.info("coming soon!!");
   };
   return (
     <>
@@ -31,7 +28,10 @@ export default function Home() {
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
-          style={{ backgroundImage: "url('/seller.png')" }}
+          style={{
+            backgroundImage:
+              "url('https://hoydoonstorage.blob.core.windows.net/web-images/seller.webp')",
+          }}
         >
           {/* Overlay Div */}
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-[0.1] z-[-1]"></div>
@@ -64,7 +64,7 @@ export default function Home() {
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
-              src="/sell1.png" // Replace with actual image path
+              src="https://hoydoonstorage.blob.core.windows.net/web-images/sell1.webp" // Replace with actual image path
               alt="Agents talking"
               layout="fill"
               objectFit="cover"
@@ -86,7 +86,7 @@ export default function Home() {
             </p>
           </div>
           <div className="m-4">
-            <Link href={"/agent/all-agent"}>
+            <Link href={"/rent/searchlisting"}>
               <Button className="!w-full mt-6 lg:-mt-4 text-base   h-[3rem] lg:!p-2">
                 Get Started
               </Button>
@@ -98,7 +98,7 @@ export default function Home() {
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
-              src="/sell2.png" // Replace with actual image path
+              src="https://hoydoonstorage.blob.core.windows.net/web-images/sell2.webp" // Replace with actual image path
               alt="Agents talking"
               layout="fill"
               objectFit="cover"
@@ -139,7 +139,7 @@ export default function Home() {
           {/* Image Section */}
           <div className="relative h-52 w-full">
             <Image
-              src="/sell3.png" // Replace with actual image path
+              src="https://hoydoonstorage.blob.core.windows.net/web-images/sell3.webp" // Replace with actual image path
               alt="Agents talking"
               layout="fill"
               objectFit="cover"
@@ -160,14 +160,14 @@ export default function Home() {
             </p>
           </div>
           <div className="m-4">
-            <div className=" relative -mt-11 rounded-full     w-[21rem]  ">
+            <div className=" relative -mt-4 2xl:-mt-[2.7rem] rounded-full     w-[21rem]  ">
               <Input
                 label=""
                 type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="  p-5 !rounded-[24px] mt-[3rem]"
+                className="  p-5  !h-[2.8rem] !rounded-[24px] mt-[3rem]"
                 placeholder="Enter your home address"
               />
 

@@ -84,7 +84,7 @@ const LocationSearchBar = () => {
                 ? "Enter your property address"
                 : "Find an Agent in your area"
             }
-            className="flex-1 bg-transparent placeholder:text-xl text-xl text-black placeholder-gray-500 border-none outline-none pl-4 w-[36.3rem]"
+            className="flex-1  md:ml-[1rem] !bg-transparent placeholder:text-xl text-xl text-black placeholder-gray-500 border-none outline-none placeholder:bg-none pl-4 w-[36.3rem]"
           />
           <div
             onClick={handleSearch}
