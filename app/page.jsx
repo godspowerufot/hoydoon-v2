@@ -533,7 +533,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               to fit your taste and needs.
             </p>
             <a
-              href="/helpcenter
+              href="/review
           "
             >
               {" "}

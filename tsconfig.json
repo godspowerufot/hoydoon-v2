@@ -48,7 +48,9 @@
     "auth.js",
     "app/api/auth/[...nextauth].js/route.js",
     "pages/api/submit-request.js",
-    "app/auth/forgot-password/otp/otp.jsx"
-, "app/components/about/page.jsx"  ],
+    "app/auth/forgot-password/otp/otp.jsx",
+    "app/components/about/page.jsx",
+    "app/review/page.jsx"
+  ],
   "exclude": ["node_modules"]
 }

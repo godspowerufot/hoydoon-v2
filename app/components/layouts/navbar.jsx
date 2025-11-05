@@ -52,6 +52,7 @@ export default function Navbar() {
       "/article",
       "/about",
       "/policy",
+      "/review",
       "/terms",
     ].some((route) => pathname.includes(route)) ||
     /^\/agent\/[^/]+$/.test(pathname) ||
