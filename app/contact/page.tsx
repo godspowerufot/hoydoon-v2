@@ -102,7 +102,7 @@ function OfficeLocator() {
         <div className="rounded-3xl ">
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-2  md:gap-[18rem] items-start">
             <div>
-              <h1 className=" txt-2xl md:text-3xl md:text-5xl font-semibold text-[#1E1E1E] mb-4">
+              <h1 className=" text-2xl md:text-5xl font-semibold text-[#1E1E1E] mb-4">
                 Locate a Hoydoon office near you
               </h1>
             </div>
@@ -239,7 +239,7 @@ const ContactPage = () => {
           {/* Heading and Text */}
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 md:gap-[18rem] items-start">
             <div>
-              <h1 className=" txt-2xl md:text-3xl md:text-5xl font-semibold text-[#1E1E1E] mb-4">
+              <h1 className=" text-2xl  md:text-5xl font-semibold text-[#1E1E1E] mb-4">
                 Contact Us
               </h1>
             </div>
