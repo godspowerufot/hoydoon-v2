@@ -88,7 +88,7 @@ class ProcessManager {
         });
 
         Promise.all(shutdownPromises).then(() => {
-            console.log("All processes shut down");
+            console.log("All processes shut down.");
             process.exit(exitCode);
         });
     }
