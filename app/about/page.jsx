@@ -13,6 +13,13 @@ const TalkToAgent = dynamic(() => import("../components/about/Talktoagent"));
 const Page = () => {
   const [activeTab, setActiveTab] = useState("about");
 
+  const tabs = [
+    { id: "about", label: "About Us" },
+    { id: "agents", label: "Our Agents" },
+    { id: "buy", label: "Buy with Hoydoon" },
+    { id: "sell", label: "Sell with Hoydoon" },
+  ];
+
   const handleTalkToAgent = () => {
     setActiveTab("talk");
   };
