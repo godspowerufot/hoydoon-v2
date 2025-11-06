@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import ArticlesSection from "../components/common/Article";
 import Agent from "../components/about/Agent";
+import ResponsiveTabs from "../components/about/ui/tabs";
 
 const Sell = dynamic(() => import("../components/about/sell"));
 const Buy = dynamic(() => import("../components/about/Buy"));
@@ -309,48 +310,30 @@ const Page = () => {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
+  const tabs = [
+    { id: "about", label: "About Us" },
+    { id: "agents", label: "Our Agents" },
+    { id: "buy", label: "Buy with Hoydoon" },
+    { id: "sell", label: "Sell with Hoydoon" },
+  ];
+
   // 🧩 When changing tab, push it to browser history
-  const handleTabChange = (tabId: string) => {
+  const handleTalkToAgent = (tabId: string) => {
     setActiveTab(tabId);
     window.history.pushState({}, "", `#${tabId}`);
   };
-
   return (
-    <div className="md:max-w-[1240px] container mx-auto md:mt-[4rem] px-4 md:px-0">
-      <div className="relative border-b mt-4 border-gray">
-        <div className="flex justify-between">
-          <div className="flex flex-wrap gap-6">
-            {[
-              { id: "about", label: "About Us" },
-              { id: "agents", label: "Our Agents" },
-              { id: "buy", label: "Buy with Hoydoon" },
-              { id: "sell", label: "Sell with Hoydoon" },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => handleTabChange(tab.id)}
-                className={`relative py-5 text-sm md:text-[18px] transition-colors duration-300 ${
-                  activeTab === tab.id
-                    ? "text-black font-bold"
-                    : "text-[#8F8F8F]"
-                }`}
-              >
-                {tab.label}
-                {activeTab === tab.id && (
-                  <span className="absolute left-0 bottom-[-1px] w-full h-[2px] bg-primary"></span>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <button
-          className="absolute right-0 translate-y-1/2 bg-primary text-white px-3 py-3 md:w-[250px] md:h-[50px] text-sm md:text-[18px] hover:opacity-90 transition"
-          style={{ bottom: "24px" }}
-          onClick={() => handleTabChange("Talk")}
-        >
-          Talk to a Hoydoon Agent
-        </button>
+    <div className="md:max-w-[1240px] container mx-auto mt-[4rem] md:mt-[4rem] px-4 md:px-0">
+      <div className="md:mt-4 mt-[4rem]">
+        <ResponsiveTabs
+          tabs={tabs}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          actionButton={{
+            label: "Talk to a Hoydoon Agent",
+            onClick: () => handleTalkToAgent("talk"),
+          }}
+        />
       </div>
 
       <div className="mt-5">
