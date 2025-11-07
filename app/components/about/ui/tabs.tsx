@@ -47,7 +47,7 @@ const ResponsiveTabs = ({
               className="w-full flex items-center justify-between px-4 py-3 bg-transparent border border-[#8F8F8F] rounded-lg text-left hover:border-gray-400 transition-colors"
             >
               <span className="text-sm font-medium text-gray">
-                {activeTabLabel.replace("with Hoydoon", "...")}
+                {activeTabLabel.replace("with Hoydoon", " with ...")}
               </span>
               <IoChevronDown
                 size={20}
