@@ -40,7 +40,7 @@ const Breadcrumb = ({ id, name, onToggleImages }) => {
         <span className="text-gray-500 hidden lg:block">Home page |</span>
 
         <div className="flex font-light items-center gap-1">
-          <a href="/help-center" className="text-primary">
+          <a href="/helpcenter" className="text-primary">
             Help Center
           </a>
         </div>
@@ -52,7 +52,7 @@ const Breadcrumb = ({ id, name, onToggleImages }) => {
             height={12}
             width={12}
           />
-          <a href="/help-center" className="text-primary">
+          <a href="/helpcenter" className="text-primary">
             Articles
           </a>
         </div>

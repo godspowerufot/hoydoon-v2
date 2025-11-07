@@ -40,7 +40,7 @@ const Page = () => {
       </div>
 
       {/* Tab Content */}
-      <div className="mt-5">
+      <div className="mt-5 mb-[4rem] md:mb-0">
         {activeTab === "about" && (
           <div>
             <Content />
