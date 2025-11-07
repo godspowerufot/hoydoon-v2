@@ -46,7 +46,7 @@ html,
 body {
   margin: auto;
   height: 100vh;
-overflow-x: hidden;
+  overflow-x: hidden;
   user-select: none;
 }
 
@@ -79,6 +79,7 @@ html {
   /* Ensure all content is visible */
   body * {
     visibility: visible !important;
+    overflow-x: hidden;
   }
 
   /* Remove page breaks inside elements */
@@ -112,12 +113,12 @@ html {
     size: A4;
   }
 }
- @media (max-width: 992px) {
+/* @media (max-width: 992px) {
  
   body{
     overflow-x: hidden;
   }
-} 
+} */
 
 @media (min-width: 1200px) {
   .container {
