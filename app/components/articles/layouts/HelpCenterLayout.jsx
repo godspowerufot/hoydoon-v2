@@ -6,16 +6,57 @@ import Image from "next/image";
 import HoverCard from "../../common/card";
 import { truncateDescription } from "@/utils";
 import { handleShareClick } from "@/utils";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+
+const handleDownloadPDF = async () => {
+  try {
+    // Target your content container
+    const element = document.body; // or document.getElementById("page-content")
+
+    // Scroll to top to ensure consistent rendering
+    window.scrollTo(0, 0);
+
+    // Use html2canvas with full height rendering
+    const canvas = await html2canvas(element, {
+      scale: 2, // higher = better quality
+      useCORS: true, // allow cross-origin images
+      windowWidth: document.documentElement.scrollWidth,
+      windowHeight: document.documentElement.scrollHeight,
+    });
+
+    const imgData = canvas.toDataURL("image/png");
+
+    // Create a PDF and calculate scaled dimensions
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+
+    const imgWidth = pageWidth;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    // Add multiple pages if content is longer than one page
+    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+    heightLeft -= pageHeight;
+
+    while (heightLeft > 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+    }
+
+    pdf.save("article.pdf");
+  } catch (error) {
+    console.error("Error generating full-page PDF:", error);
+  }
+};
+
 const Breadcrumb = ({ id, name, onToggleImages }) => {
   const [hideImages, setHideImages] = useState(false);
-
-  const handleDownloadPDF = async () => {
-    try {
-      window.print();
-    } catch (error) {
-      console.error("Error downloading PDF:", error);
-    }
-  };
 
   const handleToggleImages = () => {
     const newState = !hideImages;

@@ -127,6 +127,14 @@ const Appfooter = () => {
                     </li>
                     <li>
                       <a
+                        href="https://www.facebook.com/share/1YwJpJwiGT/?mibextid=wwXIfr"
+                        className="transition hover:opacity-75"
+                      >
+                        Facebook
+                      </a>
+                    </li>
+                    <li>
+                      <a
                         href="mailto:devteam@quorvixconsulting.com"
                         className="transition hover:opacity-75"
                       >
