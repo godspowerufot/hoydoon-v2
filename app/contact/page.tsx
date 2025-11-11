@@ -41,6 +41,11 @@ const socialLinks = [
     src: "/linkedin.svg",
     alt: "LinkedIn",
   },
+  {
+    href: "https://www.facebook.com/share/1YwJpJwiGT/?mibextid=wwXIfr",
+    src: "/face.png",
+    alt: "facebook",
+  },
 ];
 function OfficeLocator() {
   const [expandedCountries, setExpandedCountries] = useState<string[]>([]);
@@ -292,7 +297,7 @@ const ContactPage = () => {
               <h3 className=" txt-2xl md:text-3xl font-semibold text-teal-600 mb-4">
                 Connect With Us
               </h3>
-              <div className="grid grid-cols-4 gap-2 max-w-[16rem] mx-auto">
+              <div className="grid grid-cols-5 gap-5 max-w-[16rem] mx-auto">
                 {socialLinks.map(({ href, src, alt }: any) => (
                   <Link
                     key={alt}

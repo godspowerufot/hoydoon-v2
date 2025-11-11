@@ -52,6 +52,7 @@ const Breadcrumb = ({
               alt="arrow"
               height={12}
               width={12}
+              onClick={() => window.history.back()}
               className=" w-4 h-4 object-contain"
             />{" "}
             <span>Search |</span>
@@ -65,7 +66,7 @@ const Breadcrumb = ({
               height={12}
               width={12}
             />
-            <a href="#" className="text-primary">
+            <a href="/" className="text-primary">
               Homes for sale
             </a>
           </div>
