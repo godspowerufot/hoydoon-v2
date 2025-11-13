@@ -188,7 +188,7 @@ const contactMethods = [
     icon: "/call.svg",
     title: "(312) 566-2313",
     description:
-      "Talk to a Customer Service Representative for help with our site, app, or finding a Redfin Agent.",
+      "Talk to a Customer Service Representative for help with our site, app, or finding a Hoydoon Agent.",
     action: "tel:+13125662313",
   },
   {
