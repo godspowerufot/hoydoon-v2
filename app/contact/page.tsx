@@ -26,6 +26,11 @@ const socialLinks = [
     alt: "Email",
   },
   {
+    href: "https://www.facebook.com/share/1YwJpJwiGT/?mibextid=wwXIfr",
+    src: "/face.png",
+    alt: "facebook",
+  },
+  {
     href: "https://www.instagram.com/hoydoon/",
     src: "/instagram.svg",
     alt: "Instagram",
@@ -40,11 +45,6 @@ const socialLinks = [
     href: "https://www.linkedin.com/company/hoydoon/about/?viewAsMember=true",
     src: "/linkedin.svg",
     alt: "LinkedIn",
-  },
-  {
-    href: "https://www.facebook.com/share/1YwJpJwiGT/?mibextid=wwXIfr",
-    src: "/face.png",
-    alt: "facebook",
   },
 ];
 function OfficeLocator() {
