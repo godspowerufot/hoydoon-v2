@@ -355,7 +355,7 @@ export default function Home() {
           <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
             <div className="flex flex-col lg:gap-[21rem] lg:flex-row justify-between items-start w-full mx-auto">
               <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 lg:text-[2.5rem] font-[600] w-full lg:w-auto">
-                Shortlet Rentals
+                Shortlet Apartments
               </h1>
               <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
                 Discover a home where every detail enhances your

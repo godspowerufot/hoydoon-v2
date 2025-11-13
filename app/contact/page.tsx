@@ -310,7 +310,7 @@ const ContactPage = () => {
                       alt={alt}
                       width={43}
                       height={40}
-                      className="hover:scale-110 transition-transform"
+                      className="h-[30px] w-[30px] transition-transform"
                     />
                   </Link>
                 ))}

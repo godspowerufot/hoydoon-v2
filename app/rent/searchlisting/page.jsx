@@ -108,7 +108,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
 
   const typeOptions = useMemo(() => {
     const baseOptions = ["Buy", "Rent", "Land"];
-    if (userCountry === "nigeria") {
+    if (userCountry !== "somalia") {
       return [...baseOptions, "shortlet"];
     }
     return baseOptions;
@@ -122,7 +122,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     ];
 
     // Only addshortlet for Nigeria
-    if (userCountry === "nigeria") {
+    if (userCountry !== "somalia") {
       baseOptions.push({ label: "Shortlet", value: "shortlet" });
     }
 
