@@ -135,7 +135,7 @@ const Appfooter = () => {
                     </li>
                     <li>
                       <a
-                        href="mailto:devteam@quorvixconsulting.com"
+                        href="mailto:support@hoydoon.com"
                         className="transition hover:opacity-75"
                       >
                         Email

@@ -1,6 +1,5 @@
-import { IncomingForm } from 'formidable';
-import nodemailer from 'nodemailer';
-
+import { IncomingForm } from "formidable";
+import nodemailer from "nodemailer";
 
 // Disable default body parser for file streaming
 export const config = {
@@ -10,8 +9,8 @@ export const config = {
 };
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method Not Allowed' });
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method Not Allowed" });
   }
 
   const form = new IncomingForm({
@@ -44,16 +43,28 @@ export default async function handler(req, res) {
     if (!attachmentsArray) attachmentsArray = [];
     if (!Array.isArray(attachmentsArray)) attachmentsArray = [attachmentsArray];
 
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
-    const validAttachments = attachmentsArray.filter((file) => allowedTypes.includes(file.mimetype));
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "application/pdf",
+    ];
+    const validAttachments = attachmentsArray.filter((file) =>
+      allowedTypes.includes(file.mimetype)
+    );
 
-    const totalSize = validAttachments.reduce((sum, file) => sum + file.size, 0);
+    const totalSize = validAttachments.reduce(
+      (sum, file) => sum + file.size,
+      0
+    );
     if (totalSize > 6 * 1024 * 1024) {
-      return res.status(400).json({ success: false, message: 'Total file size must be under 6MB' });
+      return res
+        .status(400)
+        .json({ success: false, message: "Total file size must be under 6MB" });
     }
 
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: process.env.EMAIL_USERNAME,
         pass: process.env.EMAIL_PASSWORD,
@@ -63,19 +74,29 @@ export default async function handler(req, res) {
     const emailContent = `
       <h3>New Support Request</h3>
       <p><strong>Category:</strong> ${category}</p>
-      ${email ? `<p><strong>Email:</strong> ${email}</p>` : ''}
-      ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ''}
-      ${description ? `<p><strong>Description:</strong> ${description}</p>` : ''}
-      ${listingInfo ? `<p><strong>Listing Info:</strong> ${listingInfo}</p>` : ''}
-      ${appVersion ? `<p><strong>App Version:</strong> ${appVersion}</p>` : ''}
-      ${browser ? `<p><strong>Browser:</strong> ${browser}</p>` : ''}
-      ${listingLink ? `<p><strong>Listing Link:</strong> ${listingLink}</p>` : ''}
+      ${email ? `<p><strong>Email:</strong> ${email}</p>` : ""}
+      ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ""}
+      ${
+        description ? `<p><strong>Description:</strong> ${description}</p>` : ""
+      }
+      ${
+        listingInfo
+          ? `<p><strong>Listing Info:</strong> ${listingInfo}</p>`
+          : ""
+      }
+      ${appVersion ? `<p><strong>App Version:</strong> ${appVersion}</p>` : ""}
+      ${browser ? `<p><strong>Browser:</strong> ${browser}</p>` : ""}
+      ${
+        listingLink
+          ? `<p><strong>Listing Link:</strong> ${listingLink}</p>`
+          : ""
+      }
       <p><strong>Files Attached:</strong> ${validAttachments.length}</p>
     `;
 
     const mailOptions = {
       from: email,
-      to: 'devteam@quorvixconsulting.com',
+      to: "support@hoydoon.com",
       subject: `Hoydoon Request - ${category}`,
       html: emailContent,
       attachments: validAttachments.map((file) => ({
@@ -86,10 +107,14 @@ export default async function handler(req, res) {
 
     await transporter.sendMail(mailOptions);
 
-    return res.status(200).json({ success: true, message: 'Requests sent successfully' });
-
+    return res
+      .status(200)
+      .json({ success: true, message: "Requests sent successfully" });
   } catch (error) {
-    console.error('Error:', error);
-    return res.status(500).json({ success: false, message: error.message || 'Internal server error' });
+    console.error("Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Internal server error",
+    });
   }
 }

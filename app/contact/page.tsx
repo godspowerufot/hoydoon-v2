@@ -21,7 +21,7 @@ interface CountryOffices {
 }
 const socialLinks = [
   {
-    href: "mailto:devteam@quorvixconsulting.com",
+    href: "mailto:support@hoydoon.com",
     src: "/mail.svg",
     alt: "Email",
   },
@@ -215,7 +215,7 @@ const Breadcrumb = () => {
           width={12}
           className="h-4 w-3 mr-3"
         />
-        Houdoon
+        Hoydoon
       </Link>
       <span className="text-gray-400">|</span>
       <span className="text-gray-900">Contact Us</span>

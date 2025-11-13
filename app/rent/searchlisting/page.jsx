@@ -121,7 +121,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       { label: "Land", value: "land" },
     ];
 
-    // Only add shortlet for Nigeria
+    // Only addshortlet for Nigeria
     if (userCountry === "nigeria") {
       baseOptions.push({ label: "Shortlet", value: "shortlet" });
     }
@@ -130,7 +130,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   }, [userCountry]);
 
   const selectedType =
-    typeOptions.find((type) => filters["home-type"] === type.toLowerCase()) ||
+    typeOptions?.find((type) => filters["home-type"] === type.toLowerCase()) ||
     "Rent";
 
   const handleFilterChange = (filterName, value) => {
@@ -271,7 +271,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   // Helper function to get the display label for price based on current filters
   const getPriceLabel = () => {
     if (!filters.price) return "Price";
-    const option = priceOptions[selectedType].find(
+    const option = priceOptions[selectedType]?.find(
       (o) => o.value === filters.price
     );
     return option ? option.label : "Price";
@@ -327,25 +327,32 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               <div className="mb-4">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">Type</h3>
                 <ul className="flex flex-col gap-1.5">
-                  {typeOptions?.map((option) => (
-                    <li
-                      key={option}
-                      className="flex justify-between items-center border-b border-gray-300 pb-1.5"
-                    >
-                      <span className="text-[12px] text-gray font-[400]">
-                        {option}
-                      </span>
-                      <input
-                        type="radio"
-                        name="type"
-                        className="w-3 h-3 accent-primary"
-                        checked={filters["home-type"] === option.toLowerCase()}
-                        onChange={() =>
-                          handleFilterChange("home-type", option.toLowerCase())
-                        }
-                      />
-                    </li>
-                  ))}
+                  {typeOptions &&
+                    typeOptions?.length > 0 &&
+                    typeOptions?.map((option) => (
+                      <li
+                        key={option}
+                        className="flex justify-between items-center border-b border-gray-300 pb-1.5"
+                      >
+                        <span className="text-[12px] text-gray font-[400]">
+                          {option}
+                        </span>
+                        <input
+                          type="radio"
+                          name="type"
+                          className="w-3 h-3 accent-primary"
+                          checked={
+                            filters["home-type"] === option.toLowerCase()
+                          }
+                          onChange={() =>
+                            handleFilterChange(
+                              "home-type",
+                              option.toLowerCase()
+                            )
+                          }
+                        />
+                      </li>
+                    ))}
                 </ul>
               </div>
 
@@ -353,7 +360,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               <div className="mb-4">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
                 <ul className="flex flex-col gap-1.5">
-                  {priceOptions[selectedType].map((option) => (
+                  {priceOptions[selectedType]?.map((option) => (
                     <li
                       key={option.value}
                       className="flex justify-between items-center border-b border-gray-300 pb-1.5"
