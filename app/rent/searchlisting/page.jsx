@@ -10,11 +10,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import PropertyListCard from "@/app/components/common/PropertyListing";
 import { flattenListings, log } from "@/utils";
 import MapComponent from "@/app/components/layouts/listingmap";
+import { getLocationRegion } from "@/utils/lib/index";
 import { PropertySkeleton } from "@/app/components/Loader";
 const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isSearching, setIsSearching] = useState(false);
+  const [userCountry, setUserCountry] = useState(null);
 
   const [showPriceDropdown, setShowPriceDropdown] = useState(false);
   const [showHomeTypeDropdown, setShowHomeTypeDropdown] = useState(false);
@@ -68,7 +70,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     setBedValue(bedrooms || "");
     setBathValue(bathrooms || "");
   }, [searchParams]);
-
+  useEffect(() => {
+    const getUserLocation = async () => {
+      const { country } = await getLocationRegion();
+      setUserCountry(country);
+    };
+    getUserLocation();
+  }, []);
   const modalRef = useRef(null);
   const bedBathRef = useRef(null);
   const priceDropdownRef = useRef(null);
@@ -98,7 +106,30 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     ],
   };
 
-  const typeOptions = ["Buy", "Rent", "Land"];
+  const typeOptions = useMemo(() => {
+    const baseOptions = ["Buy", "Rent", "Land"];
+    // Only show shortlet for Nigeria
+    if (userCountry === "nigeria") {
+      return [...baseOptions, "shortlet"];
+    }
+    return baseOptions;
+  }, [userCountry]);
+
+  const typeFilterOptions = useMemo(() => {
+    const baseOptions = [
+      { label: "Rent", value: "rent" },
+      { label: "Buy", value: "buy" },
+      { label: "Land", value: "land" },
+    ];
+
+    // Only add shortlet for Nigeria
+    if (userCountry === "nigeria") {
+      baseOptions.push({ label: "Shortlet", value: "shortlet" });
+    }
+
+    return baseOptions;
+  }, [userCountry]);
+
   const selectedType =
     typeOptions.find((type) => filters["home-type"] === type.toLowerCase()) ||
     "Rent";
@@ -141,6 +172,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       buy: "sale",
       rent: "rent",
       land: "land",
+      shortlet: "shortlet",
     };
     if (filters["home-type"]) {
       newParams.set(
@@ -296,7 +328,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               <div className="mb-4">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">Type</h3>
                 <ul className="flex flex-col gap-1.5">
-                  {["Buy", "Rent", "Land"].map((option) => (
+                  {typeOptions.map((option) => (
                     <li
                       key={option}
                       className="flex justify-between items-center border-b border-gray-300 pb-1.5"
@@ -537,13 +569,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             option === "Price" ? setShowPriceDropdown : setShowHomeTypeDropdown;
 
           const options =
-            option === "Price"
-              ? priceOptions[selectedType]
-              : [
-                  { label: "Rent", value: "rent" },
-                  { label: "Buy", value: "buy" },
-                  { label: "Land", value: "land" },
-                ];
+            option === "Price" ? priceOptions[selectedType] : typeFilterOptions;
 
           return (
             <div className="relative" key={option}>
