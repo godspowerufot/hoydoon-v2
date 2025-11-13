@@ -108,7 +108,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
 
   const typeOptions = useMemo(() => {
     const baseOptions = ["Buy", "Rent", "Land"];
-    // Only show shortlet for Nigeria
     if (userCountry === "nigeria") {
       return [...baseOptions, "shortlet"];
     }
@@ -305,7 +304,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
 
             <div
               ref={modalRef}
-              className="absolute bg-white top-[20%] z-[1111] rounded-xl p-4 w-full max-w-[14rem] overflow-y-auto h-[400px] no-scrollbar"
+              className="absolute bg-white top-[9rem] z-[1111] rounded-xl p-4 w-full max-w-[14rem] overflow-y-auto h-[400px] no-scrollbar"
             >
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-sm text-gray-600 font-[400]">Filters</h2>
@@ -328,7 +327,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               <div className="mb-4">
                 <h3 className="text-sm text-gray-600 font-[400] mb-2">Type</h3>
                 <ul className="flex flex-col gap-1.5">
-                  {typeOptions.map((option) => (
+                  {typeOptions?.map((option) => (
                     <li
                       key={option}
                       className="flex justify-between items-center border-b border-gray-300 pb-1.5"
