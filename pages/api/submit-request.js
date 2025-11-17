@@ -97,7 +97,7 @@ export default async function handler(req, res) {
     const mailOptions = {
       from: process.env.EMAIL_USERNAME, // Your Gmail
       replyTo: email, // User’s email (reply goes here)
-      to: "ufotgodspower8@gmail.com",
+      to: "support@hoydoon.com",
       subject: `Hoydoon Request - ${category}`,
       html: emailContent,
       attachments: validAttachments.map((file) => ({
