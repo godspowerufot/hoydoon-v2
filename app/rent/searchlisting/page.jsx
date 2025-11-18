@@ -102,7 +102,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       { label: "$0k - $30k", value: "0-30000" },
       { label: "$30k - $60k", value: "30000-60000" },
       { label: "$60k - $100k", value: "60000-100000" },
-      { label: "$100k - Above", value: "100000-10000000" },
+      { label: "$100k - Above", value: "100000-10000000000" },
+    ],
+    shortlet: [
+      { label: "Any", value: "" },
+      { label: "$50k - $200k", value: "0-200000" },
+      { label: "$200k - $500k", value: "200000-500000" },
+      { label: "$500k - above", value: "500000-500000000" },
     ],
   };
 
