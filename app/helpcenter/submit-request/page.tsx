@@ -87,6 +87,14 @@ const SubmitRequest = () => {
       if (!response.ok) throw new Error(data.message || "Submission failed");
 
       toast.success("Request submitted successfully!");
+
+      setEmail("");
+      setSubject("");
+      setDescription("");
+      setListingInfo("");
+      setAppVersion("");
+      setBrowser("");
+      setListingLink("");
       setAttachments([]);
     } catch (error) {
       console.error("Submission error:", error);
