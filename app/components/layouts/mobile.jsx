@@ -92,7 +92,6 @@ const MobileNavbar = () => {
     Sell: {
       title: "Explore your rentals",
       items: [
-        { label: "See your home’s Hoydoon Estimate", href: "/sell" },
         { label: "Lagos Housing market", href: "/sell" },
         { label: "Seller’s guide", href: "/sell" },
       ],

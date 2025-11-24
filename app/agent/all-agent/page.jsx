@@ -9,6 +9,7 @@ import FAQComponent from "@/app/components/layouts/faq";
 import { useGetAgentsQuery } from "@/store/slices/api/authapi";
 import Spinner from "@/app/components/common/Spinner";
 import { useRouter, useSearchParams } from "next/navigation";
+import { getLocationRegion } from "@/utils/lib";
 import Pagination from "@/app/components/common/pagination";
 import { HiChevronDown } from "react-icons/hi";
 const Dropdown = ({ selectedOption, setSelectedOption }) => {
@@ -70,12 +71,27 @@ const Breadcrumb = () => {
     router.push(`/agent/all-agent?${newParams.toString()}`);
   };
 
+  // useEffect(() => {
+  //   // 🔥 On mount, try to get user region and plug it into `region` + URL
+  //   (async () => {
+  //     try {
+  //       const { region: userRegion } = await getLocationRegion();
+  //       if (userRegion) {
+  //         setRegion(userRegion); // shows in the input
+  //         updateQueryParam("region", userRegion.toLowerCase()); // ?region=<the region>
+  //       }
+  //     } catch (e) {
+  //       console.warn("Could not get location region", e);
+  //     }
+  //   })();
+  // }, []);
+
   return (
     <div className=" py-2 md:pt-[3rem] px-1 md:px-[5rem] 2xl:px-[0rem]  items-start md:flex-col md:items-center justify-between">
       <div className="flex flex-col  md:flex-row justify-between items-start md:items-center w-full mt-4 p-2 gap-2 md:gap-6 mb-[2rem]">
         {/* Left Section - Heading */}
         <h1 className="text-black text-[22px] sm:text-[24px] md:text-[2rem] font-semibold w-full md:w-auto">
-          Real Estate Agents in Lagos
+          Real Estate Agents in Hoydoon
         </h1>
 
         {/* Right Section - Description */}
@@ -256,6 +272,20 @@ const page = () => {
   const [displayListings, setDisplayListings] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const handleConnect = async () => {
+    try {
+      const { region: userRegion } = await getLocationRegion();
+
+      if (userRegion) {
+        setRegion(userRegion); // update input
+        updateQueryParam("region", userRegion.toLowerCase()); // update search
+      }
+    } catch (e) {
+      console.error("Failed to fetch region", e);
+    }
+  };
+
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       const newParams = new URLSearchParams(searchParams.toString());
@@ -333,8 +363,11 @@ const page = () => {
               Premier Agent who understands your market and can guide you
               through the process.
             </p>
-            <Button className="text-base  !w-[115px] font-light mt-4 ">
-              <Link href="/explore">Connect</Link>
+            <Button
+              onClick={handleConnect}
+              className="text-base !w-[115px] font-light mt-4"
+            >
+              Connect
             </Button>
           </span>
 
