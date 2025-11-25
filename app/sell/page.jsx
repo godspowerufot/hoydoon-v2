@@ -41,7 +41,7 @@ export default function Home() {
         <div className="flex z-[1] p-4 lg:p-0  relative gap-[10px] lg:gap-6 justify-center items-center flex-col">
           {/* Main Heading */}
           <h1 className="lg:w-[12em] mt-[1.5em] 2xl:mt-[9rem] lg:mt-[1.4em] text-white text-[2em] w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
-            Get Personalized Proposals , No Cost!
+            Get Personalized Proposals, at no cost
           </h1>
           {/* Subheading */}
           <h2 className="lg:text-[1.5em] capitalize lg:leading-[2rem] text-sm 2xl:text-[1.6em]  font-[400] text-center text-[#FFFFFFB2] lg:w-[33em]">

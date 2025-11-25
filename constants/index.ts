@@ -48,7 +48,7 @@ export const articles = [
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
-      "In today's digital-first world, searching for a rental property has never been easier—or riskier. While online listings offer convenience and a wide range of options, they've also opened the door to a growing number of rental scams.",
+      "In today's digital-first world, searching for a rental property has never been easier,or riskier. While online listings offer convenience and a wide range of options, they've also opened the door to a growing number of rental scams.",
   },
   {
     id: "20",
@@ -114,7 +114,7 @@ export const articles = [
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
-      "Buying a home is one of the biggest financial decisions most people will make. It's not just a transaction—it's a complex process that involves legal paperwork, market analysis, negotiations, inspections, and plenty of emotions.",
+      "Buying a home is one of the biggest financial decisions most people will make. It's not just a transaction,it's a complex process that involves legal paperwork, market analysis, negotiations, inspections, and plenty of emotions.",
   },
   {
     id: "4",
@@ -125,7 +125,7 @@ export const articles = [
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
-      "If you find a listing on Hoydoon that includes incorrect or outdated information—such as the wrong price, mismatched photos, or inaccurate property details—it's easy to report it.",
+      "If you find a listing on Hoydoon that includes incorrect or outdated information,such as the wrong price, mismatched photos, or inaccurate property details,it's easy to report it.",
   },
   {
     id: "5",
@@ -136,7 +136,7 @@ export const articles = [
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
-      "Want to be the first to know when new properties that match your criteria are listed? Hoydoon makes it easy to stay one step ahead with smart, location-based alerts—right from the mobile app.",
+      "Want to be the first to know when new properties that match your criteria are listed? Hoydoon makes it easy to stay one step ahead with smart, location-based alerts,right from the mobile app.",
   },
   {
     id: "6",
@@ -159,7 +159,7 @@ export const articles = [
     readTime: "3 min read",
     date: "March 15, 2025",
     description:
-      "Your description is one of the first things buyers or renters see on Hoydoon—and it plays a big role in attracting interest. A well-written, engaging summary can help your listing stand out, generate more views, and lead to faster responses.",
+      "Your description is one of the first things buyers or renters see on Hoydoon,and it plays a big role in attracting interest. A well-written, engaging summary can help your listing stand out, generate more views, and lead to faster responses.",
   },
   {
     id: "8",
@@ -193,7 +193,7 @@ export const articles = [
     readTime: "2 min read",
     date: "January 08, 2025",
     description:
-      "It's easy to forget your login details from time to time, and we understand that. That's why Hoydoon offers a quick, secure way to reset your password and get back into your account—whether you're using the mobile app or visiting our website.",
+      "It's easy to forget your login details from time to time, and we understand that. That's why Hoydoon offers a quick, secure way to reset your password and get back into your account,whether you're using the mobile app or visiting our website.",
   },
   {
     id: "11",
@@ -204,7 +204,7 @@ export const articles = [
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
-      "Welcome to the Hoydoon app—your trusted partner in navigating the world of real estate. Whether you're actively searching for your next home, listing a property for sale or rent, or simply browsing to understand the market, Hoydoon is here to make the process easier, faster, and more secure.",
+      "Welcome to the Hoydoon app,your trusted partner in navigating the world of real estate. Whether you're actively searching for your next home, listing a property for sale or rent, or simply browsing to understand the market, Hoydoon is here to make the process easier, faster, and more secure.",
   },
   {
     id: "12",
@@ -215,7 +215,7 @@ export const articles = [
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
-      "At Hoydoon, we're committed to building a safe, respectful, and trustworthy space for everyone—whether you're buying, renting, selling, or just exploring the market. Creating a positive experience for all users is at the heart of what we do, and that begins with a shared sense of responsibility.",
+      "At Hoydoon, we're committed to building a safe, respectful, and trustworthy space for everyone,whether you're buying, renting, selling, or just exploring the market. Creating a positive experience for all users is at the heart of what we do, and that begins with a shared sense of responsibility.",
   },
   {
     id: "13",
@@ -226,7 +226,7 @@ export const articles = [
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
-      "Thinking about putting your home on the market—or simply looking for ways to increase its overall value? The good news is, you don't need to take on a full-scale renovation or spend a fortune to make your property stand out.",
+      "Thinking about putting your home on the market,or simply looking for ways to increase its overall value? The good news is, you don't need to take on a full-scale renovation or spend a fortune to make your property stand out.",
   },
   {
     id: "14",
@@ -237,7 +237,7 @@ export const articles = [
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
-      "Searching for a new place to call home or invest in? Understanding the different types of properties available is a key step toward making a confident, informed decision—whether you're focused on comfort, long-term value, or rental potential.",
+      "Searching for a new place to call home or invest in? Understanding the different types of properties available is a key step toward making a confident, informed decision,whether you're focused on comfort, long-term value, or rental potential.",
   },
   {
     id: "15",
@@ -248,7 +248,7 @@ export const articles = [
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
-      "At Hoydoon, creating a safe, respectful, and welcoming environment for all users is one of our top priorities. We believe that every interaction on our platform—whether you're searching, listing, renting, or simply exploring—should be grounded in mutual respect and trust.",
+      "At Hoydoon, creating a safe, respectful, and welcoming environment for all users is one of our top priorities. We believe that every interaction on our platform,whether you're searching, listing, renting, or simply exploring,should be grounded in mutual respect and trust.",
   },
   {
     id: "16",
@@ -270,7 +270,7 @@ export const articles = [
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
-      "Managing your property listings on Hoydoon is simple and efficient—especially once you understand what each listing status means. Whether you're a landlord, real estate agent, or private seller, being familiar with the differences between Active, Inactive, and Sold listings is key to keeping your portfolio organized and professional.",
+      "Managing your property listings on Hoydoon is simple and efficient,especially once you understand what each listing status means. Whether you're a landlord, real estate agent, or private seller, being familiar with the differences between Active, Inactive, and Sold listings is key to keeping your portfolio organized and professional.",
   },
   {
     id: "18",
