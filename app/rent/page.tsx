@@ -77,7 +77,7 @@ export default function Home() {
             community, and convenience come together.{" "}
           </h2>
           <h2 className="text-[#FFFFFFB2]  lg:hidden lg:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm lg:text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
-            Hoydoon connects you to your dream home — easily and reliably.{" "}
+            Hoydoon connects you to your dream home , easily and reliably.{" "}
           </h2>
 
           <SearchBar />

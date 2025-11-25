@@ -100,7 +100,7 @@ const DefaultContent = () => {
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           By posting a listing on Hoydoon, you agree that all information you
-          provide—including photos, pricing, and descriptions—is accurate and
+          provide,including photos, pricing, and descriptions,is accurate and
           lawful, that you have the legal right to advertise the property, and
           that you’ll update or remove the listing once it’s no longer
           available. You also acknowledge that Hoydoon may edit, reject, or
@@ -377,7 +377,7 @@ const Page = () => {
         {activeTab === "agents" && <Agent />}
         {activeTab === "buy" && <Buy />}
         {activeTab === "sell" && <Sell />}
-        {activeTab === "Talk" && <TalkToAgent />}
+        {activeTab === "talk" && <TalkToAgent />}
       </div>
     </div>
   );

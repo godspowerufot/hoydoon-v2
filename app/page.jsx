@@ -323,7 +323,7 @@ export default function Home() {
             to the home of your dreams with trust and ease.
           </h2>
           <h2 className="text-[#FFFFFFB2]  md:hidden md:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm md:text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
-            Hoydoon connects you to your dream home — easily and reliably.{" "}
+            Hoydoon connects you to your dream home , easily and reliably.{" "}
           </h2>
 
           {/* Search Bar (Large Screens) */}
@@ -529,7 +529,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
           </span>
           <span className=" hidden md:flex flex-col font-bricolage gap-3 ">
             <p className="text-gray  md:p-0 text-sm 2xl:text-[20px] md:text-xl font-bricolage w-full md:w-[24em]">
-              Discover a home where every detail enhances your lifestyle—crafted
+              Discover a home where every detail enhances your lifestyle,crafted
               to fit your taste and needs.
             </p>
             <a

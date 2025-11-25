@@ -43,7 +43,7 @@ const Agent = () => {
           A Top Agent Matters!
         </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
-          Hoydoon’s agents are not only highly experienced—they’re also deeply
+          Hoydoon’s agents are not only highly experienced,they’re also deeply
           familiar with local market trends, pricing strategies, and negotiation
           tactics. Whether you're buying your first home, selling a property, or
           exploring rental opportunities, they’re committed to guiding you

@@ -34,7 +34,7 @@ const Sell = () => {
       <div className=" mt-5 lg:mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold ">
           {" "}
-          Get Personalized Proposals — No Cost!
+          Get Personalized Proposals , No Cost!
         </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           Need help buying, selling, or renting a property? Get free,
@@ -42,7 +42,7 @@ const Sell = () => {
           market and are ready to guide you every step of the way. Simply share
           a few details about your needs, and you’ll be matched with trusted
           professionals offering competitive rates and expert advice. It’s fast,
-          easy, and completely obligation-free—so you can compare options and
+          easy, and completely obligation-free,so you can compare options and
           choose the right agent with confidence.{" "}
         </p>
       </div>
@@ -102,8 +102,8 @@ const Sell = () => {
             </h2>
             <p className="text-[#8F8F8F] text-sm lg:text-[14px] mt-5">
               When you choose to buy and sell with us, youll benefit from a
-              significantly reduced fee—only half of what most traditional
-              brokerages typically charge—helping you save more while receiving
+              significantly reduced fee,only half of what most traditional
+              brokerages typically charge,helping you save more while receiving
               exceptional service.{" "}
             </p>
 

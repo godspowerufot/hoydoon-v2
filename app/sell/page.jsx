@@ -41,7 +41,7 @@ export default function Home() {
         <div className="flex z-[1] p-4 lg:p-0  relative gap-[10px] lg:gap-6 justify-center items-center flex-col">
           {/* Main Heading */}
           <h1 className="lg:w-[12em] mt-[1.5em] 2xl:mt-[9rem] lg:mt-[1.4em] text-white text-[2em] w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
-            Get Personalized Proposals — No Cost!
+            Get Personalized Proposals , No Cost!
           </h1>
           {/* Subheading */}
           <h2 className="lg:text-[1.5em] capitalize lg:leading-[2rem] text-sm 2xl:text-[1.6em]  font-[400] text-center text-[#FFFFFFB2] lg:w-[33em]">
@@ -115,8 +115,8 @@ export default function Home() {
             </h2>
             <p className="text-[#8F8F8F] text-sm lg:text-[14px] mt-5">
               When you choose to buy and sell with us, youll benefit from a
-              significantly reduced fee—only half of what most traditional
-              brokerages typically charge—helping you save more while receiving
+              significantly reduced fee,only half of what most traditional
+              brokerages typically charge,helping you save more while receiving
               exceptional service.{" "}
             </p>
 

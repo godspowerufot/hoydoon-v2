@@ -114,11 +114,11 @@ export default function Home() {
           {/* Subheading */}
           <h2 className="text-[#FFFFFFB2]  hidden  lg:-mt-2 text-center  lg:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
             Discover the perfect property to call home. Beautiful locations,
-            modern amenities, and endless possibilities—make your move today!
+            modern amenities, and endless possibilities,make your move today!
           </h2>
 
           <h2 className="text-[#FFFFFFB2]  lg:hidden lg:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm lg:text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
-            Find your dream home—great locations, modern amenities, endless
+            Find your dream home,great locations, modern amenities, endless
             possibilities. Move in today!{" "}
           </h2>
 

@@ -63,8 +63,8 @@ const DefaultContent = () => {
           We also collect certain information automatically when you visit our
           website or app. This may include your device type, browser details, IP
           address, and location data (if enabled). Additionally, we gather data
-          about your activity on the platform—such as pages visited, time spent,
-          and actions taken—along with insights from cookies and similar
+          about your activity on the platform,such as pages visited, time spent,
+          and actions taken,along with insights from cookies and similar
           technologies, as described in Section 8 below.
         </p>
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
@@ -342,7 +342,7 @@ const Page = () => {
         {activeTab === "agents" && <Agent />}
         {activeTab === "buy" && <Buy />}
         {activeTab === "sell" && <Sell />}
-        {activeTab === "Talk" && <TalkToAgent />}
+        {activeTab === "talk" && <TalkToAgent />}
       </div>
     </div>
   );

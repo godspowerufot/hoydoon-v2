@@ -20,7 +20,7 @@ const Content = () => {
         </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           Hoydoon is a modern, all-in-one property platform designed to serve
-          everyone in the real estate space—from first-time buyers and renters
+          everyone in the real estate space,from first-time buyers and renters
           to experienced investors, agents, and homeowners. We believe that
           property should be approachable for all, no matter your level of
           experience or goal.{" "}
@@ -34,7 +34,7 @@ const Content = () => {
         </p>
 
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
-          Our platform is built to adapt to your needs—putting smart tools,
+          Our platform is built to adapt to your needs,putting smart tools,
           helpful resources, and expert support right at your fingertips, so you
           can move forward with confidence, clarity, and control.{" "}
         </p>
@@ -42,9 +42,9 @@ const Content = () => {
       <div className=" mt-5 lg:mt-[4.5rem]">
         <h1 className="lg:text-[2rem] text-xl  font-semibold "> Who We Are </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
-          At Hoydoon, we believe that navigating the property market—whether
+          At Hoydoon, we believe that navigating the property market,whether
           you&apos;re searching for a new home, a reliable tenant, or the ideal
-          buyer—should be a straightforward, secure, and even enjoyable
+          buyer,should be straightforward, secure, and even enjoyable
           experience. That belief drives everything we do.
         </p>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
@@ -58,7 +58,7 @@ const Content = () => {
 
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           With a focus on innovation, trust, and user-first design, we’re
-          building more than just a property platform—we&apos;re creating a
+          building more than just a property platform,we&apos;re creating a
           space where people can make confident decisions and move forward with
           clarity and peace of mind.
         </p>
@@ -70,12 +70,12 @@ const Content = () => {
         </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           At our core, we are a collective of bold, forward-thinking
-          individuals—innovators driven by curiosity and a passion for
-          redefining what&apos;s possible. We don&apos;t just embrace change—we
+          individuals,innovators driven by curiosity and a passion for
+          redefining what&apos;s possible. We don&apos;t just embrace change,we
           lead it. Unafraid to challenge the status quo, we seek out uncharted
           paths and turn unconventional ideas into impactful realities. Our
           culture thrives on this spirit of exploration, where questioning norms
-          isn’t just welcomed—it&apos;s expected{" "}
+          isn’t just welcomed,it&apos;s expected{" "}
         </p>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           Our leadership plays a vital role in fueling this mindset. By
@@ -87,13 +87,13 @@ const Content = () => {
         </p>
 
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
-          But innovation doesn’t flourish in isolation—it grows in a culture of
+          But innovation doesn’t flourish in isolation,it grows in a culture of
           belonging. That’s why we’re deeply committed to creating an inclusive,
           supportive workplace where every voice matters. Here, team members are
           not only encouraged to contribute but are empowered to lead, learn,
           and reach their full potential. We believe that when people feel
           respected, inspired, and connected, they don’t just do their best
-          work—they thrive, both in their careers and in their personal growth{" "}
+          work,they thrive, both in their careers and in their personal growth{" "}
         </p>
       </div>
       {/* section2 */}
@@ -119,7 +119,7 @@ const Content = () => {
           do.
         </p>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
-          At the same time, we are constantly evolving—driven by innovation—to
+          At the same time, we are constantly evolving,driven by innovation,to
           improve the way people find, rent, buy, and manage property. Through
           intuitive design, smart tools, and continuous feature updates, we
           strive to make the experience simpler, faster, and more empowering for
@@ -128,7 +128,7 @@ const Content = () => {
 
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
           But beyond the technology, Hoydoon is about people. We’re not just a
-          property marketplace—we’re a growing community where individuals,
+          property marketplace,we’re a growing community where individuals,
           families, and professionals come together to support one another,
           share insights, and help each other find their place in the world.{" "}
         </p>
@@ -143,7 +143,7 @@ const Content = () => {
           to be intuitive and accessible, making it easy to connect with
           listings, people, and opportunities that truly match your goals. By
           combining smart technology with a people-first approach, we help
-          simplify what can often feel like a complicated process—so you can
+          simplify what can often feel like a complicated process,so you can
           focus on what matters most: finding a place that feels right for you
         </p>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
@@ -153,7 +153,7 @@ const Content = () => {
         </p>
 
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
-          Your next move starts here—with Hoydoon{" "}
+          Your next move starts here,with Hoydoon{" "}
         </p>
       </div>
     </div>

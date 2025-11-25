@@ -24,7 +24,7 @@ const articles = [
     readTime: "3 min read",
     date: "March 2025",
     description:
-      "Buying a home is one of the biggest financial decisions most people will make. It's not just a transaction—it's a complex process that involves legal paperwork, market analysis, negotiations, inspections, and plenty of emotions.",
+      "Buying a home is one of the biggest financial decisions most people will make. It's not just a transaction,it's a complex process that involves legal paperwork, market analysis, negotiations, inspections, and plenty of emotions.",
   },
 ];
 

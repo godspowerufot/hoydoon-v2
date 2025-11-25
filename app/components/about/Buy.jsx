@@ -63,13 +63,13 @@ const Buy = () => {
           Find Your Perfect Dream Home Today!
         </h1>
         <p className="text-gray  font-light text-[12px] lg:text-xl font-bricolage  w-full leading-5 mt-4">
-          Discover the perfect place to call home—whether you're searching for a
+          Discover the perfect place to call home,whether you're searching for a
           cozy apartment, a spacious family house, or a modern condo in the
           heart of the city. Explore beautiful locations, thoughtfully designed
           interiors, and a wide range of properties featuring the modern
           amenities you need for comfort and convenience. From vibrant
           neighborhoods to peaceful retreats, find a space that fits your
-          lifestyle and your future. Your dream home is just a click away—start
+          lifestyle and your future. Your dream home is just a click away,start
           your search and make your move today!
         </p>
       </div>

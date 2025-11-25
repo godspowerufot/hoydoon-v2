@@ -12,6 +12,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { getLocationRegion } from "@/utils/lib";
 import Pagination from "@/app/components/common/pagination";
 import { HiChevronDown } from "react-icons/hi";
+
 const Dropdown = ({ selectedOption, setSelectedOption }) => {
   const [isOpen, setIsOpen] = useState(false);
   const options = ["Rent", "Buy", "Sell"];
@@ -50,7 +51,7 @@ const Dropdown = ({ selectedOption, setSelectedOption }) => {
   );
 };
 
-const Breadcrumb = () => {
+const Breadcrumb = ({ onRegionUpdate }) => {
   const [selectedLanguage, setSelectedLanguage] = useState("Language");
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [selectedSpecialty, setSelectedSpecialty] = useState("Specialty");
@@ -67,34 +68,24 @@ const Breadcrumb = () => {
   const updateQueryParam = (key, value) => {
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.set(key, value);
-    newParams.set("page", "1"); // ✅ Reset page on filter change
+    newParams.set("page", "1");
     router.push(`/agent/all-agent?${newParams.toString()}`);
   };
 
-  // useEffect(() => {
-  //   // 🔥 On mount, try to get user region and plug it into `region` + URL
-  //   (async () => {
-  //     try {
-  //       const { region: userRegion } = await getLocationRegion();
-  //       if (userRegion) {
-  //         setRegion(userRegion); // shows in the input
-  //         updateQueryParam("region", userRegion.toLowerCase()); // ?region=<the region>
-  //       }
-  //     } catch (e) {
-  //       console.warn("Could not get location region", e);
-  //     }
-  //   })();
-  // }, []);
+  // Expose updateQueryParam to parent via callback
+  useEffect(() => {
+    if (onRegionUpdate) {
+      onRegionUpdate({ updateQueryParam, setRegion });
+    }
+  }, [onRegionUpdate]);
 
   return (
     <div className=" py-2 md:pt-[3rem] px-1 md:px-[5rem] 2xl:px-[0rem]  items-start md:flex-col md:items-center justify-between">
       <div className="flex flex-col  md:flex-row justify-between items-start md:items-center w-full mt-4 p-2 gap-2 md:gap-6 mb-[2rem]">
-        {/* Left Section - Heading */}
         <h1 className="text-black text-[22px] sm:text-[24px] md:text-[2rem] font-semibold w-full md:w-auto">
           Real Estate Agents in Hoydoon
         </h1>
 
-        {/* Right Section - Description */}
         <p className="text-gray font-normal font-bricolage text-sm sm:text-base md:text-lg leading-snug md:leading-normal md:text-left w-full md:w-[460px]">
           Leverage a local agent's expertise with access to millions of
           listings, guiding you through every step.
@@ -102,7 +93,6 @@ const Breadcrumb = () => {
       </div>
 
       <div className="hidden md:flex flex-col md:flex-row items-center gap-3 md:gap-4 2xl:gap-6 w-full mt-4">
-        {/* Location Search */}
         <div className="relative w-full md:w-[300px] 2xl:min-w-[350px]">
           <input
             type="text"
@@ -126,7 +116,6 @@ const Breadcrumb = () => {
           </button>
         </div>
 
-        {/* Buy/Sell Toggle */}
         <div className="w-full md:w-auto bg-[#F9FAFB] border border-[#8F8F8F] rounded-xl p-1.5 flex items-center justify-between">
           {options.map((option) => (
             <button
@@ -146,7 +135,6 @@ const Breadcrumb = () => {
           ))}
         </div>
 
-        {/* Language Dropdown */}
         <div className="relative w-full md:w-auto md:min-w-[220px] 2xl:min-w-[250px]">
           <select
             value={selectedLanguage}
@@ -259,27 +247,34 @@ const Breadcrumb = () => {
   );
 };
 
-const page = () => {
+const Page = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const query = useMemo(() => {
     return Object.fromEntries(searchParams?.entries() ?? []);
   }, [searchParams]);
+
   const {
     data: allAgent,
     isLoading: isAllLoading,
     refetch,
   } = useGetAgentsQuery(query);
+
   const [displayListings, setDisplayListings] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [regionUpdater, setRegionUpdater] = useState(null);
 
   const handleConnect = async () => {
     try {
       const { region: userRegion } = await getLocationRegion();
 
-      if (userRegion) {
-        setRegion(userRegion); // update input
-        updateQueryParam("region", userRegion.toLowerCase()); // update search
+      console.log(userRegion);
+      if (userRegion && regionUpdater) {
+        // Update the input field in Breadcrumb
+        regionUpdater.setRegion(userRegion);
+        // Update the URL query params
+        regionUpdater.updateQueryParam("region", userRegion.toLowerCase());
       }
     } catch (e) {
       console.error("Failed to fetch region", e);
@@ -295,15 +290,15 @@ const page = () => {
   };
 
   useEffect(() => {
-    refetch(); // Refetch data on every mount
+    refetch();
   }, [refetch]);
 
   useEffect(() => {
     if (!isAllLoading && allAgent) {
       const firstThreeListings = allAgent;
-      setDisplayListings(firstThreeListings); // Store in state
+      setDisplayListings(firstThreeListings);
       setTotalPages(allAgent.totalPages || 1);
-      setCurrentPage(Number(searchParams.get("page")) || 1); // Store in state
+      setCurrentPage(Number(searchParams.get("page")) || 1);
     }
   }, [allAgent, isAllLoading]);
 
@@ -313,12 +308,12 @@ const page = () => {
 
   return (
     <div className="mt-8  max-w-[1240px]   ">
-      {" "}
-      <Breadcrumb />
+      <Breadcrumb onRegionUpdate={setRegionUpdater} />
       <div className="md:ml-[5rem] my-3 mt-[45px] 2xl:px-[0rem]  2xl:ml-[2rem] gap-y-3  grid md:w-[88%] 2xl:w-[95%]  grid-cols-1 md:grid-cols-2 sm:gap-4 md:gap-8 place-items-center">
         {isAllLoading
-          ? // Show skeleton loaders
-            Array.from({ length: 6 }, (_, index) => <ProfileCardSkeleton />)
+          ? Array.from({ length: 6 }, (_, index) => (
+              <ProfileCardSkeleton key={index} />
+            ))
           : displayListings.map((agent) => (
               <ProfileCard
                 key={agent._id}
@@ -376,17 +371,16 @@ const page = () => {
               alt="image1"
               width={500}
               quality={100}
-              className="2xl:w-[48rem] w-[45rem] 2xl:h-[30rem]" // Reduced size of logo
-              height={400} // Reduced size of logo
+              className="2xl:w-[48rem] w-[45rem] 2xl:h-[30rem]"
+              height={400}
               src={"/agent3.png"}
             />
           </span>
         </div>
       </section>
       <FagsSection />
-      {/* second div layout  */}
     </div>
   );
 };
 
-export default page;
+export default Page;
