@@ -284,9 +284,9 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   };
 
   return (
-    <div className="md:pt-[2.3rem] -mb-[2.5rem] md:mb-0 flex-col md:flex-row md:flex justify-between w-full">
+    <div className="md:pt-[2.3rem] flex-wrap -mb-[2.5rem] md:mb-0 flex-col md:flex-row md:flex justify-between w-full">
       {/* Left Section: Filters */}
-      <div className="flex items-center p-[1rem] md:p-0 gap-1 md:gap-2">
+      <div className="flex items-center p-[1rem] md:p-0   flex-wrap gap-1 md:gap-2">
         <button
           onClick={() => setShowAllFiltersDropdown(true)}
           className="px-2 md:px-4 h-[37px] text-xs md:h-fit md:text-sm md:py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F] flex items-center gap-2"

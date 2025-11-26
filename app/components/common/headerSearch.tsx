@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Button from "./Button";
 
 type PropertyType = "shortlet" | "rent" | "buy" | "land" | "";
 
@@ -63,7 +64,6 @@ export default function PropertySearchBar() {
   });
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [validationError, setValidationError] = useState<string>("");
 
   const priceRef = useRef<HTMLDivElement>(null);
   const typeRef = useRef<HTMLDivElement>(null);
@@ -95,46 +95,28 @@ export default function PropertySearchBar() {
     }
   }, [filters.type]);
 
-  // Check if all fields are filled and auto-search
-  useEffect(() => {
-    const { location, price, type, bedBaths } = filters;
-
-    // If any field is filled but not all, show validation message
-    const hasAnyValue = location || price || type || bedBaths;
-    const hasAllValues = location && price && type && bedBaths;
-
-    if (hasAnyValue && !hasAllValues) {
-      const missing = [];
-      if (!location) missing.push("Location");
-      if (!type) missing.push("Type");
-      if (!price) missing.push("Price Range");
-      if (!bedBaths) missing.push("Bed/Baths");
-      setValidationError(`Please select: ${missing.join(", ")}`);
-    } else {
-      setValidationError("");
-    }
-
-    // Auto search when all fields are filled
-    if (hasAllValues) {
-      handleSearch();
-    }
-  }, [filters]);
-
   const handleSearch = () => {
     const { location, price, type, bedBaths } = filters;
 
-    if (!location || !price || !type || !bedBaths) return;
+    // Build query params only with filled values
+    const queryParams = new URLSearchParams();
 
-    const [minPrice, maxPrice] = price.split("-");
-    const [minBed] = bedBaths.split("-");
+    if (location) queryParams.append("location", location);
 
-    const queryParams = new URLSearchParams({
-      location,
-      minPrice,
-      maxPrice,
-      listingType: type === "buy" ? "sale" : type,
-      bedrooms: minBed === "4+" ? "4" : minBed,
-    });
+    if (price) {
+      const [minPrice, maxPrice] = price.split("-");
+      queryParams.append("minPrice", minPrice);
+      queryParams.append("maxPrice", maxPrice);
+    }
+
+    if (type) {
+      queryParams.append("listingType", type === "buy" ? "sale" : type);
+    }
+
+    if (bedBaths) {
+      const [minBed] = bedBaths.split("-");
+      queryParams.append("bedrooms", minBed === "4+" ? "4" : minBed);
+    }
 
     router.push(`/rent/searchlisting?${queryParams}`);
   };
@@ -170,14 +152,16 @@ export default function PropertySearchBar() {
     priceOptionsByType[filters.type || "rent"] || priceOptionsByType.rent;
 
   return (
-    <div className="w-full max-w-3xl z-[1111111] mx-auto p-4">
-      {/* Validation Error */}
-      {validationError && (
-        <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-amber text-sm">
-          {validationError}
-        </div>
-      )}
+    <div
+      style={{
+        background:
+          "linear-gradient(129.42deg, rgba(255, 255, 255, 0.2) -11.83%, rgba(255, 255, 255, 0.3) 48.36%, rgba(255, 255, 255, 0.2) 107.36%)",
 
+        backdropFilter: "blur(4px)",
+        borderImageSlice: 1,
+      }}
+      className="w-full border-[#ffffff33] border-[2px] max-w-3xl rounded-xl  z-[1111111] mx-auto p-4"
+    >
       {/* Filter Grid */}
       <div className="grid grid-cols-2 gap-2 sm:gap-4">
         {/* Location Input */}
@@ -398,6 +382,14 @@ export default function PropertySearchBar() {
             </div>
           )}
         </div>
+      </div>
+      <div className="flex justify-center mt-8">
+        <Button
+          onClick={handleSearch}
+          className="w-1/2 md:!w-[300px] bg-primary px-8 py-2 md:py-4 text-white !text-base md:!text-lg font-light rounded-[8.7px] transition-all "
+        >
+          Search
+        </Button>
       </div>
     </div>
   );
