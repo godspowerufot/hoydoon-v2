@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Button from "./Button";
 
-type PropertyType = "shortlet" | "rent" | "buy" | "land" | "";
+type PropertyType = "shortlet" | "rent" | "buy" | "land" | "sell" | "";
 
 interface Filters {
   location: string;
@@ -62,6 +62,7 @@ export default function PropertySearchBar() {
   const getDefaultType = (): PropertyType => {
     if (pathname?.includes("/buy")) return "buy";
     if (pathname?.includes("/rent")) return "rent";
+    if (pathname?.includes("/sell")) return "sell";
     if (pathname?.includes("/shortlet")) return "shortlet";
     if (pathname?.includes("/land")) return "land";
     return "";

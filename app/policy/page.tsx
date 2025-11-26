@@ -323,8 +323,8 @@ const Page = () => {
     window.history.pushState({}, "", `#${tabId}`);
   };
   return (
-    <div className="md:max-w-[1240px] container mx-auto mt-[4rem] md:mt-[4rem] px-4 md:px-0">
-      <div className="md:mt-4 mt-[4rem]">
+    <div className="md:max-w-[1240px] container mx-auto mt-[2rem] md:mt-[4rem] px-4 md:px-0">
+      <div className="md:mt-4 mt-[1.5rem]">
         <ResponsiveTabs
           tabs={tabs}
           activeTab={activeTab}

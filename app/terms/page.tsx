@@ -359,7 +359,7 @@ const Page = () => {
 
   return (
     <div className="md:max-w-[1240px] container mx-auto md:mt-[4rem] px-4 md:px-0">
-      <div className="md:mt-4 mt-[4rem]">
+      <div className="md:mt-4 mt-[2rem]">
         <ResponsiveTabs
           tabs={tabs}
           activeTab={activeTab}

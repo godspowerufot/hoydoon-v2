@@ -333,39 +333,6 @@ export default function Home() {
           {/* Mobile Search Bar */}
         </div>
         {/* Statistics Section */}
-        <div className="absolute hidden  bottom-7 md:flex font-bricolage md:mt-10 justify-center items-center w-full pt-10 px-4">
-          <div className="flex items-center rounded-lg ml-15 justify-between md:w-4/5 md:max-w-[50rem]">
-            {/* Hosts Section */}
-            <div className="flex items-center text-start gap-2 px-4">
-              <span className="text-2xl font-medium text-white">10M+</span>
-              <span className="text-base leading-[16px] w-[150px] font-light text-white">
-                Hosts welcome guests worldwide
-              </span>
-            </div>
-
-            {/* Vertical Divider */}
-            <div className="h-12 w-[1px] bg-white"></div>
-
-            {/* Unique Stays Section */}
-            <div className="flex  items-center text-start gap-2 px-4">
-              <span className="text-xl font-medium text-white">15M+</span>
-              <span className="text-base leading-[16px] font-light w-[150px] text-white">
-                Unique stays across 150K+ cities
-              </span>
-            </div>
-
-            {/* Vertical Divider */}
-            <div className="h-12 w-[1px] bg-white"></div>
-
-            {/* Guest Arrivals Section */}
-            <div className="flex  items-center text-start gap-2 px-4">
-              <span className="text-2xl font-medium text-white">12M+</span>
-              <span className="text-base leading-[16px] font-light w-[150px] text-white">
-                Guest arrivals to date every month
-              </span>
-            </div>
-          </div>
-        </div>
       </header>
       <div></div>
       <section className="w-screen p-5 md:p-0 font-bricolage md:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">

@@ -10,6 +10,7 @@ import Article from "../components/common/Article";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import LocationSearchBar from "../components/layouts/maploader";
+import PropertySearchBar from "../components/common/headerSearch";
 export default function Home() {
   const [formData, setFormData] = useState({
     location: "",
@@ -24,7 +25,7 @@ export default function Home() {
   };
   return (
     <>
-      <header className="relative h-[25rem]  lg:h-[88vh] w-screen">
+      <header className="relative h-[50vh] md:h-[95vh]  w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
@@ -52,7 +53,7 @@ export default function Home() {
           {/* Large Screen Search Bar */}
           {/* Large Screen Search Bar */}
           {/* Search Bar (Large Screens) */}
-          <LocationSearchBar />
+          <PropertySearchBar />
         </div>
       </header>
 

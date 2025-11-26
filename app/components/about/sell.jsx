@@ -22,7 +22,7 @@ const Sell = () => {
   };
   return (
     <div>
-      <div className="relative w-full h-[400px] md:h-[500px] rounded-md overflow-hidden">
+      <div className="relative w-full h-[400px] md:h-[88vh] rounded-md overflow-hidden">
         <Image
           src="/seller.png"
           alt="Customer service representative on phone"
