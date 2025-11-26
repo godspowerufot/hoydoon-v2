@@ -386,7 +386,7 @@ export default function PropertySearchBar() {
       <div className="flex justify-center mt-8">
         <Button
           onClick={handleSearch}
-          className="w-1/2 md:!w-[300px] bg-primary px-8 py-2 md:py-4 text-white !text-base md:!text-lg font-light rounded-[8.7px] transition-all "
+          className="w-1/2 md:!w-[300px] bg-primary px-8 py-2 md:py-4 text-white !text-base md:!text-xl font-light !rounded-[5.7px] transition-all "
         >
           Search
         </Button>
