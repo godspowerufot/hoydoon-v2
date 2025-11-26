@@ -69,7 +69,7 @@ const DefaultContent = () => {
             <li className="mt-1 list-disc text-[12px] md:text-xl ">
               Have the authority to enter into binding agreements.   
             </li>
-            <li className="mt-1 list-disc ttext-[12px] md:text-xl ">
+            <li className="mt-1 list-disc text-[12px] md:text-xl ">
               Provide accurate and up-to-date information when creating an
               account or submitting listings. 
             </li>
@@ -162,8 +162,8 @@ const DefaultContent = () => {
         </h1>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
-          Most of Hoydoon’s services are free to use, allowing users to list,
-          browse, and connect without cost. However, certain premium features,
+          Most of Hoydoon’s services are free to use, allowing users to browse,
+          and connect without cost. However, certain premium features,
           promotional listings, or optional upgrades may come with associated
           fees. All fees will be clearly presented before you make a purchase,
           ensuring full transparency. Payments are handled securely through

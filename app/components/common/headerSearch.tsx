@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Button from "./Button";
 
 type PropertyType = "shortlet" | "rent" | "buy" | "land" | "";
@@ -56,10 +56,21 @@ const bedBathOptions = [
 
 export default function PropertySearchBar() {
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Get default type based on route
+  const getDefaultType = (): PropertyType => {
+    if (pathname?.includes("/buy")) return "buy";
+    if (pathname?.includes("/rent")) return "rent";
+    if (pathname?.includes("/shortlet")) return "shortlet";
+    if (pathname?.includes("/land")) return "land";
+    return "";
+  };
+
   const [filters, setFilters] = useState<Filters>({
     location: "",
     price: "",
-    type: "",
+    type: getDefaultType(),
     bedBaths: "",
   });
 
@@ -68,6 +79,12 @@ export default function PropertySearchBar() {
   const priceRef = useRef<HTMLDivElement>(null);
   const typeRef = useRef<HTMLDivElement>(null);
   const bedBathRef = useRef<HTMLDivElement>(null);
+
+  // Update type when route changes
+  useEffect(() => {
+    const defaultType = getDefaultType();
+    setFilters((prev) => ({ ...prev, type: defaultType }));
+  }, [pathname]);
 
   // Close dropdown on outside click
   useEffect(() => {

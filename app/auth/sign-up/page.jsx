@@ -154,7 +154,7 @@ const Signup = () => {
                     onChange={(e) => {
                       setPassword(e.target.value);
                       const passwordRegex =
-                        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z\d\s]).{8,}$/;
                       setIsPasswordValid(passwordRegex.test(e.target.value));
                     }}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-base placeholder-gray-400 pr-12"
