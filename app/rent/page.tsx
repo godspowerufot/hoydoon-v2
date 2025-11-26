@@ -1,7 +1,6 @@
 "use client";
 
 import PropertyListCard from "../components/common/PropertyListing";
-import SearchBar from "../components/common/searchcomponent";
 import Article from "../components/common/Article";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useState, useEffect } from "react";
@@ -9,6 +8,7 @@ import Link from "next/link";
 import { Property } from "@/types";
 import { SkeletonCard } from "../components/Loader";
 import { getLocationRegion } from "@/utils/lib";
+import PropertySearchBar from "../components/common/headerSearch";
 export default function Home() {
   const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery(
     {}
@@ -52,7 +52,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative h-[25rem]   p-2 lg:h-[85vh] w-screen overflow-hidden">
+      <header className="relative h-full   p-2 lg:h-[95vh] w-screen ">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
@@ -80,7 +80,7 @@ export default function Home() {
             Hoydoon connects you to your dream home , easily and reliably.{" "}
           </h2>
 
-          <SearchBar />
+          <PropertySearchBar />
         </div>
 
         {/* Statistics Section */}

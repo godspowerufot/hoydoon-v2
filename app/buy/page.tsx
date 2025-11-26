@@ -14,6 +14,7 @@ import SearchBar from "../components/common/searchcomponent";
 import HoverCard from "../components/common/card";
 import { Property } from "@/types";
 import { SkeletonCard } from "../components/Loader";
+import PropertySearchBar from "../components/common/headerSearch";
 
 // Add mobile detection
 function useIsMobile() {
@@ -94,7 +95,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative  h-[25rem]     p-2 lg:h-[85vh] w-screen overflow-hidden">
+      <header className="relative  h-full   p-2 lg:h-[95vh] w-screen ">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
@@ -121,8 +122,7 @@ export default function Home() {
             Find your dream home,great locations, modern amenities, endless
             possibilities. Move in today!{" "}
           </h2>
-
-          <SearchBar />
+          <PropertySearchBar />
         </div>
 
         {/* Statistics Section */}
