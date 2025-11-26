@@ -9,6 +9,7 @@ import SearchBar from "./components/common/searchcomponent";
 import { useIsMobile } from "@/hooks/usemobile";
 import Button from "./components/common/Button";
 import { flattenListings } from "@/utils";
+import PropertySearchBar from "./components/common/headerSearch";
 import { toast } from "react-toastify";
 import { truncateDescription } from "@/utils/index";
 import HoverCard from "@/app/components/common/card";
@@ -301,7 +302,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative h-[40vh] md:h-[100vh] p-2 md:p-0 w-screen overflow-hidden">
+      <header className="relative h-full md:h-[100vh]  p-2 md:p-0 w-screen ">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full  bg-cover bg-center z-[-1]"
@@ -327,7 +328,7 @@ export default function Home() {
           </h2>
 
           {/* Search Bar (Large Screens) */}
-          <SearchBar />
+          <PropertySearchBar />
 
           {/* Mobile Search Bar */}
         </div>
