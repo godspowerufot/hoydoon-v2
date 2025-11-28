@@ -12,6 +12,7 @@ import { flattenListings, log } from "@/utils";
 import MapComponent from "@/app/components/layouts/listingmap";
 import { getLocationRegion } from "@/utils/lib/index";
 import { PropertySkeleton } from "@/app/components/Loader";
+import { FiltersDropdown } from "@/app/components/common/filters";
 const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -22,6 +23,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   const [showHomeTypeDropdown, setShowHomeTypeDropdown] = useState(false);
   const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
   const [showBedBathDropdown, setShowBedBathDropdown] = useState(false);
+  const [showHouseTypeDropdown, setShowHouseTypeDropdown] = useState(false);
 
   const [bedValue, setBedValue] = useState("");
   const [bathValue, setBathValue] = useState("");
@@ -70,6 +72,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     setBedValue(bedrooms || "");
     setBathValue(bathrooms || "");
   }, [searchParams]);
+
   useEffect(() => {
     const getUserLocation = async () => {
       const { country } = await getLocationRegion();
@@ -77,10 +80,12 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     };
     getUserLocation();
   }, []);
+
   const modalRef = useRef(null);
   const bedBathRef = useRef(null);
   const priceDropdownRef = useRef(null);
   const homeTypeDropdownRef = useRef(null);
+  const houseTypeDropdownRef = useRef(null);
 
   const priceOptions = {
     Buy: [
@@ -112,6 +117,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     ],
   };
 
+  const homeTypeOptions = [
+    { label: "Any", value: "" },
+    { label: "Bungalow", value: "Bungalow" },
+    { label: "Penthouse", value: "Penthouse" },
+    { label: "Duplex", value: "Duplex" },
+  ];
+
   const typeOptions = useMemo(() => {
     const baseOptions = ["Buy", "Rent", "Land"];
     if (userCountry !== "somalia") {
@@ -127,7 +139,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       { label: "Land", value: "land" },
     ];
 
-    // Only addshortlet for Nigeria
+    // Only add shortlet for Nigeria
     if (userCountry !== "somalia") {
       baseOptions.push({ label: "Shortlet", value: "shortlet" });
     }
@@ -274,6 +286,23 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     };
   }, [showHomeTypeDropdown]);
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        houseTypeDropdownRef.current &&
+        !houseTypeDropdownRef.current.contains(event.target)
+      ) {
+        setShowHouseTypeDropdown(false);
+      }
+    }
+    if (showHouseTypeDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showHouseTypeDropdown]);
+
   // Helper function to get the display label for price based on current filters
   const getPriceLabel = () => {
     if (!filters.price) return "Price";
@@ -286,287 +315,153 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   return (
     <div className="md:pt-[2.3rem] flex-wrap -mb-[2.5rem] md:mb-0 flex-col md:flex-row md:flex justify-between w-full">
       {/* Left Section: Filters */}
-      <div className="flex items-center p-[1rem] md:p-0   flex-wrap gap-1 md:gap-2">
-        <button
-          onClick={() => setShowAllFiltersDropdown(true)}
-          className="px-2 md:px-4 h-[37px] text-xs md:h-fit md:text-sm md:py-[6px] border rounded-[3px] text-[#8F8F8F] border-[#8F8F8F] flex items-center gap-2"
-        >
-          <Image
-            src="/allfilter.png"
-            alt="Filter"
-            width={16}
-            height={15}
-            className="w-4 h-4 md:w-[16px] md:h-[16px]"
-          />
-          All Filters
-        </button>
-
-        {showAllFiltersDropdown && (
-          <>
-            <div
-              className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
-              onClick={() => setShowAllFiltersDropdown(false)}
-            ></div>
-
-            <div
-              ref={modalRef}
-              className="absolute bg-white top-[9rem] z-[1111] rounded-xl p-4 w-full max-w-[14rem] overflow-y-auto h-[400px] no-scrollbar"
-            >
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-sm text-gray-600 font-[400]">Filters</h2>
-                <button
-                  className="text-sm text-primary font-[400]"
-                  onClick={async () => {
-                    setIsSearching(true);
-                    await new Promise((resolve) => setTimeout(resolve, 500));
-                    handleSearchClick();
-                    await new Promise((resolve) => setTimeout(resolve, 300));
-                    setIsSearching(false);
-                    setShowAllFiltersDropdown(false);
-                  }}
-                >
-                  Done
-                </button>
-              </div>
-
-              {/* Type Filter */}
-              <div className="mb-4">
-                <h3 className="text-sm text-gray-600 font-[400] mb-2">Type</h3>
-                <ul className="flex flex-col gap-1.5">
-                  {typeOptions &&
-                    typeOptions?.length > 0 &&
-                    typeOptions?.map((option) => (
-                      <li
-                        key={option}
-                        className="flex justify-between items-center border-b border-gray-300 pb-1.5"
-                      >
-                        <span className="text-[12px] text-gray font-[400]">
-                          {option}
-                        </span>
-                        <input
-                          type="radio"
-                          name="type"
-                          className="w-3 h-3 accent-primary"
-                          checked={
-                            filters["home-type"] === option.toLowerCase()
-                          }
-                          onChange={() =>
-                            handleFilterChange(
-                              "home-type",
-                              option.toLowerCase()
-                            )
-                          }
-                        />
-                      </li>
-                    ))}
-                </ul>
-              </div>
-
-              {/* Price Section */}
-              <div className="mb-4">
-                <h3 className="text-sm text-gray-600 font-[400] mb-2">Price</h3>
-                <ul className="flex flex-col gap-1.5">
-                  {priceOptions[selectedType]?.map((option) => (
-                    <li
-                      key={option.value}
-                      className="flex justify-between items-center border-b border-gray-300 pb-1.5"
-                    >
-                      <span className="text-[12px] text-gray font-[400]">
-                        {option.label}
-                      </span>
-                      <input
-                        type="radio"
-                        name="price"
-                        className="w-3 h-3 accent-primary"
-                        checked={filters.price === option.value}
-                        onChange={() =>
-                          handleFilterChange("price", option.value)
-                        }
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Bed/Baths Filter */}
-              {filters["home-type"] !== "land" && (
-                <div className="mb-4">
-                  <h3 className="text-sm text-gray-600 font-[400] mb-2">
-                    Bed/Baths
-                  </h3>
-                  <ul className="flex flex-col gap-1.5">
-                    {["Any", "2–4", "5+"].map((option) => (
-                      <li
-                        key={option}
-                        className="flex justify-between items-center border-b border-gray-300 pb-1.5"
-                      >
-                        <span className="text-[12px] text-gray font-[400]">
-                          {option}
-                        </span>
-                        <input
-                          type="radio"
-                          name="bed-baths"
-                          className="w-3 h-3 accent-primary"
-                          checked={
-                            (option === "Any" &&
-                              filters.bedrooms === "" &&
-                              filters.bathrooms === "") ||
-                            (option === "2–4" &&
-                              filters.bedrooms === "2" &&
-                              filters.bathrooms === "2") ||
-                            (option === "5+" &&
-                              filters.bedrooms === "5+" &&
-                              filters.bathrooms === "5+")
-                          }
-                          onChange={() => {
-                            if (option === "Any") {
-                              handleFilterChange("bedrooms", "");
-                              handleFilterChange("bathrooms", "");
-                              setBedValue("");
-                              setBathValue("");
-                            } else if (option === "2–4") {
-                              handleFilterChange("bedrooms", "2");
-                              handleFilterChange("bathrooms", "2");
-                              setBedValue("2");
-                              setBathValue("2");
-                            } else {
-                              handleFilterChange("bedrooms", "5+");
-                              handleFilterChange("bathrooms", "5+");
-                              setBedValue("5+");
-                              setBathValue("5+");
-                            }
-                          }}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* House Type */}
-              {filters["home-type"] !== "land" && (
-                <div className="mb-4">
-                  <h3 className="text-sm text-gray-600 font-[400] mb-2">
-                    House type
-                  </h3>
-                  <ul className="flex flex-col gap-1.5">
-                    {["Bungalow", "Duplex", "Penthouse"].map((option) => (
-                      <li
-                        key={option}
-                        className="flex justify-between items-center border-b border-gray-300 pb-1.5"
-                      >
-                        <span className="text-[12px] text-gray font-[400]">
-                          {option}
-                        </span>
-                        <input
-                          type="radio"
-                          name="house-type"
-                          className="w-3 h-3 accent-primary"
-                          checked={filters.houseType === option.toLowerCase()}
-                          onChange={() =>
-                            handleFilterChange(
-                              "houseType",
-                              option.toLowerCase()
-                            )
-                          }
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </>
-        )}
-
+      <div className="flex items-center p-[1rem] md:p-0 flex-wrap gap-2 md:gap-3">
         {/* Individual Filter Buttons */}
-        {["Price", "Type", "Bed/Baths"].map((option) => {
+        {["Type", "Price", "Bed/Baths", "House Type"].map((option) => {
           if (option === "Bed/Baths") {
             return (
               <div className="relative" key={option}>
+                {/* BUTTON */}
                 <button
-                  onClick={() => setShowBedBathDropdown(!showBedBathDropdown)}
-                  className="border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 md:pr-6 appearance-none flex items-center gap-2"
+                  onClick={() => setShowBedBathDropdown(true)}
+                  className="border border-[#8F8F8F] bg-transparent text-base font-light rounded-md text-[#8F8F8F] py-2 px-4 flex items-center justify-between min-w-[140px] gap-2"
                 >
-                  {bedValue || bathValue
-                    ? `${bedValue} Beds, ${bathValue} Baths`
-                    : "Bed/Baths"}
+                  <span>
+                    {filters.bedBaths === "0-2"
+                      ? "0 - 2"
+                      : filters.bedBaths === "2-4"
+                      ? "2 - 4"
+                      : filters.bedBaths === "5+"
+                      ? "5 & Above"
+                      : "Bed/Baths"}
+                  </span>
+
                   <Image
                     width={500}
                     height={500}
                     src="/arrow-down.png"
                     alt="Dropdown"
-                    className="w-3 h-2 ml-2 pointer-events-none"
+                    className="w-3 h-2 pointer-events-none flex-shrink-0"
                   />
                 </button>
+
+                {/* DROPDOWN */}
                 {showBedBathDropdown && (
                   <>
-                    <div className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"></div>
+                    {/* BACKDROP */}
                     <div
-                      className="absolute z-[11111111] md:top-[110%] left-0 bg-white shadow-md border border-gray-200 rounded-md p-4 w-[12rem] mt-7 md:mt-0 md:w-64"
-                      ref={bedBathRef}
-                    >
-                      <div className="flex justify-between mb-2">
-                        <span className="font-medium text-sm">Beds</span>
-                        <button
-                          onClick={() => {
-                            setBedValue("");
-                            handleFilterChange("bedrooms", "");
-                          }}
-                          className="text-xs text-primary"
-                        >
-                          Any
-                        </button>
-                      </div>
-                      <div className="flex gap-2 mb-4 flex-wrap">
-                        {["1", "2", "3", "4", "5+"].map((val) => (
-                          <button
-                            key={val}
-                            onClick={() => {
-                              setBedValue(val);
-                              handleFilterChange("bedrooms", val);
-                            }}
-                            className={`px-2 py-1 text-sm rounded border ${
-                              bedValue === val
-                                ? "bg-teal-500 text-white"
-                                : "text-[#8F8F8F] border-[#8F8F8F]"
-                            }`}
-                          >
-                            {val}
-                          </button>
-                        ))}
+                      className="fixed inset-0 bg-black bg-opacity-50 z-[2000]"
+                      onClick={() => setShowBedBathDropdown(false)}
+                    />
+
+                    {/* PANEL */}
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-[3000] md:w-[350px] overflow-hidden">
+                      {/* Header */}
+                      <div className="px-4 py-2 border-b border-gray-100">
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-black md:text-lg text-base ">
+                            Select
+                          </span>
+
+                          <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+                            {!filters.bedBaths && (
+                              <div className="w-3 h-3 rounded-full bg-primary" />
+                            )}
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="flex justify-between mb-2">
-                        <span className="font-medium text-sm">Baths</span>
+                      {/* OPTIONS */}
+                      {[
+                        { label: "0 - 2", value: "0-2" },
+                        { label: "2 - 4", value: "2-4" },
+                        { label: "5 & Above", value: "5+" },
+                      ].map((opt) => (
                         <button
+                          key={opt.value}
                           onClick={() => {
-                            setBathValue("");
-                            handleFilterChange("bathrooms", "");
+                            handleFilterChange("bedBaths", opt.value);
+                            setShowBedBathDropdown(false);
                           }}
-                          className="text-xs text-primary"
+                          className="w-full px-4 py-3 flex items-center justify-between border-b border-gray-100 last:border-0 text-sm"
                         >
-                          Any
+                          <span className="text-black text-sm md:text-lg">
+                            {opt.label}
+                          </span>
+
+                          <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+                            {filters.bedBaths === opt.value && (
+                              <div className="w-3 h-3 rounded-full bg-primary" />
+                            )}
+                          </div>
                         </button>
-                      </div>
-                      <div className="flex gap-2 flex-wrap">
-                        {["1", "2", "3", "4", "5+"].map((val) => (
-                          <button
-                            key={val}
-                            onClick={() => {
-                              setBathValue(val);
-                              handleFilterChange("bathrooms", val);
-                            }}
-                            className={`px-2 py-1 text-sm rounded border ${
-                              bathValue === val
-                                ? "bg-teal-500 text-white"
-                                : "text-[#8F8F8F] border-[#8F8F8F]"
-                            }`}
-                          >
-                            {val}
-                          </button>
-                        ))}
-                      </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            );
+          }
+
+          // House Type dropdown
+          if (option === "House Type") {
+            return (
+              <div className="relative" key={option}>
+                <button
+                  type="button"
+                  className="border border-[#8F8F8F] bg-transparent text-base font-light rounded-md text-[#8F8F8F] py-2 px-4 flex items-center justify-between min-w-[140px] gap-2"
+                  onClick={() =>
+                    setShowHouseTypeDropdown(!showHouseTypeDropdown)
+                  }
+                >
+                  <span>{filters.houseType || "Duplex"}</span>
+                  <Image
+                    width={500}
+                    height={300}
+                    src="/arrow-down.png"
+                    alt="Dropdown"
+                    className="w-3 h-2 pointer-events-none flex-shrink-0"
+                  />
+                </button>
+                {showHouseTypeDropdown && (
+                  <>
+                    <div
+                      className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+                      onClick={() => setShowHouseTypeDropdown(false)}
+                    ></div>
+                    <div
+                      className="absolute z-[111111] left-[23%] top-[14%] md:top-[110%] md:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 md:mt-0 md:w-[350px]"
+                      ref={houseTypeDropdownRef}
+                    >
+                      <ul className="flex flex-col gap-2">
+                        {homeTypeOptions.map((opt) => {
+                          const isSelected = filters.houseType === opt.value;
+
+                          return (
+                            <label
+                              key={opt.value}
+                              className="w-full h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleFilterChange("houseType", opt.value);
+                                setShowHouseTypeDropdown(false);
+                              }}
+                            >
+                              <span className="text-black text-sm md:text-lg">
+                                {opt.label}
+                              </span>
+
+                              {/* Circle radio container */}
+                              <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 border-primary">
+                                {/* Inner filled circle when selected */}
+                                {isSelected && (
+                                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
+                                )}
+                              </div>
+                            </label>
+                          );
+                        })}
+                      </ul>
                     </div>
                   </>
                 )}
@@ -587,7 +482,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             <div className="relative" key={option}>
               <button
                 type="button"
-                className={`border border-[#8F8F8F] bg-transparent text-[12.5px] font-light rounded-md text-[#8F8F8F] p-2 md:pr-2 flex items-center gap-2 ${
+                className={`border border-[#8F8F8F] bg-transparent text-base font-light rounded-md text-[#8F8F8F] py-2 px-4 flex items-center justify-between min-w-[140px] gap-2 ${
                   option === "Price" ? "hidden md:flex" : ""
                 }`}
                 onClick={() => setDropdownState(!dropdownState)}
@@ -607,7 +502,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                   height={300}
                   src="/arrow-down.png"
                   alt="Dropdown"
-                  className="w-3 h-2 ml-2 pointer-events-none"
+                  className="w-3 h-2 pointer-events-none flex-shrink-0"
                 />
               </button>
               {dropdownState && (
@@ -617,7 +512,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                     onClick={() => setDropdownState(false)}
                   ></div>
                   <div
-                    className="absolute z-[111111] left-[23%] top-[14%] md:top-[110%] md:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 md:mt-0 md:w-[200px]"
+                    className="absolute z-[111111] left-[23%] top-[14%] md:top-[110%] md:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 md:mt-0 md:w-[350px]"
                     ref={
                       option === "Price"
                         ? priceDropdownRef
@@ -634,31 +529,33 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                         return (
                           <label
                             key={opt.value}
-                            className={`flex items-center gap-2 cursor-pointer px-2 py-1 rounded transition-colors ${
-                              isSelected
-                                ? "bg-primary text-white"
-                                : "hover:bg-gray-100"
-                            }`}
+                            className="w-full h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
                             onClick={(e) => {
                               e.stopPropagation();
                               if (option === "Price") {
                                 handleFilterChange("price", opt.value);
+                                setShowPriceDropdown(false);
                               } else {
                                 handleFilterChange("home-type", opt.value);
+                                setShowHomeTypeDropdown(false);
                               }
                             }}
                           >
-                            <input
-                              type="radio"
-                              name={option}
-                              value={opt.value}
-                              checked={isSelected}
-                              onChange={() => {}}
-                              className={`w-4 h-4 ${
-                                isSelected ? "accent-white" : "accent-green-500"
+                            <span className="text-black text-sm md:text-lg">
+                              {opt.label}
+                            </span>
+
+                            {/* Circle radio container */}
+                            <div
+                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                                isSelected ? "border-primary" : "border-primary"
                               }`}
-                            />
-                            <span className="text-sm">{opt.label}</span>
+                            >
+                              {/* Inner filled circle when selected */}
+                              {isSelected && (
+                                <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
+                              )}
+                            </div>
                           </label>
                         );
                       })}
@@ -669,7 +566,29 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             </div>
           );
         })}
-
+        <button
+          onClick={() => setShowAllFiltersDropdown(true)}
+          className="border border-[#8F8F8F] bg-transparent text-base font-light rounded-md text-[#8F8F8F] py-2 px-4 flex items-center justify-between min-w-[140px] gap-2"
+        >
+          <span className="flex items-center gap-2">
+            <Image
+              src="/allfilter.png"
+              alt="Filter"
+              width={16}
+              height={15}
+              className="w-4 h-4"
+            />
+            All Filters
+          </span>
+        </button>
+        <FiltersDropdown
+          isOpen={showAllFiltersDropdown}
+          onClose={() => setShowAllFiltersDropdown(false)}
+          filters={filters}
+          onFilterChange={handleFilterChange}
+          onSearch={handleSearchClick}
+          isSearching={isSearching}
+        />
         <button
           onClick={async () => {
             setIsSearching(true);
@@ -678,7 +597,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             await new Promise((resolve) => setTimeout(resolve, 300));
             setIsSearching(false);
           }}
-          className="px-4 py-[6px] bg-primary text-base text-white font-light rounded-md flex items-center justify-center"
+          className="px-4 py-2 bg-primary text-base text-white font-light rounded-md flex items-center md:w-[150px] justify-center"
           disabled={isSearching}
         >
           {isSearching ? (
@@ -708,11 +627,11 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       </div>
 
       {/* Right Section: List / Map Toggle */}
-      <div className="hidden md:flex w-[12rem] bg-[#F9FAFB] gap-[10px] p-3 border-[#8F8F8F] justify-between border-solid border-[0.5px] items-center font-base rounded-[5px] md:p-[3px] relative">
+      <div className="hidden md:flex w-[15rem] bg-[#F9FAFB] gap-[10px] p-3 border-[#8F8F8F] justify-between border-solid border-[0.5px] items-center font-base rounded-[5px] md:p-[3px] relative">
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
-              className={`px-4 py-1 gap-3 flex items-center justify-center w-[4.5rem] text-[16px] rounded-md transition-all duration-300 ${
+              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${
                 (showMap ? "Map" : "List") === option
                   ? "bg-primary gap-[10px] flex text-white"
                   : "text-[#8F8F8F]"

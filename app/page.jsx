@@ -364,9 +364,7 @@ export default function Home() {
               width={480}
               quality={100}
               height={300} // Reduced size of logo
-              src={
-                "https://hoydoonstorage.blob.core.windows.net/web-images/house-app.webp"
-              }
+              src={"/calculator.png"}
             />
           </span>
         </div>
@@ -464,8 +462,8 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
               Explore Luxurious Living Spaces
             </h1>
             <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
-              Discover a home where every detail enhances your lifestyle crafted
-              to fit your taste and needs.
+              From modern architecture to elegant interiors, discover homes
+              crafted for elevated living.
             </p>
           </div>
           <div className=" md:mt-[2em] w-full">
@@ -479,38 +477,45 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
 
       {/* testimonials */}
       <section className=" p-2   pt-[2.5rem] md:mt-[4em] md:mb-[5em]  md:p-0 font-bricolage  flex justify-center flex-col  items-center">
-        <div className="flex  flex-col    md:flex-row  md:max-w-[1200px] md:gap-0  justify-around items-start w-full   ">
-          <span className="flex    2xl:w-full  flex-col font-bricolage gap-3">
-            <h1 className="text-black   text-[26px] md:text-[2.5rem] 2xl:text-5xl font-[600]  mr-5">
+        <div className="flex flex-col md:flex-row justify-between items-start w-full md:max-w-[1200px] md:gap-[8em]">
+          {/* Left side */}
+          <span className="flex flex-col 2xl:w-full font-bricolage gap-3">
+            <h1 className="text-black text-[26px] md:text-[2.5rem] 2xl:text-5xl font-[600] mr-5">
               What People Are Saying
             </h1>
-            <p className="text-gray  md:block hidden text-sm md:text-xl font-bricolage w-full md:w-[30em]">
+
+            <p className="text-gray md:block hidden text-sm md:text-xl w-full md:w-[30em]">
               Hear directly from our users about their experiences. Whether
               they’re finding trusted agents or securing great deals, our
-              community speaks for itself..
+              community speaks for itself.
             </p>
-            <p className="text-gray font-light md:hidden block text-sm md:text-xl font-bricolage w-full md:w-[30em]">
-              Discover what our clients have to say in our customer testimonials
-              section. We take pride in the positive feedback and experiences
-              shared by those we’ve had.
+
+            <p className="text-gray font-light md:hidden block text-sm md:text-xl w-full md:w-[35em]">
+              See how Hoydoon is helping buyers and agents find exactly what
+              they need, quickly and confidently.
             </p>
+            <a href="/review">
+              <Button className="bg-transparent  !w-[120px] !text-sm md:hidden mt-2 border-primary border-[1px] border-solid">
+                <p className="text-gray">Explore</p>
+              </Button>
+            </a>
           </span>
-          <span className=" hidden md:flex flex-col font-bricolage gap-3 ">
-            <p className="text-gray  md:p-0 text-sm 2xl:text-[20px] md:text-xl font-bricolage w-full md:w-[24em]">
-              Discover a home where every detail enhances your lifestyle,crafted
-              to fit your taste and needs.
+
+          {/* Right side */}
+          <span className="hidden md:flex flex-col font-bricolage gap-3">
+            <p className="text-gray md:p-0 text-sm 2xl:text-[20px] md:text-xl w-full md:w-[25em]">
+              See how Hoydoon is helping buyers and agents find exactly what
+              they need, quickly and confidently.
             </p>
-            <a
-              href="/review
-          "
-            >
-              {" "}
-              <Button className="bg-transparent mt-2  font-[3px] border-primary border-solid border-[1px] ">
-                <p className="text-gray"> Explore </p>
+
+            <a href="/review">
+              <Button className="bg-transparent mt-2 border-primary border-[1px] border-solid">
+                <p className="text-gray">Explore</p>
               </Button>
             </a>
           </span>
         </div>
+
         <TestimonialGrid />
       </section>
 

@@ -95,7 +95,7 @@ export default function Home() {
               All Houses for Sale
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Discover a home where every detail enhances your lifestyle crafted
+              Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
             </p>
           </div>

@@ -25,7 +25,7 @@ export default function Home() {
   };
   return (
     <>
-      <header className="relative h-[50vh] md:h-[95vh]  w-screen">
+      <header className="relative h-fit md:h-[95vh]  w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"

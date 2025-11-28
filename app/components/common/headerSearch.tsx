@@ -85,6 +85,7 @@ export default function PropertySearchBar() {
   useEffect(() => {
     const defaultType = getDefaultType();
     setFilters((prev) => ({ ...prev, type: defaultType }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   // Close dropdown on outside click
