@@ -8,6 +8,7 @@ import { log } from "@/utils/log";
 import { useRouter } from "next/navigation";
 import { getAccessToken } from "@/utils/cookies";
 import { useLogoutMutation } from "@/store/slices/api/authapi";
+import { toast } from "react-toastify";
 const MobileNavbar = () => {
   const router = useRouter();
   const sidebarRef = useRef(null);
@@ -193,15 +194,12 @@ const MobileNavbar = () => {
                 </div>
               ) : (
                 <div className="w-full mr-[7px] flex justify-end">
-                  <Link
-                    href="https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Button
+                    onClick={() => toast.info("coming soon")}
+                    className="bg-[#008D8D] text-white text-[12px] px-2 !w-[111px] py-[6px] rounded-full font-medium"
                   >
-                    <Button className="bg-[#008D8D] text-white text-[12px] px-2 !w-[111px] py-[6px] rounded-full font-medium">
-                      Download App
-                    </Button>
-                  </Link>
+                    Download App
+                  </Button>
                 </div>
               )}
             </>

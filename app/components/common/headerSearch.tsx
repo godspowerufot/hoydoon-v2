@@ -179,7 +179,7 @@ export default function PropertySearchBar() {
         backdropFilter: "blur(4px)",
         borderImageSlice: 1,
       }}
-      className="w-full border-[#ffffff33] border-[2px] max-w-3xl rounded-xl  z-[1111111] mx-auto p-4"
+      className="w-full border-[#ffffff33] border-[2px] max-w-3xl rounded-xl  z-[1111111] mx-auto mt-3 p-4"
     >
       {/* Filter Grid */}
       <div className="grid grid-cols-2 gap-2 sm:gap-4">
@@ -193,7 +193,7 @@ export default function PropertySearchBar() {
             placeholder="Enter location"
             value={filters.location}
             onChange={(e) => handleFilterChange("location", e.target.value)}
-            className="w-full  h-[3.2em] px-3 sm:px-4 py-4 sm:py-3 bg-white rounded-lg  sm:rounded-xl text-sm sm:text-base text-black placeholder-black focus:outline-none focus:ring-2 focus:ring-primar"
+            className="w-full  h-[3.2em] px-3 sm:px-4 py-4 sm:py-3 bg-white rounded-lg  sm:rounded-xl text-sm sm:text-base text-black placeholder-black"
           />
         </div>
 
@@ -267,7 +267,7 @@ export default function PropertySearchBar() {
           >
             <span
               className={`truncate ${
-                filters.type ? "text-black" : "text-gray"
+                filters.type ? "text-black" : "text-black"
               }`}
             >
               {getDisplayLabel("type")}
@@ -340,7 +340,7 @@ export default function PropertySearchBar() {
           >
             <span
               className={`truncate ${
-                filters.bedBaths ? "text-black" : "text-gray"
+                filters.bedBaths ? "text-black" : "text-black"
               }`}
             >
               {getDisplayLabel("bedBaths")}
