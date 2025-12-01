@@ -127,10 +127,32 @@ export function FiltersDropdown({
       {/* Modal */}
       <div
         ref={modalRef}
-        className="fixed left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-[1111] rounded-md bg-[#ffffff] p-5 w-full max-w-[550px] overflow-y-auto max-h-[90vh] "
+        className="fixed  md:pt-[4%] right-0 top-0 md:top-[2%] bottom-0 z-[1111] rounded-none md:rounded-none bg-[#ffffff] p-5 md:p-8 w-full md:max-w-[600px] lg:max-w-[600px] overflow-y-auto h-full"
       >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 text-gray-700 hover:text-gray-900 transition-colors p-1"
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
         {/* Type Filter - Segmented Pill Control */}
-        <div className="mb-8  ">
+        <div className="mb-8   mt-[4rem] lg:mt-8 ">
           <div
             className="flex rounded-md p-1 border  border-[#8F8F8F]"
             style={{ backgroundColor: "#F9FAFB" }}
@@ -158,6 +180,8 @@ export function FiltersDropdown({
             ))}
           </div>
         </div>
+
+        <div className="-mx-5 md:-mx-8 w-screen  border-t border-[#8F8F8F] mb-6"></div>
         {/* Price Range Section */}
         <div className="mb-8">
           <h3 className="text-base font-medium md:text-lg text-black mb-8">
@@ -191,7 +215,7 @@ export function FiltersDropdown({
               placeholder="Enter min"
               value={minInput}
               onChange={handleMinInputChange}
-              className="flex-1 px-4 py-3 rounded-xl font-light border border-[#8F8F8F] text-base text-[#8F8F8F]  placeholder:text-[#8F8F8F] focus:outline-none focus:border-[#09858D] transition-colors"
+              className="flex-1  w-[120px] md:w-full px-[0.8em] md:px-4 py-2 md:py-3 rounded-xl font-light border border-[#8F8F8F] text-base text-[#8F8F8F]  placeholder:text-[#8F8F8F] focus:outline-none focus:border-[#09858D] transition-colors"
             />
             <span className="text-[#8F8F8F] ">—</span>
             <input
@@ -199,10 +223,12 @@ export function FiltersDropdown({
               placeholder="Enter max"
               value={maxInput}
               onChange={handleMaxInputChange}
-              className="flex-1 px-4 py-3 rounded-xl font-light border border-[#8F8F8F] text-base text-[#8F8F8F]  placeholder:text-[#8F8F8F] focus:outline-none focus:border-[#09858D] transition-colors"
+              className="flex-1 w-[120px] md:w-full px-[0.8em] md:px-4 py-2 md:py-3 rounded-xl font-light border border-[#8F8F8F] text-base text-[#8F8F8F]  placeholder:text-[#8F8F8F] focus:outline-none focus:border-[#09858D] transition-colors"
             />
           </div>
         </div>
+
+        <div className="-mx-5 md:-mx-8 w-screen  border-t border-[#8F8F8F] mb-6"></div>
 
         {/* Bed/Baths Section - Hidden when Land is selected */}
         {selectedType !== "land" && (
@@ -238,6 +264,7 @@ export function FiltersDropdown({
             </div>
           </div>
         )}
+        <div className="-mx-5 md:-mx-8 w-screen  border-t border-[#8F8F8F] mb-6"></div>
 
         {/* Home Type Section - Hidden when Land is selected */}
         {selectedType !== "land" && (
@@ -246,7 +273,7 @@ export function FiltersDropdown({
               Home Type
             </h3>
             <div
-              className="flex rounded-lg   py-2 border border-[#E5E5E5] overflow-hidden"
+              className="flex rounded-lg px-2   py-2 border border-[#E5E5E5] overflow-hidden"
               style={{ backgroundColor: "#F9FAFB" }}
             >
               {homeTypeOptions.map((option, index) => (

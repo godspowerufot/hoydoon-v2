@@ -315,7 +315,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   return (
     <div className="md:pt-[2.3rem] flex-wrap -mb-[2.5rem] md:mb-0 flex-col md:flex-row md:flex justify-between w-full">
       {/* Left Section: Filters */}
-      <div className="flex items-center p-[1rem] md:p-0 flex-wrap gap-2 md:gap-3">
+      <div className="flex items-center p-[1rem] md:p-0 flex-wrap gap-[4px] md:gap-3">
         {/* Individual Filter Buttons */}
         {["Type", "Price", "Bed/Baths", "House Type"].map((option) => {
           if (option === "Bed/Baths") {
@@ -324,7 +324,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                 {/* BUTTON */}
                 <button
                   onClick={() => setShowBedBathDropdown(true)}
-                  className="border border-[#8F8F8F] bg-transparent text-base font-light rounded-md text-[#8F8F8F] py-2 px-4 flex items-center justify-between min-w-[140px] gap-2"
+                  className="border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
                 >
                   <span>
                     {filters.bedBaths === "0-2"
@@ -404,12 +404,17 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
           }
 
           // House Type dropdown
+          // Find this section in your code (around line 420-490) and add the `hidden md:block` classes:
+
+          // House Type dropdown
           if (option === "House Type") {
             return (
-              <div className="relative" key={option}>
+              <div className="relative hidden md:block" key={option}>
+                {" "}
+                {/* Added hidden md:block */}
                 <button
                   type="button"
-                  className="border border-[#8F8F8F] bg-transparent text-base font-light rounded-md text-[#8F8F8F] py-2 px-4 flex items-center justify-between min-w-[140px] gap-2"
+                  className="border border-[#8F8F8F] bg-transparent text-sm  md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
                   onClick={() =>
                     setShowHouseTypeDropdown(!showHouseTypeDropdown)
                   }
@@ -482,7 +487,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             <div className="relative" key={option}>
               <button
                 type="button"
-                className={`border border-[#8F8F8F] bg-transparent text-base font-light rounded-md text-[#8F8F8F] py-2 px-4 flex items-center justify-between min-w-[140px] gap-2 ${
+                className={`border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2 ${
                   option === "Price" ? "hidden md:flex" : ""
                 }`}
                 onClick={() => setDropdownState(!dropdownState)}
@@ -566,9 +571,10 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             </div>
           );
         })}
+
         <button
           onClick={() => setShowAllFiltersDropdown(true)}
-          className="border border-[#8F8F8F] bg-transparent text-base font-light rounded-md text-[#8F8F8F] py-2 px-4 flex items-center justify-between min-w-[140px] gap-2"
+          className="border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
         >
           <span className="flex items-center gap-2">
             <Image
