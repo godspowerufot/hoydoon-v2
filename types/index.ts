@@ -2,6 +2,7 @@ export interface Property {
   imageUrls?: { url?: string; altText?: string }[];
   listingType?: string;
   _id?: string;
+  region?: string;
   item?: {
     price?: string;
     squareFeet?: number;
@@ -10,7 +11,6 @@ export interface Property {
     description?: string;
     title?: string;
     rent?: string;
-    region?: string;
     petFriendly: boolean;
     landSize?: number | string;
   };

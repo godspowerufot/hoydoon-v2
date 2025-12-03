@@ -162,7 +162,7 @@ export default function Home() {
                       area={items?.item?.squareFeet || ""}
                       bathrooms={items?.item?.bathrooms}
                       bedrooms={items?.item?.bedrooms}
-                      region={items?.item?.region || ""}
+                      region={items?.region || ""}
                       description={
                         items?.item?.description ||
                         "No description available for this property."
@@ -217,7 +217,7 @@ export default function Home() {
                       area={items?.item?.squareFeet || ""}
                       bathrooms={items?.item?.bathrooms}
                       bedrooms={items?.item?.bedrooms}
-                      region={items?.item?.region || ""}
+                      region={items?.region || ""}
                       description={
                         items?.item?.description ||
                         "No description available for this property."
@@ -267,7 +267,7 @@ export default function Home() {
                         items?.imageUrls?.[0]?.altText ||
                         "Property image showcasing a beautiful home"
                       }
-                      region={items?.item?.region || ""}
+                      region={items?.region || ""}
                       price={items?.item?.price || "Price not available"}
                       area={items?.item?.squareFeet || ""}
                       bathrooms={items?.item?.bathrooms}

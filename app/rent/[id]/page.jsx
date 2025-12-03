@@ -435,7 +435,7 @@ const page = () => {
 
             <div className="text-right flex-1 md:-mt-[2.5rem]  flex flex-col  gap-1 md:flex md:text-right w-full md:w-auto">
               <p className="text-[1.5rem] text-black font-[600] md:font-bold">
-                ${price}
+                {formatPrice(region, price)}
               </p>
 
               <div className="flex items-center justify-end mt-1 text-gray-700">
@@ -531,12 +531,13 @@ const page = () => {
                   ? "-"
                   : listingType === "land"
                   ? landSize
-                    ? `$${(price / landSize).toFixed(2)}`
+                    ? formatPrice(region, Number(price) / Number(landSize))
                     : "-"
                   : squareFeet
-                  ? `$${(price / squareFeet).toFixed(2)}`
+                  ? formatPrice(region, Number(price) / Number(squareFeet))
                   : "-"}
               </span>
+
               <span>price per sq ft</span>
             </div>
           </div>

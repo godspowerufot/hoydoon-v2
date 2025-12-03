@@ -68,7 +68,7 @@ const HoverCard = ({
                 </h4>
               </span>
               <p className="text-gray mb-2 text-[14px] mt-2">
-                {truncateDescription(description, 30)}
+                {truncateDescription(description, 20)}
               </p>
               <div className="mt-2 mb-1 flex justify-between items-center">
                 <div className="text-base flex justify-center font-bricolage items-center rounded-full font-light h-[32px] lg:w-[120px] text-[#1E1E1E] bg-[#D8F0F1]">
@@ -87,7 +87,10 @@ const HoverCard = ({
             <span className="flex-col lg:hidden flex mt-1">
               <span className="flex gap-1 items-center justify-between w-full">
                 <span className="flex items-center">
-                  <h2 className="font-bold text-[18px]">${price}.00</h2>
+                  <h2 className="font-bold text-[18px]">
+                    {" "}
+                    {formatPrice(region, Number(price))}
+                  </h2>
                 </span>
                 <h4 className="text-label text-gray font-light">
                   Area from {area}

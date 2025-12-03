@@ -355,7 +355,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                     />
 
                     {/* PANEL */}
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-[3000] md:w-[350px] overflow-hidden">
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-[3000]  md:w-[350px] overflow-hidden">
                       {/* Header */}
                       <div className="px-4 py-2 border-b border-gray-100">
                         <div className="flex items-center justify-between text-sm">
@@ -445,7 +445,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                           return (
                             <label
                               key={opt.value}
-                              className="w-full h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
+                              className="w-full  gap-[4rem] md:gap-0 h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleFilterChange("houseType", opt.value);
@@ -534,7 +534,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                         return (
                           <label
                             key={opt.value}
-                            className="w-full h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
+                            className="w-full gap-[4em] md:gap-0 h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
                             onClick={(e) => {
                               e.stopPropagation();
                               if (option === "Price") {
@@ -803,7 +803,7 @@ const page = () => {
                   area={items?.item?.squareFeet}
                   bathrooms={items?.item?.bathrooms}
                   bedrooms={items?.item?.bedrooms}
-                  region={items?.item?.region}
+                  region={items?.region}
                   description={
                     items?.item?.description ||
                     "No description available for this property."

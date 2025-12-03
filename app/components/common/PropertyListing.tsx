@@ -39,7 +39,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  console.log("region:", region);
   useEffect(() => {
     // Simple mobile detection
     const checkMobile = () => {
@@ -105,7 +105,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
               <span className="flex gap-1 justify-between items-center">
                 <span className="flex  items-center">
                   <h2 className="font-bold text-[23px]">
-                    {formatPrice(region, Number(price))}{" "}
+                    {formatPrice(region, Number(price))}
                   </h2>
                   {listingType === "rent" && (
                     <p className="text-gray mt-[2px] font-[400] text-[14px]">
@@ -160,7 +160,10 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
               }`}
             >
               <span className="flex items-center">
-                <h2 className="font-bold lg:text-[24px]">${price}.00</h2>
+                <h2 className="font-bold lg:text-[24px]">
+                  {" "}
+                  {formatPrice(region, Number(price))}
+                </h2>
                 <p className="text-gray mt-[2px] font-[400] text-[14px]">
                   /mth
                 </p>

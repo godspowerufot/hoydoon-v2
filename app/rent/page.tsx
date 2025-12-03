@@ -119,7 +119,7 @@ export default function Home() {
                       area={items?.item?.squareFeet}
                       bathrooms={items?.item?.bathrooms}
                       bedrooms={items?.item?.bedrooms}
-                      region={items?.item?.region}
+                      region={items?.region}
                       description={
                         items?.item?.description ||
                         "No description available for this property."
@@ -188,7 +188,7 @@ export default function Home() {
                       area={items?.item?.squareFeet}
                       bathrooms={items?.item?.bathrooms}
                       bedrooms={items?.item?.bedrooms}
-                      region={items?.item?.region}
+                      region={items?.region}
                       description={
                         items?.item?.description ||
                         "No description available for this property."
@@ -257,7 +257,7 @@ export default function Home() {
                       area={items?.item?.squareFeet}
                       bathrooms={items?.item?.bathrooms}
                       bedrooms={items?.item?.bedrooms}
-                      region={items?.item?.region}
+                      region={items?.region}
                       description={
                         items?.item?.description ||
                         "No description available for this property."
@@ -326,7 +326,7 @@ export default function Home() {
                       area={items?.item?.squareFeet}
                       bathrooms={items?.item?.bathrooms}
                       bedrooms={items?.item?.bedrooms}
-                      region={items?.item?.region}
+                      region={items?.region}
                       description={
                         items?.item?.description ||
                         "No description available for this property."
@@ -395,7 +395,7 @@ export default function Home() {
                         area={items?.item?.squareFeet}
                         bathrooms={items?.item?.bathrooms}
                         bedrooms={items?.item?.bedrooms}
-                        region={items?.item?.region}
+                        region={items?.region}
                         description={
                           items?.item?.description ||
                           "No description available for this property."
@@ -457,7 +457,7 @@ export default function Home() {
                         area={items?.item?.squareFeet}
                         bathrooms={items?.item?.bathrooms}
                         bedrooms={items?.item?.bedrooms}
-                        region={items?.item?.region}
+                        region={items?.region}
                         description={
                           items?.item?.description ||
                           "No description available for this property."

@@ -259,6 +259,8 @@ export default function Home() {
     isLoading: isAllLoading,
     refetch: refetchAll,
   } = useGetAllListingsQuery({ category: "Featured" });
+
+  console.log(allListings, "all listings data");
   const {
     data: luxuryListings,
     isLoading: isLuxuryLoading,
@@ -429,7 +431,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
                         items?.imageUrls?.[0]?.altText ||
                         "Property image showcasing a beautiful home"
                       }
-                      region={items?.item.region || "Location not specified"}
+                      region={items?.region || "Location not specified"}
                       price={items?.item.price || "Price not available"}
                       area={items?.item.squareFeet || ""}
                       bathrooms={items?.item?.bathrooms}
