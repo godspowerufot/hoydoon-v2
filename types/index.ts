@@ -10,6 +10,7 @@ export interface Property {
     description?: string;
     title?: string;
     rent?: string;
+    region?: string;
     petFriendly: boolean;
     landSize?: number | string;
   };

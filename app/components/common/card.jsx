@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { useState } from "react";
-import { truncateDescription, encodeId } from "@/utils";
+import { truncateDescription, encodeId, formatPrice } from "@/utils";
 import Link from "next/link";
 const HoverCard = ({
   imageSrc = "/default-image.jpg",
   altText = "Default Alt Text",
   price = "N/A",
   _id,
+  region,
   bathrooms,
   bedrooms,
   area,
@@ -58,7 +59,9 @@ const HoverCard = ({
                   <h4 className="text-gray text-label flex items-center justify-center font-light">
                     From
                   </h4>
-                  <h2 className="font-bold lg:text-[22px] ml-2">${price}</h2>
+                  <h2 className="font-bold lg:text-[22px] ml-2">
+                    {formatPrice(region, Number(price))}
+                  </h2>
                 </div>
                 <h4 className="text-label text-gray font-light">
                   Area from {area}

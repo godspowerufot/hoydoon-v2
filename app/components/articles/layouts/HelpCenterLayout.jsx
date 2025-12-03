@@ -349,6 +349,7 @@ const HelpCenterLayout = ({ PageData }) => {
                 price={item?.item?.price || "Price not available"}
                 area={item?.item?.squareFeet || ""}
                 bathrooms={item?.item?.bathrooms}
+                region={item?.item?.region || "_"}
                 bedrooms={item?.item?.bedrooms}
                 description={
                   item?.item?.description || "No description available."

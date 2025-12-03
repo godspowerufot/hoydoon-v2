@@ -803,6 +803,7 @@ const page = () => {
                   area={items?.item?.squareFeet}
                   bathrooms={items?.item?.bathrooms}
                   bedrooms={items?.item?.bedrooms}
+                  region={items?.item?.region}
                   description={
                     items?.item?.description ||
                     "No description available for this property."

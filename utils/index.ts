@@ -64,3 +64,12 @@ export function decodeId(encoded?: string) {
   }
   return Buffer.from(encoded, "base64").toString();
 }
+
+export function formatPrice(region: string, amount: number | string) {
+  const num = Number(amount) || 0;
+  const isNigeria = region?.trim().toLowerCase() === "nigeria";
+
+  const symbol = isNigeria ? "₦" : "$";
+
+  return `${symbol}${new Intl.NumberFormat("en-US").format(num)}`;
+}

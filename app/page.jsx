@@ -429,6 +429,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
                         items?.imageUrls?.[0]?.altText ||
                         "Property image showcasing a beautiful home"
                       }
+                      region={items?.item.region || "Location not specified"}
                       price={items?.item.price || "Price not available"}
                       area={items?.item.squareFeet || ""}
                       bathrooms={items?.item?.bathrooms}

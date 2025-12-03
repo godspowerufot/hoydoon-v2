@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { truncateDescription, encodeId } from "@/utils";
+import { truncateDescription, encodeId, formatPrice } from "@/utils";
 import Link from "next/link";
 
 interface PropertyCardProps {
@@ -18,6 +18,7 @@ interface PropertyCardProps {
   rent?: string;
   listingType?: string;
   _id?: string;
+  region?: string;
   landSize?: number | string;
 }
 
@@ -26,6 +27,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
   altText = "_",
   price = "_",
   area = "_",
+  region = " _",
   description = "_",
   title = "_",
   bathrooms = "_",
@@ -103,7 +105,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
               <span className="flex gap-1 justify-between items-center">
                 <span className="flex  items-center">
                   <h2 className="font-bold text-[23px]">
-                    ${price?.toLocaleString()}.00
+                    {formatPrice(region, Number(price))}{" "}
                   </h2>
                   {listingType === "rent" && (
                     <p className="text-gray mt-[2px] font-[400] text-[14px]">

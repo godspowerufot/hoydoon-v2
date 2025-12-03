@@ -104,6 +104,7 @@ const Buy = () => {
                       area={items?.item?.squareFeet || ""}
                       bathrooms={items?.item?.bathrooms}
                       bedrooms={items?.item?.bedrooms}
+                      region={items?.item.region || "_"}
                       description={
                         items?.item?.description ||
                         "No description available for this property."
