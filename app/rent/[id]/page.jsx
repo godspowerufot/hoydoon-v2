@@ -22,6 +22,7 @@ import DynamicImageMobile from "@/app/components/layouts/mobiledynamic";
 import DynamicImageGrid from "@/app/components/layouts/dynamiclayout";
 import axios from "axios";
 import { log } from "@/utils/log";
+import { formatPrice } from "@/utils";
 const PLACE_TYPES = [
   { type: "transit_station", icon: "/bus.png" },
   { type: "bank", icon: "/bank.png" },
