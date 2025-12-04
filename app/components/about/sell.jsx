@@ -98,13 +98,13 @@ const Sell = () => {
               Hoydoon’s Marketplace
             </h4>
             <h2 className="text-xl font-bold text-black mt-2">
-              Cut costs and save big.{" "}
+              Cut costs and save smart.
             </h2>
             <p className="text-[#8F8F8F] text-sm lg:text-[14px] mt-5">
-              When you choose to buy and sell with us, youll benefit from a
-              significantly reduced fee,only half of what most traditional
-              brokerages typically charge,helping you save more while receiving
-              exceptional service.{" "}
+              On average, our service fees are up to 50% lower than standard
+              industry rates. By streamlining the process and connecting you
+              directly with trusted agents, we help you save without sacrificing
+              quality.
             </p>
 
             <Link className="lg:hidden block " href={"/agent/all-agent"}>

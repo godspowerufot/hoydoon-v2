@@ -21,6 +21,9 @@ export default function Home() {
   const { data: regionListings } = useGetAllListingsQuery({
     location: "somalia",
   });
+  const { data: NigeriaListings } = useGetAllListingsQuery({
+    location: "Nigeria",
+  });
 
   const displayListings = Array.isArray(allListings?.listings)
     ? allListings.listings
@@ -92,11 +95,11 @@ export default function Home() {
         <div className="flex flex-col  w-full items-start  lg:max-w-[1200px] ">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px]  mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
-              All Houses for Sale
+              Newest Listings
             </h1>
-            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Discover a home where every detail enhances your lifestyle-crafted
-              to fit your taste and needs.
+            <p className="text-gray font-light text-sm lg:max-w-[31rem] lg:text-xl font-bricolage w-full lg:w-auto text-start ">
+              Explore the latest listings tailored to your lifestyle. Discover
+              homes that feel just right, wherever you are.
             </p>
           </div>
           <div className="flex flex-col mt-[3em] lg:my-[2em] gap-[2em] lg:gap-5 items-start lg:flex-row justify-start mb-2">
@@ -137,7 +140,7 @@ export default function Home() {
                 href="/rent/searchlisting"
                 className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-xl font-[500] "
               >
-                see housing for sale
+                see all new listings for rents
               </Link>
             )}
           </div>
@@ -154,9 +157,10 @@ export default function Home() {
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Somalia
             </h1>
-            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Discover a home where every detail enhances your lifestyle-crafted
-              to fit your taste and needs.
+            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-left">
+              Find a place to rent that fits your lifestyle. From cozy homes to
+              modern apartments, explore options designed to meet your needs and
+              taste.
             </p>
           </div>
           <div className="flex flex-col ">
@@ -223,9 +227,10 @@ export default function Home() {
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Nigeria
             </h1>
-            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Discover a home where every detail enhances your lifestyle-crafted
-              to fit your taste and needs.
+            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-left">
+              Find a place to rent that fits your lifestyle. From cozy homes to
+              modern apartments, explore options designed to meet your needs and
+              taste.
             </p>
           </div>
           <div className="flex flex-col ">
@@ -236,14 +241,14 @@ export default function Home() {
                   <SkeletonCard key={`skeleton-${index}`} />
                 ))}
               </div>
-            ) : !regionListings?.listings ||
-              regionListings.listings.length === 0 ? (
+            ) : !NigeriaListings?.listings ||
+              NigeriaListings.listings.length === 0 ? (
               <div className="text-center text-gray-500 py-8">
                 No listings found.
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-                {[...(regionListings?.listings || [])]
+                {[...(NigeriaListings?.listings || [])]
                   ?.slice(2, 5)
                   ?.map((items: Property, index: number) => (
                     <PropertyListCard
@@ -292,9 +297,9 @@ export default function Home() {
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               pet-friendly Rentals
             </h1>
-            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Discover a home where every detail enhances your lifestyle-crafted
-              to fit your taste and needs.
+            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-left">
+              Find homes that welcome your furry friends.Comfort, convenience,
+              and pet-friendly living await.
             </p>
           </div>
           <div className="flex flex-col">
@@ -357,13 +362,13 @@ export default function Home() {
       {userCountry !== "somalia" && (
         <section className="p-5 lg:p-0 lg:my-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
           <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
-            <div className="flex flex-col lg:gap-[21rem] lg:flex-row justify-between items-start w-full mx-auto">
+            <div className="flex flex-col lg:gap-[20rem] lg:flex-row justify-between items-start w-full mx-auto">
               <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 lg:text-[2.5rem] font-[600] w-full lg:w-auto">
                 Shortlet Apartments
               </h1>
-              <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-                Discover a home where every detail enhances your
-                lifestyle-crafted to fit your taste and needs.
+              <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-left">
+                Need a place for a few days, weeks, or months?Discover stylish,
+                flexible stays ready when you are.
               </p>
             </div>
             <div className="flex flex-col">
@@ -432,8 +437,8 @@ export default function Home() {
               Single Family Homes for Rent
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Discover a home where every detail enhances your lifestyle-crafted
-              to fit your taste and needs.
+              Explore cozy and spacious single family homes for rent,Designed to
+              offer privacy, comfort, and room for your lifestyle.
             </p>
           </div>
           <div className="flex flex-col ">

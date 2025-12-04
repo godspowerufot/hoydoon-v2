@@ -135,11 +135,12 @@ const page = () => {
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Are you thinking about selling your home? We’re here to help you every
           step of the way! Our team will work closely with you to highlight your
-          home’s best features, attract the right buyers, and maximize its
-          value. From preparing your property for sale to navigating offers and
-          closing the deal, we’ll ensure the entire process is smooth, simple,
-          and stress-free. Schedule a consultation with us today, and let’s
-          start planning for a successful and rewarding home-selling experience!{" "}
+          home’s best features, attract the right buyers, and{" "}
+          <b>optimise it's sale potential</b>. From preparing your property for
+          sale to navigating offers and closing the deal, we’ll ensure the
+          entire process is smooth, simple, and stress-free. Schedule a
+          consultation with us today, and let’s start planning for a successful
+          and rewarding home-selling experience!{" "}
         </p>
       </div>
       <div className=" w-full md:px-0 py-4">

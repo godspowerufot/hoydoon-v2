@@ -355,7 +355,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                     />
 
                     {/* PANEL */}
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-[3000]  md:w-[350px] overflow-hidden">
+                    <div className="absolute w-[164px] top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-[3000]  md:w-[350px] overflow-hidden">
                       {/* Header */}
                       <div className="px-4 py-2 border-b border-gray-100">
                         <div className="flex items-center justify-between text-sm">

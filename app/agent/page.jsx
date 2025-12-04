@@ -52,7 +52,7 @@ export default function Page() {
         {/* Content Section */}
         <div className="flex z-[1] p-4 md:p-0 relative  gap-1 md:gap-6 justify-center items-center flex-col">
           {/* Main Heading */}
-          <h1 className="w-[10em]  capitalize  mt-[1em] 2xl:mt-[9rem] md:mt-[1.4em] text-white text-[2em] md:w-full leading-[1em] text-center md:text-[5em] font-bricolage font-[600]">
+          <h1 className="w-[10em]  capitalize  mt-[2em] 2xl:mt-[9rem] md:mt-[1.4em] text-white text-[2em] md:w-full leading-[1em] text-center md:text-[5em] font-bricolage font-[600]">
             A top agent matters!{" "}
           </h1>
 

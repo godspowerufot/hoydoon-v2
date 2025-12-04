@@ -80,8 +80,8 @@ const Buy = () => {
               Hoydoon Houses for Sale
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Discover a home where every detail enhances your lifestyle-crafted
-              to fit your taste and needs.
+              Browse homes for sale, handpicked for your lifestyle only on
+              Hoydoon.
             </p>
           </div>
           <div className="flex flex-col flex-wrap mt-[0.5em] lg:mt-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
@@ -127,12 +127,12 @@ const Buy = () => {
       <div className="flex  gap-[4%]  flex-col-reverse  w-full  lg:flex-row  items-center   lg:justify-around ">
         <span className="flex  p-4 flex-col w-full lg:w-[45em] 2xl:w-[60em] ">
           <h1 className="text-black  mt-4 lg:mt-0 text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
-            Get the Local Information
+            Explore the Neighborhood
           </h1>
           <p className="text-gray text-sm lg:text-xl mt-3 2xl:mt-[1em] font-bricolage  w-full lg:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
-            Curious about local schools? Wondering if there are pet-friendly
-            rentals? Find all the key information you need about the area that
-            catches your interest.
+            Want to know more about schools nearby, healthcare facilities, or
+            commute times? Get the full picture of the area before making your
+            move, right from the map.
           </p>
 
           <div className="  relative w-full  lg:w-[87%] mt-[1.5rem] 2xl:w-[75%]">

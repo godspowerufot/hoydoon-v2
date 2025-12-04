@@ -326,7 +326,7 @@ export default function Home() {
             to the home of your dreams with trust and ease.
           </h2>
           <h2 className="text-[#FFFFFFB2]  md:hidden md:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm md:text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
-            Hoydoon connects you to your dream home , easily and reliably.{" "}
+            Hoydoon connects you to your dream home,easily and reliably.{" "}
           </h2>
 
           {/* Search Bar (Large Screens) */}

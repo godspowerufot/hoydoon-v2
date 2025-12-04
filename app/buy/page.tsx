@@ -109,7 +109,7 @@ export default function Home() {
         <div className="flex flex-col items-center relative z-[1]  mt-[2.6rem] lg:mt-[6rem]    gap-1 lg:gap-4 h-full ">
           {/* Main Heading */}
           <h1 className="text-white text-center w-[25rem]   relative  font-bricolage font-semibold leading-tight  text-[36px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
-            Find Your Perfect Dream Home Today!
+            Find Your Dream Home Today!
           </h1>
 
           {/* Subheading */}
@@ -189,11 +189,65 @@ export default function Home() {
         <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+              Affordable Homes
+            </h1>
+            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
+              Explore affordable living options tailored to your style, needs,
+              and price range.
+            </p>
+          </div>
+          <div className="flex flex-col mt-[0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
+            {isAllLoading
+              ? // Show skeleton loaders
+                Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))
+              : (openHouseListings?.listings || [])
+                  .slice(0, 3)
+                  .map((items: Property, index: number) => (
+                    <HoverCard
+                      _id={items?._id}
+                      key={index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet || ""}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      region={items?.region || ""}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      title={items?.item?.title || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                    />
+                  ))}
+            {!isAllLoading && (
+              <Link
+                href="/"
+                className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+              >
+                see all afforable houses for sale
+              </Link>
+            )}
+          </div>
+        </div>
+      </section>
+      <div className="w-screen  mt-[3rem] lg:my-0 h-[2px] bg-[#D9D9D9] " />
+
+      <section className="lg:my-[5em] p-2 lg:p-0 w-full max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
+            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Upcoming Open Houses for Sale
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Discover a home where every detail enhances your lifestyle-crafted
-              to fit your taste and needs.
+              See it before you seal it. Explore open homes and take the next
+              step with confidence.
             </p>
           </div>
           <div className="flex flex-col mt-[0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
@@ -246,8 +300,8 @@ export default function Home() {
               Luxury Homes Houses for Sale
             </h1>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Discover a home where every detail enhances your lifestyle-crafted
-              to fit your taste and needs.
+              Where comfort meets prestige. Explore homes built for distinction
+              and refined taste.
             </p>
           </div>
           <div className="flex flex-col mt- [0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
@@ -296,12 +350,12 @@ export default function Home() {
         <div className="flex  gap-[4%]  lg:my-[5em] flex-col-reverse  w-full   lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex  p-4 flex-col   w-full lg:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  mt-4 lg:mt-0 text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
-              Get the Local Information
+              Explore the Neighborhood
             </h1>
             <p className="text-gray text-sm lg:text-xl mt-3 2xl:mt-[1em] font-bricolage  w-full lg:w-9/10 ">
-              Curious about local schools? Wondering if there are pet-friendly
-              rentals? Find all the key information you need about the area that
-              catches your interest.
+              Want to know more about schools nearby, healthcare facilities, or
+              commute times? Get the full picture of the area before making your
+              move, right from the map.
             </p>
 
             <div className="  relative w-full  lg:w-[87%] mt-[1.5rem] ">

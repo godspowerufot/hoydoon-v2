@@ -657,8 +657,8 @@ const page = () => {
                   Single Family Homes for Rent
                 </h1>
                 <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
-                  Discover a home where every detail enhances your
-                  lifestyle-crafted to fit your taste and needs.
+                  Browse curated listings that match your style, budget and
+                  location preferences.
                 </p>
               </div>
               <div className="flex flex-col ">
@@ -675,6 +675,7 @@ const page = () => {
                           listing?.imageUrls?.[0]?.altText ||
                           "Property image showcasing a beautiful home"
                         }
+                        region={listing?.region || "Region not specified"}
                         price={listing?.item?.price || "Price not available"}
                         area={listing?.item?.squareFeet}
                         description={

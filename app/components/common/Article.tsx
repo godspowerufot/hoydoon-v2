@@ -77,25 +77,25 @@ const ArticleCard = ({ article }: any) => {
 const ArticlesSection = () => {
   return (
     <section className="flex  mt-[2rem] md:-mt-[1em] text-start md:justify-center items-center w-full flex-col   md:max-w-[1200px] p-2 md:p-0 font-bricolage">
-      <div className="flex  flex-col md:flex-row md:gap-[8rem]   justify-around md:items-center">
-        <span className="flex flex-col  font-bricolage  md:ml-8  py-2 md:py-0  gap-2">
+      <div className="flex  flex-col md:flex-row md:gap-[4rem]   justify-around md:items-center">
+        <span className="flex flex-col  font-bricolage  md:ml-10  py-2 md:py-0  gap-2">
           <h1 className="text-black  text-[1.5rem] md:text-[2.5rem]  font-[600] ">
             New Highlights & Articles
           </h1>
           <p className="text-gray hidden md:block  font-[400] 2xl:text-[20px] md:p-0 text-base md:text-xl w-full md:w-[30em]">
-            Our top stories and features keep you updated on industry trends,
-            current events.
+            Our top stories and features keeps you updated on industry trends
+            and current trends.
           </p>
         </span>
         <span className="  flex flex-col font-bricolage gap-3 text-gray">
-          <p className="text-gray hidden md:block text-sm 2xl:text-[20px] md:p-0  md:text-xl  md:w-[24em]">
+          <p className="text-gray hidden md:block text-sm 2xl:text-[20px] md:p-0  md:text-xl  md:w-[28em]">
             Stay informed with our latest news and insights where you’ll find
-            breaking stories.
+            Breaking stories in the property market
           </p>
           <p className="text-gray font-light md:hidden block text-sm 2xl:text-[20px] md:p-0  md:text-xl  md:w-[24em]">
             Stay Informed with our latest news and Insights where you’ find
             breaking stories. Our top stories and features keeps you updated on
-            industry trends, current events.
+            industry trends, current trends.
           </p>
           <Link href={"/helpcenter"}>
             <Button className="bg-transparent  hidden md:block mt-2 font-[3px] border-primary border-solid border-[1px] text-gray">
@@ -106,7 +106,7 @@ const ArticlesSection = () => {
           </Link>
         </span>
       </div>
-      <div className="md:flex  hidden justify-center w-full md:mt-[2.5em]  md:mb-[5.5em] md:flex-1 md:flex-row flex-col items-center md:gap-6 ">
+      <div className="md:flex  hidden justify-center w-full md:mt-[2.5em]  md:mb-[5.5em] md:flex-1 md:flex-row flex-col items-center md:gap-8 ">
         {articles.map((article) => (
           <ArticleCard key={article.id} article={article} />
         ))}
