@@ -5,6 +5,7 @@ import { Slider } from "@/components/ui/slider";
 
 interface FiltersDropdownProps {
   isOpen: boolean;
+  userCountrys?: string;
   onClose: () => void;
   filters: {
     "home-type": string;
@@ -13,6 +14,7 @@ interface FiltersDropdownProps {
     bathrooms: string;
     houseType: string;
     minPrice?: number;
+
     maxPrice?: number;
   };
   onFilterChange: (key: string, value: string | number) => void;
@@ -28,6 +30,7 @@ export function FiltersDropdown({
   isOpen,
   onClose,
   filters,
+  userCountrys,
   onFilterChange,
   onSearch,
   isSearching = false,
@@ -39,7 +42,7 @@ export function FiltersDropdown({
   const [minInput, setMinInput] = React.useState<string>("");
   const [maxInput, setMaxInput] = React.useState<string>("");
   const modalRef = React.useRef<HTMLDivElement>(null);
-
+  const currencySymbol = userCountrys === "nigeria" ? "₦" : "$";
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -204,8 +207,14 @@ export function FiltersDropdown({
 
           {/* Price Range Labels */}
           <div className="flex justify-between font-light text-base text-[#8F8F8F] mb-4">
-            <span>${priceRange[0]}</span>
-            <span>${priceRange[1]}+</span>
+            <span>
+              {currencySymbol}
+              {priceRange[0]}
+            </span>
+            <span>
+              {currencySymbol}
+              {priceRange[1]}+
+            </span>
           </div>
 
           {/* Min/Max Input Fields */}

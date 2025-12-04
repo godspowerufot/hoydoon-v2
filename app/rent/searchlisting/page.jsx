@@ -87,36 +87,70 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   const homeTypeDropdownRef = useRef(null);
   const houseTypeDropdownRef = useRef(null);
 
-  const priceOptions = {
-    Buy: [
-      { label: "Any", value: "" },
-      { label: "$0k - $30k", value: "0-30000" },
-      { label: "$30k - $60k", value: "30000-60000" },
-      { label: "$60k - $100k", value: "60000-100000" },
-      { label: "$100k - Above", value: "100000-10000000" },
-    ],
-    Rent: [
-      { label: "Any", value: "" },
-      { label: "$50 - $200", value: "0-200" },
-      { label: "$200 - $500", value: "200-500" },
-      { label: "$500 - $800", value: "500-800" },
-      { label: "$800 - $1000", value: "800-1000" },
-    ],
-    Land: [
-      { label: "Any", value: "" },
-      { label: "$0k - $30k", value: "0-30000" },
-      { label: "$30k - $60k", value: "30000-60000" },
-      { label: "$60k - $100k", value: "60000-100000" },
-      { label: "$100k - Above", value: "100000-10000000000" },
-    ],
-    shortlet: [
-      { label: "Any", value: "" },
-      { label: "$50k - $200k", value: "0-200000" },
-      { label: "$200k - $500k", value: "200000-500000" },
-      { label: "$500k - above", value: "500000-500000000" },
-    ],
-  };
+  const priceOptions = useMemo(() => {
+    // Nigeria-specific price ranges (Naira)
+    if (userCountry === "nigeria") {
+      return {
+        Buy: [
+          { label: "Any", value: "" },
+          { label: "₦1m - ₦5m", value: "1000000-5000000" },
+          { label: "₦5m - ₦20m", value: "5000001-20000000" },
+          { label: "₦20m & Above", value: "20000001-1000000000" },
+        ],
+        Rent: [
+          { label: "Any", value: "" },
+          { label: "Less than ₦1m", value: "0-1000000" },
+          { label: "₦1m - ₦5m", value: "1000001-5000000" },
+          { label: "₦5m to ₦10m", value: "5000001-10000000" },
+          { label: "₦10m Above", value: "10000001-100000000" },
+        ],
+        Land: [
+          { label: "Any", value: "" },
+          { label: "₦1m - ₦5m", value: "1000000-5000000" },
+          { label: "₦5m - ₦20m", value: "5000001-20000000" },
+          { label: "₦20m & Above", value: "20000001-1000000000" },
+        ],
+        shortlet: [
+          { label: "Any", value: "" },
+          { label: "₦50k - ₦200k", value: "50000-200000" },
+          { label: "₦200k - ₦500k", value: "200001-500000" },
+          { label: "₦500k & Above", value: "500001-50000000" },
+        ],
+      };
+    }
 
+    // Default price ranges (USD for other countries)
+    return {
+      Buy: [
+        { label: "Any", value: "" },
+        { label: "$0k - $30k", value: "0-30000" },
+        { label: "$30k - $60k", value: "30001-60000" },
+        { label: "$60k - $100k", value: "60001-100000" },
+        { label: "$100k - Above", value: "100001-10000000" },
+      ],
+      Rent: [
+        { label: "Any", value: "" },
+        { label: "$50 - $200", value: "50-200" },
+        { label: "$200 - $500", value: "201-500" },
+        { label: "$500 - $800", value: "501-800" },
+        { label: "$800 - $1000", value: "801-1000" },
+        { label: "$1000 - Above", value: "1001-100000" },
+      ],
+      Land: [
+        { label: "Any", value: "" },
+        { label: "$0k - $30k", value: "0-30000" },
+        { label: "$30k - $60k", value: "30001-60000" },
+        { label: "$60k - $100k", value: "60001-100000" },
+        { label: "$100k - Above", value: "100001-10000000" },
+      ],
+      shortlet: [
+        { label: "Any", value: "" },
+        { label: "$50k - $200k", value: "50000-200000" },
+        { label: "$200k - $500k", value: "200001-500000" },
+        { label: "$500k - Above", value: "500001-50000000" },
+      ],
+    };
+  }, [userCountry]);
   const homeTypeOptions = [
     { label: "Any", value: "" },
     { label: "Bungalow", value: "Bungalow" },
@@ -591,6 +625,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
           isOpen={showAllFiltersDropdown}
           onClose={() => setShowAllFiltersDropdown(false)}
           filters={filters}
+          userCountrys={userCountry}
           onFilterChange={handleFilterChange}
           onSearch={handleSearchClick}
           isSearching={isSearching}
