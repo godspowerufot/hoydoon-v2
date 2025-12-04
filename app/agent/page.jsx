@@ -109,8 +109,8 @@ export default function Page() {
                       />
                     ))}
 
-              {displayListings.length > 0 && displayListings.length < 6 && (
-                <div className="w-full  flex justify-start">
+              {/* {displayListings.length > 0 && displayListings.length < 6 && (
+                <div className="w-full  hi flex justify-start">
                   <Link href="/agent/all-agent">
                     <p className="text-[#09858D] mt-2  w-full text-sm md:text-2xl font-medium">
                       See all {displayListings.length} rent estate agents in
@@ -118,7 +118,7 @@ export default function Page() {
                     </p>
                   </Link>
                 </div>
-              )}
+              )} */}
             </div>
             {/* "See All" link aligned to the start */}
             <div className="w-full  md:col-span-2 p-4 md:p-0  md:flex justify-start">

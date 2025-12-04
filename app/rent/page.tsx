@@ -22,7 +22,7 @@ export default function Home() {
     location: "somalia",
   });
   const { data: NigeriaListings } = useGetAllListingsQuery({
-    location: "Nigeria",
+    location: "nigeria",
   });
 
   const displayListings = Array.isArray(allListings?.listings)

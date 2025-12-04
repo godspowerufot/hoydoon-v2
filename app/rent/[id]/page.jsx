@@ -254,7 +254,9 @@ const page = () => {
   const { data: listing, isloading: isAllLoading } =
     useGetSpecificListingsQuery({ listingId });
 
-  const { data: allListings, refetch } = useGetAllListingsQuery();
+  const { data: allListings, refetch } = useGetAllListingsQuery({
+    listingType: "rent",
+  });
 
   const [displayListings, setDisplayListings] = useState([]);
   const [toggleFavorite] = useToggleFavoriteMutation();

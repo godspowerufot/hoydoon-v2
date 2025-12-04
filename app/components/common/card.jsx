@@ -134,7 +134,9 @@ const HoverCard = ({
           >
             <span className="flex items-center gap-3">
               <h4 className="text-gray font-light">From</h4>
-              <h2 className="font-bold text-[28px]">${price}</h2>
+              <h2 className="font-bold text-[28px]">
+                {formatPrice(region, Number(price))}
+              </h2>
             </span>
             <h4 className="text-gray font-light "> Area from {`${area}`}</h4>
           </div>
@@ -159,7 +161,9 @@ const HoverCard = ({
 
             <div className="mt-2 flex flex-col gap-2">
               <div className="flex justify-between items-center">
-                <h2 className="font-bold text-[20px]">${price}.00</h2>
+                <h2 className="font-bold text-[20px]">
+                  {formatPrice(region, Number(price))}.00
+                </h2>
                 <h4 className="text-sm text-gray font-light">
                   Area from {area}
                 </h4>
