@@ -165,9 +165,15 @@ const MobileNavbar = () => {
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleSearch();
+                    }
+                  }}
                   placeholder="location"
-                  className="text-gray-500 placeholder:text-gray-400  text-sm bg-transparent outline-none px-2 w-[180px]"
+                  className="text-gray-500 placeholder:text-gray-400 text-sm bg-transparent outline-none px-2 w-[180px]"
                 />
+
                 <button
                   onClick={handleSearch}
                   className="bg-[#008D8D] w-7 h-7 rounded-full flex items-center justify-center"

@@ -63,7 +63,25 @@ export default function RootLayout({
   return (
     <>
       <html lang="en">
-        <Script src="https://apis.google.com/js/platform.js" />
+        <Script
+          src="https://apis.google.com/js/platform.js"
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Hoydoon",
+              url: "https://hoydoon.com",
+              logo: "https://hoydoon.com/Logo.svg",
+              sameAs: [
+                "https://www.facebook.com/hoydoon",
+                "https://www.instagram.com/hoydoon",
+                "https://www.linkedin.com/company/hoydoon",
+              ],
+            }),
+          }}
+        />
         <meta
           name="google-signin-client_id"
           content="438580118502-j5qth0chlkikrpreur0gjl9q1vm8a162.apps.googleusercontent.com"

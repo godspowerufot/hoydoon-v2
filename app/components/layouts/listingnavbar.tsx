@@ -75,16 +75,11 @@ export default function ListingNavbar() {
                 type="text"
                 name="location"
                 value={formData.location}
-                onKeyUp={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    handleSearch();
-                  }
-                }}
                 onChange={handleChange}
                 placeholder="City, Address, State, Zip..."
                 className="bg-transparent placeholder:text-[#8F8F8F] focus:outline-none text-black text-sm w-full"
               />
+              {/* Remove the onKeyUp handler from input */}
 
               <button
                 type="submit"
