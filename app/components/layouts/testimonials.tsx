@@ -87,7 +87,7 @@ export default function TestimonialCard({ testimonial }: any) {
       {/* User Info */}
       <div className="flex items-center mt-4">
         <Image
-          src={user?.pictureUrl}
+          src={user?.pictureUrl || "/Avatar.svg"}
           alt="User photo"
           width={40}
           height={40}

@@ -57,7 +57,7 @@ export default function ContactAgent({
       <div className="flex items-center gap-4">
         <div className="flex relative h-[5.5rem] w-[6rem] lg:w-[120px] lg:h-[120px] items-center gap-4">
           <Image
-            src={profileimage}
+            src={profileimage || "/Avatar.svg"}
             alt={`Agent ${fullname}`}
             fill
             className="rounded-full object-cover"

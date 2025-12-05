@@ -18,6 +18,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   const router = useRouter();
   const [isSearching, setIsSearching] = useState(false);
   const [userCountry, setUserCountry] = useState(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const [showPriceDropdown, setShowPriceDropdown] = useState(false);
   const [showHomeTypeDropdown, setShowHomeTypeDropdown] = useState(false);
@@ -151,6 +152,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       ],
     };
   }, [userCountry]);
+
   const homeTypeOptions = [
     { label: "Any", value: "" },
     { label: "Bungalow", value: "Bungalow" },
@@ -186,6 +188,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     "Rent";
 
   const handleFilterChange = (filterName, value) => {
+    // Mark that user has interacted with filters
+    if (!hasInteracted) {
+      setHasInteracted(true);
+      // Clear URL params on first interaction
+      router.replace("/rent/searchlisting", { scroll: false });
+    }
+
     setFilters((prevFilters) => ({
       ...prevFilters,
       [filterName]: value,
@@ -193,28 +202,14 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   };
 
   const handleSearchClick = () => {
-    const newParams = new URLSearchParams(searchParams.toString());
-
-    // Map keys for URL params
-    const filterMapping = {
-      price: "price",
-      "home-type": "listingType",
-      location: "location",
-      bedrooms: "bedrooms",
-      bathrooms: "bathrooms",
-    };
+    const newParams = new URLSearchParams();
 
     // Handle Price Filter
     if (filters.price) {
-      if (filters.price === "") {
-        newParams.delete("minPrice");
-        newParams.delete("maxPrice");
-      } else {
-        const [min, max] = filters.price.split("-");
-        if (!isNaN(Number(min)) && !isNaN(Number(max))) {
-          newParams.set("minPrice", min);
-          newParams.set("maxPrice", max);
-        }
+      const [min, max] = filters.price.split("-");
+      if (!isNaN(Number(min)) && !isNaN(Number(max))) {
+        newParams.set("minPrice", min);
+        newParams.set("maxPrice", max);
       }
     }
 
@@ -230,31 +225,33 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
         "listingType",
         typeToApiValue[filters["home-type"]] || filters["home-type"]
       );
-    } else {
-      newParams.delete("listingType");
     }
 
     // Handle Other Filters
-    Object.entries(filters).forEach(([key, value]) => {
-      if (key === "home-type" || key === "price") return; // already handled above
-      if (value !== "") {
-        const paramKey = filterMapping[key] || key;
-        newParams.set(paramKey, value);
-      } else {
-        const paramKey = filterMapping[key] || key;
-        newParams.delete(paramKey);
-      }
-    });
-
+    if (filters.location) {
+      newParams.set("location", filters.location);
+    }
+    if (filters.bedrooms) {
+      newParams.set("bedrooms", filters.bedrooms);
+    }
+    if (filters.bathrooms) {
+      newParams.set("bathrooms", filters.bathrooms);
+    }
     if (filters.houseType) {
       newParams.set("houseType", filters.houseType);
-    } else {
-      newParams.delete("houseType");
     }
 
-    router.push(`/rent/searchlisting?${newParams.toString()}`);
+    const queryString = newParams.toString();
+    router.push(`/rent/searchlisting${queryString ? `?${queryString}` : ""}`);
+  };
 
-    // DON'T reset filters here - they will be synced from URL params via useEffect
+  // Helper function to get the display label for price based on current filters
+  const getPriceLabel = () => {
+    if (!filters.price) return "Price";
+    const option = priceOptions[selectedType]?.find(
+      (o) => o.value === filters.price
+    );
+    return option ? option.label : "Price";
   };
 
   // Close dropdowns on outside click
@@ -336,15 +333,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showHouseTypeDropdown]);
-
-  // Helper function to get the display label for price based on current filters
-  const getPriceLabel = () => {
-    if (!filters.price) return "Price";
-    const option = priceOptions[selectedType]?.find(
-      (o) => o.value === filters.price
-    );
-    return option ? option.label : "Price";
-  };
 
   return (
     <div className="md:pt-[2.3rem] flex-wrap -mb-[2.5rem] md:mb-0 flex-col md:flex-row md:flex justify-between w-full">
@@ -438,14 +426,9 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
           }
 
           // House Type dropdown
-          // Find this section in your code (around line 420-490) and add the `hidden md:block` classes:
-
-          // House Type dropdown
           if (option === "House Type") {
             return (
               <div className="relative hidden md:block" key={option}>
-                {" "}
-                {/* Added hidden md:block */}
                 <button
                   type="button"
                   className="border border-[#8F8F8F] bg-transparent text-sm  md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
@@ -662,8 +645,9 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                 d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
               ></path>
             </svg>
-          ) : null}
-          {isSearching ? "Searching..." : "Search"}
+          ) : (
+            "Search"
+          )}
         </button>
       </div>
 
@@ -690,7 +674,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     </div>
   );
 };
-
 const page = () => {
   const searchParams = useSearchParams();
   const [showMap, setShowMap] = useState(false);
@@ -788,8 +771,8 @@ const page = () => {
   //  }
   return (
     <div className="md:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1240px]">
-      <Breadcrumb showMap={showMap} setShowMap={setShowMap} />'
-      <div className="flex items-start p-4 md:p-0  md:mt-[1rem] w-full md:justify-between flex-col  gap-3 md:gap-0 md:flex-row   ">
+      <Breadcrumb showMap={showMap} setShowMap={setShowMap} />
+      <div className="flex items-start mt-3 p-4 md:p-0  md:mt-[1rem] w-full md:justify-between flex-col  gap-3 md:gap-0 md:flex-row   ">
         <h1 className="text-black  hidden md:block font-semibold text-2xl md:text-4xl">
           All Real-estate & Homes for Sale
         </h1>

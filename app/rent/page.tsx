@@ -135,15 +135,15 @@ export default function Home() {
                       listingType={items?.listingType || "N/A"}
                     />
                   ))}
-            {!isAllLoading && (
-              <Link
-                href="/rent/searchlisting"
-                className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-xl font-[500] "
-              >
-                see all new listings for rents
-              </Link>
-            )}
           </div>
+          {!isAllLoading && (
+            <Link
+              href="/rent/searchlisting"
+              className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-xl font-[500] "
+            >
+              see all new listings for rents
+            </Link>
+          )}
         </div>
       </section>
 
@@ -210,10 +210,10 @@ export default function Home() {
 
             {!isAllLoading && (
               <Link
-                href={"/rent/searchlisting"}
+                href={"/rent/searchlisting?location=somalia&listingType=rent"}
                 className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
               >
-                see all explore listings for rent
+                see all somalia listings for rent
               </Link>
             )}
           </div>
@@ -280,10 +280,10 @@ export default function Home() {
 
             {!isAllLoading && (
               <Link
-                href={"/rent/searchlisting"}
+                href={"/rent/searchlisting?location=nigeria&listingType=rent"}
                 className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
               >
-                see all explore listings for rent
+                see all nigeria listings for rent
               </Link>
             )}
           </div>

@@ -448,7 +448,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
 
             {!isAllLoading && (
               <Link
-                href="/"
+                href="/rent/searchlisting"
                 className="text-[#09858D] md:hidden mt-2 text-sm md:my-5 md:text-2xl font-[500] "
               >
                 see housing for sale

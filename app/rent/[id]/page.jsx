@@ -114,7 +114,7 @@ const DistanceComponent = ({ coordinates }) => {
   }, [coordinates]);
   console.log("placedata", placesData);
   return (
-    <div className="grid p-4 md:my-[3rem] md:p-0 text-xs grid-cols-2 md:grid-cols-3 md:grid-cols-3 gap-4 mt-6 2xl:text-base text-gray-700 md:text-sm">
+    <div className="grid p-4 md:my-[3rem] md:p-0 text-xs grid-cols-2 md:grid-cols-3 gap-4 mt-6 2xl:text-base text-gray-700 md:text-sm">
       {placesData.map(({ type, icon, name, label, distance }) => (
         <div
           key={type}
@@ -591,7 +591,7 @@ const page = () => {
             Listed by Agent
           </h2>
           <div className="pt-4">
-            <ListedCard name={fullname} picture={pictureUrl} />
+            <ListedCard id={listedById} name={fullname} picture={pictureUrl} />
           </div>
         </div>
 

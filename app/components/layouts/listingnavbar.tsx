@@ -27,6 +27,7 @@ export default function ListingNavbar() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
   const handleSearch = () => {
+    console.log("Searching with data:", formData);
     const queryParams = new URLSearchParams({
       ...(formData.location && { location: formData.location }),
     }).toString();
@@ -63,36 +64,41 @@ export default function ListingNavbar() {
                 className="object-contain w-[141px]"
               />{" "}
             </Link>{" "}
-            <div className="relative  w-[20rem]  h-[3rem] hidden border-[#8F8F8F] border-solid border-[1px]  lg:flex items-center bg-gray-100 rounded-[14px] px-2 py-2">
+            <form
+              className="relative w-[20rem] h-[3rem] hidden lg:flex items-center bg-gray-100 border border-[#8F8F8F] rounded-[14px] px-2 py-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSearch();
+              }}
+            >
               <input
                 type="text"
                 name="location"
                 value={formData.location}
-                onChange={handleChange}
-                onKeyDown={(e) => {
+                onKeyUp={(e) => {
                   if (e.key === "Enter") {
-                    e.preventDefault(); // prevents form submission if inside a form
+                    e.preventDefault();
                     handleSearch();
                   }
                 }}
+                onChange={handleChange}
                 placeholder="City, Address, State, Zip..."
-                className="bg-transparent  placeholder:fonr-[300] placeholder:font-[1em] lg:pl-2 placeholder:text-[#8F8F8F]  focus:outline-none text-black text-sm w-full"
+                className="bg-transparent placeholder:text-[#8F8F8F] focus:outline-none text-black text-sm w-full"
               />
+
               <button
-                onClick={handleSearch}
+                type="submit"
                 className="ml-2 bg-primary text-white p-2 rounded-md"
               >
                 <Image
-                  alt="logo"
+                  alt="search"
                   width={20}
-                  loading="lazy"
-                  height={10}
-                  quality={100} // Ensures maximum quality
-                  src={"/arrow-left.png"}
-                  style={{ objectFit: "cover" }}
-                />{" "}
+                  height={20}
+                  src="/arrow-left.png"
+                  className="object-cover"
+                />
               </button>
-            </div>
+            </form>
           </div>
 
           {/* Center: Navigation Links + Auth Buttons */}

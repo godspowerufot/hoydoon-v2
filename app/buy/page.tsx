@@ -171,13 +171,13 @@ export default function Home() {
                       rent={items?.item?.rent || "Rent details not provided"}
                     />
                   ))}
-            <Link
-              href="/"
-              className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
-            >
-              see housing for sale
-            </Link>
           </div>
+          <Link
+            href="/rent/searchlisting"
+            className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+          >
+            see housing for sale
+          </Link>
         </div>
       </section>
 
@@ -197,44 +197,51 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col mt-[0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
-            {isAllLoading
-              ? // Show skeleton loaders
-                Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
-                  <SkeletonCard key={`skeleton-${index}`} />
+            {isAllLoading ? (
+              // Show skeleton loaders
+              Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+                <SkeletonCard key={`skeleton-${index}`} />
+              ))
+            ) : affordableListings?.listings?.length === 0 ? (
+              // Show "No listing" message
+              <p className="text-gray-500 text-base px-2">No listings found</p>
+            ) : (
+              // Show actual listings
+              (affordableListings?.listings || [])
+                .slice(0, 3)
+                .map((items: Property, index: number) => (
+                  <HoverCard
+                    _id={items?._id}
+                    key={index}
+                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                    altText={
+                      items?.imageUrls?.[0]?.altText ||
+                      "Property image showcasing a beautiful home"
+                    }
+                    price={items?.item?.price || "Price not available"}
+                    area={items?.item?.squareFeet || ""}
+                    bathrooms={items?.item?.bathrooms}
+                    bedrooms={items?.item?.bedrooms}
+                    region={items?.region || ""}
+                    description={
+                      items?.item?.description ||
+                      "No description available for this property."
+                    }
+                    title={items?.item?.title || "Untitled Property"}
+                    rent={items?.item?.rent || "Rent details not provided"}
+                  />
                 ))
-              : (openHouseListings?.listings || [])
-                  .slice(0, 3)
-                  .map((items: Property, index: number) => (
-                    <HoverCard
-                      _id={items?._id}
-                      key={index}
-                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                      altText={
-                        items?.imageUrls?.[0]?.altText ||
-                        "Property image showcasing a beautiful home"
-                      }
-                      price={items?.item?.price || "Price not available"}
-                      area={items?.item?.squareFeet || ""}
-                      bathrooms={items?.item?.bathrooms}
-                      bedrooms={items?.item?.bedrooms}
-                      region={items?.region || ""}
-                      description={
-                        items?.item?.description ||
-                        "No description available for this property."
-                      }
-                      title={items?.item?.title || "Untitled Property"}
-                      rent={items?.item?.rent || "Rent details not provided"}
-                    />
-                  ))}
-            {!isAllLoading && (
-              <Link
-                href="/"
-                className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
-              >
-                see all afforable houses for sale
-              </Link>
             )}
           </div>
+
+          {!isAllLoading && (
+            <Link
+              href="/rent/searchlisting?category=affordable"
+              className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+            >
+              see all afforable houses for sale
+            </Link>
+          )}
         </div>
       </section>
       <div className="w-screen  mt-[3rem] lg:my-0 h-[2px] bg-[#D9D9D9] " />
@@ -280,15 +287,15 @@ export default function Home() {
                       rent={items?.item?.rent || "Rent details not provided"}
                     />
                   ))}
-            {!isAllLoading && (
-              <Link
-                href="/"
-                className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
-              >
-                see all open houses for sale
-              </Link>
-            )}
           </div>
+          {!isAllLoading && (
+            <Link
+              href="/rent/searchlisting?category=open-house`"
+              className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+            >
+              see all open houses for sale
+            </Link>
+          )}
         </div>
       </section>
       <div className="w-screen  hidden lg:block  h-[2px] bg-[#D9D9D9] " />
@@ -334,13 +341,14 @@ export default function Home() {
                       rent={items?.item?.rent || "Rent details not provided"}
                     />
                   ))}
-            <Link
-              href="/"
-              className="text-[#09858D] lg:hidden mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
-            >
-              see all luxury houses for sale
-            </Link>
           </div>
+
+          <Link
+            href="/rent/searchlisting?category=luxury"
+            className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+          >
+            see all luxury houses for sale
+          </Link>
         </div>
       </section>
       <div className="w-screen  mt-[3rem] lg:mt-0 h-[2px] bg-[#D9D9D9] " />
@@ -385,9 +393,9 @@ export default function Home() {
             </div>
           </span>
 
-          <span className="mt-8  w-screen lg:w-[40rem] h-[25rem] 2xl:w-[50rem] 2xl:h-fit rounded-2xl lg:mt-0">
+          <div className="mt-8 w-screen lg:w-[40rem] h-[25rem] 2xl:w-[50rem] rounded-2xl lg:mt-0">
             <MapComponent coordinates={coordinates} />
-          </span>
+          </div>
         </div>
       </section>
 
