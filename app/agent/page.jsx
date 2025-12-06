@@ -123,7 +123,7 @@ export default function Page() {
             {/* "See All" link aligned to the start */}
             <div className="w-full  md:col-span-2 p-4 md:p-0  md:flex justify-start">
               <Link href="/agent/all-agent">
-                <p className="text-[#09858D] mt-[4em] md:mt-5   w-full text-sm md:text-2xl font-medium">
+                <p className="text-[#09858D] mt-[2em] md:mt-5   w-full text-sm md:text-2xl font-medium">
                   See all agents on Hoydoon
                 </p>
               </Link>

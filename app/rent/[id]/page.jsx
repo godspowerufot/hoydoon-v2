@@ -647,6 +647,7 @@ const page = () => {
         {/*contat agency  */}
         <ContactAgent
           location={region}
+          listingId={listingId}
           profileimage={pictureUrl}
           fullname={fullname}
           listedBy={listedBy?._id}

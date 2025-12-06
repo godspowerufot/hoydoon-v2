@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 export default function ContactAgent({
   fullname,
   location,
+  listingId,
   profileimage,
   listedBy,
 }) {
@@ -26,7 +27,7 @@ export default function ContactAgent({
         setIsReviewLoading(true); // Set loading for review
       }
 
-      await sendMessage({ message, listedBy }).unwrap();
+      await sendMessage({ message, listedBy, listingId }).unwrap();
       setMessage(""); // Clear after sending
       toast.success("Message sent successfully!");
     } catch (err) {
@@ -36,7 +37,7 @@ export default function ContactAgent({
       } else if (err?.status === 401) {
         toast.error("Action not allowed (405)");
       } else {
-        toast.error(err?.error);
+        toast.error(err);
       }
       log(err);
     } finally {
