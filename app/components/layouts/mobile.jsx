@@ -361,7 +361,7 @@ const MobileNavbar = () => {
                 <div
                   onClick={handlelogout}
                   disabled={isLoggingOut}
-                  className={`font-bricolage h-auto p-1 rounded-none mt-5 border-primary brder-solid text-white bg-primary  flex justify-center items-center  w-[7.5rem]
+                  className={`font-bricolage ml-4  h-auto p-1 rounded-none mt-5 border-primary brder-solid border-[1px] bg-primary text-white  flex justify-center items-center  w-[7.5rem]
             ${isLoggingOut ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   {isLoggingOut ? "Logging out..." : "Logout"}

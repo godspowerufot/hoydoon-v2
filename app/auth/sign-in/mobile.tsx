@@ -160,17 +160,8 @@ export const MobileSignIn = () => {
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-            const passwordRegex =
-              /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-            setIsPasswordValid(passwordRegex.test(e.target.value));
           }}
         />
-
-        {!isPasswordValid && (
-          <p className="text-xs -mt-2 text-[#1E1E1E99]">
-            Must include 8 characters, numbers, and symbols
-          </p>
-        )}
 
         {tab === "signup" && (
           <Input

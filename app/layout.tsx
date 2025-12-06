@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Hoydoon Team" }],
   icons: {
-    icon: "/Logo.svg",
+    icon: "/favicon.png",
   },
   openGraph: {
     title: "Hoydoon | Find Your Dream Property in Hoydoon",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Hoydoon",
     images: [
       {
-        url: "/Logos.svg",
+        url: "/favicon.png",
         width: 800,
         height: 600,
         alt: "Hoydoon Logo",
@@ -63,6 +63,8 @@ export default function RootLayout({
   return (
     <>
       <html lang="en">
+        <link rel="icon" type="image/png" href="/favicon.png" sizes="48x48" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <Script
           src="https://apis.google.com/js/platform.js"
           id="organization-schema"
@@ -73,7 +75,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Hoydoon",
               url: "https://hoydoon.com",
-              logo: "https://hoydoon.com/Logo.svg",
+              logo: "https://hoydoon.com/favicon.png",
               sameAs: [
                 "https://www.facebook.com/hoydoon",
                 "https://www.instagram.com/hoydoon",
