@@ -15,7 +15,7 @@ export default function HelpCenterNavbar() {
                 src="/Logo.svg"
                 alt="Hoydoon Logo"
                 width={30}
-                height={30}
+                height={25}
                 priority
               />
               <span className="text-gray-800  gap-3  flex font-medium text-lg">

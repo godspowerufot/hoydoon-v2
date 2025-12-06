@@ -106,8 +106,8 @@ const LocationSearchBar = () => {
       </div>
 
       {/* Mobile */}
-      <div className="flex lg:hidden justify-center items-center w-full px-1 py-1">
-        <div className="flex items-center w-full bg-white rounded-full h-[32px] px-2 py-1">
+      <div className="flex lg:hidden justify-center items-center w-full px-3 py-3">
+        <div className="flex items-center w-full bg-white rounded-full h-[33px] px-2 py-1">
           <input
             ref={inputRefMobile}
             type="text"
@@ -115,13 +115,13 @@ const LocationSearchBar = () => {
             value={formData.location}
             onChange={handleChange}
             placeholder="Find an Agent in your area..."
-            className="flex-1 text-sm text-gray-700 placeholder:text-[12px] outline-none bg-transparent placeholder:text-gray-400"
+            className="flex-1 text-sm text-gray-700 placeholder:text-[14px] outline-none bg-transparent placeholder:text-gray-400"
           />
           <button
             onClick={handleSearch}
-            className="ml-2 h-[24px] bg-primary px-1 w-[26px] rounded-full flex items-center justify-center hover:bg-opacity-90"
+            className="ml-2 h-[24px] bg-primary px-1 w-[30px] rounded-full flex items-center justify-center hover:bg-opacity-90"
           >
-            <Image alt="Search" width={10} height={10} src="/search.png" />
+            <Image alt="Search" width={15} height={15} src="/search.png" />
           </button>
         </div>
       </div>

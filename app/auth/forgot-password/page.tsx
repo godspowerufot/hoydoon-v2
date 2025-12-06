@@ -70,14 +70,14 @@ const OtpVerify = () => {
                     objectFit="cover"
                     height={30}
                     className="w-[10rem] h-[4rem] 2xl:w-[12rem]" // Reduced size of logo
-                    src={"/logo2.svg"}
+                    src={"/newlogo.svg"}
                   />
                 </Link>
 
                 <div className=" 2xl:mt-[1rem]  mt-[1rem] flex lg:justify-center flex-col font-bricolage items-start lg:items-center w-full ">
                   <div className=" w-full  2xl:mt-1 h-[1px] bg-[#D9D9D9] " />
 
-                  <h1 className="text-[32px] lg:mt-[32px]  xl:text-[36px] 2xl:text-[40px] font-medium text-gray-900 mb-2 leading-tight">
+                  <h1 className="text-[32px] mt-5  lg:mt-[32px]  xl:text-[36px] 2xl:text-[40px] font-medium text-gray-900 mb-2 leading-tight">
                     Forgot Password
                   </h1>
                   <p className="font-light text-gray text-center  xl:text-lg ">

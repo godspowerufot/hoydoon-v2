@@ -11,7 +11,6 @@ import { useChangePasswordMutation } from "@/store/slices/api/authapi";
 const PasswordConfirm = () => {
   const [password, setPassword] = useState("");
   const [conpassword, setConPassword] = useState("");
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [doPasswordsMatch, setDoPasswordsMatch] = useState(true);
   const [changePassword, { isLoading }] = useChangePasswordMutation();
 
@@ -20,15 +19,12 @@ const PasswordConfirm = () => {
 
   const router = useRouter();
   const handleSubmit = async () => {
-    const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    const valid = passwordRegex.test(password);
     const match = password === conpassword;
 
     setIsPasswordValid(valid);
     setDoPasswordsMatch(match);
 
-    if (!valid || !match) return;
+    if (!match) return;
 
     if (!email || !otp) {
       toast.error("Missing OTP or email information.");
@@ -75,7 +71,7 @@ const PasswordConfirm = () => {
                 quality={100}
                 height={30}
                 className="w-[10rem] h-[4rem] 2xl:w-[12rem]"
-                src={"/logo2.svg"}
+                src={"/newlogo.svg"}
               />
             </Link>
 
@@ -101,18 +97,8 @@ const PasswordConfirm = () => {
                 onChange={(e) => {
                   const value = e.target.value;
                   setPassword(value);
-                  setIsPasswordValid(
-                    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-                      value
-                    )
-                  );
                 }}
               />
-              {!isPasswordValid && (
-                <p className="text-[0.7em] text-gray -mt-1  2xl:text-[0.8em] font-[300] ">
-                  It must be a combination of 8 words, letters, numbers, symbols
-                </p>
-              )}
 
               <Input
                 label="Confirm Password"
@@ -127,7 +113,7 @@ const PasswordConfirm = () => {
                 }}
               />
               {!doPasswordsMatch && (
-                <p className="text-[0.7em] text-gray -mt-1  2xl:text-[0.8em] font-[300] ">
+                <p className="text-[0.7em] text-red-500 -mt-1  2xl:text-[0.8em] font-[300] ">
                   Passwords do not match.
                 </p>
               )}

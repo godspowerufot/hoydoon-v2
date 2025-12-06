@@ -36,7 +36,7 @@ export default function Page() {
 
   return (
     <>
-      <header className="relative h-[25rem] md:h-[85vh] w-screen">
+      <header className="relative h-[23rem] md:h-[85vh] w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-cover bg-center z-[-1]"
@@ -76,9 +76,9 @@ export default function Page() {
       {/* explore */}
       <section className="   bg-white  w-screen md:bg-[#eeeeeec7]  md:py-[5em] font-bricolage md:flex justify-center flex-col md:gap-7 flex-1 items-center">
         <div className="w-full">
-          <div className="flex flex-col  md:flex-col justify-between  gap-10  w-full md:max-w-[1200px]  mx-auto">
+          <div className="flex flex-col  md:flex-col justify-between  md:gap-10  w-full md:max-w-[1200px]  mx-auto">
             <div className="flex flex-col p-3 md:p-0 md:flex-row md:gap-8 justify-between  items-start md:items-center w-full  flex-wrap mx-auto">
-              <h1 className="text-black  font-semibold text-[24px] mt-[32px] md:mt-0  md:text-[2.5rem] font-[60 md:w-auto">
+              <h1 className="text-black  font-semibold text-[24px] mt-[25px] md:mt-0  md:text-[2.5rem] font-[60 md:w-auto">
                 Real Estate Agents In Hoydoon
               </h1>
               <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
@@ -87,7 +87,7 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="grid  mt-2. md:mt-4  gap-y-3  w-full  grid-col-1 md:grid-cols-2    gap-2  p-4 md:p-0 md:gap-10 ">
+            <div className="grid  mt-2 md:mt-4  gap-y-3  w-full  grid-col-1 md:grid-cols-2    gap-2  p-4 md:p-0 md:gap-10 ">
               {isAllLoading
                 ? // Show skeleton loaders
                   Array.from({ length: 6 }, (_, index) => (
@@ -123,7 +123,7 @@ export default function Page() {
             {/* "See All" link aligned to the start */}
             <div className="w-full  md:col-span-2 p-4 md:p-0  md:flex justify-start">
               <Link href="/agent/all-agent">
-                <p className="text-[#09858D] -mt-[4em] md:mt-5   w-full text-sm md:text-2xl font-medium">
+                <p className="text-[#09858D] mt-[4em] md:mt-5   w-full text-sm md:text-2xl font-medium">
                   See all agents on Hoydoon
                 </p>
               </Link>

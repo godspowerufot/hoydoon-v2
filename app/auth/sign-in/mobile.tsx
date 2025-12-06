@@ -35,12 +35,6 @@ export const MobileSignIn = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Password validation
-    const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(password)) {
-      setIsPasswordValid(false);
-      return;
-    }
 
     try {
       const device = await sendDeviceInfo();
@@ -49,7 +43,11 @@ export const MobileSignIn = () => {
       const { region, ...deviceWithoutRegion } = device;
       log("Device info:", region);
       // Send login request with device info (without region)
-      await login({ email, password, device: deviceWithoutRegion }).unwrap();
+      await login({
+        email: email.toLowerCase(),
+        password,
+        device: deviceWithoutRegion,
+      }).unwrap();
 
       toast.success("Login successful!");
       router.push("/");

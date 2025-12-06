@@ -137,17 +137,13 @@ function TestimonialCard({ testimonial }) {
       {/* User Info */}
       <div className="flex items-center gap-4">
         <div className="w-14 h-14 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
-          {user?.pictureUrl ? (
-            <Image
-              src={user.pictureUrl}
-              alt={user?.fullname || "User"}
-              width={56}
-              height={56}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-full bg-gray-300" />
-          )}
+          <Image
+            src={user?.pictureUrl || "/Avatar.svg"}
+            alt={user?.fullname || "User"}
+            width={56}
+            height={56}
+            className="w-full h-full object-cover"
+          />
         </div>
         <div>
           <p className="font-medium text-[#1E1E1E] text-base">

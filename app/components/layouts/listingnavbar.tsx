@@ -56,7 +56,7 @@ export default function ListingNavbar() {
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center">
               <Image
-                src={"/newlogo.svg"}
+                src={"/newlogo2.svg"}
                 alt="logo"
                 width={100}
                 height={200}
