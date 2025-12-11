@@ -163,13 +163,13 @@ const PageComponent = () => {
   const query = useMemo(() => {
     try {
       if (!searchParams) return {};
-      
+
       // ✅ Create stable query object
       const params = {};
       searchParams.forEach((value, key) => {
         params[key] = value;
       });
-      
+
       return params;
     } catch (error) {
       console.error("Error parsing search params:", error);
@@ -191,9 +191,8 @@ const PageComponent = () => {
     error: listingsError,
     isFetching,
   } = useGetAllListingsQuery(query, {
-    // ✅ Only fetch once per query change
     skip: false,
-    refetchOnMountOrArgChange: false, // ← Changed from 300 to false
+    refetchOnMountOrArgChange: false,
     refetchOnFocus: false,
     refetchOnReconnect: false,
     // ✅ Prevent multiple fetches
@@ -202,12 +201,12 @@ const PageComponent = () => {
 
   // ✅ Log API calls (remove in production)
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🔄 API Call Status:', { 
-        isLoading: isAllloading, 
+    if (process.env.NODE_ENV === "development") {
+      console.log("🔄 API Call Status:", {
+        isLoading: isAllloading,
         isFetching,
         hasData: !!allListings,
-        query: queryString
+        query: queryString,
       });
     }
   }, [isAllloading, isFetching, allListings, queryString]);
@@ -215,19 +214,9 @@ const PageComponent = () => {
   // ====================================
   // MEMOIZED: Process listings
   // ====================================
-  const { displayListings, coordinates, totalPages, currentPage } = useMemo(() => {
-    if (isAllloading || !allListings?.listings) {
-      return {
-        displayListings: [],
-        coordinates: [],
-        totalPages: 1,
-        currentPage: 1,
-      };
-    }
-
-    try {
-      const listings = allListings.listings;
-      if (!Array.isArray(listings)) {
+  const { displayListings, coordinates, totalPages, currentPage } =
+    useMemo(() => {
+      if (isAllloading || !allListings?.listings) {
         return {
           displayListings: [],
           coordinates: [],
@@ -236,51 +225,62 @@ const PageComponent = () => {
         };
       }
 
-      const flatListings = flattenListings(listings);
+      try {
+        const listings = allListings.listings;
+        if (!Array.isArray(listings)) {
+          return {
+            displayListings: [],
+            coordinates: [],
+            totalPages: 1,
+            currentPage: 1,
+          };
+        }
 
-      const processedListings = flatListings
-        .filter(
-          (item) =>
-            item?.item?.coordinate?.latitude &&
-            item?.item?.coordinate?.longitude
-        )
-        .sort((a, b) => {
-          const dateA = new Date(a.createdAt || a.item?.createdAt);
-          const dateB = new Date(b.createdAt || b.item?.createdAt);
+        const flatListings = flattenListings(listings);
 
-          switch (sortBy) {
-            case "newest":
-              return dateB - dateA;
-            case "oldest":
-              return dateA - dateB;
-            case "price-low":
-              return (a.item?.price || 0) - (b.item?.price || 0);
-            case "price-high":
-              return (b.item?.price || 0) - (a.item?.price || 0);
-            default:
-              return dateB - dateA;
-          }
-        });
+        const processedListings = flatListings
+          .filter(
+            (item) =>
+              item?.item?.coordinate?.latitude &&
+              item?.item?.coordinate?.longitude
+          )
+          .sort((a, b) => {
+            const dateA = new Date(a.createdAt || a.item?.createdAt);
+            const dateB = new Date(b.createdAt || b.item?.createdAt);
 
-      const coords = processedListings.map((item) => item.item.coordinate);
-      coordinatesRef.current = coords;
+            switch (sortBy) {
+              case "newest":
+                return dateB - dateA;
+              case "oldest":
+                return dateA - dateB;
+              case "price-low":
+                return (a.item?.price || 0) - (b.item?.price || 0);
+              case "price-high":
+                return (b.item?.price || 0) - (a.item?.price || 0);
+              default:
+                return dateB - dateA;
+            }
+          });
 
-      return {
-        displayListings: processedListings,
-        coordinates: coords,
-        totalPages: allListings.totalPages || 1,
-        currentPage: Number(searchParams?.get("page")) || 1,
-      };
-    } catch (error) {
-      console.error("Error processing listings:", error);
-      return {
-        displayListings: [],
-        coordinates: [],
-        totalPages: 1,
-        currentPage: 1,
-      };
-    }
-  }, [allListings, isAllloading, sortBy, searchParams]);
+        const coords = processedListings.map((item) => item.item.coordinate);
+        coordinatesRef.current = coords;
+
+        return {
+          displayListings: processedListings,
+          coordinates: coords,
+          totalPages: allListings.totalPages || 1,
+          currentPage: Number(searchParams?.get("page")) || 1,
+        };
+      } catch (error) {
+        console.error("Error processing listings:", error);
+        return {
+          displayListings: [],
+          coordinates: [],
+          totalPages: 1,
+          currentPage: 1,
+        };
+      }
+    }, [allListings, isAllloading, sortBy, searchParams]);
 
   // ====================================
   // Page change handler
@@ -319,7 +319,9 @@ const PageComponent = () => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside, { passive: true });
+    document.addEventListener("mousedown", handleClickOutside, {
+      passive: true,
+    });
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -354,7 +356,7 @@ const PageComponent = () => {
       const imgUrl = item?.imageUrls?.[0]?.url;
       if (imgUrl && imgUrl !== "/house1.png" && !preloadedImages.has(imgUrl)) {
         preloadedImages.add(imgUrl);
-        
+
         const link = document.createElement("link");
         link.rel = "preload";
         link.as = "image";
@@ -367,7 +369,7 @@ const PageComponent = () => {
     return () => {
       preloadedImages.forEach((url) => {
         const links = document.querySelectorAll(`link[href="${url}"]`);
-        links.forEach(link => link.remove());
+        links.forEach((link) => link.remove());
       });
     };
   }, [currentPage]); // ← Only depend on currentPage, not displayListings
