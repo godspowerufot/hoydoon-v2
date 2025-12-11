@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Spinner from "./components/common/Spinner";
 import Script from "next/script";
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.hoydoon.com"),
   title: "Hoydoon | Find Your Dream Property in Hoydoon",
   description:
     "Hoydoon is  leading real estate platform. Discover, buy, rent, or sell homes, apartments, and land with ease. Trusted agents, verified listings, and the best property deals.",
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "Hoydoon",
     images: [
       {
-        url: "/favicon.png",
+        url: "/favicon.ico",
         width: 800,
         height: 600,
         alt: "Hoydoon Logo",
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     title: "Hoydoon | Find Your Dream Property in Hoydoon",
     description:
       "Discover, buy, rent, or sell homes, apartments, and land. Trusted agents, verified listings, and the best property deals.",
-    images: ["/afforable-1.png"],
+    images: ["/mobilelog.png"],
   },
 };
 

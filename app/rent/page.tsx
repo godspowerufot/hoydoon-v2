@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Property } from "@/types";
 import { SkeletonCard } from "../components/Loader";
+import { getLocationRegion } from "@/utils/lib";
 import PropertySearchBar from "../components/common/headerSearch";
 export default function Home() {
   const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery(
@@ -15,7 +16,7 @@ export default function Home() {
   const { data: familyFriendlyListings } = useGetAllListingsQuery({
     category: "family-friendly",
   });
-  // const [userCountry, setUserCountry] = useState<string>("");
+  const [userCountry, setUserCountry] = useState<string>("");
   const [shortletListings, setShortletListings] = useState([]);
   const { data: regionListings } = useGetAllListingsQuery({
     location: "somalia",
@@ -44,13 +45,13 @@ export default function Home() {
       setShortletListings(shortletFiltered); // You'll need this state
     }
   }, [allListings]);
-  // useEffect(() => {
-  //   const getUserLocation = async () => {
-  //     const { country } = await getLocationRegion();
-  //     setUserCountry(country);
-  //   };
-  //   getUserLocation();
-  // }, []);
+  useEffect(() => {
+    const getUserLocation = async () => {
+      const { country } = await getLocationRegion();
+      setUserCountry(country);
+    };
+    getUserLocation();
+  }, []);
 
   return (
     <>
@@ -358,73 +359,73 @@ export default function Home() {
 
       {/* luxury */}
       <div className="w-screen h-[2px] bg-[#D9D9D9] " />
-
-      <section className="p-5 lg:p-0 lg:my-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
-          <div className="flex flex-col lg:gap-[20rem] lg:flex-row justify-between items-start w-full mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 lg:text-[2.5rem] font-[600] w-full lg:w-auto">
-              Shortlet Apartments
-            </h1>
-            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-left">
-              Need a place for a few days, weeks, or months?Discover stylish,
-              flexible stays ready when you are.
-            </p>
-          </div>
-          <div className="flex flex-col">
-            {isAllLoading ? (
-              // Show skeleton loaders
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-                {Array.from({ length: 3 }, (_, index) => (
-                  <SkeletonCard key={`skeleton-${index}`} />
-                ))}
-              </div>
-            ) : shortletListings?.length === 0 ? (
-              <div className="text-center text-gray-500 py-8">
-                No shortlet listings found.
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-                {[...shortletListings]
-                  .slice(0, 3)
-                  .sort(() => Math.random() - 0.5)
-                  ?.map((items: Property, index: number) => (
-                    <PropertyListCard
-                      key={index}
-                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                      altText={
-                        items?.imageUrls?.[0]?.altText ||
-                        "Property image showcasing a beautiful home"
-                      }
-                      price={items?.item?.price || "Price not available"}
-                      area={items?.item?.squareFeet}
-                      bathrooms={items?.item?.bathrooms}
-                      bedrooms={items?.item?.bedrooms}
-                      region={items?.region}
-                      description={
-                        items?.item?.description ||
-                        "No description available for this property."
-                      }
-                      _id={items?._id}
-                      title={items?.item?.title || "Untitled Property"}
-                      rent={items?.item?.rent || "Rent details not provided"}
-                      squareFeet={items?.item?.squareFeet}
-                      landSize={items?.item?.landSize}
-                      listingType={items?.listingType || "N/A"}
-                    />
+      {userCountry !== "somalia" && (
+        <section className="p-5 lg:p-0 lg:my-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+          <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
+            <div className="flex flex-col lg:gap-[20rem] lg:flex-row justify-between items-start w-full mx-auto">
+              <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+                Shortlet Apartments
+              </h1>
+              <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-left">
+                Need a place for a few days, weeks, or months?Discover stylish,
+                flexible stays ready when you are.
+              </p>
+            </div>
+            <div className="flex flex-col">
+              {isAllLoading ? (
+                // Show skeleton loaders
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+                  {Array.from({ length: 3 }, (_, index) => (
+                    <SkeletonCard key={`skeleton-${index}`} />
                   ))}
-              </div>
-            )}
+                </div>
+              ) : shortletListings?.length === 0 ? (
+                <div className="text-center text-gray-500 py-8">
+                  No shortlet listings found.
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+                  {[...shortletListings]
+                    .slice(0, 3)
+                    .sort(() => Math.random() - 0.5)
+                    ?.map((items: Property, index: number) => (
+                      <PropertyListCard
+                        key={index}
+                        imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                        altText={
+                          items?.imageUrls?.[0]?.altText ||
+                          "Property image showcasing a beautiful home"
+                        }
+                        price={items?.item?.price || "Price not available"}
+                        area={items?.item?.squareFeet}
+                        bathrooms={items?.item?.bathrooms}
+                        bedrooms={items?.item?.bedrooms}
+                        region={items?.region}
+                        description={
+                          items?.item?.description ||
+                          "No description available for this property."
+                        }
+                        _id={items?._id}
+                        title={items?.item?.title || "Untitled Property"}
+                        rent={items?.item?.rent || "Rent details not provided"}
+                        squareFeet={items?.item?.squareFeet}
+                        landSize={items?.item?.landSize}
+                        listingType={items?.listingType || "N/A"}
+                      />
+                    ))}
+                </div>
+              )}
 
-            <Link
-              href="/rent/searchlisting?listingType=shortlet"
-              className="text-[#09858D] text-base my-5 lg:text-xl font-[500]"
-            >
-              see all shortlet houses for rent
-            </Link>
+              <Link
+                href="/rent/searchlisting?listingType=shortlet"
+                className="text-[#09858D] text-base my-5 lg:text-xl font-[500]"
+              >
+                see all shortlet houses for rent
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-
+        </section>
+      )}
 
       {/* // Then conditionally render the section */}
 

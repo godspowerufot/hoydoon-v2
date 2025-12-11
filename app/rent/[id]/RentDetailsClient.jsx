@@ -118,9 +118,8 @@ const DistanceComponent = ({ coordinates }) => {
       {placesData.map(({ type, icon, name, label, distance }) => (
         <div
           key={type}
-          className={`flex items-start gap-2 ${
-            type === "pharmacy" ? "hidden md:flex" : ""
-          }`}
+          className={`flex items-start gap-2 ${type === "pharmacy" ? "hidden md:flex" : ""
+            }`}
         >
           <Image src={icon} alt={label} width={20} height={20} />
           <div className="flex flex-col">
@@ -245,7 +244,7 @@ const Breadcrumb = ({
   );
 };
 
-const page = () => {
+const RentDetailsClient = () => {
   const pathname = usePathname();
   const Id = pathname?.split("/").pop();
   const listingId = decodeId(Id);
@@ -402,9 +401,8 @@ const page = () => {
         {/* second div layout  */}
 
         <div
-          className={`bg-gray-100 p-4 w-full rounded-lg ${
-            !showListings ? "mt-[2rem] md:mt-0" : ""
-          }`}
+          className={`bg-gray-100 p-4 w-full rounded-lg ${!showListings ? "mt-[2rem] md:mt-0" : ""
+            }`}
         >
           <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 md:gap-4">
             {/* Left Section */}
@@ -521,8 +519,8 @@ const page = () => {
                 {listingType === "land"
                   ? landSize
                   : listingType === "sale"
-                  ? squareFeet
-                  : "-"}
+                    ? squareFeet
+                    : "-"}
               </span>
               <span>sq ft</span>
             </div>
@@ -533,12 +531,12 @@ const page = () => {
                 {listingType === "rent"
                   ? "-"
                   : listingType === "land"
-                  ? landSize
-                    ? formatPrice(region, Number(price) / Number(landSize))
-                    : "-"
-                  : squareFeet
-                  ? formatPrice(region, Number(price) / Number(squareFeet))
-                  : "-"}
+                    ? landSize
+                      ? formatPrice(region, Number(price) / Number(landSize))
+                      : "-"
+                    : squareFeet
+                      ? formatPrice(region, Number(price) / Number(squareFeet))
+                      : "-"}
               </span>
 
               <span>price per sq ft</span>
@@ -701,4 +699,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default RentDetailsClient;
