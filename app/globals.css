@@ -171,7 +171,28 @@ body {
   border: 2px solid #09858d !important;
   border-radius: 9999px !important;
 }
+/* iOS Safari memory optimization */
+* {
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+}
 
+/* Prevent iOS Safari from rendering hidden dropdowns */
+.dropdown-hidden {
+  display: none !important; /* Better than position:absolute + opacity:0 */
+}
+
+/* Optimize repaints on iOS */
+.dropdown-overlay {
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+/* Reduce layer compositing */
+img {
+  image-rendering: -webkit-optimize-contrast;
+}
 @layer base {
   * {
     @apply border-border;
