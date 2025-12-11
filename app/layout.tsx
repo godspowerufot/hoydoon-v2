@@ -74,8 +74,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Hoydoon",
-              url: "https://hoydoon.com",
-              logo: "https://hoydoon.com/favicon.ico",
+              url: "https://www.hoydoon.com",
+              logo: "https://www.hoydoon.com/favicon.ico",
             }),
           }}
         />
