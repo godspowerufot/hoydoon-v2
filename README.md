@@ -98,34 +98,7 @@ NEXT_PUBLIC_API_URL=https://api.example.com
 SECRET_KEY=my-super-secret-key
 ```
 
-## Architecture & Optimization Flow
 
-The following diagram illustrates how the different folders interact and the optimization strategies employed by Next.js.
-
-```mermaid
-graph TD
-    User[User Request] --> App[App Router (app/)]
-    
-    subgraph "Core Structure"
-        App --> Pages[Pages & Layouts]
-        Pages --> Components[Components (components/)]
-        Pages --> Hooks[Hooks (hooks/)]
-        Components --> Utils[Utils (utils/)]
-        Components --> Store[Redux Store (store/)]
-        Components --> Assets[Static Assets (public/)]
-    end
-
-    subgraph "Optimization Layer"
-        Assets -.-> ImageOpt[Next.js Image Optimization]
-        Pages -.-> SSG[Server-Side Rendering / Static Generation]
-        Components -.-> CodeSplit[Automatic Code Splitting]
-        Utils -.-> TreeShake[Tree Shaking]
-    end
-
-    ImageOpt --> Browser[Optimized Delivery]
-    SSG --> Browser
-    CodeSplit --> Browser
-```
 
 ### Optimization Strategy
 
