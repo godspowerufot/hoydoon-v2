@@ -26,7 +26,7 @@ const typeOptions = ["Shortlet", "Buy", "Rent", "Land"];
 const bedBathOptions = ["Any", "0 - 2", "2 - 5", "5 & Above"];
 const homeTypeOptions = ["Any", "Bungalow", "Penthouse", "Duplex"];
 
-export default function FiltersDropdown({
+export function FiltersDropdown({
   isOpen,
   onClose,
   filters,
