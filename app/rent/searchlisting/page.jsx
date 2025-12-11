@@ -41,6 +41,13 @@ const Breadcrumb = dynamic(
 );
 
 // ====================================
+// 🔥 FIX: Global cache to prevent memory leaks on iOS
+// ====================================
+let globalListingsCache = null;
+let globalCoordinatesCache = null;
+let globalQueryCache = null;
+
+// ====================================
 // MEMOIZED PROPERTY CARD COMPONENT
 // ====================================
 const MemoizedPropertyCard = memo(
@@ -75,29 +82,34 @@ const MemoizedPropertyCard = memo(
 MemoizedPropertyCard.displayName = "MemoizedPropertyCard";
 
 // ====================================
-// INTERSECTION OBSERVER HOOK
+// 🔥 iOS OPTIMIZED INTERSECTION OBSERVER
 // ====================================
 const useIntersectionObserver = (options = {}) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const targetRef = useRef(null);
   const observerRef = useRef(null);
+  const rafIdRef = useRef(null);
 
   useEffect(() => {
     const target = targetRef.current;
     if (!target) return;
 
-    // ✅ Reuse observer instance
+    // ✅ iOS Fix: Cancel any pending animation frames
+    if (rafIdRef.current) {
+      cancelAnimationFrame(rafIdRef.current);
+    }
+
     if (!observerRef.current) {
       observerRef.current = new IntersectionObserver(
         ([entry]) => {
-          // ✅ Use requestAnimationFrame for iOS
-          requestAnimationFrame(() => {
+          // ✅ iOS Fix: Debounce with RAF
+          rafIdRef.current = requestAnimationFrame(() => {
             setIsIntersecting(entry.isIntersecting);
           });
         },
         {
           threshold: 0.1,
-          rootMargin: "50px",
+          rootMargin: "100px", // ✅ Increased for better iOS performance
           ...options,
         }
       );
@@ -106,15 +118,20 @@ const useIntersectionObserver = (options = {}) => {
     observerRef.current.observe(target);
 
     return () => {
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
       if (observerRef.current && target) {
         observerRef.current.unobserve(target);
       }
     };
   }, [options.threshold, options.rootMargin]);
 
-  // ✅ Cleanup observer on unmount
   useEffect(() => {
     return () => {
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
       if (observerRef.current) {
         observerRef.current.disconnect();
         observerRef.current = null;
@@ -153,22 +170,30 @@ const PageComponent = () => {
   const [showMap, setShowMap] = useState(false);
   const [sortBy, setSortBy] = useState("newest");
 
-  // ✅ Track if component has mounted (prevent double API calls)
-  const hasMountedRef = useRef(false);
-  const coordinatesRef = useRef([]);
   const sortDropdownRef = useRef(null);
   const isMountedRef = useRef(true);
+  const preloadedLinksRef = useRef(new Set());
 
-  // ✅ FIX: Stable query object to prevent re-fetching
+  // ====================================
+  // 🔥 FIX: Stable query with proper cleanup
+  // ====================================
   const query = useMemo(() => {
     try {
       if (!searchParams) return {};
 
-      // ✅ Create stable query object
       const params = {};
       searchParams.forEach((value, key) => {
         params[key] = value;
       });
+
+      const queryString = JSON.stringify(params);
+
+      // ✅ iOS Fix: Clear cache when query changes
+      if (globalQueryCache !== queryString) {
+        globalListingsCache = null;
+        globalCoordinatesCache = null;
+        globalQueryCache = queryString;
+      }
 
       return params;
     } catch (error) {
@@ -177,13 +202,8 @@ const PageComponent = () => {
     }
   }, [searchParams]);
 
-  // ✅ Serialize query for stable comparison
-  const queryString = useMemo(() => {
-    return JSON.stringify(query);
-  }, [query]);
-
   // ====================================
-  // ✅ FIX: Single API call with skip logic
+  // ✅ API call with iOS optimization
   // ====================================
   const {
     data: allListings,
@@ -195,33 +215,36 @@ const PageComponent = () => {
     refetchOnMountOrArgChange: false,
     refetchOnFocus: false,
     refetchOnReconnect: false,
-    // ✅ Prevent multiple fetches
     pollingInterval: 0,
+    // ✅ iOS Fix: Add selectFromResult to prevent unnecessary re-renders
+    selectFromResult: ({ data, isLoading, error, isFetching }) => ({
+      data: data || globalListingsCache,
+      isLoading,
+      error,
+      isFetching,
+    }),
   });
 
-  // ✅ Log API calls (remove in production)
+  // ✅ Store in global cache for iOS
   useEffect(() => {
-    if (process.env.NODE_ENV === "development") {
-      console.log("🔄 API Call Status:", {
-        isLoading: isAllloading,
-        isFetching,
-        hasData: !!allListings,
-        query: queryString,
-      });
+    if (allListings && !isAllloading) {
+      globalListingsCache = allListings;
     }
-  }, [isAllloading, isFetching, allListings, queryString]);
+  }, [allListings, isAllloading]);
 
   // ====================================
-  // MEMOIZED: Process listings
+  // 🔥 OPTIMIZED: Process listings with cache
   // ====================================
   const { displayListings, coordinates, totalPages, currentPage } =
     useMemo(() => {
       if (isAllloading || !allListings?.listings) {
         return {
-          displayListings: [],
-          coordinates: [],
-          totalPages: 1,
-          currentPage: 1,
+          displayListings: globalListingsCache
+            ? flattenListings(globalListingsCache.listings || [])
+            : [],
+          coordinates: globalCoordinatesCache || [],
+          totalPages: globalListingsCache?.totalPages || 1,
+          currentPage: Number(searchParams?.get("page")) || 1,
         };
       }
 
@@ -263,7 +286,9 @@ const PageComponent = () => {
           });
 
         const coords = processedListings.map((item) => item.item.coordinate);
-        coordinatesRef.current = coords;
+
+        // ✅ Store in global cache
+        globalCoordinatesCache = coords;
 
         return {
           displayListings: processedListings,
@@ -295,84 +320,72 @@ const PageComponent = () => {
           scroll: false,
         });
 
-        // Scroll to top
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        // ✅ iOS Fix: Use setTimeout for smoother scroll
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
       }
     },
     [totalPages, searchParams, router]
   );
 
   // ====================================
-  // Click outside handler
+  // 🔥 iOS FIX: Optimized image preloading with cleanup
   // ====================================
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        sortDropdownRef.current &&
-        !sortDropdownRef.current.contains(event.target)
-      ) {
-        requestAnimationFrame(() => {
-          if (isMountedRef.current) {
-            // Handle dropdown close if needed
-          }
-        });
-      }
-    };
+    if (typeof window === "undefined" || displayListings.length === 0) return;
 
-    document.addEventListener("mousedown", handleClickOutside, {
-      passive: true,
+    // ✅ Remove old preload links
+    preloadedLinksRef.current.forEach((url) => {
+      const links = document.querySelectorAll(
+        `link[rel="preload"][href="${url}"]`
+      );
+      links.forEach((link) => link.remove());
     });
+    preloadedLinksRef.current.clear();
+
+    // ✅ Preload only first 2 images for iOS
+    const imagesToPreload = displayListings.slice(0, 2);
+
+    imagesToPreload.forEach((item) => {
+      const imgUrl = item?.imageUrls?.[0]?.url;
+      if (imgUrl && imgUrl !== "/house1.png") {
+        const link = document.createElement("link");
+        link.rel = "preload";
+        link.as = "image";
+        link.href = imgUrl;
+        document.head.appendChild(link);
+        preloadedLinksRef.current.add(imgUrl);
+      }
+    });
+
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      preloadedLinksRef.current.forEach((url) => {
+        const links = document.querySelectorAll(
+          `link[rel="preload"][href="${url}"]`
+        );
+        links.forEach((link) => link.remove());
+      });
+      preloadedLinksRef.current.clear();
     };
-  }, []);
+  }, [currentPage]);
 
   // ====================================
   // Cleanup on unmount
   // ====================================
   useEffect(() => {
     isMountedRef.current = true;
-    hasMountedRef.current = true;
 
     return () => {
       isMountedRef.current = false;
       sortDropdownRef.current = null;
-      coordinatesRef.current = [];
+
+      // ✅ iOS Fix: Clear global cache on unmount
+      globalListingsCache = null;
+      globalCoordinatesCache = null;
+      globalQueryCache = null;
     };
   }, []);
-
-  // ====================================
-  // ✅ FIX: Preload images ONLY once per page
-  // ====================================
-  useEffect(() => {
-    if (typeof window === "undefined" || displayListings.length === 0) return;
-
-    // ✅ Prevent re-running on every render
-    const preloadedImages = new Set();
-
-    const imagesToPreload = displayListings.slice(0, 3);
-
-    imagesToPreload.forEach((item) => {
-      const imgUrl = item?.imageUrls?.[0]?.url;
-      if (imgUrl && imgUrl !== "/house1.png" && !preloadedImages.has(imgUrl)) {
-        preloadedImages.add(imgUrl);
-
-        const link = document.createElement("link");
-        link.rel = "preload";
-        link.as = "image";
-        link.href = imgUrl;
-        document.head.appendChild(link);
-      }
-    });
-
-    // ✅ Cleanup preload links on unmount
-    return () => {
-      preloadedImages.forEach((url) => {
-        const links = document.querySelectorAll(`link[href="${url}"]`);
-        links.forEach((link) => link.remove());
-      });
-    };
-  }, [currentPage]); // ← Only depend on currentPage, not displayListings
 
   // ====================================
   // Error handling
@@ -438,12 +451,13 @@ const PageComponent = () => {
             </div>
           ) : (
             <>
-              {/* Lazy loaded grid */}
+              {/* 🔥 iOS OPTIMIZED GRID */}
               <div
                 className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-[1rem] mt-[1.5rem] md:mt-[1rem] w-full p-5 md:p-0 place-items-center"
                 style={{
-                  contentVisibility: "auto",
-                  containIntrinsicSize: "1px 500px",
+                  // ✅ iOS Fix: Remove contentVisibility for better iOS compatibility
+                  willChange: "transform",
+                  transform: "translateZ(0)",
                 }}
               >
                 {displayListings.map((items, index) => (
@@ -472,5 +486,4 @@ const PageComponent = () => {
   );
 };
 
-// ✅ Export without memo to avoid double mounting in Strict Mode
 export default PageComponent;

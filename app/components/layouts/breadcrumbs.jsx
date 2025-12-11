@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 "use client";
 import React, {
   useEffect,
@@ -11,7 +12,6 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getLocationWithTimeout } from "./../../../utils/index";
 import FiltersDropdown from "../common/filters";
-
 export default function Breadcrumb({ showMap, setShowMap }) {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -26,6 +26,9 @@ export default function Breadcrumb({ showMap, setShowMap }) {
   const [showBedBathDropdown, setShowBedBathDropdown] = useState(false);
   const [showHouseTypeDropdown, setShowHouseTypeDropdown] = useState(false);
 
+  const [bedValue, setBedValue] = useState("");
+  const [bathValue, setBathValue] = useState("");
+
   const [filters, setFilters] = useState({
     price: "",
     "home-type": "",
@@ -35,42 +38,46 @@ export default function Breadcrumb({ showMap, setShowMap }) {
     houseType: "",
   });
 
-  // ✅ Individual refs (iOS Safari requirement)
-  const bedBathRef = useRef(null);
-  const modalRef = useRef(null);
-  const priceRef = useRef(null);
-  const homeTypeRef = useRef(null);
-  const houseTypeRef = useRef(null);
-  const isMountedRef = useRef(true);
-  const locationFetchedRef = useRef(false);
+  // ====================================
+  // OPTIMIZED: Single ref object for all dropdowns
+  // ====================================
+  const dropdownRefs = useRef({
+    modal: null,
+    bedBath: null,
+    price: null,
+    homeType: null,
+    houseType: null,
+  });
 
-  // ✅ Get user location ONCE
+  // ====================================
+  // OPTIMIZED: Get user location ONCE with proper cleanup
+  // ====================================
   useEffect(() => {
-    if (
-      locationFetchedRef.current ||
-      isLoadingLocation ||
-      userCountry !== null
-    ) {
-      return;
-    }
-
     let isMounted = true;
-    locationFetchedRef.current = true;
-    setIsLoadingLocation(true);
+    let hasAttempted = false;
 
     const getUserLocation = async () => {
+      // Prevent multiple calls
+      if (hasAttempted || isLoadingLocation || userCountry !== null) return;
+
+      hasAttempted = true;
+      setIsLoadingLocation(true);
+
       try {
         const { country } = await getLocationWithTimeout(5000);
-        if (isMounted && isMountedRef.current) {
+
+        if (isMounted) {
           setUserCountry(country || "default");
         }
       } catch (error) {
         console.error("Error getting location:", error);
-        if (isMounted && isMountedRef.current) {
+
+        if (isMounted) {
+          // Always set a fallback to prevent infinite retries
           setUserCountry("default");
         }
       } finally {
-        if (isMounted && isMountedRef.current) {
+        if (isMounted) {
           setIsLoadingLocation(false);
         }
       }
@@ -81,12 +88,12 @@ export default function Breadcrumb({ showMap, setShowMap }) {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, []); // Only run once on mount
 
-  // ✅ Sync filters with URL
+  // ====================================
+  // OPTIMIZED: Sync filters with URL params
+  // ====================================
   useEffect(() => {
-    if (!searchParams) return;
-
     try {
       const minPrice = searchParams.get("minPrice");
       const maxPrice = searchParams.get("maxPrice");
@@ -96,7 +103,12 @@ export default function Breadcrumb({ showMap, setShowMap }) {
       const houseType = searchParams.get("houseType");
 
       const priceValue = minPrice && maxPrice ? `${minPrice}-${maxPrice}` : "";
-      const typeMapping = { sale: "buy", rent: "rent", land: "land" };
+
+      const typeMapping = {
+        sale: "buy",
+        rent: "rent",
+        land: "land",
+      };
       const homeTypeValue = listingType
         ? typeMapping[listingType] || listingType
         : "";
@@ -109,63 +121,76 @@ export default function Breadcrumb({ showMap, setShowMap }) {
         bathrooms: bathrooms || "",
         houseType: houseType || "",
       });
+
+      setBedValue(bedrooms || "");
+      setBathValue(bathrooms || "");
     } catch (error) {
       console.error("Error parsing search params:", error);
     }
   }, [searchParams]);
 
-  // ✅ CRITICAL: Always attach listener (iOS Safari fix)
+  // ====================================
+  // OPTIMIZED: Single useEffect for ALL click-outside handlers
+  // ====================================
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Batch all checks in requestAnimationFrame (iOS optimization)
-      requestAnimationFrame(() => {
-        if (!isMountedRef.current) return;
+      const refs = dropdownRefs.current;
 
-        if (
-          showBedBathDropdown &&
-          bedBathRef.current &&
-          !bedBathRef.current.contains(event.target)
-        ) {
-          setShowBedBathDropdown(false);
-        }
-        if (
-          showAllFiltersDropdown &&
-          modalRef.current &&
-          !modalRef.current.contains(event.target)
-        ) {
-          setShowAllFiltersDropdown(false);
-        }
-        if (
-          showPriceDropdown &&
-          priceRef.current &&
-          !priceRef.current.contains(event.target)
-        ) {
-          setShowPriceDropdown(false);
-        }
-        if (
-          showHomeTypeDropdown &&
-          homeTypeRef.current &&
-          !homeTypeRef.current.contains(event.target)
-        ) {
-          setShowHomeTypeDropdown(false);
-        }
-        if (
-          showHouseTypeDropdown &&
-          houseTypeRef.current &&
-          !houseTypeRef.current.contains(event.target)
-        ) {
-          setShowHouseTypeDropdown(false);
-        }
-      });
+      if (
+        showBedBathDropdown &&
+        refs.bedBath &&
+        !refs.bedBath.contains(event.target)
+      ) {
+        setShowBedBathDropdown(false);
+      }
+
+      if (
+        showAllFiltersDropdown &&
+        refs.modal &&
+        !refs.modal.contains(event.target)
+      ) {
+        setShowAllFiltersDropdown(false);
+      }
+
+      if (
+        showPriceDropdown &&
+        refs.price &&
+        !refs.price.contains(event.target)
+      ) {
+        setShowPriceDropdown(false);
+      }
+
+      if (
+        showHomeTypeDropdown &&
+        refs.homeType &&
+        !refs.homeType.contains(event.target)
+      ) {
+        setShowHomeTypeDropdown(false);
+      }
+
+      if (
+        showHouseTypeDropdown &&
+        refs.houseType &&
+        !refs.houseType.contains(event.target)
+      ) {
+        setShowHouseTypeDropdown(false);
+      }
     };
 
-    document.addEventListener("mousedown", handleClickOutside, {
-      passive: true,
-    });
+    // Only attach listener if at least one dropdown is open
+    const isAnyDropdownOpen =
+      showBedBathDropdown ||
+      showAllFiltersDropdown ||
+      showPriceDropdown ||
+      showHomeTypeDropdown ||
+      showHouseTypeDropdown;
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    if (isAnyDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }
   }, [
     showBedBathDropdown,
     showAllFiltersDropdown,
@@ -174,21 +199,9 @@ export default function Breadcrumb({ showMap, setShowMap }) {
     showHouseTypeDropdown,
   ]);
 
-  // ✅ Explicit cleanup (iOS Safari critical)
-  useEffect(() => {
-    isMountedRef.current = true;
-
-    return () => {
-      isMountedRef.current = false;
-      bedBathRef.current = null;
-      modalRef.current = null;
-      priceRef.current = null;
-      homeTypeRef.current = null;
-      houseTypeRef.current = null;
-    };
-  }, []);
-
-  // ✅ Memoized options
+  // ====================================
+  // MEMOIZED: Price options
+  // ====================================
   const priceOptions = useMemo(() => {
     if (userCountry === "nigeria") {
       return {
@@ -219,6 +232,7 @@ export default function Breadcrumb({ showMap, setShowMap }) {
         ],
       };
     }
+
     return {
       Buy: [
         { label: "Any", value: "" },
@@ -263,7 +277,9 @@ export default function Breadcrumb({ showMap, setShowMap }) {
 
   const typeOptions = useMemo(() => {
     const baseOptions = ["Buy", "Rent", "Land"];
-    if (userCountry !== "somalia") return [...baseOptions, "shortlet"];
+    if (userCountry !== "somalia") {
+      return [...baseOptions, "shortlet"];
+    }
     return baseOptions;
   }, [userCountry]);
 
@@ -273,9 +289,11 @@ export default function Breadcrumb({ showMap, setShowMap }) {
       { label: "Buy", value: "buy" },
       { label: "Land", value: "land" },
     ];
+
     if (userCountry !== "somalia") {
       baseOptions.push({ label: "Shortlet", value: "shortlet" });
     }
+
     return baseOptions;
   }, [userCountry]);
 
@@ -287,13 +305,20 @@ export default function Breadcrumb({ showMap, setShowMap }) {
     [typeOptions, filters]
   );
 
+  // ====================================
+  // OPTIMIZED: Memoized callbacks
+  // ====================================
   const handleFilterChange = useCallback(
     (filterName, value) => {
       if (!hasInteracted) {
         setHasInteracted(true);
         router.replace("/rent/searchlisting", { scroll: false });
       }
-      setFilters((prev) => ({ ...prev, [filterName]: value }));
+
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        [filterName]: value,
+      }));
     },
     [hasInteracted, router]
   );
@@ -315,6 +340,7 @@ export default function Breadcrumb({ showMap, setShowMap }) {
       land: "land",
       shortlet: "shortlet",
     };
+
     if (filters["home-type"]) {
       newParams.set(
         "listingType",
@@ -339,6 +365,9 @@ export default function Breadcrumb({ showMap, setShowMap }) {
     return option ? option.label : "Price";
   }, [filters.price, priceOptions, selectedType]);
 
+  // ====================================
+  // OPTIMIZED: Search with debounce
+  // ====================================
   const handleSearchWithLoading = useCallback(async () => {
     setIsSearching(true);
     try {
@@ -349,24 +378,9 @@ export default function Breadcrumb({ showMap, setShowMap }) {
     }
   }, [handleSearchClick]);
 
-  // ✅ Dropdown component to reduce duplication
-  const Dropdown = ({ show, onClose, refProp, children, className = "" }) => (
-    <div style={{ display: show ? "block" : "none" }}>
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 z-[2000]"
-        onClick={onClose}
-      />
-      <div
-        ref={refProp}
-        className={`absolute bg-white rounded-lg shadow-lg z-[3000] overflow-hidden ${className}`}
-      >
-        {children}
-      </div>
-    </div>
-  );
-
   return (
     <div className="md:pt-[2.3rem] flex-wrap -mb-[2.5rem] md:mb-0 flex-col md:flex-row md:flex justify-between w-full">
+      {/* Left Section: Filters */}
       <div className="flex items-center p-[1rem] md:p-0 flex-wrap gap-[4px] md:gap-3">
         {/* Bed/Baths Filter */}
         <div className="relative">
@@ -392,49 +406,258 @@ export default function Breadcrumb({ showMap, setShowMap }) {
             />
           </button>
 
-          <Dropdown
-            show={showBedBathDropdown}
-            onClose={() => setShowBedBathDropdown(false)}
-            refProp={bedBathRef}
-            className="w-[164px] top-full left-0 right-0 mt-2 md:w-[350px]"
-          >
-            <div className="px-4 py-2 border-b border-gray-100">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-black md:text-lg text-base">Select</span>
-                <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
-                  {!filters.bedBaths && (
-                    <div className="w-3 h-3 rounded-full bg-primary" />
-                  )}
-                </div>
-              </div>
-            </div>
-            {[
-              { label: "0 - 2", value: "0-2" },
-              { label: "2 - 4", value: "2-4" },
-              { label: "5 & Above", value: "5+" },
-            ].map((opt) => (
-              <button
-                key={opt.value}
-                onClick={() => {
-                  handleFilterChange("bedBaths", opt.value);
-                  setShowBedBathDropdown(false);
-                }}
-                className="w-full px-4 py-3 flex items-center justify-between border-b border-gray-100 last:border-0 text-sm"
+          {showBedBathDropdown && (
+            <>
+              <div
+                className="fixed inset-0 bg-black bg-opacity-50 z-[2000]"
+                onClick={() => setShowBedBathDropdown(false)}
+              />
+              <div
+                ref={(el) => (dropdownRefs.current.bedBath = el)}
+                className="absolute w-[164px] top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-[3000] md:w-[350px] overflow-hidden"
               >
-                <span className="text-black text-sm md:text-lg">
-                  {opt.label}
-                </span>
-                <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
-                  {filters.bedBaths === opt.value && (
-                    <div className="w-3 h-3 rounded-full bg-primary" />
-                  )}
+                <div className="px-4 py-2 border-b border-gray-100">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-black md:text-lg text-base">
+                      Select
+                    </span>
+                    <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+                      {!filters.bedBaths && (
+                        <div className="w-3 h-3 rounded-full bg-primary" />
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </button>
-            ))}
-          </Dropdown>
+
+                {[
+                  { label: "0 - 2", value: "0-2" },
+                  { label: "2 - 4", value: "2-4" },
+                  { label: "5 & Above", value: "5+" },
+                ].map((opt) => (
+                  <button
+                    key={opt.value}
+                    onClick={() => {
+                      handleFilterChange("bedBaths", opt.value);
+                      setShowBedBathDropdown(false);
+                    }}
+                    className="w-full px-4 py-3 flex items-center justify-between border-b border-gray-100 last:border-0 text-sm"
+                  >
+                    <span className="text-black text-sm md:text-lg">
+                      {opt.label}
+                    </span>
+                    <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+                      {filters.bedBaths === opt.value && (
+                        <div className="w-3 h-3 rounded-full bg-primary" />
+                      )}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
-        {/* Similar pattern for other dropdowns - use Dropdown component */}
+        {/* Type Filter */}
+        <div className="relative">
+          <button
+            type="button"
+            className="border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
+            onClick={() => setShowHomeTypeDropdown(!showHomeTypeDropdown)}
+          >
+            <span>
+              {filters["home-type"]
+                ? filters["home-type"].charAt(0).toUpperCase() +
+                  filters["home-type"].slice(1)
+                : "Type"}
+            </span>
+            <Image
+              width={500}
+              height={300}
+              src="/arrow-down.png"
+              alt="Dropdown"
+              className="w-3 h-2 pointer-events-none flex-shrink-0"
+            />
+          </button>
+
+          {showHomeTypeDropdown && (
+            <>
+              <div
+                className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+                onClick={() => setShowHomeTypeDropdown(false)}
+              />
+              <div
+                ref={(el) => (dropdownRefs.current.homeType = el)}
+                className="absolute z-[111111] left-[23%] top-[14%] md:top-[110%] md:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 md:mt-0 md:w-[350px]"
+              >
+                <ul className="flex flex-col gap-2">
+                  {typeFilterOptions.map((opt) => {
+                    const isSelected = filters["home-type"] === opt.value;
+                    return (
+                      <label
+                        key={opt.value}
+                        className="w-full gap-[4em] md:gap-0 h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleFilterChange("home-type", opt.value);
+                          setShowHomeTypeDropdown(false);
+                        }}
+                      >
+                        <span className="text-black text-sm md:text-lg">
+                          {opt.label}
+                        </span>
+                        <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 border-primary">
+                          {isSelected && (
+                            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
+                          )}
+                        </div>
+                      </label>
+                    );
+                  })}
+                </ul>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Price Filter */}
+        <div className="relative hidden md:block">
+          <button
+            type="button"
+            className="border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
+            onClick={() => setShowPriceDropdown(!showPriceDropdown)}
+          >
+            <span>{getPriceLabel()}</span>
+            <Image
+              width={500}
+              height={300}
+              src="/arrow-down.png"
+              alt="Dropdown"
+              className="w-3 h-2 pointer-events-none flex-shrink-0"
+            />
+          </button>
+
+          {showPriceDropdown && (
+            <>
+              <div
+                className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+                onClick={() => setShowPriceDropdown(false)}
+              />
+              <div
+                ref={(el) => (dropdownRefs.current.price = el)}
+                className="absolute z-[111111] left-[23%] top-[14%] md:top-[110%] md:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 md:mt-0 md:w-[350px]"
+              >
+                <ul className="flex flex-col gap-2">
+                  {priceOptions[selectedType]?.map((opt) => {
+                    const isSelected = filters.price === opt.value;
+                    return (
+                      <label
+                        key={opt.value}
+                        className="w-full gap-[4em] md:gap-0 h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleFilterChange("price", opt.value);
+                          setShowPriceDropdown(false);
+                        }}
+                      >
+                        <span className="text-black text-sm md:text-lg">
+                          {opt.label}
+                        </span>
+                        <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 border-primary">
+                          {isSelected && (
+                            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
+                          )}
+                        </div>
+                      </label>
+                    );
+                  })}
+                </ul>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* House Type Filter */}
+        <div className="relative hidden md:block">
+          <button
+            type="button"
+            className="border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
+            onClick={() => setShowHouseTypeDropdown(!showHouseTypeDropdown)}
+          >
+            <span>{filters.houseType || "Duplex"}</span>
+            <Image
+              width={500}
+              height={300}
+              src="/arrow-down.png"
+              alt="Dropdown"
+              className="w-3 h-2 pointer-events-none flex-shrink-0"
+            />
+          </button>
+
+          {showHouseTypeDropdown && (
+            <>
+              <div
+                className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+                onClick={() => setShowHouseTypeDropdown(false)}
+              />
+              <div
+                ref={(el) => (dropdownRefs.current.houseType = el)}
+                className="absolute z-[111111] left-[23%] top-[14%] md:top-[110%] md:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 md:mt-0 md:w-[350px]"
+              >
+                <ul className="flex flex-col gap-2">
+                  {homeTypeOptions.map((opt) => {
+                    const isSelected = filters.houseType === opt.value;
+                    return (
+                      <label
+                        key={opt.value}
+                        className="w-full gap-[4rem] md:gap-0 h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleFilterChange("houseType", opt.value);
+                          setShowHouseTypeDropdown(false);
+                        }}
+                      >
+                        <span className="text-black text-sm md:text-lg">
+                          {opt.label}
+                        </span>
+                        <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 border-primary">
+                          {isSelected && (
+                            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
+                          )}
+                        </div>
+                      </label>
+                    );
+                  })}
+                </ul>
+              </div>
+            </>
+          )}
+        </div>
+
+        <button
+          onClick={() => setShowAllFiltersDropdown(true)}
+          className="border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
+        >
+          <span className="flex items-center gap-2">
+            <Image
+              src="/allfilter.png"
+              alt="Filter"
+              width={16}
+              height={15}
+              className="w-4 h-4"
+            />
+            All Filters
+          </span>
+        </button>
+
+        <FiltersDropdown
+          isOpen={showAllFiltersDropdown}
+          onClose={() => setShowAllFiltersDropdown(false)}
+          filters={filters}
+          userCountrys={userCountry}
+          onFilterChange={handleFilterChange}
+          onSearch={handleSearchClick}
+          isSearching={isSearching}
+        />
 
         <button
           onClick={handleSearchWithLoading}
@@ -468,7 +691,7 @@ export default function Breadcrumb({ showMap, setShowMap }) {
         </button>
       </div>
 
-      {/* List / Map Toggle */}
+      {/* Right Section: List / Map Toggle */}
       <div className="hidden md:flex w-[15rem] bg-[#F9FAFB] gap-[10px] p-3 border-[#8F8F8F] justify-between border-solid border-[0.5px] items-center font-base rounded-[5px] md:p-[3px] relative">
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>

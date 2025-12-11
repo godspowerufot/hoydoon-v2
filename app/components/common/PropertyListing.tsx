@@ -39,7 +39,6 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  console.log("region:", region);
   useEffect(() => {
     // Simple mobile detection
     const checkMobile = () => {
@@ -79,6 +78,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
             <Image
               src={imageSrc || "/affordable-1.png"}
               alt={altText}
+              loading="lazy"
               fill
               style={{ objectFit: "cover", borderRadius: 20 }}
               className="transition-all duration-[1500ms] ease-in-out rounded-[20px]"
