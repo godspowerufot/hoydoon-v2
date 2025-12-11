@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Property } from "@/types";
 import { SkeletonCard } from "../components/Loader";
-import { getLocationRegion } from "@/utils/lib";
 import PropertySearchBar from "../components/common/headerSearch";
 export default function Home() {
   const { data: allListings, isLoading: isAllLoading } = useGetAllListingsQuery(
