@@ -1,4 +1,3 @@
-/* eslint-disable */
 "use client";
 
 import { truncateDescription } from "@/utils";
@@ -48,23 +47,20 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
     <>
       <Link href={`/article/${id}`}>
         <div
-          className={`relative w-full h-fit  lg:w-[23rem] max-w-[500px] mx-auto lg:h-[570px] bg-white overflow-hidden flex-col transition-all duration-[1500ms] ${
-            isHovered && !isMobile
-              ? "border border-gray rounded-xl "
-              : "border border-gray lg:border-0   rounded-xl"
-          }`}
+          className={`relative w-full h-fit  lg:w-[23rem] max-w-[500px] mx-auto lg:h-[570px] bg-white overflow-hidden flex-col transition-all duration-[1500ms] ${isHovered && !isMobile
+            ? "border border-gray rounded-xl "
+            : "border border-gray lg:border-0   rounded-xl"
+            }`}
           onMouseEnter={() => !isMobile && setIsHovered(true)}
           onMouseLeave={() => !isMobile && setIsHovered(false)}
         >
           {/* Image container */}
           <div
-            className={`relative w-full ${
-              isMobile
-                ? "h-[350px]"
-                : `transition-all duration-[1000ms] ease-in-out ${
-                    isHovered ? "h-[300px]" : "h-fit lg:h-[400px]"
-                  }`
-            }`}
+            className={`relative w-full ${isMobile
+              ? "h-[350px]"
+              : `transition-all duration-[1000ms] ease-in-out ${isHovered ? "h-[300px]" : "h-fit lg:h-[400px]"
+              }`
+              }`}
           >
             <Image
               alt={altText}
@@ -78,9 +74,8 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
 
           {/* Content - Always visible on mobile */}
           <div
-            className={` hidden lg:block p-4 lg:p-2 py-5 flex-1  ${
-              isHovered ? "p-4 lg:p-4 lg:hidden " : "lg:py-5  p-0"
-            }`}
+            className={` hidden lg:block p-4 lg:p-2 py-5 flex-1  ${isHovered ? "p-4 lg:p-4 lg:hidden " : "lg:py-5  p-0"
+              }`}
           >
             {/* Category */}
             <div className="flex items-center gap-2 mb-2">
@@ -164,15 +159,13 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
           </div>
           {/* second div */}
           <div
-            className={`p-3 lg:p-3 ${
-              isMobile
-                ? "opacity-100 max-h-full"
-                : `transition-all ease-in-out ${
-                    isHovered
-                      ? "duration-[2000ms] p-3 pt-[1.3em]  opacity-100 max-h-[200px]"
-                      : "duration-300 opacity-0 max-h-0 overflow-hidden"
-                  }`
-            }`}
+            className={`p-3 lg:p-3 ${isMobile
+              ? "opacity-100 max-h-full"
+              : `transition-all ease-in-out ${isHovered
+                ? "duration-[2000ms] p-3 pt-[1.3em]  opacity-100 max-h-[200px]"
+                : "duration-300 opacity-0 max-h-0 overflow-hidden"
+              }`
+              }`}
           >
             {" "}
             <div className="flex items-center gap-2 mb-2">

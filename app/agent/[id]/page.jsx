@@ -270,9 +270,8 @@ const page = ({ params }) => {
       )}
       {/* second div layout  */}
       <div
-        className={`bg-gray-100 mt-2   w-full md:mt-5 ${
-          !showListings ? "mt-[2rem] md:mt-0" : ""
-        } md:p-0  md:py-4 rounded-lg`}
+        className={`bg-gray-100 mt-2   w-full md:mt-5 ${!showListings ? "mt-[2rem] md:mt-0" : ""
+          } md:p-0  md:py-4 rounded-lg`}
       >
         <div className="flex flex-row px-4  md:p-0 justify-between items-start md:items-center">
           {/* Profile Image */}
@@ -409,11 +408,10 @@ const page = ({ params }) => {
                   setActiveTab(tab.id);
                   setCoordinates(allCoordinates[tab.id] || []); // Update map based on tab
                 }}
-                className={`relative py-2 text-sm md:text-base transition-colors duration-300 ${
-                  activeTab === tab.id
-                    ? "text-black font-semibold"
-                    : "text-[#8F8F8F]"
-                }`}
+                className={`relative py-2 text-sm md:text-base transition-colors duration-300 ${activeTab === tab.id
+                  ? "text-black font-semibold"
+                  : "text-[#8F8F8F]"
+                  }`}
               >
                 {tab.label}
                 {activeTab === tab.id && (
@@ -473,10 +471,10 @@ const page = ({ params }) => {
 
           {/* Show "See All" link if we haven't displayed all listings yet */}
           {!showAll && ActiveListings.length > 3 && (
-            <div className="w-full md:col-span-2 flex ml-[5rem] -mt-[2rem] justify-start md:ml-0">
+            <div className="w-full md:col-span-2 flex ml-1 md:ml-[5rem] -mt-[2rem] justify-start md:ml-0">
               <button
                 onClick={handleSeeAllClick}
-                className="text-[#09858D] mt-5 text-2xl font-medium"
+                className="text-[#09858D] mt-5 text-sm md:text-2xl font-medium"
               >
                 See all active listings
               </button>

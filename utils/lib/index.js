@@ -3,6 +3,19 @@
  * @returns {Promise<{country: string, coordinates: {lat: number, lng: number}}>}
  */
 export async function getLocationRegion() {
+  // Check session storage first to prevent reload loops
+  if (typeof window !== "undefined") {
+    const cachedLocation = sessionStorage.getItem("user_location_region");
+    if (cachedLocation) {
+      try {
+        return JSON.parse(cachedLocation);
+      } catch (e) {
+        console.error("Error parsing cached location:", e);
+        sessionStorage.removeItem("user_location_region");
+      }
+    }
+  }
+
   let country = null;
   let coordinates = null;
 
@@ -61,8 +74,15 @@ export async function getLocationRegion() {
     }
   }
 
-  return {
+  const result = {
     country,
     coordinates,
   };
+
+  // Cache the result
+  if (typeof window !== "undefined" && (country || coordinates)) {
+    sessionStorage.setItem("user_location_region", JSON.stringify(result));
+  }
+
+  return result;
 }

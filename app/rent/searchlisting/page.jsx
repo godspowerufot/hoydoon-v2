@@ -352,10 +352,10 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                     {filters.bedBaths === "0-2"
                       ? "0 - 2"
                       : filters.bedBaths === "2-4"
-                      ? "2 - 4"
-                      : filters.bedBaths === "5+"
-                      ? "5 & Above"
-                      : "Bed/Baths"}
+                        ? "2 - 4"
+                        : filters.bedBaths === "5+"
+                          ? "5 & Above"
+                          : "Bed/Baths"}
                   </span>
 
                   <Image
@@ -504,20 +504,19 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             <div className="relative" key={option}>
               <button
                 type="button"
-                className={`border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2 ${
-                  option === "Price" ? "hidden md:flex" : ""
-                }`}
+                className={`border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2 ${option === "Price" ? "hidden md:flex" : ""
+                  }`}
                 onClick={() => setDropdownState(!dropdownState)}
               >
                 <span>
                   {option === "Type"
                     ? filters["home-type"]
                       ? filters["home-type"].charAt(0).toUpperCase() +
-                        filters["home-type"].slice(1)
+                      filters["home-type"].slice(1)
                       : "Type"
                     : option === "Price"
-                    ? getPriceLabel()
-                    : option}
+                      ? getPriceLabel()
+                      : option}
                 </span>
                 <Image
                   width={500}
@@ -569,9 +568,8 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
 
                             {/* Circle radio container */}
                             <div
-                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                                isSelected ? "border-primary" : "border-primary"
-                              }`}
+                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected ? "border-primary" : "border-primary"
+                                }`}
                             >
                               {/* Inner filled circle when selected */}
                               {isSelected && (
@@ -656,11 +654,10 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
-              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${
-                (showMap ? "Map" : "List") === option
+              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${(showMap ? "Map" : "List") === option
                   ? "bg-primary gap-[10px] flex text-white"
                   : "text-[#8F8F8F]"
-              }`}
+                }`}
               onClick={() => setShowMap(option === "Map")}
             >
               {option}
