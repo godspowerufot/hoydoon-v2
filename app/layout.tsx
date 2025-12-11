@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "Hoydoon | Find Your Dream Property in Hoydoon",
     description:
       "Discover, buy, rent, or sell homes, apartments, and land . Trusted agents, verified listings, and the best property deals.",
-    url: "https://hoydoon.com",
+    url: "https://www.hoydoon.com",
     siteName: "Hoydoon",
     images: [
       {
