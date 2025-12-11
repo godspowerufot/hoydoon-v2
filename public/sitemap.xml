@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hoydoon.com/</loc>
+    <loc>https://www.hoydoon.com/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hoydoon.com/buy</loc>
+    <loc>https://www.hoydoon.com/buy</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hoydoon.com/rent</loc>
+    <loc>https://www.hoydoon.com/rent</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hoydoon.com/sell</loc>
+    <loc>https://www.hoydoon.com/sell</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hoydoon.com/agent</loc>
+    <loc>https://www.hoydoon.com/agent</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hoydoon.com/helpcenter</loc>
+    <loc>https://www.hoydoon.com/helpcenter</loc>
     <priority>0.5</priority>
   </url>
   <!-- Add more URLs as needed -->
