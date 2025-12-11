@@ -19,6 +19,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [userCountry, setUserCountry] = useState(null);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [isLoadingLocation, setIsLoadingLocation] = useState(false);
 
   const [showPriceDropdown, setShowPriceDropdown] = useState(false);
   const [showHomeTypeDropdown, setShowHomeTypeDropdown] = useState(false);
@@ -74,13 +75,30 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     setBathValue(bathrooms || "");
   }, [searchParams]);
 
-  // useEffect(() => {
-  //   const getUserLocation = async () => {
-  //     const { country } = await getLocationRegion();
-  //     setUserCountry(country);
-  //   };
-  //   getUserLocation();
-  // }, [userCountry]);
+  // Replace the useEffect that calls getLocationRegion (around line 78-84)
+
+
+  useEffect(() => {
+    // Prevent multiple calls
+    if (isLoadingLocation || userCountry !== null) return;
+
+    const getUserLocation = async () => {
+      setIsLoadingLocation(true);
+      try {
+        const { country } = await getLocationRegion();
+        setUserCountry(country);
+        console.log("country", country);
+      } catch (error) {
+        console.error("Error getting location:", error);
+        // Set a default country to prevent infinite retries
+        setUserCountry("default");
+      } finally {
+        setIsLoadingLocation(false);
+      }
+    };
+
+    getUserLocation();
+  }, []); // Empty dependency array - only run once on mount
 
   const modalRef = useRef(null);
   const bedBathRef = useRef(null);
@@ -606,7 +624,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
           isOpen={showAllFiltersDropdown}
           onClose={() => setShowAllFiltersDropdown(false)}
           filters={filters}
-          // userCountrys={userCountry}
+          userCountrys={userCountry}
           onFilterChange={handleFilterChange}
           onSearch={handleSearchClick}
           isSearching={isSearching}
@@ -759,13 +777,7 @@ const page = () => {
     };
   }, [showSortDropdown]);
 
-  //  if (isAllloading) {
-  //    return (
-  //      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
-  //        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
-  //      </div>
-  //    );
-  //  }
+
   return (
     <div className="md:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1240px]">
       <Breadcrumb showMap={showMap} setShowMap={setShowMap} />

@@ -3,8 +3,23 @@
  * @returns {Promise<{country: string, coordinates: {lat: number, lng: number}}>}
  */
 export async function getLocationRegion() {
-  // Check session storage first to prevent reload loops
+  // Check if already processing to prevent concurrent calls
   if (typeof window !== "undefined") {
+    const isProcessing = sessionStorage.getItem("location_processing");
+    if (isProcessing === "true") {
+      // Wait and retry once
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      const cached = sessionStorage.getItem("user_location_region");
+      if (cached) {
+        try {
+          return JSON.parse(cached);
+        } catch (e) {
+          console.error("Error parsing cached location:", e);
+        }
+      }
+    }
+
+    // Check cache first
     const cachedLocation = sessionStorage.getItem("user_location_region");
     if (cachedLocation) {
       try {
@@ -14,64 +29,31 @@ export async function getLocationRegion() {
         sessionStorage.removeItem("user_location_region");
       }
     }
+
+    // Set processing flag
+    sessionStorage.setItem("location_processing", "true");
   }
 
-  let country = null;
+  let country = "default"; // Default value instead of null
   let coordinates = null;
 
-  const tryNavigatorGeolocation = async () => {
-    return new Promise((resolve, reject) => {
-      if (!navigator.geolocation) {
-        return reject(new Error("Geolocation is not supported."));
-      }
-
-      navigator.geolocation.getCurrentPosition(
-        (position) => resolve(position),
-        (error) => reject(error),
-        {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0,
-        }
-      );
-    });
-  };
-
   try {
-    const position = await tryNavigatorGeolocation();
-    const { latitude, longitude } = position.coords;
-    coordinates = { lat: latitude, lng: longitude };
+    // Skip geolocation API and go straight to IP-based for faster results
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
 
-    // Reverse geocoding using Google Maps API
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    const res = await fetch("https://ipapi.co/json/", {
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
 
-    const res = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
-    );
     const data = await res.json();
+    coordinates = { lat: data.latitude, lng: data.longitude };
+    country = data.country_name?.toLowerCase() || "default";
 
-    if (data.status === "OK") {
-      const addressComponents = data.results[0]?.address_components || [];
-      const countryComponent = addressComponents.find((comp) =>
-        comp.types.includes("country")
-      );
-      country = countryComponent?.long_name?.toLowerCase() || null;
-    } else {
-      console.warn("Google Maps Geocoding API failed:", data.status);
-    }
   } catch (error) {
-    console.warn("Geolocation failed:", error.message);
-
-    // 🌐 Fallback to IP-based geolocation
-    try {
-      const res = await fetch("https://ipapi.co/json/");
-      const data = await res.json();
-
-      coordinates = { lat: data.latitude, lng: data.longitude };
-      country = data.country_name?.toLowerCase() || null;
-    } catch (ipError) {
-      console.error("IP-based geolocation also failed:", ipError.message);
-    }
+    console.error("IP-based geolocation failed:", error.message);
+    // Keep default values
   }
 
   const result = {
@@ -79,9 +61,10 @@ export async function getLocationRegion() {
     coordinates,
   };
 
-  // Cache the result
-  if (typeof window !== "undefined" && (country || coordinates)) {
+  // Cache the result and clear processing flag
+  if (typeof window !== "undefined") {
     sessionStorage.setItem("user_location_region", JSON.stringify(result));
+    sessionStorage.removeItem("location_processing");
   }
 
   return result;
