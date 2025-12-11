@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // ✅ enables standalone output for production deployment
   output: "standalone",
+  reactStrictMode: false,
   // ✅ enables gzip compression when using `next start`
   compress: true,
   images: {

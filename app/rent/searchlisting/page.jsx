@@ -19,7 +19,7 @@ const PropertyListCard = dynamic(
   () => import("@/app/components/common/PropertyListing"),
   {
     loading: () => <PropertySkeleton />,
-    ssr: false, // Disable SSR for this component to reduce initial load
+    ssr: false,
   }
 );
 
@@ -68,7 +68,6 @@ const MemoizedPropertyCard = memo(
     );
   },
   (prevProps, nextProps) => {
-    // Custom comparison for performance
     return prevProps.items?._id === nextProps.items?._id;
   }
 );
@@ -76,33 +75,52 @@ const MemoizedPropertyCard = memo(
 MemoizedPropertyCard.displayName = "MemoizedPropertyCard";
 
 // ====================================
-// INTERSECTION OBSERVER HOOK FOR LAZY LOADING
+// INTERSECTION OBSERVER HOOK
 // ====================================
 const useIntersectionObserver = (options = {}) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const targetRef = useRef(null);
+  const observerRef = useRef(null);
 
   useEffect(() => {
     const target = targetRef.current;
     if (!target) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsIntersecting(entry.isIntersecting);
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "50px",
-        ...options,
-      }
-    );
+    // ✅ Reuse observer instance
+    if (!observerRef.current) {
+      observerRef.current = new IntersectionObserver(
+        ([entry]) => {
+          // ✅ Use requestAnimationFrame for iOS
+          requestAnimationFrame(() => {
+            setIsIntersecting(entry.isIntersecting);
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "50px",
+          ...options,
+        }
+      );
+    }
 
-    observer.observe(target);
+    observerRef.current.observe(target);
 
     return () => {
-      if (target) observer.unobserve(target);
+      if (observerRef.current && target) {
+        observerRef.current.unobserve(target);
+      }
     };
   }, [options.threshold, options.rootMargin]);
+
+  // ✅ Cleanup observer on unmount
+  useEffect(() => {
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+        observerRef.current = null;
+      }
+    };
+  }, []);
 
   return [targetRef, isIntersecting];
 };
@@ -116,9 +134,8 @@ const LazyListingItem = memo(({ items, index }) => {
   return (
     <div ref={ref} className="w-full">
       {isVisible ? (
-        <div>testing</div>
+        <MemoizedPropertyCard items={items} index={index} />
       ) : (
-        // <MemoizedPropertyCard items={items} index={index} />
         <PropertySkeleton />
       )}
     </div>
@@ -130,50 +147,87 @@ LazyListingItem.displayName = "LazyListingItem";
 // ====================================
 // MAIN PAGE COMPONENT
 // ====================================
-const Page = () => {
+const PageComponent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [showMap, setShowMap] = useState(false);
   const [sortBy, setSortBy] = useState("newest");
 
-  // ✅ Use refs to avoid unnecessary re-renders
+  // ✅ Track if component has mounted (prevent double API calls)
+  const hasMountedRef = useRef(false);
   const coordinatesRef = useRef([]);
   const sortDropdownRef = useRef(null);
   const isMountedRef = useRef(true);
 
-  // ====================================
-  // Parse query params (memoized)
-  // ====================================
+  // ✅ FIX: Stable query object to prevent re-fetching
   const query = useMemo(() => {
     try {
       if (!searchParams) return {};
-      return Object.fromEntries(searchParams.entries());
+      
+      // ✅ Create stable query object
+      const params = {};
+      searchParams.forEach((value, key) => {
+        params[key] = value;
+      });
+      
+      return params;
     } catch (error) {
       console.error("Error parsing search params:", error);
       return {};
     }
   }, [searchParams]);
 
+  // ✅ Serialize query for stable comparison
+  const queryString = useMemo(() => {
+    return JSON.stringify(query);
+  }, [query]);
+
   // ====================================
-  // Fetch listings with automatic caching
+  // ✅ FIX: Single API call with skip logic
   // ====================================
   const {
     data: allListings,
     isLoading: isAllloading,
     error: listingsError,
+    isFetching,
   } = useGetAllListingsQuery(query, {
-    // ✅ RTK Query optimization
-    refetchOnMountOrArgChange: 300, // Cache for 5 minutes
+    // ✅ Only fetch once per query change
+    skip: false,
+    refetchOnMountOrArgChange: false, // ← Changed from 300 to false
     refetchOnFocus: false,
     refetchOnReconnect: false,
+    // ✅ Prevent multiple fetches
+    pollingInterval: 0,
   });
 
+  // ✅ Log API calls (remove in production)
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔄 API Call Status:', { 
+        isLoading: isAllloading, 
+        isFetching,
+        hasData: !!allListings,
+        query: queryString
+      });
+    }
+  }, [isAllloading, isFetching, allListings, queryString]);
+
   // ====================================
-  // MEMOIZED: Process listings (only recalculate when needed)
+  // MEMOIZED: Process listings
   // ====================================
-  const { displayListings, coordinates, totalPages, currentPage } =
-    useMemo(() => {
-      if (isAllloading || !allListings?.listings) {
+  const { displayListings, coordinates, totalPages, currentPage } = useMemo(() => {
+    if (isAllloading || !allListings?.listings) {
+      return {
+        displayListings: [],
+        coordinates: [],
+        totalPages: 1,
+        currentPage: 1,
+      };
+    }
+
+    try {
+      const listings = allListings.listings;
+      if (!Array.isArray(listings)) {
         return {
           displayListings: [],
           coordinates: [],
@@ -182,68 +236,54 @@ const Page = () => {
         };
       }
 
-      try {
-        const listings = allListings.listings;
-        if (!Array.isArray(listings)) {
-          return {
-            displayListings: [],
-            coordinates: [],
-            totalPages: 1,
-            currentPage: 1,
-          };
-        }
+      const flatListings = flattenListings(listings);
 
-        const flatListings = flattenListings(listings);
+      const processedListings = flatListings
+        .filter(
+          (item) =>
+            item?.item?.coordinate?.latitude &&
+            item?.item?.coordinate?.longitude
+        )
+        .sort((a, b) => {
+          const dateA = new Date(a.createdAt || a.item?.createdAt);
+          const dateB = new Date(b.createdAt || b.item?.createdAt);
 
-        // ✅ Single pass filter + sort for performance
-        const processedListings = flatListings
-          .filter(
-            (item) =>
-              item?.item?.coordinate?.latitude &&
-              item?.item?.coordinate?.longitude
-          )
-          .sort((a, b) => {
-            const dateA = new Date(a.createdAt || a.item?.createdAt);
-            const dateB = new Date(b.createdAt || b.item?.createdAt);
+          switch (sortBy) {
+            case "newest":
+              return dateB - dateA;
+            case "oldest":
+              return dateA - dateB;
+            case "price-low":
+              return (a.item?.price || 0) - (b.item?.price || 0);
+            case "price-high":
+              return (b.item?.price || 0) - (a.item?.price || 0);
+            default:
+              return dateB - dateA;
+          }
+        });
 
-            switch (sortBy) {
-              case "newest":
-                return dateB - dateA;
-              case "oldest":
-                return dateA - dateB;
-              case "price-low":
-                return (a.item?.price || 0) - (b.item?.price || 0);
-              case "price-high":
-                return (b.item?.price || 0) - (a.item?.price || 0);
-              default:
-                return dateB - dateA;
-            }
-          });
+      const coords = processedListings.map((item) => item.item.coordinate);
+      coordinatesRef.current = coords;
 
-        const coords = processedListings.map((item) => item.item.coordinate);
-
-        // Update ref for map component
-        coordinatesRef.current = coords;
-
-        return {
-          displayListings: processedListings,
-          coordinates: coords,
-          totalPages: allListings.totalPages || 1,
-          currentPage: Number(searchParams?.get("page")) || 1,
-        };
-      } catch (error) {
-        console.error("Error processing listings:", error);
-        return {
-          displayListings: [],
-          coordinates: [],
-          totalPages: 1,
-          currentPage: 1,
-        };
-      }
-    }, [allListings, isAllloading, sortBy, searchParams]);
+      return {
+        displayListings: processedListings,
+        coordinates: coords,
+        totalPages: allListings.totalPages || 1,
+        currentPage: Number(searchParams?.get("page")) || 1,
+      };
+    } catch (error) {
+      console.error("Error processing listings:", error);
+      return {
+        displayListings: [],
+        coordinates: [],
+        totalPages: 1,
+        currentPage: 1,
+      };
+    }
+  }, [allListings, isAllloading, sortBy, searchParams]);
 
   // ====================================
-  // OPTIMIZED: Page change handler
+  // Page change handler
   // ====================================
   const handlePageChange = useCallback(
     (page) => {
@@ -255,7 +295,7 @@ const Page = () => {
           scroll: false,
         });
 
-        // Scroll to top smoothly
+        // Scroll to top
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     },
@@ -263,7 +303,7 @@ const Page = () => {
   );
 
   // ====================================
-  // Click outside handler (always attached)
+  // Click outside handler
   // ====================================
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -271,26 +311,26 @@ const Page = () => {
         sortDropdownRef.current &&
         !sortDropdownRef.current.contains(event.target)
       ) {
-        // Use requestAnimationFrame for iOS Safari
         requestAnimationFrame(() => {
           if (isMountedRef.current) {
-            // Handle dropdown close here if needed
+            // Handle dropdown close if needed
           }
         });
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside, { passive: true });
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   // ====================================
-  // Cleanup on unmount (iOS Safari critical)
+  // Cleanup on unmount
   // ====================================
   useEffect(() => {
     isMountedRef.current = true;
+    hasMountedRef.current = true;
 
     return () => {
       isMountedRef.current = false;
@@ -300,17 +340,21 @@ const Page = () => {
   }, []);
 
   // ====================================
-  // Preload next page images (optional optimization)
+  // ✅ FIX: Preload images ONLY once per page
   // ====================================
   useEffect(() => {
     if (typeof window === "undefined" || displayListings.length === 0) return;
 
-    // Preload first 3 images only
+    // ✅ Prevent re-running on every render
+    const preloadedImages = new Set();
+
     const imagesToPreload = displayListings.slice(0, 3);
 
     imagesToPreload.forEach((item) => {
       const imgUrl = item?.imageUrls?.[0]?.url;
-      if (imgUrl && imgUrl !== "/house1.png") {
+      if (imgUrl && imgUrl !== "/house1.png" && !preloadedImages.has(imgUrl)) {
+        preloadedImages.add(imgUrl);
+        
         const link = document.createElement("link");
         link.rel = "preload";
         link.as = "image";
@@ -318,7 +362,15 @@ const Page = () => {
         document.head.appendChild(link);
       }
     });
-  }, [displayListings, currentPage]);
+
+    // ✅ Cleanup preload links on unmount
+    return () => {
+      preloadedImages.forEach((url) => {
+        const links = document.querySelectorAll(`link[href="${url}"]`);
+        links.forEach(link => link.remove());
+      });
+    };
+  }, [currentPage]); // ← Only depend on currentPage, not displayListings
 
   // ====================================
   // Error handling
@@ -384,11 +436,10 @@ const Page = () => {
             </div>
           ) : (
             <>
-              {/* ✅ Lazy loaded grid with intersection observer */}
+              {/* Lazy loaded grid */}
               <div
                 className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-[1rem] mt-[1.5rem] md:mt-[1rem] w-full p-5 md:p-0 place-items-center"
                 style={{
-                  // iOS Safari optimization
                   contentVisibility: "auto",
                   containIntrinsicSize: "1px 500px",
                 }}
@@ -419,5 +470,5 @@ const Page = () => {
   );
 };
 
-// ✅ Export memoized component
-export default memo(Page);
+// ✅ Export without memo to avoid double mounting in Strict Mode
+export default PageComponent;
