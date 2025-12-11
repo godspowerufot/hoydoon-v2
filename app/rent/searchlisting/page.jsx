@@ -74,13 +74,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     setBathValue(bathrooms || "");
   }, [searchParams]);
 
-  useEffect(() => {
-    const getUserLocation = async () => {
-      const { country } = await getLocationRegion();
-      setUserCountry(country);
-    };
-    getUserLocation();
-  }, []);
+  // useEffect(() => {
+  //   const getUserLocation = async () => {
+  //     const { country } = await getLocationRegion();
+  //     setUserCountry(country);
+  //   };
+  //   getUserLocation();
+  // }, [userCountry]);
 
   const modalRef = useRef(null);
   const bedBathRef = useRef(null);
@@ -606,7 +606,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
           isOpen={showAllFiltersDropdown}
           onClose={() => setShowAllFiltersDropdown(false)}
           filters={filters}
-          userCountrys={userCountry}
+          // userCountrys={userCountry}
           onFilterChange={handleFilterChange}
           onSearch={handleSearchClick}
           isSearching={isSearching}
@@ -655,8 +655,8 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
           <React.Fragment key={index}>
             <button
               className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${(showMap ? "Map" : "List") === option
-                  ? "bg-primary gap-[10px] flex text-white"
-                  : "text-[#8F8F8F]"
+                ? "bg-primary gap-[10px] flex text-white"
+                : "text-[#8F8F8F]"
                 }`}
               onClick={() => setShowMap(option === "Map")}
             >
