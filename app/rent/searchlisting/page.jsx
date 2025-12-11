@@ -14,6 +14,20 @@ import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { flattenListings } from "@/utils";
 import { PropertySkeleton } from "@/app/components/Loader";
 
+// ====================================
+// 🔥 iOS DETECTION UTILITY
+// ====================================
+const isIOS = () => {
+  if (typeof window === "undefined") return false;
+
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
+};
+
+const isIOSDevice = typeof window !== "undefined" ? isIOS() : false;
+
 // ✅ Lazy load heavy components
 const PropertyListCard = dynamic(
   () => import("@/app/components/common/PropertyListing"),
@@ -75,29 +89,41 @@ const MemoizedPropertyCard = memo(
 MemoizedPropertyCard.displayName = "MemoizedPropertyCard";
 
 // ====================================
-// INTERSECTION OBSERVER HOOK
+// 🔥 PLATFORM-SPECIFIC INTERSECTION OBSERVER
 // ====================================
 const useIntersectionObserver = (options = {}) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const targetRef = useRef(null);
   const observerRef = useRef(null);
+  const rafIdRef = useRef(null);
 
   useEffect(() => {
     const target = targetRef.current;
     if (!target) return;
 
-    // ✅ Reuse observer instance
+    if (isIOSDevice && rafIdRef.current) {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    }
+
     if (!observerRef.current) {
       observerRef.current = new IntersectionObserver(
         ([entry]) => {
-          // ✅ Use requestAnimationFrame for iOS
-          requestAnimationFrame(() => {
+          if (isIOSDevice) {
+            if (rafIdRef.current) {
+              cancelAnimationFrame(rafIdRef.current);
+            }
+            rafIdRef.current = requestAnimationFrame(() => {
+              setIsIntersecting(entry.isIntersecting);
+              rafIdRef.current = null;
+            });
+          } else {
             setIsIntersecting(entry.isIntersecting);
-          });
+          }
         },
         {
-          threshold: 0.1,
-          rootMargin: "50px",
+          threshold: isIOSDevice ? 0.05 : 0.1,
+          rootMargin: isIOSDevice ? "150px" : "50px",
           ...options,
         }
       );
@@ -106,15 +132,22 @@ const useIntersectionObserver = (options = {}) => {
     observerRef.current.observe(target);
 
     return () => {
+      if (isIOSDevice && rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
       if (observerRef.current && target) {
         observerRef.current.unobserve(target);
       }
     };
-  }, [options.threshold, options.rootMargin]);
+  }, []);
 
-  // ✅ Cleanup observer on unmount
   useEffect(() => {
     return () => {
+      if (isIOSDevice && rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
       if (observerRef.current) {
         observerRef.current.disconnect();
         observerRef.current = null;
@@ -153,81 +186,109 @@ const PageComponent = () => {
   const [showMap, setShowMap] = useState(false);
   const [sortBy, setSortBy] = useState("newest");
 
-  // ✅ Track if component has mounted (prevent double API calls)
-  const hasMountedRef = useRef(false);
-  const coordinatesRef = useRef([]);
   const sortDropdownRef = useRef(null);
   const isMountedRef = useRef(true);
+  const preloadedLinksRef = useRef(new Set());
 
-  // ✅ FIX: Stable query object to prevent re-fetching
+  // ====================================
+  // 🔥 FIX: Stable query object
+  // ====================================
   const query = useMemo(() => {
-    try {
-      if (!searchParams) return {};
-      
-      // ✅ Create stable query object
-      const params = {};
-      searchParams.forEach((value, key) => {
-        params[key] = value;
-      });
-      
-      return params;
-    } catch (error) {
-      console.error("Error parsing search params:", error);
-      return {};
-    }
+    if (!searchParams) return {};
+
+    const params = {};
+    searchParams.forEach((value, key) => {
+      params[key] = value;
+    });
+
+    return params;
   }, [searchParams]);
 
-  // ✅ Serialize query for stable comparison
-  const queryString = useMemo(() => {
-    return JSON.stringify(query);
-  }, [query]);
+  // ====================================
+  // 🔥 iOS: NO API CALL - Android/Desktop: Normal API Call
+  // ====================================
+  const apiResult = isIOSDevice
+    ? {
+        data: null,
+        isLoading: false,
+        error: null,
+        isFetching: false,
+      }
+    : useGetAllListingsQuery(query, {
+        skip: false,
+        refetchOnMountOrArgChange: 30,
+        refetchOnFocus: false,
+        refetchOnReconnect: true,
+        pollingInterval: 0,
+      });
 
-  // ====================================
-  // ✅ FIX: Single API call with skip logic
-  // ====================================
   const {
     data: allListings,
     isLoading: isAllloading,
     error: listingsError,
-    isFetching,
-  } = useGetAllListingsQuery(query, {
-    // ✅ Only fetch once per query change
-    skip: false,
-    refetchOnMountOrArgChange: false, // ← Changed from 300 to false
-    refetchOnFocus: false,
-    refetchOnReconnect: false,
-    // ✅ Prevent multiple fetches
-    pollingInterval: 0,
-  });
-
-  // ✅ Log API calls (remove in production)
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🔄 API Call Status:', { 
-        isLoading: isAllloading, 
-        isFetching,
-        hasData: !!allListings,
-        query: queryString
-      });
-    }
-  }, [isAllloading, isFetching, allListings, queryString]);
+  } = apiResult;
 
   // ====================================
   // MEMOIZED: Process listings
   // ====================================
-  const { displayListings, coordinates, totalPages, currentPage } = useMemo(() => {
-    if (isAllloading || !allListings?.listings) {
-      return {
-        displayListings: [],
-        coordinates: [],
-        totalPages: 1,
-        currentPage: 1,
-      };
-    }
+  const { displayListings, coordinates, totalPages, currentPage } =
+    useMemo(() => {
+      if (isAllloading || !allListings?.listings) {
+        return {
+          displayListings: [],
+          coordinates: [],
+          totalPages: 1,
+          currentPage: Number(searchParams?.get("page")) || 1,
+        };
+      }
 
-    try {
-      const listings = allListings.listings;
-      if (!Array.isArray(listings)) {
+      try {
+        const listings = allListings.listings;
+        if (!Array.isArray(listings)) {
+          return {
+            displayListings: [],
+            coordinates: [],
+            totalPages: 1,
+            currentPage: 1,
+          };
+        }
+
+        const flatListings = flattenListings(listings);
+
+        const processedListings = flatListings
+          .filter(
+            (item) =>
+              item?.item?.coordinate?.latitude &&
+              item?.item?.coordinate?.longitude
+          )
+          .sort((a, b) => {
+            const dateA = new Date(a.createdAt || a.item?.createdAt);
+            const dateB = new Date(b.createdAt || b.item?.createdAt);
+
+            switch (sortBy) {
+              case "newest":
+                return dateB - dateA;
+              case "oldest":
+                return dateA - dateB;
+              case "price-low":
+                return (a.item?.price || 0) - (b.item?.price || 0);
+              case "price-high":
+                return (b.item?.price || 0) - (a.item?.price || 0);
+              default:
+                return dateB - dateA;
+            }
+          });
+
+        const coords = processedListings.map((item) => item.item.coordinate);
+
+        return {
+          displayListings: processedListings,
+          coordinates: coords,
+          totalPages: allListings.totalPages || 1,
+          currentPage: Number(searchParams?.get("page")) || 1,
+        };
+      } catch (error) {
+        console.error("Error processing listings:", error);
         return {
           displayListings: [],
           coordinates: [],
@@ -235,52 +296,7 @@ const PageComponent = () => {
           currentPage: 1,
         };
       }
-
-      const flatListings = flattenListings(listings);
-
-      const processedListings = flatListings
-        .filter(
-          (item) =>
-            item?.item?.coordinate?.latitude &&
-            item?.item?.coordinate?.longitude
-        )
-        .sort((a, b) => {
-          const dateA = new Date(a.createdAt || a.item?.createdAt);
-          const dateB = new Date(b.createdAt || b.item?.createdAt);
-
-          switch (sortBy) {
-            case "newest":
-              return dateB - dateA;
-            case "oldest":
-              return dateA - dateB;
-            case "price-low":
-              return (a.item?.price || 0) - (b.item?.price || 0);
-            case "price-high":
-              return (b.item?.price || 0) - (a.item?.price || 0);
-            default:
-              return dateB - dateA;
-          }
-        });
-
-      const coords = processedListings.map((item) => item.item.coordinate);
-      coordinatesRef.current = coords;
-
-      return {
-        displayListings: processedListings,
-        coordinates: coords,
-        totalPages: allListings.totalPages || 1,
-        currentPage: Number(searchParams?.get("page")) || 1,
-      };
-    } catch (error) {
-      console.error("Error processing listings:", error);
-      return {
-        displayListings: [],
-        coordinates: [],
-        totalPages: 1,
-        currentPage: 1,
-      };
-    }
-  }, [allListings, isAllloading, sortBy, searchParams]);
+    }, [allListings, isAllloading, sortBy, searchParams]);
 
   // ====================================
   // Page change handler
@@ -295,82 +311,102 @@ const PageComponent = () => {
           scroll: false,
         });
 
-        // Scroll to top
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (isIOSDevice) {
+          setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }, 100);
+        } else {
+          requestAnimationFrame(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
       }
     },
     [totalPages, searchParams, router]
   );
 
   // ====================================
-  // Click outside handler
+  // 🔥 PLATFORM-SPECIFIC: Image preloading
   // ====================================
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        sortDropdownRef.current &&
-        !sortDropdownRef.current.contains(event.target)
-      ) {
-        requestAnimationFrame(() => {
-          if (isMountedRef.current) {
-            // Handle dropdown close if needed
+    if (typeof window === "undefined" || displayListings.length === 0) return;
+
+    const cleanup = () => {
+      preloadedLinksRef.current.forEach((url) => {
+        const links = document.querySelectorAll(
+          `link[rel="preload"][href="${url}"]`
+        );
+        links.forEach((link) => {
+          try {
+            link.remove();
+          } catch (e) {
+            // Ignore
           }
         });
-      }
+      });
+      preloadedLinksRef.current.clear();
     };
 
-    document.addEventListener("mousedown", handleClickOutside, { passive: true });
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+    cleanup();
+
+    const preloadCount = isIOSDevice ? 1 : 3;
+    const imagesToPreload = displayListings.slice(0, preloadCount);
+
+    imagesToPreload.forEach((item) => {
+      const imgUrl = item?.imageUrls?.[0]?.url;
+      if (
+        imgUrl &&
+        imgUrl !== "/house1.png" &&
+        !preloadedLinksRef.current.has(imgUrl)
+      ) {
+        try {
+          const link = document.createElement("link");
+          link.rel = "preload";
+          link.as = "image";
+          link.href = imgUrl;
+
+          if (isIOSDevice) {
+            link.fetchPriority = "low";
+          } else {
+            link.fetchPriority = "high";
+          }
+
+          document.head.appendChild(link);
+          preloadedLinksRef.current.add(imgUrl);
+        } catch (e) {
+          console.error("Error preloading image:", e);
+        }
+      }
+    });
+
+    return cleanup;
+  }, [displayListings.length]);
 
   // ====================================
   // Cleanup on unmount
   // ====================================
   useEffect(() => {
     isMountedRef.current = true;
-    hasMountedRef.current = true;
 
     return () => {
       isMountedRef.current = false;
       sortDropdownRef.current = null;
-      coordinatesRef.current = [];
+
+      preloadedLinksRef.current.forEach((url) => {
+        const links = document.querySelectorAll(
+          `link[rel="preload"][href="${url}"]`
+        );
+        links.forEach((link) => {
+          try {
+            link.remove();
+          } catch (e) {
+            // Ignore
+          }
+        });
+      });
+      preloadedLinksRef.current.clear();
     };
   }, []);
-
-  // ====================================
-  // ✅ FIX: Preload images ONLY once per page
-  // ====================================
-  useEffect(() => {
-    if (typeof window === "undefined" || displayListings.length === 0) return;
-
-    // ✅ Prevent re-running on every render
-    const preloadedImages = new Set();
-
-    const imagesToPreload = displayListings.slice(0, 3);
-
-    imagesToPreload.forEach((item) => {
-      const imgUrl = item?.imageUrls?.[0]?.url;
-      if (imgUrl && imgUrl !== "/house1.png" && !preloadedImages.has(imgUrl)) {
-        preloadedImages.add(imgUrl);
-        
-        const link = document.createElement("link");
-        link.rel = "preload";
-        link.as = "image";
-        link.href = imgUrl;
-        document.head.appendChild(link);
-      }
-    });
-
-    // ✅ Cleanup preload links on unmount
-    return () => {
-      preloadedImages.forEach((url) => {
-        const links = document.querySelectorAll(`link[href="${url}"]`);
-        links.forEach(link => link.remove());
-      });
-    };
-  }, [currentPage]); // ← Only depend on currentPage, not displayListings
 
   // ====================================
   // Error handling
@@ -390,6 +426,24 @@ const PageComponent = () => {
       </div>
     );
   }
+
+  // ====================================
+  // 🔥 PLATFORM-SPECIFIC STYLES
+  // ====================================
+  const gridStyles = isIOSDevice
+    ? {
+        willChange: "transform",
+        transform: "translate3d(0,0,0)",
+        WebkitTransform: "translate3d(0,0,0)",
+        WebkitBackfaceVisibility: "hidden",
+        WebkitPerspective: "1000",
+      }
+    : {
+        contentVisibility: "auto",
+        containIntrinsicSize: "1px 500px",
+        willChange: "transform",
+        transform: "translateZ(0)",
+      };
 
   return (
     <div className="md:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1240px]">
@@ -428,21 +482,22 @@ const PageComponent = () => {
           ) : displayListings.length === 0 ? (
             <div className="flex flex-col items-center justify-center mt-12 p-8">
               <p className="text-gray-600 text-center text-lg">
-                No listings found for your search.
+                {isIOSDevice
+                  ? "Please reload the page to load listings."
+                  : "No listings found for your search."}
               </p>
               <p className="text-gray-400 text-center text-sm mt-2">
-                Try adjusting your filters or search criteria.
+                {isIOSDevice
+                  ? "API calls are disabled on iOS for performance."
+                  : "Try adjusting your filters or search criteria."}
               </p>
             </div>
           ) : (
             <>
-              {/* Lazy loaded grid */}
+              {/* 🔥 PLATFORM-SPECIFIC GRID */}
               <div
                 className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-[1rem] mt-[1.5rem] md:mt-[1rem] w-full p-5 md:p-0 place-items-center"
-                style={{
-                  contentVisibility: "auto",
-                  containIntrinsicSize: "1px 500px",
-                }}
+                style={gridStyles}
               >
                 {displayListings.map((items, index) => (
                   <LazyListingItem
@@ -470,5 +525,4 @@ const PageComponent = () => {
   );
 };
 
-// ✅ Export without memo to avoid double mounting in Strict Mode
 export default PageComponent;
