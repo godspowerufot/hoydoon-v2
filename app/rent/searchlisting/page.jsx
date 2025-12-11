@@ -1,474 +1,793 @@
 /* eslint-disable */
+
 "use client";
-import React, {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  useCallback,
-  memo,
-} from "react";
-import dynamic from "next/dynamic";
-import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
+import PropertyCard from "@/app/components/common/property";
+import Pagination from "@/app/components/common/pagination";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
-import { flattenListings } from "@/utils";
+import { useRouter, useSearchParams } from "next/navigation";
+import PropertyListCard from "@/app/components/common/PropertyListing";
+import { flattenListings, log } from "@/utils";
+import MapComponent from "@/app/components/layouts/listingmap";
+import { getLocationRegion } from "@/utils/lib/index";
 import { PropertySkeleton } from "@/app/components/Loader";
+import { FiltersDropdown } from "@/app/components/common/filters";
+const Breadcrumb = ({ showMap, setShowMap }) => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const [isSearching, setIsSearching] = useState(false);
+  const [userCountry, setUserCountry] = useState(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
-// ====================================
-// 🔥 iOS DETECTION UTILITY
-// ====================================
-const isIOS = () => {
-  if (typeof window === "undefined") return false;
+  const [showPriceDropdown, setShowPriceDropdown] = useState(false);
+  const [showHomeTypeDropdown, setShowHomeTypeDropdown] = useState(false);
+  const [showAllFiltersDropdown, setShowAllFiltersDropdown] = useState(false);
+  const [showBedBathDropdown, setShowBedBathDropdown] = useState(false);
+  const [showHouseTypeDropdown, setShowHouseTypeDropdown] = useState(false);
 
-  return (
-    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
-  );
-};
+  const [bedValue, setBedValue] = useState("");
+  const [bathValue, setBathValue] = useState("");
 
-const isIOSDevice = typeof window !== "undefined" ? isIOS() : false;
+  const [filters, setFilters] = useState({
+    price: "",
+    "home-type": "",
+    location: "",
+    bedrooms: "",
+    bathrooms: "",
+    houseType: "",
+  });
 
-// ✅ Lazy load heavy components
-const PropertyListCard = dynamic(
-  () => import("@/app/components/common/PropertyListing"),
-  {
-    loading: () => <PropertySkeleton />,
-    ssr: false,
-  }
-);
+  // Sync filters with URL params on mount and when searchParams change
+  useEffect(() => {
+    const minPrice = searchParams.get("minPrice");
+    const maxPrice = searchParams.get("maxPrice");
+    const listingType = searchParams.get("listingType");
+    const bedrooms = searchParams.get("bedrooms");
+    const bathrooms = searchParams.get("bathrooms");
+    const houseType = searchParams.get("houseType");
 
-const MapComponent = dynamic(
-  () => import("@/app/components/layouts/listingmap"),
-  {
-    loading: () => <div className="w-full h-96 bg-gray-200 animate-pulse" />,
-    ssr: false,
-  }
-);
+    // Reconstruct price range from minPrice and maxPrice
+    const priceValue = minPrice && maxPrice ? `${minPrice}-${maxPrice}` : "";
 
-const Pagination = dynamic(() => import("@/app/components/common/pagination"), {
-  ssr: false,
-});
+    // Map API listing type back to filter value
+    const typeMapping = {
+      sale: "buy",
+      rent: "rent",
+      land: "land",
+    };
+    const homeTypeValue = listingType
+      ? typeMapping[listingType] || listingType
+      : "";
 
-const Breadcrumb = dynamic(
-  () => import("../../components/layouts/breadcrumbs"),
-  { ssr: false }
-);
+    setFilters({
+      price: priceValue,
+      "home-type": homeTypeValue,
+      location: searchParams.get("location") || "",
+      bedrooms: bedrooms || "",
+      bathrooms: bathrooms || "",
+      houseType: houseType || "",
+    });
 
-// ====================================
-// MEMOIZED PROPERTY CARD COMPONENT
-// ====================================
-const MemoizedPropertyCard = memo(
-  ({ items, index }) => {
-    if (!items) return null;
-
-    return (
-      <PropertyListCard
-        key={items?._id || index}
-        imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-        altText={items?.imageUrls?.[0]?.altText || "Property image"}
-        price={items?.item?.price || "Price not available"}
-        area={items?.item?.squareFeet}
-        bathrooms={items?.item?.bathrooms}
-        bedrooms={items?.item?.bedrooms}
-        region={items?.region}
-        description={items?.item?.description || "No description available"}
-        _id={items?._id}
-        title={items?.item?.title || "Untitled Property"}
-        rent={items?.item?.rent || "Rent details not provided"}
-        squareFeet={items?.item?.squareFeet}
-        landSize={items?.item?.landSize}
-        listingType={items?.listingType || "N/A"}
-      />
-    );
-  },
-  (prevProps, nextProps) => {
-    return prevProps.items?._id === nextProps.items?._id;
-  }
-);
-
-MemoizedPropertyCard.displayName = "MemoizedPropertyCard";
-
-// ====================================
-// 🔥 PLATFORM-SPECIFIC INTERSECTION OBSERVER
-// ====================================
-const useIntersectionObserver = (options = {}) => {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const targetRef = useRef(null);
-  const observerRef = useRef(null);
-  const rafIdRef = useRef(null);
+    // Update bed/bath display values
+    setBedValue(bedrooms || "");
+    setBathValue(bathrooms || "");
+  }, [searchParams]);
 
   useEffect(() => {
-    const target = targetRef.current;
-    if (!target) return;
+    const getUserLocation = async () => {
+      const { country } = await getLocationRegion();
+      setUserCountry(country);
+    };
+    getUserLocation();
+  }, []);
 
-    if (isIOSDevice && rafIdRef.current) {
-      cancelAnimationFrame(rafIdRef.current);
-      rafIdRef.current = null;
+  const modalRef = useRef(null);
+  const bedBathRef = useRef(null);
+  const priceDropdownRef = useRef(null);
+  const homeTypeDropdownRef = useRef(null);
+  const houseTypeDropdownRef = useRef(null);
+
+  const priceOptions = useMemo(() => {
+    // Nigeria-specific price ranges (Naira)
+    if (userCountry === "nigeria") {
+      return {
+        Buy: [
+          { label: "Any", value: "" },
+          { label: "₦1m - ₦5m", value: "1000000-5000000" },
+          { label: "₦5m - ₦20m", value: "5000001-20000000" },
+          { label: "₦20m & Above", value: "20000001-1000000000" },
+        ],
+        Rent: [
+          { label: "Any", value: "" },
+          { label: "Less than ₦1m", value: "0-1000000" },
+          { label: "₦1m - ₦5m", value: "1000001-5000000" },
+          { label: "₦5m to ₦10m", value: "5000001-10000000" },
+          { label: "₦10m Above", value: "10000001-100000000" },
+        ],
+        Land: [
+          { label: "Any", value: "" },
+          { label: "₦1m - ₦5m", value: "1000000-5000000" },
+          { label: "₦5m - ₦20m", value: "5000001-20000000" },
+          { label: "₦20m & Above", value: "20000001-1000000000" },
+        ],
+        shortlet: [
+          { label: "Any", value: "" },
+          { label: "₦50k - ₦200k", value: "50000-200000" },
+          { label: "₦200k - ₦500k", value: "200001-500000" },
+          { label: "₦500k & Above", value: "500001-50000000" },
+        ],
+      };
     }
 
-    if (!observerRef.current) {
-      observerRef.current = new IntersectionObserver(
-        ([entry]) => {
-          if (isIOSDevice) {
-            if (rafIdRef.current) {
-              cancelAnimationFrame(rafIdRef.current);
-            }
-            rafIdRef.current = requestAnimationFrame(() => {
-              setIsIntersecting(entry.isIntersecting);
-              rafIdRef.current = null;
-            });
-          } else {
-            setIsIntersecting(entry.isIntersecting);
-          }
-        },
-        {
-          threshold: isIOSDevice ? 0.05 : 0.1,
-          rootMargin: isIOSDevice ? "150px" : "50px",
-          ...options,
-        }
+    // Default price ranges (USD for other countries)
+    return {
+      Buy: [
+        { label: "Any", value: "" },
+        { label: "$0k - $30k", value: "0-30000" },
+        { label: "$30k - $60k", value: "30001-60000" },
+        { label: "$60k - $100k", value: "60001-100000" },
+        { label: "$100k - Above", value: "100001-10000000" },
+      ],
+      Rent: [
+        { label: "Any", value: "" },
+        { label: "$50 - $200", value: "50-200" },
+        { label: "$200 - $500", value: "201-500" },
+        { label: "$500 - $800", value: "501-800" },
+        { label: "$800 - $1000", value: "801-1000" },
+        { label: "$1000 - Above", value: "1001-100000" },
+      ],
+      Land: [
+        { label: "Any", value: "" },
+        { label: "$0k - $30k", value: "0-30000" },
+        { label: "$30k - $60k", value: "30001-60000" },
+        { label: "$60k - $100k", value: "60001-100000" },
+        { label: "$100k - Above", value: "100001-10000000" },
+      ],
+      shortlet: [
+        { label: "Any", value: "" },
+        { label: "$50k - $200k", value: "50000-200000" },
+        { label: "$200k - $500k", value: "200001-500000" },
+        { label: "$500k - Above", value: "500001-50000000" },
+      ],
+    };
+  }, [userCountry]);
+
+  const homeTypeOptions = [
+    { label: "Any", value: "" },
+    { label: "Bungalow", value: "Bungalow" },
+    { label: "Penthouse", value: "Penthouse" },
+    { label: "Duplex", value: "Duplex" },
+  ];
+
+  const typeOptions = useMemo(() => {
+    const baseOptions = ["Buy", "Rent", "Land"];
+    if (userCountry !== "somalia") {
+      return [...baseOptions, "shortlet"];
+    }
+    return baseOptions;
+  }, [userCountry]);
+
+  const typeFilterOptions = useMemo(() => {
+    const baseOptions = [
+      { label: "Rent", value: "rent" },
+      { label: "Buy", value: "buy" },
+      { label: "Land", value: "land" },
+    ];
+
+    // Only add shortlet for Nigeria
+    if (userCountry !== "somalia") {
+      baseOptions.push({ label: "Shortlet", value: "shortlet" });
+    }
+
+    return baseOptions;
+  }, [userCountry]);
+
+  const selectedType =
+    typeOptions?.find((type) => filters["home-type"] === type.toLowerCase()) ||
+    "Rent";
+
+  const handleFilterChange = (filterName, value) => {
+    // Mark that user has interacted with filters
+    if (!hasInteracted) {
+      setHasInteracted(true);
+      // Clear URL params on first interaction
+      router.replace("/rent/searchlisting", { scroll: false });
+    }
+
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [filterName]: value,
+    }));
+  };
+
+  const handleSearchClick = () => {
+    const newParams = new URLSearchParams();
+
+    // Handle Price Filter
+    if (filters.price) {
+      const [min, max] = filters.price.split("-");
+      if (!isNaN(Number(min)) && !isNaN(Number(max))) {
+        newParams.set("minPrice", min);
+        newParams.set("maxPrice", max);
+      }
+    }
+
+    // Always map listingType for API
+    const typeToApiValue = {
+      buy: "sale",
+      rent: "rent",
+      land: "land",
+      shortlet: "shortlet",
+    };
+    if (filters["home-type"]) {
+      newParams.set(
+        "listingType",
+        typeToApiValue[filters["home-type"]] || filters["home-type"]
       );
     }
 
-    observerRef.current.observe(target);
+    // Handle Other Filters
+    if (filters.location) {
+      newParams.set("location", filters.location);
+    }
+    if (filters.bedrooms) {
+      newParams.set("bedrooms", filters.bedrooms);
+    }
+    if (filters.bathrooms) {
+      newParams.set("bathrooms", filters.bathrooms);
+    }
+    if (filters.houseType) {
+      newParams.set("houseType", filters.houseType);
+    }
 
+    const queryString = newParams.toString();
+    router.push(`/rent/searchlisting${queryString ? `?${queryString}` : ""}`);
+  };
+
+  // Helper function to get the display label for price based on current filters
+  const getPriceLabel = () => {
+    if (!filters.price) return "Price";
+    const option = priceOptions[selectedType]?.find(
+      (o) => o.value === filters.price
+    );
+    return option ? option.label : "Price";
+  };
+
+  // Close dropdowns on outside click
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (bedBathRef.current && !bedBathRef.current.contains(event.target)) {
+        setShowBedBathDropdown(false);
+      }
+    }
+    if (showBedBathDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
     return () => {
-      if (isIOSDevice && rafIdRef.current) {
-        cancelAnimationFrame(rafIdRef.current);
-        rafIdRef.current = null;
-      }
-      if (observerRef.current && target) {
-        observerRef.current.unobserve(target);
-      }
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [showBedBathDropdown]);
 
   useEffect(() => {
+    function handleClickOutside(event) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setShowAllFiltersDropdown(false);
+      }
+    }
+    if (showAllFiltersDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
     return () => {
-      if (isIOSDevice && rafIdRef.current) {
-        cancelAnimationFrame(rafIdRef.current);
-        rafIdRef.current = null;
-      }
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-        observerRef.current = null;
-      }
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [showAllFiltersDropdown]);
 
-  return [targetRef, isIntersecting];
-};
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        priceDropdownRef.current &&
+        !priceDropdownRef.current.contains(event.target)
+      ) {
+        setShowPriceDropdown(false);
+      }
+    }
+    if (showPriceDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showPriceDropdown]);
 
-// ====================================
-// LAZY LOADED LISTING ITEM
-// ====================================
-const LazyListingItem = memo(({ items, index }) => {
-  const [ref, isVisible] = useIntersectionObserver();
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        homeTypeDropdownRef.current &&
+        !homeTypeDropdownRef.current.contains(event.target)
+      ) {
+        setShowHomeTypeDropdown(false);
+      }
+    }
+    if (showHomeTypeDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showHomeTypeDropdown]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        houseTypeDropdownRef.current &&
+        !houseTypeDropdownRef.current.contains(event.target)
+      ) {
+        setShowHouseTypeDropdown(false);
+      }
+    }
+    if (showHouseTypeDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showHouseTypeDropdown]);
 
   return (
-    <div ref={ref} className="w-full">
-      {isVisible ? (
-        <MemoizedPropertyCard items={items} index={index} />
-      ) : (
-        <PropertySkeleton />
-      )}
+    <div className="md:pt-[2.3rem] flex-wrap -mb-[2.5rem] md:mb-0 flex-col md:flex-row md:flex justify-between w-full">
+      {/* Left Section: Filters */}
+      <div className="flex items-center p-[1rem] md:p-0 flex-wrap gap-[4px] md:gap-3">
+        {/* Individual Filter Buttons */}
+        {["Type", "Price", "Bed/Baths", "House Type"].map((option) => {
+          if (option === "Bed/Baths") {
+            return (
+              <div className="relative" key={option}>
+                {/* BUTTON */}
+                <button
+                  onClick={() => setShowBedBathDropdown(true)}
+                  className="border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
+                >
+                  <span>
+                    {filters.bedBaths === "0-2"
+                      ? "0 - 2"
+                      : filters.bedBaths === "2-4"
+                      ? "2 - 4"
+                      : filters.bedBaths === "5+"
+                      ? "5 & Above"
+                      : "Bed/Baths"}
+                  </span>
+
+                  <Image
+                    width={500}
+                    height={500}
+                    src="/arrow-down.png"
+                    alt="Dropdown"
+                    className="w-3 h-2 pointer-events-none flex-shrink-0"
+                  />
+                </button>
+
+                {/* DROPDOWN */}
+                {showBedBathDropdown && (
+                  <>
+                    {/* BACKDROP */}
+                    <div
+                      className="fixed inset-0 bg-black bg-opacity-50 z-[2000]"
+                      onClick={() => setShowBedBathDropdown(false)}
+                    />
+
+                    {/* PANEL */}
+                    <div className="absolute w-[164px] top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-[3000]  md:w-[350px] overflow-hidden">
+                      {/* Header */}
+                      <div className="px-4 py-2 border-b border-gray-100">
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-black md:text-lg text-base ">
+                            Select
+                          </span>
+
+                          <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+                            {!filters.bedBaths && (
+                              <div className="w-3 h-3 rounded-full bg-primary" />
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* OPTIONS */}
+                      {[
+                        { label: "0 - 2", value: "0-2" },
+                        { label: "2 - 4", value: "2-4" },
+                        { label: "5 & Above", value: "5+" },
+                      ].map((opt) => (
+                        <button
+                          key={opt.value}
+                          onClick={() => {
+                            handleFilterChange("bedBaths", opt.value);
+                            setShowBedBathDropdown(false);
+                          }}
+                          className="w-full px-4 py-3 flex items-center justify-between border-b border-gray-100 last:border-0 text-sm"
+                        >
+                          <span className="text-black text-sm md:text-lg">
+                            {opt.label}
+                          </span>
+
+                          <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+                            {filters.bedBaths === opt.value && (
+                              <div className="w-3 h-3 rounded-full bg-primary" />
+                            )}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            );
+          }
+
+          // House Type dropdown
+          if (option === "House Type") {
+            return (
+              <div className="relative hidden md:block" key={option}>
+                <button
+                  type="button"
+                  className="border border-[#8F8F8F] bg-transparent text-sm  md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
+                  onClick={() =>
+                    setShowHouseTypeDropdown(!showHouseTypeDropdown)
+                  }
+                >
+                  <span>{filters.houseType || "Duplex"}</span>
+                  <Image
+                    width={500}
+                    height={300}
+                    src="/arrow-down.png"
+                    alt="Dropdown"
+                    className="w-3 h-2 pointer-events-none flex-shrink-0"
+                  />
+                </button>
+                {showHouseTypeDropdown && (
+                  <>
+                    <div
+                      className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+                      onClick={() => setShowHouseTypeDropdown(false)}
+                    ></div>
+                    <div
+                      className="absolute z-[111111] left-[23%] top-[14%] md:top-[110%] md:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 md:mt-0 md:w-[350px]"
+                      ref={houseTypeDropdownRef}
+                    >
+                      <ul className="flex flex-col gap-2">
+                        {homeTypeOptions.map((opt) => {
+                          const isSelected = filters.houseType === opt.value;
+
+                          return (
+                            <label
+                              key={opt.value}
+                              className="w-full  gap-[4rem] md:gap-0 h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleFilterChange("houseType", opt.value);
+                                setShowHouseTypeDropdown(false);
+                              }}
+                            >
+                              <span className="text-black text-sm md:text-lg">
+                                {opt.label}
+                              </span>
+
+                              {/* Circle radio container */}
+                              <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 border-primary">
+                                {/* Inner filled circle when selected */}
+                                {isSelected && (
+                                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
+                                )}
+                              </div>
+                            </label>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </>
+                )}
+              </div>
+            );
+          }
+
+          // Price and Type dropdowns
+          const dropdownState =
+            option === "Price" ? showPriceDropdown : showHomeTypeDropdown;
+          const setDropdownState =
+            option === "Price" ? setShowPriceDropdown : setShowHomeTypeDropdown;
+
+          const options =
+            option === "Price" ? priceOptions[selectedType] : typeFilterOptions;
+
+          return (
+            <div className="relative" key={option}>
+              <button
+                type="button"
+                className={`border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2 ${
+                  option === "Price" ? "hidden md:flex" : ""
+                }`}
+                onClick={() => setDropdownState(!dropdownState)}
+              >
+                <span>
+                  {option === "Type"
+                    ? filters["home-type"]
+                      ? filters["home-type"].charAt(0).toUpperCase() +
+                        filters["home-type"].slice(1)
+                      : "Type"
+                    : option === "Price"
+                    ? getPriceLabel()
+                    : option}
+                </span>
+                <Image
+                  width={500}
+                  height={300}
+                  src="/arrow-down.png"
+                  alt="Dropdown"
+                  className="w-3 h-2 pointer-events-none flex-shrink-0"
+                />
+              </button>
+              {dropdownState && (
+                <>
+                  <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-[1110]"
+                    onClick={() => setDropdownState(false)}
+                  ></div>
+                  <div
+                    className="absolute z-[111111] left-[23%] top-[14%] md:top-[110%] md:left-0 bg-white border border-[#8F8F8F] rounded-md px-2 py-2 mt-2 md:mt-0 md:w-[350px]"
+                    ref={
+                      option === "Price"
+                        ? priceDropdownRef
+                        : homeTypeDropdownRef
+                    }
+                  >
+                    <ul className="flex flex-col gap-2">
+                      {options.map((opt) => {
+                        const isSelected =
+                          option === "Price"
+                            ? filters.price === opt.value
+                            : filters["home-type"] === opt.value;
+
+                        return (
+                          <label
+                            key={opt.value}
+                            className="w-full gap-[4em] md:gap-0 h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (option === "Price") {
+                                handleFilterChange("price", opt.value);
+                                setShowPriceDropdown(false);
+                              } else {
+                                handleFilterChange("home-type", opt.value);
+                                setShowHomeTypeDropdown(false);
+                              }
+                            }}
+                          >
+                            <span className="text-black text-sm md:text-lg">
+                              {opt.label}
+                            </span>
+
+                            {/* Circle radio container */}
+                            <div
+                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                                isSelected ? "border-primary" : "border-primary"
+                              }`}
+                            >
+                              {/* Inner filled circle when selected */}
+                              {isSelected && (
+                                <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
+                              )}
+                            </div>
+                          </label>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </>
+              )}
+            </div>
+          );
+        })}
+
+        <button
+          onClick={() => setShowAllFiltersDropdown(true)}
+          className="border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
+        >
+          <span className="flex items-center gap-2">
+            <Image
+              src="/allfilter.png"
+              alt="Filter"
+              width={16}
+              height={15}
+              className="w-4 h-4"
+            />
+            All Filters
+          </span>
+        </button>
+        <FiltersDropdown
+          isOpen={showAllFiltersDropdown}
+          onClose={() => setShowAllFiltersDropdown(false)}
+          filters={filters}
+          userCountrys={userCountry}
+          onFilterChange={handleFilterChange}
+          onSearch={handleSearchClick}
+          isSearching={isSearching}
+        />
+        <button
+          onClick={async () => {
+            setIsSearching(true);
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            handleSearchClick();
+            await new Promise((resolve) => setTimeout(resolve, 300));
+            setIsSearching(false);
+          }}
+          className="px-4 py-2 bg-primary text-base text-white font-light rounded-md flex items-center md:w-[150px] justify-center"
+          disabled={isSearching}
+        >
+          {isSearching ? (
+            <svg
+              className="animate-spin h-5 w-5 mr-2 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+              ></path>
+            </svg>
+          ) : (
+            "Search"
+          )}
+        </button>
+      </div>
+
+      {/* Right Section: List / Map Toggle */}
+      <div className="hidden md:flex w-[15rem] bg-[#F9FAFB] gap-[10px] p-3 border-[#8F8F8F] justify-between border-solid border-[0.5px] items-center font-base rounded-[5px] md:p-[3px] relative">
+        {["List", "Map"].map((option, index) => (
+          <React.Fragment key={index}>
+            <button
+              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${
+                (showMap ? "Map" : "List") === option
+                  ? "bg-primary gap-[10px] flex text-white"
+                  : "text-[#8F8F8F]"
+              }`}
+              onClick={() => setShowMap(option === "Map")}
+            >
+              {option}
+            </button>
+            {index === 0 && (
+              <div className="absolute w-[1px] h-[70%] bg-[#8F8F8F] left-1/2 transform -translate-x-1/2"></div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
     </div>
   );
-});
-
-LazyListingItem.displayName = "LazyListingItem";
-
-// ====================================
-// MAIN PAGE COMPONENT
-// ====================================
-const PageComponent = () => {
+};
+const page = () => {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [showMap, setShowMap] = useState(false);
-  const [sortBy, setSortBy] = useState("newest");
-
-  const sortDropdownRef = useRef(null);
-  const isMountedRef = useRef(true);
-  const preloadedLinksRef = useRef(new Set());
-
-  // ====================================
-  // 🔥 FIX: Stable query object
-  // ====================================
   const query = useMemo(() => {
-    if (!searchParams) return {};
-
-    const params = {};
-    searchParams.forEach((value, key) => {
-      params[key] = value;
-    });
-
-    return params;
+    return Object.fromEntries(searchParams?.entries() ?? []);
   }, [searchParams]);
-
-  // ====================================
-  // 🔥 iOS: NO API CALL - Android/Desktop: Normal API Call
-  // ====================================
-  const apiResult = isIOSDevice
-    ? {
-        data: null,
-        isLoading: false,
-        error: null,
-        isFetching: false,
-      }
-    : useGetAllListingsQuery(query, {
-        skip: false,
-        refetchOnMountOrArgChange: 30,
-        refetchOnFocus: false,
-        refetchOnReconnect: true,
-        pollingInterval: 0,
-      });
-
   const {
     data: allListings,
     isLoading: isAllloading,
-    error: listingsError,
-  } = apiResult;
+    refetch,
+  } = useGetAllListingsQuery(query);
 
-  // ====================================
-  // MEMOIZED: Process listings
-  // ====================================
-  const { displayListings, coordinates, totalPages, currentPage } =
-    useMemo(() => {
-      if (isAllloading || !allListings?.listings) {
-        return {
-          displayListings: [],
-          coordinates: [],
-          totalPages: 1,
-          currentPage: Number(searchParams?.get("page")) || 1,
-        };
-      }
+  const [displayListings, setDisplayListings] = useState([]);
+  const router = useRouter();
+  // Add these state variables at the top of your page component (around line 600)
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [sortBy, setSortBy] = useState("newest"); // default to newest
+  const sortDropdownRef = useRef(null);
+  const [coordinates, setCoordinates] = useState([]);
+  const [imageUrls, setImageUrls] = useState([]);
 
-      try {
-        const listings = allListings.listings;
-        if (!Array.isArray(listings)) {
-          return {
-            displayListings: [],
-            coordinates: [],
-            totalPages: 1,
-            currentPage: 1,
-          };
-        }
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      const newParams = new URLSearchParams(searchParams.toString());
+      newParams.set("page", page.toString());
+      router.push(`/rent/searchlisting?${newParams.toString()}`);
+    }
+  };
 
-        const flatListings = flattenListings(listings);
-
-        const processedListings = flatListings
-          .filter(
-            (item) =>
-              item?.item?.coordinate?.latitude &&
-              item?.item?.coordinate?.longitude
-          )
-          .sort((a, b) => {
-            const dateA = new Date(a.createdAt || a.item?.createdAt);
-            const dateB = new Date(b.createdAt || b.item?.createdAt);
-
-            switch (sortBy) {
-              case "newest":
-                return dateB - dateA;
-              case "oldest":
-                return dateA - dateB;
-              case "price-low":
-                return (a.item?.price || 0) - (b.item?.price || 0);
-              case "price-high":
-                return (b.item?.price || 0) - (a.item?.price || 0);
-              default:
-                return dateB - dateA;
-            }
-          });
-
-        const coords = processedListings.map((item) => item.item.coordinate);
-
-        return {
-          displayListings: processedListings,
-          coordinates: coords,
-          totalPages: allListings.totalPages || 1,
-          currentPage: Number(searchParams?.get("page")) || 1,
-        };
-      } catch (error) {
-        console.error("Error processing listings:", error);
-        return {
-          displayListings: [],
-          coordinates: [],
-          totalPages: 1,
-          currentPage: 1,
-        };
-      }
-    }, [allListings, isAllloading, sortBy, searchParams]);
-
-  // ====================================
-  // Page change handler
-  // ====================================
-  const handlePageChange = useCallback(
-    (page) => {
-      if (page >= 1 && page <= totalPages) {
-        const newParams = new URLSearchParams(searchParams?.toString());
-        newParams.set("page", page.toString());
-
-        router.push(`/rent/searchlisting?${newParams.toString()}`, {
-          scroll: false,
-        });
-
-        if (isIOSDevice) {
-          setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }, 100);
-        } else {
-          requestAnimationFrame(() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          });
-        }
-      }
-    },
-    [totalPages, searchParams, router]
-  );
-
-  // ====================================
-  // 🔥 PLATFORM-SPECIFIC: Image preloading
-  // ====================================
+  // Update the useEffect that sets displayListings (around line 650)
   useEffect(() => {
-    if (typeof window === "undefined" || displayListings.length === 0) return;
+    if (!isAllloading && allListings) {
+      const firstThreeListings = allListings.listings;
+      const flatListings = flattenListings(firstThreeListings);
 
-    const cleanup = () => {
-      preloadedLinksRef.current.forEach((url) => {
-        const links = document.querySelectorAll(
-          `link[rel="preload"][href="${url}"]`
-        );
-        links.forEach((link) => {
-          try {
-            link.remove();
-          } catch (e) {
-            // Ignore
-          }
-        });
+      // Filter listings with valid coordinates
+      const listingsWithCoords = flatListings.filter(
+        (item) =>
+          item?.item?.coordinate?.latitude && item?.item?.coordinate?.longitude
+      );
+
+      // Sort listings based on sortBy state
+      const sortedListings = [...listingsWithCoords].sort((a, b) => {
+        const dateA = new Date(a.createdAt || a.item?.createdAt);
+        const dateB = new Date(b.createdAt || b.item?.createdAt);
+
+        switch (sortBy) {
+          case "newest":
+            return dateB - dateA; // newest first
+          case "oldest":
+            return dateA - dateB; // oldest first
+          case "price-low":
+            return (a.item?.price || 0) - (b.item?.price || 0);
+          case "price-high":
+            return (b.item?.price || 0) - (a.item?.price || 0);
+          default:
+            return dateB - dateA;
+        }
       });
-      preloadedLinksRef.current.clear();
-    };
 
-    cleanup();
+      const images = flatListings.flatMap((item) => item.imageUrls || []);
+      setImageUrls(images);
 
-    const preloadCount = isIOSDevice ? 1 : 3;
-    const imagesToPreload = displayListings.slice(0, preloadCount);
-
-    imagesToPreload.forEach((item) => {
-      const imgUrl = item?.imageUrls?.[0]?.url;
+      setCoordinates(sortedListings.map((item) => item.item.coordinate));
+      setDisplayListings(sortedListings);
+      setTotalPages(allListings.totalPages || 1);
+      setCurrentPage(Number(searchParams.get("page")) || 1);
+    }
+  }, [allListings, isAllloading, sortBy]);
+  useEffect(() => {
+    function handleClickOutside(event) {
       if (
-        imgUrl &&
-        imgUrl !== "/house1.png" &&
-        !preloadedLinksRef.current.has(imgUrl)
+        sortDropdownRef.current &&
+        !sortDropdownRef.current.contains(event.target)
       ) {
-        try {
-          const link = document.createElement("link");
-          link.rel = "preload";
-          link.as = "image";
-          link.href = imgUrl;
-
-          if (isIOSDevice) {
-            link.fetchPriority = "low";
-          } else {
-            link.fetchPriority = "high";
-          }
-
-          document.head.appendChild(link);
-          preloadedLinksRef.current.add(imgUrl);
-        } catch (e) {
-          console.error("Error preloading image:", e);
-        }
+        setShowSortDropdown(false);
       }
-    });
-
-    return cleanup;
-  }, [displayListings.length]);
-
-  // ====================================
-  // Cleanup on unmount
-  // ====================================
-  useEffect(() => {
-    isMountedRef.current = true;
-
+    }
+    if (showSortDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
     return () => {
-      isMountedRef.current = false;
-      sortDropdownRef.current = null;
-
-      preloadedLinksRef.current.forEach((url) => {
-        const links = document.querySelectorAll(
-          `link[rel="preload"][href="${url}"]`
-        );
-        links.forEach((link) => {
-          try {
-            link.remove();
-          } catch (e) {
-            // Ignore
-          }
-        });
-      });
-      preloadedLinksRef.current.clear();
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [showSortDropdown]);
 
-  // ====================================
-  // Error handling
-  // ====================================
-  if (listingsError) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen p-8">
-        <p className="text-red-600 text-center text-lg">
-          Error loading listings. Please try again.
-        </p>
-        <button
-          onClick={() => window.location.reload()}
-          className="mt-4 px-6 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
-        >
-          Reload Page
-        </button>
-      </div>
-    );
-  }
-
-  // ====================================
-  // 🔥 PLATFORM-SPECIFIC STYLES
-  // ====================================
-  const gridStyles = isIOSDevice
-    ? {
-        willChange: "transform",
-        transform: "translate3d(0,0,0)",
-        WebkitTransform: "translate3d(0,0,0)",
-        WebkitBackfaceVisibility: "hidden",
-        WebkitPerspective: "1000",
-      }
-    : {
-        contentVisibility: "auto",
-        containIntrinsicSize: "1px 500px",
-        willChange: "transform",
-        transform: "translateZ(0)",
-      };
-
+  //  if (isAllloading) {
+  //    return (
+  //      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
+  //        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
+  //      </div>
+  //    );
+  //  }
   return (
     <div className="md:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1240px]">
       <Breadcrumb showMap={showMap} setShowMap={setShowMap} />
-
-      {/* Header Section */}
-      <div className="flex items-start mt-3 p-4 md:p-0 md:mt-[1rem] w-full md:justify-between flex-col gap-3 md:gap-0 md:flex-row">
-        <h1 className="text-black hidden md:block font-semibold text-2xl md:text-4xl">
+      <div className="flex items-start mt-3 p-4 md:p-0  md:mt-[1rem] w-full md:justify-between flex-col  gap-3 md:gap-0 md:flex-row   ">
+        <h1 className="text-black  hidden md:block font-semibold text-2xl md:text-4xl">
           All Real-estate & Homes for Sale
         </h1>
         <h1 className="text-black md:hidden font-semibold text-2xl md:text-4xl">
           All Homes for Sale
         </h1>
-        <div className="text-gray-600 fex-end md:ml-[0rem] 2xl:ml-0 text-sm flex items-center space-x-4">
+        <div className="text-gray-600  fex-end md:ml-[0rem] 2xl:ml-0 text-sm flex items-center space-x-4">
           <span className="flex gap-2">
-            {Math.min(displayListings.length, 7)}{" "}
-            <p className="font-[300] text-gray">of</p>
+            {displayListings.slice(0, 7).length}{" "}
+            <p className="font-[300] text-gray"> of</p>
             {displayListings.length} Homes
           </span>
         </div>
       </div>
-
-      <div className="w-screen md:my-[1rem] h-[2px] bg-[#D9D9D9]" />
-
-      {/* Main Content */}
+      <div className="w-screen  md:my-[1rem]   h-[2px] bg-[#D9D9D9] " />
       {showMap ? (
         <MapComponent coordinates={coordinates} />
       ) : (
@@ -476,53 +795,60 @@ const PageComponent = () => {
           {isAllloading ? (
             <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 gap-6 p-5 md:p-0">
               {[...Array(6)].map((_, index) => (
-                <PropertySkeleton key={`skeleton-${index}`} />
+                <PropertySkeleton key={index} />
               ))}
             </div>
           ) : displayListings.length === 0 ? (
             <div className="flex flex-col items-center justify-center mt-12 p-8">
               <p className="text-gray-600 text-center text-lg">
-                {isIOSDevice
-                  ? "Please reload the page to load listings."
-                  : "No listings found for your search."}
+                No listings found for your search.
               </p>
               <p className="text-gray-400 text-center text-sm mt-2">
-                {isIOSDevice
-                  ? "API calls are disabled on iOS for performance."
-                  : "Try adjusting your filters or search criteria."}
+                Try adjusting your filters or search criteria.
               </p>
             </div>
           ) : (
-            <>
-              {/* 🔥 PLATFORM-SPECIFIC GRID */}
-              <div
-                className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-[1rem] mt-[1.5rem] md:mt-[1rem] w-full p-5 md:p-0 place-items-center"
-                style={gridStyles}
-              >
-                {displayListings.map((items, index) => (
-                  <LazyListingItem
-                    key={items?._id || `listing-${index}`}
-                    items={items}
-                    index={index}
-                  />
-                ))}
-              </div>
-
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <Pagination
-                  totalPages={totalPages}
-                  display={displayListings}
-                  currentPage={currentPage}
-                  onPageChange={handlePageChange}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-[1rem] mt-[1.5rem] md:mt-[1rem] w-full p-5 md:p-0 place-items-center">
+              {displayListings.map((items, index) => (
+                <PropertyListCard
+                  key={items?._id || index}
+                  imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                  altText={
+                    items?.imageUrls?.[0]?.altText ||
+                    "Property image showcasing a beautiful home"
+                  }
+                  price={items?.item?.price || "Price not available"}
+                  area={items?.item?.squareFeet}
+                  bathrooms={items?.item?.bathrooms}
+                  bedrooms={items?.item?.bedrooms}
+                  region={items?.region}
+                  description={
+                    items?.item?.description ||
+                    "No description available for this property."
+                  }
+                  _id={items?._id}
+                  title={items?.item?.title || "Untitled Property"}
+                  rent={items?.item?.rent || "Rent details not provided"}
+                  squareFeet={items?.item?.squareFeet}
+                  landSize={items?.item?.landSize}
+                  listingType={items?.listingType || "N/A"}
                 />
-              )}
-            </>
+              ))}
+            </div>
+          )}
+          {!isAllloading && displayListings.length > 0 && (
+            <Pagination
+              totalPages={totalPages}
+              display={displayListings}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
           )}
         </>
       )}
+      {/* second div layout  */}
     </div>
   );
 };
 
-export default PageComponent;
+export default page;
