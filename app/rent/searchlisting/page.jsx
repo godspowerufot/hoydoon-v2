@@ -35,10 +35,10 @@ const Pagination = dynamic(() => import("@/app/components/common/pagination"), {
   ssr: false,
 });
 
-const Breadcrumb = dynamic(
-  () => import("../../components/layouts/breadcrumbs"),
-  { ssr: false }
-);
+// const Breadcrumb = dynamic(
+//   () => import("../../components/layouts/breadcrumbs"),
+//   { ssr: false }
+// );
 
 // ====================================
 // MEMOIZED PROPERTY CARD COMPONENT
@@ -340,7 +340,7 @@ const Page = () => {
 
   return (
     <div className="md:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1240px]">
-      <Breadcrumb showMap={showMap} setShowMap={setShowMap} />
+      {/* <Breadcrumb showMap={showMap} setShowMap={setShowMap} /> */}
 
       {/* Header Section */}
       <div className="flex items-start mt-3 p-4 md:p-0 md:mt-[1rem] w-full md:justify-between flex-col gap-3 md:gap-0 md:flex-row">
