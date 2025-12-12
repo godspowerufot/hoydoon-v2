@@ -5,33 +5,47 @@
 export async function getLocationRegion() {
   // Check if already processing to prevent concurrent calls
   if (typeof window !== "undefined") {
-    const isProcessing = sessionStorage.getItem("location_processing");
-    if (isProcessing === "true") {
-      // Wait and retry once
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      const cached = sessionStorage.getItem("user_location_region");
-      if (cached) {
-        try {
-          return JSON.parse(cached);
-        } catch (e) {
-          console.error("Error parsing cached location:", e);
+    try {
+      const isProcessing = sessionStorage.getItem("location_processing");
+      if (isProcessing === "true") {
+        // Wait and retry once
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        const cached = sessionStorage.getItem("user_location_region");
+        if (cached) {
+          try {
+            return JSON.parse(cached);
+          } catch (e) {
+            console.error("Error parsing cached location:", e);
+          }
         }
       }
-    }
 
-    // Check cache first
-    const cachedLocation = sessionStorage.getItem("user_location_region");
-    if (cachedLocation) {
-      try {
-        return JSON.parse(cachedLocation);
-      } catch (e) {
-        console.error("Error parsing cached location:", e);
-        sessionStorage.removeItem("user_location_region");
+      // Check cache first
+      const cachedLocation = sessionStorage.getItem("user_location_region");
+      if (cachedLocation) {
+        try {
+          return JSON.parse(cachedLocation);
+        } catch (e) {
+          console.error("Error parsing cached location:", e);
+          try {
+            sessionStorage.removeItem("user_location_region");
+          } catch (removeError) {
+            console.warn("Could not remove invalid cache:", removeError);
+          }
+        }
       }
-    }
 
-    // Set processing flag
-    sessionStorage.setItem("location_processing", "true");
+      // Set processing flag
+      try {
+        sessionStorage.setItem("location_processing", "true");
+      } catch (storageError) {
+        console.warn("SessionStorage unavailable:", storageError);
+        // Continue without caching
+      }
+    } catch (error) {
+      console.warn("SessionStorage access failed:", error);
+      // Continue without caching
+    }
   }
 
   let country = "default"; // Default value instead of null
@@ -63,8 +77,13 @@ export async function getLocationRegion() {
 
   // Cache the result and clear processing flag
   if (typeof window !== "undefined") {
-    sessionStorage.setItem("user_location_region", JSON.stringify(result));
-    sessionStorage.removeItem("location_processing");
+    try {
+      sessionStorage.setItem("user_location_region", JSON.stringify(result));
+      sessionStorage.removeItem("location_processing");
+    } catch (storageError) {
+      console.warn("Could not cache location result:", storageError);
+      // Continue without caching - not critical
+    }
   }
 
   return result;
