@@ -13,6 +13,7 @@ import MapComponent from "@/app/components/layouts/listingmap";
 import { getLocationRegion } from "@/utils/lib/index";
 import { PropertySkeleton } from "@/app/components/Loader";
 import { FiltersDropdown } from "@/app/components/common/filters";
+import ErrorBoundary from "@/app/components/common/error-boundary";
 const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -352,10 +353,10 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                     {filters.bedBaths === "0-2"
                       ? "0 - 2"
                       : filters.bedBaths === "2-4"
-                      ? "2 - 4"
-                      : filters.bedBaths === "5+"
-                      ? "5 & Above"
-                      : "Bed/Baths"}
+                        ? "2 - 4"
+                        : filters.bedBaths === "5+"
+                          ? "5 & Above"
+                          : "Bed/Baths"}
                   </span>
 
                   <Image
@@ -504,20 +505,19 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             <div className="relative" key={option}>
               <button
                 type="button"
-                className={`border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2 ${
-                  option === "Price" ? "hidden md:flex" : ""
-                }`}
+                className={`border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2 ${option === "Price" ? "hidden md:flex" : ""
+                  }`}
                 onClick={() => setDropdownState(!dropdownState)}
               >
                 <span>
                   {option === "Type"
                     ? filters["home-type"]
                       ? filters["home-type"].charAt(0).toUpperCase() +
-                        filters["home-type"].slice(1)
+                      filters["home-type"].slice(1)
                       : "Type"
                     : option === "Price"
-                    ? getPriceLabel()
-                    : option}
+                      ? getPriceLabel()
+                      : option}
                 </span>
                 <Image
                   width={500}
@@ -569,9 +569,8 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
 
                             {/* Circle radio container */}
                             <div
-                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                                isSelected ? "border-primary" : "border-primary"
-                              }`}
+                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected ? "border-primary" : "border-primary"
+                                }`}
                             >
                               {/* Inner filled circle when selected */}
                               {isSelected && (
@@ -598,7 +597,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
               src="/allfilter.png"
               alt="Filter"
               width={16}
-              height={15}
+              height={16}
               className="w-4 h-4"
             />
             All Filters
@@ -656,11 +655,10 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
-              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${
-                (showMap ? "Map" : "List") === option
-                  ? "bg-primary gap-[10px] flex text-white"
-                  : "text-[#8F8F8F]"
-              }`}
+              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${(showMap ? "Map" : "List") === option
+                ? "bg-primary gap-[10px] flex text-white"
+                : "text-[#8F8F8F]"
+                }`}
               onClick={() => setShowMap(option === "Map")}
             >
               {option}
@@ -708,41 +706,111 @@ const page = () => {
   // Update the useEffect that sets displayListings (around line 650)
   useEffect(() => {
     if (!isAllloading && allListings) {
-      const firstThreeListings = allListings.listings;
-      const flatListings = flattenListings(firstThreeListings);
+      try {
+        const firstThreeListings = allListings.listings;
+        const flatListings = flattenListings(firstThreeListings);
 
-      // Filter listings with valid coordinates
-      const listingsWithCoords = flatListings.filter(
-        (item) =>
-          item?.item?.coordinate?.latitude && item?.item?.coordinate?.longitude
-      );
+        // Validation helper functions
+        const isValidCoordinate = (coord) => {
+          if (!coord) return false;
+          const lat = coord.latitude;
+          const lng = coord.longitude;
+          return (
+            typeof lat === 'number' &&
+            typeof lng === 'number' &&
+            !isNaN(lat) &&
+            !isNaN(lng) &&
+            isFinite(lat) &&
+            isFinite(lng) &&
+            lat >= -90 &&
+            lat <= 90 &&
+            lng >= -180 &&
+            lng <= 180
+          );
+        };
 
-      // Sort listings based on sortBy state
-      const sortedListings = [...listingsWithCoords].sort((a, b) => {
-        const dateA = new Date(a.createdAt || a.item?.createdAt);
-        const dateB = new Date(b.createdAt || b.item?.createdAt);
+        const parseDate = (dateValue) => {
+          if (!dateValue) {
+            console.warn('Date value is null or undefined, using epoch');
+            return new Date(0);
+          }
+          const date = new Date(dateValue);
+          if (isNaN(date.getTime())) {
+            console.warn('Invalid date detected:', dateValue);
+            return new Date(0);
+          }
+          return date;
+        };
 
-        switch (sortBy) {
-          case "newest":
-            return dateB - dateA; // newest first
-          case "oldest":
-            return dateA - dateB; // oldest first
-          case "price-low":
-            return (a.item?.price || 0) - (b.item?.price || 0);
-          case "price-high":
-            return (b.item?.price || 0) - (a.item?.price || 0);
-          default:
-            return dateB - dateA;
-        }
-      });
+        // Filter listings with valid coordinates
+        const listingsWithCoords = flatListings.filter((item) => {
+          const hasCoords = item?.item?.coordinate?.latitude && item?.item?.coordinate?.longitude;
+          if (hasCoords) {
+            const isValid = isValidCoordinate(item.item.coordinate);
+            if (!isValid) {
+              console.warn('Invalid coordinates detected:', item.item.coordinate);
+            }
+            return isValid;
+          }
+          return false;
+        });
 
-      const images = flatListings.flatMap((item) => item.imageUrls || []);
-      setImageUrls(images);
+        console.log('Filtered listings with valid coords:', listingsWithCoords.length);
 
-      setCoordinates(sortedListings.map((item) => item.item.coordinate));
-      setDisplayListings(sortedListings);
-      setTotalPages(allListings.totalPages || 1);
-      setCurrentPage(Number(searchParams.get("page")) || 1);
+        // Sort listings based on sortBy state with safe date parsing
+        const sortedListings = [...listingsWithCoords].sort((a, b) => {
+          try {
+            const dateA = parseDate(a.createdAt || a.item?.createdAt);
+            const dateB = parseDate(b.createdAt || b.item?.createdAt);
+
+            switch (sortBy) {
+              case "newest":
+                return dateB.getTime() - dateA.getTime(); // newest first
+              case "oldest":
+                return dateA.getTime() - dateB.getTime(); // oldest first
+              case "price-low": {
+                const priceA = Number(a.item?.price) || 0;
+                const priceB = Number(b.item?.price) || 0;
+                if (isNaN(priceA) || isNaN(priceB)) {
+                  console.warn('Invalid price detected:', { priceA, priceB });
+                  return 0;
+                }
+                return priceA - priceB;
+              }
+              case "price-high": {
+                const priceA = Number(a.item?.price) || 0;
+                const priceB = Number(b.item?.price) || 0;
+                if (isNaN(priceA) || isNaN(priceB)) {
+                  console.warn('Invalid price detected:', { priceA, priceB });
+                  return 0;
+                }
+                return priceB - priceA;
+              }
+              default:
+                return dateB.getTime() - dateA.getTime();
+            }
+          } catch (error) {
+            console.error('Error during sorting:', error);
+            return 0; // Maintain order on error
+          }
+        });
+
+        const images = flatListings.flatMap((item) => item.imageUrls || []);
+        setImageUrls(images);
+
+        setCoordinates(sortedListings.map((item) => item.item.coordinate));
+        setDisplayListings(sortedListings);
+        setTotalPages(allListings.totalPages || 1);
+        setCurrentPage(Number(searchParams.get("page")) || 1);
+
+        console.log('Data processing completed successfully');
+      } catch (error) {
+        console.error('Critical error in data processing:', error);
+        // Set empty state to prevent crash
+        setDisplayListings([]);
+        setCoordinates([]);
+        setImageUrls([]);
+      }
     }
   }, [allListings, isAllloading, sortBy]);
   useEffect(() => {
@@ -851,4 +919,12 @@ const page = () => {
   );
 };
 
-export default page;
+// Wrap the page component with ErrorBoundary
+const WrappedPage = () => (
+  <ErrorBoundary>
+    {page()}
+  </ErrorBoundary>
+);
+
+export default WrappedPage;
+
