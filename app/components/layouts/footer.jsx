@@ -188,22 +188,24 @@ const Appfooter = () => {
                   <ul className="mt-1 lg:mt-[4px] space-y-2 text-sm">
                     <li>
                       <Image
-                        src="/app1.svg" // Use a high-quality image
-                        alt="Hero section"
+                        src="/app1.svg"
+                        alt="Download on App Store"
                         width={100}
-                        height={200}
-                        quality={100} // Ensures maximum quality
-                        priority // Loads image faster
+                        height={30}
+                        quality={100}
+                        priority
+                        style={{ height: 'auto' }}
                       />
                     </li>
                     <li>
                       <Image
-                        src="/app2.svg" // Use a high-quality image
-                        alt="Hero section"
+                        src="/app2.svg"
+                        alt="Get it on Google Play"
                         width={100}
-                        height={200}
-                        quality={100} // Ensures maximum quality
-                        priority // Loads image faster
+                        height={30}
+                        quality={100}
+                        priority
+                        style={{ height: 'auto' }}
                       />
                     </li>
                   </ul>
