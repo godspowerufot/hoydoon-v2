@@ -8,12 +8,13 @@ import Pagination from "@/app/components/common/pagination";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useRouter, useSearchParams } from "next/navigation";
 import PropertyListCard from "@/app/components/common/PropertyListing";
-import { flattenListings, log } from "@/utils";
+import { flattenListings } from "@/utils";
 import MapComponent from "@/app/components/layouts/listingmap";
 import { getLocationRegion } from "@/utils/lib/index";
 import { PropertySkeleton } from "@/app/components/Loader";
 import { FiltersDropdown } from "@/app/components/common/filters";
 import ErrorBoundary from "@/app/components/common/error-boundary";
+
 const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -27,9 +28,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   const [showBedBathDropdown, setShowBedBathDropdown] = useState(false);
   const [showHouseTypeDropdown, setShowHouseTypeDropdown] = useState(false);
 
-  const [bedValue, setBedValue] = useState("");
-  const [bathValue, setBathValue] = useState("");
-
   const [filters, setFilters] = useState({
     price: "",
     "home-type": "",
@@ -39,7 +37,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     houseType: "",
   });
 
-  // Sync filters with URL params on mount and when searchParams change
   useEffect(() => {
     const minPrice = searchParams.get("minPrice");
     const maxPrice = searchParams.get("maxPrice");
@@ -48,10 +45,8 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     const bathrooms = searchParams.get("bathrooms");
     const houseType = searchParams.get("houseType");
 
-    // Reconstruct price range from minPrice and maxPrice
     const priceValue = minPrice && maxPrice ? `${minPrice}-${maxPrice}` : "";
 
-    // Map API listing type back to filter value
     const typeMapping = {
       sale: "buy",
       rent: "rent",
@@ -69,10 +64,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       bathrooms: bathrooms || "",
       houseType: houseType || "",
     });
-
-    // Update bed/bath display values
-    setBedValue(bedrooms || "");
-    setBathValue(bathrooms || "");
   }, [searchParams]);
 
   useEffect(() => {
@@ -90,7 +81,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   const houseTypeDropdownRef = useRef(null);
 
   const priceOptions = useMemo(() => {
-    // Nigeria-specific price ranges (Naira)
     if (userCountry === "nigeria") {
       return {
         Buy: [
@@ -121,7 +111,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       };
     }
 
-    // Default price ranges (USD for other countries)
     return {
       Buy: [
         { label: "Any", value: "" },
@@ -176,7 +165,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       { label: "Land", value: "land" },
     ];
 
-    // Only add shortlet for Nigeria
     if (userCountry !== "somalia") {
       baseOptions.push({ label: "Shortlet", value: "shortlet" });
     }
@@ -189,11 +177,8 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     "Rent";
 
   const handleFilterChange = (filterName, value) => {
-    // Mark that user has interacted with filters
     if (!hasInteracted) {
       setHasInteracted(true);
-      // Clear URL params on first interaction
-      router.replace("/rent/searchlisting", { scroll: false });
     }
 
     setFilters((prevFilters) => ({
@@ -205,7 +190,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
   const handleSearchClick = () => {
     const newParams = new URLSearchParams();
 
-    // Handle Price Filter
     if (filters.price) {
       const [min, max] = filters.price.split("-");
       if (!isNaN(Number(min)) && !isNaN(Number(max))) {
@@ -214,7 +198,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       }
     }
 
-    // Always map listingType for API
     const typeToApiValue = {
       buy: "sale",
       rent: "rent",
@@ -228,7 +211,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
       );
     }
 
-    // Handle Other Filters
     if (filters.location) {
       newParams.set("location", filters.location);
     }
@@ -243,10 +225,11 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     }
 
     const queryString = newParams.toString();
-    router.push(`/rent/searchlisting${queryString ? `?${queryString}` : ""}`);
+    router.push(`/rent/fixes${queryString ? `?${queryString}` : ""}`, {
+      scroll: false,
+    });
   };
 
-  // Helper function to get the display label for price based on current filters
   const getPriceLabel = () => {
     if (!filters.price) return "Price";
     const option = priceOptions[selectedType]?.find(
@@ -255,7 +238,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     return option ? option.label : "Price";
   };
 
-  // Close dropdowns on outside click
   useEffect(() => {
     function handleClickOutside(event) {
       if (bedBathRef.current && !bedBathRef.current.contains(event.target)) {
@@ -264,9 +246,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     }
     if (showBedBathDropdown) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside, {
+        passive: true,
+      });
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [showBedBathDropdown]);
 
@@ -278,9 +264,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     }
     if (showAllFiltersDropdown) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside, {
+        passive: true,
+      });
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [showAllFiltersDropdown]);
 
@@ -295,9 +285,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     }
     if (showPriceDropdown) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside, {
+        passive: true,
+      });
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [showPriceDropdown]);
 
@@ -312,9 +306,13 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     }
     if (showHomeTypeDropdown) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside, {
+        passive: true,
+      });
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [showHomeTypeDropdown]);
 
@@ -329,22 +327,23 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     }
     if (showHouseTypeDropdown) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside, {
+        passive: true,
+      });
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [showHouseTypeDropdown]);
 
   return (
     <div className="md:pt-[2.3rem] flex-wrap -mb-[2.5rem] md:mb-0 flex-col md:flex-row md:flex justify-between w-full">
-      {/* Left Section: Filters */}
-      <div className="flex items-center p-[1rem] md:p-0 flex-wrap gap-[4px] md:gap-3">
-        {/* Individual Filter Buttons */}
+      <div className="flex items-center pt-[2rem] md:pt-0 md:p-0 flex-wrap gap-[4px] md:gap-3">
         {["Type", "Price", "Bed/Baths", "House Type"].map((option) => {
           if (option === "Bed/Baths") {
             return (
               <div className="relative" key={option}>
-                {/* BUTTON */}
                 <button
                   onClick={() => setShowBedBathDropdown(true)}
                   className="border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
@@ -353,39 +352,35 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                     {filters.bedBaths === "0-2"
                       ? "0 - 2"
                       : filters.bedBaths === "2-4"
-                        ? "2 - 4"
-                        : filters.bedBaths === "5+"
-                          ? "5 & Above"
-                          : "Bed/Baths"}
+                      ? "2 - 4"
+                      : filters.bedBaths === "5+"
+                      ? "5 & Above"
+                      : "Bed/Baths"}
                   </span>
-
-                  <Image
-                    width={500}
-                    height={500}
-                    src="/arrow-down.png"
-                    alt="Dropdown"
-                    className="w-3 h-2 pointer-events-none flex-shrink-0"
-                  />
+                  <span className="text-xs">
+                    {" "}
+                    <Image
+                      width={500}
+                      height={500}
+                      src="/arrow-down.png"
+                      alt="Dropdown"
+                      className="w-3 h-2 pointer-events-none flex-shrink-0"
+                    />
+                  </span>
                 </button>
 
-                {/* DROPDOWN */}
                 {showBedBathDropdown && (
                   <>
-                    {/* BACKDROP */}
                     <div
                       className="fixed inset-0 bg-black bg-opacity-50 z-[2000]"
                       onClick={() => setShowBedBathDropdown(false)}
                     />
-
-                    {/* PANEL */}
-                    <div className="absolute w-[164px] top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-[3000]  md:w-[350px] overflow-hidden">
-                      {/* Header */}
+                    <div className="absolute w-[164px] top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-[3000] md:w-[350px] overflow-hidden">
                       <div className="px-4 py-2 border-b border-gray-100">
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-black md:text-lg text-base ">
+                          <span className="text-black md:text-lg text-base">
                             Select
                           </span>
-
                           <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
                             {!filters.bedBaths && (
                               <div className="w-3 h-3 rounded-full bg-primary" />
@@ -394,7 +389,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                         </div>
                       </div>
 
-                      {/* OPTIONS */}
                       {[
                         { label: "0 - 2", value: "0-2" },
                         { label: "2 - 4", value: "2-4" },
@@ -411,7 +405,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                           <span className="text-black text-sm md:text-lg">
                             {opt.label}
                           </span>
-
                           <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
                             {filters.bedBaths === opt.value && (
                               <div className="w-3 h-3 rounded-full bg-primary" />
@@ -426,25 +419,27 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             );
           }
 
-          // House Type dropdown
           if (option === "House Type") {
             return (
               <div className="relative hidden md:block" key={option}>
                 <button
                   type="button"
-                  className="border border-[#8F8F8F] bg-transparent text-sm  md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
+                  className="border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2"
                   onClick={() =>
                     setShowHouseTypeDropdown(!showHouseTypeDropdown)
                   }
                 >
                   <span>{filters.houseType || "Duplex"}</span>
-                  <Image
-                    width={500}
-                    height={300}
-                    src="/arrow-down.png"
-                    alt="Dropdown"
-                    className="w-3 h-2 pointer-events-none flex-shrink-0"
-                  />
+                  <span className="text-xs">
+                    {" "}
+                    <Image
+                      width={500}
+                      height={500}
+                      src="/arrow-down.png"
+                      alt="Dropdown"
+                      className="w-3 h-2 pointer-events-none flex-shrink-0"
+                    />
+                  </span>
                 </button>
                 {showHouseTypeDropdown && (
                   <>
@@ -459,11 +454,10 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                       <ul className="flex flex-col gap-2">
                         {homeTypeOptions.map((opt) => {
                           const isSelected = filters.houseType === opt.value;
-
                           return (
                             <label
                               key={opt.value}
-                              className="w-full  gap-[4rem] md:gap-0 h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
+                              className="w-full gap-[4rem] md:gap-0 h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 border-b border-gray last:border-b-0 flex items-center justify-between hover:bg-gray-50 cursor-pointer text-sm sm:text-base"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleFilterChange("houseType", opt.value);
@@ -473,10 +467,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                               <span className="text-black text-sm md:text-lg">
                                 {opt.label}
                               </span>
-
-                              {/* Circle radio container */}
                               <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 border-primary">
-                                {/* Inner filled circle when selected */}
                                 {isSelected && (
                                   <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
                                 )}
@@ -492,7 +483,6 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             );
           }
 
-          // Price and Type dropdowns
           const dropdownState =
             option === "Price" ? showPriceDropdown : showHomeTypeDropdown;
           const setDropdownState =
@@ -505,27 +495,31 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             <div className="relative" key={option}>
               <button
                 type="button"
-                className={`border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2 ${option === "Price" ? "hidden md:flex" : ""
-                  }`}
+                className={`border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2 ${
+                  option === "Price" ? "hidden md:flex" : ""
+                }`}
                 onClick={() => setDropdownState(!dropdownState)}
               >
                 <span>
                   {option === "Type"
                     ? filters["home-type"]
                       ? filters["home-type"].charAt(0).toUpperCase() +
-                      filters["home-type"].slice(1)
+                        filters["home-type"].slice(1)
                       : "Type"
                     : option === "Price"
-                      ? getPriceLabel()
-                      : option}
+                    ? getPriceLabel()
+                    : option}
                 </span>
-                <Image
-                  width={500}
-                  height={300}
-                  src="/arrow-down.png"
-                  alt="Dropdown"
-                  className="w-3 h-2 pointer-events-none flex-shrink-0"
-                />
+                <span className="text-xs">
+                  {" "}
+                  <Image
+                    width={500}
+                    height={500}
+                    src="/arrow-down.png"
+                    alt="Dropdown"
+                    className="w-3 h-2 pointer-events-none flex-shrink-0"
+                  />
+                </span>
               </button>
               {dropdownState && (
                 <>
@@ -566,13 +560,11 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                             <span className="text-black text-sm md:text-lg">
                               {opt.label}
                             </span>
-
-                            {/* Circle radio container */}
                             <div
-                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected ? "border-primary" : "border-primary"
-                                }`}
+                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                                isSelected ? "border-primary" : "border-primary"
+                              }`}
                             >
-                              {/* Inner filled circle when selected */}
                               {isSelected && (
                                 <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
                               )}
@@ -623,42 +615,19 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
           className="px-4 py-2 bg-primary text-base text-white font-light rounded-md flex items-center md:w-[150px] justify-center"
           disabled={isSearching}
         >
-          {isSearching ? (
-            <svg
-              className="animate-spin h-5 w-5 mr-2 text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-              ></path>
-            </svg>
-          ) : (
-            "Search"
-          )}
+          {isSearching ? "Searching..." : "Search"}
         </button>
       </div>
 
-      {/* Right Section: List / Map Toggle */}
       <div className="hidden md:flex w-[15rem] bg-[#F9FAFB] gap-[10px] p-3 border-[#8F8F8F] justify-between border-solid border-[0.5px] items-center font-base rounded-[5px] md:p-[3px] relative">
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
-              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${(showMap ? "Map" : "List") === option
-                ? "bg-primary gap-[10px] flex text-white"
-                : "text-[#8F8F8F]"
-                }`}
+              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${
+                (showMap ? "Map" : "List") === option
+                  ? "bg-primary gap-[10px] flex text-white"
+                  : "text-[#8F8F8F]"
+              }`}
               onClick={() => setShowMap(option === "Map")}
             >
               {option}
@@ -672,52 +641,63 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     </div>
   );
 };
-const page = () => {
+
+const Page = () => {
   const searchParams = useSearchParams();
   const [showMap, setShowMap] = useState(false);
+
   const query = useMemo(() => {
-    return Object.fromEntries(searchParams?.entries() ?? []);
+    const params = Object.fromEntries(searchParams?.entries() ?? []);
+    console.log("Query params:", params); // Debug log
+    return params;
   }, [searchParams]);
+
   const {
     data: allListings,
     isLoading: isAllloading,
-    refetch,
-  } = useGetAllListingsQuery(query);
+    isFetching,
+  } = useGetAllListingsQuery(query, {
+    // Only refetch if args actually changed (not on every render)
+    refetchOnMountOrArgChange: 30, // Cache for 30 seconds
+    // Don't refetch on window focus
+    refetchOnFocus: false,
+    // Don't refetch on reconnect
+    refetchOnReconnect: false,
+  });
 
   const [displayListings, setDisplayListings] = useState([]);
   const router = useRouter();
-  // Add these state variables at the top of your page component (around line 600)
   const [showSortDropdown, setShowSortDropdown] = useState(false);
-  const [sortBy, setSortBy] = useState("newest"); // default to newest
+  const [sortBy, setSortBy] = useState("newest");
   const sortDropdownRef = useRef(null);
   const [coordinates, setCoordinates] = useState([]);
-  const [imageUrls, setImageUrls] = useState([]);
 
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       const newParams = new URLSearchParams(searchParams.toString());
       newParams.set("page", page.toString());
-      router.push(`/rent/searchlisting?${newParams.toString()}`);
+      router.push(`/rent/searchlisting?${newParams.toString()}`, {
+        scroll: false,
+      });
     }
   };
 
-  // Update the useEffect that sets displayListings (around line 650)
   useEffect(() => {
-    if (!isAllloading && allListings) {
+    if (!isAllloading && !isFetching && allListings) {
       try {
         const firstThreeListings = allListings.listings;
         const flatListings = flattenListings(firstThreeListings);
 
-        // Validation helper functions
         const isValidCoordinate = (coord) => {
           if (!coord) return false;
           const lat = coord.latitude;
           const lng = coord.longitude;
           return (
-            typeof lat === 'number' &&
-            typeof lng === 'number' &&
+            typeof lat === "number" &&
+            typeof lng === "number" &&
             !isNaN(lat) &&
             !isNaN(lng) &&
             isFinite(lat) &&
@@ -731,33 +711,25 @@ const page = () => {
 
         const parseDate = (dateValue) => {
           if (!dateValue) {
-            console.warn('Date value is null or undefined, using epoch');
             return new Date(0);
           }
           const date = new Date(dateValue);
           if (isNaN(date.getTime())) {
-            console.warn('Invalid date detected:', dateValue);
             return new Date(0);
           }
           return date;
         };
 
-        // Filter listings with valid coordinates
         const listingsWithCoords = flatListings.filter((item) => {
-          const hasCoords = item?.item?.coordinate?.latitude && item?.item?.coordinate?.longitude;
+          const hasCoords =
+            item?.item?.coordinate?.latitude &&
+            item?.item?.coordinate?.longitude;
           if (hasCoords) {
-            const isValid = isValidCoordinate(item.item.coordinate);
-            if (!isValid) {
-              console.warn('Invalid coordinates detected:', item.item.coordinate);
-            }
-            return isValid;
+            return isValidCoordinate(item.item.coordinate);
           }
           return false;
         });
 
-        console.log('Filtered listings with valid coords:', listingsWithCoords.length);
-
-        // Sort listings based on sortBy state with safe date parsing
         const sortedListings = [...listingsWithCoords].sort((a, b) => {
           try {
             const dateA = parseDate(a.createdAt || a.item?.createdAt);
@@ -765,54 +737,40 @@ const page = () => {
 
             switch (sortBy) {
               case "newest":
-                return dateB.getTime() - dateA.getTime(); // newest first
+                return dateB.getTime() - dateA.getTime();
               case "oldest":
-                return dateA.getTime() - dateB.getTime(); // oldest first
+                return dateA.getTime() - dateB.getTime();
               case "price-low": {
                 const priceA = Number(a.item?.price) || 0;
                 const priceB = Number(b.item?.price) || 0;
-                if (isNaN(priceA) || isNaN(priceB)) {
-                  console.warn('Invalid price detected:', { priceA, priceB });
-                  return 0;
-                }
                 return priceA - priceB;
               }
               case "price-high": {
                 const priceA = Number(a.item?.price) || 0;
                 const priceB = Number(b.item?.price) || 0;
-                if (isNaN(priceA) || isNaN(priceB)) {
-                  console.warn('Invalid price detected:', { priceA, priceB });
-                  return 0;
-                }
                 return priceB - priceA;
               }
               default:
                 return dateB.getTime() - dateA.getTime();
             }
           } catch (error) {
-            console.error('Error during sorting:', error);
-            return 0; // Maintain order on error
+            console.error("Error during sorting:", error);
+            return 0;
           }
         });
-
-        const images = flatListings.flatMap((item) => item.imageUrls || []);
-        setImageUrls(images);
 
         setCoordinates(sortedListings.map((item) => item.item.coordinate));
         setDisplayListings(sortedListings);
         setTotalPages(allListings.totalPages || 1);
         setCurrentPage(Number(searchParams.get("page")) || 1);
-
-        console.log('Data processing completed successfully');
       } catch (error) {
-        console.error('Critical error in data processing:', error);
-        // Set empty state to prevent crash
+        console.error("Critical error in data processing:", error);
         setDisplayListings([]);
         setCoordinates([]);
-        setImageUrls([]);
       }
     }
-  }, [allListings, isAllloading, sortBy]);
+  }, [allListings, isAllloading, sortBy, searchParams]);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (
@@ -824,107 +782,155 @@ const page = () => {
     }
     if (showSortDropdown) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside, {
+        passive: true,
+      });
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [showSortDropdown]);
 
-  //  if (isAllloading) {
-  //    return (
-  //      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
-  //        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
-  //      </div>
-  //    );
-  //  }
   return (
-    <div className="md:mt-[4rem] mt-[5rem] 2xl:mt-[3rem] flex-col flex justify-center items-center max-w-[1240px]">
-      <Breadcrumb showMap={showMap} setShowMap={setShowMap} />
-      <div className="flex items-start mt-3 p-4 md:p-0  md:mt-[1rem] w-full md:justify-between flex-col  gap-3 md:gap-0 md:flex-row   ">
-        <h1 className="text-black  hidden md:block font-semibold text-2xl md:text-4xl">
-          All Real-estate & Homes for Sale
-        </h1>
-        <h1 className="text-black md:hidden font-semibold text-2xl md:text-4xl">
-          All Homes for Sale
-        </h1>
-        <div className="text-gray-600  fex-end md:ml-[0rem] 2xl:ml-0 text-sm flex items-center space-x-4">
-          <span className="flex gap-2">
-            {displayListings.slice(0, 7).length}{" "}
-            <p className="font-[300] text-gray"> of</p>
-            {displayListings.length} Homes
-          </span>
-        </div>
-      </div>
-      <div className="w-screen  md:my-[1rem]   h-[2px] bg-[#D9D9D9] " />
-      {showMap ? (
-        <MapComponent coordinates={coordinates} />
-      ) : (
-        <>
-          {isAllloading ? (
-            <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 gap-6 p-5 md:p-0">
-              {[...Array(6)].map((_, index) => (
-                <PropertySkeleton key={index} />
-              ))}
+    <div className="w-full min-h-screen md:mt-[2rem] bg-white">
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <Breadcrumb showMap={showMap} setShowMap={setShowMap} />
+
+        {isAllloading ? (
+          <div className="mt-8">
+            <PropertySkeleton />
+          </div>
+        ) : (
+          <>
+            <div className="flex justify-between mt-[3.5rem] items-start gap-2 md:items-center   flex-1 flex-col md:flex-row md:mt-10 mb-4">
+              <h2 className=" text-2xl  md:text-4xl font-semibold">
+                All Real-estate & Homes
+              </h2>
+              <div className="relative  flex items-center gap-4">
+                <span className="flex gap-2">
+                  {allListings?.totalListings}{" "}
+                  <p className="font-[300] text-gray"> of</p>
+                  {displayListings?.length} Homes
+                </span>
+                <button
+                  onClick={() => setShowSortDropdown(!showSortDropdown)}
+                  className="border border-gray px-4 py-2 rounded-md flex items-center gap-2"
+                >
+                  Sort:{" "}
+                  {sortBy === "newest"
+                    ? "Newest"
+                    : sortBy === "oldest"
+                    ? "Oldest"
+                    : sortBy === "price-low"
+                    ? "Price Low-High"
+                    : "Price High-Low"}
+                  <Image
+                    src="/arrow-down.png"
+                    alt="dropdown"
+                    width={12}
+                    height={12}
+                  />
+                </button>
+                {showSortDropdown && (
+                  <>
+                    <div
+                      className="fixed inset-0 z-10"
+                      onClick={() => setShowSortDropdown(false)}
+                    />
+                    <div
+                      ref={sortDropdownRef}
+                      className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md  z-20"
+                    >
+                      {[
+                        { label: "Newest", value: "newest" },
+                        { label: "Oldest", value: "oldest" },
+                        { label: "Price: Low to High", value: "price-low" },
+                        { label: "Price: High to Low", value: "price-high" },
+                      ].map((option) => (
+                        <button
+                          key={option.value}
+                          onClick={() => {
+                            setSortBy(option.value);
+                            setShowSortDropdown(false);
+                          }}
+                          className={`w-full text-left px-4 py-2 hover:bg-gray-100 ${
+                            sortBy === option.value
+                              ? "bg-[#d8d8d8] font-medium"
+                              : ""
+                          }`}
+                        >
+                          {option.label}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
-          ) : displayListings.length === 0 ? (
-            <div className="flex flex-col items-center justify-center mt-12 p-8">
-              <p className="text-gray-600 text-center text-lg">
-                No listings found for your search.
-              </p>
-              <p className="text-gray-400 text-center text-sm mt-2">
-                Try adjusting your filters or search criteria.
-              </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-[1rem] mt-[1.5rem] md:mt-[1rem] w-full p-5 md:p-0 place-items-center">
-              {displayListings.map((items, index) => (
-                <PropertyListCard
-                  key={items?._id || index}
-                  imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                  altText={
-                    items?.imageUrls?.[0]?.altText ||
-                    "Property image showcasing a beautiful home"
-                  }
-                  price={items?.item?.price || "Price not available"}
-                  area={items?.item?.squareFeet}
-                  bathrooms={items?.item?.bathrooms}
-                  bedrooms={items?.item?.bedrooms}
-                  region={items?.region}
-                  description={
-                    items?.item?.description ||
-                    "No description available for this property."
-                  }
-                  _id={items?._id}
-                  title={items?.item?.title || "Untitled Property"}
-                  rent={items?.item?.rent || "Rent details not provided"}
-                  squareFeet={items?.item?.squareFeet}
-                  landSize={items?.item?.landSize}
-                  listingType={items?.listingType || "N/A"}
+            <div className="w-screen  md:my-[3rem] md:-ml-[5.5rem]   h-[2px] bg-[#D9D9D9] " />
+
+            {/* Map or List View */}
+            {showMap ? (
+              <div className="mt-6">
+                <MapComponent
+                  coordinates={coordinates}
+                  listings={displayListings}
                 />
-              ))}
-            </div>
-          )}
-          {!isAllloading && displayListings.length > 0 && (
-            <Pagination
-              totalPages={totalPages}
-              display={displayListings}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-            />
-          )}
-        </>
-      )}
-      {/* second div layout  */}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                {displayListings.map((listing, index) => (
+                  <PropertyListCard
+                    key={index}
+                    _id={listing._id}
+                    imageSrc={
+                      listing.imageUrls?.[0]?.url || "/default-image.jpg"
+                    }
+                    altText={listing.item?.title || "Property"}
+                    price={listing.item?.price}
+                    area={listing.item?.area}
+                    region={listing.item?.region}
+                    description={listing.item?.description}
+                    title={listing.item?.title}
+                    bathrooms={listing.item?.bathrooms}
+                    bedrooms={listing.item?.bedrooms}
+                    squareFeet={listing.item?.squareFeet}
+                    listingType={listing.item?.listingType}
+                    landSize={listing.item?.landSize}
+                  />
+                ))}
+              </div>
+            )}
+
+            {displayListings.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-500 text-lg">
+                  No properties found matching your criteria
+                </p>
+              </div>
+            )}
+
+            {totalPages > 1 && (
+              <div className="mt-8">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
+              </div>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 };
 
-// Wrap the page component with ErrorBoundary
 const WrappedPage = () => (
   <ErrorBoundary>
-    {page()}
+    <Page />
   </ErrorBoundary>
 );
 
 export default WrappedPage;
-
