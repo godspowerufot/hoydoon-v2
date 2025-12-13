@@ -813,9 +813,9 @@ const Page = () => {
                   <p className="font-[300] text-gray"> of</p>
                   {displayListings?.length} Homes
                 </span>
-                <button
+                <div
                   onClick={() => setShowSortDropdown(!showSortDropdown)}
-                  className="border border-gray px-4 py-2 rounded-md flex items-center gap-2"
+                  className="text-black font-[400] flex gap-2 justify-center items-center cursor-pointer"
                 >
                   Sort:{" "}
                   {sortBy === "newest"
@@ -826,12 +826,13 @@ const Page = () => {
                     ? "Price Low-High"
                     : "Price High-Low"}
                   <Image
+                    width={500}
+                    height={500}
                     src="/arrow-down.png"
-                    alt="dropdown"
-                    width={12}
-                    height={12}
+                    alt="Dropdown"
+                    className="w-3 h-2 pointer-events-none"
                   />
-                </button>
+                </div>
                 {showSortDropdown && (
                   <>
                     <div
