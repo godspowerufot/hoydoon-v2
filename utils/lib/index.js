@@ -3,6 +3,12 @@
  * @returns {Promise<{country: string, coordinates: {lat: number, lng: number}}>}
  */
 export async function getLocationRegion() {
+  // Default fallback values
+  const defaultLocation = {
+    country: "default",
+    coordinates: { lat: 0, lng: 0 }
+  };
+
   // Check if already processing to prevent concurrent calls
   if (typeof window !== "undefined") {
     try {
@@ -24,7 +30,9 @@ export async function getLocationRegion() {
       const cachedLocation = sessionStorage.getItem("user_location_region");
       if (cachedLocation) {
         try {
-          return JSON.parse(cachedLocation);
+          const parsed = JSON.parse(cachedLocation);
+          console.log("Using cached location:", parsed.country);
+          return parsed;
         } catch (e) {
           console.error("Error parsing cached location:", e);
           try {
@@ -48,11 +56,11 @@ export async function getLocationRegion() {
     }
   }
 
-  let country = "default"; // Default value instead of null
-  let coordinates = null;
+  let country = "default";
+  let coordinates = { lat: 0, lng: 0 };
 
   try {
-    // Skip geolocation API and go straight to IP-based for faster results
+    // Try IP-based geolocation with timeout
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3000);
 
@@ -61,28 +69,37 @@ export async function getLocationRegion() {
     });
     clearTimeout(timeoutId);
 
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
     const data = await res.json();
-    coordinates = { lat: data.latitude, lng: data.longitude };
+
+    // Check if we got rate limited
+    if (data.error) {
+      console.warn("IP geolocation API error:", data.reason || data.error);
+      throw new Error(data.reason || "API rate limit exceeded");
+    }
+
+    coordinates = { lat: data.latitude || 0, lng: data.longitude || 0 };
     country = data.country_name?.toLowerCase() || "default";
 
+    console.log("IP geolocation successful:", country);
+
   } catch (error) {
-    console.error("IP-based geolocation failed:", error.message);
-    // Keep default values
+    console.warn("IP-based geolocation failed, using default:", error.message);
+    // Use default values - app will continue to work
   }
 
-  const result = {
-    country,
-    coordinates,
-  };
+  const result = { country, coordinates };
 
-  // Cache the result and clear processing flag
+  // Cache the result
   if (typeof window !== "undefined") {
     try {
       sessionStorage.setItem("user_location_region", JSON.stringify(result));
       sessionStorage.removeItem("location_processing");
     } catch (storageError) {
-      console.warn("Could not cache location result:", storageError);
-      // Continue without caching - not critical
+      console.warn("Could not cache location:", storageError);
     }
   }
 

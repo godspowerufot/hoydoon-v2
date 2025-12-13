@@ -33,11 +33,10 @@ const PropertyCard = ({
   return (
     <Link href={`/rent/${encodeId(_id)}`}>
       <div
-        className={`hidden lg:flex flex-col rounded-[16px] lg:rounded-[1.5rem]  border-[1px] border-gray 2xl:h-[40rem]  h-[32rem] lg:h-[600px] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden lg:ml-8 relative group transition-all duration-[1500ms] ease-in-out ${
-          isHovered
+        className={`hidden lg:flex flex-col rounded-[16px] lg:rounded-[1.5rem]  border-[1px] border-gray 2xl:h-[40rem]  h-[32rem] lg:h-[600px] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden lg:ml-8 relative group transition-all duration-[1500ms] ease-in-out ${isHovered
             ? "border-solid rounded-2xl p-0 border-[1px] border-gray"
             : " border lg:border-none"
-        }`}
+          }`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -55,11 +54,10 @@ const PropertyCard = ({
 
         {/* Details Section - Always open on mobile */}
         <div
-          className={`mt-3 lg:mt-5 px-5 transition-all duration-[1500ms] ease-in-out ${
-            showDetails
+          className={`mt-3 lg:mt-5 px-5 transition-all duration-[1500ms] ease-in-out ${showDetails
               ? "opacity-100 translate-y-0  h-fit lg:h-[175px]"
               : "h-0 opacity-0 translate-y-5 max-h-0"
-          }`}
+            }`}
         >
           <h1 className="text-black text-[24px] lg:text-[28px] font-bold">
             {truncateDescription(title, 2)}
@@ -139,9 +137,8 @@ const PropertyCard = ({
 
         {/* Base Info - Hidden if details are shown */}
         <div
-          className={`mt-2 hidden lg:block text-black transition-opacity duration-500 ${
-            showDetails ? "opacity-0 hidden" : "block opacity-100"
-          }`}
+          className={`mt-2 hidden lg:block text-black transition-opacity duration-500 ${showDetails ? "opacity-0 hidden" : "block opacity-100"
+            }`}
         >
           <span className="flex items-center gap-3">
             <h4 className="text-gray font-light">From</h4>
@@ -183,7 +180,7 @@ const PropertyCard = ({
                 <p>{bathrooms} bath</p>
               </span>
               <span className="flex items-center gap-1">
-                <Image src="/home.png" alt="Icon" width={12} height={11} />
+                <Image src="/home.png" alt="Icon" width={12} height={12} />
                 <p>{area}sq.</p>
               </span>
             </div>
