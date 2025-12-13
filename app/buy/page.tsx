@@ -173,7 +173,7 @@ export default function Home() {
                   ))}
           </div>
           <Link
-            href="/rent/searchlisting"
+            href="/rent/fixes"
             className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see housing for sale
@@ -236,7 +236,7 @@ export default function Home() {
 
           {!isAllLoading && (
             <Link
-              href="/rent/searchlisting?category=affordable"
+              href="/rent/fixes?category=affordable"
               className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all afforable houses for sale
@@ -290,7 +290,7 @@ export default function Home() {
           </div>
           {!isAllLoading && (
             <Link
-              href="/rent/searchlisting?category=open-house`"
+              href="/rent/fixes?category=open-house`"
               className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all open houses for sale
@@ -344,7 +344,7 @@ export default function Home() {
           </div>
 
           <Link
-            href="/rent/searchlisting?category=luxury"
+            href="/rent/fixes?category=luxury"
             className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see all luxury houses for sale
