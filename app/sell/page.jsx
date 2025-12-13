@@ -87,7 +87,7 @@ export default function Home() {
             </p>
           </div>
           <div className="m-4">
-            <Link href={"/rent/searchlisting"}>
+            <Link href={"/rent/fixes"}>
               <Button className="!w-full mt-6 lg:-mt-4 text-base   h-[3rem] lg:!p-2">
                 Get Started
               </Button>

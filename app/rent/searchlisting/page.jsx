@@ -679,7 +679,7 @@ const Page = () => {
     if (page >= 1 && page <= totalPages) {
       const newParams = new URLSearchParams(searchParams.toString());
       newParams.set("page", page.toString());
-      router.push(`/rent/searchlisting?${newParams.toString()}`, {
+      router.push(`/rent/fixes?${newParams.toString()}`, {
         scroll: false,
       });
     }
