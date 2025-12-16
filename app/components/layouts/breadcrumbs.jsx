@@ -312,7 +312,7 @@ export default function Breadcrumb({ showMap, setShowMap }) {
     (filterName, value) => {
       if (!hasInteracted) {
         setHasInteracted(true);
-        router.replace("/rent/searchlisting", { scroll: false });
+        router.replace("/rent/fixes", { scroll: false });
       }
 
       setFilters((prevFilters) => ({
@@ -354,7 +354,7 @@ export default function Breadcrumb({ showMap, setShowMap }) {
     if (filters.houseType) newParams.set("houseType", filters.houseType);
 
     const queryString = newParams.toString();
-    router.push(`/rent/searchlisting${queryString ? `?${queryString}` : ""}`);
+    router.push(`/rent/fixes${queryString ? `?${queryString}` : ""}`);
   }, [filters, router]);
 
   const getPriceLabel = useCallback(() => {

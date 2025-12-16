@@ -21,7 +21,7 @@ const SearchBar = () => {
       ...(formData.guests && { guests: formData.guests }),
     }).toString();
 
-    router.push(`/rent/searchlisting?${queryParams}`);
+    router.push(`/rent/fixes?${queryParams}`);
   };
 
   const handleChange = (e) => {

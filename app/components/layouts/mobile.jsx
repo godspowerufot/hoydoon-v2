@@ -61,7 +61,7 @@ const MobileNavbar = () => {
       ...(formData.location && { location: formData.location }),
     }).toString();
 
-    router.push(`/rent/searchlisting?${queryParams}`);
+    router.push(`/rent/fixes?${queryParams}`);
   };
 
   if (authPaths.includes(pathname)) return null;
@@ -118,7 +118,7 @@ const MobileNavbar = () => {
       )}
       <nav className="flex items-center justify-between px-4 py-3 bg-white shadow-md lg:hidden">
         {!(
-          pathname.startsWith("/rent/searchlisting") ||
+          pathname.startsWith("/rent/fixes") ||
           pathname.startsWith("/helpcenter/submit-request")
         ) && (
           <>
@@ -146,7 +146,7 @@ const MobileNavbar = () => {
         )}
 
         <div className="flex items-center justify-between w-full gap-3">
-          {pathname === "/rent/searchlisting" ||
+          {pathname === "/rent/fixes" ||
           pathname.startsWith("/helpcenter/submit-request") ? (
             <div className="flex items-center space-x-2">
               {/* Globe Icon */}
