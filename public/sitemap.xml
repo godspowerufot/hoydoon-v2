@@ -1,28 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.hoydoon.com/</loc>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.hoydoon.com/buy</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.hoydoon.com/rent</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.hoydoon.com/sell</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.hoydoon.com/agent</loc>
-    <priority>0.6</priority>
-  </url>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-    <loc>https://www.hoydoon.com/helpcenter</loc>
-    <priority>0.5</priority>
-  </url>
-  <!-- Add more URLs as needed -->
+
+<url>
+  <loc>https://hoydoon.com/</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/buy</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/rent</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/sell</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/agent</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/auth/sign-in</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/auth/sign-up</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/helpcenter</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/review</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/6</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/3</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/about</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/contact</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/terms</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/policy</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/rent/fixes</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/rent/fixes?category=luxury</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+<url>
+  <loc>https://hoydoon.com/agent/all-agent</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/sell/sell-home</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/auth/forgot-password</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/helpcenter/submit-request</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/19</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/20</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/21</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/22</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/24</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/1</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/4</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/5</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/7</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://hoydoon.com/article/8</loc>
+  <lastmod>2025-12-16T00:14:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
 </urlset>
