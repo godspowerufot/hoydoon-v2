@@ -45,7 +45,7 @@ export default function Navbar() {
       "/listing",
       "/article/article-details",
       "/contact",
-      "/rent/searchlisting",
+      "/rent/fixes",
       "/agent/all-agent",
       "/agent/agent-description",
       "/sell/sell-home",
