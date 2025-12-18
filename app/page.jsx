@@ -241,10 +241,11 @@ function Carousel({ images }) {
             <div
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${currentIndex === index
-                ? "bg-primary scale-110"
-                : "bg-gray opacity-60"
-                }`}
+              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                currentIndex === index
+                  ? "bg-primary scale-110"
+                  : "bg-gray opacity-60"
+              }`}
             />
           ))}
         </div>
@@ -416,38 +417,38 @@ export default function Home() {
           <div className="flex flex-col mt-[0.5em] md:mt-[2.5em]  gap-5 items-start md:flex-row justify-start mb-2">
             {isAllLoading
               ? // Show skeleton loaders
-              Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
-                <SkeletonCard key={`skeleton-${index}`} />
-              ))
+                Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))
               : // Show actual cards
-              (isMobile ? displayListings.slice(0, 1) : displayListings).map(
-                (items, index) => (
-                  <HoverCard
-                    _id={items?._id}
-                    key={items?._id || index}
-                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                    altText={
-                      items?.imageUrls?.[0]?.altText ||
-                      "Property image showcasing a beautiful home"
-                    }
-                    region={items?.region || "Location not specified"}
-                    price={items?.item.price || "Price not available"}
-                    area={items?.item.squareFeet || ""}
-                    bathrooms={items?.item?.bathrooms}
-                    bedrooms={items?.item?.bedrooms}
-                    description={
-                      items?.item.description ||
-                      "No description available for this property."
-                    }
-                    title={items?.item.title || "Untitled Property"}
-                    rent={items?.item.rent || "Rent details not provided"}
-                  />
-                )
-              )}
+                (isMobile ? displayListings.slice(0, 1) : displayListings).map(
+                  (items, index) => (
+                    <HoverCard
+                      _id={items?._id}
+                      key={items?._id || index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      region={items?.region || "Location not specified"}
+                      price={items?.item.price || "Price not available"}
+                      area={items?.item.squareFeet || ""}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item.description ||
+                        "No description available for this property."
+                      }
+                      title={items?.item.title || "Untitled Property"}
+                      rent={items?.item.rent || "Rent details not provided"}
+                    />
+                  )
+                )}
 
             {!isAllLoading && (
               <Link
-                href="/rent/fixes"
+                href="/search"
                 className="text-[#09858D] md:hidden mt-2 text-sm md:my-5 md:text-2xl font-[500] "
               >
                 see housing for sale

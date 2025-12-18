@@ -12,7 +12,6 @@ const SearchBar = () => {
 
   const router = useRouter();
 
-
   const handleSearch = () => {
     const queryParams = new URLSearchParams({
       ...(formData.location && { location: formData.location }),
@@ -21,7 +20,7 @@ const SearchBar = () => {
       ...(formData.guests && { guests: formData.guests }),
     }).toString();
 
-    router.push(`/rent/fixes?${queryParams}`);
+    router.push(`/search?${queryParams}`);
   };
 
   const handleChange = (e) => {
@@ -72,7 +71,9 @@ const SearchBar = () => {
 
           {/* Price Range Input */}
           <div className="flex flex-col w-[8rem] pl-3 border-r border-gray">
-            <span className="text-sm font-semibold text-black">Price Range</span>
+            <span className="text-sm font-semibold text-black">
+              Price Range
+            </span>
             <input
               type="text"
               name="minPrice"
@@ -103,10 +104,15 @@ const SearchBar = () => {
           {/* Search Button */}
           <div
             onClick={loading ? undefined : handleSearchWithSpinner}
-            className={`ml-2 bg-primary p-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+            className={`ml-2 bg-primary p-2 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 ${
+              loading ? "opacity-60 cursor-not-allowed" : ""
+            }`}
           >
             {loading ? (
-              <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                viewBox="0 0 24 24"
+              >
                 <circle
                   className="opacity-25"
                   cx="12"
@@ -144,7 +150,10 @@ const SearchBar = () => {
             className="ml-2 h-[24px]  bg-primary px-1 w-[26px] p-1 rounded-full flex items-center justify-center hover:bg-opacity-90"
           >
             {loading ? (
-              <svg className="animate-spin h-3 w-3 text-white" viewBox="0 0 24 24">
+              <svg
+                className="animate-spin h-3 w-3 text-white"
+                viewBox="0 0 24 24"
+              >
                 <circle
                   className="opacity-25"
                   cx="12"
@@ -161,7 +170,13 @@ const SearchBar = () => {
                 />
               </svg>
             ) : (
-              <Image alt="Search" width={10} height={10} src="/search.png" className="w-[12px] h-[12px]" />
+              <Image
+                alt="Search"
+                width={10}
+                height={10}
+                src="/search.png"
+                className="w-[12px] h-[12px]"
+              />
             )}
           </button>
         </div>

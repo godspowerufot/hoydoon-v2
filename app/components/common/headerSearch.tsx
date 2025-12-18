@@ -144,7 +144,7 @@ export default function PropertySearchBar() {
       queryParams.append("bedrooms", minBed === "4+" ? "4" : minBed);
     }
 
-    router.push(`/rent/fixes?${queryParams}`);
+    router.push(`/search?${queryParams}`);
   };
 
   const handleFilterChange = (key: keyof Filters, value: string) => {
