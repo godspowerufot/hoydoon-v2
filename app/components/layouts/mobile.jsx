@@ -62,10 +62,13 @@ const MobileNavbar = () => {
       ...(formData.location && { location: formData.location }),
     }).toString();
 
-    const targetUrl = `/search?${queryParams}`;
+    const targetUrl = `/rent/fixes?${queryParams}`;
 
     // Only push if the URL is different to avoid redundant reloads
-    if (typeof window !== "undefined" && window.location.pathname + window.location.search !== targetUrl) {
+    if (
+      typeof window !== "undefined" &&
+      window.location.pathname + window.location.search !== targetUrl
+    ) {
       router.push(targetUrl);
     } else if (typeof window === "undefined") {
       router.push(targetUrl);
@@ -121,46 +124,46 @@ const MobileNavbar = () => {
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-40"
-        // optional
+          // optional
         ></div>
       )}
       <nav className="flex items-center justify-between px-4 py-2 bg-white shadow-md lg:hidden">
         {!(
-          pathname.startsWith("/search") ||
+          pathname.startsWith("/rent/fixes") ||
           pathname.startsWith("/helpcenter/submit-request")
         ) && (
-            <>
-              {" "}
-              <div className="flex items-center space-x-2">
-                <Link href="/" className="flex items-center space-x-2">
-                  {" "}
-                  {pathname === "/helpcenter" ? (
-                    <div className="flex items-center space-x-2">
-                      {/* vertical line */}
-                      <Image alt="logo" width={30} height={30} src="/Logo.svg" />
+          <>
+            {" "}
+            <div className="flex items-center space-x-2">
+              <Link href="/" className="flex items-center space-x-2">
+                {" "}
+                {pathname === "/helpcenter" ? (
+                  <div className="flex items-center space-x-2">
+                    {/* vertical line */}
+                    <Image alt="logo" width={30} height={30} src="/Logo.svg" />
 
-                      {/* <div className="w-[2px] h-5 bg-black" /> */}
-                      <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-sm cursor-pointer  transition-colors whitespace-nowrap">
-                        Help center
-                      </span>
-                    </div>
-                  ) : (
-                    <Image
-                      alt="logo"
-                      width={30}
-                      className="w-[10rem] h-[3rem]"
-                      height={30}
-                      src="/mobile-logov1.svg"
-                    />
-                  )}
-                </Link>
-              </div>
-            </>
-          )}
+                    {/* <div className="w-[2px] h-5 bg-black" /> */}
+                    <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-sm cursor-pointer  transition-colors whitespace-nowrap">
+                      Help center
+                    </span>
+                  </div>
+                ) : (
+                  <Image
+                    alt="logo"
+                    width={30}
+                    className="w-[10rem] h-[3rem]"
+                    height={30}
+                    src="/mobile-logov1.svg"
+                  />
+                )}
+              </Link>
+            </div>
+          </>
+        )}
 
         <div className="flex items-center justify-between w-full gap-3">
-          {pathname === "/search" ||
-            pathname.startsWith("/helpcenter/submit-request") ? (
+          {pathname === "/rent/fixes" ||
+          pathname.startsWith("/helpcenter/submit-request") ? (
             <div className="flex items-center space-x-2">
               {/* Globe Icon */}
               <Image
@@ -237,13 +240,15 @@ const MobileNavbar = () => {
 
       <div
         ref={sidebarRef}
-        className={`fixed top-0 right-0 h-full w-[295px] bg-white transform transition-transform duration-300 z-50 ${isSidebarOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`fixed top-0 right-0 h-full w-[295px] bg-white transform transition-transform duration-300 z-50 ${
+          isSidebarOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         {/* /* Sidebar */}
         <div
-          className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${isSidebarOpen ? "translate-x-0" : "translate-x-full"
-            }`}
+          className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${
+            isSidebarOpen ? "translate-x-0" : "translate-x-full"
+          }`}
         >
           <div className="flex items-center justify-between p-4 border-b  border-[#8F8F8F]">
             <Link
