@@ -149,7 +149,7 @@ export default function RootLayout({
           name="google-signin-client_id"
           content="438580118502-j5qth0chlkikrpreur0gjl9q1vm8a162.apps.googleusercontent.com"
         />
-
+<meta name="google-site-verification" content="6tevUXnxT89TubXC_lXDm_M9Qis3qs2zzrU1aGoXYHc" />
         <body className="lg:flex overflow-x-hidden flex-col flex-1 font-bricolage min-h-screen">
           <Providers>
             <div className="absolute top-0 left-0 w-full z-10">
