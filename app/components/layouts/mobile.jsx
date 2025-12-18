@@ -62,7 +62,14 @@ const MobileNavbar = () => {
       ...(formData.location && { location: formData.location }),
     }).toString();
 
-    router.push(`/search?${queryParams}`);
+    const targetUrl = `/search?${queryParams}`;
+
+    // Only push if the URL is different to avoid redundant reloads
+    if (typeof window !== "undefined" && window.location.pathname + window.location.search !== targetUrl) {
+      router.push(targetUrl);
+    } else if (typeof window === "undefined") {
+      router.push(targetUrl);
+    }
   };
 
   if (authPaths.includes(pathname)) return null;

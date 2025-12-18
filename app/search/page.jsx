@@ -68,11 +68,12 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
 
   useEffect(() => {
     const getUserLocation = async () => {
+      if (userCountry) return; // Already have it
       const { country } = await getLocationRegion();
-      setUserCountry(country);
+      if (country) setUserCountry(country);
     };
     getUserLocation();
-  }, []);
+  }, [userCountry]);
 
   const modalRef = useRef(null);
   const bedBathRef = useRef(null);
@@ -688,7 +689,7 @@ const Page = () => {
     if (page >= 1 && page <= totalPages) {
       const newParams = new URLSearchParams(searchParams.toString());
       newParams.set("page", page.toString());
-      router.push(`/rent/fixes?${newParams.toString()}`, { scroll: false });
+      router.push(`/search?${newParams.toString()}`, { scroll: false });
     }
   };
 
