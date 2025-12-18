@@ -13,12 +13,8 @@ env:
   ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
-    environment:
-      name: staging
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - uses: actions/checkout@v4
@@ -38,7 +34,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:${{ github.sha }},${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:staging
+          tags: ${{ env.ACR_LOGIN_SERVER }}/hoydoon-web-staging:${{ github.sha }},${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:staging
           cache-from: type=registry,ref=${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:buildcache-staging
           cache-to: type=registry,ref=${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:buildcache-staging,mode=max
           build-args: |
@@ -63,6 +59,14 @@ jobs:
             NEXT_APPLE_PRIVATE_KEY=${{ secrets.NEXT_APPLE_PRIVATE_KEY }}
             NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: staging
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -70,4 +74,4 @@ jobs:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           slot-name: "staging"
           publish-profile: ${{ secrets.APP_SERVICE_PUBLISH_PROFILE_STAGING }}
-          images: ${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:${{ github.sha }}
+          images: ${{ env.ACR_LOGIN_SERVER }}/hoydoon-web-staging:${{ github.sha }}
