@@ -183,7 +183,7 @@ export default function Page() {
             </p>
 
             <Button className="text-base  !w-[115px] font-light mt-5 ">
-              <Link href="/rent/fixes">explore</Link>
+              <Link href="/search">explore</Link>
             </Button>
           </span>
         </div>

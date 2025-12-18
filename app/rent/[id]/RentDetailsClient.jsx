@@ -161,7 +161,7 @@ const Breadcrumb = ({
         <span className="text-gray-500">Search |</span>
         {/* Breadcrumb item: Homes for Sale */}
         <div className="flex font-light items-center gap-1">
-          <a href="/rent/fixes" className="text-primary">
+          <a href="/search" className="text-primary">
             Homes for sale
           </a>
         </div>

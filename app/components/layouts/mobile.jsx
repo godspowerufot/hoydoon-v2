@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Button from "../common/Button";
 import { log } from "@/utils/log";
+import { getAppDownloadLink } from "@/utils";
 import { useRouter } from "next/navigation";
 import { getAccessToken } from "@/utils/cookies";
 import { useLogoutMutation } from "@/store/slices/api/authapi";
@@ -61,7 +62,14 @@ const MobileNavbar = () => {
       ...(formData.location && { location: formData.location }),
     }).toString();
 
-    router.push(`/rent/fixes?${queryParams}`);
+    const targetUrl = `/search?${queryParams}`;
+
+    // Only push if the URL is different to avoid redundant reloads
+    if (typeof window !== "undefined" && window.location.pathname + window.location.search !== targetUrl) {
+      router.push(targetUrl);
+    } else if (typeof window === "undefined") {
+      router.push(targetUrl);
+    }
   };
 
   if (authPaths.includes(pathname)) return null;
@@ -113,41 +121,46 @@ const MobileNavbar = () => {
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-40"
-          // optional
+        // optional
         ></div>
       )}
-      <nav className="flex items-center justify-between px-4 py-3 bg-white shadow-md lg:hidden">
+      <nav className="flex items-center justify-between px-4 py-2 bg-white shadow-md lg:hidden">
         {!(
-          pathname.startsWith("/rent/fixes") ||
+          pathname.startsWith("/search") ||
           pathname.startsWith("/helpcenter/submit-request")
         ) && (
-          <>
-            {" "}
-            <div className="flex items-center space-x-2">
-              <Link href="/" className="flex items-center space-x-2">
-                {" "}
-                <Image alt="logo" width={30} height={30} src="/Logo.svg" />
-                {pathname === "/helpcenter" ? (
-                  <div className="flex items-center space-x-2">
-                    {/* vertical line */}
-                    {/* <div className="w-[2px] h-5 bg-black" /> */}
-                    <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-sm cursor-pointer  transition-colors whitespace-nowrap">
-                      Help center
-                    </span>
-                  </div>
-                ) : (
-                  <span className="font-semibold text-gray-800 text-base">
-                    Hoydoon
-                  </span>
-                )}
-              </Link>
-            </div>
-          </>
-        )}
+            <>
+              {" "}
+              <div className="flex items-center space-x-2">
+                <Link href="/" className="flex items-center space-x-2">
+                  {" "}
+                  {pathname === "/helpcenter" ? (
+                    <div className="flex items-center space-x-2">
+                      {/* vertical line */}
+                      <Image alt="logo" width={30} height={30} src="/Logo.svg" />
+
+                      {/* <div className="w-[2px] h-5 bg-black" /> */}
+                      <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-sm cursor-pointer  transition-colors whitespace-nowrap">
+                        Help center
+                      </span>
+                    </div>
+                  ) : (
+                    <Image
+                      alt="logo"
+                      width={30}
+                      className="w-[10rem] h-[3rem]"
+                      height={30}
+                      src="/mobile-logov1.svg"
+                    />
+                  )}
+                </Link>
+              </div>
+            </>
+          )}
 
         <div className="flex items-center justify-between w-full gap-3">
-          {pathname === "/rent/fixes" ||
-          pathname.startsWith("/helpcenter/submit-request") ? (
+          {pathname === "/search" ||
+            pathname.startsWith("/helpcenter/submit-request") ? (
             <div className="flex items-center space-x-2">
               {/* Globe Icon */}
               <Image
@@ -201,7 +214,7 @@ const MobileNavbar = () => {
               ) : (
                 <div className="w-full mr-[7px] flex justify-end">
                   <Button
-                    onClick={() => toast.info("coming soon")}
+                    onClick={() => window.open(getAppDownloadLink(), "_blank")}
                     className="bg-[#008D8D] text-white text-[12px] px-2 !w-[111px] py-[6px] rounded-full font-medium"
                   >
                     Download App
@@ -224,26 +237,26 @@ const MobileNavbar = () => {
 
       <div
         ref={sidebarRef}
-        className={`fixed top-0 right-0 h-full w-[295px] bg-white transform transition-transform duration-300 z-50 ${
-          isSidebarOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-[295px] bg-white transform transition-transform duration-300 z-50 ${isSidebarOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* /* Sidebar */}
         <div
-          className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${
-            isSidebarOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${isSidebarOpen ? "translate-x-0" : "translate-x-full"
+            }`}
         >
           <div className="flex items-center justify-between p-4 border-b  border-[#8F8F8F]">
             <Link
               href={"/"}
               className="flex cursor-pointer items-center space-x-2"
             >
-              <Image alt="logo" width={30} height={30} src="/Logo.svg" />
-
-              <span className="font-semibold text-[#1E1E1E] text-base">
-                Hoydoon
-              </span>
+              <Image
+                alt="logo"
+                width={30}
+                height={30}
+                className="w-[8rem] h-[3rem]"
+                src="/mobile-logov1.svg"
+              />
             </Link>{" "}
             <button
               onClick={() => setSidebarOpen(false)}
@@ -270,8 +283,7 @@ const MobileNavbar = () => {
               />
               <span className="text-primary text-[16px] font-[500]">
                 <Link
-                  href="
-                https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
+                  href={getAppDownloadLink()}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

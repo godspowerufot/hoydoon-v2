@@ -11,6 +11,7 @@ import Button from "./components/common/Button";
 import { flattenListings } from "@/utils";
 import PropertySearchBar from "./components/common/headerSearch";
 import { toast } from "react-toastify";
+import { getAppDownloadLink } from "@/utils";
 import { truncateDescription } from "@/utils/index";
 import HoverCard from "@/app/components/common/card";
 import FagsSection from "../app/components/layouts/FaqSection";
@@ -382,8 +383,7 @@ export default function Home() {
               receive instant alerts when your dream home becomes available.
             </p>
             <Link
-              href="
-https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
+              href={getAppDownloadLink()}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -448,7 +448,7 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
 
             {!isAllLoading && (
               <Link
-                href="/rent/fixes"
+                href="/search"
                 className="text-[#09858D] md:hidden mt-2 text-sm md:my-5 md:text-2xl font-[500] "
               >
                 see housing for sale
@@ -458,22 +458,24 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
         </div>
       </section>
 
-      <section className="mt-5 w-screen md:mb-[5em]   md:w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 md:gap-0 justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col md:py-0 md:flex-row  p-3 md:p-0 md:gap-10 justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] md:text-[2.5rem] font-[600] w-full md:w-auto">
-              Explore Luxurious Living Spaces
-            </h1>
-            <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
-              From modern architecture to elegant interiors, discover homes
-              crafted for elevated living.
-            </p>
+      {luxuryDisplayListings.length > 0 && (
+        <section className="mt-5 w-screen md:mb-[5em]   md:w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
+          <div className="flex flex-col items-start gap-6 md:gap-0 justify-center max-w-[1200px] w-full">
+            <div className="flex flex-col md:py-0 md:flex-row  p-3 md:p-0 md:gap-10 justify-between items-center w-full  mx-auto">
+              <h1 className="text-black text-[24px] md:text-[2.5rem] font-[600] w-full md:w-auto">
+                Explore Luxurious Living Spaces
+              </h1>
+              <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
+                From modern architecture to elegant interiors, discover homes
+                crafted for elevated living.
+              </p>
+            </div>
+            <div className=" md:mt-[2em] w-full">
+              <Carousel images={luxuryDisplayListings} />
+            </div>{" "}
           </div>
-          <div className=" md:mt-[2em] w-full">
-            <Carousel images={luxuryDisplayListings} />
-          </div>{" "}
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* <CarouselWithSlideEffect/> */}
       {/* carousel */}

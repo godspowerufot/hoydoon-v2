@@ -1,19 +1,12 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
-    "typeRoots": [
-      "./types",
-      "./node_modules/@types"
-    ],
+    "typeRoots": ["./types", "./node_modules/@types"],
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
@@ -27,9 +20,7 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
   },
   "include": [
@@ -47,6 +38,7 @@
     "app/agent/page.jsx",
     "app/agent/all-agent/page.jsx",
     "app/agent/[id]/page.jsx",
+    "app/rent/fixes/page.jsx",
     "pages/api/assetlinks.jss",
     "app/components/layouts/contactagent.jsx",
     "app/components/common/searchcomponent.jsx",
@@ -58,9 +50,8 @@
     "pages/api/submit-request.js",
     "app/auth/forgot-password/otp/otp.jsx",
     "app/components/about/page.jsx",
-    "app/review/page.jsx"
+    "app/review/page.jsx",
+    "app/search/page.jsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
