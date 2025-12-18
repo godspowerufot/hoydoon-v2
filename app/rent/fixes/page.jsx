@@ -68,11 +68,12 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
 
     useEffect(() => {
         const getUserLocation = async () => {
+            if (userCountry) return; // Already have it
             const { country } = await getLocationRegion();
-            setUserCountry(country);
+            if (country) setUserCountry(country);
         };
         getUserLocation();
-    }, []);
+    }, [userCountry]);
 
     const modalRef = useRef(null);
     const bedBathRef = useRef(null);

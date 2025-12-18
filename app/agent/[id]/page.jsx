@@ -488,7 +488,7 @@ const page = ({ params }) => {
           <div className="w-full md:col-span-2 flex justify-start">
             <button
               onClick={() => setShowAll(false)}
-              className="text-[#09858D] mt-5 text-2xl font-medium"
+              className="text-[#09858D] mt-5 text-sm md:text-2xl font-medium"
             >
               See less
             </button>

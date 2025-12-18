@@ -32,7 +32,7 @@ export default function ListingNavbar() {
       ...(formData.location && { location: formData.location }),
     }).toString();
 
-    router.push(`/rent/fixes?${queryParams}`);
+    router.push(`/search?${queryParams}`);
   };
 
   const handlelogout = async () => {
@@ -122,10 +122,11 @@ export default function ListingNavbar() {
               <button
                 onClick={handlelogout}
                 disabled={isLoggingOut}
-                className={`rounded-full border border-primary px-4 py-1 font-[300] text-base transition-all duration-200 ${isLoggingOut
-                  ? "bg-primary text-white opacity-50 cursor-not-allowed"
-                  : "bg-primary text-white"
-                  }`}
+                className={`rounded-full border border-primary px-4 py-1 font-[300] text-base transition-all duration-200 ${
+                  isLoggingOut
+                    ? "bg-primary text-white opacity-50 cursor-not-allowed"
+                    : "bg-primary text-white"
+                }`}
               >
                 Logout
               </button>
@@ -157,8 +158,9 @@ export default function ListingNavbar() {
 
         {/* Mobile Sidebar Menu */}
         <div
-          className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform ${menuOpen ? "translate-x-0" : "translate-x-full"
-            } transition-transform duration-300 ease-in-out lg:hidden`}
+          className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform ${
+            menuOpen ? "translate-x-0" : "translate-x-full"
+          } transition-transform duration-300 ease-in-out lg:hidden`}
         >
           <div className="flex justify-end p-4">
             <button onClick={() => setMenuOpen(false)}>

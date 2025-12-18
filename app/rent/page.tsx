@@ -47,11 +47,12 @@ export default function Home() {
   }, [allListings]);
   useEffect(() => {
     const getUserLocation = async () => {
+      if (userCountry) return; // Already have it
       const { country } = await getLocationRegion();
-      setUserCountry(country);
+      if (country) setUserCountry(country);
     };
     getUserLocation();
-  }, []);
+  }, [userCountry]);
 
   return (
     <>
@@ -105,36 +106,36 @@ export default function Home() {
           <div className="flex flex-col mt-[3em] lg:my-[2em] gap-[2em] lg:gap-5 items-start lg:flex-row justify-start mb-2">
             {isAllLoading
               ? // Show skeleton loaders
-              Array.from({ length: 3 }, (_, index) => (
-                <SkeletonCard key={`skeleton-${index}`} />
-              ))
+                Array.from({ length: 3 }, (_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))
               : displayListings
-                .slice(0, 3)
-                .map((items: Property, index: number) => (
-                  <PropertyListCard
-                    key={index}
-                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                    altText={
-                      items?.imageUrls?.[0]?.altText ||
-                      "Property image showcasing a beautiful home"
-                    }
-                    price={items?.item?.price || "Price not available"}
-                    area={items?.item?.squareFeet}
-                    bathrooms={items?.item?.bathrooms}
-                    bedrooms={items?.item?.bedrooms}
-                    region={items?.region}
-                    description={
-                      items?.item?.description ||
-                      "No description available for this property."
-                    }
-                    _id={items?._id}
-                    title={items?.item?.title || "Untitled Property"}
-                    rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item?.squareFeet}
-                    landSize={items?.item?.landSize}
-                    listingType={items?.listingType || "N/A"}
-                  />
-                ))}
+                  .slice(0, 3)
+                  .map((items: Property, index: number) => (
+                    <PropertyListCard
+                      key={index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      region={items?.region}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      _id={items?._id}
+                      title={items?.item?.title || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                      squareFeet={items?.item?.squareFeet}
+                      landSize={items?.item?.landSize}
+                      listingType={items?.listingType || "N/A"}
+                    />
+                  ))}
           </div>
           {!isAllLoading && (
             <Link
@@ -445,36 +446,36 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
               {isAllLoading
                 ? // Show skeleton loaders
-                Array.from({ length: 3 }, (_, index) => (
-                  <SkeletonCard key={`skeleton-${index}`} />
-                ))
+                  Array.from({ length: 3 }, (_, index) => (
+                    <SkeletonCard key={`skeleton-${index}`} />
+                  ))
                 : [...(familyFriendlyListings?.listings || [])]
-                  .slice(1, 4)
-                  ?.map((items: Property, index: number) => (
-                    <PropertyListCard
-                      key={index}
-                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                      altText={
-                        items?.imageUrls?.[0]?.altText ||
-                        "Property image showcasing a beautiful home"
-                      }
-                      price={items?.item?.price || "Price not available"}
-                      area={items?.item?.squareFeet}
-                      bathrooms={items?.item?.bathrooms}
-                      bedrooms={items?.item?.bedrooms}
-                      region={items?.region}
-                      description={
-                        items?.item?.description ||
-                        "No description available for this property."
-                      }
-                      _id={items?._id}
-                      title={items?.item?.title || "Untitled Property"}
-                      rent={items?.item?.rent || "Rent details not provided"}
-                      squareFeet={items?.item?.squareFeet}
-                      landSize={items?.item?.landSize}
-                      listingType={items?.listingType || "N/A"}
-                    />
-                  ))}
+                    .slice(1, 4)
+                    ?.map((items: Property, index: number) => (
+                      <PropertyListCard
+                        key={index}
+                        imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                        altText={
+                          items?.imageUrls?.[0]?.altText ||
+                          "Property image showcasing a beautiful home"
+                        }
+                        price={items?.item?.price || "Price not available"}
+                        area={items?.item?.squareFeet}
+                        bathrooms={items?.item?.bathrooms}
+                        bedrooms={items?.item?.bedrooms}
+                        region={items?.region}
+                        description={
+                          items?.item?.description ||
+                          "No description available for this property."
+                        }
+                        _id={items?._id}
+                        title={items?.item?.title || "Untitled Property"}
+                        rent={items?.item?.rent || "Rent details not provided"}
+                        squareFeet={items?.item?.squareFeet}
+                        landSize={items?.item?.landSize}
+                        listingType={items?.listingType || "N/A"}
+                      />
+                    ))}
             </div>
 
             <Link

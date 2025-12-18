@@ -144,7 +144,18 @@ export default function PropertySearchBar() {
       queryParams.append("bedrooms", minBed === "4+" ? "4" : minBed);
     }
 
-    router.push(`/rent/fixes?${queryParams}`);
+    const queryString = queryParams.toString();
+    const targetUrl = `/rent/fixes${queryString ? `?${queryString}` : ""}`;
+
+    // Only push if the URL is different to avoid redundant reloads
+    if (
+      typeof window !== "undefined" &&
+      window.location.pathname + window.location.search !== targetUrl
+    ) {
+      router.push(targetUrl);
+    } else if (typeof window === "undefined") {
+      router.push(targetUrl);
+    }
   };
 
   const handleFilterChange = (key: keyof Filters, value: string) => {
