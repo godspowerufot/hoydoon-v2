@@ -1,4 +1,4 @@
-name: App Service with ACR
+name: Staging App Service with ACR
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: hoydoon-web-app
+  AZURE_WEBAPP_NAME: hoydoon-web-app-staging
   ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
   ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
   ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     environment:
-      name: production
+      name: staging
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -38,9 +38,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:${{ github.sha }},${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:latest
-          cache-from: type=registry,ref=${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:buildcache
-          cache-to: type=registry,ref=${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:buildcache,mode=max
+          tags: ${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:${{ github.sha }},${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:staging
+          cache-from: type=registry,ref=${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:buildcache-staging
+          cache-to: type=registry,ref=${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:buildcache-staging,mode=max
           build-args: |
             NEXT_FACEBOOK_ID=${{ secrets.NEXT_FACEBOOK_ID }}
             NEXT_FACEBOOK_SECRET=${{ secrets.NEXT_FACEBOOK_SECRET }}
@@ -53,7 +53,7 @@ jobs:
             NEXT_MAILCHIMP_API_KEY=${{ secrets.NEXT_MAILCHIMP_API_KEY }}
             NEXT_MAILCHIMP_API_SERVER=${{ secrets.NEXT_MAILCHIMP_API_SERVER }}
             NEXT_MAILCHIMP_AUDIENCE_ID=${{ secrets.NEXT_MAILCHIMP_AUDIENCE_ID }}
-            NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}
+            NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL_STAGING }}
             EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}
             EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
             NEXT_APPLE_KEY_ID=${{ secrets.NEXT_APPLE_KEY_ID }}
@@ -68,6 +68,6 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          slot-name: "Production"
-          publish-profile: ${{ secrets.APP_SERVICE_PUBLISH_PROFILE }}
+          slot-name: "staging"
+          publish-profile: ${{ secrets.APP_SERVICE_PUBLISH_PROFILE_STAGING }}
           images: ${{ env.ACR_LOGIN_SERVER }}/hoydoon-web:${{ github.sha }}
