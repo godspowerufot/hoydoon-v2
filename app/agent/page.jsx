@@ -90,24 +90,24 @@ export default function Page() {
             <div className="grid  mt-2 md:mt-4  gap-y-3  w-full  grid-col-1 md:grid-cols-2    gap-2  p-4 md:p-0 md:gap-10 ">
               {isAllLoading
                 ? // Show skeleton loaders
-                  Array.from({ length: 6 }, (_, index) => (
-                    <ProfileCardSkeleton />
-                  ))
+                Array.from({ length: 6 }, (_, index) => (
+                  <ProfileCardSkeleton />
+                ))
                 : displayListings
-                    .slice(
-                      0,
-                      Math.min(
-                        displayListings.length < 4 ? 2 : 6,
-                        displayListings.length
-                      )
+                  .slice(
+                    0,
+                    Math.min(
+                      displayListings.length < 4 ? 2 : 6,
+                      displayListings.length
                     )
-                    .map((agent) => (
-                      <ProfileCard
-                        key={agent._id}
-                        {...agent}
-                        sales={Number(agent.numberOfListings)}
-                      />
-                    ))}
+                  )
+                  .map((agent) => (
+                    <ProfileCard
+                      key={agent._id}
+                      {...agent}
+                      sales={Number(agent.numberOfListings)}
+                    />
+                  ))}
 
               {/* {displayListings.length > 0 && displayListings.length < 6 && (
                 <div className="w-full  hi flex justify-start">

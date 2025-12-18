@@ -392,10 +392,10 @@ export default function Breadcrumb({ showMap, setShowMap }) {
               {filters.bedBaths === "0-2"
                 ? "0 - 2"
                 : filters.bedBaths === "2-4"
-                ? "2 - 4"
-                : filters.bedBaths === "5+"
-                ? "5 & Above"
-                : "Bed/Baths"}
+                  ? "2 - 4"
+                  : filters.bedBaths === "5+"
+                    ? "5 & Above"
+                    : "Bed/Baths"}
             </span>
             <Image
               width={500}
@@ -467,7 +467,7 @@ export default function Breadcrumb({ showMap, setShowMap }) {
             <span>
               {filters["home-type"]
                 ? filters["home-type"].charAt(0).toUpperCase() +
-                  filters["home-type"].slice(1)
+                filters["home-type"].slice(1)
                 : "Type"}
             </span>
             <Image
@@ -696,11 +696,10 @@ export default function Breadcrumb({ showMap, setShowMap }) {
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
-              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${
-                (showMap ? "Map" : "List") === option
-                  ? "bg-primary gap-[10px] flex text-white"
-                  : "text-[#8F8F8F]"
-              }`}
+              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${(showMap ? "Map" : "List") === option
+                ? "bg-primary gap-[10px] flex text-white"
+                : "text-[#8F8F8F]"
+                }`}
               onClick={() => setShowMap(option === "Map")}
             >
               {option}

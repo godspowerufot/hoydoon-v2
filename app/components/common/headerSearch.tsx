@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Button from "./Button";
 
 type PropertyType = "shortlet" | "rent" | "buy" | "land" | "sell" | "";
@@ -54,24 +54,25 @@ const bedBathOptions = [
   { label: "5 & Above", value: "5+" },
 ];
 
+const getPropertyTypeFromPath = (pathname: string | null): PropertyType => {
+  if (pathname?.includes("/buy")) return "buy";
+  if (pathname?.includes("/rent")) return "rent";
+  if (pathname?.includes("/sell")) return "sell";
+  if (pathname?.includes("/shortlet")) return "shortlet";
+  if (pathname?.includes("/land")) return "land";
+  return "";
+};
+
 export default function PropertySearchBar() {
   const router = useRouter();
   const pathname = usePathname();
-
-  // Get default type based on route
-  const getDefaultType = (): PropertyType => {
-    if (pathname?.includes("/buy")) return "buy";
-    if (pathname?.includes("/rent")) return "rent";
-    if (pathname?.includes("/sell")) return "sell";
-    if (pathname?.includes("/shortlet")) return "shortlet";
-    if (pathname?.includes("/land")) return "land";
-    return "";
-  };
+  const searchParams = useSearchParams();
+  const [isSearching, setIsSearching] = useState(false);
 
   const [filters, setFilters] = useState<Filters>({
     location: "",
     price: "",
-    type: getDefaultType(),
+    type: getPropertyTypeFromPath(pathname),
     bedBaths: "",
   });
 
@@ -83,10 +84,15 @@ export default function PropertySearchBar() {
 
   // Update type when route changes
   useEffect(() => {
-    const defaultType = getDefaultType();
+    const defaultType = getPropertyTypeFromPath(pathname);
     setFilters((prev) => ({ ...prev, type: defaultType }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
+
+  // Reset searching state when path or params change
+  useEffect(() => {
+    setIsSearching(false);
+  }, [pathname, searchParams]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -115,6 +121,7 @@ export default function PropertySearchBar() {
   }, [filters.type]);
 
   const handleSearch = () => {
+    setIsSearching(true);
     const { location, price, type, bedBaths } = filters;
 
     // Build query params only with filled values
@@ -137,14 +144,7 @@ export default function PropertySearchBar() {
       queryParams.append("bedrooms", minBed === "4+" ? "4" : minBed);
     }
 
-    try {
-      // Use scroll: false to prevent iOS scroll crash during navigation
-      router.push(`/rent/fixes?${queryParams}`, { scroll: false });
-    } catch (error) {
-      console.error("Navigation error:", error);
-      // Fallback to basic navigation if router.push fails
-      window.location.href = `/rent/fixes?${queryParams}`;
-    }
+    router.push(`/rent/fixes?${queryParams}`);
   };
 
   const handleFilterChange = (key: keyof Filters, value: string) => {
@@ -188,6 +188,7 @@ export default function PropertySearchBar() {
       }}
       className="w-full border-[#ffffff33] border-[2px] max-w-3xl rounded-xl  z-[1111111] mx-auto mt-3 p-4"
     >
+      {/* Filter Grid */}
       <div className="grid grid-cols-2 gap-2 sm:gap-4">
         {/* Location Input */}
         <div>
@@ -196,7 +197,6 @@ export default function PropertySearchBar() {
           </label>
           <input
             type="text"
-            id="location"
             placeholder="Enter location"
             value={filters.location}
             onChange={(e) => handleFilterChange("location", e.target.value)}
@@ -412,9 +412,10 @@ export default function PropertySearchBar() {
       <div className="flex justify-center mt-4">
         <Button
           onClick={handleSearch}
-          className="w-1/2 md:!w-[300px] bg-primary px-8 py-2 md:py-3 text-white !text-base md:!text-xl font-light !rounded-[5.7px] transition-all "
+          disabled={isSearching}
+          className="w-1/2 md:!w-[300px] bg-primary px-8 py-2 md:py-3 text-white !text-base md:!text-xl font-light !rounded-[5.7px] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Search
+          {isSearching ? "Searching..." : "Search"}
         </Button>
       </div>
     </div>

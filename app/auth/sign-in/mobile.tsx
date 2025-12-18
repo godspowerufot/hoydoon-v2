@@ -13,11 +13,9 @@ import {
   useGoogleAuthMutation,
 } from "@/store/slices/api/authapi";
 import { sendDeviceInfo } from "../../../utils/lib/devicinfo";
-import { log } from "@/utils/log";
 import LoginButtons from "@/app/components/common/googlebutton";
 import { setUnverifiedEmail } from "@/store/slices/authslice";
 import { toast } from "react-toastify";
-import { signIn } from "next-auth/react";
 
 export const MobileSignIn = () => {
   const [tab, setTab] = useState<"login" | "signup">("login");
@@ -41,7 +39,7 @@ export const MobileSignIn = () => {
 
       // Destructure to exclude region
       const { region, ...deviceWithoutRegion } = device;
-      log("Device info:", region);
+
       // Send login request with device info (without region)
       await login({
         email: email.toLowerCase(),

@@ -73,3 +73,23 @@ export function formatPrice(region: string, amount: number | string) {
 
   return `${symbol}${new Intl.NumberFormat("en-US").format(num)}`;
 }
+
+export const getPhoneTypeLinks = () => {
+  return {
+    android: "https://play.google.com/store/apps/details?id=com.hoydoon.app",
+    iphone: "https://apps.apple.com/us/app/hoydoon/id6736393320",
+  };
+};
+
+export const getAppDownloadLink = () => {
+  if (typeof window === "undefined")
+    return "https://play.google.com/store/apps/details?id=com.hoydoon.app";
+
+  const userAgent =
+    navigator.userAgent || navigator.vendor || (window as any).opera;
+  const isIOS =
+    /iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream;
+
+  const links = getPhoneTypeLinks();
+  return isIOS ? links.iphone : links.android;
+};

@@ -9,10 +9,10 @@ const SearchBar = () => {
     minPrice: "",
     guests: "",
   });
-  
+
   const router = useRouter();
 
-  
+
   const handleSearch = () => {
     const queryParams = new URLSearchParams({
       ...(formData.location && { location: formData.location }),

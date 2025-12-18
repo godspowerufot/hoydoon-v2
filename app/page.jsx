@@ -11,6 +11,7 @@ import Button from "./components/common/Button";
 import { flattenListings } from "@/utils";
 import PropertySearchBar from "./components/common/headerSearch";
 import { toast } from "react-toastify";
+import { getAppDownloadLink } from "@/utils";
 import { truncateDescription } from "@/utils/index";
 import HoverCard from "@/app/components/common/card";
 import FagsSection from "../app/components/layouts/FaqSection";
@@ -240,11 +241,10 @@ function Carousel({ images }) {
             <div
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                currentIndex === index
-                  ? "bg-primary scale-110"
-                  : "bg-gray opacity-60"
-              }`}
+              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${currentIndex === index
+                ? "bg-primary scale-110"
+                : "bg-gray opacity-60"
+                }`}
             />
           ))}
         </div>
@@ -382,8 +382,7 @@ export default function Home() {
               receive instant alerts when your dream home becomes available.
             </p>
             <Link
-              href="
-https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
+              href={getAppDownloadLink()}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -417,34 +416,34 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
           <div className="flex flex-col mt-[0.5em] md:mt-[2.5em]  gap-5 items-start md:flex-row justify-start mb-2">
             {isAllLoading
               ? // Show skeleton loaders
-                Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
-                  <SkeletonCard key={`skeleton-${index}`} />
-                ))
+              Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+                <SkeletonCard key={`skeleton-${index}`} />
+              ))
               : // Show actual cards
-                (isMobile ? displayListings.slice(0, 1) : displayListings).map(
-                  (items, index) => (
-                    <HoverCard
-                      _id={items?._id}
-                      key={items?._id || index}
-                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                      altText={
-                        items?.imageUrls?.[0]?.altText ||
-                        "Property image showcasing a beautiful home"
-                      }
-                      region={items?.region || "Location not specified"}
-                      price={items?.item.price || "Price not available"}
-                      area={items?.item.squareFeet || ""}
-                      bathrooms={items?.item?.bathrooms}
-                      bedrooms={items?.item?.bedrooms}
-                      description={
-                        items?.item.description ||
-                        "No description available for this property."
-                      }
-                      title={items?.item.title || "Untitled Property"}
-                      rent={items?.item.rent || "Rent details not provided"}
-                    />
-                  )
-                )}
+              (isMobile ? displayListings.slice(0, 1) : displayListings).map(
+                (items, index) => (
+                  <HoverCard
+                    _id={items?._id}
+                    key={items?._id || index}
+                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                    altText={
+                      items?.imageUrls?.[0]?.altText ||
+                      "Property image showcasing a beautiful home"
+                    }
+                    region={items?.region || "Location not specified"}
+                    price={items?.item.price || "Price not available"}
+                    area={items?.item.squareFeet || ""}
+                    bathrooms={items?.item?.bathrooms}
+                    bedrooms={items?.item?.bedrooms}
+                    description={
+                      items?.item.description ||
+                      "No description available for this property."
+                    }
+                    title={items?.item.title || "Untitled Property"}
+                    rent={items?.item.rent || "Rent details not provided"}
+                  />
+                )
+              )}
 
             {!isAllLoading && (
               <Link
@@ -458,22 +457,24 @@ https://expo.dev/artifacts/eas/fYMekk7hs69zo5CgvmfQ1N.apk"
         </div>
       </section>
 
-      <section className="mt-5 w-screen md:mb-[5em]   md:w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 md:gap-0 justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col md:py-0 md:flex-row  p-3 md:p-0 md:gap-10 justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] md:text-[2.5rem] font-[600] w-full md:w-auto">
-              Explore Luxurious Living Spaces
-            </h1>
-            <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
-              From modern architecture to elegant interiors, discover homes
-              crafted for elevated living.
-            </p>
+      {luxuryDisplayListings.length > 0 && (
+        <section className="mt-5 w-screen md:mb-[5em]   md:w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
+          <div className="flex flex-col items-start gap-6 md:gap-0 justify-center max-w-[1200px] w-full">
+            <div className="flex flex-col md:py-0 md:flex-row  p-3 md:p-0 md:gap-10 justify-between items-center w-full  mx-auto">
+              <h1 className="text-black text-[24px] md:text-[2.5rem] font-[600] w-full md:w-auto">
+                Explore Luxurious Living Spaces
+              </h1>
+              <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
+                From modern architecture to elegant interiors, discover homes
+                crafted for elevated living.
+              </p>
+            </div>
+            <div className=" md:mt-[2em] w-full">
+              <Carousel images={luxuryDisplayListings} />
+            </div>{" "}
           </div>
-          <div className=" md:mt-[2em] w-full">
-            <Carousel images={luxuryDisplayListings} />
-          </div>{" "}
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* <CarouselWithSlideEffect/> */}
       {/* carousel */}
