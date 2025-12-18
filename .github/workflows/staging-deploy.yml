@@ -72,6 +72,6 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          slot-name: "staging"
+
           publish-profile: ${{ secrets.APP_SERVICE_PUBLISH_PROFILE_STAGING }}
           images: ${{ env.ACR_LOGIN_SERVER }}/hoydoon-web-staging:${{ github.sha }}
