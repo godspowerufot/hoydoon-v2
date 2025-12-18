@@ -900,7 +900,7 @@ const Page = () => {
                                         altText={listing.item?.title || "Property"}
                                         price={listing.item?.price}
                                         area={listing.item?.area}
-                                        region={listing.item?.region}
+                                        region={listing?.region}
                                         description={listing.item?.description}
                                         title={listing.item?.title}
                                         bathrooms={listing.item?.bathrooms}
