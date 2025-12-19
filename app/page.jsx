@@ -13,6 +13,7 @@ import PropertySearchBar from "./components/common/headerSearch";
 import { toast } from "react-toastify";
 import { getAppDownloadLink } from "@/utils";
 import { truncateDescription } from "@/utils/index";
+import AppDownloadQR from "./components/common/AppDownloadQR";
 import HoverCard from "@/app/components/common/card";
 import FagsSection from "../app/components/layouts/FaqSection";
 import { SkeletonCard } from "./components/Loader";
@@ -241,11 +242,10 @@ function Carousel({ images }) {
             <div
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                currentIndex === index
-                  ? "bg-primary scale-110"
-                  : "bg-gray opacity-60"
-              }`}
+              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${currentIndex === index
+                ? "bg-primary scale-110"
+                : "bg-gray opacity-60"
+                }`}
             />
           ))}
         </div>
@@ -373,7 +373,7 @@ export default function Home() {
         </div>
       </section>
       <section className=" hidden p-2 md:p-0   font-bricolage md:flex justify-center flex-col flex-1 items-center">
-        <div className="flex  gap-[4rem]  md:my-[5em]   flex-col md:flex-row  items-center justify-center">
+        <div className="flex  gap-[15rem]  md:my-[5em]   flex-col md:flex-row  items-center justify-center">
           <span className="flex   md:pl-1  2xl:pl-[0rem] flex-col w-full md:w-6/10 ">
             <h1 className="text-black  text-[26px] md:text-5xl font-[600]">
               Get the Hoydoon App
@@ -392,13 +392,7 @@ export default function Home() {
           </span>
 
           <span className="mt-4 md:mt-0">
-            <Image
-              alt="image1"
-              width={500} // Reduced size of logo
-              height={500} // Reduced size of logo
-              src={"/app.svg"}
-              className="md:w-[500px] w-[200px]"
-            />
+            <AppDownloadQR />
           </span>
         </div>
       </section>
@@ -417,34 +411,34 @@ export default function Home() {
           <div className="flex flex-col mt-[0.5em] md:mt-[2.5em]  gap-5 items-start md:flex-row justify-start mb-2">
             {isAllLoading
               ? // Show skeleton loaders
-                Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
-                  <SkeletonCard key={`skeleton-${index}`} />
-                ))
+              Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+                <SkeletonCard key={`skeleton-${index}`} />
+              ))
               : // Show actual cards
-                (isMobile ? displayListings.slice(0, 1) : displayListings).map(
-                  (items, index) => (
-                    <HoverCard
-                      _id={items?._id}
-                      key={items?._id || index}
-                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                      altText={
-                        items?.imageUrls?.[0]?.altText ||
-                        "Property image showcasing a beautiful home"
-                      }
-                      region={items?.region || "Location not specified"}
-                      price={items?.item.price || "Price not available"}
-                      area={items?.item.squareFeet || ""}
-                      bathrooms={items?.item?.bathrooms}
-                      bedrooms={items?.item?.bedrooms}
-                      description={
-                        items?.item.description ||
-                        "No description available for this property."
-                      }
-                      title={items?.item.title || "Untitled Property"}
-                      rent={items?.item.rent || "Rent details not provided"}
-                    />
-                  )
-                )}
+              (isMobile ? displayListings.slice(0, 1) : displayListings).map(
+                (items, index) => (
+                  <HoverCard
+                    _id={items?._id}
+                    key={items?._id || index}
+                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                    altText={
+                      items?.imageUrls?.[0]?.altText ||
+                      "Property image showcasing a beautiful home"
+                    }
+                    region={items?.region || "Location not specified"}
+                    price={items?.item.price || "Price not available"}
+                    area={items?.item.squareFeet || ""}
+                    bathrooms={items?.item?.bathrooms}
+                    bedrooms={items?.item?.bedrooms}
+                    description={
+                      items?.item.description ||
+                      "No description available for this property."
+                    }
+                    title={items?.item.title || "Untitled Property"}
+                    rent={items?.item.rent || "Rent details not provided"}
+                  />
+                )
+              )}
 
             {!isAllLoading && (
               <Link
