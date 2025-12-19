@@ -385,7 +385,7 @@ export default function Home() {
                   loading="lazy"
                   height={30}
                   quality={100} // Ensures maximum quality
-                  src={"/rent/fixes.png"}
+                  src={"/search.png"}
                   style={{ objectFit: "cover" }}
                 />
               </div>
