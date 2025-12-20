@@ -3,16 +3,18 @@
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import PropertyCard from "@/app/components/common/property";
 import Pagination from "@/app/components/common/pagination";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useRouter, useSearchParams } from "next/navigation";
-import PropertyListCardLite from "@/app/components/common/PropertyListingLite";
+import PropertyListCard from "@/app/components/common/PropertyListing";
 import { flattenListings } from "@/utils";
 import MapComponent from "@/app/components/layouts/listingmap";
 import { getLocationRegion } from "@/utils/lib/index";
+import { SkeletonCard } from "@/app/components/Loader";
 import { FiltersDropdown } from "@/app/components/common/filters";
 import ErrorBoundary from "@/app/components/common/error-boundary";
-import { SkeletonCard } from "@/app/components/Loader";
+import PropertyListCardLite from "../components/common/PropertyListingLite";
 
 const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
