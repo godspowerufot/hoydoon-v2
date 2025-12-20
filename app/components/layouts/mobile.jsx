@@ -198,7 +198,7 @@ const MobileNavbar = () => {
                     alt="Search"
                     width={10}
                     height={10}
-                    src="/rent/fixes.png"
+                    src="/search.png"
                   />
                 </button>
               </div>
