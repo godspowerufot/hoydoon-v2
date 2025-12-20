@@ -5,7 +5,6 @@ import ArticlesSection from "./components/common/Article";
 import { useEffect, useRef } from "react";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useState } from "react";
-import SearchBar from "./components/common/rent/fixescomponent";
 import { useIsMobile } from "@/hooks/usemobile";
 import Button from "./components/common/Button";
 import { flattenListings } from "@/utils";
@@ -443,7 +442,7 @@ export default function Home() {
 
             {!isAllLoading && (
               <Link
-                href="/rent/fixes"
+                href="/search"
                 className="text-[#09858D] md:hidden mt-2 text-sm md:my-5 md:text-2xl font-[500] "
               >
                 see housing for sale
