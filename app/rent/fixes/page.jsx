@@ -6,7 +6,7 @@ import Image from "next/image";
 import Pagination from "@/app/components/common/pagination";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useRouter, useSearchParams } from "next/navigation";
-import PropertyCardLite from "@/app/components/common/PropertyCardLite";
+import PropertyListCardLite from "@/app/components/common/PropertyListingLite";
 import { flattenListings } from "@/utils";
 import MapComponent from "@/app/components/layouts/listingmap";
 import { getLocationRegion } from "@/utils/lib/index";
@@ -644,8 +644,8 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
           <React.Fragment key={index}>
             <button
               className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${(showMap ? "Map" : "List") === option
-                  ? "bg-primary gap-[10px] flex text-white"
-                  : "text-[#8F8F8F]"
+                ? "bg-primary gap-[10px] flex text-white"
+                : "text-[#8F8F8F]"
                 }`}
               onClick={() => setShowMap(option === "Map")}
             >
@@ -865,8 +865,8 @@ const Page = () => {
                             setShowSortDropdown(false);
                           }}
                           className={`w-full text-left px-4 py-2 hover:bg-gray-100 ${sortBy === option.value
-                              ? "bg-[#d8d8d8] font-medium"
-                              : ""
+                            ? "bg-[#d8d8d8] font-medium"
+                            : ""
                             }`}
                         >
                           {option.label}
@@ -890,7 +890,7 @@ const Page = () => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                 {displayListings.map((listing, index) => (
-                  <PropertyCardLite
+                  <PropertyListCardLite
                     key={index}
                     _id={listing._id}
                     imageSrc={
@@ -899,11 +899,14 @@ const Page = () => {
                     altText={listing.item?.title || "Property"}
                     price={listing.item?.price}
                     area={listing.item?.area}
+                    region={listing?.region}
                     description={listing.item?.description}
                     title={listing.item?.title}
                     bathrooms={listing.item?.bathrooms}
                     bedrooms={listing.item?.bedrooms}
-                    rent={listing.item?.rent}
+                    squareFeet={listing.item?.squareFeet}
+                    listingType={listing.item?.listingType}
+                    landSize={listing.item?.landSize}
                   />
                 ))}
               </div>
