@@ -13,6 +13,7 @@ import {
   useToggleFavoriteMutation,
 } from "@/store/slices/api/authapi";
 import Spinner from "@/app/components/common/Spinner";
+import { SkeletonCard } from "@/app/components/Loader";
 import { log } from "@/utils/log";
 import { useRouter } from "next/navigation";
 import { handleShareClick } from "@/utils";
@@ -232,7 +233,15 @@ const page = ({ params }) => {
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div className="md:max-w-[1240px] w-full mt-[8rem] mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {Array.from({ length: 3 }, (_, i) => (
+            <SkeletonCard key={`skeleton-${i}`} />
+          ))}
+        </div>
+      </div>
+    );
   }
   const tabs = [
     { id: "all", label: "All listings" },
@@ -270,9 +279,8 @@ const page = ({ params }) => {
       )}
       {/* second div layout  */}
       <div
-        className={`bg-gray-100 mt-2   w-full md:mt-5 ${
-          !showListings ? "mt-[2rem] md:mt-0" : ""
-        } md:p-0  md:py-4 rounded-lg`}
+        className={`bg-gray-100 mt-2   w-full md:mt-5 ${!showListings ? "mt-[2rem] md:mt-0" : ""
+          } md:p-0  md:py-4 rounded-lg`}
       >
         <div className="flex flex-row px-4  md:p-0 justify-between items-start md:items-center">
           {/* Profile Image */}
@@ -409,11 +417,10 @@ const page = ({ params }) => {
                   setActiveTab(tab.id);
                   setCoordinates(allCoordinates[tab.id] || []); // Update map based on tab
                 }}
-                className={`relative py-2 text-sm md:text-base transition-colors duration-300 ${
-                  activeTab === tab.id
+                className={`relative py-2 text-sm md:text-base transition-colors duration-300 ${activeTab === tab.id
                     ? "text-black font-semibold"
                     : "text-[#8F8F8F]"
-                }`}
+                  }`}
               >
                 {tab.label}
                 {activeTab === tab.id && (
