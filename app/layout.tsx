@@ -9,6 +9,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Script from "next/script";
 
+import Spinner from "./components/common/Spinner";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hoydoon.com"),
   title: "Hoydoon: Real Estate, Apartments, Mortgages & Home Values",
@@ -155,7 +157,7 @@ export default function RootLayout({
             </div>
             <AnimationWrapper>
               <main className="container flex-1 flex items-center justify-center flex-col">
-                <Suspense fallback={null}>
+                <Suspense fallback={<Spinner />}>
                   <ToastContainer position="top-center" autoClose={3000} />
                   {children}
                 </Suspense>
