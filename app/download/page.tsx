@@ -22,7 +22,7 @@ export default function DownloadPage() {
         <div className="flex flex-col items-center justify-center min-h-screen bg-white space-y-6">
             <LoadingBalls />
             <div className="text-center">
-                <h1 className="text-2xl font-meduim mb-4 text-primary">Redirecting to App Store...</h1>
+                <h1 className="text-2xl font-light mb-4 text-primary">Redirecting to the store...</h1>
             </div>
         </div>
     );
