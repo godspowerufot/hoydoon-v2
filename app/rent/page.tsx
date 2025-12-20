@@ -139,7 +139,7 @@ export default function Home() {
           </div>
           {!isAllLoading && (
             <Link
-              href="/rent/fixes"
+              href="/search"
               className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-xl font-[500] "
             >
               see all new listings for rents
@@ -211,7 +211,7 @@ export default function Home() {
 
             {!isAllLoading && (
               <Link
-                href={"/rent/fixes?location=somalia&listingType=rent"}
+                href={"/search?location=somalia&listingType=rent"}
                 className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
               >
                 see all somalia listings for rent
@@ -281,7 +281,7 @@ export default function Home() {
 
             {!isAllLoading && (
               <Link
-                href={"/rent/fixes?location=nigeria&listingType=rent"}
+                href={"/search?location=nigeria&listingType=rent"}
                 className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
               >
                 see all nigeria listings for rent
@@ -349,7 +349,7 @@ export default function Home() {
             )}
 
             <Link
-              href={"/rent/fixes"}
+              href={"/search"}
               className="text-[#09858D] text-base my-5 lg:text-xl font-[500]"
             >
               see all pet-friendly houses for rent
@@ -418,7 +418,7 @@ export default function Home() {
               )}
 
               <Link
-                href="/rent/fixes?listingType=shortlet"
+                href="/search?listingType=shortlet"
                 className="text-[#09858D] text-base my-5 lg:text-xl font-[500]"
               >
                 see all shortlet houses for rent
@@ -479,7 +479,7 @@ export default function Home() {
             </div>
 
             <Link
-              href={"/rent/fixes"}
+              href={"/search"}
               className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
             >
               see all family House for rent
