@@ -91,15 +91,15 @@ export default function RootLayout({
                 contactType: "Customer Service",
                 url: "https://www.hoydoon.com/contact",
               },
-             
+
             }),
           }}
         />
 
         {/* Website Schema with SearchAction */}
-        
 
-      
+
+
 
         {/* Breadcrumb Schema */}
         <Script
@@ -149,7 +149,7 @@ export default function RootLayout({
           name="google-signin-client_id"
           content="438580118502-j5qth0chlkikrpreur0gjl9q1vm8a162.apps.googleusercontent.com"
         />
-<meta name="google-site-verification" content="6tevUXnxT89TubXC_lXDm_M9Qis3qs2zzrU1aGoXYHc" />
+        <meta name="google-site-verification" content="6tevUXnxT89TubXC_lXDm_M9Qis3qs2zzrU1aGoXYHc" />
         <body className="lg:flex overflow-x-hidden flex-col flex-1 font-bricolage min-h-screen">
           <Providers>
             <div className="absolute top-0 left-0 w-full z-10">
@@ -157,7 +157,7 @@ export default function RootLayout({
             </div>
             <AnimationWrapper>
               <main className="container flex-1 flex items-center justify-center flex-col">
-                <Suspense fallback={<Spinner />}>
+                <Suspense fallback={null}>
                   <ToastContainer position="top-center" autoClose={3000} />
                   {children}
                 </Suspense>

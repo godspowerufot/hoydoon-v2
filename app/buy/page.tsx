@@ -104,14 +104,10 @@ export default function Home() {
           className="absolute lg:hidden top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
           style={{ backgroundImage: "url('/rentmobile.png')" }}
         ></div>
-        {/* Content Section */}
         <div className="flex flex-col items-center relative z-[1]  mt-[2.6rem] lg:mt-[6rem]    gap-1 lg:gap-4 h-full ">
-          {/* Main Heading */}
-          <h1 className="text-white text-center w-[25rem]   relative  font-bricolage font-semibold leading-tight  text-[36px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
+          <h1 className="text-white text-center     relative  font-bricolage font-semibold leading-tight  text-[36px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Find Your Dream Home Today!
           </h1>
-
-          {/* Subheading */}
           <h2 className="text-[#FFFFFFB2]  hidden  lg:-mt-2 text-center  lg:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] lg:w-[47rem]">
             Discover the perfect property to call home. Beautiful locations,
             modern amenities, and endless possibilities,make your move today!
@@ -172,7 +168,7 @@ export default function Home() {
                   ))}
           </div>
           <Link
-            href="/rent/fixes"
+            href="/search"
             className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see housing for sale
@@ -235,7 +231,7 @@ export default function Home() {
 
           {!isAllLoading && (
             <Link
-              href="/rent/fixes?category=affordable"
+              href="/search?category=affordable"
               className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all afforable houses for sale
@@ -289,7 +285,7 @@ export default function Home() {
           </div>
           {!isAllLoading && (
             <Link
-              href="/rent/fixes?category=open-house`"
+              href="/search?category=open-house`"
               className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all open houses for sale
@@ -343,7 +339,7 @@ export default function Home() {
           </div>
 
           <Link
-            href="/rent/fixes?category=luxury"
+            href="/search?category=luxury"
             className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see all luxury houses for sale

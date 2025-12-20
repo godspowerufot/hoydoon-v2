@@ -11,7 +11,7 @@ import PropertyListCard from "@/app/components/common/PropertyListing";
 import { flattenListings } from "@/utils";
 import MapComponent from "@/app/components/layouts/listingmap";
 import { getLocationRegion } from "@/utils/lib/index";
-import { PropertySkeleton } from "@/app/components/Loader";
+import { SkeletonCard } from "@/app/components/Loader";
 import { FiltersDropdown } from "@/app/components/common/filters";
 import ErrorBoundary from "@/app/components/common/error-boundary";
 
@@ -808,7 +808,7 @@ const Page = () => {
         {isAllloading ? (
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
-              <PropertySkeleton />
+              <SkeletonCard key={`skeleton-${i}`} />
             ))}
           </div>
         ) : (
