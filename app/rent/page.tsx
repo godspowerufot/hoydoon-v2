@@ -139,7 +139,7 @@ export default function Home() {
           </div>
           {!isAllLoading && (
             <Link
-              href="/rent/fixes"
+              href="/search"
               className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-xl font-[500] "
             >
               see all new listings for rents
