@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { truncateDescription, encodeId, formatPrice } from "@/utils";
 import Link from "next/link";
+import Image from "next/image";
 
 interface PropertyCardProps {
     imageSrc?: string;
@@ -22,6 +23,8 @@ interface PropertyCardProps {
 }
 
 const PropertyListCardLite: React.FC<PropertyCardProps> = ({
+    imageSrc = "_",
+    altText = "_",
     price = "_",
     area = "_",
     region = " _",
@@ -61,33 +64,24 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
                     onMouseEnter={() => !isMobile && setIsHovered(true)}
                     onMouseLeave={() => !isMobile && setIsHovered(false)}
                 >
-                    {/* Image placeholder - no actual image loaded */}
+                    {/* Image container */}
                     <div
-                        className={`relative w-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 flex items-center justify-center ${isMobile
+                        className={`relative w-full overflow-hidden ${isMobile
                             ? "h-[350px]"
                             : `transition-all duration-[2000ms] ease-in-out ${isHovered ? "h-[350px]" : "h-[500px]"
                             }`
                             }`}
                         style={{ borderRadius: 20 }}
                     >
-                        <div className="text-center p-4">
-                            <div className="w-16 h-16 mx-auto mb-2 rounded-full bg-white/30 flex items-center justify-center">
-                                <svg
-                                    className="w-8 h-8 text-white"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                                    />
-                                </svg>
-                            </div>
-                            <p className="text-white/80 text-sm font-light">Property Image</p>
-                        </div>
+                        <Image
+                            src={imageSrc || "/affordable-1.png"}
+                            alt={altText}
+                            loading="lazy"
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
+                            style={{ objectFit: "cover", borderRadius: 20 }}
+                            className="transition-all duration-[1500ms] ease-in-out rounded-[20px]"
+                        />
                     </div>
 
                     {/* Description below image (details section) */}

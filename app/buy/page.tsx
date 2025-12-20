@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { log } from "@/utils/log";
 import MapComponent from "../components/layouts/listingmap";
-import HoverCard from "../components/common/card";
+import PropertyCardLite from "../components/common/PropertyCardLite";
 import { Property } from "@/types";
 import { SkeletonCard } from "../components/Loader";
 import PropertySearchBar from "../components/common/headerSearch";

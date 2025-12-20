@@ -6,7 +6,7 @@ import Image from "next/image";
 import Pagination from "@/app/components/common/pagination";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useRouter, useSearchParams } from "next/navigation";
-import PropertyListCard from "@/app/components/common/PropertyListing";
+import PropertyCardLite from "@/app/components/common/PropertyCardLite";
 import { flattenListings } from "@/utils";
 import MapComponent from "@/app/components/layouts/listingmap";
 import { getLocationRegion } from "@/utils/lib/index";
@@ -225,7 +225,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     }
 
     const queryString = newParams.toString();
-    router.push(`/rent/fixes${queryString ? `?${queryString}` : ""}`, {
+    router.push(`/search${queryString ? `?${queryString}` : ""}`, {
       scroll: false,
     });
   };
@@ -352,10 +352,10 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                     {filters.bedBaths === "0-2"
                       ? "0 - 2"
                       : filters.bedBaths === "2-4"
-                      ? "2 - 4"
-                      : filters.bedBaths === "5+"
-                      ? "5 & Above"
-                      : "Bed/Baths"}
+                        ? "2 - 4"
+                        : filters.bedBaths === "5+"
+                          ? "5 & Above"
+                          : "Bed/Baths"}
                   </span>
                   <span className="text-xs">
                     {" "}
@@ -495,20 +495,19 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
             <div className="relative" key={option}>
               <button
                 type="button"
-                className={`border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2 ${
-                  option === "Price" ? "hidden md:flex" : ""
-                }`}
+                className={`border border-[#8F8F8F] bg-transparent text-sm md:text-base font-light rounded-md text-[#8F8F8F] py-2 px-2 md:py-2 md:px-4 flex items-center justify-between md:min-w-[140px] gap-2 ${option === "Price" ? "hidden md:flex" : ""
+                  }`}
                 onClick={() => setDropdownState(!dropdownState)}
               >
                 <span>
                   {option === "Type"
                     ? filters["home-type"]
                       ? filters["home-type"].charAt(0).toUpperCase() +
-                        filters["home-type"].slice(1)
+                      filters["home-type"].slice(1)
                       : "Type"
                     : option === "Price"
-                    ? getPriceLabel()
-                    : option}
+                      ? getPriceLabel()
+                      : option}
                 </span>
                 <span className="text-xs">
                   {" "}
@@ -561,9 +560,8 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
                               {opt.label}
                             </span>
                             <div
-                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                                isSelected ? "border-primary" : "border-primary"
-                              }`}
+                              className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected ? "border-primary" : "border-primary"
+                                }`}
                             >
                               {isSelected && (
                                 <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
@@ -645,11 +643,10 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
         {["List", "Map"].map((option, index) => (
           <React.Fragment key={index}>
             <button
-              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${
-                (showMap ? "Map" : "List") === option
+              className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${(showMap ? "Map" : "List") === option
                   ? "bg-primary gap-[10px] flex text-white"
                   : "text-[#8F8F8F]"
-              }`}
+                }`}
               onClick={() => setShowMap(option === "Map")}
             >
               {option}
@@ -691,7 +688,7 @@ const Page = () => {
     if (page >= 1 && page <= totalPages) {
       const newParams = new URLSearchParams(searchParams.toString());
       newParams.set("page", page.toString());
-      router.push(`/rent/fixes?${newParams.toString()}`, { scroll: false });
+      router.push(`/search?${newParams.toString()}`, { scroll: false });
     }
   };
 
@@ -833,10 +830,10 @@ const Page = () => {
                   {sortBy === "newest"
                     ? "Newest"
                     : sortBy === "oldest"
-                    ? "Oldest"
-                    : sortBy === "price-low"
-                    ? "Price Low-High"
-                    : "Price High-Low"}
+                      ? "Oldest"
+                      : sortBy === "price-low"
+                        ? "Price Low-High"
+                        : "Price High-Low"}
                   <Image
                     width={500}
                     height={500}
@@ -867,11 +864,10 @@ const Page = () => {
                             setSortBy(option.value);
                             setShowSortDropdown(false);
                           }}
-                          className={`w-full text-left px-4 py-2 hover:bg-gray-100 ${
-                            sortBy === option.value
+                          className={`w-full text-left px-4 py-2 hover:bg-gray-100 ${sortBy === option.value
                               ? "bg-[#d8d8d8] font-medium"
                               : ""
-                          }`}
+                            }`}
                         >
                           {option.label}
                         </button>
@@ -894,23 +890,20 @@ const Page = () => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                 {displayListings.map((listing, index) => (
-                  <PropertyListCard
+                  <PropertyCardLite
                     key={index}
                     _id={listing._id}
-                    // imageSrc={
-                    //listing.imageUrls?.[0]?.url || "/default-image.jpg"
-                    // }
+                    imageSrc={
+                      listing.imageUrls?.[0]?.url || "/default-image.jpg"
+                    }
                     altText={listing.item?.title || "Property"}
                     price={listing.item?.price}
                     area={listing.item?.area}
-                    region={listing?.region}
                     description={listing.item?.description}
                     title={listing.item?.title}
                     bathrooms={listing.item?.bathrooms}
                     bedrooms={listing.item?.bedrooms}
-                    squareFeet={listing.item?.squareFeet}
-                    listingType={listing.item?.listingType}
-                    landSize={listing.item?.landSize}
+                    rent={listing.item?.rent}
                   />
                 ))}
               </div>
