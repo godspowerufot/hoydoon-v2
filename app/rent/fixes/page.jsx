@@ -14,7 +14,7 @@ import { getLocationRegion } from "@/utils/lib/index";
 import { SkeletonCard } from "@/app/components/Loader";
 import { FiltersDropdown } from "@/app/components/common/filters";
 import ErrorBoundary from "@/app/components/common/error-boundary";
-import PropertyListCardLite from "../components/common/PropertyListingLite";
+import PropertyListCardLite from "@/app/components/common/PropertyListingLite";
 
 const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
