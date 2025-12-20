@@ -168,7 +168,7 @@ export default function Home() {
                   ))}
           </div>
           <Link
-            href="/search"
+            href="/rent/fixes"
             className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see housing for sale
@@ -231,7 +231,7 @@ export default function Home() {
 
           {!isAllLoading && (
             <Link
-              href="/search?category=affordable"
+              href="/rent/fixes?category=affordable"
               className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all afforable houses for sale
@@ -285,7 +285,7 @@ export default function Home() {
           </div>
           {!isAllLoading && (
             <Link
-              href="/search?category=open-house`"
+              href="/rent/fixes?category=open-house`"
               className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all open houses for sale
@@ -339,7 +339,7 @@ export default function Home() {
           </div>
 
           <Link
-            href="/search?category=luxury"
+            href="/rent/fixes?category=luxury"
             className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see all luxury houses for sale
@@ -381,7 +381,7 @@ export default function Home() {
                   loading="lazy"
                   height={30}
                   quality={100} // Ensures maximum quality
-                  src={"/search.png"}
+                  src={"/rent/fixes.png"}
                   style={{ objectFit: "cover" }}
                 />
               </div>
