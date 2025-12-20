@@ -8,6 +8,7 @@ import PropertyListCard from "@/app/components/common/PropertyListing";
 import Button from "@/app/components/common/Button";
 import Link from "next/link";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
+import { SkeletonCard } from "@/app/components/Loader";
 interface Property {
   imageUrls?: { url?: string; altText?: string }[];
   item?: {
@@ -73,8 +74,12 @@ const page = () => {
 
   if (isAllLoading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
-        <div className="loader border-t-4 border-b-4 border-primary rounded-full w-12 h-12 animate-spin"></div>
+      <div className="mt-[8rem] 2xl:w-[1520px] mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {Array.from({ length: 3 }, (_, i) => (
+            <SkeletonCard key={`skeleton-${i}`} />
+          ))}
+        </div>
       </div>
     );
   }

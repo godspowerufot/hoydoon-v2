@@ -83,12 +83,16 @@ export const getPhoneTypeLinks = () => {
 
 export const getAppDownloadLink = () => {
   if (typeof window === "undefined")
-    return "https://play.google.com/store/apps/details?id=com.hoydoon.app";
+    return "https://apps.apple.com/us/app/hoydoon/id6736393320";
 
   const userAgent =
     navigator.userAgent || navigator.vendor || (window as any).opera;
+
+  // More robust iOS detection
   const isIOS =
-    /iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream;
+    /iPad|iPhone|iPod/.test(userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) || // iPadOS
+    (/Macintosh/.test(userAgent) && navigator.maxTouchPoints > 1);
 
   const links = getPhoneTypeLinks();
   return isIOS ? links.iphone : links.android;

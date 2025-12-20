@@ -32,7 +32,7 @@ export default function ListingNavbar() {
       ...(formData.location && { location: formData.location }),
     }).toString();
 
-    router.push(`/search?${queryParams}`);
+    router.push(`/rent/fixes?${queryParams}`);
   };
 
   const handlelogout = async () => {

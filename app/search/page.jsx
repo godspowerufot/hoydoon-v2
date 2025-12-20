@@ -11,9 +11,10 @@ import PropertyListCard from "@/app/components/common/PropertyListing";
 import { flattenListings } from "@/utils";
 import MapComponent from "@/app/components/layouts/listingmap";
 import { getLocationRegion } from "@/utils/lib/index";
-import { PropertySkeleton } from "@/app/components/Loader";
+import { SkeletonCard } from "@/app/components/Loader";
 import { FiltersDropdown } from "@/app/components/common/filters";
 import ErrorBoundary from "@/app/components/common/error-boundary";
+import PropertyListCardLite from "../components/common/PropertyListingLite";
 
 const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
@@ -806,9 +807,9 @@ const Page = () => {
         <Breadcrumb showMap={showMap} setShowMap={setShowMap} />
 
         {isAllloading ? (
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mt-[8rem] md:mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
-              <PropertySkeleton />
+              <SkeletonCard key={`skeleton-${i}`} />
             ))}
           </div>
         ) : (
@@ -891,7 +892,7 @@ const Page = () => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                 {displayListings.map((listing, index) => (
-                  <PropertyListCard
+                  <PropertyListCardLite
                     key={index}
                     _id={listing._id}
                     imageSrc={
@@ -900,7 +901,7 @@ const Page = () => {
                     altText={listing.item?.title || "Property"}
                     price={listing.item?.price}
                     area={listing.item?.area}
-                    region={listing.item?.region}
+                    region={listing?.region}
                     description={listing.item?.description}
                     title={listing.item?.title}
                     bathrooms={listing.item?.bathrooms}

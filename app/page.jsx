@@ -5,7 +5,6 @@ import ArticlesSection from "./components/common/Article";
 import { useEffect, useRef } from "react";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useState } from "react";
-import SearchBar from "./components/common/searchcomponent";
 import { useIsMobile } from "@/hooks/usemobile";
 import Button from "./components/common/Button";
 import { flattenListings } from "@/utils";
@@ -13,6 +12,7 @@ import PropertySearchBar from "./components/common/headerSearch";
 import { toast } from "react-toastify";
 import { getAppDownloadLink } from "@/utils";
 import { truncateDescription } from "@/utils/index";
+import AppDownloadQR from "./components/common/AppDownloadQR";
 import HoverCard from "@/app/components/common/card";
 import FagsSection from "../app/components/layouts/FaqSection";
 import { SkeletonCard } from "./components/Loader";
@@ -373,7 +373,7 @@ export default function Home() {
         </div>
       </section>
       <section className=" hidden p-2 md:p-0   font-bricolage md:flex justify-center flex-col flex-1 items-center">
-        <div className="flex  gap-[4rem]  md:my-[5em]   flex-col md:flex-row  items-center justify-center">
+        <div className="flex  gap-[15rem]  md:my-[5em]   flex-col md:flex-row  items-center justify-center">
           <span className="flex   md:pl-1  2xl:pl-[0rem] flex-col w-full md:w-6/10 ">
             <h1 className="text-black  text-[26px] md:text-5xl font-[600]">
               Get the Hoydoon App
@@ -392,13 +392,7 @@ export default function Home() {
           </span>
 
           <span className="mt-4 md:mt-0">
-            <Image
-              alt="image1"
-              width={500} // Reduced size of logo
-              height={500} // Reduced size of logo
-              src={"/app.svg"}
-              className="md:w-[500px] w-[200px]"
-            />
+            <AppDownloadQR />
           </span>
         </div>
       </section>

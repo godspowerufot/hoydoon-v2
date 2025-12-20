@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { truncateDescription, encodeId } from "@/utils";
 import Link from "next/link";
+import Image from "next/image";
 
 const PropertyCardLite = ({
     imageSrc = "/default-image.jpg",
@@ -32,39 +33,28 @@ const PropertyCardLite = ({
         <Link href={`/rent/${encodeId(_id)}`}>
             <div
                 className={`hidden lg:flex flex-col rounded-[16px] lg:rounded-[1.5rem] border-[1px] border-gray 2xl:h-[40rem] h-[32rem] lg:h-[600px] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden lg:ml-8 relative group transition-all duration-[1500ms] ease-in-out ${isHovered
-                        ? "border-solid rounded-2xl p-0 border-[1px] border-gray"
-                        : " border lg:border-none"
+                    ? "border-solid rounded-2xl p-0 border-[1px] border-gray"
+                    : " border lg:border-none"
                     }`}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
-                {/* Image Placeholder - No actual image */}
-                <div className="overflow-hidden rounded-b-[20px] lg:rounded-lg h-full lg:h-[25rem] lg:rounded-b-[27px] w-full transition-all duration-[1500ms] ease-in-out bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 flex items-center justify-center">
-                    <div className="text-center p-4">
-                        <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-white/30 flex items-center justify-center">
-                            <svg
-                                className="w-10 h-10 text-white"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                                />
-                            </svg>
-                        </div>
-                        <p className="text-white/80 text-sm font-light">Property Image</p>
-                    </div>
+                {/* Image container */}
+                <div className="overflow-hidden rounded-b-[20px] lg:rounded-lg h-full lg:h-[25rem] lg:rounded-b-[27px] w-full transition-all duration-[1500ms] ease-in-out relative">
+                    <Image
+                        src={imageSrc || "/affordable-1.png"}
+                        alt={altText}
+                        fill
+                        style={{ objectFit: "cover" }}
+                        className="transition-all duration-[1500ms] ease-in-out"
+                    />
                 </div>
 
                 {/* Details Section */}
                 <div
                     className={`mt-3 lg:mt-5 px-5 transition-all duration-[1500ms] ease-in-out ${showDetails
-                            ? "opacity-100 translate-y-0 h-fit lg:h-[175px]"
-                            : "h-0 opacity-0 translate-y-5 max-h-0"
+                        ? "opacity-100 translate-y-0 h-fit lg:h-[175px]"
+                        : "h-0 opacity-0 translate-y-5 max-h-0"
                         }`}
                 >
                     <h1 className="text-black text-[24px] lg:text-[28px] font-bold">
