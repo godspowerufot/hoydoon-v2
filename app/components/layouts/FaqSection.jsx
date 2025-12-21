@@ -30,7 +30,7 @@ export default function FagsSection() {
         </Button> */}
         </span>
       </div>
-      <div className="-mt-[3rem] md:-mt-[3em] md:mb-[5.5em]  md:ml-[5rem]   justify-center items-center max-md:w-full w-full gap-6 flex flex-col-reverse max-md:justify-center max-md:items-center md:flex-row ">
+      <div className="-mt-[8rem] md:-mt-[3em] md:mb-[5.5em]  md:ml-[5rem]   justify-center items-center max-md:w-full w-full gap-6 flex flex-col-reverse max-md:justify-center max-md:items-center md:flex-row ">
         <div className="z-[4] md:block relative max-md:w-full  md:h-[50em]  md:left-[35px] 2xl:left-[10px] md:top-[11em]">
           <div className="md:hidden flex  flex-col  md:flex-row   2xl:gap-[14rem] md:gap-[6rem]  justify-around items-start md:items-center  ">
             <span className="flex flex-col  font-bricolage md:ml-[1rem] 2xl:ml-[1rem]  gap-2">
