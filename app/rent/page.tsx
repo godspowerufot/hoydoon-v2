@@ -1,6 +1,6 @@
 "use client";
 
-import PropertyListCard from "../components/common/PropertyListing";
+import HoverCard from "../components/common/PropertyListing";
 import Article from "../components/common/Article";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { useState, useEffect } from "react";
@@ -92,7 +92,7 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="mt-4  lg:p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="mt-4 p-[1rem]  lg:p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col  w-full items-start  lg:max-w-[1200px] ">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px]  mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -103,7 +103,7 @@ export default function Home() {
               homes that feel just right, wherever you are.
             </p>
           </div>
-          <div className="flex flex-col mt-[3em] lg:my-[2em] gap-[2em] lg:gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="flex flex-col  mt-[3em] lg:my-[2em] gap-[2em] lg:gap-5 items-start lg:flex-row justify-start mb-2">
             {isAllLoading
               ? // Show skeleton loaders
               Array.from({ length: 3 }, (_, index) => (
@@ -112,7 +112,7 @@ export default function Home() {
               : displayListings
                 .slice(0, 3)
                 .map((items: Property, index: number) => (
-                  <PropertyListCard
+                  <HoverCard
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                     altText={
@@ -152,7 +152,7 @@ export default function Home() {
 
       {/* afforable component */}
 
-      <section className="mt-4 p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="mt-4 p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6  lg:max-w-[1200px]w-full">
           <div className="flex flex-col lg:gap-[12rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -182,7 +182,7 @@ export default function Home() {
                 {[...(regionListings?.listings || [])]
                   ?.slice(2, 5)
                   ?.map((items: Property, index: number) => (
-                    <PropertyListCard
+                    <HoverCard
                       key={index}
                       imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                       altText={
@@ -222,7 +222,7 @@ export default function Home() {
       </section>
       <div className="w-screen mt-[3rem] lg:mt-0  h-[2px] bg-[#D9D9D9]" />
 
-      <section className="mt-4 p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className="mt-4 p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6  lg:max-w-[1200px]w-full">
           <div className="flex flex-col lg:gap-[12rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -252,7 +252,7 @@ export default function Home() {
                 {[...(NigeriaListings?.listings || [])]
                   ?.slice(2, 5)
                   ?.map((items: Property, index: number) => (
-                    <PropertyListCard
+                    <HoverCard
                       key={index}
                       imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                       altText={
@@ -292,7 +292,7 @@ export default function Home() {
       </section>
       <div className="w-screen h-[2px] bg-[#D9D9D9] " />
 
-      <section className=" p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className=" p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
           <div className="flex flex-col lg:gap-[21rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -321,7 +321,7 @@ export default function Home() {
                   .slice(0, 3)
                   .sort(() => Math.random() - 0.5)
                   ?.map((items: Property, index: number) => (
-                    <PropertyListCard
+                    <HoverCard
                       key={index}
                       imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                       altText={
@@ -361,7 +361,7 @@ export default function Home() {
       {/* luxury */}
       <div className="w-screen h-[2px] bg-[#D9D9D9] " />
       {userCountry !== "somalia" && (
-        <section className="p-0 lg:my-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <section className="p-[1rem] lg:my-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
           <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
             <div className="flex flex-col lg:gap-[20rem] lg:flex-row justify-between items-start w-full mx-auto">
               <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -390,7 +390,7 @@ export default function Home() {
                     .slice(0, 3)
                     .sort(() => Math.random() - 0.5)
                     ?.map((items: Property, index: number) => (
-                      <PropertyListCard
+                      <HoverCard
                         key={index}
                         imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                         altText={
@@ -431,7 +431,7 @@ export default function Home() {
       {/* // Then conditionally render the section */}
 
       {/* testimonials */}
-      <section className=" p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+      <section className=" p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
@@ -452,7 +452,7 @@ export default function Home() {
                 : [...(familyFriendlyListings?.listings || [])]
                   .slice(1, 4)
                   ?.map((items: Property, index: number) => (
-                    <PropertyListCard
+                    <HoverCard
                       key={index}
                       imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                       altText={

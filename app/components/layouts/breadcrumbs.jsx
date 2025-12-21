@@ -14,7 +14,7 @@ import { getLocationWithTimeout } from "./../../../utils/index";
 import { getLocationRegion } from "@/utils/lib/index";
 
 import FiltersDropdown from "../common/filters";
-export default const Breadcrumb = ({ showMap, setShowMap }) => {
+export const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isSearching, setIsSearching] = useState(false);

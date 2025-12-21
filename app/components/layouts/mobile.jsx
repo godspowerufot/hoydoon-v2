@@ -62,7 +62,7 @@ const MobileNavbar = () => {
       ...(formData.location && { location: formData.location }),
     }).toString();
 
-    const targetUrl = `/rent/fixes?${queryParams}`;
+    const targetUrl = `/search?${queryParams}`;
 
     // Only push if the URL is different to avoid redundant reloads
     if (
@@ -129,7 +129,7 @@ const MobileNavbar = () => {
       )}
       <nav className="flex items-center justify-between px-4 py-2 bg-white shadow-md lg:hidden">
         {!(
-          pathname.startsWith("/rent/fixes") ||
+          pathname.startsWith("/search") ||
           pathname.startsWith("/helpcenter/submit-request")
         ) && (
           <>
@@ -162,7 +162,7 @@ const MobileNavbar = () => {
         )}
 
         <div className="flex items-center justify-between w-full gap-3">
-          {pathname === "/rent/fixes" ||
+          {pathname === "/search" ||
           pathname.startsWith("/helpcenter/submit-request") ? (
             <div className="flex items-center space-x-2">
               {/* Globe Icon */}
