@@ -110,22 +110,22 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
                                         </p>
                                     )}
                                 </span>
-                                <h4 className="lg:ml-[5rem] 2xl:ml-[10rem] text-label text-gray font-light">
-                                    Area from {area}
-                                </h4>
+                                {area && (<h4 className="lg:ml-[5rem] 2xl:ml-[10rem] text-label text-gray font-light">
+                                    Area from {area} </h4>)}
+
                             </span>
 
                             <div className="flex mt-2 justify-start gap-3 items-start font-[400] text-base text-gray">
                                 <span className="flex text-[13px] items-center gap-2">
-                                    <span className="w-[18px] h-[18px] bg-gray-300 rounded"></span>
+                                    <Image src="/bed.png" alt="Icon" width={18} height={18} />
                                     <p>{bedrooms} beds</p>
                                 </span>
                                 <span className="flex items-center gap-2">
-                                    <span className="w-[18px] h-[18px] bg-gray-300 rounded"></span>
+                                    <Image src="/bath.png" alt="Icon" width={18} height={18} />
                                     <p>{bathrooms} bath</p>
                                 </span>
                                 <span className="flex items-center gap-2">
-                                    <span className="w-[18px] h-[18px] bg-gray-300 rounded"></span>
+                                    <Image src="/home.png" alt="Icon" width={18} height={18} />
                                     <p>{area}sq.</p>
                                 </span>
                             </div>
