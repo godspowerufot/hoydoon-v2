@@ -21,7 +21,7 @@ interface PropertyCardProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const PropertyCard: React.FC<PropertyCardProps> = ({
+export const PropertyCard: React.FC<PropertyCardProps> = ({
   imageSrc = '',
   altText = 'Property image',
   price = 180000,
