@@ -140,7 +140,13 @@ const MobileNavbar = () => {
                 {pathname === "/helpcenter" ? (
                   <div className="flex items-center space-x-2">
                     {/* vertical line */}
-                    <Image alt="logo" width={30} height={30} src="/Logo.svg" />
+                    <Image
+                      alt="logo"
+                      width={30}
+                      height={30}
+                      src="/Logo.svg"
+                      className="w-[30px] h-[30px]"
+                    />
 
                     {/* <div className="w-[2px] h-5 bg-black" /> */}
                     <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-sm cursor-pointer  transition-colors whitespace-nowrap">
@@ -162,17 +168,17 @@ const MobileNavbar = () => {
         )}
 
         <div className="flex items-center justify-between w-full gap-3">
-          {pathname === "/search" ||
-          pathname.startsWith("/helpcenter/submit-request") ? (
+          {pathname?.startsWith("/search") ||
+          pathname?.startsWith("/helpcenter/submit-request") ? (
             <div className="flex items-center space-x-2">
               {/* Globe Icon */}
-              <Image
+              {/* <Image
                 width={500}
-                height={300}
+                height={500}
                 src="/mobilelog.png"
                 alt="globe"
                 className="w-8 h-8"
-              />
+              /> */}
 
               {/* Input Field with Search Button */}
               <div className="flex items-center  border-[0.6px] border-[#8F8F8F] rounded-full   px-2 py-1">
@@ -199,6 +205,7 @@ const MobileNavbar = () => {
                     width={10}
                     height={10}
                     src="/search.png"
+                    className="w-[10px] h-[10px]"
                   />
                 </button>
               </div>
