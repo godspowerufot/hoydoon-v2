@@ -1,7 +1,4 @@
-"use client";
-
-import React from "react";
-import { Bed, Bath, Home, ArrowUpRight } from "lucide-react";
+import React from 'react';
 
 interface PropertyCardProps {
   imageSrc?: string;
@@ -22,20 +19,20 @@ interface PropertyCardProps {
   landSize?: number | string;
 }
 
-export const PropertyCard: React.FC<PropertyCardProps> = ({
-  imageSrc = "",
-  altText = "Property image",
+const PropertyCard: React.FC<PropertyCardProps> = ({
+  imageSrc = '',
+  altText = 'Property image',
   price = 180000,
   area = 1200,
-  description = "This beautifully presented one-bedroom flat offers a bright living space,...",
-  title = "Gp inn",
-  address = "Luxury Oasis",
+  description = 'This beautifully presented one-bedroom flat offers a bright living space,...',
+  title = 'Gp inn',
+  address = 'Luxury Oasis',
   bathrooms = 1,
   bedrooms = 1,
   squareFeet = 1200,
 }) => {
   const formatPrice = (price: number | string) => {
-    if (typeof price === "number") {
+    if (typeof price === 'number') {
       return `₦${price.toLocaleString()}`;
     }
     return price;
@@ -43,8 +40,7 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
 
   return (
     <div className="w-full max-w-md mx-auto bg-white rounded-3xl overflow-hidden shadow-lg">
-      {/* Image Section */}
-      
+      {/* Image Section - Disabled */}
 
       {/* Content Section */}
       <div className="p-6">
@@ -65,15 +61,21 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
         {/* Property Details */}
         <div className="flex items-center gap-6 mb-6 text-gray-500">
           <div className="flex items-center gap-2">
-            <Bed className="w-6 h-6" />
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12h18M3 6h18M3 18h18" />
+            </svg>
             <span className="text-base">{bedrooms} beds</span>
           </div>
           <div className="flex items-center gap-2">
-            <Bath className="w-6 h-6" />
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+            </svg>
             <span className="text-base">{bathrooms} bath</span>
           </div>
           <div className="flex items-center gap-2">
-            <Home className="w-6 h-6" />
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
             <span className="text-base">{squareFeet}sq.</span>
           </div>
         </div>
@@ -89,10 +91,13 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
             {address}
           </button>
           <button className="ml-4 bg-teal-600 hover:bg-teal-700 text-white p-4 rounded-full transition-colors">
-            <ArrowUpRight className="w-6 h-6" />
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
   );
 };
+
