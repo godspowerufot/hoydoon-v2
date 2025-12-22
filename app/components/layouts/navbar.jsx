@@ -80,11 +80,10 @@ export default function Navbar() {
     <>
       {!hideNavbar && !hideAuth && (
         <nav
-          className={`text-xl max-w-full z-[999999] hidden font-bricolage  lg:flex fixed top-0  transition-all duration-300 ${
-            scrolled
-              ? "bg-white text-black shadow-md"
-              : "bg-transparent text-white mt-3"
-          }`}
+          className={`text-xl max-w-full z-[999999] hidden font-bricolage  lg:flex fixed top-0  transition-all duration-300 ${scrolled
+            ? "bg-white text-black shadow-md"
+            : "bg-transparent text-white mt-3"
+            }`}
         >
           <div className="flex-1  mx-9 lg:mx-0 flex w-screen items-center justify-around p-2">
             {/* Logo */}
@@ -126,15 +125,13 @@ export default function Navbar() {
                 ].map(({ name, path }, index) => (
                   <li key={path}>
                     <div
-                      className={`px-4 py-2 lg:text-base rounded-full${
-                        index === 0 ? " pl-5 rounded-full" : " "
-                      } ${
-                        pathname === path
+                      className={`px-4 py-2 lg:text-base rounded-full${index === 0 ? " pl-5 rounded-full" : " "
+                        } ${pathname === path
                           ? "bg-white text-primary font-light"
                           : scrolled
-                          ? "text-black"
-                          : "text-white"
-                      }`}
+                            ? "text-black"
+                            : "text-white"
+                        }`}
                     >
                       <Link href={path}>{name}</Link>
                     </div>
@@ -150,11 +147,10 @@ export default function Navbar() {
                 <Button
                   onClick={handlelogout}
                   disabled={isLoggingOut}
-                  className={`p-1 w-[92px] rounded-full border-[1px] font-[300] text-base transition-all duration-200 ${
-                    scrolled
-                      ? "!border-primary border-solid !text-primary !bg-white"
-                      : "!bg-primary !border-none !text-white"
-                  } ${isLoggingOut ? "opacity-50 cursor-not-allowed" : ""}`}
+                  className={`p-1 w-[92px] rounded-full border-[1px] font-[300] text-base transition-all duration-200 ${scrolled
+                    ? "!border-primary border-solid !text-primary !bg-white"
+                    : "!bg-primary !border-none !text-white"
+                    } ${isLoggingOut ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   {isLoggingOut ? "Logging out..." : "Logout"}
                 </Button>
@@ -162,17 +158,15 @@ export default function Navbar() {
                 // Login & Register buttons when user is not logged in
                 <>
                   <Button
-                    className={`p-1 w-[92px] ${
-                      scrolled
-                        ? "bg-white text-primary border-primary border-[1px] border-solid"
-                        : "bg-transparent bg-primarytransparent text-black"
-                    }`}
+                    className={`p-1 w-[92px] ${scrolled
+                      ? "bg-white text-primary border-primary border-[1px] border-solid"
+                      : "bg-transparent bg-primarytransparent text-black"
+                      }`}
                   >
                     <Link
                       href="/auth/sign-in"
-                      className={`text-base ${
-                        scrolled ? "text-primary" : "text-white"
-                      }`}
+                      className={`text-base ${scrolled ? "text-primary" : "text-white"
+                        }`}
                     >
                       Login
                     </Link>
@@ -203,9 +197,8 @@ export default function Navbar() {
 
           {/* Mobile Sidebar */}
           <div
-            className={`fixed top-0 bg-white right-0 h-full w-64 z-50 transform ${
-              menuOpen ? "translate-x-0" : "translate-x-full"
-            } transition-transform duration-300 ease-in-out md:hidden`}
+            className={`fixed top-0 bg-white right-0 h-full w-64 z-50 transform ${menuOpen ? "translate-x-0" : "translate-x-full"
+              } transition-transform duration-300 ease-in-out md:hidden`}
           >
             <div className="flex justify-end p-4">
               <button onClick={() => setMenuOpen(false)}>
@@ -223,11 +216,10 @@ export default function Navbar() {
                 <li key={path}>
                   <Link
                     href={path}
-                    className={`block py-2 rounded-full ${
-                      pathname === path
-                        ? "bg-white text-green-600 font-light"
-                        : "text-black"
-                    }`}
+                    className={`block py-2 rounded-full ${pathname === path
+                      ? "bg-white text-green-600 font-light"
+                      : "text-black"
+                      }`}
                     onClick={() => setMenuOpen(false)}
                   >
                     {name}
@@ -247,7 +239,7 @@ export default function Navbar() {
         </nav>
       )}
 
-      {<MobileNavbar />}
+      {/* {<MobileNavbar />} */}
     </>
   );
 }
