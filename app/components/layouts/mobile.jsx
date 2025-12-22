@@ -164,14 +164,14 @@ const MobileNavbar = () => {
         )}
 
         <div className="flex items-center justify-between w-full gap-3">
-          {pathname === "/search" ||
-          pathname.startsWith("/helpcenter/submit-request") ? (
+          {pathname?.startsWith("/search") ||
+          pathname?.startsWith("/helpcenter/submit-request") ? (
             <div className="flex items-center space-x-2">
               {/* Globe Icon */}
               <Image
                 width={500}
-                height={300}
-                src="/mobilelog.png"
+                height={500}
+                src="/Logo.svg"
                 alt="globe"
                 className="w-8 h-8"
               />
@@ -201,6 +201,7 @@ const MobileNavbar = () => {
                     width={10}
                     height={10}
                     src="/search.png"
+                    className="w-[10px] h-[10px]"
                   />
                 </button>
               </div>
