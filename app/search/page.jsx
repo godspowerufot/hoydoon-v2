@@ -14,7 +14,6 @@ import { getLocationRegion } from "@/utils/lib/index";
 import { SkeletonCard } from "@/app/components/Loader";
 import { FiltersDropdown } from "@/app/components/common/filters";
 import ErrorBoundary from "@/app/components/common/error-boundary";
-import PropertyListCardLite from "@/app/components/common/PropertyListingLite";
 
 const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
@@ -896,7 +895,7 @@ const Page = () => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                 {displayListings.map((listing, index) => (
-                  <PropertyListCardLite
+                  <PropertyListCard
                     key={index}
                     _id={listing._id}
                     imageSrc={
