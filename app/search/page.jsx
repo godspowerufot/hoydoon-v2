@@ -39,7 +39,7 @@ const Page = () => {
   // CRITICAL: Progressive rendering state
   const [visibleCount, setVisibleCount] = useState(12);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef(null);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
