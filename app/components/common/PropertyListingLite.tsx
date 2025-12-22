@@ -117,15 +117,15 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
 
                             <div className="flex mt-2 justify-start gap-3 items-start font-[400] text-base text-gray">
                                 <span className="flex text-[13px] items-center gap-2">
-                                    <Image src="/bed.png" alt="Icon" width={18} height={18} />
+                                    
                                     <p>{bedrooms} beds</p>
                                 </span>
                                 <span className="flex items-center gap-2">
-                                    <Image src="/bath.png" alt="Icon" width={18} height={18} />
+                                    
                                     <p>{bathrooms} bath</p>
                                 </span>
                                 <span className="flex items-center gap-2">
-                                    <Image src="/home.png" alt="Icon" width={18} height={18} />
+                                    
                                     <p>{area}sq.</p>
                                 </span>
                             </div>
