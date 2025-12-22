@@ -211,7 +211,6 @@ export default function ListingNavbar() {
           </div>
         </div>
       </nav>
-      {<MobileNavbar />}
     </>
   );
 }
