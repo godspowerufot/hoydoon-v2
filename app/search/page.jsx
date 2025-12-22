@@ -203,7 +203,7 @@ const Page = () => {
   return (
     <div className="w-full min-h-screen md:mt-[2rem] bg-white">
       <div className="max-w-7xl mx-auto px-0 md:px-4 py-8">
-       
+        
 
         {isAllloading ? (
           <div className="mt-[8rem] md:mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -291,7 +291,8 @@ const Page = () => {
               <div ref={containerRef}>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                   {visibleListings.map((listing, index) => (
-          <h1>testing</h1>      )}
+                    <h1>tests ting </h1>
+                  ))}
                 </div>
 
                 {/* Sentinel for infinite scroll */}
