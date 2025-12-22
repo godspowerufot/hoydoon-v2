@@ -1,7 +1,5 @@
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-
-'use client'
+"use client"
 import React from 'react';
 
 interface PropertyCardProps {
@@ -23,10 +21,7 @@ interface PropertyCardProps {
   landSize?: number | string;
 }
 
-
 export const PropertyCard: React.FC<PropertyCardProps> = ({
-  imageSrc = '',
-  altText = 'Property image',
   price = 180000,
   area = 1200,
   description = 'This beautifully presented one-bedroom flat offers a bright living space,...',
@@ -105,3 +100,4 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
     </div>
   );
 };
+
