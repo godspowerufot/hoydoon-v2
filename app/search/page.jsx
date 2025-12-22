@@ -216,71 +216,7 @@ const Page = () => {
           </div>
         ) : (
           <>
-            <div className="flex flex-col gap-2 mt-[4rem] md:flex-row justify-between items-start md:items-center md:mt-10 mb-4">
-              <h2 className="text-xl md:text-4xl font-meduim">
-                All Real-estate & Homes
-              </h2>
-              <div className="relative text-sm flex gap-2">
-                <span className="flex gap-2">
-                  {allListings?.totalListings || 0}{" "}
-                  <p className="font-[300] text-gray">of</p>
-                  {displayListings?.length || 0} Homes
-                </span>{" "}
-                Sort:{" "}
-                <div
-                  onClick={() => setShowSortDropdown(!showSortDropdown)}
-                  className="text-sm font-[400] flex gap-2 justify-center items-center text-primary cursor-pointer"
-                >
-                  {sortBy === "newest"
-                    ? "Newest"
-                    : sortBy === "oldest"
-                    ? "Oldest"
-                    : sortBy === "price-low"
-                    ? "Price Low-High"
-                    : "Price High-Low"}
-                  <Image
-                    width={500}
-                    height={500}
-                    src="/arrow-down.png"
-                    alt="Dropdown"
-                    className="w-3 h-2 pointer-events-none"
-                  />
-                </div>
-                {showSortDropdown && (
-                  <>
-                    <div
-                      className="fixed inset-0 z-10"
-                      onClick={() => setShowSortDropdown(false)}
-                    />
-                    <div
-                      ref={sortDropdownRef}
-                      className="absolute right-0 mt-8 w-48 bg-white border border-gray-300 rounded-md z-20"
-                    >
-                      {[
-                        { label: "Newest", value: "newest" },
-                        { label: "Oldest", value: "oldest" },
-                        { label: "Price: Low to High", value: "price-low" },
-                        { label: "Price: High to Low", value: "price-high" },
-                      ].map((option) => (
-                        <button
-                          key={option.value}
-                          onClick={() => {
-                            setSortBy(option.value);
-                            setShowSortDropdown(false);
-                          }}
-                          className={`w-full text-left px-4 py-2 hover:bg-gray-100 ${
-                            sortBy === option.value ? "bg-[#d8d8d8] font-medium" : ""
-                          }`}
-                        >
-                          {option.label}
-                        </button>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-            <div className="w-screen md:my-[3rem] md:-ml-[5.5rem] h-[2px] bg-[#D9D9D9]" />
+
 
             {/* Map or List View */}
             {showMap ? (
