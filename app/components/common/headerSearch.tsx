@@ -145,7 +145,7 @@ export default function PropertySearchBar() {
     }
 
     const queryString = queryParams.toString();
-    const targetUrl = `/search${queryString ? `?${queryString}` : ""}`;
+    const targetUrl = `/rent/fixes${queryString ? `?${queryString}` : ""}`;
 
     // Only push if the URL is different to avoid redundant reloads
     if (
