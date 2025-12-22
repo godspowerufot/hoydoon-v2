@@ -175,7 +175,7 @@ const MobileNavbar = () => {
               <Image
                 width={500}
                 height={500}
-                src="/mobilelog.png"
+                src="/Logo.svg"
                 alt="globe"
                 className="w-8 h-8"
               />
