@@ -21,10 +21,7 @@ interface PropertyCardProps {
   landSize?: number | string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const PropertyCard = ({
-  imageSrc = '',
-  altText = 'Property image',
+export const PropertyCard: React.FC<PropertyCardProps> = ({
   price = 180000,
   area = 1200,
   description = 'This beautifully presented one-bedroom flat offers a bright living space,...',
