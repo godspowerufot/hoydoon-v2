@@ -72,7 +72,7 @@ function Carousel({ images }) {
         >
           <div className="absolute inset-0 bg-black opacity-15 transition-opacity duration-500" />
 
-          <div className="z-111 absolute bg-primarytransparent p-2 sm:p-2  2xl:mt-[20rem] rounded-2xl top-[55%] right-0 h-fit w-full">
+          <div className="z-111 absolute bg-primarytransparent p-2 sm:p-2 m-3  2xl:mt-[20rem] rounded-2xl top-[60%] right-0 h-fit w-[95%]">
             <div className="bg-white px-3 pt-3 sm:p-6 md:p-8 rounded-2xl h-fit w-full max-w-full md:w-[56rem] 2xl:w-[65rem]">
               <h1 className="text-black text-[0.9rem] sm:text-base md:text-2xl 2xl:text-[2rem] font-[600]">
                 {truncateDescription(images[currentIndex]?.title, 15)}
@@ -236,7 +236,7 @@ function Carousel({ images }) {
             </div>
           </div>
         </div>
-        <div className="mt-4 md:hidden flex gap-2 z-50">
+        <div className="mt-4 md:hidden flex gap-2 z-[-5]">
           {images.map((_, index) => (
             <div
               key={index}

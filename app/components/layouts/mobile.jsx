@@ -137,10 +137,16 @@ const MobileNavbar = () => {
             <div className="flex items-center space-x-2">
               <Link href="/" className="flex items-center space-x-2">
                 {" "}
+                <Image
+                  alt="logo"
+                  width={30}
+                  height={30}
+                  src="/Logo.svg"
+                  className="h-[1.4rem]"
+                />
                 {pathname === "/helpcenter" ? (
                   <div className="flex items-center space-x-2">
                     {/* vertical line */}
-                    <Image alt="logo" width={30} height={30} src="/Logo.svg" />
 
                     {/* <div className="w-[2px] h-5 bg-black" /> */}
                     <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-sm cursor-pointer  transition-colors whitespace-nowrap">
@@ -148,13 +154,9 @@ const MobileNavbar = () => {
                     </span>
                   </div>
                 ) : (
-                  <Image
-                    alt="logo"
-                    width={30}
-                    className="w-[10rem] h-[3rem]"
-                    height={30}
-                    src="/mobile-logov1.svg"
-                  />
+                  <span className="text-[1.2rem] font-semibold mt-[0.3rem]  text-gray-800 text-base">
+                    Hoydoon
+                  </span>
                 )}
               </Link>
             </div>
