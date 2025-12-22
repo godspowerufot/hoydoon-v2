@@ -44,20 +44,7 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
   return (
     <div className="w-full max-w-md mx-auto bg-white rounded-3xl overflow-hidden shadow-lg">
       {/* Image Section */}
-      <div className="relative w-full h-96 bg-gradient-to-br from-gray-200 to-gray-300">
-        {imageSrc ? (
-          <img
-            src={imageSrc}
-            alt={altText}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <div className="absolute top-4 right-4 w-12 h-12 bg-white/30 rounded-lg"></div>
-            <div className="absolute bottom-8 left-8 w-16 h-12 bg-white/30 rounded-lg"></div>
-          </div>
-        )}
-      </div>
+      
 
       {/* Content Section */}
       <div className="p-6">
