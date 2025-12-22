@@ -172,13 +172,13 @@ const MobileNavbar = () => {
           pathname?.startsWith("/helpcenter/submit-request") ? (
             <div className="flex items-center space-x-2">
               {/* Globe Icon */}
-              {/* <Image
+              <Image
                 width={500}
                 height={500}
                 src="/mobilelog.png"
                 alt="globe"
                 className="w-8 h-8"
-              /> */}
+              />
 
               {/* Input Field with Search Button */}
               <div className="flex items-center  border-[0.6px] border-[#8F8F8F] rounded-full   px-2 py-1">
