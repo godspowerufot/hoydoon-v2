@@ -227,7 +227,7 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
     }
 
     const queryString = newParams.toString();
-    router.push(`/search${queryString ? `?${queryString}` : ""}`, {
+    router.push(`/rent/fixes${queryString ? `?${queryString}` : ""}`, {
       scroll: false,
     });
   };
