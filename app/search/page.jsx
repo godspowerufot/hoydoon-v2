@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Pagination from "@/app/components/common/pagination";
-import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
+// import { useGetAllListingsQuery } from "@/store/slices/api/authapi"; // DISABLED
 import { useRouter, useSearchParams } from "next/navigation";
 import { flattenListings } from "@/utils";
 import MapComponent from "@/app/components/layouts/listingmap";
@@ -12,8 +12,6 @@ import { FiltersDropdown } from "@/app/components/common/filters";
 import ErrorBoundary from "@/app/components/common/error-boundary";
 import PropertyListCardLite from "../components/common/PropertyListingLite";
 
-
-
 const Page = () => {
   const searchParams = useSearchParams();
   const [showMap, setShowMap] = useState(false);
@@ -21,10 +19,15 @@ const Page = () => {
     return Object.fromEntries(searchParams?.entries() ?? []);
   }, [searchParams]);
 
-  const {
-    data: allListings,
-    isLoading: isAllloading,
-  } = useGetAllListingsQuery(query);
+  // DISABLED API CALL
+  // const {
+  //   data: allListings,
+  //   isLoading: isAllloading,
+  // } = useGetAllListingsQuery(query);
+
+  // Mock data instead of API
+  const allListings = null;
+  const isAllloading = false;
 
   const [displayListings, setDisplayListings] = useState([]);
   const router = useRouter();
@@ -219,9 +222,9 @@ const Page = () => {
               </h2>
               <div className="relative text-sm flex gap-2">
                 <span className="flex gap-2">
-                  {allListings?.totalListings}{" "}
+                  {allListings?.totalListings || 0}{" "}
                   <p className="font-[300] text-gray">of</p>
-                  {displayListings?.length} Homes
+                  {displayListings?.length || 0} Homes
                 </span>{" "}
                 Sort:{" "}
                 <div
@@ -291,7 +294,7 @@ const Page = () => {
               <div ref={containerRef}>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                   {visibleListings.map((listing, index) => (
-                    <h1>tests ting </h1>
+                    <h1 key={index}>testing</h1>
                   ))}
                 </div>
 
