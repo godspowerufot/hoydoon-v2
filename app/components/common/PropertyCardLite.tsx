@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import React from 'react';
-import { Bed, Bath, Home, ArrowUpRight } from 'lucide-react';
+import React from "react";
+import { Bed, Bath, Home, ArrowUpRight } from "lucide-react";
 
 interface PropertyCardProps {
   imageSrc?: string;
@@ -22,20 +22,20 @@ interface PropertyCardProps {
   landSize?: number | string;
 }
 
-const PropertyCard: React.FC<PropertyCardProps> = ({
-  imageSrc = '',
-  altText = 'Property image',
+export const PropertyCard: React.FC<PropertyCardProps> = ({
+  imageSrc = "",
+  altText = "Property image",
   price = 180000,
   area = 1200,
-  description = 'This beautifully presented one-bedroom flat offers a bright living space,...',
-  title = 'Gp inn',
-  address = 'Luxury Oasis',
+  description = "This beautifully presented one-bedroom flat offers a bright living space,...",
+  title = "Gp inn",
+  address = "Luxury Oasis",
   bathrooms = 1,
   bedrooms = 1,
   squareFeet = 1200,
 }) => {
   const formatPrice = (price: number | string) => {
-    if (typeof price === 'number') {
+    if (typeof price === "number") {
       return `₦${price.toLocaleString()}`;
     }
     return price;
@@ -109,4 +109,3 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
     </div>
   );
 };
-
