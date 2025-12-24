@@ -103,7 +103,13 @@ export const MobileSignIn = () => {
       {/* Logo */}
       <div className="w-full flex justify-between items-center mb-3">
         <Link href={"/"}>
-          <Image src="/mobilelog.png" alt="logo" width={40} height={40} />
+          <Image
+            src="/Logo.svg"
+            alt="logo"
+            width={40}
+            height={40}
+            className="w-[40px] h-[40px] "
+          />
         </Link>
         <div onClick={() => router.back()} style={{ cursor: "pointer" }}>
           <Image src="/close.svg" alt="close icon" width={20} height={20} />
