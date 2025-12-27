@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { encodeId } from "@/utils";
-import { formatNumber } from "@/utils";
+import { formatNumber, formatPrice } from "@/utils";
 export const ProfileCard = ({
   pictureUrl = "/Avatar.svg",
   _id = "",
+  region = "US",
   fullname = "Unknown User",
   email = "No email provided",
   priceRange = { min: 0, max: 0 },
@@ -42,8 +43,8 @@ export const ProfileCard = ({
             <div className="lg:mt-3">
               <p className="text-black text-[12px] lg:text-[1em]   font-[400] lg:w-[280px]">
                 <b>
-                  ${formatNumber(priceRange.min)} - $
-                  {formatNumber(priceRange.max)}
+                  {formatPrice(region, priceRange.min)} - $
+                  {formatPrice(priceRange.max)}
                 </b>{" "}
                 <b className="text-[#8F8F8F] font-[400]">Price range</b>
               </p>

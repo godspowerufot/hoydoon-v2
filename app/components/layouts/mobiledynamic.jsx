@@ -2,7 +2,13 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import PropertyGalleryModal from "./modals/property";
 
-const DynamicImageMobile = ({ images, coordinates, statuses = [], listingId }) => {
+const DynamicImageMobile = ({
+  handleFavoriteClick,
+  images,
+  coordinates,
+  statuses = [],
+  listingId,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const sliderRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -26,7 +32,7 @@ const DynamicImageMobile = ({ images, coordinates, statuses = [], listingId }) =
         setCurrentIndex(0);
       } else {
         slider.scrollBy({ left: slider.offsetWidth, behavior: "smooth" });
-        setCurrentIndex(prev => Math.min(prev + 1, images.length - 1));
+        setCurrentIndex((prev) => Math.min(prev + 1, images.length - 1));
       }
     }, 3000);
 
@@ -48,7 +54,7 @@ const DynamicImageMobile = ({ images, coordinates, statuses = [], listingId }) =
     return () => slider.removeEventListener("scroll", handleScroll);
   }, [isMobile]);
 
-  const hasStatuses = statuses?.some(status => status);
+  const hasStatuses = statuses?.some((status) => status);
 
   const renderStatusBadge = (status) => {
     if (!status) return null;
@@ -92,8 +98,6 @@ const DynamicImageMobile = ({ images, coordinates, statuses = [], listingId }) =
     </div>
   );
 
-
-
   if (!images || images.length === 0) {
     return <div className="text-center lg:text-3xl">No images available</div>;
   }
@@ -104,6 +108,7 @@ const DynamicImageMobile = ({ images, coordinates, statuses = [], listingId }) =
       <PropertyGalleryModal
         image={images}
         listingId={listingId}
+        handleFavoriteClick={handleFavoriteClick}
         coordinates={coordinates}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
