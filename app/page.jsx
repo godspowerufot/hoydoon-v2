@@ -443,7 +443,7 @@ export default function Home() {
             {!isAllLoading && (
               <Link
                 href="/search"
-                className="text-[#09858D] md:hidden mt-2 text-sm md:my-5 md:text-2xl font-[500] "
+                className="text-[#09858D] md:hidden mt-[1.5rem] text-sm md:my-5 md:text-2xl font-[500] "
               >
                 see housing for sale
               </Link>
@@ -522,7 +522,9 @@ export default function Home() {
       <FagsSection />
 
       {/* New-articles */}
-      <ArticlesSection />
+      <div className="w-full flex justify-center items-center -mt-[1rem] md:mt-0">
+        <ArticlesSection />
+      </div>
     </>
   );
 }
