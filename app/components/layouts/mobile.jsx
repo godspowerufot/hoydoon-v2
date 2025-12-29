@@ -127,7 +127,7 @@ const MobileNavbar = () => {
           // optional
         ></div>
       )}
-      <nav className="flex items-center justify-between px-4 py-2 bg-[white] shadow-md lg:hidden">
+      <nav className="flex items-center justify-between px-4 py-2 bg-white shadow-md lg:hidden">
         {!(
           pathname.startsWith("/search") ||
           pathname.startsWith("/helpcenter/submit-request")
@@ -135,26 +135,26 @@ const MobileNavbar = () => {
           <>
             {" "}
             <div className="flex items-center space-x-2">
-              <Link href="/" className="flex items-center space-x-1">
+              <Link href="/" className="flex items-center space-x-2">
                 {" "}
                 <Image
                   alt="logo"
                   width={500}
                   height={500}
                   src="/logo-23.svg"
-                  className="h-[30px] w-full"
+                  className="h-[30px] w-[30px]"
                 />
                 {pathname === "/helpcenter" ? (
-                  <div className="flex mt-1 items-center space-x-2">
+                  <div className="flex items-center space-x-2">
                     {/* vertical line */}
 
                     {/* <div className="w-[2px] h-5 bg-black" /> */}
-                    <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-base cursor-pointer  transition-colors whitespace-nowrap">
+                    <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-sm cursor-pointer  transition-colors whitespace-nowrap">
                       Help center
                     </span>
                   </div>
                 ) : (
-                  <span className="text-[1.1rem] font-semibold mt-[0.3rem]  text-gray-800 ">
+                  <span className="text-[1.2rem] font-semibold mt-[0.3rem]  text-gray-800 text-base">
                     Hoydoon
                   </span>
                 )}
@@ -212,7 +212,7 @@ const MobileNavbar = () => {
                 <div className="flex items-center gap-2  w-full justify-end mr-5 flex-end">
                   <span
                     onClick={() => router.push("/helpcenter/submit-request")}
-                    className="text-gray-800 text-base mt-1  cursor-pointer  transition-colors"
+                    className="text-gray-800 text-sm cursor-pointer  transition-colors"
                   >
                     Submit Request
                   </span>
@@ -230,14 +230,11 @@ const MobileNavbar = () => {
             </>
           )}
         </div>
-        <button
-          onClick={() => setSidebarOpen(true)}
-          className="text-gray-800 mt-[2px]"
-        >
+        <button onClick={() => setSidebarOpen(true)} className="text-gray-800">
           <Image
             alt="logo"
-            width={500}
-            height={500}
+            width={30}
+            height={30}
             src="/menu.svg"
             className="w-[32px] h-[12px]"
           />
