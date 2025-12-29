@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     "mortgages",
   ],
   authors: [{ name: "Hoydoon Team" }],
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-  },
+  // icons: {
+  //   icon: "/favicon.ico",
+  //   shortcut: "/favicon.ico",
+  // },
   openGraph: {
     title: "Hoydoon: Real Estate, Apartments, Mortgages & Home Values",
     description:
@@ -69,6 +69,32 @@ export default function RootLayout({
   return (
     <>
       <html lang="en">
+        <head>
+          <link
+            rel="icon"
+            type="image/png"
+            href="/favicon-96x96.png"
+            sizes="96x96"
+          />
+          <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+          <link rel="shortcut icon" href="/favicon.ico" />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
+          <meta
+            name="google-signin-client_id"
+            content="438580118502-j5qth0chlkikrpreur0gjl9q1vm8a162.apps.googleusercontent.com"
+          />
+          <meta
+            name="google-site-verification"
+            content="6tevUXnxT89TubXC_lXDm_M9Qis3qs2zzrU1aGoXYHc"
+          />
+          <meta name="apple-mobile-web-app-title" content="hoydoon" />
+          <link rel="manifest" href="/site.webmanifest" />
+        </head>
+
         {/* Organization Schema */}
         <Script
           id="organization-schema"
@@ -142,14 +168,6 @@ export default function RootLayout({
           }}
         />
 
-        <meta
-          name="google-signin-client_id"
-          content="438580118502-j5qth0chlkikrpreur0gjl9q1vm8a162.apps.googleusercontent.com"
-        />
-        <meta
-          name="google-site-verification"
-          content="6tevUXnxT89TubXC_lXDm_M9Qis3qs2zzrU1aGoXYHc"
-        />
         <body className="lg:flex overflow-x-hidden flex-col flex-1 font-bricolage min-h-screen">
           <Providers>
             <div className="absolute top-0 left-0 w-full z-10">

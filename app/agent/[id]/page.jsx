@@ -18,9 +18,10 @@ import { log } from "@/utils/log";
 import { useRouter } from "next/navigation";
 import { handleShareClick } from "@/utils";
 import PropertyListCard from "@/app/components/common/PropertyListing";
-import { flattenListings, formatNumber } from "@/utils";
+import { flattenListings, formatPrice } from "@/utils";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
+import HoverCard from "@/app/components/common/card";
 
 const DynamicImageGrid = dynamic(() =>
   import("../../components/layouts/dynamiclayout")
@@ -140,7 +141,7 @@ const page = ({ params }) => {
   const [ListedBy, setListedBy] = useState([]);
   const [prices, setPrices] = useState([]);
   const [ActiveListings, setActiveListings] = useState([]);
-
+  const [region, setregion] = useState("");
   const Id = pathname?.split("/").pop();
   const userId = decodeId(Id);
   const [showAll, setShowAll] = useState(false);
@@ -185,6 +186,8 @@ const page = ({ params }) => {
         0
       );
 
+      const region = agentInfo?.region || "US";
+      setregion(region);
       // Extract coordinates
       // Extract coordinates for active listings
       const groupedCoords = {
@@ -266,6 +269,7 @@ const page = ({ params }) => {
       {showListings && (
         <div className="grid  w-full md:-mt-1  gap-2 p-3 md:p-0 ">
           <DynamicImageGrid
+            handleFavoriteClick={handleFavoriteClick}
             statuses={statuses}
             coordinates={coordinates}
             images={imageUrls}
@@ -279,8 +283,9 @@ const page = ({ params }) => {
       )}
       {/* second div layout  */}
       <div
-        className={`bg-gray-100 mt-2   w-full md:mt-5 ${!showListings ? "mt-[2rem] md:mt-0" : ""
-          } md:p-0  md:py-4 rounded-lg`}
+        className={`bg-gray-100 mt-2   w-full md:mt-5 ${
+          !showListings ? "mt-[2rem] md:mt-0" : ""
+        } md:p-0  md:py-4 rounded-lg`}
       >
         <div className="flex flex-row px-4  md:p-0 justify-between items-start md:items-center">
           {/* Profile Image */}
@@ -315,7 +320,7 @@ const page = ({ params }) => {
               <span className="ml-1 font-medium ">{ListedBy}</span>
             </div>
             <p className="text-gray-600 md:mt-1 my-3 text-sm">
-              Avg listing ${averagelisting}{" "}
+              Avg listing {formatPrice(region, averagelisting)}{" "}
             </p>
             <div className="flex md:hidden items-center justify-end gap-2 mt-3 w-full md:w-auto">
               <div
@@ -361,7 +366,7 @@ const page = ({ params }) => {
       {/* new layout
        */}
       <div className="w-full border-t border-b border-[#8F8F8F] mt-3 md:mt-0  py-3">
-        <div className="flex items-center justify-center gap-2  md:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl md:text-base">
+        <div className="flex flex-1 items-center justify-center gap-[0.2rem]  md:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl md:text-base">
           <div className="flex items-center  font-light  test-sm md:text-[18px] gap-3  md:gap-[8rem]">
             <span>
               <span className="font-bold text-black">
@@ -375,7 +380,7 @@ const page = ({ params }) => {
 
           <div className="flex items-center text-sm md:text-[18px] gap-1">
             <span className="font-bold text-black">
-              ${formatNumber(prices)}{" "}
+              {formatPrice(region, prices)}{" "}
             </span>
             <span>Total value</span>
           </div>
@@ -384,8 +389,8 @@ const page = ({ params }) => {
 
           <div className="flex items-center  text-sm md:text-[18px] gap-1">
             <span className="font-bold text-black">
-              ${formatNumber(agentInfo?.priceRange?.min)} - $
-              {formatNumber(agentInfo?.priceRange?.max)}
+              {formatPrice(region, agentInfo?.priceRange?.min)} -
+              {formatPrice(region, agentInfo?.priceRange?.max)}
             </span>
             <span> Price range</span>
           </div>
@@ -417,10 +422,11 @@ const page = ({ params }) => {
                   setActiveTab(tab.id);
                   setCoordinates(allCoordinates[tab.id] || []); // Update map based on tab
                 }}
-                className={`relative py-2 text-sm md:text-base transition-colors duration-300 ${activeTab === tab.id
+                className={`relative py-2 text-sm md:text-base transition-colors duration-300 ${
+                  activeTab === tab.id
                     ? "text-black font-semibold"
                     : "text-[#8F8F8F]"
-                  }`}
+                }`}
               >
                 {tab.label}
                 {activeTab === tab.id && (
@@ -462,7 +468,7 @@ const page = ({ params }) => {
           {/* Display only 3 listings initially, or all listings if showAll is true */}
           {(showAll ? ActiveListings : ActiveListings.slice(0, 3)).map(
             (items, index) => (
-              <PropertyListCard
+              <HoverCard
                 key={index}
                 imageSrc={items?.imageUrls?.[0]?.url}
                 altText={items?.imageUrls?.[0]?.altText}

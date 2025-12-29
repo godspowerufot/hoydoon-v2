@@ -41,13 +41,14 @@ export default function FagsSection() {
             <span className=" flex flex-col  my-4 mb-8 font-bricolage gap-3 text-gray">
               <p className="text-gray text-sm     font-[300] md:p-0  md:text-xl font-bricolage w-full md:w-[25em]">
                 Welcome to our FAQ center, where you can find answers to all
-                your most pressuring questions
+                your most pressuring questions. Whether you’re curious about our
+                services, need help with specific issues.
               </p>
             </span>
           </div>
           <FAQComponent />
         </div>
-        <div className="relative mt-[4rem] md:mt-[3rem] md:0 ml-10 md:-ml-[7em] justify-center items-center  flex w-3/5 md:w-auto">
+        <div className="relative mt-[5rem] md:mt-[3rem] md:0 ml-10 md:-ml-[7em] justify-center items-center  flex w-[66%] md:w-auto">
           <Image
             alt="image1"
             width={420}
