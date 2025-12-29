@@ -25,18 +25,30 @@ const TestimonialGrid = () => {
     ? Array(9).fill(null)
     : generateNineTestimonials(GetAllReviews?.reviews);
 
+  if (!isLoading && (!GetAllReviews?.reviews || GetAllReviews.reviews.length === 0)) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 px-4 w-full text-center">
+        <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-2xl p-10 md:p-14 max-w-[600px] shadow-sm">
+          <h2 className="text-black text-2xl md:text-3xl font-semibold mb-4">No reviews</h2>
+          <p className="text-gray text-sm md:text-lg leading-relaxed font-light">
+            See how Hoydoon is helping buyers and agents find exactly what they need, quickly and confidently.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-5 md:-mt-[1em] md:max-w-[1300px] w-full justify-center items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:w-full auto-rows-auto">
       {[0, 1, 2].map((columnIndex) => (
         <span
           key={columnIndex}
-          className={`flex gap-y-5 flex-col ${
-            columnIndex === 0 || columnIndex === 2
-              ? "pt-[4.5rem]  md:pt-[9rem] hidden sm:flex" // 👈 Added responsive padding
-              : columnIndex === 1
+          className={`flex gap-y-5 flex-col ${columnIndex === 0 || columnIndex === 2
+            ? "pt-[4.5rem]  md:pt-[9rem] hidden sm:flex" // 👈 Added responsive padding
+            : columnIndex === 1
               ? "" // Middle column - no padding
               : "hidden md:flex"
-          }`}
+            }`}
         >
           {testimonials
             .slice(columnIndex * 3, (columnIndex + 1) * 3)
