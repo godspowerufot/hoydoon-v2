@@ -341,10 +341,10 @@ export default function Home() {
       <section className="w-screen p-5 md:p-0 font-bricolage md:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
         <div className="flex  flex-col-reverse   md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-between ">
           <span className="flex  gap-4 flex-col w-full md:max-w-[45.3em] 2xl:max-w-[48em]  ">
-            <h1 className="text-black  text-[24px]  mt-4 md:mt-0 md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
+            <h1 className="text-black  text-[24px]  mt-[1.40rem] md:mt-0 md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
               Find your ideal property with simple tools and guidance.
             </h1>
-            <p className="text-gray text-sm md:text-xl  mt-2 md:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full md:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
+            <p className="text-gray text-sm md:text-xl  mt-[0.1rem] md:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full md:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
               Enjoy fast and easy access to a variety of properties that suit
               your needs. Use our smart filters to find the perfect places
               within your budget and preferences. We’ve done the hard work for
@@ -361,7 +361,7 @@ export default function Home() {
             </Button>
           </span>
 
-          <span className="mt-4  md:mt-0">
+          <span className="mt-2  md:mt-0">
             <Image
               alt="image1"
               width={480}
@@ -400,7 +400,7 @@ export default function Home() {
       <section className=" p-2 md:p-0  md:mt-[2.5em] md:mb-[5em] w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col   items-start gap-6 md:gap-0 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col  md:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
+            <h1 className="text-black text-[24px] mt-[23px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
               Featured Properties for Rent
             </h1>
             <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
@@ -408,7 +408,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] md:mt-[2.5em]  gap-5 items-start md:flex-row justify-start mb-2">
+          <div className="flex flex-col mt-[0.5em] md:mt-[2.5em]  md:gap-5 items-start md:flex-row justify-start mb-2">
             {isAllLoading
               ? // Show skeleton loaders
                 Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
