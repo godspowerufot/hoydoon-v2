@@ -36,11 +36,10 @@ const Dropdown = ({ selectedOption, setSelectedOption }) => {
                 setSelectedOption(option);
                 setIsOpen(false);
               }}
-              className={`w-full  text-sm text-left px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300 ${
-                selectedOption === option
-                  ? "bg-primary text-white"
-                  : "text-[#8F8F8F]"
-              }`}
+              className={`w-full  text-sm text-left px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300 ${selectedOption === option
+                ? "bg-primary text-white"
+                : "text-[#8F8F8F]"
+                }`}
             >
               {option}
             </button>
@@ -120,11 +119,10 @@ const Breadcrumb = ({ onRegionUpdate }) => {
           {options.map((option) => (
             <button
               key={option}
-              className={`px-6 py-2.5 rounded-lg transition-all duration-300 ${
-                selectedOption === option
-                  ? "bg-primary text-white"
-                  : "text-[#8F8F8F] hover:bg-gray-100"
-              }`}
+              className={`px-6 py-2.5 rounded-lg transition-all duration-300 ${selectedOption === option
+                ? "bg-primary text-white"
+                : "text-[#8F8F8F] hover:bg-gray-100"
+                }`}
               onClick={() => {
                 setSelectedOption(option);
                 updateQueryParam("listingType", option.toLowerCase());
@@ -168,7 +166,7 @@ const Breadcrumb = ({ onRegionUpdate }) => {
             type="text"
             value={region}
             onChange={(e) => setRegion(e.target.value)}
-            placeholder="Agege, Lagos..."
+            placeholder=" location"
             className="bg-[#F9FAFB] placeholder:text-[#8F8F8F] focus:outline-none text-black text-sm w-full"
           />
           <button
@@ -199,11 +197,10 @@ const Breadcrumb = ({ onRegionUpdate }) => {
                     setIsOpen(false);
                     updateQueryParam("listingType", option.toLowerCase());
                   }}
-                  className={`w-full text-sm text-left px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300 ${
-                    selectedOption === option
-                      ? "bg-primary text-white"
-                      : "text-[#8F8F8F]"
-                  }`}
+                  className={`w-full text-sm text-left px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300 ${selectedOption === option
+                    ? "bg-primary text-white"
+                    : "text-[#8F8F8F]"
+                    }`}
                 >
                   {option}
                 </button>
@@ -230,11 +227,10 @@ const Breadcrumb = ({ onRegionUpdate }) => {
                     setIsLangOpen(false);
                     updateQueryParam("spokenLanguage", lang.toLowerCase());
                   }}
-                  className={`w-full text-left px-4 py-2 text-xs hover:bg-primary hover:text-white transition-all duration-300 ${
-                    selectedLanguage === lang
-                      ? "bg-primary text-white"
-                      : "text-[#8F8F8F]"
-                  }`}
+                  className={`w-full text-left px-4 py-2 text-xs hover:bg-primary hover:text-white transition-all duration-300 ${selectedLanguage === lang
+                    ? "bg-primary text-white"
+                    : "text-[#8F8F8F]"
+                    }`}
                 >
                   {lang}
                 </button>
@@ -264,8 +260,10 @@ const Page = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [regionUpdater, setRegionUpdater] = useState(null);
+  const [isConnecting, setIsConnecting] = useState(false);
 
   const handleConnect = async () => {
+    setIsConnecting(true);
     try {
       const { region: userRegion } = await getLocationRegion();
 
@@ -278,6 +276,8 @@ const Page = () => {
       }
     } catch (e) {
       console.error("Failed to fetch region", e);
+    } finally {
+      setIsConnecting(false);
     }
   };
 
@@ -312,15 +312,15 @@ const Page = () => {
       <div className="md:ml-[5rem] my-3 mt-[45px] 2xl:px-[0rem]  2xl:ml-[2rem] gap-y-3  grid md:w-[88%] 2xl:w-[95%]  grid-cols-1 md:grid-cols-2 sm:gap-4 md:gap-8 place-items-center">
         {isAllLoading
           ? Array.from({ length: 6 }, (_, index) => (
-              <ProfileCardSkeleton key={index} />
-            ))
+            <ProfileCardSkeleton key={index} />
+          ))
           : displayListings.map((agent) => (
-              <ProfileCard
-                key={agent._id}
-                {...agent}
-                sales={Number(agent.numberOfListings)}
-              />
-            ))}
+            <ProfileCard
+              key={agent._id}
+              {...agent}
+              sales={Number(agent.numberOfListings)}
+            />
+          ))}
       </div>
       {displayListings.length === 0 ? (
         <div className="w-full col-span-2 flex justify-center items-center py-10">
@@ -347,7 +347,7 @@ const Page = () => {
           />
         </>
       )}
-      <section className="  bg-[#eeeeeec7] 2xl:bg-white  w-full   md:w-full font-bricolage md:flex  flex-col justify-center flex-1 items-center ">
+      <section className="  md:bg-[#eeeeeec7] 2xl:bg-white  w-full   md:w-full font-bricolage md:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  md:gap-[4%] flex-col-reverse md:w-[90%]  2xl:w-[80rem] 2xl:pl-[2.5em] md:pl-5 md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-around ">
           <span className="flex flex-col gap-y-1 md:gap-y-0 w-full md:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  text-2xl mt-4  md:mt-0  md:text-[2.6rem]  md:leading-[1.1em] font-[600] 2xl:w-[80%]">
@@ -360,6 +360,7 @@ const Page = () => {
             </p>
             <Button
               onClick={handleConnect}
+              isLoading={isConnecting}
               className="text-base !w-[115px] font-light mt-4"
             >
               Connect

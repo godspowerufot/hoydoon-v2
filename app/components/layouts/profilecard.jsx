@@ -5,7 +5,7 @@ import { formatNumber, formatPrice } from "@/utils";
 export const ProfileCard = ({
   pictureUrl = "/Avatar.svg",
   _id = "",
-  region = "US",
+  region,
   fullname = "Unknown User",
   email = "No email provided",
   priceRange = { min: 0, max: 0 },
@@ -43,8 +43,8 @@ export const ProfileCard = ({
             <div className="lg:mt-3">
               <p className="text-black text-[12px] lg:text-[1em]   font-[400] lg:w-[280px]">
                 <b>
-                  {formatPrice(region, priceRange.min)} - $
-                  {formatPrice(priceRange.max)}
+                  {formatPrice(region, priceRange.min)} -{" "}
+                  {formatPrice(region, priceRange.max)}
                 </b>{" "}
                 <b className="text-[#8F8F8F] font-[400]">Price range</b>
               </p>

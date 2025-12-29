@@ -141,8 +141,8 @@ const MobileNavbar = () => {
                   alt="logo"
                   width={30}
                   height={30}
-                  src="/Logo.svg"
-                  className="h-[1.4rem]"
+                  src="/Logo.webp"
+                  className="h-[1.4rem] w-full"
                 />
                 {pathname === "/helpcenter" ? (
                   <div className="flex items-center space-x-2">
@@ -171,7 +171,7 @@ const MobileNavbar = () => {
               <Image
                 width={500}
                 height={500}
-                src="/Logo.svg"
+                src="/Logo.webp"
                 alt="globe"
                 className="w-8 h-8"
               />

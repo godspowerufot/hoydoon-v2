@@ -366,7 +366,7 @@ const page = ({ params }) => {
       {/* new layout
        */}
       <div className="w-full border-t border-b border-[#8F8F8F] mt-3 md:mt-0  py-3">
-        <div className="flex items-center justify-center gap-2  md:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl md:text-base">
+        <div className="flex flex-1 items-center justify-center gap-[0.2rem]  md:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl md:text-base">
           <div className="flex items-center  font-light  test-sm md:text-[18px] gap-3  md:gap-[8rem]">
             <span>
               <span className="font-bold text-black">
