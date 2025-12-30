@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /rent/searchlisting
-
-Sitemap: https://hoydoon.com/sitemap.xml
