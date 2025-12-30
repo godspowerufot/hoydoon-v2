@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin", "/dashboard", "/rent/fixes"], // Add any paths you want to exclude
     },
-    sitemap: "https://www.hoydoon.com/sitemap.xml",
+    sitemap: "https://hoydoon.com/sitemap.xml",
   };
 }

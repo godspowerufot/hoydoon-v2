@@ -142,7 +142,7 @@ const MobileNavbar = () => {
                   width={500}
                   height={500}
                   src="/logo-23.svg"
-                  className="h-[30px] w-full"
+                  className="h-[30px] w-[30px]"
                 />
                 {pathname === "/helpcenter" ? (
                   <div className="flex mt-1 items-center space-x-2">
