@@ -103,7 +103,7 @@ export default function Home() {
               homes that feel just right, wherever you are.
             </p>
           </div>
-          <div className="flex flex-col  mt-[3em] lg:my-[2em] gap-[2em] lg:gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] items-center justify-center mb-2">
             {isAllLoading
               ? // Show skeleton loaders
               Array.from({ length: 3 }, (_, index) => (
@@ -153,7 +153,7 @@ export default function Home() {
       {/* afforable component */}
 
       <section className="mt-4 p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6  lg:max-w-[1200px]w-full">
+        <div className="flex flex-col items-start gap-6  lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:gap-[12rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Somalia
@@ -293,7 +293,7 @@ export default function Home() {
       <div className="w-screen h-[2px] bg-[#D9D9D9] " />
 
       <section className=" p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
+        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:gap-[21rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               pet-friendly Rentals
