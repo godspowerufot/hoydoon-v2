@@ -1,7 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropertyGalleryModal from "./modals/property";
+import { ImageGallerySkeleton } from "@/app/components/Loader/RentDetailsSkeleton";
+
 const DynamicImageGrid = ({
   handleFavoriteClick,
   images,
@@ -10,9 +12,26 @@ const DynamicImageGrid = ({
   listingId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  if (images.length === 0)
-    return <div className="text-center lg:text-3xl">No images available </div>;
+  useEffect(() => {
+    // Set loading to false once images are available or confirmed empty
+    if (images !== undefined && images !== null) {
+      setIsLoading(false);
+    }
+  }, [images]);
+
+  // Show skeleton while loading
+  if (isLoading
+
+  ) {
+    return <ImageGallerySkeleton />;
+  }
+
+  // Only show "No images available" after loading is complete
+  if (images?.length === 0) {
+    return <div className="text-center lg:text-3xl">No images available</div>;
+  }
 
   const hasStatuses = statuses?.some((status) => status); // Check if any status exists
 
@@ -55,7 +74,7 @@ const DynamicImageGrid = ({
 
     const gridTemplate = {
       1: () => (
-        <div className=" hidden lg:grid grid-cols-1 gap-4 p-4">
+        <div className=" hidden lg:grid grid-cols-1 gap-4 px-4 md:px-0 pt-4">
           {renderImage(
             images[0],
             0,

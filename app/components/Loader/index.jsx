@@ -17,16 +17,17 @@ export const SkeletonCard = () => {
   return (
     <>
       {/* Desktop Version */}
-      <div className="relative lg:flex  lg:w-[380px] h-[600px] bg-white overflow-hidden flex-col rounded-[20px] space-y-4 animate-pulse">
+      <div className="relative flex w-full h-auto bg-white overflow-hidden flex-col rounded-[20px] space-y-4 animate-pulse border border-gray-200">
         {/* Thumbnail placeholder */}
-        <div className="h-[550px] rounded-md bg-[#ecebebd7]" />
+        <div className="w-full h-[300px] lg:h-[400px] bg-[#ecebebd7]" />
 
-        {/* Title + subtitle placeholders */}
-        <div className="h-6 rounded bg-[#ecebebd7] w-3/4" />
-        <div className="h-6 rounded bg-[#ecebebd7] w-1/2" />
-        <div className="h-6  rounded bg-[#ecebebd7] w-5/6" />
-
-        {/* Tags/metadata placeholders */}
+        {/* Content placeholders */}
+        <div className="p-4 space-y-4">
+          {/* Title + subtitle placeholders */}
+          <div className="h-6 rounded bg-[#ecebebd7] w-3/4" />
+          <div className="h-6 rounded bg-[#ecebebd7] w-1/2" />
+          <div className="h-6 rounded bg-[#ecebebd7] w-5/6" />
+        </div>
       </div>
 
       {/* Mobile Version */}
