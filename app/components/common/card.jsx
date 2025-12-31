@@ -21,17 +21,15 @@ const HoverCard = ({
     <>
       <Link href={`/rent/${encodeId(_id)}`}>
         <div
-          className={`relative lg:flex hidden lg:w-[380px] h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${
-            isHovered ? "border-gray rounded-[20px]" : "border-transparent"
-          }`}
+          className={`relative lg:flex hidden w-full h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered ? "border-gray rounded-[20px]" : "border-transparent"
+            }`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Image container */}
           <div
-            className={`relative w-full transition-all duration-[2000ms] ease-in-out ${
-              isHovered ? "h-[350px]" : "h-[500px]"
-            }`}
+            className={`relative w-full transition-all duration-[2000ms] ease-in-out ${isHovered ? "h-[350px]" : "h-[500px]"
+              }`}
           >
             <Image
               src={imageSrc || "/affordable-1.png"}
@@ -44,11 +42,10 @@ const HoverCard = ({
 
           {/* Description below image (details section) */}
           <div
-            className={`flex-1 flex-col justify-start px-4 py-2 flex transition-all ease-in-out ${
-              isHovered
-                ? "duration-[2000ms] opacity-100 max-h-[1000px]"
-                : "duration-300 opacity-0 max-h-0 pointer-events-none"
-            }`}
+            className={`flex-1 flex-col justify-start px-4 py-2 flex transition-all ease-in-out ${isHovered
+              ? "duration-[2000ms] opacity-100 max-h-[1000px]"
+              : "duration-300 opacity-0 max-h-0 pointer-events-none"
+              }`}
           >
             <h1 className="text-black text-[20px] lg:text-[24px] font-bold mb-2">
               {truncateDescription(title, 2)}
@@ -128,9 +125,8 @@ const HoverCard = ({
 
           {/* basenow  */}
           <div
-            className={`absolute bottom-0 left-0 right-0 bg-white p-4 z-0 transition-opacity duration-500 ease-in-out ${
-              isHovered ? "opacity-0" : "opacity-100"
-            }`}
+            className={`absolute bottom-0 left-0 right-0 bg-white p-4 z-0 transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-0" : "opacity-100"
+              }`}
           >
             <span className="flex items-center gap-3">
               <h4 className="text-gray font-light">From</h4>
@@ -142,7 +138,7 @@ const HoverCard = ({
           </div>
         </div>
 
-        <div className="flex lg:hidden flex-col border border-gray h-auto w-full max-w-[25rem] font-bricolage overflow-hidden rounded-[16px]">
+        <div className="flex lg:hidden flex-col border border-gray h-auto w-full max-w-full lg:max-w-[25rem] font-bricolage overflow-hidden rounded-[16px]">
           {/* Image */}
           <div className="w-full h-[19rem] rounded-b-[20px] overflow-hidden">
             <Image

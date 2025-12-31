@@ -57,9 +57,9 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
     <>
       <Link href={`/rent/${encodeId(_id)}`}>
         <div
-          className={`relative lg:flex  lg:w-[380px] h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered && !isMobile
-              ? "border-gray rounded-[20px]"
-              : "lg:border-transparent border border-gray rounded-[20px] "
+          className={`relative flex w-full h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered && !isMobile
+            ? "border-gray rounded-[20px]"
+            : "lg:border-transparent border border-gray rounded-[20px] "
             }`}
           onMouseEnter={() => !isMobile && setIsHovered(true)}
           onMouseLeave={() => !isMobile && setIsHovered(false)}
@@ -67,9 +67,9 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
           {/* Image container */}
           <div
             className={`relative w-full ${isMobile
-                ? "h-[350px]"
-                : `transition-all duration-[2000ms] ease-in-out ${isHovered ? "h-[350px]" : "h-[500px]"
-                }`
+              ? "h-[350px]"
+              : `transition-all duration-[2000ms] ease-in-out ${isHovered ? "h-[350px]" : "h-[500px]"
+              }`
               }`}
           >
             <Image
@@ -86,11 +86,11 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
           {/* Description below image (details section) */}
           <div
             className={`flex-1 flex-col justify-start px-4 py-2 flex ${isMobile
-                ? "opacity-100 max-h-full"
-                : `transition-all ease-in-out ${isHovered
-                  ? "duration-[2000ms] opacity-100 max-h-[1000px]"
-                  : "duration-300 opacity-0 max-h-0 pointer-events-none"
-                }`
+              ? "opacity-100 max-h-full"
+              : `transition-all ease-in-out ${isHovered
+                ? "duration-[2000ms] opacity-100 max-h-[1000px]"
+                : "duration-300 opacity-0 max-h-0 pointer-events-none"
+              }`
               }`}
           >
             <h1 className="text-black text-[22px] lg:text-[25px] font-bold">
