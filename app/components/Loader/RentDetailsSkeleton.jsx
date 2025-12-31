@@ -1,4 +1,3 @@
-// Skeleton loaders for RentDetailsClient page
 
 // Image Gallery Skeleton (Desktop)
 export const ImageGallerySkeleton = () => {
@@ -7,7 +6,7 @@ export const ImageGallerySkeleton = () => {
             {/* Main large image */}
             <div className="col-span-2 row-span-3 bg-[#ecebebd7] rounded-lg shimmer" />
 
-            {/* Smaller images */}
+            {/* Smaller-images */}
             {Array(6).fill(0).map((_, i) => (
                 <div key={i} className="bg-[#ecebebd7] rounded-lg shimmer" />
             ))}

@@ -416,7 +416,7 @@ const RentDetailsClient = () => {
     );
   }
   return (
-    <div className=" w-screen   flex justify-center flex-col items-center ">
+    <div className=" md:max-w-[1240px]   flex justify-center flex-col items-center ">
       <div className=" flex pt-8 flex-col items-center justify-center ">
         <Breadcrumb
           handleToggleListings={handleToggleListings}
@@ -503,10 +503,10 @@ const RentDetailsClient = () => {
                 Est. ${price}/month
               </p> */}
 
-              <div className="flex items-center md:hidden  md:p-2 justify-end gap-2 mt-[0.7rem] md:mt-2 w-full md:w-auto">
+              <div className="flex items-center md:hidden  md:p-2 justify-end gap-2 mt-[3.4rem] md:mt-2 w-full md:w-auto">
                 <div
                   onClick={handleFavoriteToggle}
-                  className="justify-center flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
+                  className="justify-center flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm"
                 >
                   <Image
                     width={500}
@@ -518,7 +518,7 @@ const RentDetailsClient = () => {
                 </div>
                 <div
                   onClick={handleShareClick}
-                  className=" justify-center md:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
+                  className=" justify-center md:p-2 flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm"
                 >
                   <Image
                     width={500}
@@ -530,7 +530,7 @@ const RentDetailsClient = () => {
                 </div>
                 <div
                   onClick={handleToggleListings}
-                  className="justify-center md:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
+                  className="justify-center md:p-2 flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm"
                 >
                   <Image
                     width={500}
