@@ -469,21 +469,10 @@ const RentDetailsClient = () => {
                 <p>{region}</p>
               </div>
 
-              <div className="flex items-center gap-2 text-gray-700  mt-[0.5rem] md:mt-[0.6rem]">
-                <Image
-                  width={500}
-                  height={500}
-                  src="/eye.svg"
-                  alt="Share"
-                  className="w-5 h-5 md:w-5 md:h-5"
-                />
-                <span className="md:font-medium   md:mt-0 text-sm font-light text-black md:text-black">
-                  Total views {editingCount?.toLocaleString()}
-                </span>
-              </div>
+              {/* Views moved to bottom row */}
             </div>
 
-            <div className="text-right flex-1 md:-mt-[2.5rem]  flex flex-col  gap-1 md:flex md:text-right w-full md:w-auto">
+            <div className="text-right flex-1 md:-mt-[2.5rem]  flex flex-col  gap-[0.5rem] md:flex md:text-right w-full md:w-auto">
               <p className="text-[1.5rem] text-black font-[600] md:font-bold">
                 {formatPrice(region, price)}
               </p>
@@ -503,43 +492,63 @@ const RentDetailsClient = () => {
                 Est. ${price}/month
               </p> */}
 
-              <div className="flex items-center md:hidden  md:p-2 justify-end gap-2 mt-[3.4rem] md:mt-2 w-full md:w-auto">
-                <div
-                  onClick={handleFavoriteToggle}
-                  className="justify-center flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm"
-                >
-                  <Image
-                    width={500}
-                    height={300}
-                    src="/favorite.svg"
-                    alt="Favorite"
-                    className="w-3 h-3"
-                  />
-                </div>
-                <div
-                  onClick={handleShareClick}
-                  className=" justify-center md:p-2 flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm"
-                >
-                  <Image
-                    width={500}
-                    height={300}
-                    src="/upload.svg"
-                    alt="Download"
-                    className="w-3 h-3"
-                  />
-                </div>
-                <div
-                  onClick={handleToggleListings}
-                  className="justify-center md:p-2 flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm"
-                >
-                  <Image
-                    width={500}
-                    height={300}
-                    src="/image2.svg"
-                    alt="Share"
-                    className="w-3 h-3"
-                  />
-                </div>
+              {/* Actions moved to bottom row */}
+            </div>
+          </div>
+
+          {/* New Row: Views and Actions */}
+          <div className="flex flex-row justify-between items-center w-full mt-4 md:mt-2">
+            {/* Views */}
+            <div className="flex items-center gap-2 text-gray-700">
+              <Image
+                width={500}
+                height={500}
+                src="/eye.svg"
+                alt="Views"
+                className="w-5 h-5"
+              />
+              <span className="font-light text-sm md:text-base text-black">
+                Total views {editingCount?.toLocaleString()}
+              </span>
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center justify-end gap-2 md:hidden">
+              <div
+                onClick={handleFavoriteToggle}
+                className="justify-center cursor-pointer flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm hover:bg-gray-50 bg-transparent"
+              >
+                <Image
+                  width={20}
+                  height={20}
+                  src="/favorite.svg"
+                  alt="Favorite"
+                  className="w-4 h-4"
+                />
+              </div>
+              <div
+                onClick={handleShareClick}
+                className="justify-center cursor-pointer flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm hover:bg-gray bg-transparent"
+              >
+                <Image
+                  width={20}
+                  height={20}
+                  src="/upload.svg"
+                  alt="Share"
+                  className="w-4 h-4"
+                />
+              </div>
+              <div
+                onClick={handleToggleListings}
+                className="justify-center cursor-pointer flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm hover:bg-gray-50 bg-transparent"
+              >
+                <Image
+                  width={20}
+                  height={20}
+                  src="/image2.svg"
+                  alt="Gallery"
+                  className="w-4 h-4"
+                />
               </div>
             </div>
           </div>
