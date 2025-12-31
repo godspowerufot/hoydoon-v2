@@ -141,7 +141,7 @@ export default function Home() {
 
       {/* explore */}
       <section className=" p-2 lg:max-w-[1200px] lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col lg:my-[4em] items-start gap-6 justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col lg:my-[4em] md:items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row  justify-between  items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               All Houses for Sale
@@ -196,7 +196,7 @@ export default function Home() {
       <div className="w-screen  mt-[3rem] lg:my-0 h-[2px] bg-[#D9D9D9] " />
 
       <section className="lg:my-[5em] p-2 lg:p-0 w-full max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start  justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col md:items-start  justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row gap-6  justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Affordable Homes
@@ -247,7 +247,7 @@ export default function Home() {
           {!isAffordableLoading && (
             <Link
               href="/search?category=affordable"
-              className="text-[#09858D]   -mt-[1.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]   mt-[1rem] text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all afforable houses for sale
             </Link>
@@ -257,7 +257,7 @@ export default function Home() {
       <div className="w-screen  mt-[3rem] lg:my-0 h-[2px] bg-[#D9D9D9] " />
 
       <section className="lg:my-[5em] p-2 lg:p-0 w-full max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col md:items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Upcoming Open Houses for Sale
@@ -301,17 +301,17 @@ export default function Home() {
           {!isOpenHouseLoading && (
             <Link
               href="/search?category=open-house`"
-              className="text-[#09858D]   -mt-[1.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]   mt-[0.7rem]   mb-[1rem]  text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all open houses for sale
             </Link>
           )}
         </div>
       </section>
-      <div className="w-screen  hidden lg:block  h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  lg:hidden   h-[2px] bg-[#D9D9D9] " />
 
       <section className="lg:my-[5em] p-2 lg:p-0 w-full lg:max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col md:items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Luxury Homes Houses for Sale
@@ -388,7 +388,7 @@ export default function Home() {
 
               <div
                 onClick={handleSearch}
-                className="absolute right-2 top-[8%] 2xl:top-[13%] bg-primary ml-[6em] p-3  h-[40px] w-[50px]  rounded-full flex items-center justify-center cursor-pointer transition-opacity hover:opacity-90"
+                className="absolute right-2 top-[8%] 2xl:top-[13%] bg-primary ml-[6em] p-[0.95rem]  h-[40px] w-[50px]  rounded-full flex items-center justify-center cursor-pointer transition-opacity hover:opacity-90"
               >
                 {isSearching ? (
                   <InlineSpinner size={24} color="white" />
