@@ -126,7 +126,7 @@ export default function Home() {
 
       {/* explore */}
       <section className=" p-2 lg:max-w-[1200px] lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col lg:my-[5em] items-start gap-6 justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col lg:my-[4em] items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row  justify-between  items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               All Houses for Sale
@@ -169,7 +169,7 @@ export default function Home() {
           </div>
           <Link
             href="/search"
-            className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+            className="text-[#09858D]   -mt-[2rem] text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see housing for sale
           </Link>
@@ -232,7 +232,7 @@ export default function Home() {
           {!isAllLoading && (
             <Link
               href="/search?category=affordable"
-              className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]   mt-[1rem] text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all afforable houses for sale
             </Link>
@@ -286,7 +286,7 @@ export default function Home() {
           {!isAllLoading && (
             <Link
               href="/search?category=open-house`"
-              className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]   mt-[1rem] text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all open houses for sale
             </Link>
@@ -340,7 +340,7 @@ export default function Home() {
 
           <Link
             href="/search?category=luxury"
-            className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+            className="text-[#09858D]   mt-[1rem] text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see all luxury houses for sale
           </Link>
@@ -361,7 +361,7 @@ export default function Home() {
               move, right from the map.
             </p>
 
-            <div className="  relative w-full  lg:w-[87%] mt-[1.5rem] ">
+            <div className="  relative w-full  lg:w-[87%] mt-[1rem] ">
               <Input
                 label=""
                 type="text"
