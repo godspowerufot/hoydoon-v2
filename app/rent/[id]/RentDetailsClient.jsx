@@ -135,6 +135,11 @@ const DistanceComponent = ({ coordinates }) => {
     return <DistanceInfoSkeleton />;
   }
 
+
+  if (!placesData || placesData.length === 0) {
+    return null;
+  }
+
   return (
     <div className="grid p-4 md:my-[3rem] md:p-0 text-xs grid-cols-2 lg:grid-cols-3 gap-4 mt-6 2xl:text-base text-gray-700 md:text-sm">
       {placesData.map(({ type, icon, name, label, distance }) => (
@@ -412,7 +417,7 @@ const RentDetailsClient = () => {
   }
   return (
     <div className=" w-screen   flex justify-center flex-col items-center ">
-      <div className="md:max-w-[1240px] flex pt-8 flex-col items-center justify-center ">
+      <div className=" flex pt-8 flex-col items-center justify-center ">
         <Breadcrumb
           handleToggleListings={handleToggleListings}
           handleFavoriteClick={handleFavoriteToggle}
