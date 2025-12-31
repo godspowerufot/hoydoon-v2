@@ -93,7 +93,7 @@ export default function Home() {
 
       {/* explore */}
       <section className="mt-4 p-[1rem]  lg:p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col  w-full items-start  lg:max-w-[1200px] ">
+        <div className="flex flex-col  w-full md:items-start  lg:max-w-[1200px] ">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px]  mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Newest Listings
@@ -153,7 +153,7 @@ export default function Home() {
       {/* afforable component */}
 
       <section className="mt-4 p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6  lg:max-w-[1200px] w-full">
+        <div className="flex flex-col md:items-start gap-6  lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:gap-[12rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Somalia
@@ -223,7 +223,7 @@ export default function Home() {
       <div className="w-screen mt-[3rem] lg:mt-0  h-[2px] bg-[#D9D9D9]" />
 
       <section className="mt-4 p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6  lg:max-w-[1200px]w-full">
+        <div className="flex flex-col md:items-start gap-6  lg:max-w-[1200px]w-full">
           <div className="flex flex-col lg:gap-[12rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Nigeria
@@ -293,7 +293,7 @@ export default function Home() {
       <div className="w-screen h-[2px] bg-[#D9D9D9] " />
 
       <section className=" p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
+        <div className="flex flex-col md:items-start gap-6 justify-center lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:gap-[21rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               pet-friendly Rentals
@@ -362,7 +362,7 @@ export default function Home() {
       <div className="w-screen h-[2px] bg-[#D9D9D9] " />
       {userCountry !== "somalia" && (
         <section className="p-[1rem] lg:my-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-          <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
+          <div className="flex flex-col md:items-start gap-6 justify-center lg:max-w-[1200px] w-full">
             <div className="flex flex-col lg:gap-[20rem] lg:flex-row justify-between items-start w-full mx-auto">
               <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 lg:text-[2.5rem] font-[600] w-full lg:w-auto">
                 Shortlet Apartments
@@ -432,7 +432,7 @@ export default function Home() {
 
       {/* testimonials */}
       <section className=" p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
+        <div className="flex flex-col md:items-start gap-6 justify-center lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Single Family Homes for Rent
