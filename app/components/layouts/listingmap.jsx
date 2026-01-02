@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { formatPrice, encodeId } from "@/utils";
-import { FaBed, FaBath, FaRulerCombined, FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 const MAP_ID = "a618b8ba2def9141";
@@ -199,7 +199,10 @@ function InnerMap({ coordinates }) {
   );
 }
 
-export default function MapComponent({ coordinates, listings }) {
+/**
+ * @param {{ coordinates?: any[], listings?: any[] }} props
+ */
+export default function MapComponent({ coordinates = [], listings = [] }) {
   const mapData = listings?.length
     ? listings
       .map((item) => ({
