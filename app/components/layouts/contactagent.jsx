@@ -50,7 +50,7 @@ export default function ContactAgent({
   };
 
   return (
-    <div className="lg:bg-[#ffffffec] mt-[2rem] text-[#8F8F8F] rounded-lg p-5 lg:px-10 w-fit lg:py-10  mx-auto lg:border border-[#8F8F8F]">
+    <div className="lg:bg-[#ffffffec] mt-[2rem] text-[#8F8F8F] rounded-lg md:p-5 lg:px-10 w-fit lg:py-10  mx-auto lg:border border-[#8F8F8F]">
       <h2 className="text-xl lg:text-3xl font-bold text-black font-bricolage mb-4">
         Contact Hoydoon Agent {fullname}
       </h2>

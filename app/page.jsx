@@ -407,7 +407,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] md:mt-[2.5em] gap-3   md:gap-5 md:items-start md:flex-row md:justify-start mb-2">
+          <div className="flex w-full flex-col mt-[0.5em] md:mt-[2.5em] gap-3   md:gap-5 md:items-start md:flex-row md:justify-start mb-2">
             {isAllLoading
               ? // Show skeleton loaders
               Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
@@ -439,15 +439,16 @@ export default function Home() {
                 )
               )}
 
-            {!isAllLoading && (
-              <Link
-                href="/search"
-                className="text-[#09858D] md:hidden mt-[1.5rem] text-sm md:my-5 md:text-2xl font-[500] "
-              >
-                see housing for sale
-              </Link>
-            )}
+
           </div>
+          {!isAllLoading && (
+            <Link
+              href="/search?category=Featured"
+              className="text-[#09858D] text-start mt-[1.5rem] text-sm md:my-5 md:text-2xl font-[500] "
+            >
+              see featured properties for sale
+            </Link>
+          )}
         </div>
       </section>
 

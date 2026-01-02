@@ -169,7 +169,14 @@ const page = ({ params }) => {
     setShowAll(true);
   };
   const [coordinates, setCoordinates] = useState([]);
+  const [mapListings, setMapListings] = useState([]); // New state for full map listings
   const [allCoordinates, setAllCoordinates] = useState({
+    all: [],
+    active: [],
+    sold: [],
+    bought: [],
+  });
+  const [allMapListings, setAllMapListings] = useState({
     all: [],
     active: [],
     sold: [],
@@ -208,19 +215,31 @@ const page = ({ params }) => {
         sold: [],
         bought: [],
       };
+      const groupedMapListings = {
+        all: [],
+        active: [],
+        sold: [],
+        bought: [],
+      };
 
       flatListings.forEach((item) => {
         const coord = item?.item?.coordinate;
         if (coord?.latitude && coord?.longitude) {
           groupedCoords.all.push(coord); // Add to "all"
+          groupedMapListings.all.push(item); // Add full item to "all"
           const status = item.status?.toLowerCase();
           if (groupedCoords[status]) {
             groupedCoords[status].push(coord);
+            groupedMapListings[status].push(item);
           }
         }
       }); // ✅ update all state
       setAllCoordinates(groupedCoords);
       setCoordinates(groupedCoords["all"]); // ✅ show all listings on first load
+
+      setAllMapListings(groupedMapListings);
+      setMapListings(groupedMapListings["all"]);
+
       setActiveTab("all"); // ✅ default active tab
 
       setFlattenedListings(flatListings);
@@ -443,6 +462,7 @@ const page = ({ params }) => {
                 onClick={() => {
                   setActiveTab(tab.id);
                   setCoordinates(allCoordinates[tab.id] || []); // Update map based on tab
+                  setMapListings(allMapListings[tab.id] || []); // Update rich listings
                 }}
                 className={`relative py-2 text-sm md:text-base transition-colors duration-300 ${activeTab === tab.id
                   ? "text-black font-semibold"
@@ -468,7 +488,7 @@ const page = ({ params }) => {
               </div>
             )}
 
-            <MapComponent coordinates={coordinates} />
+            <MapComponent coordinates={coordinates} listings={mapListings} />
           </div>
 
           <div className="py-4 px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
