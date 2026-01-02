@@ -57,23 +57,20 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
     <>
       <Link href={`/rent/${encodeId(_id)}`}>
         <div
-          className={`relative lg:flex  lg:w-[380px] h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${
-            isHovered && !isMobile
-              ? "border-gray rounded-[20px]"
-              : "lg:border-transparent border border-gray rounded-[20px] "
-          }`}
+          className={`relative flex w-full h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered && !isMobile
+            ? "border-gray rounded-[20px]"
+            : "lg:border-transparent border border-gray rounded-[20px] "
+            }`}
           onMouseEnter={() => !isMobile && setIsHovered(true)}
           onMouseLeave={() => !isMobile && setIsHovered(false)}
         >
           {/* Image container */}
           <div
-            className={`relative w-full ${
-              isMobile
-                ? "h-[350px]"
-                : `transition-all duration-[2000ms] ease-in-out ${
-                    isHovered ? "h-[350px]" : "h-[500px]"
-                  }`
-            }`}
+            className={`relative w-full ${isMobile
+              ? "h-[350px]"
+              : `transition-all duration-[2000ms] ease-in-out ${isHovered ? "h-[350px]" : "h-[500px]"
+              }`
+              }`}
           >
             <Image
               src={imageSrc || "/affordable-1.png"}
@@ -88,15 +85,13 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
 
           {/* Description below image (details section) */}
           <div
-            className={`flex-1 flex-col justify-start px-4 py-2 flex ${
-              isMobile
-                ? "opacity-100 max-h-full"
-                : `transition-all ease-in-out ${
-                    isHovered
-                      ? "duration-[2000ms] opacity-100 max-h-[1000px]"
-                      : "duration-300 opacity-0 max-h-0 pointer-events-none"
-                  }`
-            }`}
+            className={`flex-1 flex-col justify-start px-4 py-2 flex ${isMobile
+              ? "opacity-100 max-h-full"
+              : `transition-all ease-in-out ${isHovered
+                ? "duration-[2000ms] opacity-100 max-h-[1000px]"
+                : "duration-300 opacity-0 max-h-0 pointer-events-none"
+              }`
+              }`}
           >
             <h1 className="text-black text-[22px] lg:text-[25px] font-bold">
               {truncateDescription(title, 2)}
@@ -134,7 +129,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
                 </span>
               </div>
 
-              <p className="text-gray w-[20rem] text-[14px] mt-4">
+              <p className="text-gray max-w-[20rem] w-full text-[14px] mt-4">
                 {truncateDescription(description, 10)}
               </p>
 
@@ -156,9 +151,8 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
           {/* basenow  */}
           {!isMobile && (
             <div
-              className={`absolute bottom-0 left-0 right-0 bg-white p-4 z-0 transition-opacity duration-500 ease-in-out ${
-                isHovered ? "opacity-0" : "opacity-100"
-              }`}
+              className={`absolute bottom-0 left-0 right-0 bg-white p-4 z-0 transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-0" : "opacity-100"
+                }`}
             >
               <span className="flex items-center">
                 <h2 className="font-bold lg:text-[24px]">
@@ -185,8 +179,8 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
                     {listingType === "land"
                       ? landSize
                       : listingType === "sale"
-                      ? squareFeet
-                      : area}
+                        ? squareFeet
+                        : area}
                     sq.
                   </p>
                 </span>

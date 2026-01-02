@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import PropertyGalleryModal from "./modals/property";
+import { ImageGalleryMobileSkeleton } from "@/app/components/Loader/RentDetailsSkeleton";
 
 const DynamicImageMobile = ({
   handleFavoriteClick,
@@ -13,6 +14,7 @@ const DynamicImageMobile = ({
   const sliderRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Detect screen size once
   useEffect(() => {
@@ -20,6 +22,13 @@ const DynamicImageMobile = ({
       setIsMobile(window.innerWidth < 1024);
     }
   }, []);
+
+  // Set loading to false once images are available
+  useEffect(() => {
+    if (images !== undefined && images !== null) {
+      setIsLoading(false);
+    }
+  }, [images]);
 
   // Auto-slide
   useEffect(() => {
@@ -68,13 +77,13 @@ const DynamicImageMobile = ({
 
   const renderMobileSlider = () => (
     <div
-      className="overflow-x-auto lg:hidden snap-x snap-mandatory flex no-scrollbar w-screen h-full"
+      className="overflow-x-auto lg:hidden snap-x snap-mandatory flex no-scrollbar w-full h-full"
       ref={sliderRef}
     >
       {images.map((img, i) => (
         <div
           key={i}
-          className="w-screen h-[40vh] snap-center shrink-0 relative"
+          className="w-full h-[40vh] snap-center shrink-0 relative"
           onClick={() => setIsModalOpen(true)}
         >
           <Image
@@ -98,6 +107,12 @@ const DynamicImageMobile = ({
     </div>
   );
 
+  // Show skeleton while loading
+  if (isLoading) {
+    return <ImageGalleryMobileSkeleton />;
+  }
+
+  // Only show "No images available" after loading is complete
   if (!images || images.length === 0) {
     return <div className="text-center lg:text-3xl">No images available</div>;
   }

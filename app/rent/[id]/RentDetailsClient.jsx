@@ -16,6 +16,20 @@ import { usePathname, useRouter } from "next/navigation";
 import Spinner from "@/app/components/common/Spinner";
 import ListedCard from "@/app/components/common/profilecard";
 import MapComponent from "@/app/components/layouts/listingmap";
+import {
+  ImageGallerySkeleton,
+  ImageGalleryMobileSkeleton,
+  PropertyHeaderSkeleton,
+  PropertyStatsSkeleton,
+  HomeHighlightsSkeleton,
+  DescriptionSkeleton,
+  MapSkeleton,
+  DistanceInfoSkeleton,
+  RelatedListingsSkeleton,
+  BreadcrumbSkeleton,
+  ContactAgentSkeleton,
+} from "@/app/components/Loader/RentDetailsSkeleton";
+import { ProfileCardSkeleton } from "@/app/components/Loader";
 import { toast } from "react-toastify";
 import { handleShareClick, decodeId, truncateDescription } from "@/utils";
 import DynamicImageMobile from "@/app/components/layouts/mobiledynamic";
@@ -46,10 +60,13 @@ const getLabelFromTypes = (types = []) => {
 
 const DistanceComponent = ({ coordinates }) => {
   const [placesData, setPlacesData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       if (!coordinates) return;
+
+      setIsLoading(true);
 
       const { latitude, longitude } = coordinates;
       const location = `${latitude},${longitude}`;
@@ -108,19 +125,28 @@ const DistanceComponent = ({ coordinates }) => {
       });
 
       setPlacesData(finalData.filter(Boolean)); // remove nulls
+      setIsLoading(false);
     };
 
     fetchData();
   }, [coordinates]);
-  console.log("placedata", placesData);
+
+  if (isLoading) {
+    return <DistanceInfoSkeleton />;
+  }
+
+
+  if (!placesData || placesData.length === 0) {
+    return null;
+  }
+
   return (
-    <div className="grid p-4 md:my-[3rem] md:p-0 text-xs grid-cols-2 md:grid-cols-3 gap-4 mt-6 2xl:text-base text-gray-700 md:text-sm">
+    <div className="grid p-4 md:my-[3rem] md:p-0 text-xs grid-cols-2 lg:grid-cols-3 gap-4 mt-6 2xl:text-base text-gray-700 md:text-sm">
       {placesData.map(({ type, icon, name, label, distance }) => (
         <div
           key={type}
-          className={`flex items-start gap-2 ${
-            type === "pharmacy" ? "hidden md:flex" : ""
-          }`}
+          className={`flex items-start gap-2 ${type === "pharmacy" ? "hidden lg:flex" : ""
+            }`}
         >
           <Image src={icon} alt={label} width={20} height={20} />
           <div className="flex flex-col">
@@ -251,7 +277,7 @@ const RentDetailsClient = () => {
   const listingId = decodeId(Id);
   const router = useRouter(); // Tab state
 
-  const { data: listing, isloading: isAllLoading } =
+  const { data: listing, isLoading: isAllLoading } =
     useGetSpecificListingsQuery({ listingId });
 
   const { data: allListings, refetch } = useGetAllListingsQuery({
@@ -312,6 +338,7 @@ const RentDetailsClient = () => {
     "Pet allowed": (item) => item?.petFriendly,
     Laundry: (item) => item?.laundryType?.length > 0,
     Balcony: (item) => item?.amenities?.length > 0,
+    // airCondition: (item) => item?.airCondition?.length > 0,
     "Garage parking": (item) => item?.parkingType,
     // Add more mappings as needed
   };
@@ -367,11 +394,30 @@ const RentDetailsClient = () => {
   // Now you can use the variables directly
 
   if (isAllLoading) {
-    return <Spinner />;
+    return (
+      <div className="w-screen flex justify-center flex-col items-center">
+        <div className="md:max-w-[1240px] flex pt-8 flex-col items-center justify-center w-full">
+          <BreadcrumbSkeleton />
+          <ImageGallerySkeleton />
+          <ImageGalleryMobileSkeleton />
+          <PropertyHeaderSkeleton />
+          <PropertyStatsSkeleton />
+          <HomeHighlightsSkeleton />
+          <DescriptionSkeleton />
+          <div className="w-full px-4 py-6">
+            <div className="h-6 bg-[#ecebebd7] rounded shimmer w-48 mb-4 animate-pulse" />
+            <ProfileCardSkeleton />
+          </div>
+          <MapSkeleton />
+          <ContactAgentSkeleton />
+          <RelatedListingsSkeleton />
+        </div>
+      </div>
+    );
   }
   return (
-    <div className=" w-screen   flex justify-center flex-col items-center ">
-      <div className="md:max-w-[1240px] flex pt-8 flex-col items-center justify-center ">
+    <div className=" md:max-w-[1240px]   flex justify-center flex-col items-center ">
+      <div className=" flex pt-8 flex-col items-center justify-center ">
         <Breadcrumb
           handleToggleListings={handleToggleListings}
           handleFavoriteClick={handleFavoriteToggle}
@@ -389,27 +435,28 @@ const RentDetailsClient = () => {
               coordinates={coordinate}
             />
 
-            <DynamicImageMobile
-              listingId={_id}
-              images={images}
-              handleFavoriteClick={handleFavoriteToggle}
-              showListings={showListings}
-              coordinates={coordinate}
-            />
+            <div className="lg:hidden">
+              <DynamicImageMobile
+                listingId={_id}
+                images={images}
+                handleFavoriteClick={handleFavoriteToggle}
+                showListings={showListings}
+                coordinates={coordinate}
+              />
+            </div>
           </div>
         )}
 
         {/* second div layout  */}
 
         <div
-          className={`bg-gray-100 p-4 w-full rounded-lg ${
-            !showListings ? "mt-[2rem] md:mt-0" : ""
-          }`}
+          className={`bg-gray-100 p-4 md:pt-[4rem] md:p-0  w-full rounded-lg ${!showListings ? "mt-[2rem] md:mt-0" : ""
+            }`}
         >
           <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 md:gap-4">
             {/* Left Section */}
-            <div className="flex-1 flex flex-col  gap-1  md:flex">
-              <h2 className="text-xl md:text-[2rem] hidden  md:block font-bricolage font-semibold">
+            <div className="flex-1 flex flex-col gap-1 md:flex">
+              <h2 className="text-xl lg:text-[2rem] hidden md:block font-bricolage font-semibold">
                 {title}
               </h2>
               <h2 className="text-xl md:text-[2rem] md:hidden font-bricolage font-semibold">
@@ -422,87 +469,96 @@ const RentDetailsClient = () => {
                 <p>{region}</p>
               </div>
 
-              <div className="flex items-center gap-2 text-gray-700  mt-[0.5rem] md:mt-2">
-                <Image
-                  width={500}
-                  height={300}
-                  src="/eye.svg"
-                  alt="Share"
-                  className="w-3 h-3 md:w-5 md:h-5"
-                />
-                <span className="md:font-medium   md:mt-0 text-base font-light text-black md:text-black">
-                  Total views {editingCount?.toLocaleString()}
-                </span>
-              </div>
+              {/* Views moved to bottom row */}
             </div>
 
-            <div className="text-right flex-1 md:-mt-[2.5rem]  flex flex-col  gap-1 md:flex md:text-right w-full md:w-auto">
+            <div className="text-right flex-1 md:-mt-[2.5rem]  flex flex-col  gap-[0.5rem] md:flex md:text-right w-full md:w-auto">
               <p className="text-[1.5rem] text-black font-[600] md:font-bold">
                 {formatPrice(region, price)}
               </p>
 
-              <div className="flex items-center justify-end mt-1 text-gray-700">
+              <div className="flex items-center  gap-3 justify-end mt-1 text-gray-700">
                 <Image
                   width={500}
-                  height={300}
+                  height={500}
                   src="/stargreen.png"
                   alt="Star"
-                  className="w-4 h-4"
+                  className="w-5 h-5"
                 />
-                <span className="ml-1 font-medium">{averageRating}</span>
+                <span className=" font-light">{averageRating}</span>
               </div>
 
               {/* <p className=" md:text-gray  font-light text-sm md:text-base">
                 Est. ${price}/month
               </p> */}
 
-              <div className="flex items-center md:hidden  md:p-2 justify-end gap-2 mt-2 w-full md:w-auto">
-                <div
-                  onClick={handleFavoriteToggle}
-                  className="justify-center flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
-                >
-                  <Image
-                    width={500}
-                    height={300}
-                    src="/favorite.svg"
-                    alt="Favorite"
-                    className="w-3 h-3"
-                  />
-                </div>
-                <div
-                  onClick={handleShareClick}
-                  className=" justify-center md:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
-                >
-                  <Image
-                    width={500}
-                    height={300}
-                    src="/upload.svg"
-                    alt="Download"
-                    className="w-3 h-3"
-                  />
-                </div>
-                <div
-                  onClick={handleToggleListings}
-                  className="justify-center md:p-2 flex items-center w-6 h-6 border border-[#8F8F8F] rounded-sm"
-                >
-                  <Image
-                    width={500}
-                    height={300}
-                    src="/image2.svg"
-                    alt="Share"
-                    className="w-3 h-3"
-                  />
-                </div>
+              {/* Actions moved to bottom row */}
+            </div>
+          </div>
+
+          {/* New Row: Views and Actions */}
+          <div className="flex flex-row justify-between items-center w-full mt-4 md:mt-2">
+            {/* Views */}
+            <div className="flex items-center gap-2 text-gray-700">
+              <Image
+                width={500}
+                height={500}
+                src="/eye.svg"
+                alt="Views"
+                className="w-5 h-5"
+              />
+              <span className="font-light text-sm md:text-base text-black">
+                Total views {editingCount?.toLocaleString()}
+              </span>
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center justify-end gap-2 md:hidden">
+              <div
+                onClick={handleFavoriteToggle}
+                className="justify-center cursor-pointer flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm hover:bg-gray-50 bg-transparent"
+              >
+                <Image
+                  width={20}
+                  height={20}
+                  src="/favorite.svg"
+                  alt="Favorite"
+                  className="w-4 h-4"
+                />
+              </div>
+              <div
+                onClick={handleShareClick}
+                className="justify-center cursor-pointer flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm hover:bg-gray bg-transparent"
+              >
+                <Image
+                  width={20}
+                  height={20}
+                  src="/upload.svg"
+                  alt="Share"
+                  className="w-4 h-4"
+                />
+              </div>
+              <div
+                onClick={handleToggleListings}
+                className="justify-center cursor-pointer flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm hover:bg-gray-50 bg-transparent"
+              >
+                <Image
+                  width={20}
+                  height={20}
+                  src="/image2.svg"
+                  alt="Gallery"
+                  className="w-4 h-4"
+                />
               </div>
             </div>
           </div>
         </div>
 
-        <div className="w-full my-3 md:mt-0 border-t border-b border-[#8F8F8F] py-3">
+        <div className="w-full mt-3 md:mt-[1.4rem] border-t border-b border-[#8F8F8F] pt-3 ">
           <div className="flex items-center justify-center gap-[1.1rem] flex-wrap md:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl md:text-base">
             <div className="flex items-center gap-4  md:gap-[8rem]">
               <span className="flex items-center gap-1">
-                <span className="font-bold text-black">{bedrooms}</span>
+                <span className="font-light text-black">{bedrooms}</span>
                 <span>Beds</span>
               </span>
             </div>
@@ -510,35 +566,35 @@ const RentDetailsClient = () => {
             <span className="text-gray-400">|</span>
 
             <div className="flex items-center gap-1">
-              <span className="font-bold text-black">{bathrooms}</span>
+              <span className="font-light text-black">{bathrooms}</span>
               <span>Baths</span>
             </div>
 
             <span className="text-gray-400">|</span>
 
             <div className="flex items-center gap-1">
-              <span className="font-bold text-black">
+              <span className="font-light text-black">
                 {listingType === "land"
                   ? landSize
                   : listingType === "sale"
-                  ? squareFeet
-                  : "-"}
+                    ? squareFeet
+                    : "-"}
               </span>
               <span>sq ft</span>
             </div>
 
             <span className="text-gray-400">|</span>
             <div className="flex items-center gap-1">
-              <span className="font-bold text-black">
+              <span className="font-light text-black">
                 {listingType === "rent"
                   ? "-"
                   : listingType === "land"
-                  ? landSize
-                    ? formatPrice(region, Number(price) / Number(landSize))
-                    : "-"
-                  : squareFeet
-                  ? formatPrice(region, Number(price) / Number(squareFeet))
-                  : "-"}
+                    ? landSize
+                      ? formatPrice(region, Number(price) / Number(landSize))
+                      : "-"
+                    : squareFeet
+                      ? formatPrice(region, Number(price) / Number(squareFeet))
+                      : "-"}
               </span>
 
               <span>price per sq ft</span>
@@ -546,12 +602,12 @@ const RentDetailsClient = () => {
           </div>
         </div>
 
-        <div className="w-full px-4 py-6">
+        <div className="w-full px-4 pt-6 md:px-0 md:pt-[2.5rem]">
           <h2 className="text-xl font-bold text-black font-bricolage">
             Home Highlights
           </h2>
           {relevantHighlights.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4 text-[#8F8F8F] font-bricolage text-sm">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4 text-[#8F8F8F] font-bricolage text-sm">
               {relevantHighlights.map((item, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <Image
@@ -574,7 +630,7 @@ const RentDetailsClient = () => {
         </div>
 
         {/* description */}
-        <div className=" w-full px-4 py-6">
+        <div className=" w-full px-4 pt-6 md:px-0 md:pt-[2.5rem]">
           <h2 className="text-xl font-bold text-black font-bricolage">
             Description
           </h2>
@@ -586,7 +642,7 @@ const RentDetailsClient = () => {
         </div>
 
         {/* listed by agent */}
-        <div className=" w-full px-4 py-6 ">
+        <div className=" w-full px-4 md:px-0  py-6 md:py-[2.5rem] ">
           <h2 className="text-xl font-bold text-black  font-bricolage">
             Listed by Agent
           </h2>
@@ -665,7 +721,7 @@ const RentDetailsClient = () => {
                 </p>
               </div>
               <div className="flex flex-col ">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-[1em] min-w-fit items-center justify-center mb-2">
                   {displayListings
                     ?.filter((listing) => listing?._id !== listingId)
                     .map((listing, index) => (

@@ -36,7 +36,7 @@ export default function Page() {
 
   return (
     <>
-      <header className="relative h-[23rem] md:h-[85vh] w-screen">
+      <header className="relative h-[28rem] md:h-[85vh] w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-cover bg-center z-[-1]"
@@ -52,7 +52,7 @@ export default function Page() {
         {/* Content Section */}
         <div className="flex z-[1] p-4 md:p-0 relative  gap-1 md:gap-6 justify-center items-center flex-col">
           {/* Main Heading */}
-          <h1 className="w-[10em]  capitalize  mt-[2em] 2xl:mt-[9rem] md:mt-[1.4em] text-white text-[2em] md:w-full leading-[1em] text-center md:text-[5em] font-bricolage font-[600]">
+          <h1 className="w-[10em]  capitalize  mt-[2em] 2xl:mt-[9rem] md:mt-[1.4em] text-white text-[2.5em] md:w-full leading-[1em] text-center md:text-[5em] font-bricolage font-[600]">
             A top agent matters!{" "}
           </h1>
 
@@ -87,27 +87,27 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="grid  mt-2 md:mt-4  gap-y-3  w-full  grid-col-1 md:grid-cols-2    gap-2  p-4 md:p-0 md:gap-10 ">
+            <div className="grid  mt-2 md:mt-4  gap-y-4   w-full  grid-col-1 md:grid-cols-2    gap-2  p-4 md:p-0 md:gap-10 ">
               {isAllLoading
                 ? // Show skeleton loaders
-                  Array.from({ length: 6 }, (_, index) => (
-                    <ProfileCardSkeleton />
-                  ))
+                Array.from({ length: 6 }, (_, index) => (
+                  <ProfileCardSkeleton />
+                ))
                 : displayListings
-                    .slice(
-                      0,
-                      Math.min(
-                        displayListings.length < 4 ? 2 : 6,
-                        displayListings.length
-                      )
+                  .slice(
+                    0,
+                    Math.min(
+                      displayListings.length < 4 ? 2 : 6,
+                      displayListings.length
                     )
-                    .map((agent) => (
-                      <ProfileCard
-                        key={agent._id}
-                        {...agent}
-                        sales={Number(agent.numberOfListings)}
-                      />
-                    ))}
+                  )
+                  .map((agent) => (
+                    <ProfileCard
+                      key={agent._id}
+                      {...agent}
+                      sales={Number(agent.numberOfListings)}
+                    />
+                  ))}
 
               {/* {displayListings.length > 0 && displayListings.length < 6 && (
                 <div className="w-full  hi flex justify-start">
@@ -121,9 +121,9 @@ export default function Page() {
               )} */}
             </div>
             {/* "See All" link aligned to the start */}
-            <div className="w-full  md:col-span-2 p-4 md:p-0  md:flex justify-start">
+            <div className="w-full  md:col-span-2 p-0 md:p-0  md:flex justify-start">
               <Link href="/agent/all-agent">
-                <p className="text-[#09858D] mt-[2em] md:mt-5   w-full text-sm md:text-2xl font-medium">
+                <p className="text-[#09858D]  ml-[1.2em] md:ml-0 mt-[0em] md:mt-5   w-full text-sm md:text-2xl font-light">
                   See all agents on Hoydoon
                 </p>
               </Link>

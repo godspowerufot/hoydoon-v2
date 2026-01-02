@@ -92,8 +92,8 @@ export default function Home() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="mt-4 p-[1rem]  lg:p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col  w-full items-start  lg:max-w-[1200px] ">
+      <section className="mt-4 p-[0.2rem]  lg:p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col  w-full md:items-start  lg:max-w-[1200px] ">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px]  mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Newest Listings
@@ -103,7 +103,7 @@ export default function Home() {
               homes that feel just right, wherever you are.
             </p>
           </div>
-          <div className="flex flex-col  mt-[3em] lg:my-[2em] gap-[2em] lg:gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] items-center justify-center mb-2">
             {isAllLoading
               ? // Show skeleton loaders
               Array.from({ length: 3 }, (_, index) => (
@@ -152,8 +152,8 @@ export default function Home() {
 
       {/* afforable component */}
 
-      <section className="mt-4 p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6  lg:max-w-[1200px]w-full">
+      <section className="mt-4 p-[0.2rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col md:items-start gap-6  lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:gap-[12rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Somalia
@@ -222,8 +222,8 @@ export default function Home() {
       </section>
       <div className="w-screen mt-[3rem] lg:mt-0  h-[2px] bg-[#D9D9D9]" />
 
-      <section className="mt-4 p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6  lg:max-w-[1200px]w-full">
+      <section className="mt-4 p-[0.2rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col md:items-start gap-6  lg:max-w-[1200px]w-full">
           <div className="flex flex-col lg:gap-[12rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Nigeria
@@ -292,8 +292,8 @@ export default function Home() {
       </section>
       <div className="w-screen h-[2px] bg-[#D9D9D9] " />
 
-      <section className=" p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px]w-full">
+      <section className=" p-[0.2rem]  lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col md:items-start gap-6 justify-center lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:gap-[21rem] lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               pet-friendly Rentals
@@ -361,8 +361,8 @@ export default function Home() {
       {/* luxury */}
       <div className="w-screen h-[2px] bg-[#D9D9D9] " />
       {userCountry !== "somalia" && (
-        <section className="p-[1rem] lg:my-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-          <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
+        <section className="p-[0.2rem] lg:my-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+          <div className="flex flex-col md:items-start gap-6 justify-center lg:max-w-[1200px] w-full">
             <div className="flex flex-col lg:gap-[20rem] lg:flex-row justify-between items-start w-full mx-auto">
               <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 lg:text-[2.5rem] font-[600] w-full lg:w-auto">
                 Shortlet Apartments
@@ -431,8 +431,8 @@ export default function Home() {
       {/* // Then conditionally render the section */}
 
       {/* testimonials */}
-      <section className=" p-[1rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center lg:max-w-[1200px] w-full">
+      <section className=" p-[0.2rem]  lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+        <div className="flex flex-col md:items-start gap-6 justify-center lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Single Family Homes for Rent

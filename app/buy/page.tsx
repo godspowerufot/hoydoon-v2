@@ -14,6 +14,7 @@ import HoverCard from "../components/common/card";
 import { Property } from "@/types";
 import { SkeletonCard } from "../components/Loader";
 import PropertySearchBar from "../components/common/headerSearch";
+import InlineSpinner from "../components/common/InlineSpinner";
 
 // Add mobile detection
 function useIsMobile() {
@@ -53,15 +54,20 @@ export default function Home() {
     refetch: refetchUpcoming,
   } = useGetAllListingsQuery({ category: "upcoming" });
   const [displayListings, setDisplayListings] = useState([]);
+  const [isDataReady, setIsDataReady] = useState(false);
   const [searchLocation, setSearchLocation] = useState("");
   const [coordinates, setCoordinates] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
   const { data: listing } = useGetAllListingsQuery(
     { location: searchLocation }, // e.g. "Lekki" or Zip
     { skip: !searchLocation, pollingInterval: 60000 }
   );
   const [inputValue, setInputValue] = useState("");
   const handleSearch = () => {
-    setSearchLocation(inputValue.trim());
+    if (inputValue.trim()) {
+      setIsSearching(true);
+      setSearchLocation(inputValue.trim());
+    }
   };
   const flattenListings = (listings: any) => {
     return listings.flatMap((item: any) =>
@@ -81,14 +87,23 @@ export default function Home() {
       setCoordinates(coords); // Store coordinates for Google Maps
 
       log(coordinates, "locationlisitng");
+      setIsSearching(false); // Search completed
+    } else if (searchLocation && !listing) {
+      // If search was triggered but no results yet, keep searching state
+      setIsSearching(false);
     }
-  }, [listing]);
+  }, [listing, searchLocation]);
 
   const isMobile = useIsMobile();
   useEffect(() => {
     if (!isAllLoading && allListings) {
+      setIsDataReady(false); // Start processing
       const firstThreeListings = allListings.listings;
       setDisplayListings(firstThreeListings); // Store in state
+      // Small delay to ensure data is fully processed before showing
+      setTimeout(() => setIsDataReady(true), 100);
+    } else if (isAllLoading) {
+      setIsDataReady(false);
     }
   }, [allListings, isAllLoading]);
 
@@ -126,7 +141,7 @@ export default function Home() {
 
       {/* explore */}
       <section className=" p-2 lg:max-w-[1200px] lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col lg:my-[5em] items-start gap-6 justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col lg:my-[4em] md:items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row  justify-between  items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               All Houses for Sale
@@ -137,9 +152,9 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-wrap mt-[0.5em] lg:my-[1em]  gap-5 items-start lg:flex-row justify-start mb-2">
-            {isAllLoading
-              ? // Show skeleton loaders
-              Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+            {isAllLoading || !isDataReady
+              ? // Show skeleton loaders during API loading and data processing
+              Array.from({ length: 3 }, (_, index) => (
                 <SkeletonCard key={`skeleton-${index}`} />
               ))
               : displayListings
@@ -169,7 +184,7 @@ export default function Home() {
           </div>
           <Link
             href="/search"
-            className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+            className="text-[#09858D]   -mt-[1.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see housing for sale
           </Link>
@@ -181,8 +196,8 @@ export default function Home() {
       <div className="w-screen  mt-[3rem] lg:my-0 h-[2px] bg-[#D9D9D9] " />
 
       <section className="lg:my-[5em] p-2 lg:p-0 w-full max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
+        <div className="flex flex-col md:items-start  justify-center max-w-[1200px] w-full">
+          <div className="flex flex-col lg:flex-row gap-6  justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Affordable Homes
             </h1>
@@ -192,9 +207,9 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col mt-[0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
-            {isAllLoading ? (
-              // Show skeleton loaders
-              Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+            {isAffordableLoading ? (
+              // Show skeleton loaders during API loading and data processing
+              Array.from({ length: 3 }, (_, index) => (
                 <SkeletonCard key={`skeleton-${index}`} />
               ))
             ) : affordableListings?.listings?.length === 0 ? (
@@ -229,10 +244,10 @@ export default function Home() {
             )}
           </div>
 
-          {!isAllLoading && (
+          {!isAffordableLoading && (
             <Link
               href="/search?category=affordable"
-              className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]   mt-[1rem] text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all afforable houses for sale
             </Link>
@@ -242,7 +257,7 @@ export default function Home() {
       <div className="w-screen  mt-[3rem] lg:my-0 h-[2px] bg-[#D9D9D9] " />
 
       <section className="lg:my-[5em] p-2 lg:p-0 w-full max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col md:items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Upcoming Open Houses for Sale
@@ -253,9 +268,9 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col mt-[0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
-            {isAllLoading
-              ? // Show skeleton loaders
-              Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+            {isOpenHouseLoading
+              ? // Show skeleton loaders during API loading and data processing
+              Array.from({ length: 3 }, (_, index) => (
                 <SkeletonCard key={`skeleton-${index}`} />
               ))
               : (openHouseListings?.listings || [])
@@ -283,20 +298,20 @@ export default function Home() {
                   />
                 ))}
           </div>
-          {!isAllLoading && (
+          {!isOpenHouseLoading && (
             <Link
               href="/search?category=open-house`"
-              className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]   mt-[0.7rem]   mb-[1rem]  text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all open houses for sale
             </Link>
           )}
         </div>
       </section>
-      <div className="w-screen  hidden lg:block  h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen  lg:hidden   h-[2px] bg-[#D9D9D9] " />
 
       <section className="lg:my-[5em] p-2 lg:p-0 w-full lg:max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col md:items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Luxury Homes Houses for Sale
@@ -307,9 +322,9 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col mt- [0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
-            {isAllLoading
-              ? // Show skeleton loaders
-              Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+            {isLuxuryLoading
+              ? // Show skeleton loaders during API loading and data processing
+              Array.from({ length: 3 }, (_, index) => (
                 <SkeletonCard key={`skeleton-${index}`} />
               ))
               : (luxuryListings?.listings || [])
@@ -340,7 +355,7 @@ export default function Home() {
 
           <Link
             href="/search?category=luxury"
-            className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-2xl font-[500] "
+            className="text-[#09858D]   -mt-[1.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see all luxury houses for sale
           </Link>
@@ -373,17 +388,21 @@ export default function Home() {
 
               <div
                 onClick={handleSearch}
-                className="absolute right-2 top-[8%] 2xl:top-[13%] bg-primary ml-[6em] p-3  h-[40px] w-[50px]  rounded-full flex items-center justify-center"
+                className="absolute right-2 top-[8%] 2xl:top-[13%] bg-primary ml-[6em] p-[0.95rem]  h-[40px] w-[50px]  rounded-full flex items-center justify-center cursor-pointer transition-opacity hover:opacity-90"
               >
-                <Image
-                  alt="logo"
-                  width={50}
-                  loading="lazy"
-                  height={30}
-                  quality={100} // Ensures maximum quality
-                  src={"/search.png"}
-                  style={{ objectFit: "cover" }}
-                />
+                {isSearching ? (
+                  <InlineSpinner size={24} color="white" />
+                ) : (
+                  <Image
+                    alt="logo"
+                    width={50}
+                    loading="lazy"
+                    height={30}
+                    quality={100} // Ensures maximum quality
+                    src={"/search.png"}
+                    style={{ objectFit: "cover" }}
+                  />
+                )}
               </div>
             </div>
           </span>

@@ -79,7 +79,7 @@ const Breadcrumb = ({ onRegionUpdate }) => {
   }, [onRegionUpdate]);
 
   return (
-    <div className=" py-2 md:pt-[3rem] px-1 md:px-[5rem] 2xl:px-[0rem]  items-start md:flex-col md:items-center justify-between">
+    <div className=" py-2 md:pt-[3rem] px-1 md:px-0 2xl:px-[0rem]  items-start md:flex-col md:items-center justify-between">
       <div className="flex flex-col  md:flex-row justify-between items-start md:items-center w-full mt-4 p-2 gap-2 md:gap-6 mb-[2rem]">
         <h1 className="text-black text-[22px] sm:text-[24px] md:text-[2rem] font-semibold w-full md:w-auto">
           Real Estate Agents in Hoydoon
@@ -309,7 +309,7 @@ const Page = () => {
   return (
     <div className="mt-8  max-w-[1240px]   ">
       <Breadcrumb onRegionUpdate={setRegionUpdater} />
-      <div className="md:ml-[5rem] my-3 mt-[45px] 2xl:px-[0rem]  2xl:ml-[2rem] gap-y-3  grid md:w-[88%] 2xl:w-[95%]  grid-cols-1 md:grid-cols-2 sm:gap-4 md:gap-8 place-items-center">
+      <div className="md:ml-[0rem] my-3 mt-[45px] 2xl:px-[0rem]  2xl:ml-[2rem] gap-y-3  grid md:w-full   grid-cols-1 md:grid-cols-2 sm:gap-4 md:gap-8 place-items-center">
         {isAllLoading
           ? Array.from({ length: 6 }, (_, index) => (
             <ProfileCardSkeleton key={index} />
@@ -347,8 +347,8 @@ const Page = () => {
           />
         </>
       )}
-      <section className="  md:bg-[#eeeeeec7] 2xl:bg-white  w-full   md:w-full font-bricolage md:flex  flex-col justify-center flex-1 items-center ">
-        <div className="flex  md:gap-[4%] flex-col-reverse md:w-[90%]  2xl:w-[80rem] 2xl:pl-[2.5em] md:pl-5 md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-around ">
+      <section className="   2xl:bg-white  w-full    font-bricolage md:flex  flex-col justify-center flex-1 items-center ">
+        <div className="flex  md:gap-[4%] flex-col-reverse md:w-full  2xl:w-[80rem] 2xl:pl-[2.5em] md:pl-5 md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-around ">
           <span className="flex flex-col gap-y-1 md:gap-y-0 w-full md:w-[45em] 2xl:w-[60em] ">
             <h1 className="text-black  text-2xl mt-4  md:mt-0  md:text-[2.6rem]  md:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Connect with local agent

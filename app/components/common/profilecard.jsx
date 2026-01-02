@@ -7,7 +7,7 @@ const ListedCard = ({ name, picture, id }) => {
   return (
     <>
       <Link href={`/agent/${encodeId(id)}`}>
-        <div className="w-full cursor-pointer bg-[#F9FAFB] max-w-[15rem] lg:max-w-[25rem] flex items-center gap-3 p-4 border rounded-xl bg-[#f1f1f166]">
+        <div className="w-full cursor-pointer bg-[#ffffff] max-w-[15rem] lg:max-w-[25rem] flex items-center gap-3 p-4 border rounded-xl bg-[#8sF8F8F]">
           {/* Profile Image */}
           <div className="w-12 h-12 lg:w-16 lg:h-16 relative rounded-full overflow-hidden">
             <Image

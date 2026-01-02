@@ -13,7 +13,19 @@ import {
   useToggleFavoriteMutation,
 } from "@/store/slices/api/authapi";
 import Spinner from "@/app/components/common/Spinner";
-import { SkeletonCard } from "@/app/components/Loader";
+import { SkeletonCard, ProfileCardSkeleton } from "@/app/components/Loader";
+import {
+  BreadcrumbSkeleton,
+  ImageGallerySkeleton,
+  ImageGalleryMobileSkeleton,
+  PropertyHeaderSkeleton,
+  PropertyStatsSkeleton,
+  HomeHighlightsSkeleton,
+  DescriptionSkeleton,
+  MapSkeleton,
+  ContactAgentSkeleton,
+  RelatedListingsSkeleton,
+} from "@/app/components/Loader/RentDetailsSkeleton";
 import { log } from "@/utils/log";
 import { useRouter } from "next/navigation";
 import { handleShareClick } from "@/utils";
@@ -237,11 +249,22 @@ const page = ({ params }) => {
 
   if (isLoading) {
     return (
-      <div className="md:max-w-[1240px] w-full mt-[8rem] mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {Array.from({ length: 3 }, (_, i) => (
-            <SkeletonCard key={`skeleton-${i}`} />
-          ))}
+      <div className="w-screen flex justify-center flex-col items-center">
+        <div className="md:max-w-[1240px] flex pt-8 flex-col items-center justify-center w-full">
+          <BreadcrumbSkeleton />
+          <ImageGallerySkeleton />
+          <ImageGalleryMobileSkeleton />
+          <PropertyHeaderSkeleton />
+          <PropertyStatsSkeleton />
+          <HomeHighlightsSkeleton />
+          <DescriptionSkeleton />
+          <div className="w-full px-4 py-6">
+            <div className="h-6 bg-[#ecebebd7] rounded shimmer w-48 mb-4 animate-pulse" />
+            <ProfileCardSkeleton />
+          </div>
+          <MapSkeleton />
+          <ContactAgentSkeleton />
+          <RelatedListingsSkeleton />
         </div>
       </div>
     );
@@ -258,7 +281,7 @@ const page = ({ params }) => {
   // State to control visibility of the listings section
 
   return (
-    <div className="md:max-w-[1240px] flex pt-2 flex-col items-center justify-center ">
+    <div className=" w-screen  md:max-w-[1240px] flex pt-2 flex-col items-center justify-center ">
       {" "}
       <Breadcrumb
         handleToggleListings={handleToggleListings}
@@ -267,7 +290,7 @@ const page = ({ params }) => {
         agentDetails={agentInfo?.region}
       />
       {showListings && (
-        <div className="grid  w-full md:-mt-1  gap-2 p-3 md:p-0 ">
+        <div className="grid  w-full md:-mt-1  gap-2  p-0 ">
           <DynamicImageGrid
             handleFavoriteClick={handleFavoriteClick}
             statuses={statuses}
@@ -283,14 +306,13 @@ const page = ({ params }) => {
       )}
       {/* second div layout  */}
       <div
-        className={`bg-gray-100 mt-2   w-full md:mt-5 ${
-          !showListings ? "mt-[2rem] md:mt-0" : ""
-        } md:p-0  md:py-4 rounded-lg`}
+        className={`bg-gray-100 mt-2   w-full md:mt-5 ${!showListings ? "mt-[2rem] md:mt-0" : ""
+          } md:p-0  md:py-4 rounded-lg`}
       >
         <div className="flex flex-row px-4  md:p-0 justify-between items-start md:items-center">
           {/* Profile Image */}
           <div className="flex mt-4  items-center justify-center md:-mt-3 gap-3">
-            <div className="w-[4rem] h-[4rem] relative">
+            <div className="w-[5rem] h-[5rem] relative">
               <Image
                 src={agentInfo?.pictureUrl || "/Avatar.svg"} // Replace with actual image path
                 alt="Profile Picture"
@@ -320,7 +342,7 @@ const page = ({ params }) => {
               <span className="ml-1 font-medium ">{ListedBy}</span>
             </div>
             <p className="text-gray-600 md:mt-1 my-3 text-sm">
-              Avg listing {formatPrice(region, averagelisting)}{" "}
+              Est {formatPrice(region, averagelisting)}{" "}
             </p>
             <div className="flex md:hidden items-center justify-end gap-2 mt-3 w-full md:w-auto">
               <div
@@ -329,7 +351,7 @@ const page = ({ params }) => {
               >
                 <Image
                   width={500}
-                  height={300}
+                  height={500}
                   src="/favorite.svg"
                   alt="Favorite"
                   className="w-4 h-4"
@@ -353,7 +375,7 @@ const page = ({ params }) => {
               >
                 <Image
                   width={500}
-                  height={300}
+                  height={500}
                   src="/image2.svg"
                   alt="Share"
                   className="w-4 h-4 object-cover"
@@ -397,8 +419,8 @@ const page = ({ params }) => {
         </div>
       </div>
       {/* second layout */}
-      <div className=" w-full mt-[3rem] px-[1.5rem] md:px-0 py-7">
-        <h1 className=" text-xl md:text-[2rem] font-semibold ">
+      <div className=" w-full mt-[1.5rem] px-[1.5rem] md:px-0 md:py-7">
+        <h1 className="text-2xl  md:text-[2rem] font-semibold ">
           {" "}
           About {agentInfo?.fullname}
         </h1>
@@ -422,11 +444,10 @@ const page = ({ params }) => {
                   setActiveTab(tab.id);
                   setCoordinates(allCoordinates[tab.id] || []); // Update map based on tab
                 }}
-                className={`relative py-2 text-sm md:text-base transition-colors duration-300 ${
-                  activeTab === tab.id
-                    ? "text-black font-semibold"
-                    : "text-[#8F8F8F]"
-                }`}
+                className={`relative py-2 text-sm md:text-base transition-colors duration-300 ${activeTab === tab.id
+                  ? "text-black font-semibold"
+                  : "text-[#8F8F8F]"
+                  }`}
               >
                 {tab.label}
                 {activeTab === tab.id && (
@@ -459,7 +480,7 @@ const page = ({ params }) => {
 
         {/* Distance Information */}
       </div>
-      <div className="w-full md:mt-[3rem]  px-7 md:px-0 py-6">
+      <div className="w-full md:mt-[3rem] px-2 md:px-7 md:px-0 py-6">
         <h1 className="text-xl md:text-[2rem]   mb-7  font-semibold ">
           {" "}
           {agentInfo?.fullname} Active Listings
@@ -509,7 +530,7 @@ const page = ({ params }) => {
         )}
       </div>
       {/*contat agency  */}
-      <div className="w-full px-6 md:px-0">
+      <div className="w-full px-0 md:px-0">
         <ContactAgent
           listedBy={agentInfo?._id}
           location={agentInfo?.region}

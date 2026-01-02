@@ -106,8 +106,8 @@ const LocationSearchBar = () => {
       </div>
 
       {/* Mobile */}
-      <div className="flex lg:hidden justify-center items-center w-full px-3 py-3">
-        <div className="flex items-center w-full bg-white rounded-full h-[33px] px-2 py-1">
+      <div className="flex lg:hidden justify-center items-center w-full pl-2 py-3">
+        <div className="flex items-center w-full bg-white rounded-full h-[33px] pl-4 pr-2 py-1">
           <input
             ref={inputRefMobile}
             type="text"
@@ -119,7 +119,7 @@ const LocationSearchBar = () => {
           />
           <button
             onClick={handleSearch}
-            className="ml-2 h-[24px] bg-primary px-1 w-[30px] rounded-full flex items-center justify-center hover:bg-opacity-90"
+            className=" h-[24px] bg-primary px-1 w-[30px] rounded-full flex items-center justify-center hover:bg-opacity-90"
           >
             <Image alt="Search" width={15} height={15} src="/search.png" />
           </button>
