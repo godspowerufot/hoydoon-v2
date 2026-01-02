@@ -31,7 +31,7 @@ import {
 } from "@/app/components/Loader/RentDetailsSkeleton";
 import { ProfileCardSkeleton } from "@/app/components/Loader";
 import { toast } from "react-toastify";
-import { handleShareClick, decodeId, truncateDescription } from "@/utils";
+import { handleShareClick, decodeId, truncateDescription, flattenListings } from "@/utils";
 import DynamicImageMobile from "@/app/components/layouts/mobiledynamic";
 import DynamicImageGrid from "@/app/components/layouts/dynamiclayout";
 import axios from "axios";
@@ -659,7 +659,7 @@ const RentDetailsClient = () => {
 
           {/* Map Container */}
           <div className="w-screen  pt-4 md:w-full relative rounded-lg  flex items-center overflow-hidden ">
-            <MapComponent coordinates={coordinate} />
+            <MapComponent coordinates={coordinate} listings={listing?.listing ? flattenListings([listing.listing]) : []} />
             <div className="py-4 px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
               <span className="font-medium">
                 {displayListings?.length} Homes available in{" "}

@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useState } from "react";
+import { FaWhatsapp } from "react-icons/fa";
 
 interface Office {
   city: string;
@@ -185,11 +186,11 @@ function OfficeLocator() {
 // Contact Methods Data
 const contactMethods = [
   {
-    icon: "/call.svg",
+    iconComponent: <FaWhatsapp className="h-10 w-10 text-[#535353]" />,
     title: "+(234) 7043058500",
     description:
       "Talk to a Customer Service Representative for help with our site, app, or finding a Hoydoon Agent.",
-    action: "tel:+13125662313",
+    action: "https://wa.me/2347043058500",
   },
   {
     icon: "/message.svg",
@@ -259,23 +260,39 @@ const ContactPage = () => {
           {/* Contact Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-12">
             {contactMethods.map((method, index) => {
-              const Icon = method.icon;
               return (
                 <div key={index} className="text-center">
                   <div className="flex justify-center mb-6">
                     <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
-                      {/* <Icon className="h-8 w-8 text-gray-600" /> */}
-                      <Image
-                        src={method.icon}
-                        alt="icon"
-                        width={500}
-                        height={500}
-                      />{" "}
+                      {method.iconComponent ? (
+                        method.iconComponent
+                      ) : (
+                        <Image
+                          src={method.icon || ""}
+                          alt="icon"
+                          width={500}
+                          height={500}
+                          className="w-8 h-8"
+                        />
+                      )}
                     </div>
                   </div>
-                  <h3 className=" txt-2xl md:text-3xl font-semibold text-teal-600 mb-4">
-                    {method.title}
-                  </h3>
+                  {method.action ? (
+                    <a
+                      href={method.action}
+                      target={method.action.startsWith("http") ? "_blank" : undefined}
+                      rel={method.action.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="inline-block"
+                    >
+                      <h3 className="text-2xl md:text-3xl font-semibold text-teal-600 mb-4 hover:underline cursor-pointer">
+                        {method.title}
+                      </h3>
+                    </a>
+                  ) : (
+                    <h3 className="text-2xl md:text-3xl font-semibold text-teal-600 mb-4">
+                      {method.title}
+                    </h3>
+                  )}
                   <p className="text-[#1E1E1E] text-sm leading-relaxed max-w-xs mx-auto">
                     {method.description}
                   </p>
@@ -318,9 +335,9 @@ const ContactPage = () => {
             </div>
           </div>
           <OfficeLocator />
-        </div>
-      </div>
-    </div>
+        </div >
+      </div >
+    </div >
   );
 };
 
