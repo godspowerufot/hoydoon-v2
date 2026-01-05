@@ -397,7 +397,7 @@ export default function Home() {
       </section>
 
       <section className=" p-2 md:p-0  md:mt-[2.5em] md:mb-[5em] w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col   md:items-start gap-6 md:gap-0 justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col   md:items-start gap-0 md:gap-0 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col  md:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[23px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
               Featured Properties for Rent
@@ -407,7 +407,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex w-full flex-col mt-[0.5em] md:mt-[2.5em] gap-3   md:gap-5 md:items-start md:flex-row md:justify-start mb-2">
+          <div className="flex w-full flex-col mt-[1.5em] md:mt-[2.5em] gap-3   md:gap-5 md:items-start md:flex-row md:justify-start mb-2">
             {isAllLoading
               ? // Show skeleton loaders
               Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
