@@ -330,7 +330,7 @@ const page = ({ params }) => {
       >
         <div className="flex flex-row px-4  md:p-0 justify-between items-start md:items-center">
           {/* Profile Image */}
-          <div className="flex mt-4  items-center justify-center md:-mt-3 gap-3">
+          <div className="flex mt-2  items-center justify-center md:-mt-3 gap-3">
             <div className="w-[5rem] h-[5rem] relative">
               <Image
                 src={agentInfo?.pictureUrl || "/Avatar.svg"} // Replace with actual image path

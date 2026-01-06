@@ -140,7 +140,7 @@ export default function Home() {
           {!isAllLoading && (
             <Link
               href="/search"
-              className="text-[#09858D]  mt-2 text-sm lg:my-5 lg:text-xl font-[500] "
+              className="text-[#09858D]  mt-[0.5rem] text-sm lg:my-5 lg:text-xl font-[500] "
             >
               see all new listings for rents
             </Link>
@@ -212,7 +212,7 @@ export default function Home() {
             {!isAllLoading && (
               <Link
                 href={"/search?location=somalia&listingType=rent"}
-                className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
+                className="text-[#09858D]  text-sm  mt-[1rem] lg:my-5 lg:text-xl font-[500] "
               >
                 see all somalia listings for rent
               </Link>
@@ -282,7 +282,7 @@ export default function Home() {
             {!isAllLoading && (
               <Link
                 href={"/search?location=nigeria&listingType=rent"}
-                className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
+                className="text-[#09858D]  text-sm  mt-[1rem] mb-5 lg:my-5 lg:text-xl font-[500] "
               >
                 see all nigeria listings for rent
               </Link>

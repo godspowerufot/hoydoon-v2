@@ -181,7 +181,7 @@ export default function Home() {
           </div>
           <Link
             href="/search"
-            className="text-[#09858D]   -mt-[1.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
+            className="text-[#09858D]   -mt-[0.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see housing for sale
           </Link>
@@ -298,7 +298,7 @@ export default function Home() {
           {!isOpenHouseLoading && (
             <Link
               href="/search?category=open-house`"
-              className="text-[#09858D]   mt-[0.7rem]   mb-[1rem]  text-sm lg:my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]   -mt-[0.4rem]   mb-[1rem]  text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all open houses for sale
             </Link>
@@ -352,7 +352,7 @@ export default function Home() {
 
           <Link
             href="/search?category=luxury"
-            className="text-[#09858D]   -mt-[1.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
+            className="text-[#09858D]   -mt-[0.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see all luxury houses for sale
           </Link>

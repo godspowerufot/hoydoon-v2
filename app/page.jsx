@@ -444,7 +444,7 @@ export default function Home() {
           {!isAllLoading && (
             <Link
               href="/search?category=Featured"
-              className="text-[#09858D] text-start mt-[1.5rem] text-sm md:my-5 md:text-2xl font-[500] "
+              className="text-[#09858D] text-start mt-[0.8rem] text-sm md:my-5 md:text-2xl font-[500] "
             >
               see featured properties for sale
             </Link>
