@@ -124,7 +124,7 @@ const MobileNavbar = () => {
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-40"
-          // optional
+        // optional
         ></div>
       )}
       <nav className="flex items-center justify-between px-4 py-2 bg-white shadow-md lg:hidden">
@@ -132,40 +132,40 @@ const MobileNavbar = () => {
           pathname.startsWith("/search") ||
           pathname.startsWith("/helpcenter/submit-request")
         ) && (
-          <>
-            {" "}
-            <div className="flex items-center space-x-2">
-              <Link href="/" className="flex items-center space-x-2">
-                {" "}
-                <Image
-                  alt="logo"
-                  width={500}
-                  height={500}
-                  src="/logo-23.svg"
-                  className="h-[30px] w-[30px]"
-                />
-                {pathname === "/helpcenter" ? (
-                  <div className="flex items-center space-x-2">
-                    {/* vertical line */}
+            <>
+              {" "}
+              <div className="flex items-center space-x-2">
+                <Link href="/" className="flex items-center space-x-2">
+                  {" "}
+                  <Image
+                    alt="logo"
+                    width={500}
+                    height={500}
+                    src="/logo-23.svg"
+                    className="h-[30px] w-[30px]"
+                  />
+                  {pathname === "/helpcenter" ? (
+                    <div className="flex items-center space-x-2">
+                      {/* vertical line */}
 
-                    {/* <div className="w-[2px] h-5 bg-black" /> */}
-                    <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-sm cursor-pointer  transition-colors whitespace-nowrap">
-                      Help center
+                      {/* <div className="w-[2px] h-5 bg-black" /> */}
+                      <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-sm cursor-pointer  transition-colors whitespace-nowrap">
+                        Help center
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="text-[1.3rem] font-semibold mt-[0.3rem]  text-gray-800 text-base">
+                      Hoydoon
                     </span>
-                  </div>
-                ) : (
-                  <span className="text-[1.2rem] font-semibold mt-[0.3rem]  text-gray-800 text-base">
-                    Hoydoon
-                  </span>
-                )}
-              </Link>
-            </div>
-          </>
-        )}
+                  )}
+                </Link>
+              </div>
+            </>
+          )}
 
         <div className="flex items-center justify-between w-full gap-3">
           {pathname?.startsWith("/search") ||
-          pathname?.startsWith("/helpcenter/submit-request") ? (
+            pathname?.startsWith("/helpcenter/submit-request") ? (
             <div className="flex items-center space-x-2">
               {/* Globe Icon */}
               <Image
@@ -243,15 +243,13 @@ const MobileNavbar = () => {
 
       <div
         ref={sidebarRef}
-        className={`fixed top-0 right-0 h-full w-[295px] bg-white transform transition-transform duration-300 z-50 ${
-          isSidebarOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-[295px] bg-white transform transition-transform duration-300 z-50 ${isSidebarOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* /* Sidebar */}
         <div
-          className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${
-            isSidebarOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`fixed top-0 right-0 h-full w-[328px] bg-white transform transition-transform duration-300 z-50 ${isSidebarOpen ? "translate-x-0" : "translate-x-full"
+            }`}
         >
           <div className="flex items-center justify-between p-4 border-b  border-[#8F8F8F]">
             <Link
