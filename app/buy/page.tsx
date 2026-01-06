@@ -56,7 +56,7 @@ export default function Home() {
   const [displayListings, setDisplayListings] = useState([]);
   const [isDataReady, setIsDataReady] = useState(false);
   const [searchLocation, setSearchLocation] = useState("");
-  const [coordinates, setCoordinates] = useState([]);
+  const [mapListings, setMapListings] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const { data: listing } = useGetAllListingsQuery(
     { location: searchLocation }, // e.g. "Lekki" or Zip
@@ -80,13 +80,10 @@ export default function Home() {
 
       // Extract coordinates
       // Extract coordinates for active listings
-      const coords = flatListings
-        ?.map((item: any) => item.item?.coordinate) // Get coordinate object from item
-        .filter((coord: any) => coord?.latitude && coord?.longitude); // Ensure valid coordinates
 
-      setCoordinates(coords); // Store coordinates for Google Maps
+      setMapListings(flatListings); // Store raw listings for Google Maps
 
-      log(coordinates, "locationlisitng");
+      log(flatListings, "locationlisitng");
       setIsSearching(false); // Search completed
     } else if (searchLocation && !listing) {
       // If search was triggered but no results yet, keep searching state
@@ -151,7 +148,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex flex-wrap mt-[0.5em] lg:my-[1em]  gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="grid  w-full grid-cols-1 lg:grid-cols-3 mt-[0.5em] lg:my-[1em] gap-5 mb-2">
             {isAllLoading || !isDataReady
               ? // Show skeleton loaders during API loading and data processing
               Array.from({ length: 3 }, (_, index) => (
@@ -184,7 +181,7 @@ export default function Home() {
           </div>
           <Link
             href="/search"
-            className="text-[#09858D]   -mt-[1.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
+            className="text-[#09858D]   -mt-[0.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see housing for sale
           </Link>
@@ -206,7 +203,7 @@ export default function Home() {
               and price range.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="grid w-full grid-cols-1 lg:grid-cols-3 mt-[0.5em] lg:my-[1em] gap-5 mb-2">
             {isAffordableLoading ? (
               // Show skeleton loaders during API loading and data processing
               Array.from({ length: 3 }, (_, index) => (
@@ -267,7 +264,7 @@ export default function Home() {
               step with confidence.
             </p>
           </div>
-          <div className="flex flex-col mt-[0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-3 mt-[0.5em] lg:my-[1em] gap-5 mb-2">
             {isOpenHouseLoading
               ? // Show skeleton loaders during API loading and data processing
               Array.from({ length: 3 }, (_, index) => (
@@ -301,7 +298,7 @@ export default function Home() {
           {!isOpenHouseLoading && (
             <Link
               href="/search?category=open-house`"
-              className="text-[#09858D]   mt-[0.7rem]   mb-[1rem]  text-sm lg:my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]   -mt-[0.4rem]   mb-[1rem]  text-sm lg:my-5 lg:text-2xl font-[500] "
             >
               see all open houses for sale
             </Link>
@@ -321,7 +318,7 @@ export default function Home() {
               and refined taste.
             </p>
           </div>
-          <div className="flex flex-col mt- [0.5em] lg:my-[1em] gap-5 items-start lg:flex-row justify-start mb-2">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-3 mt-[0.5em] lg:my-[1em] gap-5 mb-2">
             {isLuxuryLoading
               ? // Show skeleton loaders during API loading and data processing
               Array.from({ length: 3 }, (_, index) => (
@@ -355,7 +352,7 @@ export default function Home() {
 
           <Link
             href="/search?category=luxury"
-            className="text-[#09858D]   -mt-[1.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
+            className="text-[#09858D]   -mt-[0.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
           >
             see all luxury houses for sale
           </Link>
@@ -408,7 +405,7 @@ export default function Home() {
           </span>
 
           <div className="mt-8 w-screen lg:w-[40rem] h-[25rem] 2xl:w-[50rem] rounded-2xl lg:mt-0">
-            <MapComponent coordinates={coordinates} />
+            <MapComponent listings={mapListings} />
           </div>
         </div>
       </section>
