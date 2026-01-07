@@ -68,64 +68,82 @@ const DistanceComponent = ({ coordinates }) => {
 
       setIsLoading(true);
 
-      const { latitude, longitude } = coordinates;
-      const location = `${latitude},${longitude}`;
-      const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-      const DISTANCE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_DISTANCE_API_KEY;
+      const fetchPromise = (async () => {
+        const { latitude, longitude } = coordinates;
+        const location = `${latitude},${longitude}`;
+        const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
-      const foundPlaces = [];
-      const destinations = [];
+        const foundPlaces = [];
+        const destinations = [];
 
-      // 1. Fetch nearest places for each type
-      for (const { type, icon } of PLACE_TYPES) {
-        const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=2000&type=${type}&key=${API_KEY}`;
-        const placesRes = await axios.get(
-          `/api/proxy?url=${encodeURIComponent(placesUrl)}`
+        // 1. Fetch nearest places for each type
+        for (const { type, icon } of PLACE_TYPES) {
+          const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=2000&type=${type}&key=${API_KEY}`;
+          const placesRes = await axios.get(
+            `/api/proxy?url=${encodeURIComponent(placesUrl)}`
+          );
+
+          const place = placesRes.data.results?.[0];
+          if (place) {
+            foundPlaces.push({
+              type,
+              icon,
+              name: place.name,
+              types: place.types,
+              lat: place.geometry.location.lat,
+              lng: place.geometry.location.lng,
+            });
+
+            destinations.push(
+              `${place.geometry.location.lat},${place.geometry.location.lng}`
+            );
+          } else {
+            destinations.push(""); // placeholder to maintain index
+            foundPlaces.push(null);
+          }
+        }
+
+        // 2. Fetch distances
+        const distanceUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${location}&destinations=${destinations.join(
+          "|"
+        )}&key=${process.env.NEXT_PUBLIC_GOOGLE_DISTANCE_API_KEY}`;
+        const distanceRes = await axios.get(
+          `/api/proxy?url=${encodeURIComponent(distanceUrl)}`
         );
 
-        const place = placesRes.data.results?.[0];
-        if (place) {
-          foundPlaces.push({
-            type,
-            icon,
-            name: place.name,
-            types: place.types,
-            lat: place.geometry.location.lat,
-            lng: place.geometry.location.lng,
-          });
+        const distanceElements = distanceRes.data.rows?.[0]?.elements || [];
 
-          destinations.push(
-            `${place.geometry.location.lat},${place.geometry.location.lng}`
-          );
-        } else {
-          destinations.push(""); // placeholder to maintain index
-          foundPlaces.push(null);
-        }
-      }
+        // 3. Combine place info with distance
+        const finalData = foundPlaces.map((place, idx) => {
+          if (!place) return null;
 
-      // 2. Fetch distances
-      const distanceUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${location}&destinations=${destinations.join(
-        "|"
-      )}&key=${process.env.NEXT_PUBLIC_GOOGLE_DISTANCE_API_KEY}`;
-      const distanceRes = await axios.get(
-        `/api/proxy?url=${encodeURIComponent(distanceUrl)}`
+          const distanceInfo = distanceElements?.[idx];
+          const distanceText =
+            distanceInfo?.status === "OK" ? distanceInfo.distance.text : null;
+
+          return {
+            ...place,
+            label: getLabelFromTypes(place.types),
+            distance: distanceText,
+          };
+        });
+
+        return finalData.filter(Boolean);
+      })();
+
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Timeout")), 60000)
       );
 
-      const distanceElements = distanceRes.data.rows[0].elements;
-
-      // 3. Combine place info with distance
-      const finalData = foundPlaces.map((place, idx) => {
-        if (!place || distanceElements[idx].status !== "OK") return null;
-
-        return {
-          ...place,
-          label: getLabelFromTypes(place.types),
-          distance: distanceElements[idx].distance.text,
-        };
-      });
-
-      setPlacesData(finalData.filter(Boolean)); // remove nulls
-      setIsLoading(false);
+      try {
+        const result = await Promise.race([fetchPromise, timeoutPromise]);
+        setPlacesData(result);
+      } catch (error) {
+        console.error("Error fetching distance data:", error);
+        setPlacesData([]);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchData();
@@ -152,7 +170,7 @@ const DistanceComponent = ({ coordinates }) => {
           <div className="flex flex-col">
             <span className="text-primary font-[500] lowercase">{name}</span>
             <span className="text-gray-500 text-xs">
-              {label} · {distance}
+              {label} {distance ? `· ${distance}` : ""}
             </span>
           </div>
         </div>
@@ -660,12 +678,12 @@ const RentDetailsClient = () => {
           {/* Map Container */}
           <div className="w-screen  pt-4 md:w-full relative rounded-lg  flex items-center overflow-hidden ">
             <MapComponent coordinates={coordinate} listings={listing?.listing ? flattenListings([listing.listing]) : []} />
-            <div className="py-4 px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
+            {/* <div className="py-4  px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
               <span className="font-medium">
                 {displayListings?.length} Homes available in{" "}
                 {truncateDescription(address, 1)}
               </span>
-            </div>
+            </div> */}
           </div>
 
           {/* Distance Information*/}

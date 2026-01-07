@@ -181,10 +181,10 @@ const HelpCenterLayout = ({ PageData }) => {
 
   const handleToggleImages = (shouldHide) => {
     setHidePageDataImages(shouldHide);
-  };
+  }
 
   return (
-    <div className="max-w-[1200px] mt-[3rem] lg:mt-[4rem] lg:p-0 lg:px-0 p-[1.5rem]">
+    <div className="max-w-[1200px] mt-[1rem] lg:mt-[4rem] lg:p-0 lg:px-0 p-[1.5rem]">
       <Breadcrumb
         id={PageData?.id}
         name={PageData}
@@ -235,11 +235,10 @@ const HelpCenterLayout = ({ PageData }) => {
 
             {section.listItems && (
               <ul
-                className={`text-gray font-light text-[18px] ml-5 ${
-                  !Array.isArray(section.listItems[0]?.description)
-                    ? "list-disc"
-                    : ""
-                }`}
+                className={`text-gray font-light text-[18px] ml-5 ${!Array.isArray(section.listItems[0]?.description)
+                  ? "list-disc"
+                  : ""
+                  }`}
               >
                 {section.listItems.map((item, itemIndex) => (
                   <li key={itemIndex} className="mt-8">
@@ -326,7 +325,7 @@ const HelpCenterLayout = ({ PageData }) => {
       )}
 
       {/* Suggested Listings - Always visible */}
-      <div className="mt-[4rem] p-4">
+      <div className="md:mt-[4rem] p-4">
         <div className="flex flex-col items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between lg:items-center w-full mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] text-start lg:mt-0 lg:text-[2.5rem] font-[600]">
