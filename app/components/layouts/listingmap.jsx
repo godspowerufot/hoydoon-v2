@@ -35,8 +35,8 @@ function MapPopup({ property, onClose }) {
   const getImageAlt = (img) => img?.altText || property.title || "Property";
 
   return (
-    <div className="w-[250px] m overflow-y-auto overflow-x-hidden bg-white rounded-2xl shadow-xl font-bricolage animate-in fade-in zoom-in duration-300">
-      <div className="relative h-[100px] w-full group shrink-0">
+    <div className="w-[320px] overflow-y-auto overflow-x-hidden bg-white rounded-2xl shadow-xl font-bricolage animate-in fade-in zoom-in duration-300">
+      <div className="relative h-[180px] w-full group shrink-0">
         {/* Sliding Carousel Container */}
         <div
           className="flex h-full transition-transform duration-500 ease-in-out"
@@ -85,7 +85,7 @@ function MapPopup({ property, onClose }) {
         </div>
       </div>
 
-      <div className="p-3">
+      <div className="p-3 w-[87%]">
         <div className="flex justify-between items-start mb-1.5">
           <div>
             <h3 className="font-bold text-base text-black leading-tight mb-0.5">
@@ -230,10 +230,17 @@ export default function MapComponent({ coordinates = [], listings = [] }) {
           background: transparent !important;
           box-shadow: none !important;
           padding: 0 !important;
+          max-height: 300px !important;
         }
         .gm-style-iw-d {
-          overflow: hidden !important;
-          max-height: none !important;
+          overflow: auto !important;
+          background: transparent !important;
+          max-height: 300px !important;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .gm-style-iw-d::-webkit-scrollbar {
+          display: none;
         }
         .gm-style .gm-style-iw-t::after {
           display: none !important;

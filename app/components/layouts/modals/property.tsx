@@ -235,21 +235,19 @@ const PropertyGalleryModal = ({
             <div className="flex  space-x-6">
               <button
                 onClick={() => setActiveTab("photos")}
-                className={`pb-2 ${
-                  activeTab === "photos"
+                className={`pb-2 ${activeTab === "photos"
                     ? "border-b-2 border-primary text-black"
                     : "text-gray"
-                }`}
+                  }`}
               >
                 Photos
               </button>
               <button
                 onClick={() => setActiveTab("map")}
-                className={`pb-2 ${
-                  activeTab === "map"
+                className={`pb-2 ${activeTab === "map"
                     ? "border-b-2 border-primary text-black"
                     : "text-gray"
-                }`}
+                  }`}
               >
                 Map
               </button>
