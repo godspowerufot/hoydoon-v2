@@ -35,7 +35,7 @@ function MapPopup({ property, onClose }) {
   const getImageAlt = (img) => img?.altText || property.title || "Property";
 
   return (
-    <div className="w-[250px] m overflow-y-auto bg-white rounded-2xl shadow-xl font-bricolage animate-in fade-in zoom-in duration-300">
+    <div className="w-[250px] m overflow-y-auto overflow-x-hidden bg-white rounded-2xl shadow-xl font-bricolage animate-in fade-in zoom-in duration-300">
       <div className="relative h-[100px] w-full group shrink-0">
         {/* Sliding Carousel Container */}
         <div
