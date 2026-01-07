@@ -500,7 +500,7 @@ const page = ({ params }) => {
 
         {/* Distance Information */}
       </div>
-      <div className="w-full md:mt-[3rem] px-2 md:px-7 md:px-0 py-6">
+      <div className="w-full md:mt-[3rem] px-2 md:px-3 md:px-0 py-6">
         <h1 className="text-xl md:text-[2rem]   mb-7  font-semibold ">
           {" "}
           {agentInfo?.fullname} Active Listings
