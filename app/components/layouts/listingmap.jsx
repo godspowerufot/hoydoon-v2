@@ -230,11 +230,12 @@ export default function MapComponent({ coordinates = [], listings = [] }) {
           background: transparent !important;
           box-shadow: none !important;
           padding: 0 !important;
+          max-height: 300px !important;
         }
         .gm-style-iw-d {
           overflow: auto !important;
           background: transparent !important;
-          max-height: none !important;
+          max-height: 300px !important;
           -ms-overflow-style: none;
           scrollbar-width: none;
         }

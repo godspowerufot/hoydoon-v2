@@ -505,7 +505,7 @@ const page = ({ params }) => {
           {" "}
           {agentInfo?.fullname} Active Listings
         </h1>
-        <div className="grid  px-1 md:px-0 grid-cols-1 md:grid-cols-3 gap-1 gap-y-[2rem] place-items-center">
+        <div className="grid  px-1 md:px-0 grid-cols-1 md:grid-cols-3 gap-3 gap-y-[2rem] place-items-center">
           {/* Display only 3 listings initially, or all listings if showAll is true */}
           {(showAll ? ActiveListings : ActiveListings.slice(0, 3)).map(
             (items, index) => (
