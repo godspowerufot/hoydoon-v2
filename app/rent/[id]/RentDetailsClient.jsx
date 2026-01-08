@@ -370,6 +370,7 @@ const RentDetailsClient = () => {
     averageRating,
     createdAt,
     editingCount,
+    clickCount,
     item, // This contains nested properties
     itemModel,
     listedBy,
@@ -526,7 +527,7 @@ const RentDetailsClient = () => {
                 className="w-5 h-5"
               />
               <span className="font-light text-sm md:text-base text-black">
-                Total views {editingCount?.toLocaleString()}
+                Total views {clickCount?.toLocaleString()}
               </span>
             </div>
 
