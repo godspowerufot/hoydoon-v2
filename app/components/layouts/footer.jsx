@@ -187,26 +187,40 @@ const Appfooter = () => {
                   <p className="font-medium text-[#F9FAFB]">Mobile App</p>
                   <ul className="mt-1 lg:mt-[4px] space-y-2 text-sm">
                     <li>
-                      <Image
-                        src="/app1.svg"
-                        alt="Download on App Store"
-                        width={100}
-                        height={30}
-                        quality={100}
-                        priority
-                        style={{ height: 'auto' }}
-                      />
+                      <a
+                        href="https://apps.apple.com/us/app/hoydoon/id6736393320"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-pointer inline-block transition hover:opacity-75"
+                      >
+                        <Image
+                          src="/app1.svg"
+                          alt="Download on App Store"
+                          width={100}
+                          height={30}
+                          quality={100}
+                          priority
+                          style={{ height: 'auto' }}
+                        />
+                      </a>
                     </li>
                     <li>
-                      <Image
-                        src="/app2.svg"
-                        alt="Get it on Google Play"
-                        width={100}
-                        height={30}
-                        quality={100}
-                        priority
-                        style={{ height: 'auto' }}
-                      />
+                      <a
+                        href="https://play.google.com/store/apps/details?id=com.hoydoon.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-pointer inline-block transition hover:opacity-75"
+                      >
+                        <Image
+                          src="/app2.svg"
+                          alt="Get it on Google Play"
+                          width={100}
+                          height={30}
+                          quality={100}
+                          priority
+                          style={{ height: 'auto' }}
+                        />
+                      </a>
                     </li>
                   </ul>
                 </div>

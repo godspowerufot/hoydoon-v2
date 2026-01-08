@@ -358,7 +358,7 @@ const page = ({ params }) => {
                 alt="Favorite"
                 className="w-4 h-4"
               />
-              <span className="ml-1 font-medium ">{ListedBy}</span>
+              <span className="ml-1 font-medium ">{agentInfo?.numberOfListings}</span>
             </div>
             <p className="text-gray-600 md:mt-1 my-3 text-sm">
               Est {formatPrice(region, averagelisting)}{" "}
