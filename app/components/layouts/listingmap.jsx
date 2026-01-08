@@ -35,8 +35,8 @@ function MapPopup({ property, onClose }) {
   const getImageAlt = (img) => img?.altText || property.title || "Property";
 
   return (
-    <div className="w-[320px] overflow-y-auto overflow-x-hidden bg-white rounded-2xl shadow-xl font-bricolage animate-in fade-in zoom-in duration-300">
-      <div className="relative h-[180px] w-full group shrink-0">
+    <div className="w-[290px] overflow-y-auto overflow-x-hidden bg-white rounded-2xl shadow-xl font-bricolage animate-in fade-in zoom-in duration-300">
+      <div className="relative h-[180px] w-full group shrink-0 overflow-hidden">
         {/* Sliding Carousel Container */}
         <div
           className="flex h-full transition-transform duration-500 ease-in-out"
@@ -58,7 +58,7 @@ function MapPopup({ property, onClose }) {
                 src={getImageUrl(img)}
                 alt={getImageAlt(img)}
                 fill
-                className="relative object-contain  z-10"
+                className="object-contain z-10"
               />
             </div>
           ))}
@@ -75,7 +75,7 @@ function MapPopup({ property, onClose }) {
             </button>
             <button
               onClick={nextImage}
-              className="absolute  right-[2.5rem] md:right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full backdrop-blur-md transition-all z-10"
+              className="absolute  right-2 md:right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full backdrop-blur-md transition-all z-10"
             >
               <FaChevronRight size={14} />
             </button>
@@ -121,7 +121,7 @@ function MapPopup({ property, onClose }) {
 
         <Link
           href={`/rent/${encodeId(property._id)}`}
-          className="block w-[85%] text-center bg-[#09858D] hover:bg-[#077279] text-white py-1.5 rounded-lg text-xs font-medium transition-colors"
+          className="block w-full text-center bg-[#09858D] hover:bg-[#077279] text-white py-1.5 rounded-lg text-xs font-medium transition-colors"
         >
           View Details
         </Link>
