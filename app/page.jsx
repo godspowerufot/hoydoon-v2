@@ -407,7 +407,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="flex w-full flex-col mt-[1.5em] md:mt-[2.5em] gap-3   md:gap-5 md:items-start md:flex-row md:justify-start mb-2">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-3 mt-[0.5em] lg:my-[1em] gap-5 mb-2">
             {isAllLoading
               ? // Show skeleton loaders
               Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
