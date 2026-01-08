@@ -103,7 +103,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
                   <h2 className="font-bold text-[23px]">
                     {formatPrice(region, Number(price))}
                   </h2>
-                  {listingType === "rent" && (
+                  {(listingType === "rent" || listingType === "shortlet") && (
                     <p className="text-gray mt-[2px] font-[400] text-[14px]">
                       /mth
                     </p>
@@ -159,9 +159,12 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
                   {" "}
                   {formatPrice(region, Number(price))}
                 </h2>
-                <p className="text-gray mt-[2px] font-[400] text-[14px]">
-                  /mth
-                </p>
+
+                {(listingType === "rent" || listingType === "shortlet") && (
+                  <p className="text-gray mt-[2px] font-[400] text-[14px]">
+                    /mth
+                  </p>
+                )}
               </span>
               <div className="flex mt-2 justify-start gap-5 text-[13px] font-[400] text-gray">
                 <span className="flex items-center gap-2">
