@@ -40,17 +40,26 @@ function MapPopup({ property, onClose }) {
         {/* Sliding Carousel Container */}
         <div
           className="flex h-full transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentImageIndex * 100}%)`, width: `${images.length * 100}%` }}
+          style={{
+            transform: `translateX(-${currentImageIndex * 100}%)`,
+            width: "100%"
+          }}
         >
           {images.map((img, index) => (
-            <div key={index} className="relative w-full h-full shrink-0">
+            <div key={index} className="relative w-full h-full shrink-0 overflow-hidden">
+              {/* Blurred background image */}
               <Image
                 src={getImageUrl(img)}
                 alt={getImageAlt(img)}
                 fill
-                className="object-cover"
+                className="object-cover blur-md opacity-50 scale-110"
               />
-              <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+              <Image
+                src={getImageUrl(img)}
+                alt={getImageAlt(img)}
+                fill
+                className="relative object-contain  z-10"
+              />
             </div>
           ))}
         </div>
@@ -60,15 +69,15 @@ function MapPopup({ property, onClose }) {
           <>
             <button
               onClick={prevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-1 rounded-full backdrop-blur-sm transition-all z-10"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full backdrop-blur-md transition-all z-10"
             >
-              <FaChevronLeft size={10} />
+              <FaChevronLeft size={14} />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-1 rounded-full backdrop-blur-sm transition-all z-10"
+              className="absolute  right-[2.5rem] md:right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full backdrop-blur-md transition-all z-10"
             >
-              <FaChevronRight size={10} />
+              <FaChevronRight size={14} />
             </button>
           </>
         )}
@@ -85,7 +94,7 @@ function MapPopup({ property, onClose }) {
         </div>
       </div>
 
-      <div className="p-3 w-[87%]">
+      <div className="p-3 w-full">
         <div className="flex justify-between items-start mb-1.5">
           <div>
             <h3 className="font-bold text-base text-black leading-tight mb-0.5">
@@ -112,7 +121,7 @@ function MapPopup({ property, onClose }) {
 
         <Link
           href={`/rent/${encodeId(property._id)}`}
-          className="block w-full text-center bg-[#09858D] hover:bg-[#077279] text-white py-1.5 rounded-lg text-xs font-medium transition-colors"
+          className="block w-[85%] text-center bg-[#09858D] hover:bg-[#077279] text-white py-1.5 rounded-lg text-xs font-medium transition-colors"
         >
           View Details
         </Link>
