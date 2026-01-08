@@ -35,22 +35,31 @@ function MapPopup({ property, onClose }) {
   const getImageAlt = (img) => img?.altText || property.title || "Property";
 
   return (
-    <div className="w-[250px] m overflow-y-auto bg-white rounded-2xl shadow-xl font-bricolage animate-in fade-in zoom-in duration-300">
-      <div className="relative h-[100px] w-full group shrink-0">
+    <div className="w-[290px] overflow-y-auto overflow-x-hidden bg-white rounded-2xl shadow-xl font-bricolage animate-in fade-in zoom-in duration-300">
+      <div className="relative h-[180px] w-full group shrink-0 overflow-hidden">
         {/* Sliding Carousel Container */}
         <div
           className="flex h-full transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentImageIndex * 100}%)`, width: `${images.length * 100}%` }}
+          style={{
+            transform: `translateX(-${currentImageIndex * 100}%)`,
+            width: "100%"
+          }}
         >
           {images.map((img, index) => (
-            <div key={index} className="relative w-full h-full shrink-0">
+            <div key={index} className="relative w-full h-full shrink-0 overflow-hidden">
+              {/* Blurred background image */}
               <Image
                 src={getImageUrl(img)}
                 alt={getImageAlt(img)}
                 fill
-                className="object-cover"
+                className="object-cover blur-md opacity-50 scale-110"
               />
-              <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+              <Image
+                src={getImageUrl(img)}
+                alt={getImageAlt(img)}
+                fill
+                className="object-contain z-10"
+              />
             </div>
           ))}
         </div>
@@ -60,15 +69,15 @@ function MapPopup({ property, onClose }) {
           <>
             <button
               onClick={prevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-1 rounded-full backdrop-blur-sm transition-all z-10"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full backdrop-blur-md transition-all z-10"
             >
-              <FaChevronLeft size={10} />
+              <FaChevronLeft size={14} />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-1 rounded-full backdrop-blur-sm transition-all z-10"
+              className="absolute  right-2 md:right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full backdrop-blur-md transition-all z-10"
             >
-              <FaChevronRight size={10} />
+              <FaChevronRight size={14} />
             </button>
           </>
         )}
@@ -85,7 +94,7 @@ function MapPopup({ property, onClose }) {
         </div>
       </div>
 
-      <div className="p-3">
+      <div className="p-3 w-full">
         <div className="flex justify-between items-start mb-1.5">
           <div>
             <h3 className="font-bold text-base text-black leading-tight mb-0.5">
@@ -230,10 +239,17 @@ export default function MapComponent({ coordinates = [], listings = [] }) {
           background: transparent !important;
           box-shadow: none !important;
           padding: 0 !important;
+          max-height: 300px !important;
         }
         .gm-style-iw-d {
-          overflow: hidden !important;
-          max-height: none !important;
+          overflow: auto !important;
+          background: transparent !important;
+          max-height: 300px !important;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .gm-style-iw-d::-webkit-scrollbar {
+          display: none;
         }
         .gm-style .gm-style-iw-t::after {
           display: none !important;

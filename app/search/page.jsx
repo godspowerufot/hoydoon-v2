@@ -645,8 +645,8 @@ const Breadcrumb = ({ showMap, setShowMap }) => {
           <React.Fragment key={index}>
             <button
               className={`px-4 py-2 gap-3 flex items-center justify-center w-[6.5rem] text-base rounded-md transition-all duration-300 ${(showMap ? "Map" : "List") === option
-                  ? "bg-primary gap-[10px] flex text-white"
-                  : "text-[#8F8F8F]"
+                ? "bg-primary gap-[10px] flex text-white"
+                : "text-[#8F8F8F]"
                 }`}
               onClick={() => setShowMap(option === "Map")}
             >
@@ -866,8 +866,8 @@ const Page = () => {
                             setShowSortDropdown(false);
                           }}
                           className={`w-full text-left px-4 py-2 hover:bg-gray-100 ${sortBy === option.value
-                              ? "bg-[#d8d8d8] font-medium"
-                              : ""
+                            ? "bg-[#d8d8d8] font-medium"
+                            : ""
                             }`}
                         >
                           {option.label}
@@ -906,7 +906,7 @@ const Page = () => {
                     bathrooms={listing.item?.bathrooms}
                     bedrooms={listing.item?.bedrooms}
                     squareFeet={listing.item?.squareFeet}
-                    listingType={listing.item?.listingType}
+                    listingType={listing?.listingType}
                     landSize={listing.item?.landSize}
                   />
                 ))}

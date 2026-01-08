@@ -500,12 +500,12 @@ const page = ({ params }) => {
 
         {/* Distance Information */}
       </div>
-      <div className="w-full md:mt-[3rem] px-2 md:px-7 md:px-0 py-6">
+      <div className="w-full md:mt-[3rem] px-2 md:px-3 md:px-0 py-6">
         <h1 className="text-xl md:text-[2rem]   mb-7  font-semibold ">
           {" "}
           {agentInfo?.fullname} Active Listings
         </h1>
-        <div className="grid  px-1 md:px-0 grid-cols-1 md:grid-cols-3 gap-1 gap-y-[2rem] place-items-center">
+        <div className="grid  px-1 md:px-0 grid-cols-1 md:grid-cols-3 gap-3 gap-y-[2rem] place-items-center">
           {/* Display only 3 listings initially, or all listings if showAll is true */}
           {(showAll ? ActiveListings : ActiveListings.slice(0, 3)).map(
             (items, index) => (

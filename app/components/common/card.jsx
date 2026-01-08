@@ -96,7 +96,7 @@ const HoverCard = ({
               <div className="flex mt-1 justify-start gap-3 items-start font-[400] text-base text-gray">
                 <span className="flex text-[12px] items-center gap-2">
                   <Image src="/bed.png" alt="Icon" width={16} height={16} />
-                  <p>{bedrooms} beds</p>
+                  <p>{bedrooms} bends</p>
                 </span>
                 <span className="flex items-center gap-2">
                   <Image src="/bath.png" alt="Icon" width={16} height={16} />
