@@ -106,15 +106,23 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative  h-full   p-[2rem] md:p-2 lg:h-[95vh] w-screen ">
+      <header className="relative overflow-hidden h-full p-[2rem] md:p-2 lg:h-[93vh] w-screen">
         {/* Background Image */}
         <div
-          className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
-          style={{ backgroundImage: "url('/rent.png')" }}
+          className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1] object-cover"
+          style={{
+            backgroundImage: "url('/rent.png')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
         ></div>
         <div
-          className="absolute lg:hidden top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
-          style={{ backgroundImage: "url('/rentmobile.png')" }}
+          className="absolute lg:hidden top-0 left-0 w-full h-full bg-cover bg-center z-[-1] object-cover"
+          style={{
+            backgroundImage: "url('/rentmobile.png')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
         ></div>
         <div className="flex flex-col items-center relative z-[1]  mt-[2.6rem] lg:mt-[6rem]    gap-1 lg:gap-4 h-full ">
           <h1 className="text-white text-center     relative  font-bricolage font-semibold leading-tight  text-[36px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
@@ -138,7 +146,7 @@ export default function Home() {
 
       {/* explore */}
       <section className=" p-2 lg:max-w-[1200px] lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col lg:my-[4em] md:items-start gap-6 justify-center max-w-[1200px] w-full">
+        <div className="flex flex-col lg:my-[3em] md:items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row  justify-between  items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               All Houses for Sale

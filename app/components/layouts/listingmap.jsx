@@ -138,24 +138,46 @@ function InnerMap({ coordinates }) {
     ? coordinates
     : [coordinates];
 
-  const mainLocation =
+  useEffect(() => {
+    if (!map) return;
+
+    // Recalculate mainLocation inside useEffect to respond to coordinate changes
+    const mainLocation =
+      safeCoordinates.length > 0 &&
+        !isNaN(safeCoordinates[0]?.latitude) &&
+        !isNaN(safeCoordinates[0]?.longitude)
+        ? { lat: safeCoordinates[0].latitude, lng: safeCoordinates[0].longitude }
+        : { lat: 6.5244, lng: 3.3792 };
+
+    // If there are multiple coordinates, fit bounds to show all markers
+    if (safeCoordinates.length > 1) {
+      const bounds = new google.maps.LatLngBounds();
+      safeCoordinates.forEach((coord) => {
+        if (coord?.latitude && coord?.longitude) {
+          bounds.extend({ lat: coord.latitude, lng: coord.longitude });
+        }
+      });
+      map.fitBounds(bounds);
+    } else {
+      // Single coordinate or default: pan to it and set zoom
+      map.setZoom(14);
+      map.panTo(mainLocation);
+    }
+  }, [map, safeCoordinates]);
+
+  // Calculate initial center for Map component
+  const initialCenter =
     safeCoordinates.length > 0 &&
       !isNaN(safeCoordinates[0]?.latitude) &&
       !isNaN(safeCoordinates[0]?.longitude)
       ? { lat: safeCoordinates[0].latitude, lng: safeCoordinates[0].longitude }
       : { lat: 6.5244, lng: 3.3792 };
 
-  useEffect(() => {
-    if (!map) return;
-    map.setZoom(14);
-    map.panTo(mainLocation);
-  }, [map, coordinates]);
-
   return (
     <>
       <Map
         defaultZoom={13}
-        defaultCenter={mainLocation}
+        defaultCenter={initialCenter}
         mapId={MAP_ID}
         style={{ width: "100%", height: "400px", borderRadius: "1rem" }}
         disableDefaultUI={true}

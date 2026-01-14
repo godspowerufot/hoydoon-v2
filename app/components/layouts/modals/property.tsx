@@ -220,13 +220,13 @@ const PropertyGalleryModal = ({
   return (
     <>
       <div
-        className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+        className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 animate-fadeIn"
         onClick={handleOverlayClick} // ✅ Detect clicks on overlay
       >
         {" "}
         <div
           ref={modalRef}
-          className="bg-white w-11/12 md:w-3/4 lg:w-5/6 pt-5 pb-[3.5rem] px-[2rem] shadow-lg relative max-h-[90vh] overflow-y-auto"
+          className="bg-white w-11/12 md:w-3/4 lg:w-5/6 pt-5 pb-[3.5rem] px-[2rem] shadow-lg relative max-h-[90vh] overflow-y-auto animate-zoomOut"
         >
           {/* Close Button */}
 
@@ -236,8 +236,8 @@ const PropertyGalleryModal = ({
               <button
                 onClick={() => setActiveTab("photos")}
                 className={`pb-2 ${activeTab === "photos"
-                    ? "border-b-2 border-primary text-black"
-                    : "text-gray"
+                  ? "border-b-2 border-primary text-black"
+                  : "text-gray"
                   }`}
               >
                 Photos
@@ -245,8 +245,8 @@ const PropertyGalleryModal = ({
               <button
                 onClick={() => setActiveTab("map")}
                 className={`pb-2 ${activeTab === "map"
-                    ? "border-b-2 border-primary text-black"
-                    : "text-gray"
+                  ? "border-b-2 border-primary text-black"
+                  : "text-gray"
                   }`}
               >
                 Map
@@ -295,12 +295,6 @@ const PropertyGalleryModal = ({
                   className="w-4 h-4"
                 />
               </div>
-              <button
-                onClick={onClose}
-                className="absolute top-3 right-3 bg-gray-200 hover:bg-gray-300 rounded-full p-2"
-              >
-                ✕
-              </button>{" "}
             </div>
           </div>
 
