@@ -36,7 +36,7 @@ export default function Page() {
 
   return (
     <>
-      <header className="relative h-[28rem] md:h-[85vh] w-screen">
+      <header className="relative h-[28rem] md:h-[95vh] w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-cover bg-center z-[-1]"
@@ -52,7 +52,7 @@ export default function Page() {
         {/* Content Section */}
         <div className="flex z-[1] p-4 md:p-0 relative  gap-1 md:gap-6 justify-center items-center flex-col">
           {/* Main Heading */}
-          <h1 className="w-[10em]  capitalize  mt-[2em] 2xl:mt-[9rem] md:mt-[1.4em] text-white text-[2.5em] md:w-full leading-[1em] text-center md:text-[5em] font-bricolage font-[600]">
+          <h1 className="w-[10em]  capitalize  mt-[2em] 2xl:mt-[9rem]  text-white text-[2.5em] md:w-full leading-[1em] text-center md:text-[5em] font-bricolage font-[600]">
             A top agent matters!{" "}
           </h1>
 
@@ -74,7 +74,7 @@ export default function Page() {
       {/* this hold the images */}
 
       {/* explore */}
-      <section className="   bg-white  w-screen md:bg-[#eeeeeec7]  md:py-[5em] font-bricolage md:flex justify-center flex-col md:gap-7 flex-1 items-center">
+      <section className="   bg-white  w-screen md:bg-[#eeeeeec7]  md:py-[4em] font-bricolage md:flex justify-center flex-col md:gap-7 flex-1 items-center">
         <div className="w-full">
           <div className="flex flex-col  md:flex-col justify-between  md:gap-10  w-full md:max-w-[1200px]  mx-auto">
             <div className="flex flex-col p-3 md:p-0 md:flex-row md:gap-8 justify-between  items-start md:items-center w-full  flex-wrap mx-auto">

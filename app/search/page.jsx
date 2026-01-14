@@ -771,6 +771,14 @@ const Page = () => {
         setDisplayListings(sortedListings);
         setTotalPages(allListings.totalPages || 1);
         setCurrentPage(Number(searchParams.get("page")) || 1);
+
+        // Debug logging
+        console.log("Pagination Debug:", {
+          totalPages: allListings.totalPages,
+          currentPage: Number(searchParams.get("page")) || 1,
+          totalListings: allListings.totalListings,
+          displayListingsCount: sortedListings.length
+        });
       } catch (error) {
         console.error("Critical error in data processing:", error);
         setDisplayListings([]);
@@ -878,11 +886,11 @@ const Page = () => {
                 )}
               </div>
             </div>
-            <div className="w-screen  md:my-[3rem] md:-ml-[5.5rem]   h-[2px] bg-[#D9D9D9] " />
+            <div className="w-screen  md:mt-[3rem] md:-ml-[5.5rem]   h-[2px] bg-[#D9D9D9] " />
 
             {/* Map or List View */}
             {showMap ? (
-              <div className="mt-6 h-full">
+              <div className="w-screen md:-ml-[5.5rem] h-full">
                 <MapComponent
                   coordinates={coordinates}
                   listings={displayListings}
@@ -921,15 +929,15 @@ const Page = () => {
               </div>
             )}
 
-            {totalPages > 1 && (
-              <div className="mt-8">
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={handlePageChange}
-                />
-              </div>
-            )}
+
+            <div className="mt-8">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </div>
+
           </>
         )}
       </div>
