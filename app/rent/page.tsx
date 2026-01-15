@@ -56,7 +56,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative h-full   p-5 md:p-0lg:h-[95vh] w-screen ">
+      <header className="relative h-full   p-5 md:p-0 lg:h-[95vh] w-screen ">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
@@ -430,63 +430,65 @@ export default function Home() {
 
       {/* // Then conditionally render the section */}
 
-      {/* testimonials */}
-      <section className=" p-[0.2rem]  lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col md:items-start gap-6 justify-center lg:max-w-[1200px] w-full">
-          <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
-              Single Family Homes for Rent
-            </h1>
-            <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
-              Explore cozy and spacious single family homes for rent,Designed to
-              offer privacy, comfort, and room for your lifestyle.
-            </p>
-          </div>
-          <div className="flex flex-col ">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {isAllLoading
-                ? // Show skeleton loaders
-                Array.from({ length: 3 }, (_, index) => (
-                  <SkeletonCard key={`skeleton-${index}`} />
-                ))
-                : [...(familyFriendlyListings?.listings || [])]
-                  .slice(1, 4)
-                  ?.map((items: Property, index: number) => (
-                    <HoverCard
-                      key={index}
-                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                      altText={
-                        items?.imageUrls?.[0]?.altText ||
-                        "Property image showcasing a beautiful home"
-                      }
-                      price={items?.item?.price || "Price not available"}
-                      area={items?.item?.squareFeet}
-                      bathrooms={items?.item?.bathrooms}
-                      bedrooms={items?.item?.bedrooms}
-                      region={items?.region}
-                      description={
-                        items?.item?.description ||
-                        "No description available for this property."
-                      }
-                      _id={items?._id}
-                      title={items?.item?.title || "Untitled Property"}
-                      rent={items?.item?.rent || "Rent details not provided"}
-                      squareFeet={items?.item?.squareFeet}
-                      landSize={items?.item?.landSize}
-                      listingType={items?.listingType || "N/A"}
-                    />
-                  ))}
+      {/* Single Family Homes - Only show if there are listings */}
+      {!isAllLoading && familyFriendlyListings?.listings?.length > 0 && (
+        <section className=" p-[0.2rem]  lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
+          <div className="flex flex-col md:items-start gap-6 justify-center lg:max-w-[1200px] w-full">
+            <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
+              <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+                Single Family Homes for Rent
+              </h1>
+              <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
+                Explore cozy and spacious single family homes for rent,Designed to
+                offer privacy, comfort, and room for your lifestyle.
+              </p>
             </div>
+            <div className="flex flex-col ">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
+                {isAllLoading
+                  ? // Show skeleton loaders
+                  Array.from({ length: 3 }, (_, index) => (
+                    <SkeletonCard key={`skeleton-${index}`} />
+                  ))
+                  : [...(familyFriendlyListings?.listings || [])]
+                    .slice(1, 4)
+                    ?.map((items: Property, index: number) => (
+                      <HoverCard
+                        key={index}
+                        imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                        altText={
+                          items?.imageUrls?.[0]?.altText ||
+                          "Property image showcasing a beautiful home"
+                        }
+                        price={items?.item?.price || "Price not available"}
+                        area={items?.item?.squareFeet}
+                        bathrooms={items?.item?.bathrooms}
+                        bedrooms={items?.item?.bedrooms}
+                        region={items?.region}
+                        description={
+                          items?.item?.description ||
+                          "No description available for this property."
+                        }
+                        _id={items?._id}
+                        title={items?.item?.title || "Untitled Property"}
+                        rent={items?.item?.rent || "Rent details not provided"}
+                        squareFeet={items?.item?.squareFeet}
+                        landSize={items?.item?.landSize}
+                        listingType={items?.listingType || "N/A"}
+                      />
+                    ))}
+              </div>
 
-            <Link
-              href={"/search"}
-              className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
-            >
-              see all family House for rent
-            </Link>
+              <Link
+                href={"/search"}
+                className="text-[#09858D]  text-base  my-5 lg:text-xl font-[500] "
+              >
+                see all family House for rent
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* New-articles */}
       <div className=" w-full lg:max-w-[1200px] lg:mt-[2em]">

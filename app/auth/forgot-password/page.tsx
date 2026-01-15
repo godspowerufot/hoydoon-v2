@@ -17,23 +17,35 @@ import PasswordConfirm from "./new-password";
 const OtpVerify = () => {
   const [email, setEmail] = useState("");
   const [step, setStep] = useState(1); // Start from step 1
+  const [isLoading, setIsLoading] = useState(false);
   const [ResendCode] = useResendOtpMutation();
   const dispatch = useDispatch();
   dispatch(setUnverifiedEmail(email.toLowerCase()));
   const resendOtp = async () => {
     if (!email) return;
+    setIsLoading(true);
     try {
       await ResendCode(email.toLowerCase()).unwrap();
       toast.success("OTP resent successfully!");
       setStep(2);
     } catch (err: unknown) {
-      if (typeof err === "object" && err !== null && "error" in err) {
-        toast.error(
-          (err as { error?: string }).error || "Something went wrong"
-        );
-      } else {
-        toast.error("An unexpected error occurred");
+      // Handle different error response formats
+      let errorMessage = "Something went wrong";
+
+      if (typeof err === "object" && err !== null) {
+        // Check for error in data property (RTK Query format)
+        if ("data" in err && typeof err.data === "object" && err.data !== null && "error" in err.data) {
+          errorMessage = (err.data as { error?: string }).error || errorMessage;
+        }
+        // Check for error property directly
+        else if ("error" in err) {
+          errorMessage = (err as { error?: string }).error || errorMessage;
+        }
       }
+
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
   const handleSubmit = () => {
@@ -99,9 +111,32 @@ const OtpVerify = () => {
                   <button
                     type="submit"
                     onClick={handleSubmit}
-                    className="w-full lg:mt-[32px] bg-primary mt-5 rounded-full text-white font-semibold py-3 px-4 text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-5"
+                    disabled={isLoading}
+                    className="w-full lg:mt-[32px] bg-primary mt-5 rounded-full text-white font-semibold py-3 px-4 text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-5 flex items-center justify-center gap-2"
                   >
-                    Reset
+                    {isLoading && (
+                      <svg
+                        className="animate-spin h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                    )}
+                    {isLoading ? "Sending..." : "Reset"}
                   </button>
                 </div>
               </div>
