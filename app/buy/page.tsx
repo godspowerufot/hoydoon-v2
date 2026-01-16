@@ -10,12 +10,11 @@ import { useEffect, useState } from "react";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { log } from "@/utils/log";
 import MapComponent from "../components/layouts/listingmap";
-import HoverCard from "../components/common/card";
 import { Property } from "@/types";
 import { SkeletonCard } from "../components/Loader";
 import PropertySearchBar from "../components/common/headerSearch";
 import InlineSpinner from "../components/common/InlineSpinner";
-
+import PropertyListCard from "../components/common/PropertyListing";
 // Add mobile detection
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -165,7 +164,7 @@ export default function Home() {
               : displayListings
                 .slice(0, 3)
                 .map((items: Property, index: number) => (
-                  <HoverCard
+                  <PropertyListCard
                     _id={items?._id}
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -189,7 +188,7 @@ export default function Home() {
           </div>
           <Link
             href="/search"
-            className="text-[#09858D]   -mt-[0.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
+            className="text-[#09858D]   -mt-[0.5rem] text-sm lg:-mt-3 lg:text-2xl font-[500] "
           >
             see housing for sale
           </Link>
@@ -225,7 +224,7 @@ export default function Home() {
               (affordableListings?.listings || [])
                 .slice(0, 3)
                 .map((items: Property, index: number) => (
-                  <HoverCard
+                  <PropertyListCard
                     _id={items?._id}
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -281,7 +280,7 @@ export default function Home() {
               : (openHouseListings?.listings || [])
                 .slice(0, 3)
                 .map((items: Property, index: number) => (
-                  <HoverCard
+                  <PropertyListCard
                     _id={items?._id}
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
@@ -335,7 +334,7 @@ export default function Home() {
               : (luxuryListings?.listings || [])
                 .slice(0, 3)
                 .map((items: Property, index: number) => (
-                  <HoverCard
+                  <PropertyListCard
                     _id={items?._id}
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
