@@ -55,14 +55,16 @@ export default function ListingNavbar() {
           {/* Left: Logo & Search Bar */}
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center">
-              <Image
-                src={"/newlogo2.svg"}
+              {/* <Image
+                src={"/newlogo2.png"}
                 alt="logo"
                 width={100}
                 height={200}
                 priority
                 className="object-contain w-[141px]"
-              />{" "}
+              /> */}
+              <img src="/newlogo2.png" alt="logo" className="w-[141px] object-contain" />
+              {" "}
             </Link>{" "}
             <form
               className="relative w-[20rem] h-[3rem] hidden lg:flex items-center bg-gray-100 border border-[#8F8F8F] rounded-[14px] px-2 py-2"
