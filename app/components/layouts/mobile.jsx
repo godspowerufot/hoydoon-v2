@@ -141,8 +141,8 @@ const MobileNavbar = () => {
                     alt="logo"
                     width={500}
                     height={500}
-                    src="/logo-23.svg"
-                    className="h-[25px] w-[30px]"
+                    src="/logo-23.png"
+                    className="h-8 w-8 bg-transparent"
                   />
                   {pathname === "/helpcenter" ? (
                     <div className="flex items-center space-x-2">
@@ -168,13 +168,13 @@ const MobileNavbar = () => {
             pathname?.startsWith("/helpcenter/submit-request") ? (
             <div className="flex items-center space-x-2">
               {/* Globe Icon */}
-              <Image
+              {/* <Image
                 width={500}
                 height={500}
-                src="/logo-23.svg"
+                src="/logo-23.png"
                 alt="globe"
-                className="w-8 h-8"
-              />
+                className="w-8 h-8 bg-transparent"
+              /> */}
 
               {/* Input Field with Search Button */}
               <div className="flex items-center  border-[0.6px] border-[#8F8F8F] rounded-full   px-2 py-1">
@@ -256,13 +256,14 @@ const MobileNavbar = () => {
               href={"/"}
               className="flex cursor-pointer items-center space-x-2"
             >
-              <Image
+              {/* <Image
                 alt="logo"
                 width={30}
                 height={30}
-                className="w-[8rem] h-[3rem]"
-                src="/mobile-logov1.svg"
-              />
+                className="w-36 h-8 object-cover bg-transparent"
+                src="/mobile-logov1.png"
+              /> */}
+              <img alt="logo" src="/mobile-logov1.png" className="w-36 h-8 object-cover bg-transparent" />
             </Link>{" "}
             <button
               onClick={() => setSidebarOpen(false)}
