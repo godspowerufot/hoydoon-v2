@@ -175,6 +175,7 @@ const MobileNavbar = () => {
                 alt="globe"
                 className="w-8 h-8 bg-transparent"
               /> */}
+              <img alt="logo" src="/logo-23.png" className="w-8 h-8 bg-transparent" />
 
               {/* Input Field with Search Button */}
               <div className="flex items-center  border-[0.6px] border-[#8F8F8F] rounded-full   px-2 py-1">
