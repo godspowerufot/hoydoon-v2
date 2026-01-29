@@ -25,7 +25,7 @@ export default function Home() {
     };
     return (
         <>
-            <header className="relative h-fit md:h-[95vh]  w-screen">
+            <header className="relative h-fit md:h-[98vh] lg:h-[98vh] w-screen overflow-visible">
                 {/* Background Image Div */}
                 <div
                     className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
@@ -39,7 +39,7 @@ export default function Home() {
                 </div>
 
                 {/* Content Section */}
-                <div className="flex z-[1] p-4 lg:p-0  relative gap-[10px] lg:gap-6 justify-center items-center flex-col">
+                <div className="flex z-[1] p-4 lg:p-0 md:h-full  relative gap-[10px] lg:gap-6 justify-center items-center flex-col">
                     {/* Main Heading */}
                     <h1 className="lg:w-[12em] mt-[1.5em] 2xl:mt-[9rem] lg:mt-[1.4em] text-white text-[2em] w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
                         Get Personalized Proposals, at no cost

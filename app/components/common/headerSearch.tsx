@@ -197,7 +197,7 @@ export default function PropertySearchBar() {
         backdropFilter: "blur(4px)",
         borderImageSlice: 1,
       }}
-      className="w-full border-[#ffffff33] border-[2px] max-w-3xl rounded-xl  z-[1111111] mx-auto mt-3 p-4"
+      className="w-full border-[#ffffff33] border-[2px] max-w-3xl rounded-xl z-10 mx-auto mt-3 p-4"
     >
       {/* Filter Grid */}
       <div className="grid grid-cols-2 gap-2 sm:gap-4">
@@ -225,16 +225,14 @@ export default function PropertySearchBar() {
             className="w-full h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 bg-white rounded-lg sm:rounded-xl text-left flex items-center justify-between text-sm sm:text-base"
           >
             <span
-              className={`truncate ${
-                filters.price ? "text-gray" : "text-gray-400"
-              }`}
+              className={`truncate ${filters.price ? "text-gray" : "text-gray-400"
+                }`}
             >
               {getDisplayLabel("price")}
             </span>
             <svg
-              className={`w-3 h-3 sm:w-4 sm:h-4 text-gray-400 transition-transform flex-shrink-0 ml-1 ${
-                openDropdown === "price" ? "rotate-180" : ""
-              }`}
+              className={`w-3 h-3 sm:w-4 sm:h-4 text-gray-400 transition-transform flex-shrink-0 ml-1 ${openDropdown === "price" ? "rotate-180" : ""
+                }`}
               fill="none"
               stroke="#8F8F8F"
               viewBox="0 0 24 24"
@@ -258,11 +256,10 @@ export default function PropertySearchBar() {
                 >
                   <span className="text-gray text-sm">{option.label}</span>
                   <div
-                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                      filters.price === option.value
+                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${filters.price === option.value
                         ? "border-primary"
                         : "border-primary"
-                    }`}
+                      }`}
                   >
                     {filters.price === option.value && (
                       <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
@@ -284,16 +281,14 @@ export default function PropertySearchBar() {
             className="w-full h-[3.2em]   px-3 sm:px-4 py-2 sm:py-3 bg-white rounded-lg sm:rounded-xl text-left flex items-center justify-between text-sm sm:text-base"
           >
             <span
-              className={`truncate ${
-                filters.type ? "text-black" : "text-black"
-              }`}
+              className={`truncate ${filters.type ? "text-black" : "text-black"
+                }`}
             >
               {getDisplayLabel("type")}
             </span>
             <svg
-              className={`w-3 h-3 sm:w-4 sm:h-4 text-gray-400 transition-transform flex-shrink-0 ml-1 ${
-                openDropdown === "type" ? "rotate-180" : ""
-              }`}
+              className={`w-3 h-3 sm:w-4 sm:h-4 text-gray-400 transition-transform flex-shrink-0 ml-1 ${openDropdown === "type" ? "rotate-180" : ""
+                }`}
               fill="none"
               stroke="#8F8F8F"
               viewBox="0 0 24 24"
@@ -313,9 +308,8 @@ export default function PropertySearchBar() {
                 <div className="flex items-center justify-between text-sm sm:text-base">
                   <span className="text-gray">Select</span>
                   <div
-                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                      !filters.type ? "border-primary" : "border-primary"
-                    }`}
+                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${!filters.type ? "border-primary" : "border-primary"
+                      }`}
                   >
                     {!filters.type && (
                       <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
@@ -331,11 +325,10 @@ export default function PropertySearchBar() {
                 >
                   <span className="text-gray">{option.label}</span>
                   <div
-                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                      filters.type === option.value
+                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${filters.type === option.value
                         ? "border-primary"
                         : "border-primary"
-                    }`}
+                      }`}
                   >
                     {filters.type === option.value && (
                       <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
@@ -357,16 +350,14 @@ export default function PropertySearchBar() {
             className="w-full h-[3.2em] px-3 sm:px-4 py-2 sm:py-3 bg-white rounded-lg sm:rounded-xl text-left flex items-center justify-between text-sm sm:text-base"
           >
             <span
-              className={`truncate ${
-                filters.bedBaths ? "text-black" : "text-black"
-              }`}
+              className={`truncate ${filters.bedBaths ? "text-black" : "text-black"
+                }`}
             >
               {getDisplayLabel("bedBaths")}
             </span>
             <svg
-              className={`w-3 h-3 sm:w-4 sm:h-4 text-gray-400 transition-transform flex-shrink-0 ml-1 ${
-                openDropdown === "bedBaths" ? "rotate-180" : ""
-              }`}
+              className={`w-3 h-3 sm:w-4 sm:h-4 text-gray-400 transition-transform flex-shrink-0 ml-1 ${openDropdown === "bedBaths" ? "rotate-180" : ""
+                }`}
               fill="none"
               stroke="#8F8F8F"
               viewBox="0 0 24 24"
@@ -386,9 +377,8 @@ export default function PropertySearchBar() {
                 <div className="flex items-center justify-between text-sm sm:text-base">
                   <span className="text-gray">Select</span>
                   <div
-                    className={`w-4 h-4 sm:w-5 sm:h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                      !filters.bedBaths ? "border-primary" : "border-primary"
-                    }`}
+                    className={`w-4 h-4 sm:w-5 sm:h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${!filters.bedBaths ? "border-primary" : "border-primary"
+                      }`}
                   >
                     {!filters.bedBaths && (
                       <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
@@ -404,11 +394,10 @@ export default function PropertySearchBar() {
                 >
                   <span className="text-gray">{option.label}</span>
                   <div
-                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                      filters.bedBaths === option.value
+                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${filters.bedBaths === option.value
                         ? "border-primary"
                         : "border-primary"
-                    }`}
+                      }`}
                   >
                     {filters.bedBaths === option.value && (
                       <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary" />
