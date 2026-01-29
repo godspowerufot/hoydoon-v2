@@ -103,9 +103,14 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
                   <h2 className="font-bold text-[23px]">
                     {formatPrice(region, Number(price))}
                   </h2>
-                  {(listingType === "rent" || listingType === "shortlet") && (
+                  {listingType === "rent" && (
                     <p className="text-gray mt-[2px] font-[400] text-[14px]">
                       /mth
+                    </p>
+                  )}
+                  {listingType === "shortlet" && (
+                    <p className="text-gray mt-[2px] font-[400] text-[14px]">
+                      /day
                     </p>
                   )}
                 </span>
@@ -160,9 +165,14 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
                   {formatPrice(region, Number(price))}
                 </h2>
 
-                {(listingType === "rent" || listingType === "shortlet") && (
+                {listingType === "rent" && (
                   <p className="text-gray mt-[2px] font-[400] text-[14px]">
                     /mth
+                  </p>
+                )}
+                {listingType === "shortlet" && (
+                  <p className="text-gray mt-[2px] font-[400] text-[14px]">
+                    /day
                   </p>
                 )}
               </span>
