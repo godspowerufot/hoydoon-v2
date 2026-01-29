@@ -727,50 +727,54 @@ const RentDetailsClient = () => {
           fullname={fullname}
           listedBy={listedBy?._id}
         />
-        <div className="hidden md:mt-[1.5rem] md:-mb-[2rem]  md:block w-full">
-          <section className="mt-[3rem]  hidden   font-bricolage md:flex  flex-col flex-1 ">
-            <div className="flex flex-col items-start gap-6 justify-center md:max-w-[1200px]w-full">
-              <div className="flex flex-col md:flex-row justify-between items-start w-full  mx-auto">
-                <h1 className="text-black text-[24px] mt-[32px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
-                  Single Family Homes for Rent
-                </h1>
-                <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
-                  Browse curated listings that match your style, budget and
-                  location preferences.
-                </p>
-              </div>
-              <div className="flex flex-col ">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-[1em] min-w-fit items-center justify-center mb-2">
-                  {displayListings
-                    ?.filter((listing) => listing?._id !== listingId)
-                    .map((listing, index) => (
-                      <HoverCard
-                        key={index}
-                        {...listing}
-                        _id={listing._id}
-                        imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
-                        altText={
-                          listing?.imageUrls?.[0]?.altText ||
-                          "Property image showcasing a beautiful home"
-                        }
-                        region={listing?.region || "Region not specified"}
-                        price={listing?.item?.price || "Price not available"}
-                        area={listing?.item?.squareFeet}
-                        description={
-                          listing?.item?.description ||
-                          "No description available for this property."
-                        }
-                        title={listing?.item?.title || "Untitled Property"}
-                        rent={
-                          listing?.item?.rent || "Rent details not provided"
-                        }
-                      />
-                    ))}
+        {displayListings && (
+          <div className="hidden md:mt-[1.5rem] md:-mb-[2rem]  md:block w-full">
+            <section className="mt-[3rem]  hidden   font-bricolage md:flex  flex-col flex-1 ">
+              <div className="flex flex-col items-start gap-6 justify-center md:max-w-[1200px]w-full">
+                <div className="flex flex-col md:flex-row justify-between items-start w-full  mx-auto">
+                  <h1 className="text-black text-[24px] mt-[32px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
+                    Single Family Homes for Rent
+                  </h1>
+                  <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-left">
+                    Browse curated listings that match your style, budget and
+                    location preferences.
+                  </p>
+                </div>
+                <div className="flex flex-col ">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-[1em] min-w-fit items-center justify-center mb-2">
+                    {displayListings
+                      ?.filter((listing) => listing?._id !== listingId)
+                      .map((listing, index) => (
+                        <HoverCard
+                          key={index}
+                          {...listing}
+                          _id={listing._id}
+                          imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
+                          altText={
+                            listing?.imageUrls?.[0]?.altText ||
+                            "Property image showcasing a beautiful home"
+                          }
+                          region={listing?.region || "Region not specified"}
+                          price={listing?.item?.price || "Price not available"}
+                          area={listing?.item?.squareFeet}
+                          description={
+                            listing?.item?.description ||
+                            "No description available for this property."
+                          }
+                          title={listing?.item?.title || "Untitled Property"}
+                          rent={
+                            listing?.item?.rent || "Rent details not provided"
+                          }
+                        />
+                      ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </div>
+            </section>
+          </div>)}
+
+
+
       </div>
     </div>
   );
