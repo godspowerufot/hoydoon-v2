@@ -258,7 +258,7 @@ export default function Home() {
     data: allListings,
     isLoading: isAllLoading,
     refetch: refetchAll,
-  } = useGetAllListingsQuery({ category: "Featured" });
+  } = useGetAllListingsQuery({ listingType: "sale" });
 
   console.log(allListings, "all listings data");
   const {
@@ -400,7 +400,7 @@ export default function Home() {
         <div className="flex flex-col   md:items-start gap-0 md:gap-0 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col  md:flex-row justify-between items-center w-full  mx-auto">
             <h1 className="text-black text-[24px] mt-[23px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
-              Featured Properties for Rent
+              Featured Properties for Sale
             </h1>
             <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
               Discover a home where every detail enhances your lifestyle crafted
