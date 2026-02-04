@@ -86,7 +86,6 @@ export default function PropertySearchBar() {
   useEffect(() => {
     const defaultType = getPropertyTypeFromPath(pathname);
     setFilters((prev) => ({ ...prev, type: defaultType }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   // Reset searching state when path or params change
@@ -257,8 +256,8 @@ export default function PropertySearchBar() {
                   <span className="text-gray text-sm">{option.label}</span>
                   <div
                     className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${filters.price === option.value
-                        ? "border-primary"
-                        : "border-primary"
+                      ? "border-primary"
+                      : "border-primary"
                       }`}
                   >
                     {filters.price === option.value && (
@@ -326,8 +325,8 @@ export default function PropertySearchBar() {
                   <span className="text-gray">{option.label}</span>
                   <div
                     className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${filters.type === option.value
-                        ? "border-primary"
-                        : "border-primary"
+                      ? "border-primary"
+                      : "border-primary"
                       }`}
                   >
                     {filters.type === option.value && (
@@ -395,8 +394,8 @@ export default function PropertySearchBar() {
                   <span className="text-gray">{option.label}</span>
                   <div
                     className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${filters.bedBaths === option.value
-                        ? "border-primary"
-                        : "border-primary"
+                      ? "border-primary"
+                      : "border-primary"
                       }`}
                   >
                     {filters.bedBaths === option.value && (

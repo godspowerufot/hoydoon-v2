@@ -45,6 +45,7 @@ export const articles = [
       "Rental Scams Uncovered: How to Spot and Avoid Fraudulent Listings",
     articleType: "General",
     title: "Rental Scams Uncovered: How to Spot and Avoid Fraudulent Listings",
+    slug: "avoid-rental-scams",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -56,6 +57,7 @@ export const articles = [
     altText: "Will I Be Displayed as the Listing Agent for My Properties?",
     articleType: "Listing inquiries",
     title: "Will I Be Displayed as the Listing Agent for My Properties?",
+    slug: "listing-agent-display",
     readTime: "2 min read",
     date: "March 05, 2025",
     description:
@@ -67,6 +69,7 @@ export const articles = [
     altText: 'What Does "Sold" Mean in Real Estate?',
     articleType: "General",
     title: 'What Does "Sold" Mean in Real Estate?',
+    slug: "meaning-of-sold-real-estate",
     readTime: "1 min read",
     date: "March 28, 2025",
     description:
@@ -78,6 +81,7 @@ export const articles = [
     altText: "Viewing Photos of a Property Listing",
     articleType: "Listing Features",
     title: "Viewing Photos of a Property Listing",
+    slug: "viewing-property-photos",
     readTime: "2 min read",
     date: "January 05, 2025",
     description:
@@ -89,6 +93,7 @@ export const articles = [
     altText: "How Do I Set the Right Price for My Home?",
     articleType: "General",
     title: "How Do I Set the Right Price for My Home?",
+    slug: "setting-right-home-price",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -100,6 +105,7 @@ export const articles = [
     altText: "How Do I Search for Homes in a Specific Neighborhood?",
     articleType: "General",
     title: "How Do I Search for Homes in a Specific Neighborhood?",
+    slug: "searching-homes-specific-neighborhood",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -111,6 +117,7 @@ export const articles = [
     altText: "Do I Need a Real Estate Agent to Buy a Home?",
     articleType: "General",
     title: "Do I Need a Real Estate Agent to Buy a Home?",
+    slug: "do-i-need-real-estate-agent",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -122,6 +129,7 @@ export const articles = [
     altText: "What Do I Do If a Listing Has Incorrect Information?",
     articleType: "General",
     title: "What Do I Do If a Listing Has Incorrect Information?",
+    slug: "report-incorrect-listing",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -133,6 +141,7 @@ export const articles = [
     altText: "How Do I Get Alerts for New Listings?",
     articleType: "General",
     title: "How Do I Get Alerts for New Listings?",
+    slug: "get-new-listing-alerts",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -144,6 +153,7 @@ export const articles = [
     altText: "How Do I Report a Problem With a Listing?",
     articleType: "General",
     title: "How Do I Report a Problem With a Listing?",
+    slug: "report-listing-problem",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -156,6 +166,7 @@ export const articles = [
       "Essential Tips for Writing an Irresistible Property Description...",
     articleType: "General",
     title: "Essential Tips for Writing an Irresistible Property Description...",
+    slug: "writing-irresistible-property-description",
     readTime: "3 min read",
     date: "March 15, 2025",
     description:
@@ -168,6 +179,7 @@ export const articles = [
     altText: "How to Set the Right Price for Your Rental or Sale Property",
     articleType: "Listing Inquiries",
     title: "How to Set the Right Price for Your Rental or Sale Property",
+    slug: "pricing-rental-property",
     readTime: "2 min read",
     date: "March 08, 2025",
     description:
@@ -179,6 +191,7 @@ export const articles = [
     altText: "What Safety Precautions Should I Take When Visiting a Property?",
     articleType: "Listing features",
     title: "What Safety Precautions Should I Take When Visiting a Property?",
+    slug: "safety-precautions-viewing-property",
     readTime: "1 min read",
     date: "March 28, 2025",
     description:
@@ -190,6 +203,7 @@ export const articles = [
     altText: "What to Do If You Forget Your Login Details",
     articleType: "Listing features",
     title: "What to Do If You Forget Your Login Details",
+    slug: "recover-login-details",
     readTime: "2 min read",
     date: "January 08, 2025",
     description:
@@ -201,6 +215,7 @@ export const articles = [
     altText: "Exploring the Features of the Hoydoon App: A Beginner's Guide",
     articleType: "General",
     title: "Exploring the Features of the Hoydoon App: A Beginner's Guide",
+    slug: "hoydoon-app-features-guide",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -212,6 +227,7 @@ export const articles = [
     altText: "Understanding Hoydoon's Community Guidelines",
     articleType: "General",
     title: "Understanding Hoydoon's Community Guidelines",
+    slug: "hoydoon-community-guidelines",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -223,6 +239,7 @@ export const articles = [
     altText: "Six Small Changes That Increase Your Home's Value by Thousands",
     articleType: "General",
     title: "Six Small Changes That Increase Your Home's Value by Thousands",
+    slug: "increase-home-value-small-changes",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -234,6 +251,7 @@ export const articles = [
     altText: "Guide to Property Types: Apartments, Houses, Bungalows...",
     articleType: "General",
     title: "Guide to Property Types: Apartments, Houses, Bungalows...",
+    slug: "guide-property-types",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -245,6 +263,7 @@ export const articles = [
     altText: "How to Report Inappropriate Messages or User Behavior",
     articleType: "General",
     title: "How to Report Inappropriate Messages or User Behavior",
+    slug: "report-inappropriate-behavior",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -256,6 +275,7 @@ export const articles = [
     altText: "How to Update or Edit Your Listing on Hoydoon",
     articleType: "General",
     title: "How to Update or Edit Your Listing on Hoydoon",
+    slug: "update-edit-listing",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -267,6 +287,7 @@ export const articles = [
     altText: "Understanding the Difference Between Active, Inactive, and Sold",
     articleType: "General",
     title: "Understanding the Difference Between Active, Inactive, and Sold",
+    slug: "listing-status-explained",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
@@ -279,6 +300,7 @@ export const articles = [
     altText: "Common Home-Buying Mistakes to Avoid",
     articleType: "General",
     title: "Common Home-Buying Mistakes to Avoid",
+    slug: "avoid-home-buying-mistakes",
     readTime: "3 min read",
     date: "March 13, 2025",
     description:
