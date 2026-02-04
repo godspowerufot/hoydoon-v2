@@ -10,6 +10,7 @@ const articles = [
     altText: "How Do I Report a Problem With a Listing?",
     articleType: "General",
     title: "How Do I Report a Problem With a Listing?",
+    slug: "report-listing-problem",
     readTime: "3 min read",
     date: "March 2025",
     description:
@@ -21,6 +22,7 @@ const articles = [
     altText: "Do I Need a Real Estate Agent to Buy a Home?",
     articleType: "General",
     title: "Do I Need a Real Estate Agent to Buy a Home?",
+    slug: "do-i-need-real-estate-agent",
     readTime: "3 min read",
     date: "March 2025",
     description:
@@ -30,7 +32,7 @@ const articles = [
 
 const ArticleCard = ({ article }: any) => {
   return (
-    <Link href={`/article/${article.id}`}>
+    <Link href={`/article/${article.slug}`}>
       <div className="relative cursor-pointer flex flex-col md:h-[650px] w-[20em] md:w-[36em]  font-bricolage rounded-lg  shrink-0">
         {" "}
         <Image

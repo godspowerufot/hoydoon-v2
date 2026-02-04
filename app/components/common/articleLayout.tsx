@@ -13,17 +13,18 @@ interface PropertyCardProps {
   articleType: string;
   readTime: string;
   date: string;
+  slug: string; // Added slug prop
   description?: string; // Added description prop
 }
 
 const ArticleCard: React.FC<PropertyCardProps> = ({
-  id,
   imageSrc,
   altText,
   title,
   articleType,
   readTime,
   date,
+  slug, // Added slug prop
   description = "Explore this insightful article that dives deep into the latest trends and developments. Discover valuable insights and expert perspectives that will enhance your understanding of the topic.",
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -45,7 +46,7 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
 
   return (
     <>
-      <Link href={`/article/${id}`}>
+      <Link href={`/article/${slug}`}>
         <div
           className={`relative w-full h-fit  lg:w-[23rem] max-w-[500px] mx-auto lg:h-[570px] bg-white overflow-hidden flex-col transition-all duration-[1500ms] ${isHovered && !isMobile
             ? "border border-gray rounded-xl "

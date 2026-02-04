@@ -9,7 +9,7 @@ export default async function ArticlePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const article = articles.find((a) => a.id === id);
+  const article = articles.find((a) => a.slug === id);
 
   if (!article) return <div>Article not found</div>;
 
