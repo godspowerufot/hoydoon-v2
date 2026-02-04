@@ -1,6 +1,6 @@
 "use client";
 
-import { truncateDescription } from "@/utils";
+import { truncateDescription, slugify } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -45,7 +45,7 @@ const ArticleCard: React.FC<PropertyCardProps> = ({
 
   return (
     <>
-      <Link href={`/article/${id}`}>
+      <Link href={`/article/${slugify(title)}`}>
         <div
           className={`relative w-full h-fit  lg:w-[23rem] max-w-[500px] mx-auto lg:h-[570px] bg-white overflow-hidden flex-col transition-all duration-[1500ms] ${isHovered && !isMobile
             ? "border border-gray rounded-xl "
