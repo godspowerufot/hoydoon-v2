@@ -1,6 +1,7 @@
 import GridLayout from "../../components/articles/layouts/GridLayout";
 import HelpCenterLayout from "../../components/articles/layouts/HelpCenterLayout";
 
+import { slugify } from "@/utils";
 import articles from "../../data/articles.json"; // or fetch from API
 
 export default async function ArticlePage({
@@ -9,7 +10,7 @@ export default async function ArticlePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const article = articles.find((a) => a.id === id);
+  const article = articles.find((a) => slugify(a.title) === id);
 
   if (!article) return <div>Article not found</div>;
 
