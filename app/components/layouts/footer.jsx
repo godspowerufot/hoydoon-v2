@@ -161,7 +161,7 @@ const Appfooter = () => {
                         href="/helpcenter"
                         className="transition hover:opacity-75"
                       >
-                        Help Center
+                        Blogs
                       </Link>
                     </li>
                   </ul>

@@ -72,11 +72,10 @@ function SupportCategories({
       <button
         onClick={() => onCategorySelect(null)}
         disabled={isSearching}
-        className={`border text-xl font-[500] px-6 py-3 rounded-md transition-all duration ${
-          selectedCategory === null
-            ? "bg-primary text-white border-primary"
-            : "border-primary text-primary hover:bg-primary hover:text-white"
-        } ${isSearching ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={`border text-xl font-[500] px-6 py-3 rounded-md transition-all duration ${selectedCategory === null
+          ? "bg-primary text-white border-primary"
+          : "border-primary text-primary hover:bg-primary hover:text-white"
+          } ${isSearching ? "opacity-50 cursor-not-allowed" : ""}`}
       >
         All Articles
       </button>
@@ -86,11 +85,10 @@ function SupportCategories({
           key={category}
           onClick={() => onCategorySelect(category)}
           disabled={isSearching}
-          className={`border text-xl font-[500] px-6 py-3 rounded-md transition-all duration ${
-            selectedCategory === category
-              ? "bg-primary text-white border-primary"
-              : "border-primary text-primary hover:bg-primary hover:text-white"
-          } ${isSearching ? "opacity-50 cursor-not-allowed" : ""}`}
+          className={`border text-xl font-[500] px-6 py-3 rounded-md transition-all duration ${selectedCategory === category
+            ? "bg-primary text-white border-primary"
+            : "border-primary text-primary hover:bg-primary hover:text-white"
+            } ${isSearching ? "opacity-50 cursor-not-allowed" : ""}`}
         >
           {category}
         </button>
@@ -402,8 +400,8 @@ export default function Home() {
                 {searchStats.hasQuery
                   ? `We couldn't find any articles matching "${formData.location}". Try different keywords or browse categories below.`
                   : selectedCategory
-                  ? `No articles found in "${selectedCategory}" category.`
-                  : "No articles available at the moment."}
+                    ? `No articles found in "${selectedCategory}" category.`
+                    : "No articles available at the moment."}
               </p>
 
               {/* Suggestions */}
@@ -436,14 +434,9 @@ export default function Home() {
             {currentArticles.map((article) => (
               <ArticleCard
                 key={article.id}
-                imageSrc={article.imageSrc}
-                altText={article.altText}
-                title={article.title}
-                articleType={article.articleType}
-                description={article?.description}
-                readTime={article.readTime}
-                date={article.date}
-                id={article.id}
+                {...article}
+                // @ts-ignore
+                slug={article.slug}
               />
             ))}
           </div>
