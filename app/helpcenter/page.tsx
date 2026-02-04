@@ -435,7 +435,6 @@ export default function Home() {
               <ArticleCard
                 key={article.id}
                 {...article}
-                // @ts-ignore
                 slug={article.slug}
               />
             ))}

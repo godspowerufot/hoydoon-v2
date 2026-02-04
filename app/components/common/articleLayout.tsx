@@ -1,6 +1,6 @@
 "use client";
 
-import { truncateDescription, slugify } from "@/utils";
+import { truncateDescription } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -18,7 +18,6 @@ interface PropertyCardProps {
 }
 
 const ArticleCard: React.FC<PropertyCardProps> = ({
-  id,
   imageSrc,
   altText,
   title,
