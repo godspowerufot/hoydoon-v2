@@ -334,7 +334,7 @@ const Page = () => {
             <div className="w-full md:col-span-2 md:hidden justify-start">
               <Link href="/agent/all-agent">
                 <p className="text-[#09858D] mt-5 text-xs md:text-2xl font-medium">
-                  See all 2500 rent estate agents in Lagos
+                 ` See all ${displayListings.length} rent estate agents in Lagos`
                 </p>
               </Link>
             </div>
