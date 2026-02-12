@@ -95,9 +95,9 @@ export default function Home() {
       <section className="mt-4 p-[0.2rem]  lg:p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col  w-full md:items-start  lg:max-w-[1200px] ">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px]  mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h2 className="text-black text-[24px]  mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Newest Listings
-            </h1>
+            </h2>
             <p className="text-gray font-light text-sm lg:max-w-[31rem] lg:text-xl font-bricolage w-full lg:w-auto text-start ">
               Explore the latest listings tailored to your lifestyle. Discover
               homes that feel just right, wherever you are.
@@ -155,9 +155,9 @@ export default function Home() {
       <section className="mt-4 p-[0.2rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col md:items-start gap-6  lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:gap-[12rem] lg:flex-row justify-between items-start w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h2 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Somalia
-            </h1>
+            </h2>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-left">
               Find a place to rent that fits your lifestyle. From cozy homes to
               modern apartments, explore options designed to meet your needs and
@@ -217,9 +217,9 @@ export default function Home() {
       <section className="mt-4 p-[0.2rem] lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col md:items-start gap-6  lg:max-w-[1200px]w-full">
           <div className="flex flex-col lg:gap-[12rem] lg:flex-row justify-between items-start w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h2 className="text-black text-[24px] mt-[32px] lg:mt-0  text-left lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Explore Rentals in Nigeria
-            </h1>
+            </h2>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-left">
               Find a place to rent that fits your lifestyle. From cozy homes to
               modern apartments, explore options designed to meet your needs and
@@ -279,9 +279,9 @@ export default function Home() {
       <section className=" p-[0.2rem]  lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col md:items-start gap-6 justify-center lg:max-w-[1200px] w-full">
           <div className="flex flex-col lg:gap-[21rem] lg:flex-row justify-between items-start w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h2 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               pet-friendly Rentals
-            </h1>
+            </h2>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-left">
               Find homes that welcome your furry friends.Comfort, convenience,
               and pet-friendly living await.
@@ -339,9 +339,9 @@ export default function Home() {
         <section className="p-[0.2rem] lg:my-[5em] w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
           <div className="flex flex-col md:items-start gap-6 justify-center lg:max-w-[1200px] w-full">
             <div className="flex flex-col lg:gap-[20rem] lg:flex-row justify-between items-start w-full mx-auto">
-              <h1 className="text-black text-[24px] mt-[32px] lg:mt-0 lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+              <h2 className="text-black text-[24px] mt-[32px] lg:mt-0 lg:text-[2.5rem] font-[600] w-full lg:w-auto">
                 Shortlet Apartments
-              </h1>
+              </h2>
               <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-left">
                 Need a place for a few days, weeks, or months?Discover stylish,
                 flexible stays ready when you are.
@@ -403,9 +403,9 @@ export default function Home() {
         <section className=" p-[0.2rem]  lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
           <div className="flex flex-col md:items-start gap-6 justify-center lg:max-w-[1200px] w-full">
             <div className="flex flex-col lg:flex-row justify-between items-start w-full  mx-auto">
-              <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+              <h2 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
                 Single Family Homes for Rent
-              </h1>
+              </h2>
               <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
                 Explore cozy and spacious single family homes for rent,Designed to
                 offer privacy, comfort, and room for your lifestyle.

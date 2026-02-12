@@ -9,9 +9,9 @@ export default function FagsSection() {
     <section className=" mt-[20px]  md:mt-[3rem]  w-full     flex flex-1 justify-center items-center  flex-col   p-2 md:p-0 font-bricolage ">
       <div className="md:flex  hidden flex-col   md:flex-row  md:gap-[6rem]  justify-around  items-start md:items-center  ">
         <span className="flex flex-col  font-bricolage md:ml-[3rem]  gap-2">
-          <h1 className="text-black  md:text-[2.5rem] 2xl:text-5xl font-[600] ">
+          <h2 className="text-black  md:text-[2.5rem] 2xl:text-5xl font-[600] ">
             Your Questions, Our Answers
-          </h1>
+          </h2>
           <p className="text-gray   md:p-0 text-base  md:text-xl font-bricolage w-full md:w-[30em]">
             Whether you’re curious about our services, need help with specific
             issues..
@@ -34,9 +34,9 @@ export default function FagsSection() {
         <div className="z-[4] md:block relative max-md:w-full  md:h-[50em]  md:left-[35px] 2xl:left-[10px] md:top-[11em]">
           <div className="md:hidden flex  flex-col  md:flex-row   2xl:gap-[14rem] md:gap-[6rem]  justify-around items-start md:items-center  ">
             <span className="flex flex-col  font-bricolage md:ml-[1rem] 2xl:ml-[1rem]  gap-2">
-              <h1 className="text-black  text-[1.5rem] 2xl:text-5xl font-[600] mr-3 ">
+              <h2 className="text-black  text-[1.5rem] 2xl:text-5xl font-[600] mr-3 ">
                 Your Questions, Our Answers
-              </h1>
+              </h2>
             </span>
             <span className=" flex flex-col  my-4 mb-8 font-bricolage gap-3 text-gray">
               <p className="text-gray text-sm     font-[300] md:p-0  md:text-xl font-bricolage w-full md:w-[25em]">

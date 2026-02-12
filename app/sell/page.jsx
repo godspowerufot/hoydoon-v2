@@ -194,9 +194,9 @@ export default function Home() {
             <section className="   font-bricolage flex  lg:mt-[3em]  justify-center flex-col flex-1 items-center ">
                 <div className="flex  lg:max-w-[1200px] 2xl:gap-[1%]  gap-[1.5rem]  lg:gap-[4rem]  flex-col-reverse   2xl:w-[95rem] lg:pl-5 lg:my-[2em] lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
                     <span className="flex flex-col  gap-5 w-full lg:w-[45em]  ">
-                        <h1 className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
+                        <h2 className="text-black  text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
                             Ready to sell your home?.
-                        </h1>
+                        </h2>
                         <p className="text-gray text-sm lg:text-xl mt-3  font-bricolage font-light lg:w-[40rem]">
                             Ready to sell your home? Let us help you maximize its value and
                             make the process stress-free. Schedule a consultation today and

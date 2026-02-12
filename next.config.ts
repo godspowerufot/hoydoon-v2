@@ -25,6 +25,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // ✅ Redirect non-www to www
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'hoydoon.com',
+          },
+        ],
+        destination: 'https://www.hoydoon.com/:path*',
+        permanent: true, // 301 redirect
+      },
+    ];
+  },
 };
-
-export default nextConfig;

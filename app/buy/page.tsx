@@ -147,9 +147,9 @@ export default function Home() {
       <section className=" p-2 lg:max-w-[1200px] lg:p-0 w-full font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col lg:my-[3em] md:items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row  justify-between  items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h2 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               All Houses for Sale
-            </h1>
+            </h2>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
               Discover a home where every detail enhances your lifestyle-crafted
               to fit your taste and needs.
@@ -202,9 +202,9 @@ export default function Home() {
       <section className="lg:my-[5em] p-2 lg:p-0 w-full max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col md:items-start  justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row gap-6  justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h2 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Affordable Homes
-            </h1>
+            </h2>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
               Explore affordable living options tailored to your style, needs,
               and price range.
@@ -263,9 +263,9 @@ export default function Home() {
       <section className="lg:my-[5em] p-2 lg:p-0 w-full max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col md:items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h2 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Upcoming Open Houses for Sale
-            </h1>
+            </h2>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
               See it before you seal it. Explore open homes and take the next
               step with confidence.
@@ -317,9 +317,9 @@ export default function Home() {
       <section className="lg:my-[5em] p-2 lg:p-0 w-full lg:max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col md:items-start gap-6 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
+            <h2 className="text-black text-[24px] mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Luxury Homes Houses for Sale
-            </h1>
+            </h2>
             <p className="text-gray font-light text-sm lg:max-w-[30rem] lg:text-xl font-bricolage w-full lg:w-auto text-start lg:text-right">
               Where comfort meets prestige. Explore homes built for distinction
               and refined taste.
@@ -371,9 +371,9 @@ export default function Home() {
       <section className="lg:max-w-[1200px] font-bricolage lg:flex  justify-center flex-col flex-1 items-center ">
         <div className="flex  gap-[4%]  lg:my-[5em] flex-col-reverse  w-full   lg:flex-row  items-center  2xl:justify-center lg:justify-around ">
           <span className="flex  p-4 flex-col   w-full lg:w-[45em] 2xl:w-[60em] ">
-            <h1 className="text-black  mt-4 lg:mt-0 text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
+            <h2 className="text-black  mt-4 lg:mt-0 text-[26px] lg:text-[2.6rem] 2xl:text-5xl  lg:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Explore the Neighborhood
-            </h1>
+            </h2>
             <p className="text-gray text-sm lg:text-xl mt-3 2xl:mt-[1em] font-bricolage  w-full lg:w-9/10 ">
               Want to know more about schools nearby, healthcare facilities, or
               commute times? Get the full picture of the area before making your

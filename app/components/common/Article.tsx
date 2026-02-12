@@ -45,26 +45,26 @@ const ArticleCard = ({ article }: any) => {
         />
         <div className="flex flex-col my-4 relative">
           <div className="flex gap-3">
-            <h1 className=" text-2xl md:text-4xl font-[600] text-primary ">
+            <span className=" text-2xl md:text-4xl font-[600] text-primary ">
               0{article.id}
-            </h1>
-            <h1 className="text-black  text-[15px] md:text-2xl w-[30rem] ml-3   font-[500] pt-[15px]">
+            </span>
+            <h3 className="text-black  text-[15px] md:text-2xl w-[30rem] ml-3   font-[500] pt-[15px]">
               {article.title}
-            </h1>
+            </h3>
           </div>
           <div className="flex flex-wrap gap-3 mt-1">
             <div className="flex">
               <span className="flex flex-col text-gray md:text-[18px] text-sm -gap-2 md:gap-2 font-medium">
-                <h4 className="text-gray md:text-[18px] text-[12px] font-[400]">
+                <span className="text-gray md:text-[18px] text-[12px] font-[400]">
                   {article.date.split(" ")[0]}
-                </h4>
-                <h4 className=" text-[12px] md:text-[18px]">
+                </span>
+                <span className=" text-[12px] md:text-[18px]">
                   {article.date.split(" ")[1]}
-                </h4>
+                </span>
               </span>
-              <h2 className="ml-4  text-[12px] mt-[24px] text-gray font-[400] md:text-[18px]">
+              <span className="ml-4  text-[12px] mt-[24px] text-gray font-[400] md:text-[18px]">
                 {article.articleType}
-              </h2>
+              </span>
             </div>
           </div>
           <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
@@ -81,9 +81,9 @@ const ArticlesSection = () => {
     <section className="flex  mt-[2rem] md:-mt-[1em] text-start md:justify-center items-center w-full flex-col   md:max-w-[1200px] p-2 md:p-0 font-bricolage">
       <div className="flex  flex-col md:flex-row md:gap-[4rem]   justify-around md:items-center">
         <span className="flex flex-col  font-bricolage  md:ml-10  py-2 md:py-0  gap-2">
-          <h1 className="text-black  text-[1.5rem] md:text-[2.5rem]  font-[600] ">
+          <h2 className="text-black  text-[1.5rem] md:text-[2.5rem]  font-[600] ">
             New Highlights & Articles
-          </h1>
+          </h2>
           <p className="text-gray hidden md:block  font-[400] 2xl:text-[20px] md:p-0 text-base md:text-xl w-full md:w-[30em]">
             Our top stories and features keeps you updated on industry trends
             and current trends.

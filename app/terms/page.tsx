@@ -27,18 +27,19 @@ const DefaultContent = () => {
         />
       </div>{" "}
       <div className=" mt-5 md:mt-[3rem]">
+        <h1 className="md:text-[3rem] text-2xl font-bold">Terms and Conditions</h1>
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Welcome to Hoydoon (the “Website”). These Terms and Conditions
           (“Terms”) govern your use of, www.hoydoon.com and any related services
           provided through the site. By accessing or using Hoydoon, you agree to
           comply with and be bound by these Terms. If you do not agree, please
-          do not use this website. 
+          do not use this website.
         </p>
 
-        <h1 className="md:text-[2rem] text-xl mt-5 md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl mt-5 md:mt-[3rem] font-semibold ">
           {" "}
-          About Hoydoon 
-        </h1>
+          About Hoydoon
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Hoydoon is a property listing and discovery platform designed to
@@ -49,14 +50,14 @@ const DefaultContent = () => {
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Hoydoon does not own, manage, or sell properties listed on the
           platform. All listings are created and managed by independent users or
-          agents. 
+          agents.
         </p>
       </div>
       <div className=" mt-5 md:mt-[4.5rem]">
-        <h1 className="md:text-[2rem] text-xl  font-semibold "> Eligibility</h1>
+        <h2 className="md:text-[2rem] text-xl  font-semibold "> Eligibility</h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
-          To use Hoydoon, you must: 
+          To use Hoydoon, you must:
           <ul
             className={`text-gray font-light text-[18px] ml-5 list-disc
                 
@@ -64,23 +65,23 @@ const DefaultContent = () => {
           >
             <li className="mt-1 list-disc text-[12px] md:text-xl ">
               Be at least 18 years of age (or the legal age of majority in your
-              country). 
+              country).
             </li>
             <li className="mt-1 list-disc text-[12px] md:text-xl ">
-              Have the authority to enter into binding agreements.   
+              Have the authority to enter into binding agreements.
             </li>
             <li className="mt-1 list-disc text-[12px] md:text-xl ">
               Provide accurate and up-to-date information when creating an
-              account or submitting listings. 
+              account or submitting listings.
             </li>
           </ul>
         </p>
       </div>
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
           User Accounts
-        </h1>
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Users may need to create an account to access certain features of the
@@ -89,14 +90,14 @@ const DefaultContent = () => {
         </p>
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Hoydoon reserves the right to suspend or terminate accounts that
-          violate these Terms or our Community Guidelines. 
+          violate these Terms or our Community Guidelines.
         </p>
       </div>
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
           Property Listings
-        </h1>
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           By posting a listing on Hoydoon, you agree that all information you
@@ -109,7 +110,7 @@ const DefaultContent = () => {
         </p>
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Hoydoon reserves the right to suspend or terminate accounts that
-          violate these Terms or our Community Guidelines. 
+          violate these Terms or our Community Guidelines.
         </p>
       </div>
       <div className="relative w-full mt-5 md:mt-[3rem] h-[400px] md:h-[500px] rounded-md overflow-hidden">
@@ -122,10 +123,10 @@ const DefaultContent = () => {
         />
       </div>{" "}
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
           User Responsibilities
-        </h1>
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           You agree not to post any false, misleading, or fraudulent
@@ -138,10 +139,10 @@ const DefaultContent = () => {
         </p>
       </div>
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
-          Communication Between Users 
-        </h1>
+          Communication Between Users
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Hoydoon offers a secure communication channel for buyers, sellers, and
@@ -156,10 +157,10 @@ const DefaultContent = () => {
         </p>
       </div>
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
-          Fees and Payments 
-        </h1>
+          Fees and Payments
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Most of Hoydoon’s services are free to use, allowing users to browse,
@@ -174,10 +175,10 @@ const DefaultContent = () => {
         </p>
       </div>
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
           Intellectual Property
-        </h1>
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           All content on the Hoydoon website, including its logos, designs,
@@ -190,10 +191,10 @@ const DefaultContent = () => {
         </p>
       </div>
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
-          Privacy 
-        </h1>
+          Privacy
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Your use of Hoydoon is governed by our Privacy Policy, which details
@@ -209,10 +210,10 @@ const DefaultContent = () => {
         </p>
       </div>
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
-          Disclaimers 
-        </h1>
+          Disclaimers
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Hoydoon provides its services on an “as is” basis, without any
@@ -236,10 +237,10 @@ const DefaultContent = () => {
         />
       </div>{" "}
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
-          Limitation of Liability 
-        </h1>
+          Limitation of Liability
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           To the fullest extent permitted by law, Hoydoon shall not be held
@@ -253,10 +254,10 @@ const DefaultContent = () => {
         </p>
       </div>
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
           Termination
-        </h1>
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Hoydoon reserves the right to suspend or permanently terminate your
@@ -269,10 +270,10 @@ const DefaultContent = () => {
         </p>
       </div>
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
-          Updates to These Terms 
-        </h1>
+          Updates to These Terms
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           Hoydoon reserves the right to update or modify these Terms at any time
@@ -285,10 +286,10 @@ const DefaultContent = () => {
         </p>
       </div>
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
-          Governing Law 
-        </h1>
+          Governing Law
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           These Terms shall be governed by and interpreted in accordance with
@@ -296,17 +297,17 @@ const DefaultContent = () => {
           of Somalia, without regard to conflict of law principles
         </p>
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
-            In the event of any dispute, claim, or controversy arising from or
+          In the event of any dispute, claim, or controversy arising from or
           relating to your use of Hoydoon, such matters shall be subject to the
           exclusive jurisdiction of the competent courts in Nigeria or Somalia,
-          depending on the user’s country of residence. 
+          depending on the user’s country of residence.
         </p>
       </div>
       <div className=" mt-5 md:mt-[3rem]">
-        <h1 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
+        <h2 className="md:text-[2rem] text-xl  md:mt-[3rem] font-semibold ">
           {" "}
           Contact Us
-        </h1>
+        </h2>
 
         <p className="text-gray  font-light text-[12px] md:w-[710px] md:text-xl font-bricolage  w-full leading-5 mt-4">
           If you have any questions about these Terms or our policies, contact
@@ -314,11 +315,11 @@ const DefaultContent = () => {
           <a href="www.hoydoon.com/helpcenter/submit-request">
             www.hoydoon.com/help
           </a>
-           
+
         </p>
         <p className="text-gray  font-light text-[12px] md:text-xl font-bricolage  w-full leading-5 mt-4">
-           By using Hoydoon, you acknowledge that you have read, understood, and
-          agreed to these Terms and Conditions. 
+          By using Hoydoon, you acknowledge that you have read, understood, and
+          agreed to these Terms and Conditions.
         </p>
       </div>
       <div className=" mt-5 md:mt-[6rem]">
