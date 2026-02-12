@@ -78,9 +78,9 @@ export default function Page() {
         <div className="w-full">
           <div className="flex flex-col  md:flex-col justify-between  md:gap-10  w-full md:max-w-[1200px]  mx-auto">
             <div className="flex flex-col p-3 md:p-0 md:flex-row md:gap-8 justify-between  items-start md:items-center w-full  flex-wrap mx-auto">
-              <h1 className="text-black  font-semibold text-[24px] mt-[25px] md:mt-0  md:text-[2.5rem] font-[60 md:w-auto">
+              <h2 className="text-black  font-semibold text-[24px] mt-[25px] md:mt-0  md:text-[2.5rem] font-[60 md:w-auto">
                 Real Estate Agents In Hoydoon
-              </h1>
+              </h2>
               <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
                 Leverage a local agent's expertise with access to millions of
                 listings, guiding you through every step.
@@ -135,9 +135,9 @@ export default function Page() {
       <section className="  bg-white  md:-mt-[3.5em] md:bg-[#eeeeeec7]  w-full   md:w-screen font-bricolage md:flex  flex-col justify-center flex-1 items-center ">
         <div className="flex  md:gap-[4%] flex-col-reverse md:max-w-[1200px] md:my-[1em] md:flex-row  items-center   md:justify-around ">
           <span className="flex flex-col gap-y-1 md:gap-y-0 w-full md:w-[45em] 2xl:w-[60em] ">
-            <h1 className="text-black  text-2xl mt-4  md:mt-0  md:text-[2.6rem]  md:leading-[1.1em] font-[600] 2xl:w-[80%]">
+            <h2 className="text-black  text-2xl mt-4  md:mt-0  md:text-[2.6rem]  md:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Connect with local agent
-            </h1>
+            </h2>
             <p className="text-gray text-xs md:text-xl mt-2 2xl:mt-[1em] font-bricolage md:w-[38rem] 2xl:text-[22px] ">
               Benefit from local expertise. We'll connect you with a Hoydoon
               Premier Agent who understands your market and can guide you
@@ -174,9 +174,9 @@ export default function Page() {
             />
           </span>
           <span className="flex flex-col w-full  md:gap-y-5     md:w-[55em]  ">
-            <h1 className="text-black  md:my-0  text-xl md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] font-[600] 2xl:w-[80%]">
+            <h2 className="text-black  md:my-0  text-xl md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] font-[600] 2xl:w-[80%]">
               Rapid Finds. Ready to View
-            </h1>
+            </h2>
             <p className="text-gray  md:text-xl text-xs  2xl:mt-[1em] font-bricolage md:w-[90%] 2xl:text-[20px] 2xl:w-full">
               Never miss out. We refresh listings every minute, ensuring you see
               new homes instantly. Book on-demand tours to view them fast

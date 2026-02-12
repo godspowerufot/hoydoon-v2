@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     siteName: "Hoydoon",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://hoydoonstorage.blob.core.windows.net/web-images/headertwo.webp",
         width: 1200,
         height: 630,
         alt: "Hoydoon - Find Your Dream Home",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: "Hoydoon: Real Estate, Apartments, Mortgages & Home Values",
     description:
       "The leading real estate marketplace. Search millions of for-sale and rental listings.",
-    images: ["/twitter-image.jpg"],
+    images: ["https://hoydoonstorage.blob.core.windows.net/web-images/headertwo.webp"],
   },
 };
 

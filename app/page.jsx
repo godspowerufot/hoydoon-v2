@@ -74,9 +74,9 @@ function Carousel({ images }) {
 
           <div className="z-111 absolute bg-primarytransparent p-2 sm:p-2 m-3  2xl:mt-[20rem] rounded-2xl top-[60%] right-0 h-fit w-[95%]">
             <div className="bg-white px-3 pt-3 sm:p-6 md:p-8 rounded-2xl h-fit w-full max-w-full md:w-[56rem] 2xl:w-[65rem]">
-              <h1 className="text-black text-[0.9rem] sm:text-base md:text-2xl 2xl:text-[2rem] font-[600]">
+              <h3 className="text-black text-[0.9rem] sm:text-base md:text-2xl 2xl:text-[2rem] font-[600]">
                 {truncateDescription(images[currentIndex]?.title, 15)}
-              </h1>
+              </h3>
               <p className="text-gray text-[8px] sm:text-sm md:text-[1rem] 2xl:text-[1.05rem] 2xl:w-[55rem] mt-2 2xl:mt-5">
                 {truncateDescription(images[currentIndex]?.description, 55)}
               </p>
@@ -145,9 +145,9 @@ function Carousel({ images }) {
           <div className="absolute  rounded-none inset-0 bg-black opacity-15 transition-opacity duration-500  md:rounded-2xl" />
           <div className="    z-111 absolute    bg-primarytransparent p-5 rounded-2xl bottom-[1.25rem] left-[1.25rem] h-fit   w-fit">
             <div className=" bg-white md:max-w-[1000px] p-8 md:rounded-2xl   h-[18rem]   w-[58rem] ">
-              <h1 className="text-black text-base  md:text-2xl 2xl:text-[2rem] font-[600]">
+              <h3 className="text-black text-base  md:text-2xl 2xl:text-[2rem] font-[600]">
                 {images[currentIndex]?.title}{" "}
-              </h1>
+              </h3>
               <p className="text-gray md:text-[1rem] mb-[2rem] 2xl:text-[1.05rem] font-[400]  2xl:w-[55rem] 2xl:mt-5 mt-3 text-[10px] ">
                 {truncateDescription(images[currentIndex]?.description, 50)}
               </p>
@@ -340,9 +340,9 @@ export default function Home() {
       <section className="w-screen p-5 md:p-0 font-bricolage md:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
         <div className="flex  flex-col-reverse   md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-between ">
           <span className="flex  gap-4 flex-col w-full md:max-w-[45.3em] 2xl:max-w-[48em]  ">
-            <h1 className="text-black  text-[24px]  mt-[1.40rem] md:mt-0 md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
+            <h2 className="text-black  text-[24px]  mt-[1.40rem] md:mt-0 md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
               Find your ideal property with simple tools and guidance.
-            </h1>
+            </h2>
             <p className="text-gray text-sm md:text-xl  mt-[0.1rem] md:mt-4  font-[300] 2xl:mt-[2.2em] font-bricolage  w-full md:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
               Enjoy fast and easy access to a variety of properties that suit
               your needs. Use our smart filters to find the perfect places
@@ -374,9 +374,9 @@ export default function Home() {
       <section className=" hidden p-2 md:p-0   font-bricolage md:flex justify-center flex-col flex-1 items-center">
         <div className="flex  gap-[15rem]  md:my-[5em]   flex-col md:flex-row  items-center justify-center">
           <span className="flex   md:pl-1  2xl:pl-[0rem] flex-col w-full md:w-6/10 ">
-            <h1 className="text-black  text-[26px] md:text-5xl font-[600]">
+            <h2 className="text-black  text-[26px] md:text-5xl font-[600]">
               Get the Hoydoon App
-            </h1>
+            </h2>
             <p className="text-gray  text-base md:text-xl mt-4 font-[300]  font-bricolage  w-fit md:w-[40rem]">
               Download our highly-rated real estate app for iOS or Android to
               receive instant alerts when your dream home becomes available.
@@ -399,9 +399,9 @@ export default function Home() {
       <section className=" p-2 md:p-0  md:mt-[2.5em] md:mb-[5em] w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col   md:items-start gap-0 md:gap-0 justify-center max-w-[1200px] w-full">
           <div className="flex flex-col  md:flex-row justify-between items-center w-full  mx-auto">
-            <h1 className="text-black text-[24px] mt-[23px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
+            <h2 className="text-black text-[24px] mt-[23px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
               Featured Properties for Sale
-            </h1>
+            </h2>
             <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
               Discover a home where every detail enhances your lifestyle crafted
               to fit your taste and needs.
@@ -456,9 +456,9 @@ export default function Home() {
         <section className="mt-5 w-screen md:mb-[5em]   md:w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
           <div className="flex flex-col items-start gap-6 md:gap-0 justify-center max-w-[1200px] w-full">
             <div className="flex flex-col md:py-0 md:flex-row  p-3 md:p-0 md:gap-10 justify-between items-center w-full  mx-auto">
-              <h1 className="text-black text-[24px] md:text-[2.5rem] font-[600] w-full md:w-auto">
+              <h2 className="text-black text-[24px] md:text-[2.5rem] font-[600] w-full md:w-auto">
                 Explore Luxurious Living Spaces
-              </h1>
+              </h2>
               <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
                 From modern architecture to elegant interiors, discover homes
                 crafted for elevated living.
@@ -479,9 +479,9 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-start w-full md:max-w-[1200px] md:gap-[8em]">
           {/* Left side */}
           <span className="flex flex-col 2xl:w-full font-bricolage gap-3">
-            <h1 className="text-black text-[26px] md:text-[2.5rem] 2xl:text-5xl font-[600] mr-5">
+            <h2 className="text-black text-[26px] md:text-[2.5rem] 2xl:text-5xl font-[600] mr-5">
               What People Are Saying
-            </h1>
+            </h2>
 
             <p className="text-gray md:block hidden text-sm md:text-xl w-full md:w-[30em]">
               Hear directly from our users about their experiences. Whether
