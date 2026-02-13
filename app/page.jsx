@@ -433,6 +433,7 @@ export default function Home() {
                       items?.item.description ||
                       "No description available for this property."
                     }
+                    slugs={items?.slug}
                     title={items?.item.title || "Untitled Property"}
                     rent={items?.item.rent || "Rent details not provided"}
                   />

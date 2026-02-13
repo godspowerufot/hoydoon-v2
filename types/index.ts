@@ -2,6 +2,7 @@ export interface Property {
   imageUrls?: { url?: string; altText?: string }[];
   listingType?: string;
   _id?: string;
+  slug?: string;
   region?: string;
   item?: {
     price?: string;

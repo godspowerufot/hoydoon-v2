@@ -120,7 +120,7 @@ function MapPopup({ property, onClose }) {
         </div>
 
         <Link
-          href={`/rent/${encodeId(property._id)}`}
+          href={`/rent/${property.slug}`}
           className="block w-full text-center bg-[#09858D] hover:bg-[#077279] text-white py-1.5 rounded-lg text-xs font-medium transition-colors"
         >
           View Details
@@ -247,6 +247,7 @@ export default function MapComponent({ coordinates = [], listings = [] }) {
         bathrooms: item.item?.bathrooms,
         area: item.item?.squareFeet,
         _id: item._id,
+        slug: item.slug,
         description: item.item?.description,
         region: item.region,
         listingData: item,

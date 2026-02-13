@@ -1,16 +1,15 @@
 import { Metadata, ResolvingMetadata } from "next";
 import RentDetailsClient from "./RentDetailsClient";
 import Script from "next/script";
-import { decodeId } from "@/utils";
 
 type Props = {
     params: Promise<{ id: string }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-async function getListing(id: string) {
+async function getListing(slug: string) {
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/listings/${id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/listings/slug/${slug}`,
         { next: { revalidate: 3600 } }
     );
     if (!res.ok) return null;
@@ -22,7 +21,7 @@ export async function generateMetadata(
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     const { id } = await params;
-    const data = await getListing(decodeId(id));
+    const data = await getListing(id);
     const listing = data?.listing;
 
     if (!listing) {

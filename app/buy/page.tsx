@@ -165,7 +165,6 @@ export default function Home() {
                 .slice(0, 3)
                 .map((items: Property, index: number) => (
                   <PropertyListCard
-                    _id={items?._id}
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                     altText={
@@ -181,6 +180,7 @@ export default function Home() {
                       items?.item?.description ||
                       "No description available for this property."
                     }
+                    slugs={items?.slug}
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                   />
@@ -225,7 +225,6 @@ export default function Home() {
                 .slice(0, 3)
                 .map((items: Property, index: number) => (
                   <PropertyListCard
-                    _id={items?._id}
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                     altText={
@@ -241,6 +240,7 @@ export default function Home() {
                       items?.item?.description ||
                       "No description available for this property."
                     }
+                    slugs={items?.slug}
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                   />
@@ -281,7 +281,6 @@ export default function Home() {
                 .slice(0, 3)
                 .map((items: Property, index: number) => (
                   <PropertyListCard
-                    _id={items?._id}
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                     altText={
@@ -297,6 +296,7 @@ export default function Home() {
                       items?.item?.description ||
                       "No description available for this property."
                     }
+                    slugs={items?.slug}
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                   />
@@ -335,7 +335,6 @@ export default function Home() {
                 .slice(0, 3)
                 .map((items: Property, index: number) => (
                   <PropertyListCard
-                    _id={items?._id}
                     key={index}
                     imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
                     altText={
@@ -351,6 +350,7 @@ export default function Home() {
                       items?.item?.description ||
                       "No description available for this property."
                     }
+                    slugs={items?.slug}
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                   />

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { truncateDescription, encodeId, formatPrice } from "@/utils";
+import { truncateDescription, formatPrice } from "@/utils";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -18,6 +18,7 @@ interface PropertyCardProps {
     rent?: string;
     listingType?: string;
     _id?: string;
+    slugs?: string;
     region?: string;
     landSize?: number | string;
 }
@@ -32,7 +33,7 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
     title = "_",
     bathrooms = "_",
     bedrooms = "_",
-    _id,
+    slugs,
     squareFeet = "_",
     listingType,
     landSize = "_",
@@ -92,12 +93,11 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
     }
 
     return (
-        <Link href={`/rent/${encodeId(_id)}`}>
+        <Link href={`/rent/${slugs}`}>
             <div
                 ref={cardRef}
-                className={`relative lg:flex lg:w-[380px] h-[600px] bg-white overflow-hidden flex-col border rounded-[20px] ${
-                    isHovered && !isMobile ? "border-gray" : "lg:border-transparent border border-gray"
-                }`}
+                className={`relative lg:flex lg:w-[380px] h-[600px] bg-white overflow-hidden flex-col border rounded-[20px] ${isHovered && !isMobile ? "border-gray" : "lg:border-transparent border border-gray"
+                    }`}
                 onMouseEnter={() => !isMobile && setIsHovered(true)}
                 onMouseLeave={() => !isMobile && setIsHovered(false)}
                 style={{
@@ -107,9 +107,8 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
             >
                 {/* Image container - CRITICAL FIXES */}
                 <div
-                    className={`relative w-full overflow-hidden ${
-                        isMobile ? "h-[350px]" : isHovered ? "h-[350px]" : "h-[500px]"
-                    }`}
+                    className={`relative w-full overflow-hidden ${isMobile ? "h-[350px]" : isHovered ? "h-[350px]" : "h-[500px]"
+                        }`}
                     style={{
                         borderRadius: 20,
                         // Remove transition on iOS to prevent memory issues
@@ -134,13 +133,12 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
 
                 {/* Description - Remove complex opacity transitions */}
                 <div
-                    className={`flex-1 flex-col justify-start px-4 py-2 flex ${
-                        isMobile
-                            ? "opacity-100"
-                            : isHovered
+                    className={`flex-1 flex-col justify-start px-4 py-2 flex ${isMobile
+                        ? "opacity-100"
+                        : isHovered
                             ? "opacity-100"
                             : "opacity-0 max-h-0 pointer-events-none"
-                    }`}
+                        }`}
                     style={{
                         // Simplify transition, remove will-change
                         transition: isMobile ? "none" : "opacity 0.2s ease-in-out",
@@ -197,9 +195,8 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
                 {/* Base info - simplified transition */}
                 {!isMobile && (
                     <div
-                        className={`absolute bottom-0 left-0 right-0 bg-white p-4 z-0 ${
-                            isHovered ? "opacity-0 pointer-events-none" : "opacity-100"
-                        }`}
+                        className={`absolute bottom-0 left-0 right-0 bg-white p-4 z-0 ${isHovered ? "opacity-0 pointer-events-none" : "opacity-100"
+                            }`}
                         style={{
                             transition: "opacity 0.2s ease-in-out",
                         }}
@@ -225,8 +222,8 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
                                     {listingType === "land"
                                         ? landSize
                                         : listingType === "sale"
-                                        ? squareFeet
-                                        : area}
+                                            ? squareFeet
+                                            : area}
                                     sq.
                                 </p>
                             </span>

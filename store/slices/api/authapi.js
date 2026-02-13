@@ -143,6 +143,12 @@ export const authApi = createApi({
         method: "GET",
       }),
     }),
+    getListingBySlug: builder.query({
+      query: ({ slug }) => ({
+        url: `/v1/listings/slug/${slug}`,
+        method: "GET",
+      }),
+    }),
     sendMessage: builder.mutation({
       query: (messageData) => ({
         url: "/v1/messages",
@@ -212,6 +218,7 @@ export const {
   useSignupMutation,
   useGetAllListingsQuery,
   useGetSpecificListingsQuery,
+  useGetListingBySlugQuery,
   useGetAgentsInfoQuery,
   useResendOtpMutation,
   useToggleFavoriteMutation,

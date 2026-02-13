@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { truncateDescription, encodeId, formatPrice } from "@/utils";
+import { truncateDescription, formatPrice } from "@/utils";
 import Link from "next/link";
 
 interface PropertyCardProps {
@@ -18,6 +18,7 @@ interface PropertyCardProps {
   rent?: string;
   listingType?: string;
   _id?: string;
+  slugs?: string;
   region?: string;
   landSize?: number | string;
 }
@@ -32,7 +33,8 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
   title = "_",
   bathrooms = "_",
   bedrooms = "_",
-  _id,
+
+  slugs,
   squareFeet = "_",
   listingType,
   landSize = "_",
@@ -55,7 +57,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
 
   return (
     <>
-      <Link href={`/rent/${encodeId(_id)}`}>
+      <Link href={`/rent/${slugs}`}>
         <div
           className={`relative flex w-full h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered && !isMobile
             ? "border-gray rounded-[20px]"

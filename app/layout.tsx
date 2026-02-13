@@ -93,80 +93,107 @@ export default function RootLayout({
           />
           <meta name="apple-mobile-web-app-title" content="hoydoon" />
           <link rel="manifest" href="/site.webmanifest" />
+
+          {/* Google Analytics */}
+          <Script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-VQ35E1Y7XL"
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-VQ35E1Y7XL');
+            `}
+          </Script>
+
+          {/* Schema Markup */}
+          <Script
+            id="schema-markup"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": [
+                  {
+                    "@type": "Organization",
+                    "@id": "https://www.hoydoon.com/#organization",
+                    "name": "Hoydoon",
+                    "alternateName": "Hoydoon Real Estate",
+                    "url": "https://www.hoydoon.com/",
+                    "logo": {
+                      "@type": "ImageObject",
+                      "@id": "https://www.hoydoon.com/#logo",
+                      "url": "https://www.hoydoon.com/newlogo2.png"
+                    },
+                    "description": "The leading real estate marketplace. Search millions of for-sale and rental listings, compare Hoydoon® home values and connect with local professionals.",
+                    "email": "support@hoydoon.com",
+                    "address": {
+                      "@type": "PostalAddress",
+                      "streetAddress": "5, Elshadai Street, Erunwen"
+                    },
+                    "sameAs": [
+                      "https://www.instagram.com/hoydoon/",
+                      "https://x.com/hoydoon_?s=11&t=nIieHzDuZ8BAPHDnr6Ikcw",
+                      "https://www.facebook.com/share/1YwJpJwiGT/?mibextid=wwXIfr",
+                      "https://www.linkedin.com/company/hoydoon/about/?viewAsMember=true"
+                    ],
+                    "contactPoint": {
+                      "@type": "ContactPoint",
+                      "contactType": "customer support",
+                      "telephone": "+2347043058500",
+                      "email": "support@hoydoon.com",
+                      "availableLanguage": "en",
+                      "areaServed": ["NG", "SO"]
+                    }
+                  },
+                  {
+                    "@type": "WebSite",
+                    "@id": "https://www.hoydoon.com/#website",
+                    "url": "https://www.hoydoon.com/",
+                    "name": "Hoydoon",
+                    "description": "The leading real estate marketplace. Search millions of for-sale and rental listings, compare Hoydoon® home values and connect with local professionals.",
+                    "publisher": {
+                      "@id": "https://www.hoydoon.com/#organization"
+                    },
+                    "inLanguage": "en",
+                    "potentialAction": {
+                      "@type": "SearchAction",
+                      "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "https://www.hoydoon.com/search?q={search_term_string}"
+                      },
+                      "query-input": "required name=search_term_string"
+                    }
+                  },
+                  {
+                    "@type": "MobileApplication",
+                    "@id": "https://www.hoydoon.com/#app-ios",
+                    "name": "Hoydoon",
+                    "operatingSystem": "iOS",
+                    "applicationCategory": "BusinessApplication",
+                    "downloadUrl": "https://apps.apple.com/us/app/hoydoon/id6736393320",
+                    "url": "https://www.hoydoon.com/"
+                  },
+                  {
+                    "@type": "MobileApplication",
+                    "@id": "https://www.hoydoon.com/#app-android",
+                    "name": "Hoydoon",
+                    "operatingSystem": "Android",
+                    "applicationCategory": "BusinessApplication",
+                    "downloadUrl": "https://play.google.com/store/apps/details?id=com.hoydoon.app",
+                    "url": "https://www.hoydoon.com/"
+                  }
+                ]
+              })
+            }}
+          />
         </head>
 
         {/* Organization Schema */}
-        <Script
-          id="organization-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Hoydoon",
-              alternateName: "Hoydoon Real Estate",
-              url: "https://www.hoydoon.com",
-              logo: "https://www.hoydoon.com/favicon.ico",
-              description:
-                "Leading real estate platform. Discover, buy, rent, or sell homes, apartments, and land with ease. Trusted agents, verified listings.",
-              address: {
-                "@type": "PostalAddress",
-                addressCountry: "SO",
-              },
-              contactPoint: {
-                "@type": "ContactPoint",
-                contactType: "Customer Service",
-                url: "https://www.hoydoon.com/contact",
-              },
-            }),
-          }}
-        />
 
-        {/* Website Schema with SearchAction */}
-
-        {/* Breadcrumb Schema */}
-        <Script
-          id="breadcrumb-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Home",
-                  item: "https://www.hoydoon.com",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Buy",
-                  item: "https://www.hoydoon.com/buy",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 3,
-                  name: "Rent",
-                  item: "https://www.hoydoon.com/rent",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 4,
-                  name: "Sell",
-                  item: "https://www.hoydoon.com/sell",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 5,
-                  name: "Agents",
-                  item: "https://www.hoydoon.com/agent",
-                },
-              ],
-            }),
-          }}
-        />
 
         <body className="lg:flex overflow-x-hidden flex-col flex-1 font-bricolage min-h-screen">
           <Providers>

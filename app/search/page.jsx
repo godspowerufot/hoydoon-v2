@@ -901,7 +901,6 @@ const Page = () => {
                 {displayListings.map((listing, index) => (
                   <PropertyListCard
                     key={index}
-                    _id={listing._id}
                     imageSrc={
                       listing.imageUrls?.[0]?.url || "/default-image.jpg"
                     }
@@ -916,6 +915,7 @@ const Page = () => {
                     squareFeet={listing.item?.squareFeet}
                     listingType={listing?.listingType}
                     landSize={listing.item?.landSize}
+                    slugs={listing?.slug}
                   />
                 ))}
               </div>
