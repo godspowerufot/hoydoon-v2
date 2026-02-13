@@ -471,22 +471,21 @@ const RentDetailsClient = () => {
         {/* second div layout  */}
 
         <div
-          className={`bg-gray-100 p-4 md:pt-[4rem] md:p-0  w-full rounded-lg ${!showListings ? "mt-[2rem] md:mt-0" : ""
+          className={`bg-gray-100 p-4 md:pt-[3rem] md:p-0  w-full rounded-lg ${!showListings ? "mt-[2rem] md:mt-0" : ""
             }`}
         >
           <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 md:gap-4">
             {/* Left Section */}
-            <div className="flex-1 flex flex-col gap-1 md:flex">
+            <div className="flex-1 flex flex-col gap-2 md:flex">
               <h2 className="text-xl lg:text-[2rem] hidden md:block font-bricolage font-semibold">
-                {title}
-              </h2>
+                {truncateDescription(address, 10)}              </h2>
               <h2 className="text-xl md:text-[2rem] md:hidden font-bricolage font-semibold">
-                {truncateDescription(title, 3)}
+                {truncateDescription(address, 3)}
               </h2>
 
               {/* Address */}
               <div className=" text-black text-sm  font-light md:text-gray block md:text-base">
-                <p>{truncateDescription(address, 10)}</p>
+                {/* <p>{truncateDescription(address, 10)}</p> */}
                 <p>{region}</p>
               </div>
 
