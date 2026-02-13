@@ -1,10 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // ✅ enables standalone output for production deployment
   output: "standalone",
   reactStrictMode: false,
-  // ✅ enables gzip compression when using `next start`
   compress: true,
   images: {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
@@ -15,17 +13,16 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "hoydoonstorage.blob.core.windows.net",
         port: "",
-        pathname: "/**", // Allows all paths from this hostname
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
         port: "",
-        pathname: "/**", // Google user profile images
+        pathname: "/**",
       },
     ],
   },
-  // ✅ Redirect non-www to www
   async redirects() {
     return [
       {
@@ -37,8 +34,10 @@ const nextConfig: NextConfig = {
           },
         ],
         destination: 'https://www.hoydoon.com/:path*',
-        permanent: true, // 301 redirect
+        permanent: true,
       },
     ];
   },
 };
+
+export default nextConfig;
