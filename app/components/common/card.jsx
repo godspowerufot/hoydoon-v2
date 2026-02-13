@@ -9,6 +9,7 @@ const HoverCard = ({
   _id,
   region,
   bathrooms,
+  slugs,
   bedrooms,
   area,
   description = "No description available",
@@ -19,7 +20,7 @@ const HoverCard = ({
 
   return (
     <>
-      <Link href={`/rent/${encodeId(_id)}`}>
+      <Link href={`/rent/${slugs}`}>
         <div
           className={`relative lg:flex hidden w-full h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered ? "border-gray rounded-[20px]" : "border-transparent"
             }`}

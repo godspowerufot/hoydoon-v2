@@ -7,7 +7,7 @@ import { highlights } from "@/constants";
 import {
   useToggleFavoriteMutation,
   useGetAllListingsQuery,
-  useGetSpecificListingsQuery,
+  useGetListingBySlugQuery,
   useGetFavoritesQuery,
   useDeleteFavoriteMutation,
 } from "@/store/slices/api/authapi";
@@ -31,7 +31,7 @@ import {
 } from "@/app/components/Loader/RentDetailsSkeleton";
 import { ProfileCardSkeleton } from "@/app/components/Loader";
 import { toast } from "react-toastify";
-import { handleShareClick, decodeId, truncateDescription, flattenListings } from "@/utils";
+import { handleShareClick, truncateDescription, flattenListings } from "@/utils";
 import DynamicImageMobile from "@/app/components/layouts/mobiledynamic";
 import DynamicImageGrid from "@/app/components/layouts/dynamiclayout";
 import axios from "axios";
@@ -291,12 +291,14 @@ const Breadcrumb = ({
 
 const RentDetailsClient = () => {
   const pathname = usePathname();
-  const Id = pathname?.split("/").pop();
-  const listingId = decodeId(Id);
+  const slug = pathname?.split("/").pop();
   const router = useRouter(); // Tab state
 
   const { data: listing, isLoading: isAllLoading } =
-    useGetSpecificListingsQuery({ listingId });
+    useGetListingBySlugQuery({ slug });
+
+  // Extract listingId from the response for favorites and other operations
+  const listingId = listing?.listing?._id;
 
   const { data: allListings, refetch } = useGetAllListingsQuery({
     listingType: "rent",

@@ -10,6 +10,7 @@ const PropertyCard = ({
   altText = "Default Alt Text",
   price = "N/A",
   _id,
+  slugs,
   bathrooms,
   bedrooms,
   area = "_",
@@ -31,11 +32,11 @@ const PropertyCard = ({
   const showDetails = isMobile || isHovered;
 
   return (
-    <Link href={`/rent/${encodeId(_id)}`}>
+    <Link href={`/rent/${slugs}`}>
       <div
         className={`hidden lg:flex flex-col rounded-[16px] lg:rounded-[1.5rem]  border-[1px] border-gray 2xl:h-[40rem]  h-[32rem] lg:h-[600px] lg:w-[23rem] 2xl:w-[28rem] font-bricolage snap-center shrink-0 cursor-pointer overflow-hidden lg:ml-8 relative group transition-all duration-[1500ms] ease-in-out ${isHovered
-            ? "border-solid rounded-2xl p-0 border-[1px] border-gray"
-            : " border lg:border-none"
+          ? "border-solid rounded-2xl p-0 border-[1px] border-gray"
+          : " border lg:border-none"
           }`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -55,8 +56,8 @@ const PropertyCard = ({
         {/* Details Section - Always open on mobile */}
         <div
           className={`mt-3 lg:mt-5 px-5 transition-all duration-[1500ms] ease-in-out ${showDetails
-              ? "opacity-100 translate-y-0  h-fit lg:h-[175px]"
-              : "h-0 opacity-0 translate-y-5 max-h-0"
+            ? "opacity-100 translate-y-0  h-fit lg:h-[175px]"
+            : "h-0 opacity-0 translate-y-5 max-h-0"
             }`}
         >
           <h1 className="text-black text-[24px] lg:text-[28px] font-bold">
