@@ -9,18 +9,8 @@ import Button from "@/app/components/common/Button";
 import Link from "next/link";
 import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
 import { SkeletonCard } from "@/app/components/Loader";
-interface Property {
-  imageUrls?: { url?: string; altText?: string }[];
-  item?: {
-    price?: string;
-    squareFeet?: number;
-    bathrooms?: number;
-    bedrooms?: number;
-    description?: string;
-    title?: string;
-    rent?: string;
-  };
-}
+import { Property } from "@/types";
+
 const Breadcrumb = () => {
   return (
     <div className="flex  items-center justify-between gap-[0.2rem] pl-4 py-2 w-full  mt-[5rem]  bg-gray-100">
@@ -256,6 +246,7 @@ const page = () => {
                       items?.item?.description ||
                       "No description available for this property."
                     }
+                    slugs={items?.slug}
                     title={items?.item?.title || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                     squareFeet={items?.item?.squareFeet}

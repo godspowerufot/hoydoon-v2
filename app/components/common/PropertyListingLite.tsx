@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { truncateDescription, encodeId, formatPrice } from "@/utils";
+import { truncateDescription, formatPrice } from "@/utils";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -33,7 +33,6 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
     title = "_",
     bathrooms = "_",
     bedrooms = "_",
-    _id,
     slugs,
     squareFeet = "_",
     listingType,
@@ -135,10 +134,10 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
                 {/* Description - Remove complex opacity transitions */}
                 <div
                     className={`flex-1 flex-col justify-start px-4 py-2 flex ${isMobile
+                        ? "opacity-100"
+                        : isHovered
                             ? "opacity-100"
-                            : isHovered
-                                ? "opacity-100"
-                                : "opacity-0 max-h-0 pointer-events-none"
+                            : "opacity-0 max-h-0 pointer-events-none"
                         }`}
                     style={{
                         // Simplify transition, remove will-change
