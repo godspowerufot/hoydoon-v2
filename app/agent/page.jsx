@@ -123,7 +123,7 @@ export default function Page() {
             {/* "See All" link aligned to the start */}
             <div className="w-full  md:col-span-2 p-0 md:p-0  md:flex justify-start">
               <Link href="/agent/all-agent">
-                <p className="text-[#09858D]  ml-[1.2em] md:ml-0 mt-[0em] md:mt-5   w-full text-sm md:text-2xl font-light">
+                <p className="text-[#09858D]  ml-[1.2em] md:ml-0 mt-[0em] md:mt-5   w-full text-sm md:text-xl font-light">
                   See all agents on Hoydoon
                 </p>
               </Link>
@@ -183,7 +183,7 @@ export default function Page() {
             </p>
 
             <Button className="text-base  !w-[115px] font-light mt-5 ">
-              <Link href="/search">explore</Link>
+              <Link href="/search">Explore</Link>
             </Button>
           </span>
         </div>

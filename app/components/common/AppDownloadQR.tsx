@@ -31,11 +31,11 @@ const AppDownloadQR = () => {
                     className="absolute"
                     style={{
                         top: '50%',
-                        left: '-15%', // Adjust this percentage to fine-tune "by the right"
+                        left: '-55%', // Adjust this percentage to fine-tune "by the right"
                         transform: 'translateY(-50%)',
                         backgroundColor: 'white',
                         padding: '8px',
-                        borderRadius: '8px',
+                        borderRadius: '0px',
                         boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
                     }}
                 >

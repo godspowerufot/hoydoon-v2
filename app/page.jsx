@@ -314,7 +314,7 @@ export default function Home() {
           }}
         ></div>
         {/* Content Section */}
-        <div className="flex flex-col items-center justify-center relative z-[1]  p-3 md:p-0  md:gap-4 h-full ">
+        <div className="flex flex-col items-center lg:mt-[2rem] justify-center relative z-[1]  p-3 md:p-0  md:gap-4 h-full ">
           {/* Main Heading */}
           <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[2.1em] md:text-[clamp(4em,4vw,4em)] md:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
             Where Every House Feels Like Home
@@ -436,8 +436,8 @@ export default function Home() {
                       "No description available for this property."
                     }
                     slugs={items?.slug}
-                    title={items?.item.title || "Untitled Property"}
-                    rent={items?.item.rent || "Rent details not provided"}
+                    title={items?.item?.address || "Untitled Property"}
+                    rent={items?.item?.rent || "Rent details not provided"}
                   />
                 )
               )}
@@ -497,8 +497,8 @@ export default function Home() {
               they need, quickly and confidently.
             </p>
             <a href="/review">
-              <Button className="bg-transparent  !w-[120px] !text-sm md:hidden mt-2 border-primary border-[1px] border-solid">
-                <p className="text-gray">Explore</p>
+              <Button className="bg-transparent group hover:bg-primary transition-all duration-500 !w-[120px] !text-sm md:hidden mt-2 border-primary border-[1px] border-solid">
+                <p className="text-gray group-hover:text-white transition-colors duration-500">Explore</p>
               </Button>
             </a>
           </span>
@@ -511,8 +511,8 @@ export default function Home() {
             </p>
 
             <a href="/review">
-              <Button className="bg-transparent mt-2 border-primary border-[1px] border-solid">
-                <p className="text-gray">Explore</p>
+              <Button className="bg-transparent group hover:bg-primary transition-all duration-500 mt-2 border-primary border-[1px] border-solid">
+                <p className="text-gray group-hover:text-white transition-colors duration-500">Explore</p>
               </Button>
             </a>
           </span>

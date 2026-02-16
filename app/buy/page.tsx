@@ -123,7 +123,7 @@ export default function Home() {
             backgroundPosition: 'center'
           }}
         ></div>
-        <div className="flex flex-col items-center justify-center relative z-[1] gap-1 lg:gap-4 h-full ">
+        <div className="flex flex-col lg:mt-[2rem] items-center justify-center relative z-[1] gap-1 lg:gap-4 h-full ">
           <h1 className="text-white text-center     relative  font-bricolage font-semibold leading-tight  text-[36px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Find Your Dream Home Today!
           </h1>
@@ -181,14 +181,14 @@ export default function Home() {
                       "No description available for this property."
                     }
                     slugs={items?.slug}
-                    title={items?.item?.title || "Untitled Property"}
+                    title={items?.item?.address || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                   />
                 ))}
           </div>
           <Link
             href="/search"
-            className="text-[#09858D]   -mt-[0.5rem] text-sm lg:-mt-3 lg:text-2xl font-[500] "
+            className="text-[#09858D]   -mt-[0.5rem] text-sm lg:-mt-3 lg:text-xl font-[500] "
           >
             see housing for sale
           </Link>
@@ -241,7 +241,7 @@ export default function Home() {
                       "No description available for this property."
                     }
                     slugs={items?.slug}
-                    title={items?.item?.title || "Untitled Property"}
+                    title={items?.item?.address || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                   />
                 ))
@@ -251,7 +251,7 @@ export default function Home() {
           {!isAffordableLoading && (
             <Link
               href="/search?category=affordable"
-              className="text-[#09858D]   mt-[1rem] text-sm lg:my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]   mt-[1rem] text-sm lg:my-5 lg:text-xl font-[500] "
             >
               see all afforable houses for sale
             </Link>
@@ -297,7 +297,7 @@ export default function Home() {
                       "No description available for this property."
                     }
                     slugs={items?.slug}
-                    title={items?.item?.title || "Untitled Property"}
+                    title={items?.item?.address || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                   />
                 ))}
@@ -305,14 +305,14 @@ export default function Home() {
           {!isOpenHouseLoading && (
             <Link
               href="/search?category=open-house`"
-              className="text-[#09858D]   -mt-[0.4rem]   mb-[1rem]  text-sm lg:my-5 lg:text-2xl font-[500] "
+              className="text-[#09858D]   -mt-[0.4rem]   mb-[1rem] md:mb-0 md:-mt-[0.5rem]  text-sm  lg:text-xl font-[500] "
             >
               see all open houses for sale
             </Link>
           )}
         </div>
       </section>
-      <div className="w-screen  lg:hidden   h-[2px] bg-[#D9D9D9] " />
+      <div className="w-screen     h-[2px] bg-[#D9D9D9] " />
 
       <section className="lg:my-[5em] p-2 lg:p-0 w-full lg:max-w-[1200px] font-bricolage lg:flex justify-center flex-col flex-1 items-center">
         <div className="flex flex-col md:items-start gap-6 justify-center max-w-[1200px] w-full">
@@ -351,7 +351,7 @@ export default function Home() {
                       "No description available for this property."
                     }
                     slugs={items?.slug}
-                    title={items?.item?.title || "Untitled Property"}
+                    title={items?.item?.address || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                   />
                 ))}
@@ -359,7 +359,7 @@ export default function Home() {
 
           <Link
             href="/search?category=luxury"
-            className="text-[#09858D]   -mt-[0.5rem] text-sm lg:my-5 lg:text-2xl font-[500] "
+            className="text-[#09858D]   -mt-[0.5rem] text-sm lg:-mt-[0.5rem]   lg:text-xl font-[500] "
           >
             see all luxury houses for sale
           </Link>

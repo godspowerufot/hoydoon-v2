@@ -477,16 +477,16 @@ const RentDetailsClient = () => {
           <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 md:gap-4">
             {/* Left Section */}
             <div className="flex-1 flex flex-col gap-2 md:flex">
-              <h2 className="text-xl lg:text-[2rem] hidden md:block font-bricolage font-semibold">
+              <h2 className="text-xl lg:text-[2rem] hidden md:block leading-relaxed font-bricolage font-semibold">
                 {truncateDescription(address, 10)}              </h2>
               <h2 className="text-xl md:text-[2rem] md:hidden font-bricolage font-semibold">
-                {truncateDescription(address, 3)}
+                {truncateDescription(address, 6)}
               </h2>
 
               {/* Address */}
               <div className=" text-black text-sm  font-light md:text-gray block md:text-base">
                 {/* <p>{truncateDescription(address, 10)}</p> */}
-                <p>{region}</p>
+                <p className="capitalize">{region}</p>
               </div>
 
               {/* Views moved to bottom row */}
@@ -762,7 +762,7 @@ const RentDetailsClient = () => {
                             listing?.item?.description ||
                             "No description available for this property."
                           }
-                          title={listing?.item?.title || "Untitled Property"}
+                          title={listing?.item?.address || "Untitled Property"}
                           rent={
                             listing?.item?.rent || "Rent details not provided"
                           }
