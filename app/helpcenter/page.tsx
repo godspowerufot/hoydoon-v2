@@ -275,7 +275,7 @@ export default function Home() {
 
   return (
     <>
-      <header className=" relative h-[40vh] lg:h-[60vh] items-center justify-center w-screen">
+      <header className=" relative h-[60vh] lg:h-[100vh] items-center justify-center w-screen">
         {/* Background Image Div */}
         <div
           className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"

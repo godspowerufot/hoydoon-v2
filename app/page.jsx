@@ -304,10 +304,10 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative h-full md:h-[100vh]  p-2 md:p-0 w-screen ">
+      <header className="relative h-[60dvh] md:h-[100vh]  p-2 md:p-0 w-screen ">
         {/* Background Image */}
         <div
-          className="absolute top-0 left-0 w-screen h-screen  bg-cover bg-center z-[-1]"
+          className="absolute top-0 left-0 w-screen h-full    bg-cover bg-center z-[-1]"
           style={{
             backgroundImage:
               "url('https://hoydoonstorage.blob.core.windows.net/web-images/headertwo.webp')",
