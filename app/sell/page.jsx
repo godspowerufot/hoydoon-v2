@@ -25,7 +25,7 @@ export default function Home() {
     };
     return (
         <>
-            <header className="relative h-fit md:h-[100vh] lg:h-[100vh] w-screen overflow-visible">
+            <header className="relative h-[60dvh]    md:h-[100vh] lg:h-[100vh] w-screen overflow-visible">
                 {/* Background Image Div */}
                 <div
                     className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
