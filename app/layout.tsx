@@ -13,9 +13,9 @@ import Spinner from "./components/common/Spinner";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hoydoon.com"),
-  title: "Hoydoon: Real Estate, Apartments, Mortgages & Home Values",
+  title: "Hoydoon | Homes & Real Estate in Somalia & Nigeria",
   description:
-    "The leading real estate marketplace. Search millions of for-sale and rental listings, compare Hoydoon® home values and connect with local professionals.",
+    "Real estate marketplace. Search millions of for-sale and rental listings in Somalia & Nigeria, compare Hoydoon home values, and connect with local professionals",
   keywords: [
     "real estate",
     "Somalia",
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
   },
   openGraph: {
-    title: "Hoydoon: Real Estate, Apartments, Mortgages & Home Values",
+    title: "Hoydoon | Homes & Real Estate in Somalia & Nigeria",
     description:
-      "The leading real estate marketplace. Search millions of for-sale and rental listings, compare home values and connect with local professionals.",
+      "Real estate marketplace. Search millions of for-sale and rental listings in Somalia & Nigeria, compare Hoydoon home values, and connect with local professionals",
     url: "https://www.hoydoon.com",
     siteName: "Hoydoon",
     images: [
@@ -54,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hoydoon: Real Estate, Apartments, Mortgages & Home Values",
+    title: "Hoydoon | Homes & Real Estate in Somalia & Nigeria",
     description:
-      "The leading real estate marketplace. Search millions of for-sale and rental listings.",
+      "Real estate marketplace. Search millions of for-sale and rental listings in Somalia & Nigeria, compare Hoydoon home values, and connect with local professionals",
     images: ["https://hoydoonstorage.blob.core.windows.net/web-images/headertwo.webp"],
   },
 };
