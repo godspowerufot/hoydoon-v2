@@ -197,7 +197,7 @@ const Appfooter = () => {
                           src="/app1.svg"
                           alt="Download on App Store"
                           width={100}
-                          height={30}
+                          height={50}
                           quality={100}
                           priority
                           style={{ height: 'auto' }}
@@ -215,7 +215,7 @@ const Appfooter = () => {
                           src="/app2.svg"
                           alt="Get it on Google Play"
                           width={100}
-                          height={30}
+                          height={50}
                           quality={100}
                           priority
                           style={{ height: 'auto' }}

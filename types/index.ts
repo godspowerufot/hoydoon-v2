@@ -10,6 +10,7 @@ export interface Property {
     bathrooms?: number;
     bedrooms?: number;
     description?: string;
+    address?: string;
     title?: string;
     rent?: string;
     petFriendly: boolean;

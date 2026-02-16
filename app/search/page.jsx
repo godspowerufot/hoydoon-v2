@@ -822,7 +822,7 @@ const Page = () => {
         ) : (
           <>
             <div className="flex flex-col  gap-2 mt-[4rem]  md:flex-row justify-between items-start md:items-center md:mt-10 mb-4">
-              <h2 className=" text-xl md:text-4xl font-meduim">
+              <h2 className=" text-xl  md:text-4xl font-semibold">
                 All Real-estate & Homes
               </h2>
               <div className="relative text-sm  flex  gap-2  ">
@@ -897,7 +897,7 @@ const Page = () => {
                 />
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6  lg:mt-[3.5rem]">
                 {displayListings.map((listing, index) => (
                   <PropertyListCard
                     key={index}

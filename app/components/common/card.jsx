@@ -49,7 +49,7 @@ const HoverCard = ({
               }`}
           >
             <h1 className="text-[#000000] text-[20px] lg:text-md  font-medium mb-2">
-              {truncateDescription(title, 2)}
+              {truncateDescription(title, 10)}
             </h1>
             <span className="hidden flex-col justify-between lg:flex mt-1">
               <span className="flex justify-between items-center gap-1">

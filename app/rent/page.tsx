@@ -69,7 +69,7 @@ export default function Home() {
         ></div>
 
         {/* Content Section */}
-        <div className="flex flex-col items-center justify-center relative z-[1] lg:gap-4 h-full ">
+        <div className="flex flex-col lg:mt-[2rem] items-center   justify-center relative z-[1] lg:gap-4 h-full ">
           {/* Main Heading */}
           <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[38px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Find Your Future, Feel at Home!{" "}
@@ -93,7 +93,7 @@ export default function Home() {
 
       {/* explore */}
       <section className="mt-4 p-[0.2rem]  lg:p-0 lg:my-[5em] w-full  font-bricolage lg:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col  w-full md:items-start  lg:max-w-[1200px] ">
+        <div className="flex flex-col lg:gap-[2rem] w-full md:items-start  lg:max-w-[1200px] ">
           <div className="flex flex-col lg:flex-row justify-between items-center w-full  mx-auto">
             <h2 className="text-black text-[24px]  mt-[32px] lg:mt-0  lg:text-[2.5rem] font-[600] w-full lg:w-auto">
               Newest Listings
@@ -129,7 +129,7 @@ export default function Home() {
                       "No description available for this property."
                     }
                     slugs={items?.slug}
-                    title={items?.item?.title || "Untitled Property"}
+                    title={items?.item?.address || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                     squareFeet={items?.item?.squareFeet}
                     landSize={items?.item?.landSize}
@@ -140,7 +140,7 @@ export default function Home() {
           {!isAllLoading && (
             <Link
               href="/search"
-              className="text-[#09858D] -mt-[1rem]  text-sm mb-4 lg:mt-[0.8em] lg:text-xl font-[500] "
+              className="text-[#09858D] -mt-[1rem]  text-sm mb-4 lg:-mt-[0.8rem] lg:text-xl font-[500] "
             >
               see all new listings for rents
             </Link>
@@ -195,7 +195,7 @@ export default function Home() {
                       "No description available for this property."
                     }
                     slugs={items?.slug}
-                    title={items?.item?.title || "Untitled Property"}
+                    title={items?.item?.address || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                   />
                 ))
@@ -257,7 +257,7 @@ export default function Home() {
                       "No description available for this property."
                     }
                     slugs={items?.slug}
-                    title={items?.item?.title || "Untitled Property"}
+                    title={items?.item?.address || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                   />
                 ))
@@ -318,7 +318,7 @@ export default function Home() {
                       "No description available for this property."
                     }
                     slugs={items?.slug}
-                    title={items?.item?.title || "Untitled Property"}
+                    title={items?.item?.address || "Untitled Property"}
                     rent={items?.item?.rent || "Rent details not provided"}
                   />
                 ))
@@ -379,7 +379,7 @@ export default function Home() {
                       }
                       slugs={items?.slug}
                       listingType={items?.listingType || ""}
-                      title={items?.item?.title || "Untitled Property"}
+                      title={items?.item?.address || "Untitled Property"}
                       rent={items?.item?.rent || "Rent details not provided"}
                     />
                   ))
@@ -442,7 +442,7 @@ export default function Home() {
                         "No description available for this property."
                       }
                       slugs={items?.slug}
-                      title={items?.item?.title || "Untitled Property"}
+                      title={items?.item?.address || "Untitled Property"}
                       rent={items?.item?.rent || "Rent details not provided"}
                     />
                   ))

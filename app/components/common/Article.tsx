@@ -100,8 +100,8 @@ const ArticlesSection = () => {
             industry trends, current trends.
           </p>
           <Link href={"/helpcenter"}>
-            <Button className="bg-transparent  hidden md:block mt-2 font-[3px] border-primary border-solid border-[1px] text-gray">
-              <p className="text-gray" style={{ color: "#8F8F8F" }}>
+            <Button className="bg-transparent  hidden md:block mt-2 font-[3px] group hover:bg-primary transition-all duration-500 border-primary border-solid border-[1px] text-gray">
+              <p className="text-gray group-hover:!text-white transition-colors duration-500" >
                 Explore
               </p>
             </Button>

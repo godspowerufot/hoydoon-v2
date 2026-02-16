@@ -60,7 +60,7 @@ const Breadcrumb = ({
         {/* Breadcrumb Links */}
         <div className="flex  w-full items-center gap-3 text-base text-gray-500">
           {/* Initial Back Arrow + Static Text */}
-          <div className="flex font-light items-center gap-1">
+          <div className="flex font-light items-center ">
             <Image
               src="/arrow-right.png"
               alt="arrow"
