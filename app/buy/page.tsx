@@ -105,7 +105,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative overflow-hidden h-full p-[2rem] md:p-2 lg:h-[93vh] w-screen">
+      <header className="relative overflow-hidden h-full p-[2rem] md:p-2 lg:h-[100vh]  w-screen">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1] object-cover"
@@ -123,7 +123,7 @@ export default function Home() {
             backgroundPosition: 'center'
           }}
         ></div>
-        <div className="flex flex-col items-center relative z-[1]  mt-[2.6rem] lg:mt-[6rem]    gap-1 lg:gap-4 h-full ">
+        <div className="flex flex-col items-center justify-center relative z-[1] gap-1 lg:gap-4 h-full ">
           <h1 className="text-white text-center     relative  font-bricolage font-semibold leading-tight  text-[36px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Find Your Dream Home Today!
           </h1>
