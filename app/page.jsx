@@ -321,13 +321,13 @@ export default function Home() {
           </h1>
 
           {/* Subheading */}
-          <h2 className="text-[#FFFFFFB2]  hidden  md:-mt-2 text-center  md:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
+          <p className="text-[#FFFFFFB2]  hidden  md:-mt-2 text-center  md:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
             From urban flats to rural getaways, Hoydoon effortlessly links you
             to the home of your dreams with trust and ease.
-          </h2>
-          <h2 className="text-[#FFFFFFB2]  md:hidden md:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm md:text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
+          </p>
+          <p className="text-[#FFFFFFB2]  md:hidden md:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm md:text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
             Hoydoon connects you to your dream home, easily and reliably.{" "}
-          </h2>
+          </p>
 
           {/* Search Bar (Large Screens) */}
           <PropertySearchBar />
@@ -340,13 +340,13 @@ export default function Home() {
       <section className="w-screen p-5 md:p-0 font-bricolage md:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
         <div className="flex  flex-col-reverse md:gap-y-5   md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-between ">
           <span className="flex  gap-y-5  flex-col w-full md:max-w-[45.3em] 2xl:max-w-[48em]  ">
-            <h2 className="text-black  text-[24px]  mt-[1.40rem] md:mt-0 md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
+            <p className="text-black  text-[24px]  mt-[1.40rem] md:mt-0 md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
               Find your ideal property with simple tools and guidance.
-            </h2>
+            </p>
             <p className="text-gray text-sm md:text-xl  mt-[0.1rem]   font-[300] md:mt-0  font-bricolage  w-full md:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
               Enjoy fast and easy access to a variety of properties that suit
               your needs. Use our smart filters to find the perfect places
-              within your budget and preferences. We’ve done the hard work for
+              within your budget and preferences. We’ve done the hafrd work for
               you, so no need to stress about the search.
             </p>
 
@@ -374,9 +374,9 @@ export default function Home() {
       <section className=" hidden p-2 md:p-0   font-bricolage md:flex justify-center flex-col flex-1 items-center">
         <div className="flex  gap-[15rem]  md:my-[5em]   flex-col md:flex-row  items-center justify-center">
           <span className="flex   md:pl-1   gap-5 2xl:pl-[0rem] flex-col w-full md:w-6/10 ">
-            <h2 className="text-black  text-[26px] md:text-5xl font-[600]">
+            <p className="text-black  text-[26px] md:text-5xl font-[600]">
               Get the Hoydoon App
-            </h2>
+            </p>
             <p className="text-gray  text-base md:text-xl mt-4 md:mt-0 font-[300]  font-bricolage  w-fit md:w-[40rem]">
               Download our highly-rated real estate app for iOS or Android to
               receive instant alerts when your dream home becomes available.

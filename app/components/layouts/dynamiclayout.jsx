@@ -7,6 +7,7 @@ import { ImageGallerySkeleton } from "@/app/components/Loader/RentDetailsSkeleto
 const DynamicImageGrid = ({
   handleFavoriteClick,
   images,
+  video,
   coordinates,
   statuses = [],
   listingId,
@@ -69,23 +70,59 @@ const DynamicImageGrid = ({
     );
   };
 
+  const renderVideo = (vid, className) => {
+    return (
+      <div className="relative cursor-pointer" onClick={() => setIsModalOpen(true)}>
+        <video
+          src={vid.url}
+          className={`${className} object-cover`}
+          muted
+          onMouseEnter={(e) => e.currentTarget.play()}
+          onMouseLeave={(e) => {
+            e.currentTarget.pause();
+            e.currentTarget.currentTime = 0;
+          }}
+        />
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="bg-black/30 p-3 rounded-full">
+            <svg className="w-8 h-8 text-white fill-current" viewBox="0 0 20 20">
+              <path d="M4 4l12 6-12 6z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const renderLayout = () => {
+    const hasVideo = !!video?.url;
     const count = images.length;
+
+    // Default layout if video exists but no images (unlikely based on listing schema but for safety)
+    if (hasVideo && count === 0) {
+      return (
+        <div className="hidden lg:grid grid-cols-1 gap-4 px-4 md:px-0 pt-4">
+          {renderVideo(video, "w-full h-[450px] rounded-lg")}
+        </div>
+      );
+    }
 
     const gridTemplate = {
       1: () => (
-        <div className=" hidden lg:grid grid-cols-1 gap-4 px-4 md:px-0 pt-4">
+        <div className={`hidden lg:grid ${hasVideo ? 'grid-cols-2' : 'grid-cols-1'} gap-4 px-4 md:px-0 pt-4`}>
+          {hasVideo && renderVideo(video, "w-full h-[450px] rounded-lg")}
           {renderImage(
             images[0],
             0,
-            "w-full h-[450px]  object-cover rounded-lg",
+            "w-full h-[450px] object-cover rounded-lg",
             800,
             500
           )}
         </div>
       ),
       2: () => (
-        <div className="hidden lg:grid grid-cols-2 gap-4 p-4   lg:py-4 lg:px-0 ">
+        <div className={`hidden lg:grid ${hasVideo ? 'grid-cols-3' : 'grid-cols-2'} gap-4 p-4 lg:py-4 lg:px-0`}>
+          {hasVideo && renderVideo(video, "w-full h-[450px] rounded-lg")}
           {images.map((img, i) =>
             renderImage(
               img,
@@ -97,107 +134,26 @@ const DynamicImageGrid = ({
           )}
         </div>
       ),
-      3: () => (
-        <div className="hidden lg:grid grid-cols-3 grid-rows-2 gap-4 p-4  lg:py-4 lg:px-0 ">
-          <div className="col-span-2 row-span-2">
-            {renderImage(
-              images[0],
-              0,
-              "w-full h-[450px] object-cover rounded-lg",
-              500,
-              400
-            )}
-          </div>
-          {renderImage(
-            images[1],
-            1,
-            "w-full h-[225px] object-cover rounded-lg",
-            250,
-            218
-          )}
-          {renderImage(
-            images[2],
-            2,
-            "w-full h-[225px] object-cover rounded-lg",
-            300,
-            218
-          )}
-        </div>
-      ),
-      4: () => (
-        <div className="hidden lg:grid grid-cols-2 gap-4 p-4 lg:py-4 lg:px-0">
-          {images
-            .slice(0, 4)
-            .map((img, i) =>
-              renderImage(
-                img,
-                i,
-                "w-full h-[450px] object-cover rounded-lg",
-                500,
-                300
-              )
-            )}
-        </div>
-      ),
-      5: () => (
-        <div className="hidden lg:grid grid-cols-4 grid-rows-2 gap-4 p-4 lg:py-4 lg:px-0">
-          <div className="col-span-2 row-span-2">
-            {renderImage(
-              images[0],
-              0,
-              "w-full h-[465px] object-cover rounded-lg",
-              500,
-              400
-            )}
-          </div>
-          {renderImage(
-            images[1],
-            1,
-            "w-full h-[225px] object-cover rounded-lg",
-            250,
-            200
-          )}
-          {renderImage(
-            images[2],
-            2,
-            "w-full h-[225px] object-cover rounded-lg",
-            300,
-            200
-          )}
-          {renderImage(
-            images[3],
-            3,
-            "w-full h-[225px] object-cover rounded-lg",
-            250,
-            200
-          )}
-          {renderImage(
-            images[4],
-            4,
-            "w-full h-[225px] object-cover rounded-lg",
-            300,
-            200
-          )}
-        </div>
-      ),
-
       default: () => (
         <div className="hidden lg:grid grid-cols-5 gap-4 lg:pb-2 p-4 lg:p-0">
           <div className="col-span-2 row-span-2">
-            {renderImage(
-              images[0],
-              0,
-              "w-full h-[450px]  object-cover rounded-lg",
-              500,
-              400
-            )}
+            {hasVideo
+              ? renderVideo(video, "w-full h-[450px] rounded-lg")
+              : renderImage(
+                images[0],
+                0,
+                "w-full h-[450px] object-cover rounded-lg",
+                500,
+                400
+              )
+            }
           </div>
           {images
-            .slice(1, 7)
+            .slice(hasVideo ? 0 : 1, hasVideo ? 6 : 7)
             .map((img, i) =>
               renderImage(
                 img,
-                i + 1,
+                hasVideo ? i : i + 1,
                 "w-full h-[218px] object-cover rounded-lg",
                 250,
                 218
@@ -207,7 +163,12 @@ const DynamicImageGrid = ({
       ),
     };
 
-    return gridTemplate[count] ? gridTemplate[count]() : gridTemplate.default();
+    // Use specific templates only if no video, otherwise fallback to default for better flexibility
+    if (!hasVideo && gridTemplate[count]) {
+      return gridTemplate[count]();
+    }
+
+    return gridTemplate.default();
   };
 
   return (
@@ -215,6 +176,7 @@ const DynamicImageGrid = ({
       {renderLayout()}
       <PropertyGalleryModal
         image={images}
+        video={video}
         listingId={listingId}
         coordinates={coordinates}
         handleFavoriteClick={handleFavoriteClick}

@@ -42,9 +42,9 @@ const Appfooter = () => {
               {/* Subscribe Section */}
               <div>
                 <div className="flex flex-col  items-start  w-[50em] lg:w-0">
-                  <h1 className="text-white font-bricolage lg:ml-2 text-[24px] lg:text-3xl 2xl:text-4xl lg:font-[600] lg:w-[25rem]">
+                  <h2 className="text-white font-bricolage lg:ml-2 text-[24px] lg:text-3xl 2xl:text-4xl lg:font-[600] lg:w-[25rem]">
                     Subscribe to our Newsletter
-                  </h1>
+                  </h2>
                   <form
                     onSubmit={handleSubscribe}
                     className="flex items-center py-2 lg:w-[460px]  max-md:w-[35%] h-[43px] lg:h-[60px] rounded-[50px] border border-[#F9FAFB] pl-3 pr-1 mt-4"

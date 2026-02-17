@@ -904,12 +904,12 @@ const Page = () => {
                     imageSrc={
                       listing.imageUrls?.[0]?.url || "/default-image.jpg"
                     }
-                    altText={listing.item?.title || "Property"}
+                    altText={listing.item?.address || "Property"}
                     price={listing.item?.price}
                     area={listing.item?.area}
                     region={listing?.region}
                     description={listing.item?.description}
-                    title={listing.item?.title}
+                    title={listing.item?.address}
                     bathrooms={listing.item?.bathrooms}
                     bedrooms={listing.item?.bedrooms}
                     squareFeet={listing.item?.squareFeet}

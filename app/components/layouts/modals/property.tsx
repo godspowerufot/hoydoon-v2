@@ -23,6 +23,10 @@ type PropertyModalProps = {
   coordinates: Coordinates;
   onClose: () => void;
   image: ImageType[];
+  video?: {
+    url: string;
+    description?: string;
+  };
 };
 
 // Full Screen Carousel Component
@@ -94,6 +98,7 @@ const PropertyGalleryModal = ({
   coordinates,
   onClose,
   image,
+  video,
   handleFavoriteClick,
 }: PropertyModalProps) => {
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
@@ -115,7 +120,7 @@ const PropertyGalleryModal = ({
   const images = image || [];
 
   const handleImageClick = (index: number) => {
-    setCurrentIndex(0); // Set clicked image index
+    setCurrentIndex(index); // Set clicked image index
     setIsCarouselOpen(true); // Open the carousel
   };
 
@@ -203,12 +208,19 @@ const PropertyGalleryModal = ({
     if (activeTab === "map") {
       return <MapComponent coordinates={coordinates} />;
     }
-    // if (activeTab === "streetview") {
-    //   return (
-    //     <StreetViewComponent coordinates={coordinates} />
-
-    //   );
-    // }
+    if (activeTab === "video" && video?.url) {
+      return (
+        <div className="flex items-center justify-center bg-black rounded-lg overflow-hidden mt-8 h-[500px]">
+          <video
+            src={video.url}
+            controls
+            className="w-full h-full object-contain"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      );
+    }
   };
 
   // Function to toggle the listings section
@@ -251,6 +263,17 @@ const PropertyGalleryModal = ({
               >
                 Map
               </button>
+              {video?.url && (
+                <button
+                  onClick={() => setActiveTab("video")}
+                  className={`pb-2 ${activeTab === "video"
+                    ? "border-b-2 border-primary text-black"
+                    : "text-gray"
+                    }`}
+                >
+                  Video
+                </button>
+              )}
               {/* <button
                 onClick={() => setActiveTab("streetview")}
                 className={`pb-2 ${activeTab === "streetview" ? "border-b-2 border-primary text-black" : "text-gray"}`}

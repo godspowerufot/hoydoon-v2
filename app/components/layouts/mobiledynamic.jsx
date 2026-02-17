@@ -6,6 +6,7 @@ import { ImageGalleryMobileSkeleton } from "@/app/components/Loader/RentDetailsS
 const DynamicImageMobile = ({
   handleFavoriteClick,
   images,
+  video,
   coordinates,
   statuses = [],
   listingId,
@@ -122,6 +123,7 @@ const DynamicImageMobile = ({
       {isMobile && renderMobileSlider()}
       <PropertyGalleryModal
         image={images}
+        video={video}
         listingId={listingId}
         handleFavoriteClick={handleFavoriteClick}
         coordinates={coordinates}
