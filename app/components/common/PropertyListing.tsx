@@ -59,7 +59,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
     <>
       <Link href={`/rent/${slugs}`}>
         <div
-          className={`relative flex w-full h-[600px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered && !isMobile
+          className={`relative flex w-[93%] h-[500px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered && !isMobile
             ? "border-gray rounded-[20px]"
             : "lg:border-transparent border border-gray rounded-[20px] "
             }`}
@@ -70,7 +70,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
           <div
             className={`relative w-full ${isMobile
               ? "h-[350px]"
-              : `transition-all duration-[2000ms] ease-in-out ${isHovered ? "h-[350px]" : "h-[500px]"
+              : `transition-all duration-[2000ms] ease-in-out ${isHovered ? "h-[300px]" : "h-[400px]"
               }`
               }`}
           >
@@ -95,8 +95,8 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
               }`
               }`}
           >
-            <h1 className="text-black text-[22px] lg:text-[25px] font-bold">
-              {truncateDescription(title, 2)}
+            <h1 className="text-black text-[22px] lg:text-md font-meduim">
+              {truncateDescription(title, 3)}
             </h1>
 
             <span className="flex-col flex mt-[6px] lg:mt-3">
@@ -158,7 +158,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
           {/* basenow  */}
           {!isMobile && (
             <div
-              className={`absolute bottom-0 left-0 right-0 bg-white p-4 z-0 transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-0" : "opacity-100"
+              className={`absolute -bottom-[10px] left-0 right-0 bg-white p-4 z-0 transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-0" : "opacity-100"
                 }`}
             >
               <span className="flex items-center">

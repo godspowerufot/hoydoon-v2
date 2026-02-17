@@ -383,7 +383,7 @@ const RentDetailsClient = () => {
 
     _id,
   } = listing?.listing || {}; // Provide a fallback to avoid errors when data is not available
-  const { imageUrls } = listing?.listing || {};
+  const { imageUrls, video } = listing?.listing || {};
 
   const images = imageUrls || [];
   const totalImages = 12; // 4 columns * 3 rows
@@ -452,6 +452,7 @@ const RentDetailsClient = () => {
             <DynamicImageGrid
               listingId={_id}
               images={images}
+              video={video}
               handleFavoriteClick={handleFavoriteToggle}
               coordinates={coordinate}
             />
@@ -460,6 +461,7 @@ const RentDetailsClient = () => {
               <DynamicImageMobile
                 listingId={_id}
                 images={images}
+                video={video}
                 handleFavoriteClick={handleFavoriteToggle}
                 showListings={showListings}
                 coordinates={coordinate}

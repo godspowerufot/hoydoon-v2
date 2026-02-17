@@ -48,25 +48,25 @@ const HoverCard = ({
               : "duration-300 opacity-0 max-h-0 pointer-events-none"
               }`}
           >
-            <h1 className="text-[#000000] text-[20px] lg:text-md  font-medium mb-2">
-              {truncateDescription(title, 10)}
-            </h1>
+            <h2 className="text-[#000000] text-[20px] lg:text-md font-medium mb-2">
+              {truncateDescription(title, 6)}
+            </h2>
             <span className="hidden flex-col justify-between lg:flex mt-1">
               <span className="flex justify-between items-center gap-1">
                 <div className="flex">
                   <h4 className="text-gray text-label flex items-center justify-center font-light">
                     From
                   </h4>
-                  <h2 className="font-bold lg:text-[22px] ml-2">
+                  <p className="font-bold lg:text-[22px] ml-2">
                     {formatPrice(region, Number(price))}
-                  </h2>
+                  </p>
                 </div>
                 <h4 className="text-label text-gray font-light">
                   Area from {area}
                 </h4>
               </span>
               <p className="text-gray mb-2 text-[14px] mt-2">
-                {truncateDescription(description, 20)}
+                {truncateDescription(description, 13)}
               </p>
               <div className="mt-2 mb-1 flex justify-between items-center">
                 <div className="text-base flex justify-center font-bricolage items-center rounded-full font-light h-[32px] lg:w-[120px] text-[#1E1E1E] bg-[#D8F0F1]">
@@ -154,7 +154,7 @@ const HoverCard = ({
 
           {/* Details */}
           <div className="px-5 py-3 bg-white">
-            <h1 className="text-black text-[24px] font-bold">Hebron Homes</h1>
+            <h2 className="text-black text-[24px] font-bold">Hebron Homes</h2>
 
             <div className="mt-2 flex flex-col gap-2">
               <div className="flex justify-between items-center">
