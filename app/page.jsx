@@ -304,7 +304,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative h-[60dvh] md:h-[100vh]  p-2 md:p-0 w-screen ">
+      <header className="relative h-[65dvh] md:h-[100vh]  p-2 md:p-0 w-screen ">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full    bg-cover bg-center z-[-1]"
@@ -409,7 +409,7 @@ export default function Home() {
               to fit your taste and needs.
             </p>
           </div>
-          <div className="w-full grid grid-cols-1 lg:grid-cols-3 mt-[0.5em] lg:mt-[1em] gap-5 mb-2">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-3 mt-[1.8em] lg:mt-[1em] gap-5 mb-2">
             {isAllLoading
               ? // Show skeleton loaders
               Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
