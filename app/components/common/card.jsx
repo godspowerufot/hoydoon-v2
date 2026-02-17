@@ -22,7 +22,7 @@ const HoverCard = ({
     <>
       <Link href={`/rent/${slugs}`}>
         <div
-          className={`relative lg:flex hidden w-[93%] h-[500px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered ? "border-gray rounded-[20px]" : "border-transparent"
+          className={`relative lg:flex hidden w-fulls lg:w-[93%] h-[500px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered ? "border-gray rounded-[20px]" : "border-transparent"
             }`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -48,7 +48,7 @@ const HoverCard = ({
               : "duration-300 opacity-0 max-h-0 pointer-events-none"
               }`}
           >
-            <h2 className="text-[#000000] text-[20px] lg:text-md font-medium mb-2">
+            <h2 className="text-[#000000]    text-[20px] lg:text-md font-medium mb-2">
               {truncateDescription(title, 6)}
             </h2>
             <span className="hidden flex-col justify-between lg:flex mt-1">
@@ -154,7 +154,7 @@ const HoverCard = ({
 
           {/* Details */}
           <div className="px-5 py-3 bg-white">
-            <h2 className="text-black text-[24px] font-bold">Hebron Homes</h2>
+            <h2 className="text-black  mt-3 lg:text-md font-meduim">  {truncateDescription(title, 6)}</h2>
 
             <div className="mt-2 flex flex-col gap-2">
               <div className="flex justify-between items-center">
