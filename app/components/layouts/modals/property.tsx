@@ -238,7 +238,7 @@ const PropertyGalleryModal = ({
         {" "}
         <div
           ref={modalRef}
-          className="bg-white w-11/12 md:w-3/4 lg:w-5/6 pt-5 pb-[3.5rem] px-[2rem] shadow-lg relative max-h-[90vh] overflow-y-auto animate-zoomOut"
+          className="bg-white w-11/12 md:w-3/4 lg:w-5/6 pt-5 pb-[3.5rem] px-[1rem]  md:px-[2rem] shadow-lg relative max-h-[90vh] overflow-y-auto animate-zoomOut"
         >
           {/* Close Button */}
 

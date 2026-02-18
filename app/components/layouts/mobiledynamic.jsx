@@ -24,17 +24,21 @@ const DynamicImageMobile = ({
     }
   }, []);
 
-  // Set loading to false once images are available
+  // Set loading to false once images are available or confirmed empty
   useEffect(() => {
     if (images !== undefined && images !== null) {
       setIsLoading(false);
     }
   }, [images]);
 
+  const hasVideo = !!video?.url;
+  const imageCount = images?.length || 0;
+  const totalItems = hasVideo ? imageCount + 1 : imageCount;
+
   // Auto-slide
   useEffect(() => {
     const slider = sliderRef.current;
-    if (!slider || images.length <= 1 || !isMobile) return;
+    if (!slider || totalItems <= 1 || !isMobile) return;
 
     const interval = setInterval(() => {
       if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth) {
@@ -42,12 +46,12 @@ const DynamicImageMobile = ({
         setCurrentIndex(0);
       } else {
         slider.scrollBy({ left: slider.offsetWidth, behavior: "smooth" });
-        setCurrentIndex((prev) => Math.min(prev + 1, images.length - 1));
+        setCurrentIndex((prev) => Math.min(prev + 1, totalItems - 1));
       }
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [images, isMobile]);
+  }, [images, isMobile, totalItems, video]);
 
   // Update index on scroll
   useEffect(() => {
@@ -81,30 +85,50 @@ const DynamicImageMobile = ({
       className="overflow-x-auto lg:hidden snap-x snap-mandatory flex no-scrollbar w-full h-full"
       ref={sliderRef}
     >
-      {images.map((img, i) => (
-        <div
-          key={i}
-          className="w-full h-[40vh] snap-center shrink-0 relative"
-          onClick={() => setIsModalOpen(true)}
-        >
-          <Image
-            src={img?.url || "/house1.png"}
-            alt={`Image ${i + 1}`}
-            fill
-            className="object-cover w-full h-full"
+      {hasVideo && (
+        <div className="w-full h-[40vh] snap-center shrink-0 relative" onClick={() => setIsModalOpen(true)}>
+          <video
+            src={video.url}
+            className="w-full h-full object-cover"
+            muted
+            autoPlay
+            loop
+            playsInline
           />
-
-          {/* Image Counter */}
-          {i === currentIndex && (
-            <div className="absolute bottom-4 left-4 bg-white px-3 py-1 rounded-[12px]  h-[34px]  justify-center items-center flex w-[46px] text-sm font-light">
-              {currentIndex + 1}/{images.length}
+          {currentIndex === 0 && (
+            <div className="absolute bottom-4 left-4 bg-white px-3 py-1 rounded-[12px] h-[34px] justify-center items-center flex w-[46px] text-sm font-light">
+              1/{totalItems}
             </div>
           )}
-
-          {/* Status Badge */}
-          {hasStatuses && renderStatusBadge(statuses[i])}
         </div>
-      ))}
+      )}
+      {images.map((img, i) => {
+        const itemIndex = hasVideo ? i + 1 : i;
+        return (
+          <div
+            key={i}
+            className="w-full h-[40vh] snap-center shrink-0 relative"
+            onClick={() => setIsModalOpen(true)}
+          >
+            <Image
+              src={img?.url || "/house1.png"}
+              alt={`Image ${i + 1}`}
+              fill
+              className="object-cover w-full h-full"
+            />
+
+            {/* Image Counter */}
+            {itemIndex === currentIndex && (
+              <div className="absolute bottom-4 left-4 bg-white px-3 py-1 rounded-[12px] h-[34px] justify-center items-center flex w-[46px] text-sm font-light">
+                {itemIndex + 1}/{totalItems}
+              </div>
+            )}
+
+            {/* Status Badge */}
+            {hasStatuses && renderStatusBadge(statuses[i])}
+          </div>
+        );
+      })}
     </div>
   );
 
@@ -114,8 +138,8 @@ const DynamicImageMobile = ({
   }
 
   // Only show "No images available" after loading is complete
-  if (!images || images.length === 0) {
-    return <div className="text-center lg:text-3xl">No images available</div>;
+  if (totalItems === 0) {
+    return <div className="text-center lg:text-3xl">No media available</div>;
   }
 
   return (

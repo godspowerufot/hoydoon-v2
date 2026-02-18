@@ -353,14 +353,17 @@ const RentDetailsClient = () => {
     }
   }, [allListings, isAllLoading]);
 
+
   // These map the highlight text to the corresponding field(s) in the data
   const featureMap = {
-    "Pet allowed": (item) => item?.petFriendly,
-    Laundry: (item) => item?.laundryType?.length > 0,
-    Balcony: (item) => item?.amenities?.length > 0,
-    // airCondition: (item) => item?.airCondition?.length > 0,
-    "Garage parking": (item) => item?.parkingType,
-    // Add more mappings as needed
+    "Solar power system": (item) => item?.amenities?.some(a => a.toLowerCase().includes("solar")),
+    "Walk-in closet": (item) => item?.amenities?.some(a => a.toLowerCase().includes("walk-in closet")),
+    "Garage parking": (item) => item?.parkingType || item?.amenities?.some(a => a.toLowerCase().includes("garage")),
+    "Balcony": (item) => item?.amenities?.some(a => a.toLowerCase().includes("balcony")),
+    "Covered patio or porch": (item) => item?.amenities?.some(a => a.toLowerCase().includes("patio") || a.toLowerCase().includes("porch")),
+    "Laundry": (item) => item?.laundryType?.length > 0 || item?.amenities?.some(a => a.toLowerCase().includes("laundry")),
+    "Pet allowed": (item) => item?.petFriendly || item?.amenities?.some(a => a.toLowerCase().includes("pet")),
+    "Heating available": (item) => item?.amenities?.some(a => a.toLowerCase().includes("heating")),
   };
 
   // Dynamically filter highlights based on what's in the listing.item
