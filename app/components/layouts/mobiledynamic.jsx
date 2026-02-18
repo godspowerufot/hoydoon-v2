@@ -111,7 +111,7 @@ const DynamicImageMobile = ({
             onClick={() => setIsModalOpen(true)}
           >
             <Image
-              src={img?.url || "/house1.png"}
+              src={typeof img === "string" ? img : img?.url || img?.imageUrl || "/house1.png"}
               alt={`Image ${i + 1}`}
               fill
               className="object-cover w-full h-full"
@@ -152,6 +152,9 @@ const DynamicImageMobile = ({
         handleFavoriteClick={handleFavoriteClick}
         coordinates={coordinates}
         isOpen={isModalOpen}
+        initialIndex={hasVideo ? Math.max(0, currentIndex - 1) : currentIndex}
+        initialTab={currentIndex === 0 && hasVideo ? "video" : "photos"}
+        autoOpenCarousel={!(currentIndex === 0 && hasVideo)}
         onClose={() => setIsModalOpen(false)}
       />
     </>
