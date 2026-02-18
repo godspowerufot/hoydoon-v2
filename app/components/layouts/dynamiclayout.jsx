@@ -6,7 +6,7 @@ import { ImageGallerySkeleton } from "@/app/components/Loader/RentDetailsSkeleto
 
 const DynamicImageGrid = ({
   handleFavoriteClick,
-  images,
+  images = [],
   video,
   coordinates,
   statuses = [],
@@ -96,79 +96,69 @@ const DynamicImageGrid = ({
 
   const renderLayout = () => {
     const hasVideo = !!video?.url;
-    const count = images.length;
+    const imageCount = images?.length || 0;
+    const totalItems = hasVideo ? imageCount + 1 : imageCount;
 
-    // Default layout if video exists but no images (unlikely based on listing schema but for safety)
-    if (hasVideo && count === 0) {
+    // Loading or No content cases
+    if (totalItems === 0) return null;
+
+    // Single item layout (1 video or 1 image)
+    if (totalItems === 1) {
       return (
         <div className="hidden lg:grid grid-cols-1 gap-4 px-4 md:px-0 pt-4">
-          {renderVideo(video, "w-full h-[450px] rounded-lg")}
+          {hasVideo
+            ? renderVideo(video, "w-full h-[450px] rounded-lg")
+            : renderImage(images[0], 0, "w-full h-[450px] object-cover rounded-lg", 800, 500)}
         </div>
       );
     }
 
-    const gridTemplate = {
-      1: () => (
-        <div className={`hidden lg:grid ${hasVideo ? 'grid-cols-2' : 'grid-cols-1'} gap-4 px-4 md:px-0 pt-4`}>
+    // Dual item layout (1 video + 1 image, or 2 images)
+    if (totalItems === 2) {
+      return (
+        <div className={`hidden lg:grid grid-cols-2 gap-4 px-4 md:px-0 pt-4`}>
           {hasVideo && renderVideo(video, "w-full h-[450px] rounded-lg")}
-          {renderImage(
-            images[0],
-            0,
-            "w-full h-[450px] object-cover rounded-lg",
-            800,
-            500
-          )}
-        </div>
-      ),
-      2: () => (
-        <div className={`hidden lg:grid ${hasVideo ? 'grid-cols-3' : 'grid-cols-2'} gap-4 p-4 lg:py-4 lg:px-0`}>
-          {hasVideo && renderVideo(video, "w-full h-[450px] rounded-lg")}
-          {images.map((img, i) =>
+          {images.slice(0, hasVideo ? 1 : 2).map((img, i) =>
             renderImage(
               img,
               i,
               "w-full h-[450px] object-cover rounded-lg",
-              500,
-              400
+              800,
+              500
             )
           )}
         </div>
-      ),
-      default: () => (
-        <div className="hidden lg:grid grid-cols-5 gap-4 lg:pb-2 p-4 lg:p-0">
-          <div className="col-span-2 row-span-2">
-            {hasVideo
-              ? renderVideo(video, "w-full h-[450px] rounded-lg")
-              : renderImage(
-                images[0],
-                0,
-                "w-full h-[450px] object-cover rounded-lg",
-                500,
-                400
-              )
-            }
-          </div>
-          {images
-            .slice(hasVideo ? 0 : 1, hasVideo ? 6 : 7)
-            .map((img, i) =>
-              renderImage(
-                img,
-                hasVideo ? i : i + 1,
-                "w-full h-[218px] object-cover rounded-lg",
-                250,
-                218
-              )
-            )}
-        </div>
-      ),
-    };
-
-    // Use specific templates only if no video, otherwise fallback to default for better flexibility
-    if (!hasVideo && gridTemplate[count]) {
-      return gridTemplate[count]();
+      );
     }
 
-    return gridTemplate.default();
+    // Default 5-column layout for 3+ items
+    return (
+      <div className="hidden lg:grid grid-cols-5 gap-4 lg:pb-2 p-4 lg:p-0">
+        <div className="col-span-2 row-span-2">
+          {hasVideo
+            ? renderVideo(video, "w-full h-[450px] rounded-lg")
+            : renderImage(
+              images[0],
+              0,
+              "w-full h-[450px] object-cover rounded-lg",
+              500,
+              400
+            )
+          }
+        </div>
+        {images
+          .slice(hasVideo ? 0 : 1, hasVideo ? 6 : 7)
+          .map((img, i) =>
+            renderImage(
+              img,
+              hasVideo ? i : i + 1,
+              "w-full h-[218px] object-cover rounded-lg",
+              250,
+              218
+            )
+          )}
+      </div>
+    );
   };
 
   return (
