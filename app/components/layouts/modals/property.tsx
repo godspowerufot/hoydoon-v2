@@ -36,15 +36,12 @@ const FullScreenCarousel = ({
   setCurrentIndex,
   onClose,
 }: any) => {
-  const [imageurl, setimageurl] = useState("");
-  useEffect(() => {
-    if (currentIndex >= 0 && currentIndex < images.length) {
-      const indexImage = images[currentIndex]?.url;
-      setimageurl(indexImage); // Set the image based on currentIndex
-    } else {
-    }
-  }, [images, currentIndex]);
   if (!images || images.length === 0) return null;
+
+  const currentImage = images[currentIndex];
+  // Robust image URL selection
+  const imageUrl = typeof currentImage === "string" ? currentImage : currentImage?.url || currentImage?.imageUrl || "/house1.png";
+
 
   const handleNext = () => {
     setCurrentIndex((prev: number) => (prev + 1) % images.length);
@@ -74,11 +71,12 @@ const FullScreenCarousel = ({
 
       <div className="transition-all duration-300 ease-in-out max-w-full max-h-[80%]">
         <Image
-          width={500}
-          height={300}
-          src={imageurl}
+          width={1200}
+          height={800}
+          src={imageUrl}
           alt="carousel"
           className="object-contain max-h-[80vh] w-full rounded-md"
+          priority
         />
       </div>
 
@@ -100,10 +98,23 @@ const PropertyGalleryModal = ({
   image,
   video,
   handleFavoriteClick,
-}: PropertyModalProps) => {
+  initialIndex = 0,
+  initialTab: propInitialTab = "photos",
+  autoOpenCarousel = false,
+}: PropertyModalProps & { initialIndex?: number; initialTab?: string; autoOpenCarousel?: boolean }) => {
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0); // Default to first image
-  const [activeTab, setActiveTab] = useState("photos");
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [activeTab, setActiveTab] = useState(propInitialTab);
+
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentIndex(initialIndex);
+      setActiveTab(propInitialTab);
+      if (autoOpenCarousel) {
+        setIsCarouselOpen(true);
+      }
+    }
+  }, [isOpen, initialIndex, propInitialTab, autoOpenCarousel]);
   const router = useRouter(); // Tab state
   const [showListings, setShowListings] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null); // ✅ Ref for modal content
@@ -132,10 +143,12 @@ const PropertyGalleryModal = ({
       const remaining = images.length - index;
 
       if (remaining === 1) {
+        const img = images[index];
+        const imgUrl = typeof img === "string" ? img : img?.url || img?.imageUrl || "/house1.png";
         blocks.push(
           <div key={index} className="grid grid-cols-1 gap-3">
             <Image
-              src={images[index]?.url || "/house1.png"}
+              src={imgUrl}
               onClick={() => handleImageClick(index)} // Use handleImageClickAlwaysFirst if needed
               alt={`Image ${index}`}
               width={500}
@@ -148,17 +161,21 @@ const PropertyGalleryModal = ({
       } else if (remaining === 2) {
         blocks.push(
           <div key={index} className="grid grid-col-1 lg:grid-cols-2 gap-3">
-            {images.slice(index, index + 2).map((img: any, i: number) => (
-              <Image
-                width={500}
-                height={300}
-                key={i}
-                src={img?.url || "/house1.png"}
-                onClick={() => handleImageClick(index)} // Use handleImageClickAlwaysFirst if needed
-                alt={`Image ${index + i}`}
-                className="w-full h-[400px] object-cover rounded-md cursor-pointer"
-              />
-            ))}
+            {images.slice(index, index + 2).map((img: any, i: number) => {
+              const absoluteIndex = index + i;
+              const imgUrl = typeof img === "string" ? img : img?.url || img?.imageUrl || "/house1.png";
+              return (
+                <Image
+                  width={500}
+                  height={300}
+                  key={i}
+                  src={imgUrl}
+                  onClick={() => handleImageClick(absoluteIndex)}
+                  alt={`Image ${absoluteIndex}`}
+                  className="w-full h-[400px] object-cover rounded-md cursor-pointer"
+                />
+              );
+            })}
           </div>
         );
         index += 2;
@@ -172,23 +189,27 @@ const PropertyGalleryModal = ({
               <Image
                 width={500}
                 height={300}
-                src={images[index]?.url || "/house1.png"}
-                onClick={() => handleImageClick(index)} // Use handleImageClickAlwaysFirst if needed
+                src={typeof images[index] === "string" ? images[index] : images[index]?.url || images[index]?.imageUrl || "/house1.png"}
+                onClick={() => handleImageClick(index)}
                 alt={`Image ${index}`}
                 className="w-full h-[400px] object-cover rounded-md cursor-pointer"
               />
             </div>
-            {images.slice(index + 1, index + 3).map((img: any, i: number) => (
-              <Image
-                width={500}
-                height={300}
-                key={i}
-                src={img?.url || "/house1.png"}
-                onClick={() => handleImageClick(index)} // Use handleImageClickAlwaysFirst if needed
-                alt={`Image ${index + i + 1}`}
-                className="w-full h-[360px] object-cover rounded-md cursor-pointer"
-              />
-            ))}
+            {images.slice(index + 1, index + 3).map((img: any, i: number) => {
+              const absoluteIndex = index + 1 + i;
+              const imgUrl = typeof img === "string" ? img : img?.url || img?.imageUrl || "/house1.png";
+              return (
+                <Image
+                  width={500}
+                  height={300}
+                  key={i}
+                  src={imgUrl}
+                  onClick={() => handleImageClick(absoluteIndex)}
+                  alt={`Image ${absoluteIndex}`}
+                  className="w-full h-[360px] object-cover rounded-md cursor-pointer"
+                />
+              );
+            })}
           </div>
         );
         index += 3;

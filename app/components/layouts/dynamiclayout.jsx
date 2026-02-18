@@ -13,7 +13,17 @@ const DynamicImageGrid = ({
   listingId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [initialIndex, setInitialIndex] = useState(0);
+  const [initialTab, setInitialTab] = useState("photos");
+  const [autoOpenCarousel, setAutoOpenCarousel] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  const handleItemClick = (tab, index = 0, openCarousel = false) => {
+    setInitialTab(tab);
+    setInitialIndex(index);
+    setAutoOpenCarousel(openCarousel);
+    setIsModalOpen(true);
+  };
 
   useEffect(() => {
     // Set loading to false once images are available or confirmed empty
@@ -56,10 +66,11 @@ const DynamicImageGrid = ({
   };
 
   const renderImage = (img, i, className, width, height) => {
+    const imgUrl = typeof img === "string" ? img : img?.url || img?.imageUrl || "/house1.png";
     return (
-      <div key={i} className="relative" onClick={() => setIsModalOpen(true)}>
+      <div key={i} className="relative" onClick={() => handleItemClick("photos", i, true)}>
         <Image
-          src={img?.url || "/house1.png"}
+          src={imgUrl}
           alt={`Gallery Image ${i + 1}`}
           width={width}
           height={height}
@@ -72,7 +83,7 @@ const DynamicImageGrid = ({
 
   const renderVideo = (vid, className) => {
     return (
-      <div className="relative cursor-pointer" onClick={() => setIsModalOpen(true)}>
+      <div className="relative cursor-pointer" onClick={() => handleItemClick("video")}>
         <video
           src={vid.url}
           className={`${className} object-cover`}
@@ -171,6 +182,9 @@ const DynamicImageGrid = ({
         coordinates={coordinates}
         handleFavoriteClick={handleFavoriteClick}
         isOpen={isModalOpen}
+        initialIndex={initialIndex}
+        initialTab={initialTab}
+        autoOpenCarousel={autoOpenCarousel}
         onClose={() => setIsModalOpen(false)}
       />
     </>
