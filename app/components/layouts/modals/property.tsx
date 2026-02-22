@@ -100,7 +100,6 @@ const PropertyGalleryModal = ({
   handleFavoriteClick,
   initialIndex = 0,
   initialTab: propInitialTab = "photos",
-  autoOpenCarousel = false,
 }: PropertyModalProps & { initialIndex?: number; initialTab?: string; autoOpenCarousel?: boolean }) => {
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
@@ -110,11 +109,10 @@ const PropertyGalleryModal = ({
     if (isOpen) {
       setCurrentIndex(initialIndex);
       setActiveTab(propInitialTab);
-      if (autoOpenCarousel) {
-        setIsCarouselOpen(true);
-      }
+      setIsCarouselOpen(false); // Always reset carousel when modal opens
     }
-  }, [isOpen, initialIndex, propInitialTab, autoOpenCarousel]);
+  }, [isOpen, initialIndex, propInitialTab]);
+
   const router = useRouter(); // Tab state
   const [showListings, setShowListings] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null); // ✅ Ref for modal content
@@ -149,7 +147,7 @@ const PropertyGalleryModal = ({
           <div key={index} className="grid grid-cols-1 gap-3">
             <Image
               src={imgUrl}
-              onClick={() => handleImageClick(index)} // Use handleImageClickAlwaysFirst if needed
+              onClick={() => handleImageClick(index)}
               alt={`Image ${index}`}
               width={500}
               height={500}
@@ -248,7 +246,6 @@ const PropertyGalleryModal = ({
   const handleToggleListings = () => {
     setShowListings((prev) => !prev);
   };
-  // Handle the "See All" button click
 
   return (
     <>
@@ -261,8 +258,6 @@ const PropertyGalleryModal = ({
           ref={modalRef}
           className="bg-white w-11/12 md:w-3/4 lg:w-5/6 pt-5 pb-[3.5rem] px-[1rem]  md:px-[2rem] shadow-lg relative max-h-[90vh] overflow-y-auto animate-zoomOut"
         >
-          {/* Close Button */}
-
           {/* Tabs */}
           <div className="flex border-b mb-3">
             <div className="flex  space-x-6">
@@ -295,12 +290,6 @@ const PropertyGalleryModal = ({
                   Video
                 </button>
               )}
-              {/* <button
-                onClick={() => setActiveTab("streetview")}
-                className={`pb-2 ${activeTab === "streetview" ? "border-b-2 border-primary text-black" : "text-gray"}`}
-              >
-                Street View
-              </button> */}
             </div>
             <div className="flex  justify-end pr-4 pb-2  flex-1 gap-2">
               <div
@@ -347,7 +336,7 @@ const PropertyGalleryModal = ({
         </div>
       </div>
 
-      {/* Full Screen Carousel */}
+      {/* Full Screen Carousel — only opens when user clicks an image */}
       {isCarouselOpen && (
         <FullScreenCarousel
           images={images}
