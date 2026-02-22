@@ -35,24 +35,6 @@ const DynamicImageMobile = ({
   const imageCount = images?.length || 0;
   const totalItems = hasVideo ? imageCount + 1 : imageCount;
 
-  // Auto-slide
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider || totalItems <= 1 || !isMobile) return;
-
-    const interval = setInterval(() => {
-      if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth) {
-        slider.scrollTo({ left: 0, behavior: "smooth" });
-        setCurrentIndex(0);
-      } else {
-        slider.scrollBy({ left: slider.offsetWidth, behavior: "smooth" });
-        setCurrentIndex((prev) => Math.min(prev + 1, totalItems - 1));
-      }
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [images, isMobile, totalItems, video]);
-
   // Update index on scroll
   useEffect(() => {
     const slider = sliderRef.current;
