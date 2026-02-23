@@ -8,6 +8,8 @@ type Props = {
 };
 
 async function getListing(slug: string) {
+    const url = process.env.NEXT_PUBLIC_BASE_URL;
+    console.log("URL => ", url);
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/v1/listings/slug/${slug}`,
         { next: { revalidate: 3600 } }

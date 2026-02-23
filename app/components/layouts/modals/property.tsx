@@ -113,6 +113,12 @@ const PropertyGalleryModal = ({
     }
   }, [isOpen, initialIndex, propInitialTab]);
 
+  // useEffect(() => {
+  //   if (!isCarouselOpen && currentIndex > 0) {
+  //     setIsCarouselOpen(true);
+  //   }
+  // }, [currentIndex]);
+
   const router = useRouter(); // Tab state
   const [showListings, setShowListings] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null); // ✅ Ref for modal content
@@ -129,9 +135,27 @@ const PropertyGalleryModal = ({
   const images = image || [];
 
   const handleImageClick = (index: number) => {
+    console.log("Image Selected Index: ", index, " Selected Image URL=> ", images[10-1]);
     setCurrentIndex(index); // Set clicked image index
     setIsCarouselOpen(true); // Open the carousel
   };
+
+  const getImageUrl = (img: any) => {
+    if (typeof img === "string") return img;
+    return img?.url || img?.imageUrl || "/house1.png";
+  };
+
+  const renderImage = (img: any, absoluteIndex: number, height: string = "h-[400px]") => (
+    <Image
+      key={`img-${absoluteIndex}`}
+      src={getImageUrl(img)}
+      onClick={() => handleImageClick(absoluteIndex)}
+      alt={`Image ${absoluteIndex}`}
+      width={500}
+      height={500}
+      className={`w-full ${height} object-cover rounded-md cursor-pointer`}
+    />
+  );
 
   const generateGridLayout = () => {
     const blocks = [];
@@ -140,81 +164,50 @@ const PropertyGalleryModal = ({
     while (index < images.length) {
       const remaining = images.length - index;
 
+      //When is a Single Image
       if (remaining === 1) {
-        const img = images[index];
-        const imgUrl = typeof img === "string" ? img : img?.url || img?.imageUrl || "/house1.png";
         blocks.push(
-          <div key={index} className="grid grid-cols-1 gap-3">
-            <Image
-              src={imgUrl}
-              onClick={() => handleImageClick(index)}
-              alt={`Image ${index}`}
-              width={500}
-              height={500}
-              className="w-full h-[400px] object-cover rounded-md cursor-pointer"
-            />
+          <div key={`block-${index}`} className="grid grid-cols-1 gap-3">
+            {renderImage(images[index], index)}
           </div>
         );
         index += 1;
-      } else if (remaining === 2) {
+        continue;
+      }
+
+      // When the image is two
+      if (remaining === 2) {
         blocks.push(
-          <div key={index} className="grid grid-col-1 lg:grid-cols-2 gap-3">
-            {images.slice(index, index + 2).map((img: any, i: number) => {
-              const absoluteIndex = index + i;
-              const imgUrl = typeof img === "string" ? img : img?.url || img?.imageUrl || "/house1.png";
-              return (
-                <Image
-                  width={500}
-                  height={300}
-                  key={i}
-                  src={imgUrl}
-                  onClick={() => handleImageClick(absoluteIndex)}
-                  alt={`Image ${absoluteIndex}`}
-                  className="w-full h-[400px] object-cover rounded-md cursor-pointer"
-                />
-              );
-            })}
+          <div key={`block-${index}`} className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+            {images.slice(index, index + 2).map((img, i) =>
+              renderImage(img, index + i)
+            )}
           </div>
         );
         index += 2;
-      } else {
-        blocks.push(
-          <div
-            key={index}
-            className="grid  grid-col-1 lg:grid-cols-2 gap-3 grid-rows-2 -mb-[2pc]"
-          >
-            <div className="col-span-2">
-              <Image
-                width={500}
-                height={300}
-                src={typeof images[index] === "string" ? images[index] : images[index]?.url || images[index]?.imageUrl || "/house1.png"}
-                onClick={() => handleImageClick(index)}
-                alt={`Image ${index}`}
-                className="w-full h-[400px] object-cover rounded-md cursor-pointer"
-              />
-            </div>
-            {images.slice(index + 1, index + 3).map((img: any, i: number) => {
-              const absoluteIndex = index + 1 + i;
-              const imgUrl = typeof img === "string" ? img : img?.url || img?.imageUrl || "/house1.png";
-              return (
-                <Image
-                  width={500}
-                  height={300}
-                  key={i}
-                  src={imgUrl}
-                  onClick={() => handleImageClick(absoluteIndex)}
-                  alt={`Image ${absoluteIndex}`}
-                  className="w-full h-[360px] object-cover rounded-md cursor-pointer"
-                />
-              );
-            })}
-          </div>
-        );
-        index += 3;
+        continue;
       }
+
+      // handle three (banner + two below)
+      blocks.push(
+        <div
+          key={`block-${index}`}
+          className="grid grid-cols-1 lg:grid-cols-2 grid-rows-2 gap-3"
+        >
+          <div className="col-span-1 lg:col-span-2">
+            {renderImage(images[index], index)}
+          </div>
+
+          {images.slice(index + 1, index + 3).map((img, i) =>
+            renderImage(img, index + 1 + i, "h-[360px]")
+          )}
+        </div>
+      );
+
+      index += 3;
     }
 
-    return <div className="flex flex-col space-y-2">{blocks}</div>;
+    return <div className="flex flex-col gap-3">{blocks}</div>;
   };
 
   // Switch between tabs
