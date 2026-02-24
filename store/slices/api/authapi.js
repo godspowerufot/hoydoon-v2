@@ -149,6 +149,12 @@ export const authApi = createApi({
         method: "GET",
       }),
     }),
+    getFeaturedListings: builder.query({
+      query: ({ count }) => ({
+        url: `/v1/listings/featured?count=${count}`,
+        method: 'GET',
+      }),
+    }),
     sendMessage: builder.mutation({
       query: (messageData) => ({
         url: "/v1/messages",
@@ -217,6 +223,7 @@ export const {
   useGoogleAuthMutation,
   useSignupMutation,
   useGetAllListingsQuery,
+  useGetFeaturedListingsQuery,
   useGetSpecificListingsQuery,
   useGetListingBySlugQuery,
   useGetAgentsInfoQuery,

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ArticlesSection from "./components/common/Article";
 import { useEffect, useRef } from "react";
-import { useGetAllListingsQuery } from "@/store/slices/api/authapi";
+import { useGetAllListingsQuery, useGetFeaturedListingsQuery } from "@/store/slices/api/authapi";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/usemobile";
 import Button from "./components/common/Button";
@@ -269,13 +269,20 @@ export default function Home() {
 
   const isMobile = useIsMobile();
 
+  const { 
+    data: featuredListings,
+    isLoading: isFeaturedLoading,
+    refetch: refetchFeaturedListings,
+   } = useGetFeaturedListingsQuery({ count: isMobile ? 1 : 3 });
+
   const [displayListings, setDisplayListings] = useState([]);
   const [luxuryDisplayListings, setLuxuryDisplayListings] = useState([]);
 
   useEffect(() => {
     refetchAll(); // Refetch all listings on mount
     refetchLuxury(); // Refetch luxury listings on mount
-  }, [refetchAll, refetchLuxury]);
+    refetchFeaturedListings();
+  }, [refetchAll, refetchLuxury, refetchFeaturedListings]);
 
   useEffect(() => {
     if (!isAllLoading && allListings) {
@@ -301,6 +308,14 @@ export default function Home() {
       setLuxuryDisplayListings(slides);
     }
   }, [luxuryListings, isLuxuryLoading]);
+  const [featuredItems, setFeatureItems] = useState([]);
+  console.log("Featured: ", featuredItems);
+
+  useEffect(() => {
+    if (featuredListings && featuredListings?.listings.length > 0) {
+      setFeatureItems(featuredListings.listings);
+    }
+  }, [featuredListings])
 
   return (
     <>
@@ -410,13 +425,13 @@ export default function Home() {
             </p>
           </div>
           <div className="w-full grid grid-cols-1 lg:grid-cols-3 mt-[1.8em] lg:mt-[1em] gap-5 mb-2">
-            {isAllLoading
+            {(isAllLoading || isFeaturedLoading)
               ? // Show skeleton loaders
               Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
                 <SkeletonCard key={`skeleton-${index}`} />
               ))
               : // Show actual cards
-              (isMobile ? displayListings.slice(0, 1) : displayListings).map(
+              (featuredItems).map(
                 (items, index) => (
                   <HoverCard
                     _id={items?._id}
@@ -427,12 +442,12 @@ export default function Home() {
                       "Property image showcasing a beautiful home"
                     }
                     region={items?.region || "Location not specified"}
-                    price={items?.item.price || "Price not available"}
-                    area={items?.item.squareFeet || ""}
+                    price={items?.item?.price || "Price not available"}
+                    area={items?.item?.squareFeet || ""}
                     bathrooms={items?.item?.bathrooms}
                     bedrooms={items?.item?.bedrooms}
                     description={
-                      items?.item.description ||
+                      items?.item?.description ||
                       "No description available for this property."
                     }
                     slugs={items?.slug}
