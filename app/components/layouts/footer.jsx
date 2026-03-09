@@ -94,6 +94,22 @@ const Appfooter = () => {
                         About us
                       </a>
                     </li>
+                    <li>
+                      <Link
+                        href="/helpcenter"
+                        className="transition hover:opacity-75"
+                      >
+                        Blogs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/helpcenter/submit-request"
+                        className="transition hover:opacity-75"
+                      >
+                        Help
+                      </Link>
+                    </li>
                   </ul>
                 </div>
 
@@ -155,14 +171,6 @@ const Appfooter = () => {
                       >
                         Contact
                       </a>
-                    </li>
-                    <li>
-                      <Link
-                        href="/helpcenter"
-                        className="transition hover:opacity-75"
-                      >
-                        Blogs
-                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -231,7 +239,7 @@ const Appfooter = () => {
             {/* Bottom Section */}
             <div className="flex flex-col-reverse lg:flex-row  w-[100%]  justify-end lg:justify-between items-center gap-4  text-base">
               <p className="text-center font-[300] hidden lg:block">
-                &copy; 2025. Hoydoon. All rights reserved.
+                &copy; {new Date().getFullYear()}. Hoydoon. All rights reserved.
               </p>
               <div className="flex flex-row gap-4 lg:mr-[1em]  ml-[3rem]  mt-[-1rem] lg:mt-0 lg:ml-0 text-sm lg:text-base mb-4 lg:mb-0">
                 <p className="cursor-pointer hover:underline">
