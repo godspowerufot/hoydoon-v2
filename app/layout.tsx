@@ -109,6 +109,12 @@ export default function RootLayout({
             `}
           </Script>
 
+          {/* Tawk.to Chat Widget */}
+          <Script
+            src="https://embed.tawk.to/67dd7bad1297d6190a7b4b0b/1imsim8qk"
+            strategy="afterInteractive"
+          />
+
           {/* Schema Markup */}
           <Script
             id="schema-markup"
