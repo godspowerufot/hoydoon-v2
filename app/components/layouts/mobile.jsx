@@ -22,9 +22,15 @@ const MobileNavbar = () => {
     location: "",
   });
 
-  const isAuthenticated = getAccessToken();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [downloadLink, setDownloadLink] = useState("https://apps.apple.com/us/app/hoydoon/id6736393320");
   const [logout] = useLogoutMutation();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  useEffect(() => {
+    setIsAuthenticated(!!getAccessToken());
+    setDownloadLink(getAppDownloadLink());
+  }, []);
   // ⛔ Close sidebar when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -221,7 +227,7 @@ const MobileNavbar = () => {
               ) : (
                 <div className="w-full mr-[7px] flex justify-end">
                   <Button
-                    onClick={() => window.open(getAppDownloadLink(), "_blank")}
+                    onClick={() => window.open(downloadLink, "_blank")}
                     className="bg-[#008D8D] text-white text-[12px] px-2 !w-[111px] py-[6px] rounded-full font-medium"
                   >
                     Download App
@@ -291,7 +297,7 @@ const MobileNavbar = () => {
               />
               <span className="text-primary text-[16px] font-[500]">
                 <Link
-                  href={getAppDownloadLink()}
+                  href={downloadLink}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

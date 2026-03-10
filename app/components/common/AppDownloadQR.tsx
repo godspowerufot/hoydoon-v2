@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { QRCodeSVG } from 'qrcode.react';
 
@@ -8,9 +8,11 @@ const AppDownloadQR = () => {
     // The URL that the QR code will point to. 
     // This should be the full URL to the /download page on the production domain.
     // For now, we'll use a relative path or a placeholder that the user can update.
-    const downloadUrl = typeof window !== 'undefined'
-        ? `${window.location.origin}/download`
-        : 'https://www.hoydoon.com/download';
+    const [downloadUrl, setDownloadUrl] = useState('https://www.hoydoon.com/download');
+
+    useEffect(() => {
+        setDownloadUrl(`${window.location.origin}/download`);
+    }, []);
 
     return (
         <div className="relative inline-block">

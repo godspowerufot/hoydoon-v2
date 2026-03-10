@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
@@ -15,9 +15,13 @@ import MobileNavbar from "./mobile";
 export default function ListingNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
-  const isAuthenticated = getAccessToken();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [logout] = useLogoutMutation();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  useEffect(() => {
+    setIsAuthenticated(!!getAccessToken());
+  }, []);
 
   const [formData, setFormData] = useState({
     location: "",
@@ -32,7 +36,7 @@ export default function ListingNavbar() {
       ...(formData.location && { location: formData.location }),
     }).toString();
 
-    router.push(`/rent/fixes?${queryParams}`);
+    router.push(`/search?${queryParams}`);
   };
 
   const handlelogout = async () => {
@@ -55,14 +59,6 @@ export default function ListingNavbar() {
           {/* Left: Logo & Search Bar */}
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center">
-              {/* <Image
-                src={"/newlogo2.png"}
-                alt="logo"
-                width={100}
-                height={200}
-                priority
-                className="object-contain w-[141px]"
-              /> */}
               <img src="/newlogo2.png" alt="logo" className="w-[141px] object-contain" />
               {" "}
             </Link>{" "}
@@ -81,7 +77,6 @@ export default function ListingNavbar() {
                 placeholder="City, Address, State, Zip..."
                 className="bg-transparent placeholder:text-[#8F8F8F] focus:outline-none text-black text-sm w-full"
               />
-              {/* Remove the onKeyUp handler from input */}
 
               <button
                 type="submit"
@@ -145,8 +140,6 @@ export default function ListingNavbar() {
             )}
           </div>
         </div>
-
-        {/* Mobile Sidebar Menu */}
       </nav>
     </>
   );

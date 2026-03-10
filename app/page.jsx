@@ -269,11 +269,11 @@ export default function Home() {
 
   const isMobile = useIsMobile();
 
-  const { 
+  const {
     data: featuredListings,
     isLoading: isFeaturedLoading,
     refetch: refetchFeaturedListings,
-   } = useGetFeaturedListingsQuery({ count: isMobile ? 1 : 3 });
+  } = useGetFeaturedListingsQuery({ count: isMobile ? 1 : 3 });
 
   const [displayListings, setDisplayListings] = useState([]);
   const [luxuryDisplayListings, setLuxuryDisplayListings] = useState([]);
@@ -309,7 +309,12 @@ export default function Home() {
     }
   }, [luxuryListings, isLuxuryLoading]);
   const [featuredItems, setFeatureItems] = useState([]);
+  const [downloadLink, setDownloadLink] = useState("https://apps.apple.com/us/app/hoydoon/id6736393320");
   console.log("Featured: ", featuredItems);
+
+  useEffect(() => {
+    setDownloadLink(getAppDownloadLink());
+  }, []);
 
   useEffect(() => {
     if (featuredListings && featuredListings?.listings.length > 0) {
@@ -397,7 +402,7 @@ export default function Home() {
               receive instant alerts when your dream home becomes available.
             </p>
             <Link
-              href={getAppDownloadLink()}
+              href={downloadLink}
               target="_blank"
               className="w-fit"
               rel="noopener noreferrer"
