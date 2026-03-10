@@ -17,9 +17,13 @@ export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   // Fetch user data
-  const isAuthenticated = getAccessToken();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [logout] = useLogoutMutation();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  useEffect(() => {
+    setIsAuthenticated(!!getAccessToken());
+  }, []);
 
   const handlelogout = async () => {
     setIsLoggingOut(true);

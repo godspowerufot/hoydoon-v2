@@ -79,7 +79,7 @@ export default async function Page({ params }: Props) {
             "priceCurrency": "USD",
             "price": listing.item?.rent || listing.item?.price || "0",
             "availability": "https://schema.org/InStock",
-            "priceValidUntil": new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 90 days from now
+            "priceValidUntil": new Date(new Date().setHours(0, 0, 0, 0) + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 90 days from start of today
             "hasMerchantReturnPolicy": {
                 "@type": "MerchantReturnPolicy",
                 "applicableCountry": "US",

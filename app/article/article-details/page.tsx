@@ -227,31 +227,28 @@ const page = () => {
           </div>
           <div className="flex flex-col  2xl:mb-[4rem] 2xl:ml-[6rem]  ">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-[1em] min-w-fit items-center justify-center mb-2">
-              {[...displayListings]
-                .slice(0, 3) // Create a shallow copy to avoid modifying the original array
-                .sort(() => Math.random() - 0.5)
-                .map((items: Property, index: number) => (
-                  <PropertyListCard
-                    key={index}
-                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                    altText={
-                      items?.imageUrls?.[0]?.altText ||
-                      "Property image showcasing a beautiful home"
-                    }
-                    price={items?.item?.price || "Price not available"}
-                    area={items?.item?.squareFeet}
-                    bathrooms={items?.item?.bathrooms}
-                    bedrooms={items?.item?.bedrooms}
-                    description={
-                      items?.item?.description ||
-                      "No description available for this property."
-                    }
-                    slugs={items?.slug}
-                    title={items?.item?.title || "Untitled Property"}
-                    rent={items?.item?.rent || "Rent details not provided"}
-                    squareFeet={items?.item?.squareFeet}
-                  />
-                ))}
+              {displayListings?.map((items: Property, index: number) => (
+                <PropertyListCard
+                  key={index}
+                  imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                  altText={
+                    items?.imageUrls?.[0]?.altText ||
+                    "Property image showcasing a beautiful home"
+                  }
+                  price={items?.item?.price || "Price not available"}
+                  area={items?.item?.squareFeet}
+                  bathrooms={items?.item?.bathrooms}
+                  bedrooms={items?.item?.bedrooms}
+                  description={
+                    items?.item?.description ||
+                    "No description available for this property."
+                  }
+                  slugs={items?.slug}
+                  title={items?.item?.title || "Untitled Property"}
+                  rent={items?.item?.rent || "Rent details not provided"}
+                  squareFeet={items?.item?.squareFeet}
+                />
+              ))}
             </div>
           </div>
         </div>
