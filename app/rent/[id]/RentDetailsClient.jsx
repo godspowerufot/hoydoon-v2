@@ -760,6 +760,7 @@ const RentDetailsClient = () => {
                             listing?.imageUrls?.[0]?.altText ||
                             "Property image showcasing a beautiful home"
                           }
+                          slugs={listing?.slug}
                           region={listing?.region || "Region not specified"}
                           price={listing?.item?.price || "Price not available"}
                           area={listing?.item?.squareFeet}

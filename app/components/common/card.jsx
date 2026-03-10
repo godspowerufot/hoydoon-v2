@@ -10,6 +10,7 @@ const HoverCard = ({
   region,
   bathrooms,
   slugs,
+
   bedrooms,
   area,
   description = "No description available",
