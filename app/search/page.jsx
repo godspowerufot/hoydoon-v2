@@ -696,8 +696,7 @@ const Page = () => {
   useEffect(() => {
     if (!isAllloading && allListings) {
       try {
-        const firstThreeListings = allListings.listings;
-        const flatListings = flattenListings(firstThreeListings);
+        const flatListingsResult = flattenListings(allListings.listings);
 
         const isValidCoordinate = (coord) => {
           if (!coord) return false;
@@ -728,17 +727,7 @@ const Page = () => {
           return date;
         };
 
-        const listingsWithCoords = flatListings.filter((item) => {
-          const hasCoords =
-            item?.item?.coordinate?.latitude &&
-            item?.item?.coordinate?.longitude;
-          if (hasCoords) {
-            return isValidCoordinate(item.item.coordinate);
-          }
-          return false;
-        });
-
-        const sortedListings = [...listingsWithCoords].sort((a, b) => {
+        const sortedListings = [...flatListingsResult].sort((a, b) => {
           try {
             const dateA = parseDate(a.createdAt || a.item?.createdAt);
             const dateB = parseDate(b.createdAt || b.item?.createdAt);
@@ -767,7 +756,12 @@ const Page = () => {
           }
         });
 
-        setCoordinates(sortedListings.map((item) => item.item.coordinate));
+        // Coordinates should only be valid ones for the map
+        const coords = sortedListings
+          .filter(item => item?.item?.coordinate?.latitude && item?.item?.coordinate?.longitude && isValidCoordinate(item.item.coordinate))
+          .map((item) => item.item.coordinate);
+
+        setCoordinates(coords);
         setDisplayListings(sortedListings);
         setTotalPages(allListings.totalPages || 1);
         setCurrentPage(Number(searchParams.get("page")) || 1);
@@ -777,7 +771,8 @@ const Page = () => {
           totalPages: allListings.totalPages,
           currentPage: Number(searchParams.get("page")) || 1,
           totalListings: allListings.totalListings,
-          displayListingsCount: sortedListings.length
+          displayListingsCount: sortedListings.length,
+          coordsCount: coords.length
         });
       } catch (error) {
         console.error("Critical error in data processing:", error);
@@ -827,9 +822,9 @@ const Page = () => {
               </h2>
               <div className="relative text-sm  flex  gap-2  ">
                 <span className="flex  gap-2">
-                  {allListings?.totalListings}{" "}
+                  {displayListings?.length}
                   <p className="font-[300] text-gray"> of</p>
-                  {displayListings?.length} Homes
+                  {allListings?.totalListings}{" "}   Homes
                 </span>{" "}
                 Sort:{" "}
                 <div

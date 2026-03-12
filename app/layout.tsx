@@ -13,32 +13,41 @@ import Spinner from "./components/common/Spinner";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hoydoon.com"),
-  title: "Hoydoon | Homes & Real Estate in Somalia & Nigeria",
+  title: "Hoydoon | Homes for Sale & Rent in Lagos, Nigeria & Somalia",
   description:
-    "Real estate marketplace. Search millions of for-sale and rental listings in Somalia & Nigeria, compare Hoydoon home values, and connect with local professionals",
+    "Find verified homes, apartments and land for sale or rent in Lagos, Abuja and across Nigeria & Somalia. Browse thousands of listings on Hoydoon.",
   keywords: [
-    "real estate",
-    "Somalia",
-    "property",
-    "buy home",
-    "rent apartment",
-    "sell house",
-    "land",
-    "agents",
-    "listings",
-    "hoydoon",
-    "home values",
-    "mortgages",
+    "homes for sale in Nigeria",
+    "houses for sale in Lagos",
+    "property for sale in Abuja",
+    "buy house Nigeria",
+    "rent apartment Lagos",
+    "rental homes Nigeria",
+    "real estate Nigeria",
+    "property listings Nigeria",
+    "homes for sale Lagos",
+    "real estate Lagos",
+    "Lekki property for sale",
+    "Victoria Island property",
+    "property to rent in Abuja",
+    "houses for rent Lagos",
+    "real estate Somalia",
+    "houses for sale Mogadishu",
+    "Hoydoon",
+    "Nigerian real estate marketplace",
   ],
   authors: [{ name: "Hoydoon Team" }],
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
   },
+  alternates: {
+    canonical: "https://www.hoydoon.com",
+  },
   openGraph: {
-    title: "Hoydoon | Homes & Real Estate in Somalia & Nigeria",
+    title: "Hoydoon | Homes for Sale & Rent in Lagos, Nigeria & Somalia",
     description:
-      "Real estate marketplace. Search millions of for-sale and rental listings in Somalia & Nigeria, compare Hoydoon home values, and connect with local professionals",
+      "Find verified homes, apartments and land for sale or rent in Lagos, Abuja and across Nigeria & Somalia. Browse thousands of listings on Hoydoon.",
     url: "https://www.hoydoon.com",
     siteName: "Hoydoon",
     images: [
@@ -54,9 +63,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hoydoon | Homes & Real Estate in Somalia & Nigeria",
+    title: "Hoydoon | Homes for Sale & Rent in Lagos, Nigeria & Somalia",
     description:
-      "Real estate marketplace. Search millions of for-sale and rental listings in Somalia & Nigeria, compare Hoydoon home values, and connect with local professionals",
+      "Find verified homes, apartments and land for sale or rent in Lagos, Abuja and across Nigeria & Somalia. Browse thousands of listings on Hoydoon.",
     images: ["https://hoydoonstorage.blob.core.windows.net/web-images/headertwo.webp"],
   },
 };
@@ -117,7 +126,48 @@ export default function RootLayout({
 
           {/* Schema Markup */}
           <Script
-            id="schema-markup"
+            id="local-business-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Hoydoon",
+                "url": "https://www.hoydoon.com",
+                "telephone": "+2347043058500",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "5, Elshadai Street, Erunwen",
+                  "addressRegion": "Ogun State",
+                  "addressCountry": "NG"
+                },
+                "areaServed": ["Nigeria", "Somalia"],
+                "priceRange": "$$",
+                "sameAs": [
+                  "https://www.instagram.com/hoydoon",
+                  "https://www.facebook.com/hoydoon",
+                  "https://twitter.com/hoydoon"
+                ]
+              })
+            }}
+          />
+          <Script
+            id="real-estate-agent-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "RealEstateAgent",
+                "name": "Hoydoon",
+                "url": "https://www.hoydoon.com",
+                "description": "Verified real estate marketplace for Nigeria and Somalia.",
+                "areaServed": ["Lagos", "Abuja", "Nigeria", "Somalia"],
+                "telephone": "+2347043058500"
+              })
+            }}
+          />
+          <Script
+            id="organization-schema-markup"
             type="application/ld+json"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify({
