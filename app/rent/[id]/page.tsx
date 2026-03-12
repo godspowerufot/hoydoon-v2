@@ -55,68 +55,20 @@ export default async function Page({ params }: Props) {
     // Generate RealEstateListing structured data
     const realEstateSchema = listing ? {
         "@context": "https://schema.org",
-        "@type": listing.listingType === "sale" ? "SingleFamilyResidence" : "Apartment",
-        "name": listing.item?.title || "Property Listing",
-        "description": listing.item?.description || "Property available for rent",
-        "image": listing.imageUrls?.map((img: { url: string }) => img.url) || [],
+        "@type": "RealEstateListing",
+        "name": listing.item?.title || listing.item?.address || "Property Listing",
+        "description": listing.item?.description || "Property available for rent on Hoydoon.",
+        "url": `https://www.hoydoon.com/rent/${id}`,
+        "price": listing.item?.rent || listing.item?.price || "0",
+        "priceCurrency": "NGN",
         "address": {
             "@type": "PostalAddress",
-            "addressRegion": listing.region || "Available",
-            "addressCountry": "US"
+            "streetAddress": listing.item?.address || "Lagos",
+            "addressLocality": listing.region || "Lagos",
+            "addressCountry": "NG"
         },
-        "numberOfRooms": (listing.item?.bedrooms || 0) + (listing.item?.bathrooms || 0),
-        "numberOfBedrooms": listing.item?.bedrooms || 0,
-        "numberOfBathroomsTotal": listing.item?.bathrooms || 0,
-        "floorSize": {
-            "@type": "QuantitativeValue",
-            "value": listing.item?.squareFeet || 0,
-            "unitCode": "SQF"
-        },
-        "petsAllowed": listing.item?.petFriendly || false,
-        "offers": {
-            "@type": "Offer",
-            "url": `https://www.hoydoon.com/rent/${id}`,
-            "priceCurrency": "USD",
-            "price": listing.item?.rent || listing.item?.price || "0",
-            "availability": "https://schema.org/InStock",
-            "priceValidUntil": new Date(new Date().setHours(0, 0, 0, 0) + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 90 days from start of today
-            "hasMerchantReturnPolicy": {
-                "@type": "MerchantReturnPolicy",
-                "applicableCountry": "US",
-                "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-                "merchantReturnDays": 30,
-                "returnMethod": "https://schema.org/ReturnByMail",
-                "returnFees": "https://schema.org/FreeReturn"
-            },
-            "shippingDetails": {
-                "@type": "OfferShippingDetails",
-                "shippingRate": {
-                    "@type": "MonetaryAmount",
-                    "value": "0",
-                    "currency": "USD"
-                },
-                "shippingDestination": {
-                    "@type": "DefinedRegion",
-                    "addressCountry": "US",
-                    "addressRegion": listing.region || "Available"
-                },
-                "deliveryTime": {
-                    "@type": "ShippingDeliveryTime",
-                    "handlingTime": {
-                        "@type": "QuantitativeValue",
-                        "minValue": 1,
-                        "maxValue": 3,
-                        "unitCode": "DAY"
-                    },
-                    "transitTime": {
-                        "@type": "QuantitativeValue",
-                        "minValue": 0,
-                        "maxValue": 1,
-                        "unitCode": "DAY"
-                    }
-                }
-            }
-        }
+        "numberOfRooms": listing.item?.bedrooms || 0,
+        "image": listing.imageUrls?.[0]?.url || "https://www.hoydoon.com/house1.png"
     } : null;
 
     return (
