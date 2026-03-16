@@ -12,7 +12,7 @@ import {
   useSignupMutation,
   useGoogleAuthMutation,
 } from "@/store/slices/api/authapi";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import LoginButtons from "@/app/components/common/googlebutton";
 import { sendDeviceInfo } from "@/utils/lib/devicinfo";
 import { log } from "@/utils/log";
@@ -31,6 +31,8 @@ const Signup = () => {
   const [errormessage, seterror] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const dispatch = useDispatch();
+  const searchParams = useSearchParams();
+  const referralCode = searchParams?.get("referral");
   const role = "buyer";
 
   const router = useRouter();
@@ -56,6 +58,7 @@ const Signup = () => {
         role,
         device,
         region,
+        referralCode: referralCode || undefined,
       }).unwrap();
       dispatch(setUnverifiedEmail(email));
 

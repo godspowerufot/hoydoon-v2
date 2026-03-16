@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Input from "@/app/components/common/inputs/input";
 import Button from "@/app/components/common/Button";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch } from "react-redux";
 import {
   useLoginMutation,
@@ -29,6 +29,8 @@ export const MobileSignIn = () => {
 
   const dispatch = useDispatch();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const referralCode = searchParams?.get("referral");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,6 +87,7 @@ export const MobileSignIn = () => {
         role,
         device,
         region,
+        referralCode: referralCode || undefined,
       }).unwrap();
       dispatch(setUnverifiedEmail(email));
       toast.success("check your email for OTP code");
