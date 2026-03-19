@@ -100,6 +100,10 @@ export default function RootLayout({
             name="google-site-verification"
             content="6tevUXnxT89TubXC_lXDm_M9Qis3qs2zzrU1aGoXYHc"
           />
+
+
+
+
           <meta name="apple-mobile-web-app-title" content="hoydoon" />
           <link rel="manifest" href="/site.webmanifest" />
 
@@ -115,6 +119,17 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-VQ35E1Y7XL');
+            `}
+          </Script>
+
+          {/* Google Tag Manager */}
+          <Script id="google-tag-manager" strategy="afterInteractive">
+            {`
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-NGBWC8FM');
             `}
           </Script>
 
