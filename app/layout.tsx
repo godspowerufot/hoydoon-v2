@@ -267,6 +267,15 @@ export default function RootLayout({
 
 
         <body className="lg:flex overflow-x-hidden flex-col flex-1 font-bricolage min-h-screen">
+          {/* Google Tag Manager (noscript) */}
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-NGBWC8FM"
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            ></iframe>
+          </noscript>
           <Providers>
             <div className="absolute top-0 left-0 w-full z-10">
               <Navbar />
