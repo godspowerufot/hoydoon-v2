@@ -334,7 +334,7 @@ export default function Home() {
           }}
         ></div>
         {/* Content Section */}
-        <div className="flex flex-col items-center lg:mt-[2rem] justify-center relative z-[1]  p-3 md:p-0  md:gap-4 h-full ">
+        <div className="flex flex-col items-center lg:mt-[4rem] justify-center relative z-[1]  p-3 md:p-0  md:gap-4 h-full ">
           {/* Main Heading */}
           <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[2.1em] md:text-[clamp(4em,4vw,4em)] md:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
             Where Every House Feels Like Home
