@@ -69,7 +69,7 @@ export default function Home() {
         ></div>
 
         {/* Content Section */}
-        <div className="flex flex-col lg:mt-[2rem] items-center   justify-center relative z-[1] lg:gap-4 h-full ">
+        <div className="flex flex-col lg:mt-[4rem] items-center   justify-center relative z-[1] lg:gap-4 h-full ">
           {/* Main Heading */}
           <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[38px] lg:text-[clamp(4em,4vw,4em)] lg:w-[60%] max-w-[700px] 2xl:max-w-[700px]">
             Find Your Future, Feel at Home!{" "}

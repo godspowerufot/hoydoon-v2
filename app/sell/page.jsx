@@ -39,7 +39,7 @@ export default function Home() {
                 </div>
 
                 {/* Content Section */}
-                <div className="flex z-[1] mt-[2.5rem] p-4 lg:p-0 md:h-full  relative gap-[10px] lg:gap-6 justify-center items-center flex-col">
+                <div className="flex z-[1] mt-[4rem] p-4 lg:p-0 md:h-full  relative gap-[10px] lg:gap-6 justify-center items-center flex-col">
                     {/* Main Heading */}
                     <h1 className="lg:w-[12em] text-white text-[2em] w-full leading-[1em] text-center lg:text-[5em] font-bricolage font-[600]">
                         Get Personalized Proposals, at no cost
