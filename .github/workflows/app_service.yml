@@ -13,7 +13,7 @@ env:
     ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
 
 jobs:
-    build-and-deploy:
+    build:
         runs-on: ubuntu-latest
 
         environment:
@@ -62,7 +62,11 @@ jobs:
                       NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
                       NEXT_APPLE_PRIVATE_KEY=${{ secrets.NEXT_APPLE_PRIVATE_KEY }}
                       NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build
 
+        steps:
             - name: Deploy to Azure Web App
               id: deploy-to-webapp
               uses: azure/webapps-deploy@v3
