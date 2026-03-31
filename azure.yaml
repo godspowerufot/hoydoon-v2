@@ -1,0 +1,9 @@
+name: hoydoon-web
+services:
+    web:
+        project: .
+        language: js
+        host: containerapp
+        docker:
+            path: ./Dockerfile
+            context: .
