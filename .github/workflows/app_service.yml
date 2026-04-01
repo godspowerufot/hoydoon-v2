@@ -7,6 +7,7 @@ on:
     workflow_dispatch:
 
 env:
+    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     AZURE_WEBAPP_NAME: hoydoon-web-app
     ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
     ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
