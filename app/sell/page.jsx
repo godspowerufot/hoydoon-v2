@@ -25,10 +25,10 @@ export default function Home() {
     };
     return (
         <>
-            <header className="relative h-[60dvh]    md:h-[100vh] lg:h-[100vh] w-screen overflow-visible">
+            <header className="relative h-[100%] md:h-[100vh] min-h-[30%] lg:h-[100%] w-screen overflow-visible">
                 {/* Background Image Div */}
                 <div
-                    className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"
+                    className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1] object-cover"
                     style={{
                         backgroundImage:
                             "url('https://hoydoonstorage.blob.core.windows.net/web-images/seller.webp')",

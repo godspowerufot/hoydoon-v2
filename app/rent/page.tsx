@@ -56,7 +56,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative h-[60dvh]   p-5 md:p-0 lg:h-[100vh] w-screen ">
+      <header className="relative h-[100%] min-h-[15%] md:h-[100vh] p-5 md:p-0 lg:h-[100vh] w-screen ">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1]"

@@ -269,11 +269,11 @@ export default function Home() {
 
   const isMobile = useIsMobile();
 
-  const {
+  const { 
     data: featuredListings,
     isLoading: isFeaturedLoading,
     refetch: refetchFeaturedListings,
-  } = useGetFeaturedListingsQuery({ count: isMobile ? 1 : 3 });
+   } = useGetFeaturedListingsQuery({ count: isMobile ? 1 : 3 });
 
   const [displayListings, setDisplayListings] = useState([]);
   const [luxuryDisplayListings, setLuxuryDisplayListings] = useState([]);
@@ -309,12 +309,7 @@ export default function Home() {
     }
   }, [luxuryListings, isLuxuryLoading]);
   const [featuredItems, setFeatureItems] = useState([]);
-  const [downloadLink, setDownloadLink] = useState("https://apps.apple.com/us/app/hoydoon/id6736393320");
   console.log("Featured: ", featuredItems);
-
-  useEffect(() => {
-    setDownloadLink(getAppDownloadLink());
-  }, []);
 
   useEffect(() => {
     if (featuredListings && featuredListings?.listings.length > 0) {
@@ -324,37 +319,38 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative h-[65dvh] md:h-[100vh]  p-2 md:p-0 w-screen ">
+      <header className="relative h-[100%] min-h-[15%] md:h-[100vh] p-2 md:p-0 w-screen ">
         {/* Background Image */}
         <div
-          className="absolute top-0 left-0 w-screen h-full    bg-cover bg-center z-[-1]"
+          className="absolute top-0 left-0 w-screen h-full bg-center bg-cover bg-no-repeat z-[-1] object-cover"
           style={{
             backgroundImage:
               "url('https://hoydoonstorage.blob.core.windows.net/web-images/headertwo.webp')",
           }}
-        ></div>
-        {/* Content Section */}
-        <div className="flex flex-col items-center lg:mt-[3.5rem] justify-center relative z-[1]  p-3 md:p-0  md:gap-4 h-full ">
-          {/* Main Heading */}
-          <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[2.1em] md:text-[clamp(4em,4vw,4em)] md:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
-            Where Every House Feels Like Home
-          </h1>
-
-          {/* Subheading */}
-          <p className="text-[#FFFFFFB2]  hidden  md:-mt-2 text-center  md:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
-            From urban flats to rural getaways, Hoydoon effortlessly links you
-            to the home of your dreams with trust and ease.
-          </p>
-          <p className="text-[#FFFFFFB2]  md:hidden md:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm md:text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
-            Hoydoon connects you to your dream home, easily and reliably.{" "}
-          </p>
-
-          {/* Search Bar (Large Screens) */}
-          <PropertySearchBar />
-
-          {/* Mobile Search Bar */}
+        >
         </div>
-        {/* Statistics Section */}
+        {/* Content Section */}
+          <div className="flex flex-col items-center lg:mt-[2rem] justify-center relative z-[1]  px-3 py-14 md:p-0  md:gap-4 h-full ">
+            {/* Main Heading */}
+            <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[2.1em] md:text-[clamp(4em,4vw,4em)] md:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
+              Where Every House Feels Like Home
+            </h1>
+
+            {/* Subheading */}
+            <p className="text-[#FFFFFFB2]  hidden  md:-mt-2 text-center  md:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
+              From urban flats to rural getaways, Hoydoon effortlessly links you
+              to the home of your dreams with trust and ease.
+            </p>
+            <p className="text-[#FFFFFFB2]  md:hidden md:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm md:text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
+              Hoydoon connects you to your dream home, easily and reliably.{" "}
+            </p>
+
+            {/* Search Bar (Large Screens) */}
+            <PropertySearchBar />
+
+            {/* Mobile Search Bar */}
+          </div>
+          {/* Statistics Section */}
       </header>
       <div></div>
       <section className="w-screen p-5 md:p-0 font-bricolage md:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
@@ -402,7 +398,7 @@ export default function Home() {
               receive instant alerts when your dream home becomes available.
             </p>
             <Link
-              href={downloadLink}
+              href={getAppDownloadLink()}
               target="_blank"
               className="w-fit"
               rel="noopener noreferrer"
