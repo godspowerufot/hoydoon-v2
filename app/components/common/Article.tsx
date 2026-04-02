@@ -78,7 +78,7 @@ const ArticleCard = ({ article }: any) => {
 
 const ArticlesSection = () => {
   return (
-    <section className="flex  mt-[2rem] md:-mt-[1em] text-start md:justify-center items-center w-full flex-col   md:max-w-[1200px] p-2 md:p-0 font-bricolage">
+    <div className="relative md:-mt-[1em] text-start md:justify-center items-center w-full flex-col   md:max-w-[1200px] p-2 md:p-0 font-bricolage">
       <div className="flex  flex-col md:flex-row md:gap-[4rem]   justify-around md:items-center">
         <span className="flex flex-col  font-bricolage  md:ml-10  py-2 md:py-0  gap-2">
           <h2 className="text-black  text-[1.5rem] md:text-[2.5rem]  font-[600] ">
@@ -121,7 +121,7 @@ const ArticlesSection = () => {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

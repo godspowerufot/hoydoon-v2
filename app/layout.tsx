@@ -285,11 +285,11 @@ export default function RootLayout({
                 <Suspense fallback={<Spinner />}>
                   <ToastContainer position="top-center" autoClose={3000} />
                   {children}
+                  <Appfooter />
                 </Suspense>
               </main>
             </AnimationWrapper>
           </Providers>
-          <Appfooter />
         </body>
       </html>
     </>

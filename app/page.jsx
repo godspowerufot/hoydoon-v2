@@ -353,196 +353,198 @@ export default function Home() {
           {/* Statistics Section */}
       </header>
       <div></div>
-      <section className="w-screen p-5 md:p-0 font-bricolage md:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
-        <div className="flex  flex-col-reverse md:gap-y-5   md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-between ">
-          <span className="flex  gap-y-5  flex-col w-full md:max-w-[45.3em] 2xl:max-w-[48em]  ">
-            <p className="text-black  text-[24px]  mt-[1.40rem] md:mt-0 md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
-              Find your ideal property with simple tools and guidance.
-            </p>
-            <p className="text-gray text-sm md:text-xl  mt-[0.1rem]   font-[300] md:mt-0  font-bricolage  w-full md:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
-              Enjoy fast and easy access to a variety of properties that suit
-              your needs. Use our smart filters to find the perfect places
-              within your budget and preferences. We’ve done the hafrd work for
-              you, so no need to stress about the search.
-            </p>
-
-            <Button
-              className="text-base font-light  !w-[130px] !p-[0.6rem]"
-              onClick={() => {
-                toast.info("Coming soon!");
-              }}
-            >
-              <span>Explore</span>
-            </Button>
-          </span>
-
-          <span className="mt-2  md:mt-0">
-            <Image
-              alt="image1"
-              width={480}
-              quality={100}
-              height={300} // Reduced size of logo
-              src={"/calculator.png"}
-            />
-          </span>
-        </div>
-      </section>
-      <section className=" hidden p-2 md:p-0   font-bricolage md:flex justify-center flex-col flex-1 items-center">
-        <div className="flex  gap-[15rem]  md:my-[5em]   flex-col md:flex-row  items-center justify-center">
-          <span className="flex   md:pl-1   gap-5 2xl:pl-[0rem] flex-col w-full md:w-6/10 ">
-            <p className="text-black  text-[26px] md:text-5xl font-[600]">
-              Get the Hoydoon App
-            </p>
-            <p className="text-gray  text-base md:text-xl mt-4 md:mt-0 font-[300]  font-bricolage  w-fit md:w-[40rem]">
-              Download our highly-rated real estate app for iOS or Android to
-              receive instant alerts when your dream home becomes available.
-            </p>
-            <Link
-              href={getAppDownloadLink()}
-              target="_blank"
-              className="w-fit"
-              rel="noopener noreferrer"
-            >
-              <Button className="text-base font-light  !w-[130px] !p-[0.6rem]"
-              >Download</Button>
-            </Link>
-          </span>
-
-          <span className="mt-4 md:mt-0">
-            <AppDownloadQR />
-          </span>
-        </div>
-      </section>
-
-      <section className=" p-2 md:p-0  md:mt-[2.5em] md:mb-[5em] w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
-        <div className="flex flex-col    md:items-start gap-0 md:gap-y-6 justify-center max-w-[1200px] w-full">
-          <div className="flex flex-col  md:flex-row justify-between items-center w-full  mx-auto">
-            <h2 className="text-black text-[24px] mt-[23px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
-              Featured Properties for Sale
-            </h2>
-            <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
-              Discover a home where every detail enhances your lifestyle crafted
-              to fit your taste and needs.
-            </p>
-          </div>
-          <div className="w-full grid grid-cols-1 lg:grid-cols-3 mt-[1.8em] lg:mt-[1em] gap-5 mb-2">
-            {(isAllLoading || isFeaturedLoading)
-              ? // Show skeleton loaders
-              Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
-                <SkeletonCard key={`skeleton-${index}`} />
-              ))
-              : // Show actual cards
-              (featuredItems).map(
-                (items, index) => (
-                  <HoverCard
-                    _id={items?._id}
-                    key={items?._id || index}
-                    imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
-                    altText={
-                      items?.imageUrls?.[0]?.altText ||
-                      "Property image showcasing a beautiful home"
-                    }
-                    region={items?.region || "Location not specified"}
-                    price={items?.item?.price || "Price not available"}
-                    area={items?.item?.squareFeet || ""}
-                    bathrooms={items?.item?.bathrooms}
-                    bedrooms={items?.item?.bedrooms}
-                    description={
-                      items?.item?.description ||
-                      "No description available for this property."
-                    }
-                    slugs={items?.slug}
-                    title={items?.item?.address || "Untitled Property"}
-                    rent={items?.item?.rent || "Rent details not provided"}
-                  />
-                )
-              )}
-
-
-          </div>
-          {!isAllLoading && (
-            <Link
-              href="/search?category=Featured"
-              className="text-[#09858D] text-start mt-[0.8rem] text-sm md:my-1 md:text-xl font-[500] "
-            >
-              see featured properties for sale
-            </Link>
-          )}
-        </div>
-      </section>
-
-      {luxuryDisplayListings.length > 0 && (
-        <section className="mt-5 w-screen md:mb-[5em]   md:w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
-          <div className="flex flex-col items-start gap-6 md:gap-0 justify-center max-w-[1200px] w-full">
-            <div className="flex flex-col md:py-0 md:flex-row  p-3 md:p-0 md:gap-10 justify-between items-center w-full  mx-auto">
-              <h2 className="text-black text-[24px] md:text-[2.5rem] font-[600] w-full md:w-auto">
-                Explore Luxurious Living Spaces
-              </h2>
-              <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
-                From modern architecture to elegant interiors, discover homes
-                crafted for elevated living.
+      <div className="flex flex-col gap-2">
+        <section className="relative w-screen p-5 md:p-0 font-bricolage md:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
+          <div className="flex  flex-col-reverse md:gap-y-5   md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-between ">
+            <span className="flex  gap-y-5  flex-col w-full md:max-w-[45.3em] 2xl:max-w-[48em]  ">
+              <p className="text-black  text-[24px]  mt-[1.40rem] md:mt-0 md:text-[2.6rem] 2xl:text-5xl  md:leading-[1.1em] leading-[29px] font-[600] 2xl:w-[80%]">
+                Find your ideal property with simple tools and guidance.
               </p>
-            </div>
-            <div className=" md:mt-[2em] w-full">
-              <Carousel images={luxuryDisplayListings} />
-            </div>{" "}
+              <p className="text-gray text-sm md:text-xl  mt-[0.1rem]   font-[300] md:mt-0  font-bricolage  w-full md:w-9/10 2xl:text-[20px] 2xl:w-[70%]">
+                Enjoy fast and easy access to a variety of properties that suit
+                your needs. Use our smart filters to find the perfect places
+                within your budget and preferences. We’ve done the hafrd work for
+                you, so no need to stress about the search.
+              </p>
+
+              <Button
+                className="text-base font-light  !w-[130px] !p-[0.6rem]"
+                onClick={() => {
+                  toast.info("Coming soon!");
+                }}
+              >
+                <span>Explore</span>
+              </Button>
+            </span>
+
+            <span className="mt-2  md:mt-0">
+              <Image
+                alt="image1"
+                width={480}
+                quality={100}
+                height={300} // Reduced size of logo
+                src={"/calculator.png"}
+              />
+            </span>
           </div>
         </section>
-      )}
+        <section className="relative hidden p-2 md:p-0   font-bricolage md:flex justify-center flex-col flex-1 items-center">
+          <div className="flex  gap-[15rem]  md:my-[5em]   flex-col md:flex-row  items-center justify-center">
+            <span className="flex   md:pl-1   gap-5 2xl:pl-[0rem] flex-col w-full md:w-6/10 ">
+              <p className="text-black  text-[26px] md:text-5xl font-[600]">
+                Get the Hoydoon App
+              </p>
+              <p className="text-gray  text-base md:text-xl mt-4 md:mt-0 font-[300]  font-bricolage  w-fit md:w-[40rem]">
+                Download our highly-rated real estate app for iOS or Android to
+                receive instant alerts when your dream home becomes available.
+              </p>
+              <Link
+                href={getAppDownloadLink()}
+                target="_blank"
+                className="w-fit"
+                rel="noopener noreferrer"
+              >
+                <Button className="text-base font-light  !w-[130px] !p-[0.6rem]"
+                >Download</Button>
+              </Link>
+            </span>
 
-      {/* <CarouselWithSlideEffect/> */}
-      {/* carousel */}
+            <span className="mt-4 md:mt-0">
+              <AppDownloadQR />
+            </span>
+          </div>
+        </section>
 
-      {/* testimonials */}
-      <section className=" p-2   pt-[2.5rem] md:mt-[4em] md:mb-[5em]  md:p-0 font-bricolage  flex justify-center flex-col  items-center">
-        <div className="flex flex-col md:flex-row justify-between items-start w-full md:max-w-[1200px] md:gap-[8em]">
-          {/* Left side */}
-          <span className="flex flex-col 2xl:w-full font-bricolage gap-3">
-            <h2 className="text-black text-[26px] md:text-[2.5rem] 2xl:text-5xl font-[600] mr-5">
-              What People Are Saying
-            </h2>
+        <section className="relative p-2 md:p-0  md:mt-[2.5em] md:mb-[5em] w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
+          <div className="flex flex-col    md:items-start gap-0 md:gap-y-6 justify-center max-w-[1200px] w-full">
+            <div className="flex flex-col  md:flex-row justify-between items-center w-full  mx-auto">
+              <h2 className="text-black text-[24px] mt-[23px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
+                Featured Properties for Sale
+              </h2>
+              <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
+                Discover a home where every detail enhances your lifestyle crafted
+                to fit your taste and needs.
+              </p>
+            </div>
+            <div className="w-full grid grid-cols-1 lg:grid-cols-3 mt-[1.8em] lg:mt-[1em] gap-5 mb-2">
+              {(isAllLoading || isFeaturedLoading)
+                ? // Show skeleton loaders
+                Array.from({ length: isMobile ? 1 : 3 }, (_, index) => (
+                  <SkeletonCard key={`skeleton-${index}`} />
+                ))
+                : // Show actual cards
+                (featuredItems).map(
+                  (items, index) => (
+                    <HoverCard
+                      _id={items?._id}
+                      key={items?._id || index}
+                      imageSrc={items?.imageUrls?.[0]?.url || "/house1.png"}
+                      altText={
+                        items?.imageUrls?.[0]?.altText ||
+                        "Property image showcasing a beautiful home"
+                      }
+                      region={items?.region || "Location not specified"}
+                      price={items?.item?.price || "Price not available"}
+                      area={items?.item?.squareFeet || ""}
+                      bathrooms={items?.item?.bathrooms}
+                      bedrooms={items?.item?.bedrooms}
+                      description={
+                        items?.item?.description ||
+                        "No description available for this property."
+                      }
+                      slugs={items?.slug}
+                      title={items?.item?.address || "Untitled Property"}
+                      rent={items?.item?.rent || "Rent details not provided"}
+                    />
+                  )
+                )}
 
-            <p className="text-gray md:block hidden text-sm md:text-xl w-full md:w-[30em]">
-              Hear directly from our users about their experiences. Whether
-              they’re finding trusted agents or securing great deals, our
-              community speaks for itself.
-            </p>
 
-            <p className="text-gray font-light md:hidden block text-sm md:text-xl w-full md:w-[35em]">
-              See how Hoydoon is helping buyers and agents find exactly what
-              they need, quickly and confidently.
-            </p>
-            <a href="/review">
-              <Button className="bg-transparent group hover:bg-primary transition-all duration-500 !w-[120px] !text-sm md:hidden mt-2 border-primary border-[1px] border-solid">
-                <p className="text-gray group-hover:text-white transition-colors duration-500">Explore</p>
-              </Button>
-            </a>
-          </span>
+            </div>
+            {!isAllLoading && (
+              <Link
+                href="/search?category=Featured"
+                className="text-[#09858D] text-start mt-[0.8rem] text-sm md:my-1 md:text-xl font-[500] "
+              >
+                see featured properties for sale
+              </Link>
+            )}
+          </div>
+        </section>
 
-          {/* Right side */}
-          <span className="hidden md:flex flex-col font-bricolage gap-3">
-            <p className="text-gray md:p-0 text-sm 2xl:text-[20px] md:text-xl w-full md:w-[25em]">
-              See how Hoydoon is helping buyers and agents find exactly what
-              they need, quickly and confidently.
-            </p>
+        {luxuryDisplayListings.length > 0 && (
+          <section className="relative mt-5 w-screen md:mb-[5em]   md:w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
+            <div className="flex flex-col items-start gap-6 md:gap-0 justify-center max-w-[1200px] w-full">
+              <div className="flex flex-col md:py-0 md:flex-row  p-3 md:p-0 md:gap-10 justify-between items-center w-full  mx-auto">
+                <h2 className="text-black text-[24px] md:text-[2.5rem] font-[600] w-full md:w-auto">
+                  Explore Luxurious Living Spaces
+                </h2>
+                <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-right">
+                  From modern architecture to elegant interiors, discover homes
+                  crafted for elevated living.
+                </p>
+              </div>
+              <div className=" md:mt-[2em] w-full">
+                <Carousel images={luxuryDisplayListings} />
+              </div>{" "}
+            </div>
+          </section>
+        )}
 
-            <a href="/review">
-              <Button className="bg-transparent group hover:bg-primary transition-all duration-500 mt-2 border-primary border-[1px] border-solid">
-                <p className="text-gray group-hover:text-white transition-colors duration-500">Explore</p>
-              </Button>
-            </a>
-          </span>
+        {/* <CarouselWithSlideEffect/> */}
+        {/* carousel */}
+
+        {/* testimonials */}
+        <section className="relative p-2   pt-[2.5rem] md:mt-[4em] md:mb-[5em]  md:p-0 font-bricolage  flex justify-center flex-col  items-center">
+          <div className="flex flex-col md:flex-row justify-between items-start w-full md:max-w-[1200px] md:gap-[8em]">
+            {/* Left side */}
+            <span className="flex flex-col 2xl:w-full font-bricolage gap-3">
+              <h2 className="text-black text-[26px] md:text-[2.5rem] 2xl:text-5xl font-[600] mr-5">
+                What People Are Saying
+              </h2>
+
+              <p className="text-gray md:block hidden text-sm md:text-xl w-full md:w-[30em]">
+                Hear directly from our users about their experiences. Whether
+                they’re finding trusted agents or securing great deals, our
+                community speaks for itself.
+              </p>
+
+              <p className="text-gray font-light md:hidden block text-sm md:text-xl w-full md:w-[35em]">
+                See how Hoydoon is helping buyers and agents find exactly what
+                they need, quickly and confidently.
+              </p>
+              <a href="/review">
+                <Button className="bg-transparent group hover:bg-primary transition-all duration-500 !w-[120px] !text-sm md:hidden mt-2 border-primary border-[1px] border-solid">
+                  <p className="text-gray group-hover:text-white transition-colors duration-500">Explore</p>
+                </Button>
+              </a>
+            </span>
+
+            {/* Right side */}
+            <span className="hidden md:flex flex-col font-bricolage gap-3">
+              <p className="text-gray md:p-0 text-sm 2xl:text-[20px] md:text-xl w-full md:w-[25em]">
+                See how Hoydoon is helping buyers and agents find exactly what
+                they need, quickly and confidently.
+              </p>
+
+              <a href="/review">
+                <Button className="bg-transparent group hover:bg-primary transition-all duration-500 mt-2 border-primary border-[1px] border-solid">
+                  <p className="text-gray group-hover:text-white transition-colors duration-500">Explore</p>
+                </Button>
+              </a>
+            </span>
+          </div>
+
+          <TestimonialGrid />
+        </section>
+
+        {/* testimonials */}
+        <FagsSection />
+
+        {/* New-articles */}
+        <div className="relative w-full flex flex-col justify-center items-center md:mt-0">
+          <ArticlesSection />
         </div>
-
-        <TestimonialGrid />
-      </section>
-
-      {/* testimonials */}
-      <FagsSection />
-
-      {/* New-articles */}
-      <div className="w-full flex justify-center items-center -mt-[1rem] md:mt-0">
-        <ArticlesSection />
       </div>
     </>
   );
