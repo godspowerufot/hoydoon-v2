@@ -269,11 +269,11 @@ export default function Home() {
 
   const isMobile = useIsMobile();
 
-  const { 
+  const {
     data: featuredListings,
     isLoading: isFeaturedLoading,
     refetch: refetchFeaturedListings,
-   } = useGetFeaturedListingsQuery({ count: isMobile ? 1 : 3 });
+  } = useGetFeaturedListingsQuery({ count: isMobile ? 1 : 3 });
 
   const [displayListings, setDisplayListings] = useState([]);
   const [luxuryDisplayListings, setLuxuryDisplayListings] = useState([]);
@@ -330,30 +330,30 @@ export default function Home() {
         >
         </div>
         {/* Content Section */}
-          <div className="flex flex-col items-center lg:mt-[2rem] justify-center relative z-[1]  px-3 py-14 md:p-0  md:gap-4 h-full ">
-            {/* Main Heading */}
-            <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[2.1em] md:text-[clamp(4em,4vw,4em)] md:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
-              Where Every House Feels Like Home
-            </h1>
+        <div className="flex flex-col items-center lg:mt-[2rem] justify-center relative z-[1]  px-3 py-14 md:p-0  md:gap-4 h-full ">
+          {/* Main Heading */}
+          <h1 className="text-white text-center    relative  font-bricolage font-semibold leading-tight  text-[2.1em] md:text-[clamp(4em,4vw,4em)] md:w-[65%] max-w-[700px] 2xl:max-w-[700px]">
+            Where Every House Feels Like Home
+          </h1>
 
-            {/* Subheading */}
-            <p className="text-[#FFFFFFB2]  hidden  md:-mt-2 text-center  md:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
-              From urban flats to rural getaways, Hoydoon effortlessly links you
-              to the home of your dreams with trust and ease.
-            </p>
-            <p className="text-[#FFFFFFB2]  md:hidden md:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm md:text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
-              Hoydoon connects you to your dream home, easily and reliably.{" "}
-            </p>
+          {/* Subheading */}
+          <p className="text-[#FFFFFFB2]  hidden  md:-mt-2 text-center  md:flex item-center justify-center font-[300]  text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
+            From urban flats to rural getaways, Hoydoon effortlessly links you
+            to the home of your dreams with trust and ease.
+          </p>
+          <p className="text-[#FFFFFFB2]  md:hidden md:-mt-2 text-center  flex item-center justify-center font-[300]  text-sm md:text-[clamp(1em,2vw,1.4em)] md:w-[47rem]">
+            Hoydoon connects you to your dream home, easily and reliably.{" "}
+          </p>
 
-            {/* Search Bar (Large Screens) */}
-            <PropertySearchBar />
+          {/* Search Bar (Large Screens) */}
+          <PropertySearchBar />
 
-            {/* Mobile Search Bar */}
-          </div>
-          {/* Statistics Section */}
+          {/* Mobile Search Bar */}
+        </div>
+        {/* Statistics Section */}
       </header>
       <div></div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col  items-center gap-2" style={{ width: "stretch" }}  >
         <section className="relative w-screen p-5 md:p-0 font-bricolage md:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
           <div className="flex  flex-col-reverse md:gap-y-5   md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-between ">
             <span className="flex  gap-y-5  flex-col w-full md:max-w-[45.3em] 2xl:max-w-[48em]  ">
@@ -415,7 +415,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative p-2 md:p-0  md:mt-[2.5em] md:mb-[5em] w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
+        <section className="relative  flex p-2 md:p-0  md:mt-[2.5em] md:mb-[5em] w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
           <div className="flex flex-col    md:items-start gap-0 md:gap-y-6 justify-center max-w-[1200px] w-full">
             <div className="flex flex-col  md:flex-row justify-between items-center w-full  mx-auto">
               <h2 className="text-black text-[24px] mt-[23px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
