@@ -72,7 +72,7 @@ function Carousel({ images }) {
         >
           <div className="absolute inset-0 bg-black opacity-15 transition-opacity duration-500" />
 
-          <div className="z-111 absolute bg-primarytransparent p-2 sm:p-2 m-3  2xl:mt-[20rem] rounded-2xl top-[60%] right-0 h-fit w-[95%]">
+          <div className="z-111 absolute bg-primarytransparent p-2 sm:p-2 m-3  2xl:mt-[20rem] rounded-2xl top-[53%] right-0 h-fit w-[95%]">
             <div className="bg-white px-3 pt-3 sm:p-6 md:p-8 rounded-2xl h-fit w-full max-w-full md:w-[56rem] 2xl:w-[65rem]">
               <h3 className="text-black text-[0.9rem] sm:text-base md:text-2xl 2xl:text-[2rem] font-[600]">
                 {truncateDescription(images[currentIndex]?.title, 15)}
@@ -353,7 +353,7 @@ export default function Home() {
         {/* Statistics Section */}
       </header>
       <div></div>
-      <div className="flex flex-col  items-center gap-2" style={{ width: "stretch" }}  >
+      <div className="flex flex-col  items-center gap-2 w-full px-[10px]"  >
         <section className="relative w-screen p-5 md:p-0 font-bricolage md:flex  justify-center flex-col flex-1 items-center bg-[#eeeeeec7]">
           <div className="flex  flex-col-reverse md:gap-y-5   md:my-[5em] md:flex-row  items-center  2xl:justify-center md:justify-between ">
             <span className="flex  gap-y-5  flex-col w-full md:max-w-[45.3em] 2xl:max-w-[48em]  ">
@@ -415,7 +415,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative  flex p-2 md:p-0  md:mt-[2.5em] md:mb-[5em] w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
+        <section className="relative   p-2 md:p-0  md:mt-[2.5em] md:mb-[5em] w-full font-bricolage md:flex justify-center flex-col flex-1 items-center">
           <div className="flex flex-col    md:items-start gap-0 md:gap-y-6 justify-center max-w-[1200px] w-full">
             <div className="flex flex-col  md:flex-row justify-between items-center w-full  mx-auto">
               <h2 className="text-black text-[24px] mt-[23px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
