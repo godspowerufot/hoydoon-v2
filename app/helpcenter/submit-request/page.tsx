@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Input from "@/app/components/common/inputs/input";
 import Image from "next/image";
 import { toast } from "react-toastify";
@@ -29,17 +29,18 @@ const SubmitRequest = () => {
     "My listing was flagged for review",
   ];
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://embed.tawk.to/67dd7bad1297d6190a7b4b0b/1imsim8qk";
-    script.async = true;
-    script.charset = "UTF-8";
-    script.setAttribute("crossorigin", "*");
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  // Tawk.to Chat Widget — temporarily disabled
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+  //   script.src = "https://embed.tawk.to/67dd7bad1297d6190a7b4b0b/1imsim8qk";
+  //   script.async = true;
+  //   script.charset = "UTF-8";
+  //   script.setAttribute("crossorigin", "*");
+  //   document.body.appendChild(script);
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
   const handleSubmit = async () => {
     setLoading(true);

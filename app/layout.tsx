@@ -133,11 +133,12 @@ export default function RootLayout({
             `}
           </Script>
 
-          {/* Tawk.to Chat Widget */}
+          {/* Tawk.to Chat Widget — temporarily disabled
           <Script
             src="https://embed.tawk.to/67dd7bad1297d6190a7b4b0b/1imsim8qk"
             strategy="afterInteractive"
           />
+          */}
 
           {/* Schema Markup */}
           <Script
