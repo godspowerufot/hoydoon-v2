@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { getAccessToken } from "@/utils/cookies";
 import { useLogoutMutation } from "@/store/slices/api/authapi";
 import { toast } from "react-toastify";
+import BrandLogo from "../common/BrandLogo";
 const MobileNavbar = () => {
   const router = useRouter();
   const sidebarRef = useRef(null);
@@ -111,7 +112,7 @@ const MobileNavbar = () => {
       title: "Explore your rentals",
       items: [
         { label: "Lagos Housing market", href: "/sell" },
-        { label: "Seller’s guide", href: "/sell" },
+        { label: "Seller's guide", href: "/sell" },
       ],
     },
     "Find an Agent": {
@@ -140,31 +141,23 @@ const MobileNavbar = () => {
         ) && (
             <>
               {" "}
-              <div className="flex items-center space-x-2">
-                <Link href="/" className="flex items-center space-x-2">
-                  {" "}
-                  <Image
-                    alt="logo"
-                    width={500}
-                    height={500}
-                    src="/logo-23.png"
-                    className="h-8 w-8 bg-transparent"
-                  />
-                  {pathname === "/helpcenter" ? (
-                    <div className="flex items-center space-x-2">
-                      {/* vertical line */}
-
-                      {/* <div className="w-[2px] h-5 bg-black" /> */}
-                      <span className=" border-l-black border-[2px] pl-2  border-y-0 border-r-0 text-gray-800 font-[500] text-sm cursor-pointer  transition-colors whitespace-nowrap">
-                        Help center
-                      </span>
-                    </div>
-                  ) : (
-                    <span className="text-[1.4rem] font-semibold mt-[0.3rem]  text-gray-800 ">
-                      Hoydoon
+              <div className="flex items-center">
+                {pathname === "/helpcenter" ? (
+                  <Link href="/" className="flex items-center gap-2">
+                    <Image
+                      alt=""
+                      width={32}
+                      height={32}
+                      src="/logo-23.png"
+                      className="h-8 w-8 object-contain"
+                    />
+                    <span className="border-l border-[#111] pl-2 font-heading text-sm font-medium text-[#111]">
+                      Help center
                     </span>
-                  )}
-                </Link>
+                  </Link>
+                ) : (
+                  <BrandLogo compact />
+                )}
               </div>
             </>
           )}
@@ -259,19 +252,7 @@ const MobileNavbar = () => {
             }`}
         >
           <div className="flex items-center justify-between p-4 border-b  border-[#8F8F8F]">
-            <Link
-              href={"/"}
-              className="flex cursor-pointer items-center space-x-2"
-            >
-              {/* <Image
-                alt="logo"
-                width={30}
-                height={30}
-                className="w-36 h-8 object-cover bg-transparent"
-                src="/mobile-logov1.png"
-              /> */}
-              <img alt="logo" src="/mobile-logov1.png" className="w-36 h-8 object-cover bg-transparent" />
-            </Link>{" "}
+            <BrandLogo compact />
             <button
               onClick={() => setSidebarOpen(false)}
               className="text-gray-800 mr-[9px]"

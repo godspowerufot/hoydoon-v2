@@ -109,3 +109,4 @@ The folder structure supports several built-in optimizations:
 3.  **Global State Management (`store/`)**: Centralizing state prevents unnecessary prop drilling and re-renders, ensuring the app remains responsive as it scales.
 4.  **Server-Side Rendering (`app/`)**: By default, components in the `app` directory are React Server Components. This reduces the amount of JavaScript sent to the client, improving the First Contentful Paint (FCP).
 
+# hoydoon-v2

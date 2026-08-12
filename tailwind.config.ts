@@ -80,7 +80,11 @@ export default {
         "9/10": "90%",
       },
       fontFamily: {
-        bricolage: ["Bricolage Grotesque", "serif"],
+        sans: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        manrope: ["Manrope", "sans-serif"],
+        sora: ["Sora", "sans-serif"],
+        heading: ["Sora", "sans-serif"],
+        bricolage: ["Manrope", "sans-serif"],
       },
       keyframes: {
         fadeIn: {

@@ -11,6 +11,7 @@ import { useLogoutMutation } from "@/store/slices/api/authapi";
 import { getAccessToken } from "@/utils/cookies";
 import { toast } from "react-toastify";
 import MobileNavbar from "./mobile";
+import BrandLogo from "../common/BrandLogo";
 
 export default function ListingNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -58,10 +59,7 @@ export default function ListingNavbar() {
         <div className="  mx-auto flex gap-[20rem] justify-between py-3 px-5 lg:px-0">
           {/* Left: Logo & Search Bar */}
           <div className="flex items-center space-x-3">
-            <Link href="/" className="flex items-center">
-              <img src="/newlogo2.png" alt="logo" className="w-[141px] object-contain" />
-              {" "}
-            </Link>{" "}
+            <BrandLogo />
             <form
               className="relative w-[20rem] h-[3rem] hidden lg:flex items-center bg-gray-100 border border-[#8F8F8F] rounded-[14px] px-2 py-2"
               onSubmit={(e) => {

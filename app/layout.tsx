@@ -38,8 +38,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Hoydoon Team" }],
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: "/favicon-96x96.png",
+    shortcut: "/favicon-96x96.png",
+    apple: "/apple-touch-icon.png",
   },
   alternates: {
     canonical: "https://www.hoydoon.com",
@@ -85,8 +86,6 @@ export default function RootLayout({
             href="/favicon-96x96.png"
             sizes="96x96"
           />
-          <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-          {/* <link rel="shortcut icon" href="/favicon.ico" /> */}
           <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -267,7 +266,7 @@ export default function RootLayout({
         {/* Organization Schema */}
 
 
-        <body className="lg:flex overflow-x-hidden flex-col flex-1 font-bricolage min-h-screen">
+        <body className="lg:flex overflow-x-hidden flex-col flex-1 font-manrope min-h-screen">
           {/* Google Tag Manager (noscript) */}
           <noscript>
             <iframe
@@ -286,9 +285,9 @@ export default function RootLayout({
                 <Suspense fallback={<Spinner />}>
                   <ToastContainer position="top-center" autoClose={3000} />
                   {children}
-                  <Appfooter />
                 </Suspense>
               </main>
+              <Appfooter />
             </AnimationWrapper>
           </Providers>
         </body>

@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import Button from "../common/Button";
 import { FaBars, FaTimes } from "react-icons/fa";
 import ListingNavbar from "./listingnavbar";
@@ -11,6 +10,7 @@ import { useLogoutMutation } from "@/store/slices/api/authapi";
 import { getAccessToken } from "@/utils/cookies";
 import { toast } from "react-toastify";
 import MobileNavbar from "./mobile";
+import BrandLogo from "../common/BrandLogo";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -94,37 +94,15 @@ export default function Navbar() {
     <>
       {!hideNavbar && !hideAuth && (
         <nav
-          className={`text-xl max-w-full z-[999999] hidden font-bricolage  lg:flex fixed top-0  transition-all duration-300 ${scrolled
+          className={`text-xl max-w-full z-50 hidden font-bricolage lg:flex fixed top-0 left-0 right-0 h-16 pointer-events-none transition-all duration-300 ${scrolled
             ? "bg-white text-black shadow-md"
             : "bg-transparent text-white mt-3"
             }`}
         >
-          <div className="flex-1  mx-9 lg:mx-0 flex w-screen items-center justify-around p-2">
+          <div className="pointer-events-auto flex-1 mx-9 lg:mx-0 flex w-full items-center justify-around p-2">
             {/* Logo */}
-            <div className="text-2xl font-bold">
-              <Link href="/" className="flex justify-center items-center gap-2">
-                {scrolled ? (
-                  <Image
-                    alt="logo"
-                    width={100}
-                    priority
-                    quality={100}
-                    height={100}
-                    className="object-contain w-[150px] h-[50px]"
-                    src={"/newlogo.svg"}
-                  />
-                ) : (
-                  <Image
-                    alt="logo"
-                    width={100}
-                    priority
-                    quality={100}
-                    height={100}
-                    className="object-contain w-[150px] h-[50px]"
-                    src={"/logo-2-white.svg"}
-                  />
-                )}
-              </Link>
+            <div>
+              <BrandLogo light={!scrolled} />
             </div>
 
             {/* Desktop Links */}

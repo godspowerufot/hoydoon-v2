@@ -4,8 +4,17 @@ import { logout } from "../authslice";
 import { setTokens, getAccessToken, getRefreshToken } from "@/utils/cookies";
 import { log } from "@/utils/log";
 
+const remoteApiBase =
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  "https://hoydoon-backend-web.azurewebsites.net/api";
+
+// Browser calls same-origin so Azure's Cross-Origin-Resource-Policy
+// (same-origin) does not block listings. The Next rewrite proxies to Azure.
+const apiBaseUrl =
+  typeof window === "undefined" ? remoteApiBase : "/hoydoon-api";
+
 const baseQuery = fetchBaseQuery({
-  baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL}`,
+  baseUrl: apiBaseUrl,
   prepareHeaders: (headers) => {
     const token = getAccessToken();
     log("", token);
@@ -105,10 +114,19 @@ export const authApi = createApi({
     }),
 
     getAllListings: builder.query({
-      query: (params) => ({
-        url: `/v1/listings?${new URLSearchParams(params).toString()}`,
-        method: "GET",
-      }),
+      query: (params = {}) => {
+        const searchParams = new URLSearchParams();
+        Object.entries(params || {}).forEach(([key, value]) => {
+          if (value !== undefined && value !== null && value !== "") {
+            searchParams.append(key, String(value));
+          }
+        });
+        const queryString = searchParams.toString();
+        return {
+          url: queryString ? `/v1/listings?${queryString}` : "/v1/listings",
+          method: "GET",
+        };
+      },
     }),
     getAllListingsAddress: builder.query({
       query: (params) => ({
