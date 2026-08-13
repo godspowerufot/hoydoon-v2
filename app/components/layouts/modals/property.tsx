@@ -16,7 +16,8 @@ type PropertyModalProps = {
   isOpen: boolean;
   listingId?: string;
   handleFavoriteClick?: () => void;
-  coordinates?: unknown;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  coordinates?: any;
   onClose: () => void;
   image: Array<ImageType | string>;
   video?: {
