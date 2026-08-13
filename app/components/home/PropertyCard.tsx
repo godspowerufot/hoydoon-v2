@@ -34,8 +34,8 @@ function metaLine(listing: HomeListing) {
   const baths = listing.item?.bathrooms;
   const area = listing.item?.squareFeet;
   const parts: string[] = [];
-  if (beds != null && beds !== "") parts.push(`${beds} bd`);
-  if (baths != null && baths !== "") parts.push(`${baths} ba`);
+  if (beds != null && beds !== "") parts.push(`${beds} bed`);
+  if (baths != null && baths !== "") parts.push(`${baths} bath`);
   if (area != null && area !== "") parts.push(`${area} sqft`);
   return parts.join(" · ");
 }

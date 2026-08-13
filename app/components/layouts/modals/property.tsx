@@ -1,97 +1,41 @@
-/* eslint-disable */
 "use client";
-import { useEffect, useRef, useState } from "react";
-import MapComponent from "../listingmap"; // Assuming this is a map component you already have
-import { useToggleFavoriteMutation } from "@/store/slices/api/authapi";
-import { handleShareClick } from "@/utils";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
-type Coordinates = [number, number]; // Or a more specific object type if needed
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight, Heart, Share2, X } from "lucide-react";
+import MapComponent from "../listingmap";
+import { handleShareClick } from "@/utils";
 
 type ImageType = {
-  url: string;
-  [key: string]: any; // optional, in case your images have more fields
+  url?: string;
+  imageUrl?: string;
+  [key: string]: unknown;
 };
 
 type PropertyModalProps = {
   isOpen: boolean;
-  listingId: string;
-  handleFavoriteClick: any;
-
-  coordinates: Coordinates;
+  listingId?: string;
+  handleFavoriteClick?: () => void;
+  coordinates?: unknown;
   onClose: () => void;
-  image: ImageType[];
+  image: Array<ImageType | string>;
   video?: {
     url: string;
     description?: string;
   };
+  initialIndex?: number;
+  initialTab?: string;
+  autoOpenCarousel?: boolean;
+  isFavorite?: boolean;
 };
 
-// Full Screen Carousel Component
-const FullScreenCarousel = ({
-  images,
-  currentIndex,
-  setCurrentIndex,
-  onClose,
-}: any) => {
-  if (!images || images.length === 0) return null;
+function srcOf(img: ImageType | string | undefined) {
+  if (!img) return "/house1.png";
+  if (typeof img === "string") return img;
+  return img.url || img.imageUrl || "/house1.png";
+}
 
-  const currentImage = images[currentIndex];
-  // Robust image URL selection
-  const imageUrl = typeof currentImage === "string" ? currentImage : currentImage?.url || currentImage?.imageUrl || "/house1.png";
-
-
-  const handleNext = () => {
-    setCurrentIndex((prev: number) => (prev + 1) % images.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex(
-      (prev: number) => (prev - 1 + images.length) % images.length
-    );
-  };
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-90 z-[999] flex items-center justify-center transition-all duration-300">
-      <button
-        onClick={onClose}
-        className="absolute top-5 right-5 text-white text-3xl"
-      >
-        ✕
-      </button>
-
-      <button
-        onClick={handlePrev}
-        className="absolute left-5 text-white text-4xl px-4 py-2 rounded hover:bg-white/10"
-      >
-        <FaChevronLeft />
-      </button>
-
-      <div className="transition-all duration-300 ease-in-out max-w-full max-h-[80%]">
-        <Image
-          width={1200}
-          height={800}
-          src={imageUrl}
-          alt="carousel"
-          className="object-contain max-h-[80vh] w-full rounded-md"
-          priority
-        />
-      </div>
-
-      <button
-        onClick={handleNext}
-        className="absolute right-5 text-white text-4xl px-4 py-2 rounded hover:bg-white/10"
-      >
-        <FaChevronRight />
-      </button>
-    </div>
-  );
-};
-
-// PropertyGalleryModal Component
-const PropertyGalleryModal = ({
+export default function PropertyGalleryModal({
   isOpen,
   coordinates,
   onClose,
@@ -99,247 +43,231 @@ const PropertyGalleryModal = ({
   video,
   handleFavoriteClick,
   initialIndex = 0,
-  initialTab: propInitialTab = "photos",
-}: PropertyModalProps & { initialIndex?: number; initialTab?: string; autoOpenCarousel?: boolean }) => {
-  const [isCarouselOpen, setIsCarouselOpen] = useState(false);
+  initialTab = "photos",
+  isFavorite = false,
+}: PropertyModalProps) {
+  const photos = image?.length ? image : ["/house1.png"];
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
-  const [activeTab, setActiveTab] = useState(propInitialTab);
+  const [activeTab, setActiveTab] = useState(initialTab);
+  const touchStartX = useRef(0);
+  const thumbsRef = useRef<HTMLDivElement>(null);
+
+  const tabs = [
+    { id: "photos", label: "Photos" },
+    { id: "map", label: "Map" },
+    ...(video?.url ? [{ id: "video", label: "Video" }] : []),
+  ];
 
   useEffect(() => {
-    if (isOpen) {
-      setCurrentIndex(initialIndex);
-      setActiveTab(propInitialTab);
-      setIsCarouselOpen(false); // Always reset carousel when modal opens
-    }
-  }, [isOpen, initialIndex, propInitialTab]);
+    if (!isOpen) return;
+    setCurrentIndex(Math.min(initialIndex, Math.max(photos.length - 1, 0)));
+    setActiveTab(initialTab);
+  }, [isOpen, initialIndex, initialTab, photos.length]);
 
-  // useEffect(() => {
-  //   if (!isCarouselOpen && currentIndex > 0) {
-  //     setIsCarouselOpen(true);
-  //   }
-  // }, [currentIndex]);
+  useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isOpen]);
 
-  const router = useRouter(); // Tab state
-  const [showListings, setShowListings] = useState(true);
-  const modalRef = useRef<HTMLDivElement>(null); // ✅ Ref for modal content
-  const handleOverlayClick = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      onClose(); // ✅ Close when clicking outside
-    }
+  const goTo = (index: number) => {
+    const total = photos.length;
+    if (!total) return;
+    setCurrentIndex((index + total) % total);
   };
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+      if (activeTab !== "photos") return;
+      if (event.key === "ArrowRight") goTo(currentIndex + 1);
+      if (event.key === "ArrowLeft") goTo(currentIndex - 1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpen, activeTab, currentIndex, onClose]);
+
+  useEffect(() => {
+    const node = thumbsRef.current?.querySelector<HTMLElement>(
+      `[data-thumb="${currentIndex}"]`
+    );
+    node?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }, [currentIndex]);
 
   if (!isOpen) return null;
 
-  const images = image || [];
-
-  const handleImageClick = (index: number) => {
-    console.log("Image Selected Index: ", index, " Selected Image URL=> ", images[10-1]);
-    setCurrentIndex(index); // Set clicked image index
-    setIsCarouselOpen(true); // Open the carousel
-  };
-
-  const getImageUrl = (img: any) => {
-    if (typeof img === "string") return img;
-    return img?.url || img?.imageUrl || "/house1.png";
-  };
-
-  const renderImage = (img: any, absoluteIndex: number, height: string = "h-[400px]") => (
-    <Image
-      key={`img-${absoluteIndex}`}
-      src={getImageUrl(img)}
-      onClick={() => handleImageClick(absoluteIndex)}
-      alt={`Image ${absoluteIndex}`}
-      width={500}
-      height={500}
-      className={`w-full ${height} object-cover rounded-md cursor-pointer`}
-    />
-  );
-
-  const generateGridLayout = () => {
-    const blocks = [];
-    let index = 0;
-
-    while (index < images.length) {
-      const remaining = images.length - index;
-
-      //When is a Single Image
-      if (remaining === 1) {
-        blocks.push(
-          <div key={`block-${index}`} className="grid grid-cols-1 gap-3">
-            {renderImage(images[index], index)}
-          </div>
-        );
-        index += 1;
-        continue;
-      }
-
-      // When the image is two
-      if (remaining === 2) {
-        blocks.push(
-          <div key={`block-${index}`} className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-            {images.slice(index, index + 2).map((img, i) =>
-              renderImage(img, index + i)
-            )}
-          </div>
-        );
-        index += 2;
-        continue;
-      }
-
-      // handle three (banner + two below)
-      blocks.push(
-        <div
-          key={`block-${index}`}
-          className="grid grid-cols-1 lg:grid-cols-2 grid-rows-2 gap-3"
-        >
-          <div className="col-span-1 lg:col-span-2">
-            {renderImage(images[index], index)}
-          </div>
-
-          {images.slice(index + 1, index + 3).map((img, i) =>
-            renderImage(img, index + 1 + i, "h-[360px]")
-          )}
+  return (
+    <div
+      className="fixed inset-0 z-[10000] flex flex-col bg-[#ffffff]"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Property photos"
+    >
+      <header className="flex shrink-0 flex-col gap-3 border-b border-[#ececec] px-4 py-3 md:flex-row md:items-center md:justify-between md:px-6">
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={onClose}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#f7f7f8] text-[#2a2a33] transition-colors hover:bg-[#ececec]"
+            aria-label="Close photos"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <p className="text-sm font-semibold text-[#2a2a33]">
+            {activeTab === "photos"
+              ? `${currentIndex + 1} / ${photos.length}`
+              : activeTab === "map"
+                ? "Map"
+                : "Video"}
+          </p>
         </div>
-      );
 
-      index += 3;
-    }
+        <div
+          role="tablist"
+          aria-label="Gallery views"
+          className="flex gap-1 rounded-full bg-[#f7f7f8] p-1"
+        >
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
+                activeTab === tab.id
+                  ? "bg-[#ffffff] text-primary shadow-[0_8px_24px_rgba(20,20,30,0.06)]"
+                  : "text-[#5c5c66] hover:text-[#2a2a33]"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
-    return <div className="flex flex-col gap-3">{blocks}</div>;
-  };
+        <div className="flex items-center justify-end gap-2">
+          <button
+            type="button"
+            onClick={handleFavoriteClick}
+            className="inline-flex h-10 items-center gap-1.5 rounded-full border border-[#ececec] px-3.5 text-sm font-semibold text-[#2a2a33] hover:bg-[#f7f7f8]"
+          >
+            <Heart
+              className={`h-4 w-4 ${isFavorite ? "fill-primary text-primary" : ""}`}
+            />
+            Save
+          </button>
+          <button
+            type="button"
+            onClick={handleShareClick}
+            className="inline-flex h-10 items-center gap-1.5 rounded-full border border-[#ececec] px-3.5 text-sm font-semibold text-[#2a2a33] hover:bg-[#f7f7f8]"
+          >
+            <Share2 className="h-4 w-4" />
+            Share
+          </button>
+        </div>
+      </header>
 
-  // Switch between tabs
-  const renderTabContent = () => {
-    if (activeTab === "photos") {
-      return (
-        <div className="space-y-6 mt-8 -mb-[2pc]">{generateGridLayout()}</div>
-      );
-    }
-    if (activeTab === "map") {
-      return <MapComponent coordinates={coordinates} />;
-    }
-    if (activeTab === "video" && video?.url) {
-      return (
-        <div className="flex items-center justify-center bg-black rounded-lg overflow-hidden mt-8 h-[500px]">
+      {activeTab === "photos" ? (
+        <>
+          <div
+            className="relative flex min-h-0 flex-1 items-center justify-center bg-[#111]"
+            onTouchStart={(event) => {
+              touchStartX.current = event.touches[0].clientX;
+            }}
+            onTouchEnd={(event) => {
+              const delta = event.changedTouches[0].clientX - touchStartX.current;
+              if (delta > 50) goTo(currentIndex - 1);
+              if (delta < -50) goTo(currentIndex + 1);
+            }}
+          >
+            <Image
+              src={srcOf(photos[currentIndex])}
+              alt={`Property photo ${currentIndex + 1}`}
+              fill
+              priority
+              sizes="100vw"
+              className="object-contain"
+            />
+
+            {photos.length > 1 ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() => goTo(currentIndex - 1)}
+                  className="absolute left-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#ffffff] text-[#2a2a33] shadow-[0_8px_24px_rgba(20,20,30,0.16)] md:left-6"
+                  aria-label="Previous photo"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => goTo(currentIndex + 1)}
+                  className="absolute right-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#ffffff] text-[#2a2a33] shadow-[0_8px_24px_rgba(20,20,30,0.16)] md:right-6"
+                  aria-label="Next photo"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </>
+            ) : null}
+          </div>
+
+          {photos.length > 1 ? (
+            <div
+              ref={thumbsRef}
+              className="flex shrink-0 gap-2 overflow-x-auto hide-scrollbar border-t border-[#ececec] bg-[#ffffff] px-4 py-3 md:px-6"
+            >
+              {photos.map((photo, index) => {
+                const selected = index === currentIndex;
+                return (
+                  <button
+                    key={index}
+                    type="button"
+                    data-thumb={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-xl ${
+                      selected
+                        ? "ring-2 ring-primary ring-offset-2"
+                        : "opacity-70 hover:opacity-100"
+                    }`}
+                    aria-label={`Show photo ${index + 1}`}
+                    aria-current={selected}
+                  >
+                    <Image
+                      src={srcOf(photo)}
+                      alt=""
+                      fill
+                      sizes="96px"
+                      className="object-cover"
+                    />
+                  </button>
+                );
+              })}
+            </div>
+          ) : null}
+        </>
+      ) : null}
+
+      {activeTab === "map" ? (
+        <div className="min-h-0 flex-1 bg-[#f7f7f8]">
+          <MapComponent coordinates={coordinates} />
+        </div>
+      ) : null}
+
+      {activeTab === "video" && video?.url ? (
+        <div className="flex min-h-0 flex-1 items-center justify-center bg-[#111] p-4 md:p-8">
           <video
             src={video.url}
             controls
-            className="w-full h-full object-contain"
+            className="max-h-full w-full max-w-5xl rounded-2xl object-contain"
           >
             Your browser does not support the video tag.
           </video>
         </div>
-      );
-    }
-  };
-
-  // Function to toggle the listings section
-  const handleToggleListings = () => {
-    setShowListings((prev) => !prev);
-  };
-
-  return (
-    <>
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 animate-fadeIn"
-        onClick={handleOverlayClick} // ✅ Detect clicks on overlay
-      >
-        {" "}
-        <div
-          ref={modalRef}
-          className="bg-white w-11/12 md:w-3/4 lg:w-5/6 pt-5 pb-[3.5rem] px-[1rem]  md:px-[2rem] shadow-lg relative max-h-[90vh] overflow-y-auto animate-zoomOut"
-        >
-          {/* Tabs */}
-          <div className="flex border-b mb-3">
-            <div className="flex  space-x-6">
-              <button
-                onClick={() => setActiveTab("photos")}
-                className={`pb-2 ${activeTab === "photos"
-                  ? "border-b-2 border-primary text-black"
-                  : "text-gray"
-                  }`}
-              >
-                Photos
-              </button>
-              <button
-                onClick={() => setActiveTab("map")}
-                className={`pb-2 ${activeTab === "map"
-                  ? "border-b-2 border-primary text-black"
-                  : "text-gray"
-                  }`}
-              >
-                Map
-              </button>
-              {video?.url && (
-                <button
-                  onClick={() => setActiveTab("video")}
-                  className={`pb-2 ${activeTab === "video"
-                    ? "border-b-2 border-primary text-black"
-                    : "text-gray"
-                    }`}
-                >
-                  Video
-                </button>
-              )}
-            </div>
-            <div className="flex  justify-end pr-4 pb-2  flex-1 gap-2">
-              <div
-                onClick={handleFavoriteClick}
-                className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md"
-              >
-                <Image
-                  width={500}
-                  height={500}
-                  src="/favorite.svg"
-                  alt="Favorite"
-                  className="w-4 h-4"
-                />
-              </div>
-              <div
-                onClick={handleShareClick}
-                className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md"
-              >
-                <Image
-                  width={500}
-                  height={500}
-                  src="/upload.svg"
-                  alt="Download"
-                  className="w-4 h-4"
-                />
-              </div>
-              <div
-                onClick={handleToggleListings}
-                className="p-2 border cursor-pointer border-[#8F8F8F] rounded-md"
-              >
-                <Image
-                  width={500}
-                  height={300}
-                  src="/image2.svg"
-                  alt="Share"
-                  className="w-4 h-4"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Tab Content */}
-          {showListings && renderTabContent()}
-        </div>
-      </div>
-
-      {/* Full Screen Carousel — only opens when user clicks an image */}
-      {isCarouselOpen && (
-        <FullScreenCarousel
-          images={images}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-          onClose={() => setIsCarouselOpen(false)}
-        />
-      )}
-    </>
+      ) : null}
+    </div>
   );
-};
-
-export default PropertyGalleryModal;
+}

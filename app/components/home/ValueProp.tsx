@@ -28,7 +28,7 @@ export default function ValueProp() {
           headingId="how-hoydoon-works"
           eyebrow="How it works"
           title="Find your next home without the noise"
-          description="Simple tools, clear listings, and guidance from people who know the market — so the search does not become the hard part."
+          description="Simple tools, clear listings, and guidance from people who know the market, so the search does not become the hard part."
           action={
             <Link
               href="/search"

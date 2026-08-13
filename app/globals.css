@@ -221,9 +221,32 @@ h6,
   }
 }
 
-.home-page a:focus-visible,
-.home-page button:focus-visible,
-.home-page input:focus-visible {
+.listing-page {
+  user-select: text;
+  width: 100%;
+  color: #2a2a33;
+  background: #ffffff;
+}
+
+.listing-page a:focus-visible,
+.listing-page button:focus-visible,
+.listing-page textarea:focus-visible,
+.listing-page input:focus-visible {
   outline: 2px solid #09858d;
   outline-offset: 2px;
+}
+
+.listing-jump {
+  position: sticky;
+  top: 3.5rem;
+  z-index: 20;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background: #ffffff;
+}
+
+@media (min-width: 1024px) {
+  .listing-jump {
+    top: 4rem;
+  }
 }

@@ -6,19 +6,19 @@ const COUNTRIES = [
   {
     name: "Nigeria",
     href: "/search?location=Nigeria&listingType=sale",
-    image: "/rent.png",
+    image: "/new-image/nigeria.jpg",
     caption: "Homes for sale",
   },
   {
     name: "Somalia",
     href: "/search?location=Somalia&listingType=sale",
-    image: "/afforable-1.png",
+    image: "/new-image/somalia.jpg",
     caption: "Homes for sale",
   },
   {
     name: "Kenya",
     href: "/search?location=Kenya&listingType=sale",
-    image: "/carousel2.jpg",
+    image: "/new-image/kenya.jpg",
     caption: "Homes for sale",
   },
 ];
@@ -31,7 +31,7 @@ export default function Neighborhoods() {
           id="countries-heading"
           className="mb-6 text-2xl font-semibold tracking-tight text-[#2a2a33] md:text-3xl"
         >
-          Explore homes by country
+          Explore homes by city
         </h2>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {COUNTRIES.map((country) => (

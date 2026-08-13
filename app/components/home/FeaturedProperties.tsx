@@ -25,7 +25,7 @@ export default function FeaturedProperties({
           headingId="featured-heading"
           eyebrow="Featured"
           title="Homes worth a closer look"
-          description="Hand-picked listings with the details that matter: price, size, and location — always visible, no hover required."
+          description="Hand-picked listings with the details that matter: price, size, and location, always visible, no hover required."
           action={
             <TextLink href="/search?category=Featured">
               View all featured homes

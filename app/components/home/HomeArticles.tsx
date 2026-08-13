@@ -11,7 +11,7 @@ const articles = [
     readTime: "3 min read",
     date: "March 2025",
     description:
-      "Inaccurate details, policy issues, or something that does not look right — here is how to flag a listing and what happens next.",
+      "Inaccurate details, policy issues, or something that does not look right, here is how to flag a listing and what happens next.",
   },
   {
     id: "3",
@@ -33,7 +33,7 @@ export default function HomeArticles() {
           headingId="articles-heading"
           eyebrow="Guides"
           title="Clear answers before you tour"
-          description="Short reads on listings, agents, and the buying process — written for people making a real decision."
+          description="Short reads on listings, agents, and the buying process, written for people making a real decision."
           action={<TextLink href="/helpcenter">Browse the help center</TextLink>}
           align="between"
         />

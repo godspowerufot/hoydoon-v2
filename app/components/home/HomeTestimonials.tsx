@@ -54,7 +54,7 @@ export default function HomeTestimonials() {
           headingId="reviews-heading"
           eyebrow="Reviews"
           title="What people are saying"
-          description="Buyers, renters, and agents sharing how they found the right place — without the usual runaround."
+          description="Buyers, renters, and agents sharing how they found the right place, without the usual runaround."
           action={<TextLink href="/review">Read all reviews</TextLink>}
           align="between"
         />

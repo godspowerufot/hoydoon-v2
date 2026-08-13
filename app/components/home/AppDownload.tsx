@@ -34,7 +34,7 @@ export default function AppDownload() {
               </h2>
               <p className="mt-4 max-w-lg text-base leading-relaxed text-white/75 md:text-lg">
                 Save searches, follow listings, and hear from agents on iOS or
-                Android — without refreshing a browser tab.
+                Android, without refreshing a browser tab.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-3">

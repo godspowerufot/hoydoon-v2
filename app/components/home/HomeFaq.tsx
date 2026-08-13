@@ -50,7 +50,7 @@ export default function HomeFaq() {
               Questions, answered clearly
             </h2>
             <p className="mt-4 max-w-md text-base leading-relaxed text-[#5f5f5f] md:text-lg">
-              Straight answers about listings, fees, and how to get help — without
+              Straight answers about listings, fees, and how to get help, without
               the runaround.
             </p>
           </div>

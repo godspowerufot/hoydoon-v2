@@ -169,7 +169,7 @@ export default function Appfooter() {
           <div className="col-span-2 sm:col-span-3 lg:col-span-4">
             <BrandLogo light />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/65">
-              Homes for sale and rent in Nigeria, Somalia, and Kenya — verified
+              Homes for sale and rent in Nigeria, Somalia, and Kenya, verified
               listings, local agents, and a search that stays out of the way.
             </p>
             <ul className="mt-6 space-y-3 text-sm text-white/70">

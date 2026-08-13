@@ -1,42 +1,41 @@
 /* eslint-disable */
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import ContactAgent from "@/app/components/layouts/contactagent";
-import { highlights } from "@/constants";
+import Link from "next/link";
 import {
   useToggleFavoriteMutation,
   useGetAllListingsQuery,
   useGetListingBySlugQuery,
   useGetFavoritesQuery,
   useDeleteFavoriteMutation,
+  useSendMessageMutation,
 } from "@/store/slices/api/authapi";
-import HoverCard from "@/app/components/common/card";
 import { usePathname, useRouter } from "next/navigation";
-import Spinner from "@/app/components/common/Spinner";
-import ListedCard from "@/app/components/common/profilecard";
 import MapComponent from "@/app/components/layouts/listingmap";
-import {
-  ImageGallerySkeleton,
-  ImageGalleryMobileSkeleton,
-  PropertyHeaderSkeleton,
-  PropertyStatsSkeleton,
-  HomeHighlightsSkeleton,
-  DescriptionSkeleton,
-  MapSkeleton,
-  DistanceInfoSkeleton,
-  RelatedListingsSkeleton,
-  BreadcrumbSkeleton,
-  ContactAgentSkeleton,
-} from "@/app/components/Loader/RentDetailsSkeleton";
-import { ProfileCardSkeleton } from "@/app/components/Loader";
 import { toast } from "react-toastify";
-import { handleShareClick, truncateDescription, flattenListings } from "@/utils";
-import DynamicImageMobile from "@/app/components/layouts/mobiledynamic";
-import DynamicImageGrid from "@/app/components/layouts/dynamiclayout";
+import {
+  handleShareClick,
+  flattenListings,
+  formatPrice,
+  encodeId,
+} from "@/utils";
+import ListingGallery from "@/app/components/listing/ListingGallery";
+import PropertyCard from "@/app/components/home/PropertyCard";
+import { highlights } from "@/constants";
 import axios from "axios";
-import { log } from "@/utils/log";
-import { formatPrice } from "@/utils";
+import {
+  ArrowLeft,
+  Bath,
+  BedDouble,
+  Eye,
+  LandPlot,
+  Mail,
+  MapPin,
+  Star,
+} from "lucide-react";
+
 const PLACE_TYPES = [
   { type: "transit_station", icon: "/bus.png" },
   { type: "bank", icon: "/bank.png" },
@@ -45,44 +44,43 @@ const PLACE_TYPES = [
   { type: "pharmacy", icon: "/pharmacy.png" },
 ];
 
-// Infer human-readable label from types array
+const JUMP_LINKS = [
+  ["overview", "Overview"],
+  ["facts", "Facts & features"],
+  ["nearby", "Nearby"],
+];
+
 const getLabelFromTypes = (types = []) => {
   const lowered = types.map((t) => t.toLowerCase());
-
-  if (lowered.some((t) => t.includes("shop"))) return "Shopping Mall";
+  if (lowered.some((t) => t.includes("shop"))) return "Shopping";
   if (lowered.includes("school")) return "School";
   if (lowered.includes("bank")) return "Bank";
   if (lowered.includes("pharmacy")) return "Pharmacy";
-  if (lowered.includes("transit_station")) return "Public Transit";
-
-  return "Nearby Place";
+  if (lowered.includes("transit_station")) return "Transit";
+  return "Nearby";
 };
 
-const DistanceComponent = ({ coordinates }) => {
+function DistanceComponent({ coordinates }) {
   const [placesData, setPlacesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       if (!coordinates) return;
-
       setIsLoading(true);
 
       const fetchPromise = (async () => {
         const { latitude, longitude } = coordinates;
         const location = `${latitude},${longitude}`;
         const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-
         const foundPlaces = [];
         const destinations = [];
 
-        // 1. Fetch nearest places for each type
         for (const { type, icon } of PLACE_TYPES) {
           const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=2000&type=${type}&key=${API_KEY}`;
           const placesRes = await axios.get(
             `/api/proxy?url=${encodeURIComponent(placesUrl)}`
           );
-
           const place = placesRes.data.results?.[0];
           if (place) {
             foundPlaces.push({
@@ -90,56 +88,47 @@ const DistanceComponent = ({ coordinates }) => {
               icon,
               name: place.name,
               types: place.types,
-              lat: place.geometry.location.lat,
-              lng: place.geometry.location.lng,
             });
-
             destinations.push(
               `${place.geometry.location.lat},${place.geometry.location.lng}`
             );
           } else {
-            destinations.push(""); // placeholder to maintain index
+            destinations.push("");
             foundPlaces.push(null);
           }
         }
 
-        // 2. Fetch distances
         const distanceUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${location}&destinations=${destinations.join(
           "|"
         )}&key=${process.env.NEXT_PUBLIC_GOOGLE_DISTANCE_API_KEY}`;
         const distanceRes = await axios.get(
           `/api/proxy?url=${encodeURIComponent(distanceUrl)}`
         );
-
         const distanceElements = distanceRes.data.rows?.[0]?.elements || [];
 
-        // 3. Combine place info with distance
-        const finalData = foundPlaces.map((place, idx) => {
-          if (!place) return null;
-
-          const distanceInfo = distanceElements?.[idx];
-          const distanceText =
-            distanceInfo?.status === "OK" ? distanceInfo.distance.text : null;
-
-          return {
-            ...place,
-            label: getLabelFromTypes(place.types),
-            distance: distanceText,
-          };
-        });
-
-        return finalData.filter(Boolean);
+        return foundPlaces
+          .map((place, idx) => {
+            if (!place) return null;
+            const distanceInfo = distanceElements?.[idx];
+            return {
+              ...place,
+              label: getLabelFromTypes(place.types),
+              distance:
+                distanceInfo?.status === "OK" ? distanceInfo.distance.text : null,
+            };
+          })
+          .filter(Boolean);
       })();
 
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("Timeout")), 60000)
-      );
-
       try {
-        const result = await Promise.race([fetchPromise, timeoutPromise]);
+        const result = await Promise.race([
+          fetchPromise,
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("Timeout")), 60000)
+          ),
+        ]);
         setPlacesData(result);
-      } catch (error) {
-        console.error("Error fetching distance data:", error);
+      } catch {
         setPlacesData([]);
       } finally {
         setIsLoading(false);
@@ -150,641 +139,639 @@ const DistanceComponent = ({ coordinates }) => {
   }, [coordinates]);
 
   if (isLoading) {
-    return <DistanceInfoSkeleton />;
+    return (
+      <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <div key={index} className="shimmer h-20 rounded-2xl" />
+        ))}
+      </div>
+    );
   }
 
-
-  if (!placesData || placesData.length === 0) {
-    return null;
-  }
+  if (!placesData.length) return null;
 
   return (
-    <div className="grid p-4 md:my-[3rem] md:p-0 text-xs grid-cols-2 lg:grid-cols-3 gap-4 mt-6 2xl:text-base text-gray-700 md:text-sm">
+    <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
       {placesData.map(({ type, icon, name, label, distance }) => (
         <div
           key={type}
-          className={`flex items-start gap-2 ${type === "pharmacy" ? "hidden lg:flex" : ""
-            }`}
+          className="flex items-start gap-3 rounded-2xl border border-[#ececec] bg-[#ffffff] px-4 py-3"
         >
-          <Image src={icon} alt={label} width={20} height={20} />
-          <div className="flex flex-col">
-            <span className="text-primary font-[500] lowercase">{name}</span>
-            <span className="text-gray-500 text-xs">
-              {label} {distance ? `· ${distance}` : ""}
-            </span>
+          <Image src={icon} alt="" width={18} height={18} className="mt-0.5" />
+          <div className="min-w-0">
+            <p className="truncate text-sm font-medium text-[#2a2a33]">{name}</p>
+            <p className="text-xs text-[#6f6f78]">
+              {label}
+              {distance ? ` · ${distance}` : ""}
+            </p>
           </div>
         </div>
       ))}
     </div>
   );
-};
+}
 
-const Breadcrumb = ({
-  handleToggleListings,
-  region,
-  address,
-  isFavorite,
+function ContactCard({
+  fullname,
+  location,
   listingId,
-  handleFavoriteClick,
-}) => {
+  profileimage,
+  listedBy,
+  formId,
+}) {
+  const [message, setMessage] = useState(
+    "I am interested in this home. Please send more details."
+  );
+  const [sendMessage] = useSendMessageMutation();
+  const [isSending, setIsSending] = useState(false);
+  const router = useRouter();
+
+  const handleSend = async () => {
+    if (!message.trim()) return;
+    setIsSending(true);
+    try {
+      await sendMessage({ message, listedBy, listingId }).unwrap();
+      setMessage("");
+      toast.success("Message sent successfully.");
+    } catch (err) {
+      if (err?.data?.error === "ACCESS DENIED: No token provided") {
+        toast.error("Kindly sign in to contact the agent.");
+        router.push("/auth/sign-in");
+      } else {
+        toast.error("Could not send the message. Try again.");
+      }
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
-    <div className="hidden md:flex items-center justify-around py-2 md:w-full mt-[5rem] bg-gray-100">
-      {/* Left Section: Back Arrow and Breadcrumb */}
-      <div className="flex w-full gap-1 text-[1.08rem]  items-center font-bricolage text-gray-600">
-        {/* Back Arrow */}
-        <Image
-          src="/arrow-right.png"
-          alt="arrow"
-          height={12}
-          width={12}
-          onClick={() => window.history.back()}
-          className=" w-4 h-4 object-contain"
-        />
-
-        {/* Breadcrumb Links */}
-        <span className="text-gray-500">Search |</span>
-        {/* Breadcrumb item: Homes for Sale */}
-        <div className="flex font-light items-center gap-1">
-          <a href="/search" className="text-primary">
-            Homes for sale
-          </a>
-        </div>
-
-        {/* Breadcrumb item: Nigeria */}
-        <div className="flex items-center gap-1">
-          <Image
-            src="/arrow-right-top.png"
-            alt="arrow"
-            height={12}
-            width={12}
-          />
-          <a href="#" className="text-primary">
-            {region}
-          </a>
-        </div>
-
-        {/* Breadcrumb item: Magodo Estate */}
-        <div className="flex items-center gap-1">
-          <Image
-            src="/arrow-right-top.png"
-            alt="arrow"
-            height={12}
-            width={12}
-          />
-          <a href="#" className="text-primary">
-            {truncateDescription(address, 3)}
-          </a>
-        </div>
+    <aside
+      id={formId}
+      className="scroll-mt-28 overflow-hidden rounded-2xl border border-[#ececec] bg-[#ffffff] shadow-[0_8px_24px_rgba(20,20,30,0.06)]"
+    >
+      <div className="bg-[#f3fbfb] px-6 py-5">
+        <p className="font-heading text-lg font-semibold text-[#111]">
+          Request a tour
+        </p>
+        <p className="mt-1 text-sm leading-relaxed text-[#5c5c66]">
+          {fullname || "A Hoydoon agent"} typically replies within 10 minutes.
+        </p>
       </div>
-
-      {/* Right Section: Icons */}
-      <div className="flex items-center md:-ml-[4rem] gap-2">
-        <div
-          onClick={handleFavoriteClick}
-          className={`p-2 border cursor-pointer border-[#8F8F8F] rounded-md `}
+      <div className="px-6 py-5">
+        <Link
+          href={listedBy ? `/agent/${encodeId(listedBy)}` : "/agent"}
+          className="flex items-center gap-3"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill={isFavorite ? "#09858D" : "none"} // fill if favorite
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="#8F8F8F"
-            className="w-4 h-4"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M16.5 3.75a5.25 5.25 0 00-4.5 2.472A5.25 5.25 0 007.5 3.75 5.25 5.25 0 003 9c0 7.125 9 11.25 9 11.25s9-4.125 9-11.25a5.25 5.25 0 00-5.25-5.25z"
+          <div className="relative h-12 w-12 overflow-hidden rounded-full bg-[#eee]">
+            <Image
+              src={profileimage || "/Avatar.svg"}
+              alt={fullname || "Agent"}
+              fill
+              className="object-cover"
             />
-          </svg>
-        </div>
-        <div
-          onClick={handleShareClick}
-          className="p-2 border border-[#8F8F8F] rounded-md"
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-[#2a2a33]">
+              {fullname || "Hoydoon agent"}
+            </p>
+            <p className="text-xs capitalize text-[#6f6f78]">
+              {location || "Local agent"}
+            </p>
+          </div>
+        </Link>
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          rows={4}
+          className="mt-4 w-full resize-none rounded-2xl border border-[#ececec] bg-[#f7f7f8] px-4 py-3 text-sm text-[#2a2a33] outline-none transition-colors focus:border-primary focus:bg-[#ffffff]"
+        />
+        <button
+          type="button"
+          onClick={handleSend}
+          disabled={isSending}
+          className="mt-4 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary text-sm font-semibold text-[#fff] transition-colors duration-200 hover:bg-[#07757c] disabled:opacity-60"
         >
-          <Image
-            width={500}
-            height={300}
-            src="/upload.svg"
-            alt="Download"
-            className="w-4 h-4"
-          />
-        </div>
-        <div
-          onClick={handleToggleListings}
-          className="p-2 border border-[#8F8F8F] rounded-md"
-        >
-          <Image
-            width={500}
-            height={300}
-            src="/image2.svg"
-            alt="Share"
-            className="w-4 h-4"
-          />
-        </div>
+          <Mail className="h-4 w-4" />
+          {isSending ? "Sending" : "Request a tour"}
+        </button>
+        <p className="mt-3 text-center text-xs leading-relaxed text-[#8a8a8a]">
+          By sending, you agree to be contacted about this listing.
+        </p>
       </div>
+    </aside>
+  );
+}
 
-      <div></div>
+function FactGroup({ title, rows }) {
+  const items = rows.filter((row) => row.value || row.value === 0);
+  if (!items.length) return null;
+  return (
+    <div>
+      <h3 className="text-sm font-semibold text-[#2a2a33]">{title}</h3>
+      <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {items.map((row) => (
+          <div
+            key={row.label}
+            className="rounded-2xl border border-[#ececec] bg-[#ffffff] px-4 py-3"
+          >
+            <p className="text-xs text-[#6f6f78]">{row.label}</p>
+            <p className="mt-1 text-sm font-medium capitalize text-[#2a2a33]">
+              {row.value}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
+}
+
+function ListingSkeleton() {
+  return (
+    <div className="listing-page pt-14 lg:pt-16">
+      <div className="home-container py-6">
+        <div className="shimmer aspect-[4/3] w-full rounded-2xl md:h-[460px] md:aspect-auto lg:h-[520px]" />
+        <div className="mt-8 shimmer h-10 w-48 rounded-xl" />
+        <div className="mt-3 shimmer h-5 w-80 rounded-xl" />
+      </div>
+    </div>
+  );
+}
+
+const featureMap = {
+  "Solar power system": (item) =>
+    item?.amenities?.some((a) => a.toLowerCase().includes("solar")),
+  "Walk-in closet": (item) =>
+    item?.amenities?.some((a) => a.toLowerCase().includes("walk-in closet")),
+  "Garage parking": (item) =>
+    item?.parkingType ||
+    item?.amenities?.some((a) => a.toLowerCase().includes("garage")),
+  Balcony: (item) =>
+    item?.amenities?.some((a) => a.toLowerCase().includes("balcony")),
+  "Covered patio or porch": (item) =>
+    item?.amenities?.some(
+      (a) => a.toLowerCase().includes("patio") || a.toLowerCase().includes("porch")
+    ),
+  Laundry: (item) =>
+    item?.laundryType?.length > 0 ||
+    item?.amenities?.some((a) => a.toLowerCase().includes("laundry")),
+  "Pet allowed": (item) =>
+    item?.petFriendly || item?.amenities?.some((a) => a.toLowerCase().includes("pet")),
+  "Heating available": (item) =>
+    item?.amenities?.some((a) => a.toLowerCase().includes("heating")),
 };
 
-const RentDetailsClient = () => {
+export default function RentDetailsClient() {
   const pathname = usePathname();
   const slug = pathname?.split("/").pop();
-  const router = useRouter(); // Tab state
+  const router = useRouter();
+  const [descOpen, setDescOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("overview");
 
-  const { data: listing, isLoading: isAllLoading } =
-    useGetListingBySlugQuery({ slug });
-
-  // Extract listingId from the response for favorites and other operations
+  const { data: listing, isLoading } = useGetListingBySlugQuery({ slug });
   const listingId = listing?.listing?._id;
+  const currentType = listing?.listing?.listingType || "rent";
 
   const { data: allListings, refetch } = useGetAllListingsQuery({
-    listingType: "rent",
+    listingType: currentType,
   });
-
-  const [displayListings, setDisplayListings] = useState([]);
   const [toggleFavorite] = useToggleFavoriteMutation();
-  const [isFavorite, setIsFavorite] = useState();
   const [removeFavorite] = useDeleteFavoriteMutation();
-  const [showListings, setShowListings] = useState(true);
-
+  const [isFavorite, setIsFavorite] = useState(false);
   const { data: favorites } = useGetFavoritesQuery();
 
   useEffect(() => {
     if (favorites && listingId) {
-      // favorites is an array of favorite listings
-      const found = favorites.some((fav) => fav.listingId === listingId);
-      setIsFavorite(found);
+      setIsFavorite(favorites.some((fav) => fav.listingId === listingId));
     }
   }, [favorites, listingId]);
-  log(isFavorite);
-  // Function to toggle the listings se ction
-  const handleToggleListings = () => {
-    setShowListings((prev) => !prev);
-  };
-
-  const handleFavoriteToggle = async () => {
-    try {
-      if (isFavorite) {
-        await removeFavorite(listingId).unwrap();
-        toast.success("Removed from favorites!");
-        setIsFavorite(false);
-      } else {
-        await toggleFavorite({ listingId }).unwrap();
-        toast.success("Added to favorites!");
-        setIsFavorite(true);
-      }
-    } catch (error) {
-      toast.error(error?.error || error?.message);
-      router.push("/auth/sign-in");
-    }
-  };
 
   useEffect(() => {
     refetch();
   }, [refetch]);
 
   useEffect(() => {
-    if (!isAllLoading && allListings) {
-      const firstThreeListings = allListings.listings?.slice(0, 3);
-      setDisplayListings(firstThreeListings); // Store in state
+    const ids = JUMP_LINKS.map(([id]) => id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target?.id) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-35% 0px -50% 0px", threshold: [0, 0.2, 0.45] }
+    );
+
+    ids.forEach((id) => {
+      const node = document.getElementById(id);
+      if (node) observer.observe(node);
+    });
+
+    return () => observer.disconnect();
+  }, [listingId]);
+
+  const handleFavoriteToggle = async () => {
+    try {
+      if (isFavorite) {
+        await removeFavorite(listingId).unwrap();
+        toast.success("Removed from favorites.");
+        setIsFavorite(false);
+      } else {
+        await toggleFavorite({ listingId }).unwrap();
+        toast.success("Added to favorites.");
+        setIsFavorite(true);
+      }
+    } catch (error) {
+      toast.error(error?.error || error?.message || "Please sign in.");
+      router.push("/auth/sign-in");
     }
-  }, [allListings, isAllLoading]);
-
-
-  // These map the highlight text to the corresponding field(s) in the data
-  const featureMap = {
-    "Solar power system": (item) => item?.amenities?.some(a => a.toLowerCase().includes("solar")),
-    "Walk-in closet": (item) => item?.amenities?.some(a => a.toLowerCase().includes("walk-in closet")),
-    "Garage parking": (item) => item?.parkingType || item?.amenities?.some(a => a.toLowerCase().includes("garage")),
-    "Balcony": (item) => item?.amenities?.some(a => a.toLowerCase().includes("balcony")),
-    "Covered patio or porch": (item) => item?.amenities?.some(a => a.toLowerCase().includes("patio") || a.toLowerCase().includes("porch")),
-    "Laundry": (item) => item?.laundryType?.length > 0 || item?.amenities?.some(a => a.toLowerCase().includes("laundry")),
-    "Pet allowed": (item) => item?.petFriendly || item?.amenities?.some(a => a.toLowerCase().includes("pet")),
-    "Heating available": (item) => item?.amenities?.some(a => a.toLowerCase().includes("heating")),
   };
 
-  // Dynamically filter highlights based on what's in the listing.item
-  const relevantHighlights = highlights.filter((highlight) =>
-    featureMap[highlight.text]?.(listing?.listing?.item)
-  );
+  if (isLoading) return <ListingSkeleton />;
 
   const {
     averageRating,
-    createdAt,
-    editingCount,
     clickCount,
-    item, // This contains nested properties
-    itemModel,
+    item,
     listedBy,
     listingType,
     region,
-
-    title,
-
     _id,
-  } = listing?.listing || {}; // Provide a fallback to avoid errors when data is not available
+  } = listing?.listing || {};
   const { imageUrls, video } = listing?.listing || {};
-
   const images = imageUrls || [];
-  const totalImages = 12; // 4 columns * 3 rows
-
-  // Repeat images using mapping (no while loop)
-  const extendedImages = Array.from({ length: totalImages }, (_, index) => {
-    return images[index % images.length]; // loop over images if not enough
-  });
-
   const {
-    _id: itemId,
-    title: itemTitle,
-    bathrooms: bathrooms,
-    address: address,
-    bedrooms: bedrooms,
-    type,
+    bathrooms,
+    address,
+    bedrooms,
     squareFeet,
-    coordinate: coordinate,
-    description: description,
-    private: isPrivate,
+    coordinate,
+    description,
     price,
-
     landSize,
+    houseType,
+    parkingType,
+    laundryType,
+    petFriendly,
+    dateAvailable,
+    amenities,
+    title,
   } = item || {};
-
-  // Destructuring `listedBy` if needed
   const { _id: listedById, fullname, pictureUrl } = listedBy || {};
 
-  // Now you can use the variables directly
+  const relevantHighlights = highlights.filter((highlight) =>
+    featureMap[highlight.text]?.(item)
+  );
+  const related = flattenListings(allListings?.listings || [])
+    .filter((entry) => entry?._id !== listingId)
+    .slice(0, 4);
 
-  if (isAllLoading) {
-    return (
-      <div className="w-screen flex justify-center flex-col items-center">
-        <div className="md:max-w-[1240px] flex pt-8 flex-col items-center justify-center w-full">
-          <BreadcrumbSkeleton />
-          <ImageGallerySkeleton />
-          <ImageGalleryMobileSkeleton />
-          <PropertyHeaderSkeleton />
-          <PropertyStatsSkeleton />
-          <HomeHighlightsSkeleton />
-          <DescriptionSkeleton />
-          <div className="w-full px-4 py-6">
-            <div className="h-6 bg-[#ecebebd7] rounded shimmer w-48 mb-4 animate-pulse" />
-            <ProfileCardSkeleton />
-          </div>
-          <MapSkeleton />
-          <ContactAgentSkeleton />
-          <RelatedListingsSkeleton />
-        </div>
-      </div>
-    );
-  }
+  const areaValue = listingType === "land" ? landSize : squareFeet;
+  const pricePerSqft =
+    listingType === "rent" || !areaValue || !price
+      ? null
+      : formatPrice(region, Number(price) / Number(areaValue));
+
+  const typeLabel =
+    listingType === "sale"
+      ? "For sale"
+      : listingType === "rent"
+        ? "For rent"
+        : listingType === "land"
+          ? "Land"
+          : "Listing";
+
+  const longDescription = (description || "").trim().length > 360;
+  const shownDescription =
+    longDescription && !descOpen
+      ? `${(description || "").trim().slice(0, 360).trim()}...`
+      : (description || "").trim();
+
+  const displayPrice = formatPrice(region, price);
+  const priceSuffix = listingType === "rent" ? "/mo" : "";
+
+  const metrics = [
+    bedrooms != null && bedrooms !== ""
+      ? { label: "Beds", value: bedrooms, icon: BedDouble }
+      : null,
+    bathrooms != null && bathrooms !== ""
+      ? { label: "Baths", value: bathrooms, icon: Bath }
+      : null,
+    areaValue
+      ? { label: "Sqft", value: areaValue, icon: LandPlot }
+      : null,
+  ].filter(Boolean);
+
+  const parkingLabel =
+    Array.isArray(parkingType) && parkingType.length
+      ? parkingType.join(", ")
+      : null;
+  const laundryLabel =
+    Array.isArray(laundryType) && laundryType.length
+      ? laundryType.join(", ")
+      : null;
+  const petsLabel =
+    petFriendly === true ? "Allowed" : petFriendly === false ? "Not allowed" : null;
+  const interiorRows = [
+    { label: "Beds", value: bedrooms },
+    { label: "Baths", value: bathrooms },
+    { label: "Laundry", value: laundryLabel },
+    { label: "Pets", value: petsLabel },
+  ];
+  const propertyRows = [
+    { label: "Type", value: houseType || listingType },
+    { label: "Size", value: areaValue ? `${areaValue} sqft` : null },
+    { label: "Price / sqft", value: pricePerSqft },
+    { label: "Available", value: dateAvailable },
+  ];
+  const parkingRows = [{ label: "Parking", value: parkingLabel }];
+  const hasFacts = [...interiorRows, ...propertyRows, ...parkingRows].some(
+    (row) => row.value || row.value === 0
+  );
+  const amenityLabels = amenities?.length
+    ? amenities
+    : relevantHighlights.map((itemHighlight) => itemHighlight.text);
+
   return (
-    <div className=" md:max-w-[1240px]   flex justify-center flex-col items-center ">
-      <div className=" flex pt-8 flex-col items-center justify-center ">
-        <Breadcrumb
-          handleToggleListings={handleToggleListings}
-          handleFavoriteClick={handleFavoriteToggle}
-          listingId={listingId}
-          address={address}
-          region={region}
+    <div className="listing-page pb-24 lg:pb-0">
+      <div className="home-container pt-14 lg:pt-16">
+        <nav className="flex items-center gap-2 py-5 text-sm text-[#6f6f78]">
+          <button
+            type="button"
+            onClick={() => window.history.back()}
+            className="inline-flex items-center gap-1.5 rounded-full px-1 py-1 hover:text-primary"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            Back
+          </button>
+          <span aria-hidden="true">/</span>
+          <Link href="/search" className="hover:text-primary">
+            Search
+          </Link>
+          <span aria-hidden="true">/</span>
+          <Link
+            href={`/search?listingType=${listingType || "sale"}`}
+            className="hover:text-primary"
+          >
+            {typeLabel}
+          </Link>
+          <span aria-hidden="true">/</span>
+          <span className="capitalize text-[#2a2a33]">{region}</span>
+        </nav>
+
+        <ListingGallery
+          images={images}
+          video={video}
+          listingId={_id}
+          coordinates={coordinate}
           isFavorite={isFavorite}
+          onFavorite={handleFavoriteToggle}
+          onShare={handleShareClick}
         />
-        {showListings && (
-          <div className="w-full">
-            <DynamicImageGrid
-              listingId={_id}
-              images={images}
-              video={video}
-              handleFavoriteClick={handleFavoriteToggle}
-              coordinates={coordinate}
-            />
 
-            <div className="lg:hidden">
-              <DynamicImageMobile
-                listingId={_id}
-                images={images}
-                video={video}
-                handleFavoriteClick={handleFavoriteToggle}
-                showListings={showListings}
-                coordinates={coordinate}
-              />
-            </div>
-          </div>
-        )}
-
-        {/* second div layout  */}
-
-        <div
-          className={`bg-gray-100 p-4 md:pt-[3rem] md:p-0  w-full rounded-lg ${!showListings ? "mt-[2rem] md:mt-0" : ""
-            }`}
-        >
-          <div className="flex  md:flex-row justify-between items-start md:items-center  gap-6 md:gap-4">
-            {/* Left Section */}
-            <div className="flex-1 flex flex-col gap-2 md:flex">
-              <h2 className="text-xl lg:text-[2rem] hidden md:block leading-relaxed font-bricolage font-semibold">
-                {truncateDescription(address, 10)}              </h2>
-              <h2 className="text-xl md:text-[2rem] md:hidden font-bricolage font-semibold">
-                {truncateDescription(address, 6)}
-              </h2>
-
-              {/* Address */}
-              <div className=" text-black text-sm  font-light md:text-gray block md:text-base">
-                {/* <p>{truncateDescription(address, 10)}</p> */}
-                <p className="capitalize">{region}</p>
-              </div>
-
-              {/* Views moved to bottom row */}
-            </div>
-
-            <div className="text-right flex-1 md:-mt-[2.5rem]  flex flex-col  gap-[0.5rem] md:flex md:text-right w-full md:w-auto">
-              <p className="text-[1.5rem] text-black font-[600] md:font-bold">
-                {formatPrice(region, price)}
-              </p>
-
-              <div className="flex items-center  gap-3 justify-end mt-1 text-gray-700">
-                <Image
-                  width={500}
-                  height={500}
-                  src="/stargreen.png"
-                  alt="Star"
-                  className="w-5 h-5"
-                />
-                <span className=" font-light">{averageRating}</span>
-              </div>
-
-              {/* <p className=" md:text-gray  font-light text-sm md:text-base">
-                Est. ${price}/month
-              </p> */}
-
-              {/* Actions moved to bottom row */}
-            </div>
-          </div>
-
-          {/* New Row: Views and Actions */}
-          <div className="flex flex-row justify-between items-center w-full mt-4 md:mt-2">
-            {/* Views */}
-            <div className="flex items-center gap-2 text-gray-700">
-              <Image
-                width={500}
-                height={500}
-                src="/eye.svg"
-                alt="Views"
-                className="w-5 h-5"
-              />
-              <span className="font-light text-sm md:text-base text-black">
-                Total views {clickCount?.toLocaleString()}
-              </span>
-            </div>
-
-            {/* Actions */}
-            <div className="flex items-center justify-end gap-2 md:hidden">
-              <div
-                onClick={handleFavoriteToggle}
-                className="justify-center cursor-pointer flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm hover:bg-gray-50 bg-transparent"
-              >
-                <Image
-                  width={20}
-                  height={20}
-                  src="/favorite.svg"
-                  alt="Favorite"
-                  className="w-4 h-4"
-                />
-              </div>
-              <div
-                onClick={handleShareClick}
-                className="justify-center cursor-pointer flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm hover:bg-gray bg-transparent"
-              >
-                <Image
-                  width={20}
-                  height={20}
-                  src="/upload.svg"
-                  alt="Share"
-                  className="w-4 h-4"
-                />
-              </div>
-              <div
-                onClick={handleToggleListings}
-                className="justify-center cursor-pointer flex items-center w-8 h-8 border border-[#8F8F8F] rounded-sm hover:bg-gray-50 bg-transparent"
-              >
-                <Image
-                  width={20}
-                  height={20}
-                  src="/image2.svg"
-                  alt="Gallery"
-                  className="w-4 h-4"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="w-full mt-3 md:mt-[1.4rem] border-t border-b border-[#8F8F8F] py-3 ">
-          <div className="flex items-center justify-center gap-[1.1rem] flex-wrap md:gap-[6.5rem] text-[#8F8F8F] font-bricolage text-sm 2xl:text-xl md:text-base">
-            <div className="flex items-center gap-4  md:gap-[8rem]">
-              <span className="flex items-center gap-1">
-                <span className="font-light text-black">{bedrooms}</span>
-                <span>Beds</span>
-              </span>
-            </div>
-
-            <span className="text-gray-400">|</span>
-
-            <div className="flex items-center gap-1">
-              <span className="font-light text-black">{bathrooms}</span>
-              <span>Baths</span>
-            </div>
-
-            <span className="text-gray-400">|</span>
-
-            <div className="flex items-center gap-1">
-              <span className="font-light text-black">
-                {listingType === "land"
-                  ? landSize
-                  : listingType === "sale"
-                    ? squareFeet
-                    : "-"}
-              </span>
-              <span>sq ft</span>
-            </div>
-
-            <span className="text-gray-400">|</span>
-            <div className="flex items-center gap-1">
-              <span className="font-light text-black">
-                {listingType === "rent"
-                  ? "-"
-                  : listingType === "land"
-                    ? landSize
-                      ? formatPrice(region, Number(price) / Number(landSize))
-                      : "-"
-                    : squareFeet
-                      ? formatPrice(region, Number(price) / Number(squareFeet))
-                      : "-"}
-              </span>
-
-              <span>price per sq ft</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="w-full px-4 pt-6 md:px-0 md:pt-[2.5rem]">
-          <h2 className="text-xl font-bold text-black font-bricolage">
-            Home Highlights
-          </h2>
-          {relevantHighlights.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4 text-[#8F8F8F] font-bricolage text-sm">
-              {relevantHighlights.map((item, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <Image
-                    src={item.icon}
-                    alt={item.text}
-                    width={20}
-                    height={20}
-                    className="object-contain"
-                    quality={100}
-                  />
-                  <span className="2xl:text-xl">{item.text}</span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-[#8F8F8F] font-bricolage text-sm mt-4">
-              No home highlights found for this listing.
-            </p>
-          )}
-        </div>
-
-        {/* description */}
-        <div className=" w-full px-4 pt-6 md:px-0 md:pt-[2.5rem]">
-          <h2 className="text-xl font-bold text-black font-bricolage">
-            Description
-          </h2>
+        <div className="grid items-start gap-8 py-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-12 lg:py-10">
           <div>
-            <p className=" text-[#8F8F8F] font-bricolage text-sm md:text-[18px] font-[300]  md:w-[73rem] 2xl:w-full 2xl:text-xl pt-4">
-              {description}
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              {typeLabel}
             </p>
-          </div>
-        </div>
-
-        {/* listed by agent */}
-        <div className=" w-full px-4 md:px-0  py-6 md:py-[2.5rem] ">
-          <h2 className="text-xl font-bold text-black  font-bricolage">
-            Listed by Agent
-          </h2>
-          <div className="pt-4">
-            <ListedCard id={listedById} name={fullname} picture={pictureUrl} />
-          </div>
-        </div>
-
-        {/* map */}
-        <div className="bg-gray-100   w-full rounded-lg">
-          <h2 className="text-xl font-semibold mb-4 pl-4 md:pl-0 md:mt-[2rem]  md:ml-2 ">
-            Map
-          </h2>
-
-          {/* Map Container */}
-          <div className="w-screen  pt-4 md:w-full relative rounded-lg  flex items-center overflow-hidden ">
-            <MapComponent coordinates={coordinate} listings={listing?.listing ? flattenListings([listing.listing]) : []} />
-            {/* <div className="py-4  px-2 absolute bg-[#ffffff] w-[24rem] rounded-lg bottom-4 left-1/2 transform -translate-x-1/2 text-center text-gray-700 text-sm">
-              <span className="font-medium">
-                {displayListings?.length} Homes available in{" "}
-                {truncateDescription(address, 1)}
+            <h1 className="mt-2 font-heading text-[2.35rem] font-semibold leading-[1.08] tracking-tight text-[#111] md:text-5xl">
+              {displayPrice}
+              {priceSuffix ? (
+                <span className="ml-1.5 text-2xl font-medium text-[#5c5c66]">
+                  {priceSuffix}
+                </span>
+              ) : null}
+            </h1>
+            <p className="mt-3 flex items-start gap-2 text-base text-[#5c5c66] md:text-lg">
+              <MapPin className="mt-1 h-4 w-4 shrink-0 text-primary" />
+              <span>
+                {address || "Address available on request"}
+                {region ? `, ${region}` : ""}
               </span>
-            </div> */}
-          </div>
+            </p>
+            {title ? (
+              <p className="mt-1 text-sm text-[#6f6f78]">{title}</p>
+            ) : null}
 
-          {/* Distance Information*/}
-          <DistanceComponent coordinates={coordinate} />
+            {metrics.length ? (
+              <div className="mt-6 grid grid-cols-3 gap-3">
+                {metrics.map((metric) => {
+                  const Icon = metric.icon;
+                  return (
+                    <div
+                      key={metric.label}
+                      className="rounded-2xl border border-[#ececec] bg-[#f7f7f8] px-3 py-4 md:px-5"
+                    >
+                      <Icon className="h-4 w-4 text-primary" />
+                      <p className="mt-3 font-heading text-2xl font-semibold tracking-tight text-[#111] md:text-3xl">
+                        {metric.value}
+                      </p>
+                      <p className="mt-1 text-xs text-[#6f6f78] md:text-sm">
+                        {metric.label}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : null}
 
-          {/* <div className="grid p-4 md:p-0 text-xs grid-cols-2 md:grid-cols-3 md:grid-cols-3 gap-4 mt-6  2xl:text-base text-gray-700 md:text-sm">
-          <div className="flex items-center gap-2">
-            <Image src="/bus.png" alt="Bus" width={20} height={20} />
-            <span className="text-primary  font-medium">.... 5 mins</span> to
-            Public Transit
-          </div>
-          <div className="flex items-center gap-2">
-            <Image src="/bank.png" alt="Bank" width={20} height={20} />
-            <span className="text-primary font-medium">.... 15 mins</span> to
-            Bank
-          </div>
-          <div className="flex items-center gap-2">
-            <Image src="/shopping.png" alt="Shopping" width={20} height={20} />
-            <span className="text-primary font-medium">.... 20 mins</span> to
-            Shopping mall
-          </div>
-          <div className="flex items-center gap-2">
-            <Image src="/school.png" alt="School" width={20} height={20} />
-            <span className="text-primary font-medium">.... 10 mins</span> to
-            School
-          </div>
-          <div className=" hidden md:flex items-center gap-2">
-            <Image src="/pharmacy.png" alt="Pharmacy" width={20} height={20} />
-            <span className="text-primary font-medium ">.... 15 mins</span> to
-            Pharmacy
-          </div>
-        </div> */}
-        </div>
+            <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-[#6f6f78]">
+              <span className="inline-flex items-center gap-1.5">
+                <Star className="h-4 w-4 fill-primary text-primary" />
+                {averageRating || 0} rating
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Eye className="h-4 w-4" />
+                {clickCount?.toLocaleString() || 0} views
+              </span>
+            </div>
 
-        {/*contat agency  */}
-        <ContactAgent
-          location={region}
-          listingId={listingId}
-          profileimage={pictureUrl}
-          fullname={fullname}
-          listedBy={listedBy?._id}
-        />
-        {displayListings && (
-          <div className="hidden md:mt-[1.5rem] md:-mb-[2rem]  md:block w-full">
-            <section className="mt-[3rem]  hidden   font-bricolage md:flex  flex-col flex-1 ">
-              <div className="flex flex-col items-start gap-6 justify-center md:max-w-[1200px]w-full">
-                <div className="flex flex-col md:flex-row justify-between items-start w-full  mx-auto">
-                  <h1 className="text-black text-[24px] mt-[32px] md:mt-0  md:text-[2.5rem] font-[600] w-full md:w-auto">
-                    Single Family Homes for Rent
-                  </h1>
-                  <p className="text-gray font-light text-sm md:max-w-[30rem] md:text-xl font-bricolage w-full md:w-auto text-start md:text-left">
-                    Browse curated listings that match your style, budget and
-                    location preferences.
-                  </p>
+            <div className="listing-jump mt-8">
+              <div className="flex gap-1 rounded-full bg-[#f7f7f8] p-1">
+                {JUMP_LINKS.map(([id, label]) => (
+                  <a
+                    key={id}
+                    href={`#${id}`}
+                    className={`flex-1 rounded-full px-3 py-2.5 text-center text-sm font-semibold transition-colors duration-200 ${
+                      activeSection === id
+                        ? "bg-[#ffffff] text-primary shadow-[0_8px_24px_rgba(20,20,30,0.06)]"
+                        : "text-[#5c5c66] hover:text-[#2a2a33]"
+                    }`}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <section id="overview" className="scroll-mt-36 pb-4">
+              <h2 className="font-heading text-xl font-semibold leading-none tracking-tight text-[#2a2a33] md:text-2xl">
+                Overview
+              </h2>
+              <p className="mt-0.5 max-w-2xl whitespace-pre-line text-sm leading-5 text-[#5c5c66]">
+                {(shownDescription || "No description has been added for this listing.").trim()}
+              </p>
+              {longDescription ? (
+                <button
+                  type="button"
+                  onClick={() => setDescOpen((open) => !open)}
+                  className="mt-1 text-sm font-semibold text-primary transition-colors duration-200 hover:text-[#076b72]"
+                >
+                  {descOpen ? "Show less" : "Show more"}
+                </button>
+              ) : null}
+            </section>
+
+            <section id="facts" className="scroll-mt-36 py-10">
+              <h2 className="font-heading text-2xl font-semibold tracking-tight text-[#2a2a33] md:text-3xl">
+                Facts & features
+              </h2>
+              {hasFacts ? (
+                <div className="mt-6 space-y-8 rounded-2xl bg-[#f7f7f8] p-5 md:p-6">
+                  <FactGroup title="Interior" rows={interiorRows} />
+                  <FactGroup title="Property" rows={propertyRows} />
+                  <FactGroup title="Parking" rows={parkingRows} />
                 </div>
-                <div className="flex flex-col ">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-[1em] min-w-fit items-center justify-center mb-2">
-                    {displayListings
-                      ?.filter((listing) => listing?._id !== listingId)
-                      .map((listing, index) => (
-                        <HoverCard
-                          key={index}
-                          {...listing}
-                          _id={listing._id}
-                          imageSrc={listing?.imageUrls?.[0]?.url || "/house1.png"}
-                          altText={
-                            listing?.imageUrls?.[0]?.altText ||
-                            "Property image showcasing a beautiful home"
-                          }
-                          slugs={listing?.slug}
-                          region={listing?.region || "Region not specified"}
-                          price={listing?.item?.price || "Price not available"}
-                          area={listing?.item?.squareFeet}
-                          description={
-                            listing?.item?.description ||
-                            "No description available for this property."
-                          }
-                          title={listing?.item?.address || "Untitled Property"}
-                          rent={
-                            listing?.item?.rent || "Rent details not provided"
-                          }
-                        />
-                      ))}
+              ) : null}
+
+              {amenityLabels.length ? (
+                <div className="mt-8">
+                  <h3 className="text-sm font-semibold text-[#2a2a33]">
+                    Interior & amenities
+                  </h3>
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {amenityLabels.map((label) => (
+                      <li
+                        key={label}
+                        className="rounded-full border border-[#ececec] bg-[#f7f7f8] px-3.5 py-1.5 text-sm text-[#3f3f3f]"
+                      >
+                        {label}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </section>
+
+            <section className="py-10">
+              <h2 className="font-heading text-2xl font-semibold tracking-tight text-[#2a2a33] md:text-3xl">
+                Listed by
+              </h2>
+              <Link
+                href={listedById ? `/agent/${encodeId(listedById)}` : "/agent"}
+                className="mt-5 flex items-center justify-between gap-4 rounded-2xl border border-[#ececec] bg-[#ffffff] p-5 shadow-[0_8px_24px_rgba(20,20,30,0.06)]"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="relative h-14 w-14 overflow-hidden rounded-full bg-[#eee]">
+                    <Image
+                      src={pictureUrl || "/Avatar.svg"}
+                      alt={fullname || "Agent"}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-[#2a2a33]">
+                      {fullname || "Hoydoon agent"}
+                    </p>
+                    <p className="text-sm capitalize text-[#6f6f78]">
+                      {region || "Local specialist"}
+                    </p>
                   </div>
                 </div>
-              </div>
+                <span className="hidden h-10 shrink-0 items-center rounded-full border border-primary px-4 text-sm font-semibold text-primary sm:inline-flex">
+                  View profile
+                </span>
+              </Link>
             </section>
-          </div>)}
 
+            <section id="nearby" className="scroll-mt-36 py-10">
+              <h2 className="font-heading text-2xl font-semibold tracking-tight text-[#2a2a33] md:text-3xl">
+                Nearby
+              </h2>
+              <p className="mt-2 max-w-xl text-base text-[#5c5c66]">
+                Schools, shops, and transit around this home.
+              </p>
+              <div className="mt-5 h-[320px] overflow-hidden rounded-2xl border border-[#ececec] md:h-[380px]">
+                <MapComponent
+                  coordinates={coordinate}
+                  listings={
+                    listing?.listing ? flattenListings([listing.listing]) : []
+                  }
+                />
+              </div>
+              <DistanceComponent coordinates={coordinate} />
+            </section>
 
+            <div className="pb-6 lg:hidden">
+              <ContactCard
+                formId="contact"
+                location={region}
+                listingId={listingId}
+                profileimage={pictureUrl}
+                fullname={fullname}
+                listedBy={listedById}
+              />
+            </div>
+          </div>
 
+          <div className="hidden lg:sticky lg:top-24 lg:block">
+            <ContactCard
+              location={region}
+              listingId={listingId}
+              profileimage={pictureUrl}
+              fullname={fullname}
+              listedBy={listedById}
+            />
+          </div>
+        </div>
+      </div>
+
+      {related.length > 0 && (
+        <section className="home-bleed bg-[#f7f7f8] py-12 md:py-16">
+          <div className="home-container">
+            <div className="mb-6 flex items-end justify-between gap-4">
+              <h2 className="text-2xl font-semibold tracking-tight text-[#2a2a33] md:text-3xl">
+                Similar homes
+              </h2>
+              <Link
+                href={`/search?listingType=${listingType || "sale"}`}
+                className="text-sm font-semibold text-primary transition-colors duration-200 hover:text-[#076b72] md:text-base"
+              >
+                See all
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+              {related.map((entry, index) => (
+                <PropertyCard
+                  key={entry._id || entry.slug || index}
+                  listing={entry}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#ececec] bg-[#ffffff]/95 px-4 py-3 backdrop-blur lg:hidden">
+        <div className="flex items-center gap-3">
+          <div className="min-w-0 flex-1">
+            <p className="font-heading text-lg font-semibold leading-none text-[#111]">
+              {displayPrice}
+              {priceSuffix}
+            </p>
+            <p className="mt-1 truncate text-xs text-[#6f6f78]">
+              {address || typeLabel}
+            </p>
+          </div>
+          <a
+            href="#contact"
+            className="inline-flex h-11 shrink-0 items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-[#fff]"
+          >
+            Request a tour
+          </a>
+        </div>
       </div>
     </div>
   );
-};
-
-export default RentDetailsClient;
+}

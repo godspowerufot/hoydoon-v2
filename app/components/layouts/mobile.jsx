@@ -134,7 +134,11 @@ const MobileNavbar = () => {
         // optional
         ></div>
       )}
-      <nav className="flex items-center justify-between px-4 py-2 bg-white shadow-md lg:hidden">
+      <nav className={`flex items-center justify-between px-4 py-2 lg:hidden ${
+        /^\/rent\/[^/]+$/.test(pathname)
+          ? "border-b border-[#ececec] bg-[#ffffff]"
+          : "bg-white shadow-md"
+      }`}>
         {!(
           pathname.startsWith("/search") ||
           pathname.startsWith("/helpcenter/submit-request")
@@ -166,17 +170,7 @@ const MobileNavbar = () => {
           {pathname?.startsWith("/search") ||
             pathname?.startsWith("/helpcenter/submit-request") ? (
             <div className="flex items-center space-x-2">
-              {/* Globe Icon */}
-              {/* <Image
-                width={500}
-                height={500}
-                src="/logo-23.png"
-                alt="globe"
-                className="w-8 h-8 bg-transparent"
-              /> */}
               <img alt="logo" src="/logo-23.png" className="w-8 h-8 bg-transparent" />
-
-              {/* Input Field with Search Button */}
               <div className="flex items-center  border-[0.6px] border-[#8F8F8F] rounded-full   px-2 py-1">
                 <input
                   type="text"
@@ -206,6 +200,37 @@ const MobileNavbar = () => {
                 </button>
               </div>
             </div>
+          ) : /^\/rent\/[^/]+$/.test(pathname) ? (
+            <form
+              className="flex h-10 min-w-0 flex-1 items-center rounded-full bg-[#f7f7f8] pl-3 pr-1"
+              onSubmit={(event) => {
+                event.preventDefault();
+                handleSearch();
+              }}
+            >
+              <input
+                type="search"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                placeholder="Search homes"
+                className="h-full min-w-0 flex-1 bg-transparent text-sm text-[#2a2a33] outline-none placeholder:text-[#8a8a8a]"
+                aria-label="Search homes"
+              />
+              <button
+                type="submit"
+                className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary"
+                aria-label="Search"
+              >
+                <Image
+                  alt=""
+                  width={10}
+                  height={10}
+                  src="/search.png"
+                  className="h-2.5 w-2.5"
+                />
+              </button>
+            </form>
           ) : (
             <>
               {pathname === "/helpcenter" ? (
