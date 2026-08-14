@@ -8,7 +8,7 @@ export const truncateDescription = (text: string, wordLimit: number) => {
 };
 // Recursive function to fully flatten nested listings
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const flattenListings = (listings: any) => {
+export const flattenListings = (listings: any): any[] => {
   if (!Array.isArray(listings)) return [];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return listings.flatMap((item: any) => {
