@@ -1,237 +1,40 @@
 "use client";
-import { useState, useEffect } from "react";
-import Link from "next/link";
+
 import { usePathname } from "next/navigation";
-import Button from "../common/Button";
-import { FaBars, FaTimes } from "react-icons/fa";
-import ListingNavbar from "./listingnavbar";
+import DesktopNavbar from "./nav/DesktopNavbar";
 import HelpCenterNavbar from "./Helpnavbar";
-import { useLogoutMutation } from "@/store/slices/api/authapi";
-import { getAccessToken } from "@/utils/cookies";
-import { toast } from "react-toastify";
 import MobileNavbar from "./mobile";
-import BrandLogo from "../common/BrandLogo";
+
+function shouldUseHeroNav(pathname) {
+  if (pathname === "/") return true;
+  if (pathname === "/buy" || pathname.startsWith("/buy/")) return true;
+  if (pathname === "/rent" || pathname === "/rent/fixes") return true;
+  if (pathname === "/sell" || pathname.startsWith("/sell/")) return true;
+  if (
+    pathname === "/agent" ||
+    pathname === "/agent/all-agent" ||
+    pathname.startsWith("/agent/all-agent/")
+  ) {
+    return true;
+  }
+  return false;
+}
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
-  // Fetch user data
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [logout] = useLogoutMutation();
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const pathname = usePathname() ?? "";
 
-  useEffect(() => {
-    setIsAuthenticated(!!getAccessToken());
-  }, []);
+  if (pathname.startsWith("/auth")) return null;
 
-  const handlelogout = async () => {
-    setIsLoggingOut(true);
-
-    try {
-      await logout(null); // wait for mutation
-      toast.success("Logged out successfully");
-      window.location.href = "/auth/sign-in";
-    } catch (error) {
-      toast.error("Logout failed. Try again.");
-      setIsLoggingOut(false);
-    }
-  };
-
-  // Check routes to show/hide navbar
-  const hideNavbar =
-    pathname.startsWith("/rent/listing") ||
-    /^\/agent\/[^/]+$/.test(pathname) ||
-    /^\/rent\/[^/]+$/.test(pathname); // Hide on /agent/[id]
-  const hideAuth = pathname.startsWith("/auth");
-  const showNavbar =
-    [
-      "/listing",
-      "/article/article-details",
-      "/contact",
-      "/search",
-      "/agent/all-agent",
-      "/agent/agent-description",
-      "/sell/sell-home",
-      "/article",
-      "/about",
-      "/policy",
-      "/review",
-      "/terms",
-    ].some((route) => pathname.includes(route)) ||
-    /^\/agent\/[^/]+$/.test(pathname) ||
-    /^\/rent\/[^/]+$/.test(pathname); // Matches /agent/{id}
-
-  const helpcenter = pathname.startsWith("/helpcenter");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  if (showNavbar) {
-    return (
-      <>
-        <ListingNavbar />
-        <MobileNavbar />
-      </>
-    );
+  if (pathname.startsWith("/helpcenter")) {
+    return <HelpCenterNavbar />;
   }
 
-  if (helpcenter) {
-    return (
-      <>
-        <HelpCenterNavbar />
-        {/* <MobileNavbar /> */}
-      </>
-    );
-  }
+  const variant = shouldUseHeroNav(pathname) ? "hero" : "solid";
 
   return (
     <>
-      {!hideNavbar && !hideAuth && (
-        <nav
-          className={`text-xl max-w-full z-50 hidden font-bricolage lg:flex fixed top-0 left-0 right-0 h-16 pointer-events-none transition-all duration-300 ${scrolled
-            ? "bg-white text-black shadow-md"
-            : "bg-transparent text-white mt-3"
-            }`}
-        >
-          <div className="pointer-events-auto flex-1 mx-9 lg:mx-0 flex w-full items-center justify-around p-2">
-            {/* Logo */}
-            <div>
-              <BrandLogo light={!scrolled} />
-            </div>
-
-            {/* Desktop Links */}
-            <div className="ml-[4.5rem]  w-[31rem] text-lg sm:hidden max-md:hidden lg:flex items-center justify-center hidden md:hidden rounded-full lg:h-[37px] space-x-5 lg:gap-3 bg-primarytransparent text-white">
-              <ul className="lg:flex items-center space-x-6 font-[300]">
-                {[
-                  { name: "Home", path: "/" },
-                  { name: "Buy", path: "/buy" },
-                  { name: "Rent", path: "/rent" },
-                  { name: "Sell", path: "/sell" },
-                  { name: "Find an agent", path: "/agent" },
-                ].map(({ name, path }, index) => (
-                  <li key={path}>
-                    <div
-                      className={`px-4 py-2 lg:text-base rounded-full${index === 0 ? " pl-5 rounded-full" : " "
-                        } ${pathname === path
-                          ? "bg-white text-primary font-light"
-                          : scrolled
-                            ? "text-black"
-                            : "text-white"
-                        }`}
-                    >
-                      <Link href={path}>{name}</Link>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Authentication Buttons */}
-            <div className="flex gap-2">
-              {isAuthenticated ? (
-                // Logout button when user is logged in
-                <Button
-                  onClick={handlelogout}
-                  disabled={isLoggingOut}
-                  className={`p-1 w-[92px] rounded-full border-[1px] font-[300] text-base transition-all duration-200 ${scrolled
-                    ? "!border-primary border-solid !text-primary !bg-white"
-                    : "!bg-primary !border-none !text-white"
-                    } ${isLoggingOut ? "opacity-50 cursor-not-allowed" : ""}`}
-                >
-                  {isLoggingOut ? "Logging out..." : "Logout"}
-                </Button>
-              ) : (
-                // Login & Register buttons when user is not logged in
-                <>
-                  <Button
-                    className={`p-1 w-[92px] ${scrolled
-                      ? "group hover:bg-primary transition-all duration-500 bg-white text-primary border-primary border-[1px] border-solid"
-                      : "bg-transparent bg-primarytransparent text-black"
-                      }`}
-                  >
-                    <Link
-                      href="/auth/sign-in"
-                      className={`text-base ${scrolled ? "text-primary  group-hover:text-white transition-colors duration-500 " : "text-white"
-                        }`}
-                    >
-                      Login
-                    </Link>
-                  </Button>
-                  <button className="font-bricolage h-auto p-1 rounded-full bg-primary flex justify-center items-center text-white hover:bg-primary w-[7.5rem]">
-                    <Link
-                      href="/auth/sign-up"
-                      className="font-light h-[25px] text-base"
-                    >
-                      Register
-                    </Link>
-                  </button>
-                </>
-              )}
-            </div>
-
-            {/* Mobile Menu Toggle */}
-            <div className="md:block lg:hidden">
-              <button onClick={() => setMenuOpen(!menuOpen)}>
-                {menuOpen ? (
-                  <FaTimes size={24} className="text-black" />
-                ) : (
-                  <FaBars size={24} className="text-black" />
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Sidebar */}
-          <div
-            className={`fixed top-0 bg-white right-0 h-full w-64 z-50 transform ${menuOpen ? "translate-x-0" : "translate-x-full"
-              } transition-transform duration-300 ease-in-out md:hidden`}
-          >
-            <div className="flex justify-end p-4">
-              <button onClick={() => setMenuOpen(false)}>
-                <FaTimes size={24} className="text-black" />
-              </button>
-            </div>
-            <ul className="space-y-6 text-center pt-8 p-4">
-              {[
-                { name: "Home", path: "/" },
-                { name: "Buy", path: "/buy" },
-                { name: "Rent", path: "/rent" },
-                { name: "Sell", path: "/sell" },
-                { name: "Find an agent", path: "/agent" },
-              ].map(({ name, path }) => (
-                <li key={path}>
-                  <Link
-                    href={path}
-                    className={`block py-2 rounded-full ${pathname === path
-                      ? "bg-white text-green-600 font-light  "
-                      : "text-black"
-                      }`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="text-center mt-8">
-              <Link
-                href="/auth/sign-up"
-                className="bg-primary px-5 py-2 rounded-md font-semibold hover:bg-orange-600"
-              >
-                Register
-              </Link>
-            </div>
-          </div>
-        </nav>
-      )}
-
-      {<MobileNavbar />}
+      <DesktopNavbar variant={variant} />
+      <MobileNavbar variant={variant} />
     </>
   );
 }

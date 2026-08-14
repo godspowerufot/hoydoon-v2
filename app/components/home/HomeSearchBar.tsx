@@ -24,9 +24,13 @@ const PLACEHOLDERS: Record<SearchTab, string> = {
   sell: "Enter your home's city or neighborhood",
 };
 
-export default function HomeSearchBar() {
+export default function HomeSearchBar({
+  defaultTab = "buy",
+}: {
+  defaultTab?: SearchTab;
+}) {
   const router = useRouter();
-  const [tab, setTab] = useState<SearchTab>("buy");
+  const [tab, setTab] = useState<SearchTab>(defaultTab);
   const [location, setLocation] = useState("");
   const [isSearching, setIsSearching] = useState(false);
 

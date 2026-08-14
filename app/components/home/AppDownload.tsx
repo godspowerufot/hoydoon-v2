@@ -8,9 +8,9 @@ import { getAppDownloadLink, getPhoneTypeLinks } from "@/utils";
 import { HomeContainer } from "./Section";
 
 export default function AppDownload() {
-  const [downloadUrl, setDownloadUrl] = useState("https://www.hoydoon.com/download");
-  const [storeLink, setStoreLink] = useState(getAppDownloadLink());
   const stores = getPhoneTypeLinks();
+  const [downloadUrl, setDownloadUrl] = useState("https://www.hoydoon.com/download");
+  const [storeLink, setStoreLink] = useState(stores.iphone);
 
   useEffect(() => {
     setDownloadUrl(`${window.location.origin}/download`);

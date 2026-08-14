@@ -266,7 +266,10 @@ export default function RootLayout({
         {/* Organization Schema */}
 
 
-        <body className="lg:flex overflow-x-hidden flex-col flex-1 font-manrope min-h-screen">
+        <body
+          suppressHydrationWarning
+          className="lg:flex overflow-x-hidden flex-col flex-1 font-manrope min-h-screen"
+        >
           {/* Google Tag Manager (noscript) */}
           <noscript>
             <iframe
@@ -277,8 +280,10 @@ export default function RootLayout({
             ></iframe>
           </noscript>
           <Providers>
-            <div className="absolute top-0 left-0 w-full z-10">
-              <Navbar />
+            <div className="fixed top-0 left-0 w-full z-50 pointer-events-none">
+              <div className="pointer-events-auto">
+                <Navbar />
+              </div>
             </div>
             <AnimationWrapper>
               <main className="container flex-1 flex items-center justify-center flex-col">

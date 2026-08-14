@@ -1,47 +1,40 @@
 "use client";
+
 import Link from "next/link";
-import Image from "next/image";
+import BrandLogo from "../common/BrandLogo";
 import MobileNavbar from "./mobile";
+import "./nav/nav.css";
 
 export default function HelpCenterNavbar() {
   return (
     <>
-      <nav className=" hidden lg:block w-full border-b-2 border-[#d6d5d5]  bg-[#f1f1f1] py-2">
-        <div className="max-w-[1200px]  mx-auto flex items-center justify-between px-4">
-          {/* Left: Logo and Title */}
-          <Link href={"/"}>
-            <div className="flex items-center space-x-1">
-              <Image
-                src="/Logo.svg"
-                alt="Hoydoon Logo"
-                width={30}
-                height={25}
-                priority
-              />
-              <span className="text-gray-800  gap-3  flex font-medium text-lg">
-                Hoydoon | <p className="font-[300]"> Help Center</p>
-              </span>
-            </div>
-          </Link>
+      <header className="site-nav fixed inset-x-0 top-0 z-50 hidden lg:block">
+        <div className="site-nav-shell site-nav-shell--solid">
+          <div className="home-container">
+            <div className="site-nav-bar flex items-center justify-between">
+              <Link href="/" className="flex items-center gap-3">
+                <BrandLogo compact />
+                <span className="border-l border-[#e5e7eb] pl-3 text-sm font-medium text-[#6b7280]">
+                  Help Center
+                </span>
+              </Link>
 
-          {/* Right: Links */}
-          <div className="flex items-center   space-x-4">
-            <Link
-              href="/helpcenter/submit-request"
-              className="text-gray hover:text-gray text-base"
-            >
-              Submit a request
-            </Link>
-            <Link
-              href="/auth/sign-up"
-              className="bg-primary text-white text-base px-4 py-1.5 rounded-full"
-            >
-              Register
-            </Link>
+              <div className="flex items-center gap-1.5">
+                <Link
+                  href="/helpcenter/submit-request"
+                  className="site-nav-ghost site-nav-ghost-dark"
+                >
+                  Submit a request
+                </Link>
+                <Link href="/auth/sign-up" className="site-nav-cta">
+                  Get started
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-      </nav>
-      <MobileNavbar />
+      </header>
+      <MobileNavbar variant="solid" helpCenter />
     </>
   );
 }

@@ -117,7 +117,7 @@ h6,
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 184, 89%, 28%;
+    --primary: 184 89% 28%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
@@ -238,7 +238,7 @@ h6,
 
 .listing-jump {
   position: sticky;
-  top: 3.5rem;
+  top: 4rem;
   z-index: 20;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -247,6 +247,6 @@ h6,
 
 @media (min-width: 1024px) {
   .listing-jump {
-    top: 4rem;
+    top: 4.5rem;
   }
 }
