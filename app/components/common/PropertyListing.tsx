@@ -57,7 +57,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
 
   return (
     <>
-      <Link href={getListingHref({ slug: slugs })}>
+      <Link href={getListingHref({ slug: slugs })} prefetch={false}>
         <div
           className={`relative flex w-full md:w-[93%] h-[500px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered && !isMobile
             ? "border-gray rounded-[20px]"

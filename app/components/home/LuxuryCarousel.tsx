@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, MapPin, Maximize2, Star } from "lucide-react";
+import { getListingHref } from "@/utils";
 import { HomeContainer, SectionHeader } from "./Section";
 
 export type LuxurySlide = {
@@ -134,7 +135,8 @@ export default function LuxuryCarousel({ slides }: { slides: LuxurySlide[] }) {
 
               {current.slug ? (
                 <Link
-                  href={`/rent/${current.slug}`}
+                  href={getListingHref(current)}
+                  prefetch={false}
                   className="mt-5 inline-flex h-11 items-center rounded-full bg-primary px-5 text-sm font-medium text-[#fff] transition-colors duration-200 hover:bg-[#07757c]"
                 >
                   View this home

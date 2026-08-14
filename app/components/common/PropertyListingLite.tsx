@@ -93,7 +93,7 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
     }
 
     return (
-        <Link href={getListingHref({ slug: slugs })}>
+        <Link href={getListingHref({ slug: slugs })} prefetch={false}>
             <div
                 ref={cardRef}
                 className={`relative lg:flex lg:w-[380px] h-[600px] bg-white overflow-hidden flex-col border rounded-[20px] ${isHovered && !isMobile ? "border-gray" : "lg:border-transparent border border-gray"

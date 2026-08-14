@@ -13,7 +13,7 @@ import {
   useSendMessageMutation,
 } from "@/store/slices/api/authapi";
 import { usePathname, useParams, useRouter } from "next/navigation";
-import MapComponent from "@/app/components/layouts/listingmap";
+import dynamic from "next/dynamic";
 import { toast } from "react-toastify";
 import {
   handleShareClick,
@@ -36,6 +36,14 @@ import {
   MapPin,
   Star,
 } from "lucide-react";
+
+const MapComponent = dynamic(
+  () => import("@/app/components/layouts/listingmap"),
+  {
+    ssr: false,
+    loading: () => <div className="h-full w-full bg-[#f4f4f4]" />,
+  }
+);
 
 const PLACE_TYPES = [
   { type: "transit_station", icon: "/bus.png" },
@@ -330,16 +338,17 @@ export default function RentDetailsClient() {
   const [descOpen, setDescOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("overview");
 
-  const { data: listing, isLoading } = useGetListingBySlugQuery(
+  const { data: listing, isLoading, isFetching } = useGetListingBySlugQuery(
     { slug },
     { skip: !slug || slug === "undefined" }
   );
   const listingId = listing?.listing?._id;
   const currentType = listing?.listing?.listingType || "rent";
 
-  const { data: allListings, refetch } = useGetAllListingsQuery({
-    listingType: currentType,
-  });
+  const { data: allListings } = useGetAllListingsQuery(
+    { listingType: currentType },
+    { skip: !listingId }
+  );
   const [toggleFavorite] = useToggleFavoriteMutation();
   const [removeFavorite] = useDeleteFavoriteMutation();
   const [isFavorite, setIsFavorite] = useState(false);
@@ -352,8 +361,9 @@ export default function RentDetailsClient() {
   }, [favorites, listingId]);
 
   useEffect(() => {
-    refetch();
-  }, [refetch]);
+    const title = listing?.listing?.item?.title;
+    if (title) document.title = `${title} | Hoydoon`;
+  }, [listing]);
 
   useEffect(() => {
     const ids = JUMP_LINKS.map(([id]) => id);
@@ -392,7 +402,21 @@ export default function RentDetailsClient() {
     }
   };
 
-  if (isLoading) return <ListingSkeleton />;
+  if (!slug || slug === "undefined") {
+    return (
+      <div className="listing-page">
+        <div className="home-container pt-[5.25rem] lg:pt-24">
+          <div className="mx-auto max-w-lg py-24 text-center">
+            <h1 className="font-heading text-3xl font-semibold text-[#111]">
+              Listing not found
+            </h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading || (isFetching && !listing?.listing)) return <ListingSkeleton />;
 
   if (!listing?.listing) {
     return (

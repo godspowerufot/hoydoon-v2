@@ -71,17 +71,21 @@ export default function PropertyCard({ listing }: { listing: HomeListing }) {
 
   return (
     <article className="group relative z-[1]">
-      <Link href={href} className="relative z-[1] block">
+      <Link
+        href={href}
+        prefetch={false}
+        className="relative z-[1] block cursor-pointer"
+      >
         <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[#e8e8e8]">
           <Image
             src={image}
             alt={alt}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+            className="pointer-events-none object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           />
           <div
-            className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent"
             aria-hidden="true"
           />
           <p className="absolute bottom-3 left-3 text-xl font-semibold tracking-tight text-white drop-shadow md:text-2xl">

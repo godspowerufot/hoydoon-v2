@@ -121,6 +121,7 @@ function MapPopup({ property, onClose }) {
 
         <Link
           href={getListingHref(property)}
+          prefetch={false}
           className="block w-full text-center bg-[#09858D] hover:bg-[#077279] text-white py-1.5 rounded-lg text-xs font-medium transition-colors"
         >
           View Details

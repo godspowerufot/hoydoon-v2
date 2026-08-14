@@ -80,11 +80,11 @@ export default {
         "9/10": "90%",
       },
       fontFamily: {
-        sans: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
-        manrope: ["Manrope", "sans-serif"],
-        sora: ["Sora", "sans-serif"],
-        heading: ["Sora", "sans-serif"],
-        bricolage: ["Manrope", "sans-serif"],
+        sans: ["Montserrat", "ui-sans-serif", "system-ui", "sans-serif"],
+        manrope: ["Montserrat", "sans-serif"],
+        sora: ["Montserrat", "sans-serif"],
+        heading: ["Montserrat", "sans-serif"],
+        bricolage: ["Montserrat", "sans-serif"],
       },
       keyframes: {
         fadeIn: {

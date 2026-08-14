@@ -21,7 +21,7 @@ const HoverCard = ({
 
   return (
     <>
-      <Link href={getListingHref({ slug: slugs })}>
+      <Link href={getListingHref({ slug: slugs })} prefetch={false}>
         <div
           className={`relative lg:flex hidden w-fulls lg:w-[93%] h-[500px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered ? "border-gray rounded-[20px]" : "border-transparent"
             }`}

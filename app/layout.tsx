@@ -268,7 +268,7 @@ export default function RootLayout({
 
         <body
           suppressHydrationWarning
-          className="lg:flex overflow-x-hidden flex-col flex-1 font-manrope min-h-screen"
+          className="lg:flex overflow-x-hidden flex-col flex-1 font-sans min-h-screen"
         >
           {/* Google Tag Manager (noscript) */}
           <noscript>
