@@ -8,7 +8,7 @@ import "./nav/nav.css";
 export default function HelpCenterNavbar() {
   return (
     <>
-      <header className="site-nav fixed inset-x-0 top-0 z-50 hidden lg:block">
+      <header className="site-nav pointer-events-auto fixed inset-x-0 top-0 z-50 hidden lg:block">
         <div className="site-nav-shell site-nav-shell--solid">
           <div className="home-container">
             <div className="site-nav-bar flex items-center justify-between">

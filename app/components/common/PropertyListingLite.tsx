@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { truncateDescription, formatPrice } from "@/utils";
+import { truncateDescription, formatPrice, getListingHref } from "@/utils";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -93,7 +93,7 @@ const PropertyListCardLite: React.FC<PropertyCardProps> = ({
     }
 
     return (
-        <Link href={`/rent/${slugs}`}>
+        <Link href={getListingHref({ slug: slugs })}>
             <div
                 ref={cardRef}
                 className={`relative lg:flex lg:w-[380px] h-[600px] bg-white overflow-hidden flex-col border rounded-[20px] ${isHovered && !isMobile ? "border-gray" : "lg:border-transparent border border-gray"

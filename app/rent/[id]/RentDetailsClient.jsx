@@ -12,7 +12,7 @@ import {
   useDeleteFavoriteMutation,
   useSendMessageMutation,
 } from "@/store/slices/api/authapi";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useParams, useRouter } from "next/navigation";
 import MapComponent from "@/app/components/layouts/listingmap";
 import { toast } from "react-toastify";
 import {
@@ -20,6 +20,7 @@ import {
   flattenListings,
   formatPrice,
   encodeId,
+  getListingSlug,
 } from "@/utils";
 import ListingGallery from "@/app/components/listing/ListingGallery";
 import PropertyCard from "@/app/components/home/PropertyCard";
@@ -288,7 +289,7 @@ function FactGroup({ title, rows }) {
 
 function ListingSkeleton() {
   return (
-    <div className="listing-page pt-14 lg:pt-16">
+    <div className="listing-page pt-[5.25rem] lg:pt-24">
       <div className="home-container py-6">
         <div className="shimmer aspect-[4/3] w-full rounded-2xl md:h-[460px] md:aspect-auto lg:h-[520px]" />
         <div className="mt-8 shimmer h-10 w-48 rounded-xl" />
@@ -323,12 +324,16 @@ const featureMap = {
 
 export default function RentDetailsClient() {
   const pathname = usePathname();
-  const slug = pathname?.split("/").pop();
+  const params = useParams();
+  const slug = getListingSlug({ slug: params?.id }) || pathname?.split("/").pop();
   const router = useRouter();
   const [descOpen, setDescOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("overview");
 
-  const { data: listing, isLoading } = useGetListingBySlugQuery({ slug });
+  const { data: listing, isLoading } = useGetListingBySlugQuery(
+    { slug },
+    { skip: !slug || slug === "undefined" }
+  );
   const listingId = listing?.listing?._id;
   const currentType = listing?.listing?.listingType || "rent";
 
@@ -388,6 +393,29 @@ export default function RentDetailsClient() {
   };
 
   if (isLoading) return <ListingSkeleton />;
+
+  if (!listing?.listing) {
+    return (
+      <div className="listing-page">
+        <div className="home-container pt-[5.25rem] lg:pt-24">
+          <div className="mx-auto max-w-lg py-24 text-center">
+            <h1 className="font-heading text-3xl font-semibold text-[#111]">
+              Listing not found
+            </h1>
+            <p className="mt-3 text-base text-[#5c5c66]">
+              This property may have been removed or the link is incomplete.
+            </p>
+            <Link
+              href="/search"
+              className="mt-6 inline-flex h-11 items-center rounded-full bg-primary px-5 text-sm font-semibold text-white"
+            >
+              Browse listings
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const {
     averageRating,
@@ -494,7 +522,7 @@ export default function RentDetailsClient() {
 
   return (
     <div className="listing-page pb-24 lg:pb-0">
-      <div className="home-container pt-14 lg:pt-16">
+      <div className="home-container pt-[5.25rem] lg:pt-24">
         <nav className="flex items-center gap-2 py-5 text-sm text-[#6f6f78]">
           <button
             type="button"

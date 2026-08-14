@@ -9,11 +9,37 @@ export const truncateDescription = (text: string, wordLimit: number) => {
 // Recursive function to fully flatten nested listings
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const flattenListings = (listings: any) => {
+  if (!Array.isArray(listings)) return [];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return listings.flatMap((item: any) =>
-    Array.isArray(item.listings) ? flattenListings(item.listings) : item
-  );
+  return listings.flatMap((item: any) => {
+    if (!item || typeof item !== "object") return [];
+    if (Array.isArray(item.listings) && item.listings.length > 0) {
+      return flattenListings(item.listings);
+    }
+    return [item.listing && typeof item.listing === "object" ? item.listing : item];
+  });
 };
+
+function isUsableSlug(value: unknown): value is string {
+  return typeof value === "string" && value.trim() !== "" && value !== "undefined";
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function getListingSlug(listing?: any): string | undefined {
+  const candidates = [
+    listing?.slug,
+    listing?.slugs,
+    listing?.listing?.slug,
+    listing?.item?.slug,
+  ];
+  return candidates.find(isUsableSlug);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function getListingHref(listing?: any): string {
+  const slug = getListingSlug(listing);
+  return slug ? `/rent/${slug}` : "/search";
+}
 
 export const handleShareClick = () => {
   if (typeof window !== "undefined") {

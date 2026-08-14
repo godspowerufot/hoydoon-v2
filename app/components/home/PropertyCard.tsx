@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatPrice, truncateDescription } from "@/utils";
+import { formatPrice, getListingHref, truncateDescription } from "@/utils";
 
 export type HomeListing = {
   _id?: string;
   slug?: string;
+  slugs?: string;
   region?: string;
   title?: string;
   category?: string;
@@ -54,7 +55,7 @@ export function PropertyCardSkeleton() {
 }
 
 export default function PropertyCard({ listing }: { listing: HomeListing }) {
-  const href = listing.slug ? `/rent/${listing.slug}` : "/search";
+  const href = getListingHref(listing);
   const image = listing.imageUrls?.[0]?.url || "/house1.png";
   const alt =
     listing.imageUrls?.[0]?.altText ||
@@ -69,8 +70,8 @@ export default function PropertyCard({ listing }: { listing: HomeListing }) {
     "Home";
 
   return (
-    <article className="group">
-      <Link href={href} className="block">
+    <article className="group relative z-[1]">
+      <Link href={href} className="relative z-[1] block">
         <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[#e8e8e8]">
           <Image
             src={image}

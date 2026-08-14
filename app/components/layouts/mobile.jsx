@@ -86,7 +86,7 @@ export default function MobileNavbar({
 
   if (isHelpCenterPage) {
     return (
-      <header className="site-nav fixed inset-x-0 top-0 z-50 lg:hidden">
+      <header className="site-nav pointer-events-auto fixed inset-x-0 top-0 z-50 lg:hidden">
         <div className="site-nav-shell site-nav-shell--solid">
           <div className="flex site-nav-bar items-center justify-between px-4">
             <Link href="/" className="flex items-center gap-2">
@@ -106,13 +106,13 @@ export default function MobileNavbar({
     <>
       {isSidebarOpen ? (
         <div
-          className="fixed inset-0 z-[60] bg-black/45 backdrop-blur-[2px] lg:hidden"
+          className="pointer-events-auto fixed inset-0 z-[60] bg-black/45 backdrop-blur-[2px] lg:hidden"
           aria-hidden="true"
           onClick={() => setSidebarOpen(false)}
         />
       ) : null}
 
-      <header className="site-nav fixed inset-x-0 top-0 z-50 lg:hidden">
+      <header className="site-nav pointer-events-auto fixed inset-x-0 top-0 z-50 lg:hidden">
         <div
           className={`site-nav-shell ${
             isSolid ? "site-nav-shell--solid" : "site-nav-shell--transparent"
@@ -140,7 +140,9 @@ export default function MobileNavbar({
       <aside
         ref={sidebarRef}
         className={`fixed inset-y-0 right-0 z-[70] flex w-[min(88vw,380px)] flex-col bg-white shadow-[0_20px_60px_rgba(0,0,0,0.18)] transition-transform duration-300 ease-out lg:hidden ${
-          isSidebarOpen ? "translate-x-0" : "translate-x-full"
+          isSidebarOpen
+            ? "pointer-events-auto translate-x-0"
+            : "pointer-events-none translate-x-full"
         }`}
         aria-hidden={!isSidebarOpen}
       >

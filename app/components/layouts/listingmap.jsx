@@ -9,7 +9,7 @@ import {
 } from "@vis.gl/react-google-maps";
 import Link from "next/link";
 import Image from "next/image";
-import { formatPrice, encodeId } from "@/utils";
+import { formatPrice, encodeId, getListingHref } from "@/utils";
 import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
@@ -120,7 +120,7 @@ function MapPopup({ property, onClose }) {
         </div>
 
         <Link
-          href={`/rent/${property.slug}`}
+          href={getListingHref(property)}
           className="block w-full text-center bg-[#09858D] hover:bg-[#077279] text-white py-1.5 rounded-lg text-xs font-medium transition-colors"
         >
           View Details

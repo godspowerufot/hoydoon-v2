@@ -280,13 +280,11 @@ export default function RootLayout({
             ></iframe>
           </noscript>
           <Providers>
-            <div className="fixed top-0 left-0 w-full z-50 pointer-events-none">
-              <div className="pointer-events-auto">
-                <Navbar />
-              </div>
+            <div className="pointer-events-none fixed inset-x-0 top-0 z-50">
+              <Navbar />
             </div>
             <AnimationWrapper>
-              <main className="container flex-1 flex items-center justify-center flex-col">
+              <main className="container flex flex-1 flex-col items-stretch">
                 <Suspense fallback={<Spinner />}>
                   <ToastContainer position="top-center" autoClose={3000} />
                   {children}

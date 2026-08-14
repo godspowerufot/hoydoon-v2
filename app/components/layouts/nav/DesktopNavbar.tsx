@@ -50,7 +50,7 @@ export default function DesktopNavbar({
   };
 
   return (
-    <header className="site-nav fixed inset-x-0 top-0 z-50 hidden lg:block">
+    <header className="site-nav pointer-events-auto fixed inset-x-0 top-0 z-50 hidden lg:block">
       <div
         className={`site-nav-shell ${
           isSolid ? "site-nav-shell--solid" : "site-nav-shell--transparent"

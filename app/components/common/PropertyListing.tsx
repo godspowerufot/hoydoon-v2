@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { truncateDescription, formatPrice } from "@/utils";
+import { truncateDescription, formatPrice, getListingHref } from "@/utils";
 import Link from "next/link";
 
 interface PropertyCardProps {
@@ -57,7 +57,7 @@ const PropertyListCard: React.FC<PropertyCardProps> = ({
 
   return (
     <>
-      <Link href={`rent/${slugs}`}>
+      <Link href={getListingHref({ slug: slugs })}>
         <div
           className={`relative flex w-full md:w-[93%] h-[500px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered && !isMobile
             ? "border-gray rounded-[20px]"

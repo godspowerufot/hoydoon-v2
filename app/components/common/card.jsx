@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import { truncateDescription, encodeId, formatPrice } from "@/utils";
+import { truncateDescription, encodeId, formatPrice, getListingHref } from "@/utils";
 import Link from "next/link";
 const HoverCard = ({
   imageSrc = "/default-image.jpg",
@@ -21,7 +21,7 @@ const HoverCard = ({
 
   return (
     <>
-      <Link href={`/rent/${slugs}`}>
+      <Link href={getListingHref({ slug: slugs })}>
         <div
           className={`relative lg:flex hidden w-fulls lg:w-[93%] h-[500px] bg-white overflow-hidden flex-col border transition-all duration-[1500ms] ${isHovered ? "border-gray rounded-[20px]" : "border-transparent"
             }`}
