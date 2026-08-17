@@ -6,6 +6,23 @@
   --nav-muted: #6b7280;
   --nav-border: #e5e7eb;
   --nav-surface: #ffffff;
+  width: 100vw;
+  max-width: 100vw;
+}
+
+.site-nav-inner {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .site-nav-inner {
+    padding-left: 5.25rem;
+    padding-right: 5.25rem;
+  }
 }
 
 .site-nav-bar {

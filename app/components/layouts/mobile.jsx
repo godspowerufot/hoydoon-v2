@@ -86,9 +86,9 @@ export default function MobileNavbar({
 
   if (isHelpCenterPage) {
     return (
-      <header className="site-nav pointer-events-auto fixed inset-x-0 top-0 z-50 lg:hidden">
+      <header className="site-nav pointer-events-auto fixed inset-x-0 top-0 z-50 w-screen max-w-[100vw] lg:hidden">
         <div className="site-nav-shell site-nav-shell--solid">
-          <div className="flex site-nav-bar items-center justify-between px-4">
+          <div className="site-nav-inner flex site-nav-bar items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <BrandLogo compact />
               <span className="text-sm font-medium text-[#6b7280]">Help Center</span>
@@ -112,13 +112,13 @@ export default function MobileNavbar({
         />
       ) : null}
 
-      <header className="site-nav pointer-events-auto fixed inset-x-0 top-0 z-50 lg:hidden">
+      <header className="site-nav pointer-events-auto fixed inset-x-0 top-0 z-50 w-screen max-w-[100vw] lg:hidden">
         <div
           className={`site-nav-shell ${
             isSolid ? "site-nav-shell--solid" : "site-nav-shell--transparent"
           }`}
         >
-          <div className="flex site-nav-bar items-center justify-between gap-3 px-4">
+          <div className="site-nav-inner flex site-nav-bar items-center justify-between gap-3">
             <BrandLogo compact light={light} />
 
             <button

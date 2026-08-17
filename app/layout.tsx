@@ -294,7 +294,7 @@ export default function RootLayout({
               <Navbar />
             </div>
             <AnimationWrapper>
-              <main className="container flex flex-1 flex-col items-stretch">
+              <main className="flex w-full max-w-[100vw] flex-1 flex-col items-stretch">
                 <Suspense fallback={<Spinner />}>
                   <ToastContainer position="top-center" autoClose={3000} />
                   {children}

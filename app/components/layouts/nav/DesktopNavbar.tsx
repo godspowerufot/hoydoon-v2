@@ -50,13 +50,13 @@ export default function DesktopNavbar({
   };
 
   return (
-    <header className="site-nav pointer-events-auto fixed inset-x-0 top-0 z-50 hidden lg:block">
+    <header className="site-nav pointer-events-auto fixed inset-x-0 top-0 z-50 hidden w-screen max-w-[100vw] lg:block">
       <div
         className={`site-nav-shell ${
           isSolid ? "site-nav-shell--solid" : "site-nav-shell--transparent"
         }`}
       >
-        <div className="home-container">
+        <div className="site-nav-inner px-[10rem]!">
           <div className="site-nav-bar grid grid-cols-[1fr_auto_1fr] items-center gap-6">
             <div className="justify-self-start">
               <BrandLogo light={light} />
