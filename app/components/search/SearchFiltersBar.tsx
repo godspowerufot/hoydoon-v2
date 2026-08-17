@@ -7,7 +7,6 @@ import { getLocationRegion } from "@/utils/lib/index";
 import {
   HOME_TYPE_OPTIONS,
   TYPE_FILTER_OPTIONS_BASE,
-  buildSearchUrl,
   getPriceOptions,
   type SearchFiltersState,
 } from "./searchUtils";

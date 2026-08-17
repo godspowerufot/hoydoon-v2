@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Heart, Share2, X } from "lucide-react";
 import MapComponent from "../listingmap";
@@ -74,11 +74,11 @@ export default function PropertyGalleryModal({
     };
   }, [isOpen]);
 
-  const goTo = (index: number) => {
+  const goTo = useCallback((index: number) => {
     const total = photos.length;
     if (!total) return;
     setCurrentIndex((index + total) % total);
-  };
+  }, [photos.length]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -90,7 +90,7 @@ export default function PropertyGalleryModal({
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [isOpen, activeTab, currentIndex, onClose]);
+  }, [isOpen, activeTab, currentIndex, onClose, goTo]);
 
   useEffect(() => {
     const node = thumbsRef.current?.querySelector<HTMLElement>(
