@@ -15,7 +15,7 @@ export default function SellHero() {
       </a>
 
       <Image
-        src="/new-image/sell-wallpaper.png"
+        src="/new-image/sell-wallpaper.jpg"
         alt="Agent reviewing a listing with a homeowner"
         fill
         priority

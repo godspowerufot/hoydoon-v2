@@ -132,38 +132,38 @@ export default function Appfooter() {
             </p>
             <h2 className="mt-3 font-heading text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
               New listings, in your inbox
-            </h2>
+                  </h2>
             <p className="mt-2 text-sm leading-relaxed text-white/65 md:text-base">
               Get a weekly roundup of homes for sale and rent across Nigeria,
               Somalia, and Kenya.
             </p>
           </div>
 
-          <form
-            onSubmit={handleSubscribe}
+                  <form
+                    onSubmit={handleSubscribe}
             className="flex w-full max-w-md items-center rounded-full border border-white/20 bg-white/5 p-1.5"
-          >
+                  >
             <label htmlFor="footer-email" className="sr-only">
               Email address
             </label>
-            <input
+                    <input
               id="footer-email"
-              type="email"
+                      type="email"
               placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
               className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm text-white outline-none placeholder:text-white/45 md:text-base"
-              required
-            />
-            <button
-              type="submit"
-              disabled={status === "loading"}
+                      required
+                    />
+                    <button
+                      type="submit"
+                      disabled={status === "loading"}
               className="h-11 shrink-0 rounded-full bg-white px-5 text-sm font-semibold text-[#0e3d40] transition-colors duration-200 hover:bg-[#f3f3f3] disabled:opacity-60"
-            >
+                    >
               {status === "loading" ? "Sending" : "Subscribe"}
-            </button>
-          </form>
-        </div>
+                    </button>
+                  </form>
+              </div>
 
         <div className="mt-14 grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-2 sm:col-span-3 lg:col-span-4">
@@ -176,7 +176,7 @@ export default function Appfooter() {
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white/45" />
                 <span>5, Elshadai Street, Erunwen, Ogun State</span>
-              </li>
+                    </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-white/45" />
                 <a
@@ -184,19 +184,19 @@ export default function Appfooter() {
                   className="transition-colors duration-200 hover:text-white"
                 >
                   +234 704 305 8500
-                </a>
-              </li>
+                      </a>
+                    </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-white/45" />
-                <a
-                  href="mailto:support@hoydoon.com"
+                      <a
+                        href="mailto:support@hoydoon.com"
                   className="transition-colors duration-200 hover:text-white"
                 >
                   support@hoydoon.com
-                </a>
-              </li>
-            </ul>
-          </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
 
           <div className="lg:col-span-2">
             <LinkColumn title="Explore" links={EXPLORE} />
@@ -213,34 +213,34 @@ export default function Appfooter() {
               Get the app
             </p>
             <div className="mt-4 flex flex-col items-start gap-2.5">
-              <a
-                href="https://apps.apple.com/us/app/hoydoon/id6736393320"
-                target="_blank"
-                rel="noopener noreferrer"
+                      <a
+                        href="https://apps.apple.com/us/app/hoydoon/id6736393320"
+                        target="_blank"
+                        rel="noopener noreferrer"
                 className="transition-opacity duration-200 hover:opacity-90"
-              >
-                <Image
-                  src="/app1.svg"
+                      >
+                        <Image
+                          src="/app1.svg"
                   alt="Download on the App Store"
                   width={140}
                   height={42}
                   className="h-10 w-auto"
-                />
-              </a>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.hoydoon.app"
-                target="_blank"
-                rel="noopener noreferrer"
+                        />
+                      </a>
+                      <a
+                        href="https://play.google.com/store/apps/details?id=com.hoydoon.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
                 className="transition-opacity duration-200 hover:opacity-90"
-              >
-                <Image
-                  src="/app2.svg"
-                  alt="Get it on Google Play"
+                      >
+                        <Image
+                          src="/app2.svg"
+                          alt="Get it on Google Play"
                   width={140}
                   height={42}
                   className="h-10 w-auto"
-                />
-              </a>
+                        />
+                      </a>
             </div>
             <p className="mt-6 font-heading text-sm font-semibold tracking-tight text-white">
               Follow
@@ -278,9 +278,9 @@ export default function Appfooter() {
               </Link>
             ))}
           </div>
-        </div>
-      </div>
-    </footer>
+            </div>
+          </div>
+        </footer>
   );
 }
 

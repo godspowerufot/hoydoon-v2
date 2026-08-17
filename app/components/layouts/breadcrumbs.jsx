@@ -13,7 +13,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { getLocationWithTimeout } from "./../../../utils/index";
 import { getLocationRegion } from "@/utils/lib/index";
 
-import FiltersDropdown from "../common/filters";
+import { FiltersDropdown } from "../common/filters";
+
 export const Breadcrumb = ({ showMap, setShowMap }) => {
   const searchParams = useSearchParams();
   const router = useRouter();

@@ -117,14 +117,14 @@ function DistanceComponent({ coordinates }) {
 
         return foundPlaces
           .map((place, idx) => {
-            if (!place) return null;
-            const distanceInfo = distanceElements?.[idx];
-            return {
-              ...place,
-              label: getLabelFromTypes(place.types),
+          if (!place) return null;
+          const distanceInfo = distanceElements?.[idx];
+          return {
+            ...place,
+            label: getLabelFromTypes(place.types),
               distance:
                 distanceInfo?.status === "OK" ? distanceInfo.distance.text : null,
-            };
+          };
           })
           .filter(Boolean);
       })();
@@ -247,7 +247,7 @@ function ContactCard({
             <p className="text-xs capitalize text-[#6f6f78]">
               {location || "Local agent"}
             </p>
-          </div>
+        </div>
         </Link>
         <textarea
           value={message}
@@ -267,7 +267,7 @@ function ContactCard({
         <p className="mt-3 text-center text-xs leading-relaxed text-[#8a8a8a]">
           By sending, you agree to be contacted about this listing.
         </p>
-      </div>
+        </div>
     </aside>
   );
 }
@@ -288,7 +288,7 @@ function FactGroup({ title, rows }) {
             <p className="mt-1 text-sm font-medium capitalize text-[#2a2a33]">
               {row.value}
             </p>
-          </div>
+        </div>
         ))}
       </div>
     </div>
@@ -621,7 +621,7 @@ export default function RentDetailsClient() {
                       <p className="mt-1 text-xs text-[#6f6f78] md:text-sm">
                         {metric.label}
                       </p>
-                    </div>
+              </div>
                   );
                 })}
               </div>
@@ -715,13 +715,13 @@ export default function RentDetailsClient() {
               >
                 <div className="flex items-center gap-3">
                   <div className="relative h-14 w-14 overflow-hidden rounded-full bg-[#eee]">
-                    <Image
+                <Image
                       src={pictureUrl || "/Avatar.svg"}
                       alt={fullname || "Agent"}
                       fill
                       className="object-cover"
-                    />
-                  </div>
+                />
+              </div>
                   <div>
                     <p className="font-semibold text-[#2a2a33]">
                       {fullname || "Hoydoon agent"}
@@ -777,7 +777,7 @@ export default function RentDetailsClient() {
             />
           </div>
         </div>
-      </div>
+            </div>
 
       {related.length > 0 && (
         <section className="home-bleed bg-[#f7f7f8] py-12 md:py-16">

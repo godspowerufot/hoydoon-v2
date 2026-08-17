@@ -11,6 +11,7 @@ import {
   SellCta,
   AppDownload,
   HomeFaq,
+  HomeArticles,
 } from "./components/home";
 
 function takeListings(payload, count) {
@@ -59,6 +60,7 @@ export default function Home() {
         <IntentCards />
         <SellCta />
         <AppDownload />
+        <HomeArticles />
         <HomeFaq />
       </main>
       </div>

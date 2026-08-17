@@ -125,7 +125,7 @@ export default function PropertyGalleryModal({
                 ? "Map"
                 : "Video"}
           </p>
-        </div>
+          </div>
 
         <div
           role="tablist"
@@ -269,6 +269,6 @@ export default function PropertyGalleryModal({
           </video>
         </div>
       ) : null}
-    </div>
+      </div>
   );
 }

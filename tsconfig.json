@@ -51,7 +51,7 @@
     "app/auth/forgot-password/otp/otp.jsx",
     "app/components/about/page.jsx",
     "app/review/page.jsx",
-    "app/search/page.jsx"
+    "app/search/page.tsx"
   ],
   "exclude": ["node_modules"]
 }

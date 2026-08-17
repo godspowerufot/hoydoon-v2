@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Contact Hoydoon | Support for Somalia & Nigeria",
+    title: "Contact Hoydoon | Customer Support",
     description:
-        "Contact Hoydoon for help with listings, the app, or finding a trusted agent. Reach our support team or locate offices in Somalia and Nigeria.",
+        "Contact Hoydoon for help with listings, the app, or finding a trusted agent. Reach our support team by email, WhatsApp, or the help center.",
     openGraph: {
-        title: "Contact Hoydoon | Support for Somalia & Nigeria",
+        title: "Contact Hoydoon | Customer Support",
         description:
-            "Contact Hoydoon for help with listings, the app, or finding a trusted agent. Reach our support team or locate offices in Somalia and Nigeria.",
+            "Contact Hoydoon for help with listings, the app, or finding a trusted agent. Reach our support team by email, WhatsApp, or the help center.",
         url: "https://www.hoydoon.com/contact",
         siteName: "Hoydoon",
         images: [
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Contact Hoydoon | Support for Somalia & Nigeria",
+        title: "Contact Hoydoon | Customer Support",
         description:
-            "Contact Hoydoon for help with listings, the app, or finding a trusted agent. Reach our support team or locate offices in Somalia and Nigeria.",
+            "Contact Hoydoon for help with listings, the app, or finding a trusted agent. Reach our support team by email, WhatsApp, or the help center.",
         images: ["https://hoydoonstorage.blob.core.windows.net/web-images/headertwo.webp"],
     },
 };

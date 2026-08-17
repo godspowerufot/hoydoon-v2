@@ -101,6 +101,6 @@ export default function RentPage() {
         <RentMapExplore />
         <RentGuides />
       </main>
-    </div>
+      </div>
   );
 }

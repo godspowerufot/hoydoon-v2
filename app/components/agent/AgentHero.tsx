@@ -6,7 +6,7 @@ import { HomeContainer } from "../home/Section";
 
 export default function AgentHero() {
   return (
-    <header className="home-bleed relative isolate flex min-h-[560px] items-center overflow-hidden md:min-h-[640px] lg:h-[72vh] lg:max-h-[760px]">
+    <header className="home-bleed relative isolate flex min-h-[560px] items-center overflow-hidden md:min-h-[640px] lg:h-[92vh] lg:max-h-[760px]">
       <a
         href="#featured-agents"
         className="absolute left-4 top-4 z-20 -translate-y-16 rounded-lg bg-white px-3 py-2 text-sm text-[#111] transition-transform focus:translate-y-0"
@@ -15,7 +15,7 @@ export default function AgentHero() {
       </a>
 
       <Image
-        src="/new-image/agent-wallpaper.png"
+        src="/new-image/agent-wallpaper.jpg"
         alt="Agent showing a new home to a couple"
         fill
         priority
