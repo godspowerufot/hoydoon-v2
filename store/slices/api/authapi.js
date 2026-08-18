@@ -137,10 +137,19 @@ export const authApi = createApi({
 
     // getallreviews
     getAllReviews: builder.query({
-      query: () => ({
-        url: `v1/reviews`,
-        method: "GET",
-      }),
+      query: (params = {}) => {
+        const searchParams = new URLSearchParams();
+        Object.entries(params || {}).forEach(([key, value]) => {
+          if (value !== undefined && value !== null && value !== "") {
+            searchParams.append(key, String(value));
+          }
+        });
+        const queryString = searchParams.toString();
+        return {
+          url: queryString ? `v1/reviews?${queryString}` : "v1/reviews",
+          method: "GET",
+        };
+      },
     }),
     getAllLocationListings: builder.query({
       query: (params) => ({

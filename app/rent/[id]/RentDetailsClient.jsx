@@ -646,7 +646,7 @@ export default function RentDetailsClient() {
                     href={`#${id}`}
                     className={`flex-1 rounded-full px-3 py-2.5 text-center text-sm font-semibold transition-colors duration-200 ${
                       activeSection === id
-                        ? "bg-[#ffffff] text-primary shadow-[0_8px_24px_rgba(20,20,30,0.06)]"
+                        ? "bg-primary text-white shadow-[0_8px_24px_rgba(9,133,141,0.25)]"
                         : "text-[#5c5c66] hover:text-[#2a2a33]"
                     }`}
                   >

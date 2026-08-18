@@ -16,7 +16,7 @@ export default function AllAgentsSubHero({
   return (
     <header className="home-bleed relative isolate flex min-h-[360px] items-end overflow-hidden md:min-h-[420px] lg:min-h-[480px]">
       <Image
-        src="/new-image/agent-wallpaper.jpg"
+        src="/new-image/view-all-agent-hero.jpg"
         alt="Real estate agents on Hoydoon"
         fill
         priority

@@ -17,6 +17,8 @@ type HelpCenterSubHeroProps = {
   imageAlt?: string;
   imagePosition?: string;
   breadcrumbs?: BreadcrumbItem[];
+  priority?: boolean;
+  quality?: number;
 };
 
 export default function HelpCenterSubHero({
@@ -27,16 +29,19 @@ export default function HelpCenterSubHero({
   imageAlt = "Hoydoon support",
   imagePosition = "object-[50%_28%] md:object-[50%_22%]",
   breadcrumbs,
+  priority = true,
+  quality = 72,
 }: HelpCenterSubHeroProps) {
   const trail = breadcrumbs ?? [{ href: "/helpcenter", label: "Help center" }, { label: title }];
   return (
-    <header className="home-bleed relative isolate flex min-h-[360px] items-end overflow-hidden md:min-h-[420px] lg:min-h-[480px]">
+    <header className="home-bleed relative isolate flex min-h-[360px] items-end overflow-hidden bg-[#0f3d40] md:min-h-[420px] lg:min-h-[480px]">
       <Image
         src={imageSrc}
         alt={imageAlt}
         fill
-        priority
-        sizes="100vw"
+        priority={priority}
+        quality={quality}
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 1280px, 1920px"
         className={`pointer-events-none object-cover ${imagePosition}`}
       />
       <div
