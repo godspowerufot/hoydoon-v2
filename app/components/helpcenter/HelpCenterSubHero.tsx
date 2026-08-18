@@ -4,6 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { HomeContainer } from "../home/Section";
 
+type BreadcrumbItem = {
+  href?: string;
+  label: string;
+};
+
 type HelpCenterSubHeroProps = {
   eyebrow?: string;
   title: string;
@@ -11,6 +16,7 @@ type HelpCenterSubHeroProps = {
   imageSrc?: string;
   imageAlt?: string;
   imagePosition?: string;
+  breadcrumbs?: BreadcrumbItem[];
 };
 
 export default function HelpCenterSubHero({
@@ -20,7 +26,9 @@ export default function HelpCenterSubHero({
   imageSrc = "/new-image/help-2.jpg",
   imageAlt = "Hoydoon support",
   imagePosition = "object-[50%_28%] md:object-[50%_22%]",
+  breadcrumbs,
 }: HelpCenterSubHeroProps) {
+  const trail = breadcrumbs ?? [{ href: "/helpcenter", label: "Help center" }, { label: title }];
   return (
     <header className="home-bleed relative isolate flex min-h-[360px] items-end overflow-hidden md:min-h-[420px] lg:min-h-[480px]">
       <Image
@@ -38,11 +46,18 @@ export default function HelpCenterSubHero({
 
       <HomeContainer className="relative z-10 w-full pb-12 pt-[5.5rem] md:pb-14 md:pt-36 lg:pt-40">
         <nav className="mb-8 flex flex-wrap items-center gap-2 text-sm text-white/75">
-          <Link href="/helpcenter" className="hover:text-white">
-            Help center
-          </Link>
-          <span aria-hidden="true">/</span>
-          <span className="text-white">{title}</span>
+          {trail.map((item, index) => (
+            <span key={`${item.label}-${index}`} className="flex items-center gap-2">
+              {index > 0 ? <span aria-hidden="true">/</span> : null}
+              {item.href ? (
+                <Link href={item.href} className="hover:text-white">
+                  {item.label}
+                </Link>
+              ) : (
+                <span className="text-white">{item.label}</span>
+              )}
+            </span>
+          ))}
         </nav>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
           {eyebrow}

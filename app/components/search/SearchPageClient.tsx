@@ -148,8 +148,10 @@ export default function SearchPageClient() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [showSortDropdown]);
 
-  const handleSearch = () => {
-    router.push(buildSearchUrl(filters), { scroll: false });
+  const handleSearch = (nextFilters?: SearchFiltersState) => {
+    const active = nextFilters ?? filters;
+    if (nextFilters) setFilters(nextFilters);
+    router.push(buildSearchUrl(active), { scroll: false });
   };
 
   const handlePageChange = (page: number) => {
@@ -174,8 +176,9 @@ export default function SearchPageClient() {
             {pageTitle}
           </h1>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-[#5c5c66] md:text-lg">
-            Filter by type, price, beds, and more — then switch between list and
-            map view to explore listings across Hoydoon.
+            Filter by country, type, price, beds, and more — then switch between
+            list and map view to explore listings across Nigeria, Kenya, and
+            Somalia.
           </p>
         </header>
 
@@ -266,6 +269,9 @@ export default function SearchPageClient() {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-2">
               {[
+                { label: "Nigeria", href: "/search?region=nigeria&listingType=rent" },
+                { label: "Kenya", href: "/search?region=kenya&listingType=rent" },
+                { label: "Somalia", href: "/search?region=somalia&listingType=rent" },
                 { label: "Rent", href: "/search?listingType=rent" },
                 { label: "Buy", href: "/search?listingType=sale" },
                 { label: "Land", href: "/search?listingType=land" },

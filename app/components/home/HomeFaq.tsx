@@ -36,7 +36,7 @@ export default function HomeFaq() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="pb-16 md:pb-24" aria-labelledby="faq-heading">
+    <section className="mt-12 pb-16 md:mt-16 md:pb-24" aria-labelledby="faq-heading">
       <HomeContainer>
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <div>

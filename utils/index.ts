@@ -95,8 +95,9 @@ export function decodeId(encoded?: string) {
   return Buffer.from(encoded, "base64").toString();
 }
 export function formatPrice(region: string, amount: number) {
-  const isNigeria = typeof region === "string" && region?.trim()?.toLowerCase() === "nigeria";
-  const symbol = isNigeria ? "₦" : "$";
+  const normalized = typeof region === "string" ? region.trim().toLowerCase() : "";
+  const symbol =
+    normalized === "nigeria" ? "₦" : normalized === "kenya" ? "KSh" : "$";
 
   return `${symbol}${formatNumber(amount)}`;
 }

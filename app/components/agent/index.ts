@@ -4,3 +4,6 @@ export { default as AgentCategoryChips } from "./AgentCategoryChips";
 export { default as AgentGrid } from "./AgentGrid";
 export { default as AgentConnect } from "./AgentConnect";
 export { default as AgentGuides } from "./AgentGuides";
+export { default as AllAgentsPageClient } from "./AllAgentsPageClient";
+export { default as AllAgentsFiltersBar } from "./AllAgentsFiltersBar";
+export { default as AllAgentsSubHero } from "./AllAgentsSubHero";

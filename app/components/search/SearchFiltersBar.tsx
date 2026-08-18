@@ -5,6 +5,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { FiltersDropdown } from "@/app/components/common/filters";
 import { getLocationRegion } from "@/utils/lib/index";
 import {
+  COUNTRY_FILTER_OPTIONS,
+  COUNTRY_LABELS,
   HOME_TYPE_OPTIONS,
   TYPE_FILTER_OPTIONS_BASE,
   getPriceOptions,
@@ -23,7 +25,7 @@ const dropdownItem =
 type SearchFiltersBarProps = {
   filters: SearchFiltersState;
   onFiltersChange: (filters: SearchFiltersState) => void;
-  onSearch: () => void;
+  onSearch: (nextFilters?: SearchFiltersState) => void;
   showMap: boolean;
   setShowMap: (value: boolean) => void;
 };
@@ -91,20 +93,25 @@ export default function SearchFiltersBar({
     getUserLocation();
   }, [userCountry]);
 
-  const priceOptions = useMemo(() => getPriceOptions(userCountry), [userCountry]);
+  const effectiveCountry = filters.region || userCountry;
+
+  const priceOptions = useMemo(
+    () => getPriceOptions(effectiveCountry),
+    [effectiveCountry]
+  );
 
   const typeFilterOptions = useMemo(() => {
-    if (userCountry !== "somalia") {
+    if (effectiveCountry !== "somalia") {
       return [...TYPE_FILTER_OPTIONS_BASE, { label: "Shortlet", value: "shortlet" }];
     }
     return TYPE_FILTER_OPTIONS_BASE;
-  }, [userCountry]);
+  }, [effectiveCountry]);
 
   const typeOptions = useMemo(() => {
     const base = ["Buy", "Rent", "Land"];
-    if (userCountry !== "somalia") return [...base, "shortlet"];
+    if (effectiveCountry !== "somalia") return [...base, "shortlet"];
     return base;
-  }, [userCountry]);
+  }, [effectiveCountry]);
 
   const selectedType =
     typeOptions.find((type) => filters["home-type"] === type.toLowerCase()) ||
@@ -114,6 +121,27 @@ export default function SearchFiltersBar({
 
   const updateFilter = (filterName: string, value: string | number) => {
     onFiltersChange({ ...filters, [filterName]: String(value) });
+  };
+
+  const applyCountryFilter = (region: string) => {
+    const countryChanged = filters.region !== region;
+    const next: SearchFiltersState = {
+      ...filters,
+      region,
+      price: countryChanged ? "" : filters.price,
+      "home-type":
+        region === "somalia" && filters["home-type"] === "shortlet"
+          ? "rent"
+          : filters["home-type"],
+    };
+    onFiltersChange(next);
+    onSearch(next);
+    setOpenDropdown(null);
+  };
+
+  const getCountryLabel = () => {
+    if (!filters.region) return "All countries";
+    return COUNTRY_LABELS[filters.region] || "Country";
   };
 
   const getPriceLabel = () => {
@@ -127,7 +155,7 @@ export default function SearchFiltersBar({
   const runSearch = async () => {
     setIsSearching(true);
     await new Promise((resolve) => setTimeout(resolve, 200));
-    onSearch();
+    onSearch(filters);
     setIsSearching(false);
   };
 
@@ -135,6 +163,27 @@ export default function SearchFiltersBar({
     <div className="rounded-2xl border border-[#ececec] bg-white p-4 shadow-[0_8px_24px_rgba(17,17,17,0.04)] md:p-5">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-wrap items-center gap-2">
+          <FilterDropdown
+            label="Country"
+            value={getCountryLabel()}
+            open={openDropdown === "country"}
+            onToggle={() =>
+              setOpenDropdown(openDropdown === "country" ? null : "country")
+            }
+            onClose={() => setOpenDropdown(null)}
+          >
+            {COUNTRY_FILTER_OPTIONS.map((opt) => (
+              <button
+                key={opt.value || "all"}
+                type="button"
+                className={`${dropdownItem} ${filters.region === opt.value ? "bg-[#f3fbfb] text-primary" : ""}`}
+                onClick={() => applyCountryFilter(opt.value)}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </FilterDropdown>
+
           <FilterDropdown
             label="Type"
             value={
@@ -264,10 +313,10 @@ export default function SearchFiltersBar({
                 isOpen={showAllFilters}
                 onClose={() => setShowAllFilters(false)}
                 filters={filters}
-                userCountrys={userCountry || undefined}
+                userCountrys={effectiveCountry || undefined}
                 onFilterChange={updateFilter}
                 onSearch={() => {
-                  onSearch();
+                  onSearch(filters);
                   setShowAllFilters(false);
                 }}
                 isSearching={isSearching}

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "About Hoydoon | Real Estate Platform for Somalia, Nigeria  & Kenya",
         description:
-            "Learn about Hoydoon—an all-in-one property platform helping people buy, sell, rent, and connect with trusted agents across Somalia and Nigeria.",
+            "Learn about Hoydoon—an all-in-one property platform helping people buy, sell, rent, and connect with trusted agents across Somalia, Nigeria and Kenya.",
         url: "https://www.hoydoon.com/about",
         siteName: "Hoydoon",
         images: [

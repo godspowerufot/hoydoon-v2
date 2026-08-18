@@ -13,9 +13,9 @@ import Spinner from "./components/common/Spinner";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hoydoon.com"),
-  title: "Hoydoon | Homes for Sale & Rent in Lagos, Nigeria & Somalia",
+  title: "Hoydoon | Homes for Sale & Rent in Lagos, Nigeria, Kenya & Somalia",
   description:
-    "Find verified homes, apartments and land for sale or rent in Lagos, Abuja and across Nigeria & Somalia. Browse thousands of listings on Hoydoon.",
+    "Find verified homes, apartments and land for sale or rent in Lagos, Abuja, Nairobi and across Nigeria, Kenya & Somalia. Browse thousands of listings on Hoydoon.",
   keywords: [
     "homes for sale in Nigeria",
     "houses for sale in Lagos",
@@ -33,8 +33,20 @@ export const metadata: Metadata = {
     "houses for rent Lagos",
     "real estate Somalia",
     "houses for sale Mogadishu",
+    "homes for sale in Kenya",
+    "houses for sale Nairobi",
+    "property for sale Nairobi Kenya",
+    "buy house Kenya",
+    "rent apartment Nairobi",
+    "rental homes Kenya",
+    "real estate Kenya",
+    "property listings Kenya",
+    "apartments for rent Nairobi",
+    "houses for rent Kenya",
+    "real estate Nairobi",
     "Hoydoon",
     "Nigerian real estate marketplace",
+    "Kenyan real estate marketplace",
   ],
   authors: [{ name: "Hoydoon Team" }],
   icons: {
@@ -46,9 +58,9 @@ export const metadata: Metadata = {
     canonical: "https://www.hoydoon.com",
   },
   openGraph: {
-    title: "Hoydoon | Homes for Sale & Rent in Lagos, Nigeria & Somalia",
+    title: "Hoydoon | Homes for Sale & Rent in Lagos, Nigeria, Kenya & Somalia",
     description:
-      "Find verified homes, apartments and land for sale or rent in Lagos, Abuja and across Nigeria & Somalia. Browse thousands of listings on Hoydoon.",
+      "Find verified homes, apartments and land for sale or rent in Lagos, Abuja, Nairobi and across Nigeria, Kenya & Somalia. Browse thousands of listings on Hoydoon.",
     url: "https://www.hoydoon.com",
     siteName: "Hoydoon",
     images: [
@@ -64,9 +76,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hoydoon | Homes for Sale & Rent in Lagos, Nigeria & Somalia",
+    title: "Hoydoon | Homes for Sale & Rent in Lagos, Nigeria, Kenya & Somalia",
     description:
-      "Find verified homes, apartments and land for sale or rent in Lagos, Abuja and across Nigeria & Somalia. Browse thousands of listings on Hoydoon.",
+      "Find verified homes, apartments and land for sale or rent in Lagos, Abuja, Nairobi and across Nigeria, Kenya & Somalia. Browse thousands of listings on Hoydoon.",
     images: ["https://hoydoonstorage.blob.core.windows.net/web-images/headertwo.webp"],
   },
 };
@@ -166,7 +178,7 @@ export default function RootLayout({
                   "addressRegion": "Ogun State",
                   "addressCountry": "NG"
                 },
-                "areaServed": ["Nigeria", "Somalia"],
+                "areaServed": ["Nigeria", "Kenya", "Somalia"],
                 "priceRange": "$$",
                 "sameAs": [
                   "https://www.instagram.com/hoydoon",
@@ -185,8 +197,8 @@ export default function RootLayout({
                 "@type": "RealEstateAgent",
                 "name": "Hoydoon",
                 "url": "https://www.hoydoon.com",
-                "description": "Verified real estate marketplace for Nigeria and Somalia.",
-                "areaServed": ["Lagos", "Abuja", "Nigeria", "Somalia"],
+                "description": "Verified real estate marketplace for Nigeria, Kenya and Somalia.",
+                "areaServed": ["Lagos", "Abuja", "Nairobi", "Nigeria", "Kenya", "Somalia"],
                 "telephone": "+2347043058500"
               })
             }}
@@ -227,7 +239,7 @@ export default function RootLayout({
                       "telephone": "+2347043058500",
                       "email": "support@hoydoon.com",
                       "availableLanguage": "en",
-                      "areaServed": ["NG", "SO"]
+                      "areaServed": ["NG", "KE", "SO"]
                     }
                   },
                   {

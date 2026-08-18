@@ -1,3 +1,6 @@
+export { default as SellHomePageClient } from "./SellHomePageClient";
+export { default as SellHomeForm } from "./SellHomeForm";
+export { default as SellHomeAside } from "./SellHomeAside";
 export { default as SellHero } from "./SellHero";
 export { default as SellSearchBar } from "./SellSearchBar";
 export { default as SellCategoryChips } from "./SellCategoryChips";
