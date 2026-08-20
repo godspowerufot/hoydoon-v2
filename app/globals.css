@@ -1,3 +1,5 @@
+@import "./components/layouts/nav/nav.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,8 +40,9 @@
 /* Ensure the html and body take full height */
 html,
 body {
-  margin: auto;
-  height: 100vh;
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
   user-select: none;
 }
 html {
@@ -55,7 +58,17 @@ body {
   color: black;
   background: #f4f4f4;
   overflow-x: hidden;
+  overflow-y: auto;
   font-family: "Geist", Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 1023px) {
+  html,
+  body {
+    height: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 h1,
 h2,
@@ -206,6 +219,13 @@ h6,
   margin-left: -50vw;
   margin-right: -50vw;
   overflow-x: clip;
+}
+
+@media (max-width: 1023px) {
+  .mobile-hero-flush {
+    margin-top: calc(-1 * env(safe-area-inset-top, 0px));
+    padding-top: env(safe-area-inset-top, 0px);
+  }
 }
 
 .guide-articles-grid {

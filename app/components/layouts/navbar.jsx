@@ -17,6 +17,7 @@ function shouldUseHeroNav(pathname) {
   ) {
     return true;
   }
+  if (pathname === "/about") return true;
   return false;
 }
 

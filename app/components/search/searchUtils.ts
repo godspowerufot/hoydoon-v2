@@ -117,6 +117,63 @@ export function getPriceOptions(userCountry: string | null) {
   } satisfies Record<string, PriceOption[]>;
 }
 
+export type PriceOptionsMap = ReturnType<typeof getPriceOptions>;
+
+export function getPriceOptionKey(
+  homeType: string
+): keyof PriceOptionsMap {
+  const map: Record<string, keyof PriceOptionsMap> = {
+    buy: "Buy",
+    rent: "Rent",
+    land: "Land",
+    shortlet: "shortlet",
+  };
+  return map[homeType?.toLowerCase()] ?? "Rent";
+}
+
+function formatCompactPrice(value: number, country: string | null) {
+  const symbol =
+    country === "nigeria" ? "₦" : country === "kenya" ? "KSh " : "$";
+  if (value >= 1_000_000) {
+    const millions = value / 1_000_000;
+    return `${symbol}${millions % 1 === 0 ? millions : millions.toFixed(1)}m`;
+  }
+  if (value >= 1_000) {
+    const thousands = value / 1_000;
+    return `${symbol}${thousands % 1 === 0 ? thousands : thousands.toFixed(1)}k`;
+  }
+  return `${symbol}${value.toLocaleString()}`;
+}
+
+export function getPriceFilterLabel(
+  price: string,
+  priceOptions: PriceOptionsMap,
+  homeType: string,
+  country: string | null = null
+): string {
+  if (!price) return "Price";
+
+  const key = getPriceOptionKey(homeType);
+  const matched = priceOptions[key]?.find((option) => option.value === price);
+  if (matched) return matched.label;
+
+  for (const options of Object.values(priceOptions)) {
+    const fallback = options.find((option) => option.value === price);
+    if (fallback) return fallback.label;
+  }
+
+  const [minRaw, maxRaw] = price.split("-");
+  const min = Number(minRaw);
+  const max = Number(maxRaw);
+  if (!Number.isNaN(min) && !Number.isNaN(max)) {
+    if (min === 0) return `Up to ${formatCompactPrice(max, country)}`;
+    if (max >= 1_000_000_000) return `${formatCompactPrice(min, country)}+`;
+    return `${formatCompactPrice(min, country)} – ${formatCompactPrice(max, country)}`;
+  }
+
+  return "Price";
+}
+
 export const HOME_TYPE_OPTIONS = [
   { label: "Any", value: "" },
   { label: "Bungalow", value: "Bungalow" },

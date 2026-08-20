@@ -25,13 +25,13 @@ export default function AgentGrid({
         <div className="mb-6 flex items-end justify-between gap-4">
           <h2
             id={`${id}-heading`}
-            className="text-2xl font-semibold tracking-tight text-[#2a2a33] md:text-3xl"
+            className="min-w-0 text-2xl font-semibold tracking-tight text-[#2a2a33] md:text-3xl"
           >
             {title}
           </h2>
           <Link
             href={href}
-            className="text-sm font-semibold text-primary transition-colors duration-200 hover:text-[#076b72] md:text-base"
+            className="shrink-0 whitespace-nowrap text-sm font-semibold text-primary transition-colors duration-200 hover:text-[#076b72] md:text-base"
           >
             See all
           </Link>

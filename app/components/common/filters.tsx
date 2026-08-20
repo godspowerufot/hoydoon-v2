@@ -216,8 +216,11 @@ export function FiltersDropdown({
         role="dialog"
         aria-modal="true"
         aria-labelledby="filters-dialog-title"
-        className="fixed inset-y-0 right-0 z-[1111] flex w-full max-w-full flex-col bg-white shadow-[0_20px_60px_rgba(17,17,17,0.18)] sm:max-w-[480px]"
+        className="fixed inset-x-0 bottom-0 z-[1111] flex max-h-[92vh] w-full flex-col rounded-t-[1.75rem] bg-white shadow-[0_-12px_40px_rgba(17,17,17,0.14)] md:inset-y-0 md:left-auto md:right-0 md:max-h-none md:max-w-[480px] md:rounded-none md:shadow-[0_20px_60px_rgba(17,17,17,0.18)]"
       >
+        <div className="flex shrink-0 justify-center pt-3 md:hidden">
+          <span className="h-1 w-10 rounded-full bg-[#e5e5e5]" aria-hidden="true" />
+        </div>
         <div className="border-b border-[#ececec] bg-[#f3fbfb] px-5 py-5 md:px-6">
           <div className="flex items-start justify-between gap-4">
             <div>

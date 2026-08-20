@@ -3,6 +3,7 @@
 import { ChevronDown, Loader2, MapPin, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { getLocationRegion } from "@/utils/lib/index";
+import AllAgentsFiltersBarMobile from "./AllAgentsFiltersBarMobile";
 import {
   LANGUAGE_OPTIONS,
   LISTING_TYPE_OPTIONS,
@@ -116,7 +117,16 @@ export default function AllAgentsFiltersBar({
     )?.label || "Specialty";
 
   return (
-    <div className="rounded-2xl border border-[#ececec] bg-white p-4 shadow-[0_8px_24px_rgba(17,17,17,0.04)] md:p-5">
+    <>
+      <div className="rounded-2xl border border-[#ececec] bg-white p-3 shadow-[0_8px_24px_rgba(17,17,17,0.04)] md:hidden">
+        <AllAgentsFiltersBarMobile
+          filters={filters}
+          onFiltersChange={onFiltersChange}
+          onSearch={onSearch}
+        />
+      </div>
+
+      <div className="hidden rounded-2xl border border-[#ececec] bg-white p-4 shadow-[0_8px_24px_rgba(17,17,17,0.04)] md:block md:p-5">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
           <div className="relative min-w-[200px] flex-1 sm:min-w-[240px] sm:max-w-md">
@@ -228,6 +238,7 @@ export default function AllAgentsFiltersBar({
           </button>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

@@ -3,6 +3,7 @@ export { default as HelpCenterSearch } from "./HelpCenterSearch";
 export { default as HelpCenterArticleCard, HelpCenterArticleSkeleton } from "./HelpCenterArticleCard";
 export { default as HelpCenterPagination } from "./HelpCenterPagination";
 export { default as HelpCenterSubHero } from "./HelpCenterSubHero";
+export { default as HelpCenterSupportCta } from "./HelpCenterSupportCta";
 export { default as SubmitRequestForm } from "./SubmitRequestForm";
 export {
   filterArticles,

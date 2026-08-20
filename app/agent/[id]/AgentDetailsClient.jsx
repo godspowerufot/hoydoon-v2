@@ -22,6 +22,7 @@ import {
 } from "@/store/slices/api/authapi";
 import PropertyCard from "@/app/components/home/PropertyCard";
 import { decodeId, flattenListings, formatPrice, handleShareClick } from "@/utils";
+import AgentDetailsMobile from "./AgentDetailsMobile";
 
 const MapComponent = dynamic(
   () => import("@/app/components/layouts/listingmap"),
@@ -70,7 +71,13 @@ function AgentSkeleton() {
   );
 }
 
-function ContactCard({ fullname, location, profileimage, listedBy }) {
+function ContactCard({
+  fullname,
+  location,
+  profileimage,
+  listedBy,
+  id = "contact-agent",
+}) {
   const [message, setMessage] = useState(
     "Hi, I found your profile on Hoydoon and would like to connect."
   );
@@ -99,7 +106,7 @@ function ContactCard({ fullname, location, profileimage, listedBy }) {
 
   return (
     <aside
-      id="contact-agent"
+      id={id}
       className="scroll-mt-28 overflow-hidden rounded-2xl border border-[#ececec] bg-white shadow-[0_8px_24px_rgba(20,20,30,0.06)] lg:sticky lg:top-28"
     >
       <div className="bg-[#f3fbfb] px-6 py-5">
@@ -286,6 +293,24 @@ export default function AgentDetailsClient() {
   return (
     <div className="listing-page pt-[5.25rem] lg:pt-24">
       <div className="home-container pb-16 md:pb-24">
+        <AgentDetailsMobile
+          agentInfo={agentInfo}
+          firstName={firstName}
+          region={region}
+          stats={stats}
+          grouped={grouped}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          showAllListings={showAllListings}
+          setShowAllListings={setShowAllListings}
+          visibleListings={visibleListings}
+          tabListings={tabListings}
+          tabCoords={tabCoords}
+          tabMapListings={tabMapListings}
+          ContactCard={ContactCard}
+        />
+
+        <div className="hidden md:block">
         <nav className="flex flex-wrap items-center gap-2 py-5 text-sm text-[#6f6f78]">
           <button
             type="button"
@@ -439,7 +464,7 @@ export default function AgentDetailsClient() {
                   <button
                     type="button"
                     onClick={() => setShowAllListings((prev) => !prev)}
-                    className="shrink-0 text-sm font-semibold text-primary hover:text-[#07757c]"
+                    className="shrink-0 whitespace-nowrap text-sm font-semibold text-primary hover:text-[#07757c]"
                   >
                     {showAllListings ? "Show less" : "See all"}
                   </button>
@@ -473,6 +498,7 @@ export default function AgentDetailsClient() {
               listedBy={agentInfo?._id}
             />
           </div>
+        </div>
         </div>
       </div>
     </div>

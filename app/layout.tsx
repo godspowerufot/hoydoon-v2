@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Appfooter from "./components/layouts/footer";
 import Navbar from "./components/layouts/navbar";
@@ -81,6 +81,12 @@ export const metadata: Metadata = {
       "Find verified homes, apartments and land for sale or rent in Lagos, Abuja, Nairobi and across Nigeria, Kenya & Somalia. Browse thousands of listings on Hoydoon.",
     images: ["https://hoydoonstorage.blob.core.windows.net/web-images/headertwo.webp"],
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -302,9 +308,7 @@ export default function RootLayout({
             ></iframe>
           </noscript>
           <Providers>
-            <div className="pointer-events-none fixed inset-x-0 top-0 z-50">
-              <Navbar />
-            </div>
+            <Navbar />
             <AnimationWrapper>
               <main className="flex w-full max-w-[100vw] flex-1 flex-col items-stretch">
                 <Suspense fallback={<Spinner />}>

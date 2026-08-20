@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { ChevronDown, ChevronRight, Loader2, Paperclip, Sparkles, X } from "lucide-react";
 
@@ -50,6 +50,93 @@ const fieldClass =
   "w-full rounded-2xl border border-[#ececec] bg-[#f7f7f8] px-4 py-3 text-sm text-[#2a2a33] outline-none transition-colors focus:border-primary focus:bg-white md:text-base";
 
 const labelClass = "mb-2 block text-sm font-medium text-[#2a2a33]";
+
+function MobileIssueTypeSelect({
+  value,
+  onChange,
+  options,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  options: { value: string; label: string }[];
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const selected =
+    options.find((item) => item.value === value) || options[0];
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [open]);
+
+  return (
+    <div className="relative md:hidden" ref={ref}>
+      <button
+        type="button"
+        id="issue-type-mobile"
+        aria-labelledby="issue-type-label"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpen((prev) => !prev)}
+        className={`${fieldClass} flex w-full items-center justify-between gap-3 text-left`}
+      >
+        <span className={value ? "text-[#2a2a33]" : "text-[#8a8a8a]"}>
+          {selected.label}
+        </span>
+        <ChevronDown
+          className={`h-4 w-4 shrink-0 text-[#8a8a8a] transition-transform ${open ? "rotate-180" : ""}`}
+          aria-hidden="true"
+        />
+      </button>
+
+      {open ? (
+        <ul
+          role="listbox"
+          aria-labelledby="issue-type-mobile"
+          className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-50 max-h-[min(280px,50vh)] overflow-y-auto overscroll-y-contain rounded-2xl border border-[#ececec] bg-white py-1 shadow-[0_12px_40px_rgba(17,17,17,0.12)]"
+        >
+          {options
+            .filter((item) => item.value)
+            .map((item) => {
+              const isSelected = value === item.value;
+              return (
+                <li key={item.value} role="option" aria-selected={isSelected}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onChange(item.value);
+                      setOpen(false);
+                    }}
+                    className={`flex w-full items-center justify-between px-4 py-3.5 text-left text-sm transition-colors ${
+                      isSelected
+                        ? "bg-[#ecfafa] font-semibold text-primary"
+                        : "text-[#2a2a33] hover:bg-[#f7f7f8]"
+                    }`}
+                  >
+                    {item.label}
+                    {isSelected ? (
+                      <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+                        Selected
+                      </span>
+                    ) : null}
+                  </button>
+                </li>
+              );
+            })}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
 
 export default function SubmitRequestForm() {
   const [category, setCategory] = useState("");
@@ -158,7 +245,7 @@ export default function SubmitRequestForm() {
     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-12">
       <form
         onSubmit={handleSubmit}
-        className="rounded-2xl border border-[#ececec] bg-white p-6 shadow-[0_8px_24px_rgba(17,17,17,0.04)] md:p-8"
+        className="overflow-visible rounded-2xl border border-[#ececec] bg-white p-6 shadow-[0_8px_24px_rgba(17,17,17,0.04)] md:p-8"
       >
         <h2 className="font-heading text-xl font-semibold text-[#111] md:text-2xl">
           Tell us what you need
@@ -168,11 +255,18 @@ export default function SubmitRequestForm() {
           usually responds within one business day.
         </p>
 
-        <div className="mt-8">
-          <label htmlFor="issue-type" className={labelClass}>
+        <div className="relative mt-8 overflow-visible">
+          <label id="issue-type-label" htmlFor="issue-type" className={labelClass}>
             Issue type
           </label>
-          <div className="relative">
+
+          <MobileIssueTypeSelect
+            value={category}
+            onChange={setCategory}
+            options={CATEGORIES}
+          />
+
+          <div className="relative hidden md:block">
             <select
               id="issue-type"
               value={category}

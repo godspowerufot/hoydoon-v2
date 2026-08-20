@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { articles } from "@/constants";
 import { HomeContainer, SectionHeader } from "../components/home/Section";
@@ -10,6 +8,7 @@ import {
   HelpCenterArticleCard,
   HelpCenterHero,
   HelpCenterPagination,
+  HelpCenterSupportCta,
   HELP_CATEGORIES,
   type HelpArticle,
 } from "../components/helpcenter";
@@ -139,39 +138,7 @@ export default function HelpCenterPage() {
         </HomeContainer>
       </main>
 
-      <section className="home-bleed border-t border-[#ececec] bg-white py-14 md:py-16">
-        <HomeContainer>
-          <div className="grid overflow-hidden rounded-3xl bg-[#0f3d40] md:grid-cols-2">
-            <div className="flex flex-col justify-center px-8 py-10 md:px-12 md:py-14">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-                Still need help?
-              </p>
-              <h2 className="mt-3 font-heading text-2xl font-semibold tracking-tight text-white md:text-3xl">
-                Talk to our support team
-              </h2>
-              <p className="mt-3 max-w-md text-base leading-relaxed text-white/80">
-                Submit a request and we&apos;ll get back to you, usually within
-                one business day.
-              </p>
-              <Link
-                href="/helpcenter/submit-request"
-                className="mt-6 inline-flex h-11 w-fit items-center rounded-full bg-white px-5 text-sm font-semibold text-[#0f3d40] transition-colors hover:bg-white/90"
-              >
-                Submit a request
-              </Link>
-            </div>
-            <div className="relative min-h-[240px] md:min-h-full">
-              <Image
-                src="/new-image/help-2.jpg"
-                alt="Support team member ready to help on a call"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-[50%_28%] md:object-[50%_22%]"
-              />
-            </div>
-          </div>
-        </HomeContainer>
-      </section>
+      <HelpCenterSupportCta />
     </div>
   );
 }

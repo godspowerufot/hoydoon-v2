@@ -4,6 +4,7 @@ import { ChevronDown, Loader2, SlidersHorizontal } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { FiltersDropdown } from "@/app/components/common/filters";
 import { getLocationRegion } from "@/utils/lib/index";
+import SearchFiltersBarMobile from "./SearchFiltersBarMobile";
 import {
   COUNTRY_FILTER_OPTIONS,
   COUNTRY_LABELS,
@@ -160,8 +161,16 @@ export default function SearchFiltersBar({
   };
 
   return (
-    <div className="rounded-2xl border border-[#ececec] bg-white p-4 shadow-[0_8px_24px_rgba(17,17,17,0.04)] md:p-5">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+    <div className="md:rounded-2xl md:border md:border-[#ececec] md:bg-white md:p-5 md:shadow-[0_8px_24px_rgba(17,17,17,0.04)]">
+      <SearchFiltersBarMobile
+        filters={filters}
+        onFiltersChange={onFiltersChange}
+        onSearch={onSearch}
+        showMap={showMap}
+        setShowMap={setShowMap}
+      />
+
+      <div className="hidden flex-col gap-4 md:flex lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-wrap items-center gap-2">
           <FilterDropdown
             label="Country"
