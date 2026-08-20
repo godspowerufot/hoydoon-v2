@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import Appfooter from "./components/layouts/footer";
 import Navbar from "./components/layouts/navbar";
@@ -10,6 +11,11 @@ import "react-toastify/dist/ReactToastify.css";
 import Script from "next/script";
 
 import Spinner from "./components/common/Spinner";
+
+const geist = Geist({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hoydoon.com"),
@@ -98,16 +104,6 @@ export default function RootLayout({
     <>
       <html lang="en">
         <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin=""
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Geist:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&family=Sora:wght@100..800&display=swap"
-            rel="stylesheet"
-          />
           <link
             rel="icon"
             type="image/png"
@@ -296,7 +292,7 @@ export default function RootLayout({
 
         <body
           suppressHydrationWarning
-          className="lg:flex overflow-x-hidden flex-col flex-1 font-sans min-h-screen"
+          className={`${geist.className} lg:flex overflow-x-hidden flex-col flex-1 font-sans min-h-screen`}
         >
           {/* Google Tag Manager (noscript) */}
           <noscript>

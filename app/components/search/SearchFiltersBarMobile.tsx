@@ -89,12 +89,6 @@ export default function SearchFiltersBarMobile({
     return TYPE_FILTER_OPTIONS_BASE;
   }, [effectiveCountry]);
 
-  const typeOptions = useMemo(() => {
-    const base = ["Buy", "Rent", "Land"];
-    if (effectiveCountry !== "somalia") return [...base, "Shortlet"];
-    return base;
-  }, [effectiveCountry]);
-
   const priceOptionKey = getPriceOptionKey(filters["home-type"] || "rent");
   const currentPriceOptions = priceOptions[priceOptionKey] ?? priceOptions.Rent ?? [];
 
