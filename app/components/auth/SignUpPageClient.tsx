@@ -81,11 +81,11 @@ export default function SignUpPageClient() {
       imagePosition="object-[50%_30%]"
       quote="Create a free account to save homes and connect with local agents."
     >
-      <div className="mb-8">
-        <h1 className="font-heading text-[1.75rem] font-semibold tracking-tight text-[#111] md:text-3xl">
+      <div className="mb-6 lg:mb-8">
+        <h1 className="font-heading text-[1.65rem] font-semibold tracking-tight text-[#111] lg:text-3xl">
           Create account
         </h1>
-        <p className="mt-2 text-[15px] leading-relaxed text-[#5c5c66]">
+        <p className="mt-1.5 text-[15px] leading-relaxed text-[#5c5c66]">
           Join Hoydoon to save listings and track your home search.
         </p>
       </div>

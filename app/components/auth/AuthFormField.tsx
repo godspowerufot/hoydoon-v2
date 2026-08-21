@@ -40,15 +40,15 @@ export default function AuthFormField({
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           autoComplete={autoComplete}
-          className={`h-12 w-full rounded-lg border bg-white px-4 text-[15px] text-[#111] outline-none transition-colors placeholder:text-[#a3a3a3] focus:border-primary focus:ring-2 focus:ring-primary/15 ${
-            error ? "border-red-400" : "border-[#d1d1d6]"
-          } ${isPassword ? "pr-11" : ""}`}
+          className={`h-12 w-full rounded-full border bg-[#f7f7f8] px-5 text-[15px] text-[#111] outline-none transition-colors placeholder:text-[#a3a3a3] focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/15 lg:rounded-lg lg:bg-white lg:px-4 ${
+            error ? "border-red-400" : "border-[#ececec] lg:border-[#d1d1d6]"
+          } ${isPassword ? "pr-12" : ""}`}
         />
         {isPassword ? (
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8a8a8a] hover:text-[#111]"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8a8a8a] hover:text-[#111] lg:right-3"
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
             {showPassword ? (

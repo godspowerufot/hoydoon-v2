@@ -56,11 +56,11 @@ export default function SignInPageClient() {
       imagePosition="object-[50%_40%]"
       quote="Pick up where you left off, saved homes, agents, and searches."
     >
-      <div className="mb-8">
-        <h1 className="font-heading text-[1.75rem] font-semibold tracking-tight text-[#111] md:text-3xl">
+      <div className="mb-6 lg:mb-8">
+        <h1 className="font-heading text-[1.65rem] font-semibold tracking-tight text-[#111] lg:text-3xl">
           Sign in
         </h1>
-        <p className="mt-2 text-[15px] leading-relaxed text-[#5c5c66]">
+        <p className="mt-1.5 text-[15px] leading-relaxed text-[#5c5c66]">
           Welcome back. Enter your details to access your account.
         </p>
       </div>

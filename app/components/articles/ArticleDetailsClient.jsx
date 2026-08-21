@@ -216,6 +216,11 @@ export default function ArticleDetailsClient({ article }) {
                   fill
                   priority
                   className="object-cover"
+                  style={
+                    article.heroImagePosition
+                      ? { objectPosition: article.heroImagePosition }
+                      : undefined
+                  }
                   sizes="(max-width: 1024px) 100vw, 800px"
                 />
               </div>

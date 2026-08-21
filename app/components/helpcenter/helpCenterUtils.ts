@@ -8,6 +8,7 @@ export type HelpArticle = {
   readTime: string;
   date: string;
   description: string;
+  imagePosition?: string;
 };
 
 export const CATEGORY_MAPPING: Record<string, string[]> = {

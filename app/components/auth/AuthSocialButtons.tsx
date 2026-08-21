@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import LoginButtons from "@/app/components/common/googlebutton";
 
 const outlineBtn =
-  "flex h-12 w-full items-center justify-center gap-2.5 rounded-lg border border-[#d1d1d6] bg-white text-[15px] font-medium text-[#111] transition-colors hover:border-[#111] hover:bg-[#fafafa] disabled:cursor-not-allowed disabled:opacity-50";
+  "flex h-12 w-full items-center justify-center gap-2.5 rounded-full border border-[#ececec] bg-white text-[15px] font-medium text-[#111] transition-colors hover:border-[#111] hover:bg-[#fafafa] disabled:cursor-not-allowed disabled:opacity-50 lg:rounded-lg lg:border-[#d1d1d6]";
 
 export default function AuthSocialButtons({
   googleAuth,
@@ -28,7 +28,7 @@ export default function AuthSocialButtons({
         </p>
       </div>
 
-      <div className="[&_button]:h-12 [&_button]:rounded-lg [&_button]:border-[#d1d1d6] [&_button]:text-[15px] [&_button]:font-medium [&_button]:hover:border-[#111]">
+      <div className="[&_button]:h-12 [&_button]:rounded-full [&_button]:border-[#ececec] [&_button]:text-[15px] [&_button]:font-medium [&_button]:hover:border-[#111] lg:[&_button]:rounded-lg lg:[&_button]:border-[#d1d1d6]">
         <LoginButtons
           googleAuth={googleAuth}
           isGoogleLoading={isGoogleLoading}
@@ -63,7 +63,7 @@ export function AuthSubmitButton({
     <button
       type="submit"
       disabled={disabled || loading}
-      className="flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary text-[15px] font-semibold text-white transition-colors hover:bg-[#07757c] disabled:cursor-not-allowed disabled:opacity-50"
+      className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary text-[15px] font-semibold text-white transition-colors hover:bg-[#07757c] disabled:cursor-not-allowed disabled:opacity-50 lg:rounded-lg"
     >
       {loading ? (
         <>

@@ -21,6 +21,11 @@ export default function HelpCenterArticleCard({
             fill
             unoptimized
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            style={
+              article.imagePosition
+                ? { objectPosition: article.imagePosition }
+                : undefined
+            }
             sizes="(max-width: 767px) 100vw, 33vw"
           />
         </div>

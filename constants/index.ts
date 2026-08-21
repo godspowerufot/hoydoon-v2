@@ -306,6 +306,19 @@ export const articles = [
     description:
       "Buying a home is a significant life event that represents financial stability, personal achievement, and a long-term commitment. It is often an exciting journey filled with anticipation, but it also comes with a series of challenges that require careful planning and strategic decision-making.",
   },
+  {
+    id: "25",
+    imageSrc: "/article-image/25.jpg",
+    altText: "Agent Information Article | Kenya",
+    articleType: "Listing inquiries",
+    title: "Agent Information Article | Kenya",
+    slug: "agent-information-kenya",
+    readTime: "4 min read",
+    date: "August 21, 2026",
+    imagePosition: "center 12%",
+    description:
+      "Welcome to Hoydoon, Africa's verified real estate platform connecting serious buyers and renters directly with trusted agents and landlords across Nigeria, Kenya and Somalia. This article answers the most important questions about listing and transacting on Hoydoon.",
+  },
 ];
 
 export const highlights = [
